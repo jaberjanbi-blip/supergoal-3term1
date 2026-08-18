@@ -1,0 +1,2931 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U4 Grammar – Reflexive Pronouns & Because vs So | Teacher Jaber</title>
+<style>
+:root{
+  --border:var(--card-border);--subtext:var(--sub);
+  --navy:#1E3A5F;--teal:#0F766E;--coral:#DC2E5D;--gold:#F59E0B;
+  --green:#16A34A;--blue:#2563EB;--purple:#7C3AED;--orange:#EA580C;
+  --pink:#DB2777;--ink:#1F2937;--slate:#475569;--light:#F8FAFC;
+  --gray:#E5E7EB;--yellow:#FEF3C7;--softblue:#EFF6FF;
+  --softgreen:#F0FDF4;--softpink:#FFF0F3;--softpurple:#F5F3FF;
+  --softteal:#F0FDFA;--softyellow:#FFFBEB;
+  /* Dark mode */
+  --bg:var(--light);--card:#fff;--card-border:var(--gray);--text:var(--ink);--sub:var(--slate);
+}
+body.dark{
+  --border:var(--card-border);--subtext:var(--sub);
+  --bg:#0f172a;--card:#1e293b;--card-border:#334155;--text:#e2e8f0;--sub:#94a3b8;--light:#0f172a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Calibri,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;}
+
+/* ── HEADER ── */
+.site-header{background:linear-gradient(135deg,#0F766E,#7C3AED 55%,#DC2E5D);padding:0;position:sticky;top:0;z-index:200;box-shadow:0 3px 20px rgba(0,0,0,.35);}
+.header-inner{background:rgba(10,20,50,.84);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.header-left h1{font-size:1rem;font-weight:800;color:white;line-height:1.3;}
+.header-left .sub{font-size:.72rem;color:#c4b5fd;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.header-badge{background:var(--gold);color:var(--navy);font-size:.72rem;font-weight:800;padding:4px 11px;border-radius:20px;}
+.dark-btn{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.25);border-radius:20px;color:white;font-size:.75rem;font-weight:700;padding:4px 11px;cursor:pointer;transition:.2s;font-family:inherit;}
+.dark-btn:hover{background:rgba(255,255,255,.25);}
+
+/* ── XP / STREAK / LEVEL BAR ── */
+.xp-bar{background:rgba(10,20,50,.92);padding:7px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.xp-pill{display:flex;align-items:center;gap:5px;font-size:.76rem;font-weight:800;color:white;}
+.xp-pill .icon{font-size:.9rem;}
+.xp-num{color:var(--gold);}
+.streak-num{color:#fb923c;}
+.level-badge{background:linear-gradient(135deg,var(--gold),var(--orange));color:var(--navy);font-size:.7rem;font-weight:900;padding:3px 10px;border-radius:20px;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.5);}50%{box-shadow:0 0 0 5px rgba(245,158,11,0);}}
+
+.progress-container{height:5px;width:100%;background:rgba(255,255,255,.18);}
+.progress-bar{height:100%;width:0%;background:var(--gold);transition:width .4s ease;}
+
+/* ── NAV ── */
+.pill-nav{display:flex;overflow-x:auto;gap:4px;background:#060f1e;padding:7px 18px 11px;scrollbar-width:thin;scrollbar-color:#7C3AED rgba(255,255,255,.08);cursor:grab;user-select:none;}
+.pill-nav.is-dragging{cursor:grabbing;}
+.pill-nav::-webkit-scrollbar{height:5px;display:block;}
+.pill-nav::-webkit-scrollbar-track{background:rgba(255,255,255,.06);border-radius:10px;margin:0 18px;}
+.pill-nav::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#7C3AED,#2563EB);border-radius:10px;}
+.pill-nav::-webkit-scrollbar-thumb:hover{background:linear-gradient(90deg,#6D28D9,#1d4ed8);}
+.pill-nav button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:20px;cursor:pointer;color:#94a3b8;font-size:.75rem;font-weight:600;padding:5px 13px;white-space:nowrap;transition:.18s;font-family:inherit;}
+.pill-nav button.active{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:800;}
+.pill-nav button:hover:not(.active){background:rgba(255,255,255,.16);color:white;}
+
+/* ── LAYOUT ── */
+.container{max-width:960px;margin:0 auto;padding:24px 16px 70px;}
+.page{display:none;animation:fadeIn .22s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── AUDIO ── */
+.audio-btn{background:#E2E8F0;border:none;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:.75rem;margin-left:6px;vertical-align:middle;transition:.2s;color:var(--navy);}
+.audio-btn:hover{background:var(--blue);color:white;transform:scale(1.1);}
+
+/* ── GRAMMAR BOX ── */
+.grammar-box{background:var(--card);border-radius:16px;box-shadow:0 3px 20px rgba(0,0,0,.08);overflow:hidden;margin-bottom:22px;}
+.grammar-header{padding:15px 22px;display:flex;align-items:center;gap:13px;}
+.g-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:900;flex-shrink:0;}
+.g-title{font-size:1.1rem;font-weight:800;color:white;}
+.g-title-ar{font-size:.88rem;color:rgba(255,255,255,.78);margin-top:3px;direction:rtl;}
+.grammar-body{padding:18px 22px;}
+
+/* ── PRONOUN TABLE ── */
+.pro-table{width:100%;border-collapse:collapse;font-size:.85rem;border-radius:10px;overflow:hidden;margin-bottom:16px;}
+.pro-table th{padding:10px 14px;text-align:left;font-weight:800;color:white;}
+.pro-table td{padding:9px 14px;border-bottom:1px solid var(--card-border);}
+.pro-table tr:last-child td{border:none;}
+.pro-table tr:nth-child(even) td{background:rgba(0,0,0,.03);}
+.pro-word{font-weight:800;}
+.pro-ref{font-weight:800;}
+.pro-ar{direction:rtl;text-align:right;color:var(--sub);font-size:.8rem;}
+
+/* ── BECAUSE vs SO ── */
+.bvs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+@media(max-width:560px){.bvs-grid{grid-template-columns:1fr;}}
+.bvs-card{border-radius:12px;overflow:hidden;}
+.bvs-head{padding:12px 16px;text-align:center;}
+.bvs-head .word{font-size:1.4rem;font-weight:900;color:white;}
+.bvs-head .sub{font-size:.8rem;color:rgba(255,255,255,.8);margin-top:2px;}
+.bvs-body{padding:13px 16px;}
+.bvs-label{font-size:.78rem;font-weight:800;margin-bottom:6px;}
+.bvs-ex{font-size:.84rem;font-style:italic;margin-bottom:5px;line-height:1.5;}
+.bvs-ar{font-size:.75rem;direction:rtl;text-align:right;color:var(--sub);}
+
+/* ── NOTES ── */
+.note{background:var(--yellow);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:9px 13px;margin:11px 0;font-size:.86rem;line-height:1.65;}
+.note strong{color:var(--navy);}
+.note-blue{background:var(--softblue);border-left-color:var(--blue);}
+.note-teal{background:var(--softteal);border-left-color:var(--teal);}
+.note-purple{background:var(--softpurple);border-left-color:var(--purple);}
+body.dark .note{background:#2d2a00;color:#e2e8f0;}
+body.dark .note-blue{background:#0c1a3a;}
+body.dark .note-teal{background:#062320;}
+body.dark .note-purple{background:#1e0a3c;}
+
+.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+@media(max-width:580px){.two-cols{grid-template-columns:1fr;}}
+
+/* ── EXERCISE CARD ── */
+.ex-card{background:var(--card);border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.07);overflow:hidden;margin-bottom:20px;}
+.ex-head{padding:14px 22px 10px;border-bottom:1px solid var(--card-border);}
+.ex-title{font-size:1.05rem;font-weight:800;color:var(--navy);}
+body.dark .ex-title{color:#c4b5fd;}
+body.dark .note strong{color:#fbbf24!important;}
+.ex-title-ar{font-size:.86rem;color:var(--sub);direction:rtl;margin-top:2px;}
+.lv{font-size:.67rem;font-weight:800;padding:3px 10px;border-radius:20px;display:inline-block;margin-top:5px;}
+.lv-beg{background:#D1FAE5;color:#065F46;}
+.lv-int{background:#FEF3C7;color:#92400E;}
+.lv-adv{background:#FCE7F3;color:#9D174D;}
+.lv-boss{background:#1e0a3c;color:#c4b5fd;}
+.lv-quiz{background:#EDE9FE;color:#4C1D95;}
+.ex-inst{padding:8px 22px;background:rgba(0,0,0,.02);border-bottom:1px solid var(--card-border);font-size:.86rem;color:var(--sub);font-style:italic;}
+.ex-inst-ar{padding:4px 22px 8px;background:rgba(0,0,0,.02);border-bottom:1px solid var(--card-border);font-size:.81rem;color:var(--sub);direction:rtl;text-align:right;}
+.ex-body{padding:16px 22px;}
+
+/* ── BUTTONS ── */
+.btn-row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:13px;}
+.rbtn{display:inline-flex;align-items:center;gap:6px;border:none;border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:700;padding:8px 16px;transition:.17s;font-family:inherit;color:white;}
+.rbtn:hover{filter:brightness(1.12);transform:translateY(-1px);}
+.score-line{font-size:.82rem;color:var(--sub);margin-bottom:13px;}
+.score-line span{font-weight:800;color:var(--navy);font-size:.93rem;}
+body.dark .score-line span{color:#c4b5fd;}
+
+/* ── ITEMS ── */
+.item-row{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid var(--card-border);flex-wrap:wrap;}
+.item-row:last-child{border-bottom:none;}
+.inum{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.77rem;font-weight:800;color:white;flex-shrink:0;margin-top:2px;}
+.iq{flex:1;font-size:.91rem;line-height:1.55;min-width:200px;}
+.iarr{color:var(--sub);font-size:1rem;padding-top:3px;flex-shrink:0;}
+
+/* ── HINT ── */
+.hint-btn{background:transparent;border:1px dashed var(--gold);border-radius:6px;color:var(--gold);font-size:.73rem;font-weight:700;padding:3px 9px;cursor:pointer;margin-top:4px;display:inline-block;transition:.18s;font-family:inherit;}
+.hint-btn:hover{background:var(--gold);color:var(--navy);}
+.hint-box{display:none;background:var(--softyellow);border:1px solid #fde68a;border-radius:6px;padding:5px 10px;margin-top:5px;font-size:.78rem;color:#78350f;direction:rtl;text-align:right;line-height:1.6;}
+body.dark .hint-box{background:#2d2200;border-color:#78350f;color:#fde68a;}
+.hint-box.visible{display:block;}
+
+/* ── INPUTS ── */
+.interactive-input{padding:6px 10px;font-size:.88rem;font-weight:600;border:2px solid var(--card-border);border-radius:8px;outline:none;transition:.2s;width:150px;font-family:inherit;margin-top:4px;background:var(--card);color:var(--text);autocomplete:off;}
+.interactive-input.wide{width:270px;}
+.interactive-input:focus{border-color:var(--blue);}
+.interactive-input.is-correct{border-color:var(--green);background:#F0FDF4;}
+.interactive-input.is-wrong{border-color:var(--coral);background:#FFF0F3;}
+body.dark .interactive-input.is-correct{background:#052e16;}
+body.dark .interactive-input.is-wrong{background:#2d0a14;}
+
+.check-btn{background:var(--navy);color:white;border:none;padding:6px 12px;border-radius:6px;font-size:.78rem;font-weight:700;cursor:pointer;transition:.2s;margin-left:4px;font-family:inherit;}
+.check-btn:hover{background:var(--blue);}
+
+/* ── FEEDBACK BOX ── */
+.feedback-box{display:none;margin-top:8px;padding:7px 12px;border-radius:8px;font-size:.8rem;direction:rtl;text-align:right;line-height:1.6;font-weight:600;}
+.feedback-box.fb-correct{background:#dcfce7;border:1px solid #86efac;color:#14532d;display:block;}
+.feedback-box.fb-wrong{background:#fee2e2;border:1px solid #fca5a5;color:#7f1d1d;display:block;}
+body.dark .feedback-box.fb-correct{background:#052e16;border-color:#166534;color:#86efac;}
+body.dark .feedback-box.fb-wrong{background:#2d0a14;border-color:#7f1d1d;color:#fca5a5;}
+
+/* ── ANSWER REVEAL ── */
+.ians{flex:1;font-size:.87rem;font-weight:700;color:white;padding:6px 13px;border-radius:8px;opacity:0;transform:translateX(8px);transition:opacity .3s ease,transform .3s ease;min-width:55px;line-height:1.45;display:none;}
+.ians.visible{opacity:1;transform:translateX(0);display:block;}
+
+/* ── MCQ ── */
+.mcq-block{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--card-border);}
+.mcq-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.mcq-q{font-size:.91rem;font-weight:600;margin-bottom:7px;}
+.mcq-opts{display:flex;gap:7px;flex-wrap:wrap;}
+.mcq-opt{padding:5px 13px;border-radius:20px;font-size:.81rem;border:2px solid var(--card-border);color:var(--text);transition:.18s;cursor:pointer;user-select:none;}
+.mcq-opt:hover{border-color:var(--blue);background:var(--softblue);}
+.mcq-opt.selected-correct{background:var(--green)!important;color:white!important;border-color:var(--green)!important;font-weight:800;}
+.mcq-opt.selected-wrong{background:var(--coral)!important;color:white!important;border-color:var(--coral)!important;}
+.mcq-opt[data-ex].visible{font-weight:800;border-color:transparent;}
+.mcq-feedback{margin-top:7px;font-size:.79rem;direction:rtl;text-align:right;padding:5px 10px;border-radius:6px;display:none;line-height:1.5;}
+.mcq-feedback.fb-correct{background:#dcfce7;color:#14532d;border:1px solid #86efac;display:block;}
+.mcq-feedback.fb-wrong{background:#fee2e2;color:#7f1d1d;border:1px solid #fca5a5;display:block;}
+body.dark .mcq-feedback.fb-correct{background:#052e16;color:#86efac;border-color:#166534;}
+body.dark .mcq-feedback.fb-wrong{background:#2d0a14;color:#fca5a5;border-color:#7f1d1d;}
+
+/* ── SCORE CARD ── */
+.score-card{display:none;background:linear-gradient(135deg,var(--gold),var(--orange));border-radius:16px;padding:24px;text-align:center;margin-top:20px;animation:fadeIn .4s ease;}
+.score-card.visible{display:block;}
+.score-card h2{color:var(--navy);font-size:1.5rem;margin-bottom:8px;}
+.score-card .big{font-size:3rem;font-weight:900;color:var(--navy);}
+.score-card .sub{color:rgba(30,58,95,.75);font-size:.9rem;}
+
+/* ── BOSS CHALLENGE ── */
+.boss-head{background:linear-gradient(135deg,#0f172a,#4c1d95 50%,#7f1d1d);padding:18px 22px;text-align:center;position:relative;overflow:hidden;}
+.boss-head::before{content:'👹';position:absolute;font-size:4rem;opacity:.1;right:20px;top:50%;transform:translateY(-50%);}
+.boss-head h3{color:white;font-size:1.1rem;font-weight:900;letter-spacing:.5px;}
+.boss-head .ar{color:rgba(255,255,255,.8);font-size:.84rem;direction:rtl;text-align:right;margin-top:4px;}
+
+/* ── MINI CHALLENGE ── */
+.challenge-box{background:var(--card);border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.07);overflow:hidden;margin-bottom:20px;}
+.challenge-head{background:linear-gradient(135deg,var(--gold),var(--orange));padding:14px 22px;}
+.challenge-head h3{color:white;font-size:1rem;font-weight:800;}
+.challenge-head .ar{color:rgba(255,255,255,.85);font-size:.84rem;direction:rtl;text-align:right;margin-top:3px;}
+.challenge-body{padding:18px 22px;}
+.write-line{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--card-border);}
+.write-line:last-child{border:none;}
+.write-num{width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;flex-shrink:0;}
+.write-blank{flex:1;border:none;border-bottom:2px solid var(--card-border);padding:4px 8px;font-size:.9rem;font-family:inherit;outline:none;background:transparent;color:var(--text);}
+.write-blank:focus{border-bottom-color:var(--gold);}
+
+/* ── HIGHLIGHTS ── */
+.hi-t{color:var(--teal);font-weight:800;}
+.hi-c{color:var(--coral);font-weight:800;}
+.hi-b{color:var(--blue);font-weight:800;}
+.hi-g{color:var(--green);font-weight:800;}
+.hi-p{color:var(--purple);font-weight:800;}
+.hi-o{color:var(--orange);font-weight:800;}
+
+  /* ── SHAKE ── */
+  @keyframes shake{0%,100%{transform:translateX(0);}15%{transform:translateX(-8px);}30%{transform:translateX(8px);}45%{transform:translateX(-6px);}60%{transform:translateX(6px);}75%{transform:translateX(-3px);}90%{transform:translateX(3px);}}
+  .shake{animation:shake .45s ease;border-color:#ef4444 !important;box-shadow:0 0 0 3px rgba(239,68,68,.35) !important;}
+  /* ── BOSS FIXED HUD ── */
+  .boss-hud-fixed{display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;background:rgba(20,10,40,.97);padding:10px 18px;gap:12px;align-items:center;border-top:2px solid #7C3AED;box-shadow:0 -4px 20px rgba(0,0,0,.4);}
+  .boss-hud-fixed.active{display:flex;}
+  .b-hp-wrap{flex:1;}
+  .b-hp-label{font-size:.7rem;color:#c4b5fd;font-weight:700;margin-bottom:3px;display:flex;justify-content:space-between;}
+  .b-hp-track{height:13px;background:rgba(255,255,255,.15);border-radius:20px;overflow:hidden;}
+  .b-hp-bar{height:100%;width:100%;background:linear-gradient(90deg,#DC2E5D,#ef4444);border-radius:20px;transition:width .5s ease;}
+  .b-my-bar{height:100%;width:100%;background:linear-gradient(90deg,#16A34A,#22c55e);border-radius:20px;transition:width .5s ease;}
+  .b-timer{font-size:1.4rem;font-weight:900;color:white;background:rgba(255,255,255,.1);border-radius:10px;padding:6px 14px;min-width:75px;text-align:center;}
+  .b-timer.hurry{color:#ef4444;animation:shake .5s infinite;}
+  /* ── DARK MODE EXTRA FIXES ── */
+  .dark .grammar-box,.dark .ex-card,.dark .info-card,.dark .compare-grid>div,
+  .dark .rule-card,.dark .example-card,.dark .pos-card,.dark .note-card {
+    background:var(--card)!important;color:var(--text)!important;border-color:var(--card-border,#334155)!important;
+  }
+  .dark .mcq-opt:not(.selected-correct):not(.selected-wrong){background:#1e293b!important;color:#e2e8f0!important;border-color:#334155!important;}
+  .dark .mcq-opt:hover:not(.selected-correct):not(.selected-wrong){background:#2d3f55!important;}
+  .dark .interactive-input{background:#0f172a!important;color:#e2e8f0!important;border-color:#334155!important;}
+  .dark .interactive-input::placeholder{color:#64748b!important;}
+  .dark .feedback-box,.dark .mcq-feedback,.dark .explain-box,.dark .explanation-box{background:#1a1000!important;color:#fde68a!important;border-color:#854d0e!important;}
+  .dark table{background:var(--card)!important;}
+  .dark th{background:#1e3a5f!important;color:#e2e8f0!important;}
+  .dark td{background:var(--card)!important;border-color:var(--card-border,#334155)!important;}
+  .dark tr:nth-child(even) td{background:#1a2742!important;}
+  .dark .ex-inst,.dark .ex-inst-ar,.dark .item-q,.dark .mcq-q,.dark .iq,.dark .ar{color:var(--text)!important;}
+  .dark small,.dark .caption,.dark .sub,.dark .subtext{color:var(--sub)!important;}
+  .dark .score-line{color:#94a3b8!important;}
+  .dark .score-line span{color:#93c5fd!important;}
+  .dark .item-row,.dark .scramble-row{border-color:#334155!important;}
+  .dark .pill-nav,.dark .tab-nav{background:#020617!important;}
+  .dark .pill-nav button:not(.active),.dark .tab-nav button:not(.active){background:#1e293b!important;color:#94a3b8!important;}
+  .dark .dnd-dropzone{background:#0c1a3d!important;border-color:#2563eb!important;}
+  .dark .dnd-word{background:#1e3a5f!important;color:#e2e8f0!important;}
+
+/* ════════════════════════════════════════
+   DARK MODE — COMPREHENSIVE FIX (Reflexive)
+   ════════════════════════════════════════ */
+
+/* Grammar body text */
+.dark .grammar-body,
+.dark .grammar-body p,
+.dark .grammar-body span:not([style]),
+.dark .grammar-body li,
+.dark .grammar-body .en,
+.dark .grammar-body .ar,
+.dark .g-title, .dark .g-title-ar { color:var(--text)!important; }
+
+/* Soft color inline backgrounds */
+.dark [style*="background:var(--softblue)"],
+.dark [style*="background: var(--softblue)"] { background:#0c1a3a!important; color:#e2e8f0!important; }
+.dark [style*="background:var(--softgreen)"] { background:#052e16!important; color:#e2e8f0!important; }
+.dark [style*="background:var(--softpink)"] { background:#2d0a14!important; color:#e2e8f0!important; }
+.dark [style*="background:var(--softpurple)"] { background:#1e0a3c!important; color:#e2e8f0!important; }
+.dark [style*="background:var(--softteal)"] { background:#062320!important; color:#e2e8f0!important; }
+.dark [style*="background:var(--softyellow)"] { background:#2d2200!important; color:#e2e8f0!important; }
+.dark [style*="background:var(--yellow)"] { background:#2d2200!important; color:#e2e8f0!important; }
+.dark [style*="background:white"],
+.dark [style*="background:#fff"] { background:#1e293b!important; color:#e2e8f0!important; }
+
+/* Because/So cards */
+.dark .bvs-card { background:var(--card)!important; border-color:#334155!important; }
+.dark .bvs-body { color:var(--text)!important; background:var(--card)!important; }
+.dark .bvs-ar { color:#94a3b8!important; }
+.dark .bvs-ex { color:var(--text)!important; background:#1a2742!important; border-color:#334155!important; }
+.dark .bvs-label { color:#93c5fd!important; }
+
+/* Mini Challenge section */
+.dark .challenge-box { background:var(--card)!important; }
+.dark .challenge-body { background:var(--card)!important; color:var(--text)!important; }
+.dark .write-line { border-color:#334155!important; color:var(--text)!important; }
+.dark .write-line > div { color:var(--text)!important; }
+.dark .write-blank {
+  background:transparent!important;
+  color:var(--text)!important;
+  border-color:#475569!important;
+}
+.dark .write-blank::placeholder { color:#64748b!important; }
+.dark .write-blank:focus { border-color:#7C3AED!important; }
+
+/* Example box in mini challenge */
+.dark .challenge-body [style*="background:var(--softblue)"],
+.dark .challenge-body > div:first-child { background:#0c1a3a!important; color:#93c5fd!important; }
+
+/* Two-cols content */
+.dark .two-cols > div { background:var(--card)!important; color:var(--text)!important; border-color:#334155!important; }
+
+/* ex-head and ex body */
+.dark .ex-head { border-color:#334155!important; }
+.dark .ex-title-ar { color:#94a3b8!important; }
+.dark .ex-body p, .dark .ex-body .ar { color:var(--text)!important; }
+.dark .iq { color:var(--text)!important; }
+.dark .iq > span, .dark .iq > div { color:var(--text)!important; }
+
+/* Pro-table (reflexive pronoun table) */
+.dark .pro-table th { background:#1e3a5f!important; color:white!important; }
+.dark .pro-table td { background:var(--card)!important; color:var(--text)!important; border-color:#334155!important; }
+.dark .pro-table tr:nth-child(even) td { background:#1a2742!important; }
+
+/* Item rows, IQ */
+.dark .item-row { background:var(--card)!important; border-color:#334155!important; }
+.dark .ians { filter:brightness(.85); }
+
+
+/* ═══════════════════════════════════════════════════════════
+   PARITY UPGRADE CSS — ported from the reference lesson
+   ═══════════════════════════════════════════════════════════ */
+.ns-overlay{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;background:rgba(8,6,20,.86);backdrop-filter:blur(6px);padding:16px;}
+.ns-overlay.show{display:flex;}
+.ns-card{background:linear-gradient(160deg,#1e1b4b,#3b1360);border:2px solid rgba(255,255,255,.15);border-radius:20px;max-width:460px;width:100%;max-height:92vh;overflow-y:auto;padding:26px 22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);color:#fff;}
+.ns-card h2{font-size:1.35rem;font-weight:900;margin-bottom:6px;}
+.ns-card p{font-size:.85rem;color:#c4b5fd;line-height:1.6;}
+.avatar-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 6px;}
+.avatar-opt{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:14px;padding:16px 8px;cursor:pointer;transition:.18s;}
+.avatar-opt:hover{background:rgba(255,255,255,.16);transform:translateY(-3px);}
+.avatar-opt.picked{border-color:var(--gold);background:rgba(245,158,11,.18);}
+.avatar-opt .em{font-size:2.4rem;display:block;margin-bottom:6px;}
+.avatar-opt .nm{font-size:.78rem;font-weight:800;}
+.avatar-opt .nm-ar{font-size:.7rem;color:#c4b5fd;direction:rtl;}
+.ns-start-btn{margin-top:16px;background:var(--gold);color:#1a0a00;border:none;border-radius:12px;padding:13px 30px;font-size:1rem;font-weight:900;cursor:pointer;transition:.15s;}
+.ns-start-btn:hover{filter:brightness(1.08);transform:scale(1.03);}
+.ns-start-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.diff-grid{display:flex;flex-direction:column;gap:12px;margin:18px 0 6px;}
+.diff-opt{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 16px;cursor:pointer;transition:.18s;text-align:left;display:flex;align-items:flex-start;gap:12px;}
+.diff-opt:hover{background:rgba(255,255,255,.16);transform:translateY(-2px);}
+.diff-opt .em{font-size:1.8rem;flex-shrink:0;}
+.diff-opt .nm{font-size:.95rem;font-weight:900;display:block;margin-bottom:3px;}
+.diff-opt .ds{font-size:.74rem;color:#c4b5fd;line-height:1.6;}
+.hud-avatar{font-size:1.15rem;background:rgba(255,255,255,.12);border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;}
+.hud-mini-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:16px;font-size:.68rem;font-weight:700;padding:4px 10px;cursor:pointer;transition:.15s;white-space:nowrap;}
+.hud-mini-btn:hover{background:rgba(255,255,255,.25);}
+.levelup-badge{font-size:4rem;margin-bottom:6px;animation:lvlPop .6s ease;}
+@keyframes lvlPop{0%{transform:scale(.2) rotate(-20deg);opacity:0;}60%{transform:scale(1.25) rotate(8deg);opacity:1;}100%{transform:scale(1) rotate(0);}}
+.levelup-name{font-size:1.6rem;font-weight:900;background:linear-gradient(90deg,#F59E0B,#DC2E5D,#7C3AED);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.ach-toast{position:fixed;left:50%;top:14px;transform:translateX(-50%) translateY(-30px);opacity:0;z-index:9999;background:linear-gradient(135deg,#F59E0B,#DC2E5D);color:#fff;border-radius:14px;padding:10px 18px;font-size:.82rem;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:opacity .3s,transform .3s;display:flex;align-items:center;gap:8px;pointer-events:none;max-width:90vw;}
+.ach-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.ach-toast .em{font-size:1.4rem;}
+.ach-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;text-align:left;}
+.ach-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:9px 12px;opacity:.45;}
+.ach-row.unlocked{opacity:1;background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4);}
+.ach-row .em{font-size:1.5rem;}
+.ach-row .tt{font-size:.82rem;font-weight:800;}
+.ach-row .ds{font-size:.68rem;color:#c4b5fd;}
+.ach-progress-track{height:7px;background:rgba(255,255,255,.12);border-radius:10px;overflow:hidden;margin-top:6px;}
+.ach-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#F59E0B,#DC2E5D);transition:width .4s ease;}
+.ach-progress-label{font-size:.66rem;color:#c4b5fd;font-weight:700;margin-top:3px;text-align:right;}
+.speed-toast{position:fixed;right:20px;top:118px;background:linear-gradient(135deg,#16A34A,#22c55e);color:#fff;border-radius:12px;padding:7px 14px;font-size:.78rem;font-weight:800;z-index:9998;opacity:0;transform:translateX(20px);transition:opacity .25s,transform .25s;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+.speed-toast.show{opacity:1;transform:translateX(0);}
+.story-wrap{max-width:560px;margin:0 auto;}
+.story-progress-track{height:8px;background:rgba(0,0,0,.08);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+body.dark .story-progress-track{background:rgba(255,255,255,.1);}
+.story-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#7C3AED,#DC2E5D);transition:width .4s ease;}
+.story-screen{display:none;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-shadow:0 3px 20px rgba(0,0,0,.08);}
+.story-screen.active{display:block;animation:fadeIn .25s ease;}
+.story-emoji{font-size:2.6rem;text-align:center;margin-bottom:8px;}
+.story-text{font-size:.95rem;line-height:1.65;color:var(--text);margin-bottom:6px;}
+.story-text-ar{font-size:.86rem;line-height:1.8;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:10px;font-family:'Segoe UI',Tahoma,Arial,sans-serif;}
+.story-q{background:var(--softpurple);border:1px solid var(--purple);border-radius:10px;padding:12px;margin-top:10px;}
+body.dark .story-q{background:#160A2E;}
+.story-nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px;}
+.story-nav button{flex:1;background:var(--purple);color:#fff;border:none;border-radius:10px;padding:11px;font-size:.85rem;font-weight:800;cursor:pointer;transition:.15s;}
+.story-nav button:hover{filter:brightness(1.1);}
+.story-nav button:disabled{opacity:.35;cursor:not-allowed;}
+.story-nav button.secondary{background:#6B7280;}
+.story-mcq-opt{padding:7px 16px;border-radius:20px;font-size:.85rem;border:2px solid var(--border);color:var(--text);cursor:pointer;transition:.2s;user-select:none;background:var(--card);display:inline-block;margin:3px;}
+.story-mcq-opt:hover{border-color:var(--blue);background:var(--softblue);}
+.story-mcq-opt.selected-correct{background:var(--green)!important;color:white!important;border-color:var(--green)!important;font-weight:700;}
+.story-mcq-opt.selected-wrong{background:var(--coral)!important;color:white!important;border-color:var(--coral)!important;}
+.phase-banner{margin:0 0 14px;padding:10px 14px;border-radius:12px;color:#fff;font-weight:800;font-size:.85rem;text-align:center;box-shadow:0 3px 14px rgba(0,0,0,.2);}
+.phase-banner.phase-enter{animation:phaseBannerEnter .6s ease;}
+@keyframes phaseBannerEnter{0%{transform:translateY(-14px) scale(.9);opacity:0;}100%{transform:translateY(0) scale(1);opacity:1;}}
+.phase-cleared-toast{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%) scale(.4);opacity:0;z-index:9999;background:linear-gradient(135deg,#F59E0B,#DC2E5D);color:#fff;font-weight:900;font-size:1.4rem;padding:18px 34px;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:phaseClearedPop 1.4s ease forwards;pointer-events:none;text-align:center;}
+@keyframes phaseClearedPop{0%{transform:translate(-50%,-50%) scale(.4);opacity:0;}20%{transform:translate(-50%,-50%) scale(1.1);opacity:1;}80%{transform:translate(-50%,-50%) scale(1);opacity:1;}100%{transform:translate(-50%,-50%) scale(.9);opacity:0;}}
+.mcq-block.already-solved{opacity:.5;}
+.mcq-block.already-solved .mcq-opt{pointer-events:none;}
+.screen-shake{animation:shake .35s ease;}
+@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-8px);}40%{transform:translateX(7px);}60%{transform:translateX(-5px);}80%{transform:translateX(3px);}}
+.dmg-float{position:fixed;z-index:9999;font-weight:900;font-size:1.4rem;text-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none;}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;text-align:left;}
+.report-stat{background:rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;}
+.report-stat .lbl{font-size:.66rem;color:#c4b5fd;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.report-stat .val{font-size:1.15rem;font-weight:900;}
+.report-grade{font-size:3rem;font-weight:900;margin:8px 0;}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
+.report-actions button{background:var(--gold);color:#1a0a00;border:none;border-radius:10px;padding:11px 18px;font-size:.85rem;font-weight:800;cursor:pointer;}
+.report-actions button.secondary{background:rgba(255,255,255,.12);color:#fff;}
+.hint-btn.easy-letter-btn,.hint-btn.easy-len-btn,.hint-btn.easy-extra-hint-btn{background:transparent;border:1.5px solid var(--green);color:var(--green);}
+.hint-btn.easy-letter-btn:hover,.hint-btn.easy-len-btn:hover,.hint-btn.easy-extra-hint-btn:hover{background:var(--green);color:#fff;}
+.hint-btn:disabled{opacity:.5;cursor:default;}
+.empty-warning{display:none;background:#FEF3C7;border:1px solid var(--coral);border-radius:8px;padding:6px 10px;font-size:.78rem;color:#9D174D;margin-top:6px;line-height:1.5;}
+body.dark .empty-warning{background:#2D0A14;color:#F9A8D4;}
+.empty-warning.visible{display:block;}
+.empty-warning span{display:block;direction:rtl;text-align:right;font-family:'Segoe UI',Tahoma,Arial,sans-serif;margin-top:2px;}
+.empty-warning.easy-retry-note{background:var(--softgreen);border-color:var(--green);color:#065F46;}
+body.dark .empty-warning.easy-retry-note{background:#052E16;color:#86EFAC;}
+.empty-warning.already-done-note{background:var(--softblue);border-color:var(--blue);color:#1E3A5F;}
+body.dark .empty-warning.already-done-note{background:#0C1A3D;color:#93c5fd;}
+.easy-wb-box{background:var(--softgreen);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0 0;font-size:.82rem;}
+body.dark .easy-wb-box{background:#052E16;}
+.wb-chip{background:var(--softblue);color:var(--blue);padding:4px 12px;border-radius:14px;font-size:.78rem;font-weight:700;display:inline-block;}
+body.dark .wb-chip{background:#0C1A3D;color:#60A5FA;}
+/* Dark-mode readability audit: ensure every new + pre-existing element stays WCAG-AA */
+body.dark .ex-title,body.dark .score-line span{color:#c4b5fd!important;}
+body.dark .note{color:#fbbf24!important;}
+body.dark .g-title,body.dark .mission-title{color:#fff!important;}
+body.dark .fc-formula,body.dark .fc-body,body.dark .fc-row{color:var(--text)!important;}
+body.dark .passive-table td,body.dark .pro-table td{color:var(--text)!important;}
+body.dark .was-cell{background:#3a2a05!important;color:#fde68a!important;}
+body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
+@media(max-width:480px){
+  .avatar-grid{grid-template-columns:1fr 1fr;}
+  .report-grid{grid-template-columns:1fr;}
+  .hud-mini-btn{padding:4px 8px;font-size:.62rem;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>U4 Grammar – Reflexive Pronouns &amp; Because vs So</h1>
+      <div class="sub">الضمائر الانعكاسية &nbsp;•&nbsp; Because مقابل So &nbsp;•&nbsp; Prepared by Teacher Jaber</div>
+    </div>
+    <div class="header-right">
+      <button class="dark-btn" onclick="toggleDark()">🌙 Dark</button>
+      <span class="header-badge">Super Goal</span>
+    </div>
+  </div>
+
+  <!-- XP / STREAK / LEVEL -->
+  <div class="xp-bar">
+    <div class="xp-pill"><span class="icon">⭐</span> XP: <span class="xp-num" id="xp-count">0</span></div>
+    <div class="xp-pill"><span class="icon">🔥</span> Streak: <span class="streak-num" id="streak-count">0</span></div>
+    <div class="level-badge" id="level-badge">Rookie</div>
+    <div class="xp-pill"><span class="hud-mini-btn" id="hud-name-chip" style="cursor:default">👤 Student</span><span class="hud-avatar" id="hud-avatar-chip">⚽</span></div>
+    <div class="xp-pill"><button class="hud-mini-btn" onclick="openAchPanel()">🏆</button><button class="hud-mini-btn" onclick="openReport()">📊 Report</button><button class="hud-mini-btn" id="ns-mode-badge" onclick="openDifficultyOverlay()">🟡 Normal Mode</button><button class="hud-mini-btn" onclick="confirmResetProgress()" style="background:rgba(220,46,93,.25);border-color:#DC2E5D;">🗑 Reset Progress</button></div>
+    <div style="flex:1;min-width:80px;height:8px;background:rgba(255,255,255,.15);border-radius:4px;overflow:hidden;">
+      <div id="xp-bar-fill" style="height:100%;width:0%;background:var(--gold);border-radius:4px;transition:width .4s"></div>
+    </div>
+  </div>
+
+  <div class="progress-container">
+    <div id="main-progress" class="progress-bar"></div>
+  </div>
+</header>
+
+<nav class="pill-nav">
+  <button class="active" onclick="showTab(0)">📘 Grammar 4 – Reflexive</button>
+  <button onclick="showTab(1)">✏️ Mission 1 – Choose</button>
+  <button onclick="showTab(2)">✏️ Mission 2 – Fill In</button>
+  <button onclick="showTab(3)">📘 Grammar 5 – Because/So</button>
+  <button onclick="showTab(4)">✏️ Mission 3 – Choose</button>
+  <button onclick="showTab(5)">✏️ Mission 4 – Join</button>
+  <button onclick="showTab(6)">✏️ Mission 5 – Fix Mistakes</button>
+  <button onclick="showTab(7)">✍️ Mini Challenge</button>
+  <button onclick="showTab(8)">🎮 Story Mode</button>
+  <button onclick="showTab(9)">👹 Boss Challenge</button>
+</nav>
+<!-- Reset Progress Confirmation Modal -->
+<div class="ns-overlay" id="reset-confirm-modal">
+  <div class="ns-card" style="border-color: #DC2E5D;">
+    <h2 style="color: #DC2E5D;">🗑 Reset Progress</h2>
+    <p style="margin: 12px 0; line-height: 1.6;">
+      Are you sure you want to reset all progress?<br>
+      This will permanently erase your XP, level, rank, achievements, and statistics. This cannot be undone.<br><br>
+      <span dir="rtl">هل أنت متأكد من رغبتك في إعادة تعيين كل التقدم؟ لا يمكن التراجع عن هذا.</span>
+    </p>
+    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 16px;">
+      <button onclick="executeResetProgress()" style="background: #DC2E5D; color: white; border: none; border-radius: 10px; padding: 11px 20px; font-size: 0.85rem; font-weight: 800; cursor: pointer;">Yes, Reset</button>
+      <button class="secondary" onclick="closeResetModal()" style="background: rgba(255,255,255,0.12); color: #fff; border: none; border-radius: 10px; padding: 11px 20px; font-size: 0.85rem; font-weight: 800; cursor: pointer;">Cancel</button>
+    </div>
+  </div>
+</div>
+<!-- FIXED BOSS HUD -->
+<div class="boss-hud-fixed" id="boss-hud-fixed">
+  <span style="font-size:1.5rem">👹</span>
+  <div class="b-hp-wrap">
+    <div class="b-hp-label"><span>👹 Boss HP</span><span id="b-boss-pct">100%</span></div>
+    <div class="b-hp-track"><div class="b-hp-bar" id="b-boss-bar"></div></div>
+  </div>
+  <div class="b-hp-wrap">
+    <div class="b-hp-label"><span>❤️ طاقتك</span><span id="b-my-pct">100%</span></div>
+    <div class="b-hp-track"><div class="b-my-bar" id="b-my-bar"></div></div>
+  </div>
+  <div class="b-timer" id="b-timer">⏳ <span id="b-time">60</span>s</div>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 0 — Grammar 4: Reflexive Pronouns    -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page active" id="tab-0">
+  <div class="grammar-box">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#0F766E,#2563EB)">
+      <div class="g-num" style="background:var(--gold);color:var(--navy)">4</div>
+      <div>
+        <div class="g-title">Reflexive Pronouns — الضمائر الانعكاسية</div>
+        <div class="g-title-ar">نستخدمها عندما يكون الفاعل والمفعول به نفس الشخص</div>
+      </div>
+    </div>
+    <div class="grammar-body">
+
+      <div style="background:var(--softteal);border:2px solid var(--teal);border-radius:10px;padding:10px 16px;margin-bottom:16px;direction:rtl;text-align:right;font-size:.88rem">
+        💡 نستخدمها عندما يكون <strong>الفاعل والمفعول به نفس الشخص</strong>
+      </div>
+
+      <div class="two-cols">
+        <div>
+          <table class="pro-table">
+            <tr style="background:var(--blue)"><th colspan="3">المفرد — Singular</th></tr>
+            <tr><td><span class="pro-word hi-b">I</span></td><td>→</td><td><span class="pro-ref" style="color:var(--teal)">myself</span> <span style="color:var(--sub);font-size:.78rem">— نفسي</span></td></tr>
+            <tr><td><span class="pro-word hi-b">you</span></td><td>→</td><td><span class="pro-ref" style="color:var(--teal)">yourself</span> <span style="color:var(--sub);font-size:.78rem">— نفسك</span></td></tr>
+            <tr><td><span class="pro-word hi-b">he</span></td><td>→</td><td><span class="pro-ref" style="color:var(--teal)">himself</span> <span style="color:var(--sub);font-size:.78rem">— نفسه</span></td></tr>
+            <tr><td><span class="pro-word hi-b">she</span></td><td>→</td><td><span class="pro-ref" style="color:var(--teal)">herself</span> <span style="color:var(--sub);font-size:.78rem">— نفسها</span></td></tr>
+            <tr><td><span class="pro-word hi-b">it</span></td><td>→</td><td><span class="pro-ref" style="color:var(--teal)">itself</span> <span style="color:var(--sub);font-size:.78rem">— نفسه (غير العاقل)</span></td></tr>
+          </table>
+        </div>
+        <div>
+          <table class="pro-table">
+            <tr style="background:var(--purple)"><th colspan="3">الجمع — Plural</th></tr>
+            <tr><td><span class="pro-word hi-p">we</span></td><td>→</td><td><span class="pro-ref" style="color:var(--coral)">ourselves</span> <span style="color:var(--sub);font-size:.78rem">— أنفسنا</span></td></tr>
+            <tr><td><span class="pro-word hi-p">you</span></td><td>→</td><td><span class="pro-ref" style="color:var(--coral)">yourselves</span> <span style="color:var(--sub);font-size:.78rem">— أنفسكم</span></td></tr>
+            <tr><td><span class="pro-word hi-p">they</span></td><td>→</td><td><span class="pro-ref" style="color:var(--coral)">themselves</span> <span style="color:var(--sub);font-size:.78rem">— أنفسهم</span></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="two-cols">
+        <div style="background:var(--softblue);border-radius:10px;padding:12px;border:2px solid var(--blue)">
+          <div style="font-size:.85rem;margin-bottom:5px">
+            He looks at <span class="hi-t">himself</span> in the mirror. <button type="button" class="audio-btn" onclick="speak('He looks at himself in the mirror.')">🔊</button>
+          </div>
+          <div style="font-size:.76rem;color:var(--sub);direction:rtl;text-align:right">ينظر إلى نفسه في المرآة.</div>
+        </div>
+        <div style="background:var(--softgreen);border-radius:10px;padding:12px;border:2px solid var(--green)">
+          <div style="font-size:.85rem;margin-bottom:5px">
+            I made the cake <span class="hi-g">myself</span>. <button type="button" class="audio-btn" onclick="speak('I made the cake myself.')">🔊</button>
+          </div>
+          <div style="font-size:.76rem;color:var(--sub);direction:rtl;text-align:right">أنا صنعت الكعكة بنفسي.</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(0,0,0,.03);border-radius:10px;padding:13px;margin-top:10px">
+        <div style="font-weight:800;color:var(--text);margin-bottom:9px;font-size:.9rem">✅ أمثلة إضافية</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.83rem">
+          <div>
+            <div>She hurt <span class="hi-t">herself</span>. <button type="button" class="audio-btn" onclick="speak('She hurt herself.')">🔊</button></div>
+            <div style="color:var(--sub);font-size:.75rem;direction:rtl;text-align:right">هي أذت نفسها.</div>
+          </div>
+          <div>
+            <div>We enjoyed <span class="hi-t">ourselves</span>. <button type="button" class="audio-btn" onclick="speak('We enjoyed ourselves.')">🔊</button></div>
+            <div style="color:var(--sub);font-size:.75rem;direction:rtl;text-align:right">استمتعنا بأنفسنا.</div>
+          </div>
+          <div>
+            <div>Did you make it <span class="hi-t">yourself</span>? <button type="button" class="audio-btn" onclick="speak('Did you make it yourself?')">🔊</button></div>
+            <div style="color:var(--sub);font-size:.75rem;direction:rtl;text-align:right">هل صنعته بنفسك؟</div>
+          </div>
+          <div>
+            <div>They introduced <span class="hi-t">themselves</span>. <button type="button" class="audio-btn" onclick="speak('They introduced themselves.')">🔊</button></div>
+            <div style="color:var(--sub);font-size:.75rem;direction:rtl;text-align:right">قدموا أنفسهم.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note note-purple" style="direction:rtl;text-align:right;margin-top:12px">
+        💡 <strong>فرق مهم:</strong> &nbsp; <strong>yourself</strong> للمفرد (أنت) &nbsp;•&nbsp; <strong>yourselves</strong> للجمع (أنتم)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 1 — Mission 1: Choose reflexive      -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="tab-1">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">🎯 Mission 1 – Choose the Reflexive Pronoun</div>
+      <div class="ex-title-ar">اختر الضمير الانعكاسي الصحيح لكل جملة</div>
+      <span class="lv lv-beg">BEGINNER</span>
+    </div>
+    <div class="ex-inst">Choose the correct reflexive pronoun.</div>
+    <div class="ex-inst-ar">اختر الضمير الانعكاسي الصحيح.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--teal)" onclick="revealOne('ex1',this)">▶ Reveal next answer</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex1')">↺ Reset</button>
+      </div>
+      <div class="score-line">Revealed / Answered: <span id="ex1-score">0</span> / 8</div>
+
+      <!-- Q1 -->
+      <div class="mcq-block">
+        <div class="mcq-q">1. She looked at _______ in the mirror. <span style="color:var(--sub);font-size:.8rem">(herself / ourselves)</span> <button type="button" class="audio-btn" onclick="speak('She looked at herself in the mirror.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل هي (she) ← الضمير الانعكاسي يكون herself</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex1" onclick="selectMCQG(this,true,'ex1','herself ✅ — الفاعل she لذا نستخدم herself (نفسها)')" style="--c:var(--teal)">herself</div>
+          <div class="mcq-opt" data-ex="ex1x" onclick="selectMCQG(this,false,'ex1','ourselves ❌ — ourselves للجمع (نحن)، والفاعل هنا she')">ourselves</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q2 -->
+      <div class="mcq-block">
+        <div class="mcq-q">2. We did the homework _______. <span style="color:var(--sub);font-size:.8rem">(themselves / ourselves)</span> <button type="button" class="audio-btn" onclick="speak('We did the homework ourselves.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل هو (we) نحن ← الضمير الانعكاسي يكون ourselves</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="ex1x" onclick="selectMCQG(this,false,'ex1','themselves ❌ — themselves للجمع الغائب (هم)، والفاعل هنا we')">themselves</div>
+          <div class="mcq-opt correct" data-ex="ex1" onclick="selectMCQG(this,true,'ex1','ourselves ✅ — الفاعل we لذا نستخدم ourselves (أنفسنا)')" style="--c:var(--teal)">ourselves</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q3 -->
+      <div class="mcq-block">
+        <div class="mcq-q">3. He made the sandwich _______. <span style="color:var(--sub);font-size:.8rem">(himself / itself)</span> <button type="button" class="audio-btn" onclick="speak('He made the sandwich himself.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل هو (he) ← الضمير الانعكاسي يكون himself</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex1" onclick="selectMCQG(this,true,'ex1','himself ✅ — الفاعل he لذا نستخدم himself (نفسه)')" style="--c:var(--teal)">himself</div>
+          <div class="mcq-opt" data-ex="ex1x" onclick="selectMCQG(this,false,'ex1','itself ❌ — itself للأشياء وغير العاقل، والفاعل هنا he')">itself</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q4 -->
+      <div class="mcq-block">
+        <div class="mcq-q">4. They enjoyed _______ at the party. <span style="color:var(--sub);font-size:.8rem">(themselves / yourselves)</span> <button type="button" class="audio-btn" onclick="speak('They enjoyed themselves at the party.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل هو (they) هم ← الضمير الانعكاسي يكون themselves</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex1" onclick="selectMCQG(this,true,'ex1','themselves ✅ — الفاعل they لذا نستخدم themselves (أنفسهم)')" style="--c:var(--teal)">themselves</div>
+          <div class="mcq-opt" data-ex="ex1x" onclick="selectMCQG(this,false,'ex1','yourselves ❌ — yourselves لجمع المخاطب (أنتم)، والفاعل هنا they')">yourselves</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q5 -->
+      <div class="mcq-block">
+        <div class="mcq-q">5. Did you paint the room _______? <span style="color:var(--sub);font-size:.8rem">(yourself / himself)</span> <button type="button" class="audio-btn" onclick="speak('Did you paint the room yourself?')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل هو (you) مفرد ← الضمير الانعكاسي يكون yourself</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex1" onclick="selectMCQG(this,true,'ex1','yourself ✅ — الفاعل you (مفرد) لذا نستخدم yourself (نفسك)')" style="--c:var(--blue)">yourself</div>
+          <div class="mcq-opt" data-ex="ex1x" onclick="selectMCQG(this,false,'ex1','himself ❌ — himself للمذكر الغائب (هو)، والفاعل هنا you')">himself</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q6 -->
+      <div class="mcq-block">
+        <div class="mcq-q">6. The cat hurt _______ jumping off the wall. <span style="color:var(--sub);font-size:.8rem">(itself / herself)</span> <button type="button" class="audio-btn" onclick="speak('The cat hurt itself jumping off the wall.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل هو (the cat) شيء/حيوان ← الضمير الانعكاسي يكون itself</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex1" onclick="selectMCQG(this,true,'ex1','itself ✅ — the cat شيء أو حيوان لذا نستخدم itself (نفسه)')" style="--c:var(--teal)">itself</div>
+          <div class="mcq-opt" data-ex="ex1x" onclick="selectMCQG(this,false,'ex1','herself ❌ — herself للمؤنث العاقل (هي)، والفاعل هنا حيوان')">herself</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q7 -->
+      <div class="mcq-block">
+        <div class="mcq-q">7. I cooked dinner _______. <span style="color:var(--sub);font-size:.8rem">(myself / yourself)</span> <button type="button" class="audio-btn" onclick="speak('I cooked dinner myself.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل هو (I) أنا ← الضمير الانعكاسي يكون myself</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex1" onclick="selectMCQG(this,true,'ex1','myself ✅ — الفاعل I لذا نستخدم myself (بنفسي)')" style="--c:var(--blue)">myself</div>
+          <div class="mcq-opt" data-ex="ex1x" onclick="selectMCQG(this,false,'ex1','yourself ❌ — yourself للمخاطب (أنت)، والفاعل هنا I')">yourself</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q8 -->
+      <div class="mcq-block">
+        <div class="mcq-q">8. The children dressed _______. <span style="color:var(--sub);font-size:.8rem">(themselves / ourselves)</span> <button type="button" class="audio-btn" onclick="speak('The children dressed themselves.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل هو (the children) هم ← الضمير الانعكاسي يكون themselves</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex1" onclick="selectMCQG(this,true,'ex1','themselves ✅ — the children = they لذا نستخدم themselves (أنفسهم)')" style="--c:var(--teal)">themselves</div>
+          <div class="mcq-opt" data-ex="ex1x" onclick="selectMCQG(this,false,'ex1','ourselves ❌ — ourselves للمتكلم الجمع (نحن)، والفاعل هنا they')">ourselves</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 2 — Mission 2: Fill in reflexive     -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="tab-2">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">🎯 Mission 2 – Fill in the Reflexive Pronoun</div>
+      <div class="ex-title-ar">أكمل الجمل بالضمير الانعكاسي المناسب</div>
+      <span class="lv lv-int">INTERMEDIATE</span>
+    </div>
+    <div class="ex-inst">Complete each sentence with the correct reflexive pronoun.</div>
+    <div class="ex-inst-ar">أكمل كل جملة بالضمير الانعكاسي الصحيح.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--blue)" onclick="revealOne('ex2',this)">▶ Reveal next answer</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex2')">↺ Reset</button>
+      </div>
+      <div class="score-line">Revealed / Checked: <span id="ex2-score">0</span> / 7</div>
+
+      <!-- Item 1 -->
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">1</div>
+        <div class="iq">
+          She introduced <input type="text" class="interactive-input" data-ans="herself" autocomplete="off" autocorrect="off" spellcheck="false"> to the class.
+          <button class="check-btn" onclick="checkInputG(this,'herself ✅ — الفاعل she لذا نستخدم herself (قدّمت نفسها)','انتبه: الفاعل she لذا الإجابة الصحيحة هي herself وليس himself أو ourselves')">Check</button>
+          <button type="button" class="audio-btn" onclick="speak('She introduced herself to the class.')">🔊</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">الفاعل she ← herself</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--teal)">herself</div>
+      </div>
+      <!-- Item 2 -->
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">2</div>
+        <div class="iq">
+          We built this house <input type="text" class="interactive-input" data-ans="ourselves" autocomplete="off" autocorrect="off" spellcheck="false">.
+          <button class="check-btn" onclick="checkInputG(this,'ourselves ✅ — الفاعل we لذا نستخدم ourselves (بنّيناه بأنفسنا)','انتبه: الفاعل we لذا الإجابة الصحيحة هي ourselves وليس themselves')">Check</button>
+          <button type="button" class="audio-btn" onclick="speak('We built this house ourselves.')">🔊</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">الفاعل we ← ourselves</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--teal)">ourselves</div>
+      </div>
+      <!-- Item 3 -->
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">3</div>
+        <div class="iq">
+          He fixed the bike <input type="text" class="interactive-input" data-ans="himself" autocomplete="off" autocorrect="off" spellcheck="false">.
+          <button class="check-btn" onclick="checkInputG(this,'himself ✅ — الفاعل he لذا نستخدم himself (أصلحه بنفسه)','انتبه: الفاعل he لذا الإجابة الصحيحة هي himself وليس herself أو itself')">Check</button>
+          <button type="button" class="audio-btn" onclick="speak('He fixed the bike himself.')">🔊</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">الفاعل he ← himself</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--teal)">himself</div>
+      </div>
+      <!-- Item 4 -->
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">4</div>
+        <div class="iq">
+          Be careful! Don't hurt <input type="text" class="interactive-input" data-ans="yourself" autocomplete="off" autocorrect="off" spellcheck="false">.
+          <button class="check-btn" onclick="checkInputG(this,'yourself ✅ — المخاطب you لذا نستخدم yourself (لا تؤذِ نفسك)','انتبه: هنا نخاطب شخصاً واحداً (you) لذا الإجابة هي yourself')">Check</button>
+          <button type="button" class="audio-btn" onclick="speak('Be careful! Don\'t hurt yourself.')">🔊</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">المخاطب you مفرد ← yourself</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--teal)">yourself</div>
+      </div>
+      <!-- Item 5 -->
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">5</div>
+        <div class="iq">
+          The students prepared <input type="text" class="interactive-input" data-ans="themselves" autocomplete="off" autocorrect="off" spellcheck="false"> for the exam.
+          <button class="check-btn" onclick="checkInputG(this,'themselves ✅ — the students = they لذا نستخدم themselves (أعدّوا أنفسهم)','انتبه: the students = they (جمع) لذا الإجابة هي themselves وليس themselves')">Check</button>
+          <button type="button" class="audio-btn" onclick="speak('The students prepared themselves for the exam.')">🔊</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">the students = they ← themselves</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--teal)">themselves</div>
+      </div>
+      <!-- Item 6 -->
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">6</div>
+        <div class="iq">
+          I taught <input type="text" class="interactive-input" data-ans="myself" autocomplete="off" autocorrect="off" spellcheck="false"> how to cook.
+          <button class="check-btn" onclick="checkInputG(this,'myself ✅ — الفاعل I لذا نستخدم myself (علّمت نفسي)','انتبه: الفاعل I لذا الإجابة الصحيحة هي myself')">Check</button>
+          <button type="button" class="audio-btn" onclick="speak('I taught myself how to cook.')">🔊</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">الفاعل I ← myself</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--teal)">myself</div>
+      </div>
+      <!-- Item 7 -->
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">7</div>
+        <div class="iq">
+          The door opened by <input type="text" class="interactive-input" data-ans="itself" autocomplete="off" autocorrect="off" spellcheck="false">.
+          <button class="check-btn" onclick="checkInputG(this,'itself ✅ — الفاعل the door (شيء جامد) لذا نستخدم itself (من تلقاء نفسه)','انتبه: the door شيء جامد لذا الإجابة هي itself')">Check</button>
+          <button type="button" class="audio-btn" onclick="speak('The door opened by itself.')">🔊</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">the door = it (شيء) ← itself</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--teal)">itself</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 3 — Grammar 5: Because vs So         -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="tab-3">
+  <div class="grammar-box">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#DC2E5D,#7C3AED)">
+      <div class="g-num" style="background:var(--gold);color:var(--navy)">5</div>
+      <div>
+        <div class="g-title">Because versus So — Because مقابل So</div>
+        <div class="g-title-ar">because = لأن (السبب) &nbsp;•&nbsp; so = لذلك (النتيجة)</div>
+      </div>
+    </div>
+    <div class="grammar-body">
+
+      <div class="bvs-grid">
+        <div class="bvs-card">
+          <div class="bvs-head" style="background:var(--coral)">
+            <div class="word">So</div>
+            <div class="sub">النتيجة / the result &nbsp;—&nbsp; لذلك</div>
+          </div>
+          <div class="bvs-body" style="background:var(--softpink)">
+            <div class="bvs-label" style="color:var(--coral)">لذلك ←</div>
+            <div class="bvs-ex">We had no food at home, <span class="hi-c">so</span> we went out for dinner. <button type="button" class="audio-btn" onclick="speak('We had no food at home, so we went out for dinner.')">🔊</button></div>
+            <div class="bvs-ar">لم يكن لدينا طعام في البيت، لذا ذهبنا إلى الخارج للعشاء.</div>
+          </div>
+        </div>
+        <div class="bvs-card">
+          <div class="bvs-head" style="background:var(--purple)">
+            <div class="word">Because</div>
+            <div class="sub">السبب / the reason &nbsp;—&nbsp; لأن</div>
+          </div>
+          <div class="bvs-body" style="background:var(--softpurple)">
+            <div class="bvs-label" style="color:var(--purple)">لأن ←</div>
+            <div class="bvs-ex">Eat breakfast <span class="hi-p">because</span> it gives you energy. <button type="button" class="audio-btn" onclick="speak('Eat breakfast because it gives you energy.')">🔊</button></div>
+            <div class="bvs-ar">تناول الفطور لأنه يعطيك طاقة.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-cols">
+        <div style="background:var(--softpink);border-radius:10px;padding:13px;border:2px solid var(--coral)">
+          <div style="font-weight:800;color:var(--coral);margin-bottom:8px;font-size:.9rem">So — البنية</div>
+          <div style="font-size:.83rem;line-height:1.8;direction:ltr;text-align:left">
+            Sentence 1 <strong style="color:var(--coral)">, so</strong> Sentence 2<br>
+            <span style="color:var(--sub);font-size:.76rem">↑ تسبقها فاصلة دائماً</span>
+          </div>
+          <div style="margin-top:8px;font-size:.82rem;font-style:italic">
+            I was tired<strong style="color:var(--coral)">, so</strong> I slept early. <button type="button" class="audio-btn" onclick="speak('I was tired, so I slept early.')">🔊</button>
+          </div>
+        </div>
+        <div style="background:var(--softpurple);border-radius:10px;padding:13px;border:2px solid var(--purple)">
+          <div style="font-weight:800;color:var(--purple);margin-bottom:8px;font-size:.9rem">Because — البنية</div>
+          <div style="font-size:.83rem;line-height:1.8;direction:ltr;text-align:left">
+            Sentence 1 <strong style="color:var(--purple)">because</strong> Sentence 2<br>
+            <span style="color:var(--sub);font-size:.76rem">↑ بدون فاصلة</span>
+          </div>
+          <div style="margin-top:8px;font-size:.82rem;font-style:italic">
+            I slept early <strong style="color:var(--purple)">because</strong> I was tired. <button type="button" class="audio-btn" onclick="speak('I slept early because I was tired.')">🔊</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(0,0,0,.03);border-radius:10px;padding:13px;margin-top:6px;margin-bottom:12px">
+        <div style="font-weight:800;color:var(--text);margin-bottom:9px">✅ أمثلة إضافية</div>
+        <div style="font-size:.83rem;line-height:2">
+          <div>I was hungry, <span class="hi-c">so</span> I ate a sandwich. <button type="button" class="audio-btn" onclick="speak('I was hungry, so I ate a sandwich.')">🔊</button> <span style="color:var(--sub);font-size:.75rem">— كنت جائعاً، لذا أكلت شطيرة.</span></div>
+          <div>He stayed home <span class="hi-p">because</span> he was sick. <button type="button" class="audio-btn" onclick="speak('He stayed home because he was sick.')">🔊</button> <span style="color:var(--sub);font-size:.75rem">— بقي في البيت لأنه كان مريضاً.</span></div>
+          <div>It was raining, <span class="hi-c">so</span> we took an umbrella. <button type="button" class="audio-btn" onclick="speak('It was raining, so we took an umbrella.')">🔊</button> <span style="color:var(--sub);font-size:.75rem">— كانت تمطر، لذا أخذنا مظلة.</span></div>
+          <div>She is tired <span class="hi-p">because</span> she didn't sleep well. <button type="button" class="audio-btn" onclick="speak('She is tired because she didn\'t sleep well.')">🔊</button> <span style="color:var(--sub);font-size:.75rem">— هي متعبة لأنها لم تنم جيداً.</span></div>
+        </div>
+      </div>
+
+      <div class="note" style="direction:rtl;text-align:right">
+        ⚠️ <strong>ملاحظة:</strong> كلمة <strong>so</strong> تسبقها فاصلة في الجملة، بعكس كلمة <strong>because</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 4 — Mission 3: Choose because or so  -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="tab-4">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">🎯 Mission 3 – Choose Because or So</div>
+      <div class="ex-title-ar">اختر because أو so لإكمال كل جملة</div>
+      <span class="lv lv-beg">BEGINNER</span>
+    </div>
+    <div class="ex-inst">Choose <strong>because</strong> or <strong>so</strong> to complete each sentence.</div>
+    <div class="ex-inst-ar">اختر because أو so لإكمال كل جملة.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--coral)" onclick="revealOne('ex3',this)">▶ Reveal next answer</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex3')">↺ Reset</button>
+      </div>
+      <div class="score-line">Revealed / Answered: <span id="ex3-score">0</span> / 8</div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">1. I was hungry, _______ I ate a sandwich. <span style="color:var(--sub);font-size:.8rem">(because / so)</span> <button type="button" class="audio-btn" onclick="speak('I was hungry, so I ate a sandwich.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الجوع سبب ← أكل شطيرة نتيجة ← استخدم so (لذا) مع الفاصلة</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQG(this,false,'ex3','because ❌ — because يأتي قبل السبب. أكل الشطيرة هو النتيجة وليس السبب')">because</div>
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQG(this,true,'ex3','so ✅ — الجوع سبب والأكل نتيجة، ونستخدم so (لذا) لربط السبب بالنتيجة مع فاصلة')" style="--c:var(--coral)">so</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">2. He stayed home _______ he was sick. <span style="color:var(--sub);font-size:.8rem">(because / so)</span> <button type="button" class="audio-btn" onclick="speak('He stayed home because he was sick.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">المرض سبب البقاء في المنزل ← استخدم because (لأن)</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQG(this,true,'ex3','because ✅ — البقاء في المنزل بسبب المرض، ونستخدم because (لأن) لذكر السبب')" style="--c:var(--purple)">because</div>
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQG(this,false,'ex3','so ❌ — so يأتي قبل النتيجة. المرض هو السبب وليس النتيجة')">so</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">3. It was raining, _______ we took an umbrella. <span style="color:var(--sub);font-size:.8rem">(because / so)</span> <button type="button" class="audio-btn" onclick="speak('It was raining, so we took an umbrella.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">المطر سبب ← أخذ المظلة نتيجة ← استخدم so مع الفاصلة</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQG(this,false,'ex3','because ❌ — because يأتي قبل السبب. أخذ المظلة هو النتيجة وليس السبب')">because</div>
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQG(this,true,'ex3','so ✅ — المطر سبب وأخذ المظلة نتيجة، ونستخدم so (لذا) مع الفاصلة')" style="--c:var(--coral)">so</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">4. She is tired _______ she didn't sleep well. <span style="color:var(--sub);font-size:.8rem">(because / so)</span> <button type="button" class="audio-btn" onclick="speak('She is tired because she didn\'t sleep well.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">عدم النوم سبب التعب ← استخدم because (لأن)</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQG(this,true,'ex3','because ✅ — التعب بسبب عدم النوم، ونستخدم because (لأن) لذكر السبب')" style="--c:var(--purple)">because</div>
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQG(this,false,'ex3','so ❌ — so يأتي قبل النتيجة. عدم النوم هو السبب وليس النتيجة')">so</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">5. We had no food, _______ we ordered pizza. <span style="color:var(--sub);font-size:.8rem">(because / so)</span> <button type="button" class="audio-btn" onclick="speak('We had no food, so we ordered pizza.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">عدم وجود الطعام سبب ← طلب البيتزا نتيجة ← so مع الفاصلة</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQG(this,false,'ex3','because ❌ — because يأتي قبل السبب. طلب البيتزا هو النتيجة')">because</div>
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQG(this,true,'ex3','so ✅ — عدم وجود الطعام سبب وطلب البيتزا نتيجة، ونستخدم so مع الفاصلة')" style="--c:var(--coral)">so</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">6. I wear sunglasses _______ the sun is bright. <span style="color:var(--sub);font-size:.8rem">(because / so)</span> <button type="button" class="audio-btn" onclick="speak('I wear sunglasses because the sun is bright.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">سطوع الشمس سبب لارتداء النظارة ← استخدم because</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQG(this,true,'ex3','because ✅ — ارتداء النظارة بسبب سطوع الشمس، ونستخدم because لذكر السبب')" style="--c:var(--purple)">because</div>
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQG(this,false,'ex3','so ❌ — so يأتي قبل النتيجة. سطوع الشمس هو السبب')">so</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">7. The shop was closed, _______ we went home. <span style="color:var(--sub);font-size:.8rem">(because / so)</span> <button type="button" class="audio-btn" onclick="speak('The shop was closed, so we went home.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">إغلاق المتجر سبب ← الرجوع للمنزل نتيجة ← so مع الفاصلة</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQG(this,false,'ex3','because ❌ — because يأتي قبل السبب. الرجوع للمنزل هو النتيجة')">because</div>
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQG(this,true,'ex3','so ✅ — إغلاق المتجر سبب والعودة للبيت نتيجة، ونستخدم so مع الفاصلة')" style="--c:var(--coral)">so</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">8. He drinks water _______ it is healthy. <span style="color:var(--sub);font-size:.8rem">(because / so)</span> <button type="button" class="audio-btn" onclick="speak('He drinks water because it is healthy.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الصحة سبب لشرب الماء ← استخدم because (لأن)</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQG(this,true,'ex3','because ✅ — يشرب الماء لأنه صحي، ونستخدم because (لأن) لذكر السبب')" style="--c:var(--purple)">because</div>
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQG(this,false,'ex3','so ❌ — so يأتي قبل النتيجة. الصحة هي السبب وليست النتيجة')">so</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 5 — Mission 4: Join sentences        -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="tab-5">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">🎯 Mission 4 – Join the Sentences</div>
+      <div class="ex-title-ar">ادمج كل جملتين باستخدام because أو so</div>
+      <span class="lv lv-int">INTERMEDIATE</span>
+    </div>
+    <div class="ex-inst">Join the two sentences using <strong>because</strong> or <strong>so</strong>.</div>
+    <div class="ex-inst-ar">ادمج الجملتين باستخدام because أو so.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--purple)" onclick="revealOne('ex4',this)">▶ Reveal next answer</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex4')">↺ Reset</button>
+      </div>
+      <div class="score-line">Revealed / Checked: <span id="ex4-score">0</span> / 6</div>
+      <div class="note note-blue" style="margin-bottom:13px">📌 <strong>Example:</strong> I was cold. I wore a jacket. → <em>I was cold<strong>, so</strong> I wore a jacket. / I wore a jacket <strong>because</strong> I was cold.</em></div>
+
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--purple)">1</div>
+        <div class="iq" style="min-width:180px">
+          She was late. She missed the bus. <button type="button" class="audio-btn" onclick="speak('She was late, so she missed the bus.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="She was late, so she missed the bus." placeholder="Join with so / because..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'she was late, so she missed the bus ✅ — التأخر سبب وتفويت الحافلة نتيجة ← so','انتبه: استخدم so مع الفاصلة بعد الجملة الأولى: She was late, so she missed the bus')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">التأخر سبب ← تفويت الحافلة نتيجة ← استخدم so مع الفاصلة</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--coral);min-width:280px">She was late<strong>, so</strong> she missed the bus.<br><span style="font-size:.78rem;opacity:.85">/ She missed the bus <strong>because</strong> she was late.</span></div>
+      </div>
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--purple)">2</div>
+        <div class="iq" style="min-width:180px">
+          I was thirsty. I drank some water. <button type="button" class="audio-btn" onclick="speak('I was thirsty, so I drank some water.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="I was thirsty, so I drank some water." placeholder="Join with so / because..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'I was thirsty, so I drank some water ✅ — العطش سبب وشرب الماء نتيجة ← so مع فاصلة','انتبه: استخدم so مع الفاصلة: I was thirsty, so I drank some water')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">العطش سبب ← شرب الماء نتيجة ← استخدم so مع الفاصلة</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--coral);min-width:280px">I was thirsty<strong>, so</strong> I drank some water.</div>
+      </div>
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--purple)">3</div>
+        <div class="iq" style="min-width:180px">
+          He studies hard. He wants to pass. <button type="button" class="audio-btn" onclick="speak('He studies hard because he wants to pass.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="He studies hard because he wants to pass." placeholder="Join with so / because..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'He studies hard because he wants to pass ✅ — رغبة النجاح سبب للدراسة ← because بدون فاصلة','انتبه: استخدم because بدون فاصلة: He studies hard because he wants to pass')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">رغبة النجاح سبب للدراسة ← استخدم because بدون فاصلة</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--purple);min-width:280px">He studies hard <strong>because</strong> he wants to pass.</div>
+      </div>
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--purple)">4</div>
+        <div class="iq" style="min-width:180px">
+          The weather was cold. They stayed inside. <button type="button" class="audio-btn" onclick="speak('The weather was cold, so they stayed inside.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="The weather was cold, so they stayed inside." placeholder="Join with so / because..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'The weather was cold, so they stayed inside ✅ — البرد سبب والبقاء في المنزل نتيجة ← so مع فاصلة','انتبه: استخدم so مع الفاصلة: The weather was cold, so they stayed inside')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">البرد سبب ← البقاء في المنزل نتيجة ← so مع الفاصلة</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--coral);min-width:280px">The weather was cold<strong>, so</strong> they stayed inside.</div>
+      </div>
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--purple)">5</div>
+        <div class="iq" style="min-width:180px">
+          I eat vegetables. They are healthy. <button type="button" class="audio-btn" onclick="speak('I eat vegetables because they are healthy.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="I eat vegetables because they are healthy." placeholder="Join with so / because..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'I eat vegetables because they are healthy ✅ — الصحة سبب لأكل الخضار ← because بدون فاصلة','انتبه: استخدم because بدون فاصلة: I eat vegetables because they are healthy')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">الصحة سبب لأكل الخضار ← استخدم because بدون فاصلة</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--purple);min-width:280px">I eat vegetables <strong>because</strong> they are healthy.</div>
+      </div>
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--purple)">6</div>
+        <div class="iq" style="min-width:180px">
+          She was bored. She went for a walk. <button type="button" class="audio-btn" onclick="speak('She was bored, so she went for a walk.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="She was bored, so she went for a walk." placeholder="Join with so / because..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'She was bored, so she went for a walk ✅ — الملل سبب والتنزه نتيجة ← so مع فاصلة','انتبه: استخدم so مع الفاصلة: She was bored, so she went for a walk')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">الملل سبب ← التنزه نتيجة ← استخدم so مع الفاصلة</div>
+          <div class="feedback-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--coral);min-width:280px">She was bored<strong>, so</strong> she went for a walk.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 6 — Mission 5: Find the mistake      -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="tab-6">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">🎯 Mission 5 – Fix Mistakes</div>
+      <div class="ex-title-ar">كل جملة فيها خطأ واحد — ابحث عنه وصحّحه</div>
+      <span class="lv lv-adv">ADVANCED</span>
+    </div>
+    <div class="ex-inst">Each sentence has ONE mistake. Find it and rewrite correctly.</div>
+    <div class="ex-inst-ar">كل جملة تحتوي على خطأ واحد. ضع تحته خطاً وأعد كتابة الجملة صحيحة.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--orange)" onclick="revealOne('ex5',this)">▶ Reveal next answer</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex5')">↺ Reset</button>
+      </div>
+      <div class="score-line">Revealed / Checked: <span id="ex5-score">0</span> / 8</div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">1</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          He looked at <u style="color:var(--coral)">hisself</u> in the mirror. <button type="button" class="audio-btn" onclick="speak('He looked at himself.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="He looked at himself." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'He looked at himself ✅ — hisself غير موجودة في اللغة الإنجليزية. الصحيح هو himself (الفاعل he)','انتبه: hisself غير صحيحة. استبدلها بـ himself')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">hisself غير موجودة ← الصحيح himself (الفاعل he)</div>
+          <div class="feedback-box"></div>
+        </div>
+        <span class="iarr">✎</span>
+        <div class="ians" data-ex="ex5" style="background:var(--green);min-width:220px">He looked at <strong>himself</strong>. (hisself doesn't exist)</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">2</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          She cooked the meal <u style="color:var(--coral)">hisself</u>. <button type="button" class="audio-btn" onclick="speak('She cooked the meal herself.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="She cooked the meal herself." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'She cooked the meal herself ✅ — الفاعل she لذا الضمير الانعكاسي هو herself وليس hisself','انتبه: hisself غير صحيحة. الفاعل she ← استخدم herself')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">الفاعل she ← الصحيح herself وليس hisself</div>
+          <div class="feedback-box"></div>
+        </div>
+        <span class="iarr">✎</span>
+        <div class="ians" data-ex="ex5" style="background:var(--green);min-width:220px">She cooked the meal <strong>herself</strong>.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">3</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          I was tired <u style="color:var(--coral)">because</u> I went to bed. <button type="button" class="audio-btn" onclick="speak('I was tired, so I went to bed.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="I was tired, so I went to bed." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'I was tired, so I went to bed ✅ — التعب سبب والنوم نتيجة ← الصحيح so مع الفاصلة وليس because','انتبه: التعب سبب والنوم نتيجة ← استخدم so مع الفاصلة وليس because')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">التعب سبب والنوم نتيجة ← استخدم so (لذا) وليس because</div>
+          <div class="feedback-box"></div>
+        </div>
+        <span class="iarr">✎</span>
+        <div class="ians" data-ex="ex5" style="background:var(--green);min-width:220px">I was tired<strong>, so</strong> I went to bed.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">4</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          He stayed home <u style="color:var(--coral)">, because</u> he was sick. <button type="button" class="audio-btn" onclick="speak('He stayed home because he was sick.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="He stayed home because he was sick." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'He stayed home because he was sick ✅ — because لا تسبقها فاصلة. أزل الفاصلة قبل because','انتبه: because لا تأتي بعد فاصلة. أزل الفاصلة: He stayed home because he was sick')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">because لا تسبقها فاصلة ← أزل الفاصلة</div>
+          <div class="feedback-box"></div>
+        </div>
+        <span class="iarr">✎</span>
+        <div class="ians" data-ex="ex5" style="background:var(--green);min-width:220px">He stayed home <strong>because</strong> he was sick. (no comma)</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">5</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          We enjoyed <u style="color:var(--coral)">ourself</u> at the party. <button type="button" class="audio-btn" onclick="speak('We enjoyed ourselves at the party.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="We enjoyed ourselves at the party." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'We enjoyed ourselves at the party ✅ — الفاعل we (جمع) لذا الصحيح ourselves وليس ourself (المفرد غير الصحيح)','انتبه: الفاعل we جمع ← الصحيح ourselves وليس ourself')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">الفاعل we جمع ← الصحيح ourselves وليس ourself</div>
+          <div class="feedback-box"></div>
+        </div>
+        <span class="iarr">✎</span>
+        <div class="ians" data-ex="ex5" style="background:var(--green);min-width:220px">We enjoyed <strong>ourselves</strong> at the party.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">6</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          She was sick <u style="color:var(--coral)">so</u> she had a fever. <button type="button" class="audio-btn" onclick="speak('She was sick because she had a fever.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="She was sick because she had a fever." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'She was sick because she had a fever ✅ — الحمى سبب المرض ← استخدم because وليس so','انتبه: الحمى سبب المرض ← استخدم because بدون فاصلة')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">الحمى سبب المرض ← استخدم because (لأن) وليس so</div>
+          <div class="feedback-box"></div>
+        </div>
+        <span class="iarr">✎</span>
+        <div class="ians" data-ex="ex5" style="background:var(--green);min-width:220px">She was sick <strong>because</strong> she had a fever.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">7</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          They introduced <u style="color:var(--coral)">theirself</u> to the teacher. <button type="button" class="audio-btn" onclick="speak('They introduced themselves to the teacher.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="They introduced themselves to the teacher." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'They introduced themselves to the teacher ✅ — theirself غير موجودة. الفاعل they ← الصحيح themselves','انتبه: theirself غير صحيحة. الفاعل they ← استخدم themselves')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">theirself غير موجودة ← الفاعل they ← الصحيح themselves</div>
+          <div class="feedback-box"></div>
+        </div>
+        <span class="iarr">✎</span>
+        <div class="ians" data-ex="ex5" style="background:var(--green);min-width:220px">They introduced <strong>themselves</strong> to the teacher.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">8</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          The weather was hot, <u style="color:var(--coral)">because</u> we went to the pool. <button type="button" class="audio-btn" onclick="speak('The weather was hot, so we went to the pool.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="The weather was hot, so we went to the pool." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInputG(this,'The weather was hot, so we went to the pool ✅ — الحر سبب والذهاب للمسبح نتيجة ← so مع الفاصلة وليس because','انتبه: الذهاب للمسبح نتيجة وليس سبباً ← استخدم so مع الفاصلة')">Check</button>
+          <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+          <div class="hint-box">الحر سبب والذهاب للمسبح نتيجة ← استخدم so مع الفاصلة</div>
+          <div class="feedback-box"></div>
+        </div>
+        <span class="iarr">✎</span>
+        <div class="ians" data-ex="ex5" style="background:var(--green);min-width:220px">The weather was hot<strong>, so</strong> we went to the pool.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 7 — Mini Challenge                   -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="tab-7">
+  <div class="challenge-box">
+    <div class="challenge-head">
+      <h3>✍️ Mini Challenge — Write your day</h3>
+      <div class="ar">اكتب جملاً عن يومك باستخدام: Reflexive Pronouns + because / so</div>
+    </div>
+    <div class="challenge-body">
+      <div style="background:var(--softblue);border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:.84rem">
+        <strong>Example:</strong> I made breakfast <em>myself</em> because I was hungry early. Then I went to school, <em>so</em> I took my bag with me.
+      </div>
+      <div class="write-line">
+        <div class="write-num">1</div>
+        <div style="color:var(--teal);font-weight:700;min-width:90px">I ___ myself</div>
+        <input class="write-blank" type="text" placeholder="e.g. I cooked dinner myself because..." autocomplete="off">
+      </div>
+      <div class="write-line">
+        <div class="write-num">2</div>
+        <div style="color:var(--coral);font-weight:700;min-width:90px">He/She ___self</div>
+        <input class="write-blank" type="text" placeholder="e.g. She dressed herself because..." autocomplete="off">
+      </div>
+      <div class="write-line">
+        <div class="write-num">3</div>
+        <div style="color:var(--purple);font-weight:700;min-width:90px">___, so ___</div>
+        <input class="write-blank" type="text" placeholder="e.g. I was tired, so I slept early." autocomplete="off">
+      </div>
+      <div class="write-line">
+        <div class="write-num">4</div>
+        <div style="color:var(--blue);font-weight:700;min-width:90px">___ because ___</div>
+        <input class="write-blank" type="text" placeholder="e.g. We stayed home because it was raining." autocomplete="off">
+      </div>
+      <div style="margin-top:16px;padding:10px 14px;background:var(--softgreen);border-radius:8px;font-size:.83rem;direction:rtl;text-align:right">
+        💡 <strong>تذكّر:</strong> الضمير الانعكاسي يتطابق مع الفاعل دائماً • so تسبقها فاصلة • because بدون فاصلة
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- NEW TAB — Story Mode (added; does not touch any original lesson content) -->
+<div class="page" id="tab-story">
+  <div class="story-wrap">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#7C3AED,#2563EB);border-radius:14px;margin-bottom:12px;padding:14px 18px;">
+      <div style="text-align:center;width:100%">
+        <div class="g-title" style="color:#fff">🎮 Story Mode — Omar Learns Independence</div>
+        <div class="g-title-ar" style="color:#93c5fd">وضع القصة — عمر يتعلم الاستقلالية</div>
+      </div>
+    </div>
+    <div class="story-progress-track"><div class="story-progress-fill" id="story-progress-fill"></div></div>
+    <div id="story-screens"></div>
+  </div>
+</div>
+
+<!-- TAB 8 — Boss Challenge (Final Quiz)      -->
+<!-- ══════════════════════════════════════════ -->
+
+<div id="boss-overlay" style="display:none;position:fixed;inset:0;z-index:800;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(76,29,149,.97),rgba(220,46,93,.97));text-align:center;padding:28px;">
+  <span style="font-size:4rem;margin-bottom:8px">👹</span>
+  <h2 style="color:white;font-size:1.9rem;margin:0 0 8px;font-weight:900">FINAL BOSS CHALLENGE</h2>
+  <p style="color:#e2e8f0;font-size:.95rem;line-height:1.7;direction:rtl;margin:0 0 22px">لديك 60 ثانية لهزيمة الوحش!<br>✅ كل إجابة صحيحة تسلب طاقة الوحش 💥<br>❌ كل خطأ يسلب 10 ثوانٍ من وقتك ⚠️<br>شريط الطاقة يُثبَّت في أسفل الشاشة عند البدء!</p>
+  <button onclick="startBoss()" style="background:#F59E0B;color:#1e1b4b;border:none;border-radius:14px;font-size:1.15rem;font-weight:900;padding:14px 34px;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:.15s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">⚔️ ابدأ التحدي الآن!</button>
+  <button onclick="closeBossOverlay()" style="margin-top:12px;background:rgba(255,255,255,.15);color:white;border:2px solid rgba(255,255,255,.35);border-radius:12px;font-size:.9rem;font-weight:700;padding:9px 22px;cursor:pointer;transition:.15s;" onmouseover="this.style.background='rgba(255,255,255,.25)'" onmouseout="this.style.background='rgba(255,255,255,.15)'">⬅️ رجوع إلى الدروس</button>
+</div>
+<div class="page" id="tab-9">
+  <div class="ex-card">
+    <div class="boss-head">
+      <h3>👹 Boss Challenge — تحدي الوحش</h3>
+      <div class="ar">Reflexive Pronouns + Because vs So — جميع القواعد مدموجة</div>
+    </div>
+    <div class="ex-head" style="border-top:none">
+      <div class="ex-title-ar" style="margin-top:6px">اختر الإجابة الصحيحة — جميع نقاط القواعد مختلطة</div>
+      <span class="lv lv-boss">BOSS</span>
+    </div>
+    <div class="ex-inst">Choose the correct answer — all grammar points mixed.</div>
+    <div class="ex-inst-ar">اختر الإجابة الصحيحة — جميع نقاط القواعد مختلطة.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--gold);color:var(--navy)" onclick="revealOne('quiz',this)">▶ Reveal next answer</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('quiz')">↺ Reset</button>
+      </div>
+      <div class="score-line">Revealed / Answered: <span id="quiz-score">0</span> / 12</div>
+
+      <!-- Q1 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q1. She looked at _______ in the mirror. <button type="button" class="audio-btn" onclick="speak('She looked at herself in the mirror.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل she ← herself</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','herself ✅ — الفاعل she لذا نستخدم herself (نفسها)')" style="--c:var(--teal)">herself</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','hisself ❌ — hisself غير موجودة في الإنجليزية أصلاً')">hisself</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','itself ❌ — itself للأشياء وغير العاقل، والفاعل هنا she')">itself</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q2 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q2. We did the homework _______. <button type="button" class="audio-btn" onclick="speak('We did the homework ourselves.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل we ← ourselves</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','themselves ❌ — themselves للجمع الغائب (هم)، والفاعل هنا we')">themselves</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','ourselves ✅ — الفاعل we لذا نستخدم ourselves (أنفسنا)')" style="--c:var(--teal)">ourselves</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','yourself ❌ — yourself للمخاطب المفرد (أنت)، والفاعل هنا we')">yourself</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q3 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q3. I was tired, _______ I went to bed early. <button type="button" class="audio-btn" onclick="speak('I was tired, so I went to bed early.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">التعب سبب ← النوم مبكراً نتيجة ← so مع الفاصلة</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','because ❌ — because يأتي قبل السبب، والنوم مبكراً هو النتيجة وليس السبب')">because</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','so ✅ — التعب سبب والنوم مبكراً نتيجة، ونستخدم so (لذا) مع الفاصلة')" style="--c:var(--coral)">so</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','and ❌ — and لا يُعبّر عن علاقة السبب والنتيجة')">and</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q4 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q4. He stayed home _______ he was sick. <button type="button" class="audio-btn" onclick="speak('He stayed home because he was sick.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">المرض سبب البقاء في المنزل ← because (لأن)</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','because ✅ — البقاء في المنزل بسبب المرض، ونستخدم because (لأن) لذكر السبب')" style="--c:var(--purple)">because</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','so ❌ — so يأتي قبل النتيجة، والمرض هو السبب وليس النتيجة')">so</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','but ❌ — but للتناقض وليس للسبب والنتيجة')">but</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q5 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q5. They enjoyed _______ at the party. <button type="button" class="audio-btn" onclick="speak('They enjoyed themselves at the party.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل they ← themselves</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','ourself ❌ — ourself غير صحيحة، الصحيح ourselves للجمع المتكلم')">ourself</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','yourself ❌ — yourself للمخاطب المفرد (أنت)، والفاعل هنا they')">yourself</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','themselves ✅ — الفاعل they لذا نستخدم themselves (أنفسهم)')" style="--c:var(--teal)">themselves</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q6 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q6. It was raining, _______ we took an umbrella. <button type="button" class="audio-btn" onclick="speak('It was raining, so we took an umbrella.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">المطر سبب ← أخذ المظلة نتيجة ← so مع الفاصلة</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','because ❌ — because يأتي قبل السبب، وأخذ المظلة هو النتيجة')">because</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','so ✅ — المطر سبب وأخذ المظلة نتيجة، ونستخدم so مع الفاصلة')" style="--c:var(--coral)">so</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','then ❌ — then تعني بعد ذلك وليست للسبب والنتيجة')">then</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q7 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q7. He fixed the car _______. <button type="button" class="audio-btn" onclick="speak('He fixed the car himself.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل he ← himself</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','himself ✅ — الفاعل he لذا نستخدم himself (بنفسه)')" style="--c:var(--teal)">himself</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','herself ❌ — herself للمؤنث (هي)، والفاعل هنا he')">herself</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','itself ❌ — itself للأشياء وغير العاقل، والفاعل هنا he')">itself</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q8 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q8. She drinks milk _______ it is good for health. <button type="button" class="audio-btn" onclick="speak('She drinks milk because it is good for health.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفائدة الصحية سبب لشرب الحليب ← because</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','because ✅ — تشرب الحليب لأنه مفيد للصحة، ونستخدم because (لأن) لذكر السبب')" style="--c:var(--purple)">because</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','so ❌ — so يأتي قبل النتيجة، وفائدة الحليب هي السبب')">so</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','then ❌ — then تعني بعد ذلك وليست للسبب والنتيجة')">then</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q9 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q9. I taught _______ how to cook. <button type="button" class="audio-btn" onclick="speak('I taught myself how to cook.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل I ← myself</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','yourself ❌ — yourself للمخاطب (أنت)، والفاعل هنا I')">yourself</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','myself ✅ — الفاعل I لذا نستخدم myself (علّمت نفسي)')" style="--c:var(--blue)">myself</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','himself ❌ — himself للمذكر الغائب (هو)، والفاعل هنا I')">himself</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q10 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q10. The shop was closed, _______ we went home. <button type="button" class="audio-btn" onclick="speak('The shop was closed, so we went home.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">إغلاق المتجر سبب ← الرجوع للمنزل نتيجة ← so مع الفاصلة</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','because ❌ — because يأتي قبل السبب، والرجوع للمنزل هو النتيجة')">because</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','so ✅ — إغلاق المتجر سبب والعودة للمنزل نتيجة، ونستخدم so مع الفاصلة')" style="--c:var(--coral)">so</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','but ❌ — but للتناقض وليس للسبب والنتيجة')">but</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q11 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q11. Did you make this cake _______? <button type="button" class="audio-btn" onclick="speak('Did you make this cake yourself?')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الفاعل you مفرد ← yourself</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','themselves ❌ — themselves للجمع الغائب (هم)، والفاعل هنا you')">themselves</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','yourself ✅ — الفاعل you (مفرد) لذا نستخدم yourself (بنفسك)')" style="--c:var(--blue)">yourself</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','ourselves ❌ — ourselves للمتكلم الجمع (نحن)، والفاعل هنا you')">ourselves</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+      <!-- Q12 -->
+      <div class="mcq-block">
+        <div class="mcq-q">Q12. She was bored, _______ she went for a walk. <button type="button" class="audio-btn" onclick="speak('She was bored, so she went for a walk.')">🔊</button></div>
+        <button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+        <div class="hint-box">الملل سبب ← التنزه نتيجة ← so مع الفاصلة</div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','because ❌ — because يأتي قبل السبب، والتنزه هو النتيجة وليس السبب')">because</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQGQuiz(this,true,'quiz','so ✅ — الملل سبب والتنزه نتيجة، ونستخدم so (لذا) مع الفاصلة')" style="--c:var(--coral)">so</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQGQuiz(this,false,'quiz','although ❌ — although للتناقض وليس للسبب والنتيجة')">although</div>
+        </div>
+        <div class="mcq-feedback"></div>
+      </div>
+
+      <!-- Score Card -->
+      <div class="score-card" id="boss-score-card">
+        <div class="big" id="boss-final-score">0/12</div>
+        <h2 id="boss-title">🏆</h2>
+        <p class="sub" id="boss-msg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<footer style="background:var(--navy);color:#94a3b8;text-align:center;padding:13px;padding-bottom:90px;font-size:.78rem">
+  Prepared by Teacher Jaber &nbsp;•&nbsp; U4 Grammar – Reflexive Pronouns &amp; Because vs So &nbsp;•&nbsp; Super Goal
+</footer>
+
+<script>
+// ── Dark Mode ─────────────────────────────────────────────────
+function toggleDark(){
+  document.body.classList.toggle('dark');
+  const btn=document.querySelector('.dark-btn');
+  btn.textContent=document.body.classList.contains('dark')?'☀️ Light':'🌙 Dark';
+}
+
+// ── Tab switching ─────────────────────────────────────────────
+function showTab(n){
+  document.querySelectorAll('.page').forEach((p,i)=>p.classList.toggle('active',i===n));
+  document.querySelectorAll('.pill-nav button').forEach((b,i)=>b.classList.toggle('active',i===n));
+  window.scrollTo({top:0,behavior:'smooth'});
+  const _ov=document.getElementById('boss-overlay');
+  if(_ov)_ov.style.display=(n===9&&!(typeof bossStarted!=='undefined'&&bossStarted))?'flex':'none';
+}
+
+// ── Text To Speech ─────────────────────────────────────────────
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.82;
+  u.pitch = 1.0;
+  u.volume = 1.0;
+
+  function pickVoice(){
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = [
+      'Samantha','Karen','Daniel','Google US English',
+      'Google UK English Female','Microsoft Zira','Microsoft David',
+      'Alex','Victoria','Moira','Fiona','Tessa'
+    ];
+    for(const name of preferred){
+      const v = voices.find(v => v.name === name);
+      if(v){ u.voice = v; break; }
+    }
+    if(!u.voice){
+      u.voice = voices.find(v => v.lang === 'en-US') ||
+                voices.find(v => v.lang.startsWith('en')) ||
+                null;
+    }
+    window.speechSynthesis.speak(u);
+  }
+
+  const voices = window.speechSynthesis.getVoices();
+  if(voices.length > 0){ pickVoice(); }
+  else { window.speechSynthesis.onvoiceschanged = pickVoice; }
+}
+
+// ── Hint Toggle ───────────────────────────────────────────────
+function toggleHint(btn){
+  const box=btn.nextElementSibling;
+  if(box&&box.classList.contains('hint-box')){
+    box.classList.toggle('visible');
+    btn.textContent=box.classList.contains('visible')?'🙈 Hide':'💡 Hint';
+  }
+}
+
+// ── Confetti ──────────────────────────────────────────────────
+function triggerConfetti(){
+  const colors=['#FFD700','#7C3AED','#DC2E5D','#10B981','#3B82F6','#F59E0B'];
+  for(let i=0;i<45;i++){
+    const el=document.createElement('div');
+    el.style.cssText='position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:9999;';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.left=Math.random()*100+'vw';el.style.top='-10px';
+    document.body.appendChild(el);
+    const tx=(Math.random()-.5)*200;
+    el.animate([
+      {transform:'translate(0,0) rotate(0deg)',opacity:1},
+      {transform:`translate(${tx}px,${window.innerHeight*.8}px) rotate(${Math.random()*720}deg)`,opacity:0}
+    ],{duration:1300+Math.random()*800,easing:'cubic-bezier(.25,.46,.45,.94)',delay:Math.random()*350}).onfinish=()=>el.remove();
+  }
+}
+function triggerStreakConfetti(){
+  if(typeof confetti==='function'){
+    confetti({particleCount:150,spread:90,origin:{y:0.5},colors:['#F59E0B','#EA580C','#DC2E5D']});
+  }
+}
+
+// ── Web Audio API — Sound Effects ─────────────────────────────
+let audioCtx=null;
+function getAudioCtx(){
+  if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  if(audioCtx.state==='suspended')audioCtx.resume();
+  return audioCtx;
+}
+function playTone(freq,start,duration,vol=0.3,type='sine'){
+  try{
+    const ctx=getAudioCtx();
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.type=type;osc.frequency.value=freq;
+    gain.gain.setValueAtTime(vol,ctx.currentTime+start);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+start+duration);
+    osc.start(ctx.currentTime+start);
+    osc.stop(ctx.currentTime+start+duration+0.05);
+  }catch(e){}
+}
+function playCorrect(){try{const _ctx=getAudioCtx();const _resume=_ctx.state==='suspended'?_ctx.resume():Promise.resolve();_resume.then(()=>{playTone(523,.0,.15);playTone(659,.15,.15);playTone(784,.3,.25);});}catch(e){}}
+function playWrong(){try{const _ctx=getAudioCtx();const _resume=_ctx.state==='suspended'?_ctx.resume():Promise.resolve();_resume.then(()=>{playTone(330,.0,.15,.25,'sawtooth');playTone(220,.15,.25,.25,'sawtooth');});}catch(e){}}
+function playStreak(){playTone(523,.0,.1);playTone(659,.1,.1);playTone(784,.2,.1);playTone(1047,.3,.3);}
+
+// ── XP / STREAK / LEVEL ───────────────────────────────────────
+let xp=0,streak=0;
+const LEVELS=[
+  {name:'Rookie',min:0},
+  {name:'Explorer',min:50},
+  {name:'Fighter',min:120},
+  {name:'Champion',min:220},
+  {name:'Legend',min:350},
+  {name:'Grammar Hero',min:500}
+];
+function getLevel(xp){
+  let lv=LEVELS[0];
+  for(const l of LEVELS){if(xp>=l.min)lv=l;}
+  return lv;
+}
+function getNextLevel(xp){
+  for(let i=0;i<LEVELS.length;i++){if(xp<LEVELS[i].min)return LEVELS[i];}
+  return null;
+}
+function updateXPBar(){
+  document.getElementById('xp-count').textContent=xp;
+  document.getElementById('streak-count').textContent=streak;
+  const lv=getLevel(xp);
+  document.getElementById('level-badge').textContent=lv.name;
+  const next=getNextLevel(xp);
+  const pct=next?Math.round(((xp-lv.min)/(next.min-lv.min))*100):100;
+  document.getElementById('xp-bar-fill').style.width=pct+'%';
+}
+function addXP(pts,isStreak){
+  xp+=pts;
+  if(isStreak){streak++;if(streak>0&&streak%3===0){playStreak();triggerStreakConfetti();}}
+  else{streak=0;}
+  updateXPBar();
+}
+function resetStreak(){streak=0;updateXPBar();}
+
+// ── Global Progress Tracker ────────────────────────────────────
+let completedTotal=0;
+const totalInteractiveItems=49;
+function updateProgressBar(){
+  const bar=document.getElementById('main-progress');
+  if(bar){
+    const pct=Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100));
+    bar.style.width=pct+'%';
+  }
+}
+
+// ── Universal State ───────────────────────────────────────────
+const S={};
+let quizCorrect=0;
+
+// ── MCQ with Gamification (missions) ─────────────────────────
+function selectMCQG(el,isCorrect,exId,feedback){
+  const block=el.closest('.mcq-block');
+  const fb=block.querySelector('.mcq-feedback');
+  const opts=el.closest('.mcq-opts').querySelectorAll('.mcq-opt');
+
+  opts.forEach(o=>o.classList.remove('selected-correct','selected-wrong'));
+  opts.forEach(o=>o.style.pointerEvents='none');
+
+  if(isCorrect){
+    el.classList.add('selected-correct');
+    playCorrect();
+    triggerConfetti();
+    addXP(10,true);
+    if(!el.dataset.completed){
+      el.dataset.completed='true';
+      completedTotal++;
+      updateProgressBar();
+    }
+    if(S[exId]===undefined)S[exId]=0;
+    S[exId]++;
+    const sc=document.getElementById(`${exId}-score`);
+    if(sc)sc.textContent=S[exId];
+    if(fb){fb.className='mcq-feedback fb-correct';fb.textContent=feedback;fb.style.display='block';}
+  } else {
+    el.classList.add('selected-wrong');
+    el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),450);
+    playWrong();
+    resetStreak();
+    opts.forEach(o=>o.style.pointerEvents='');
+    if(fb){fb.className='mcq-feedback fb-wrong';fb.textContent=feedback;fb.style.display='block';}
+  }
+}
+
+// ── MCQ for Boss Quiz ────────────────────────────────────────
+function selectMCQGQuiz(el,isCorrect,exId,feedback){
+  const block=el.closest('.mcq-block');
+  const fb=block.querySelector('.mcq-feedback');
+  const opts=el.closest('.mcq-opts').querySelectorAll('.mcq-opt');
+
+  opts.forEach(o=>o.classList.remove('selected-correct','selected-wrong'));
+  opts.forEach(o=>o.style.pointerEvents='none');
+
+  if(isCorrect){
+    el.classList.add('selected-correct');
+    playCorrect();
+    triggerConfetti();updateBossHP(true);
+    addXP(15,true);
+    quizCorrect++;
+    if(!el.dataset.completed){
+      el.dataset.completed='true';
+      completedTotal++;
+      updateProgressBar();
+    }
+    if(S[exId]===undefined)S[exId]=0;
+    S[exId]++;
+    const sc=document.getElementById(`${exId}-score`);
+    if(sc)sc.textContent=S[exId];
+    if(fb){fb.className='mcq-feedback fb-correct';fb.textContent=feedback;fb.style.display='block';}
+    checkBossComplete();
+  } else {
+    el.classList.add('selected-wrong');
+    el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),450);
+    playWrong();
+    resetStreak();
+    opts.forEach(o=>o.style.pointerEvents='');
+    if(fb){fb.className='mcq-feedback fb-wrong';fb.textContent=feedback;fb.style.display='block';}
+    if(bossStarted)updateBossHP(false);
+  }
+}
+
+function checkBossComplete(){
+  const answered=document.querySelectorAll('#tab-9 .mcq-opt.selected-correct').length;
+  if(answered>=12){showBossCard();}
+}
+function showBossCard(){
+  const card=document.getElementById('boss-score-card');
+  card.classList.add('visible');
+  const titles=['🎯 Keep Trying!','⭐ Not Bad!','🌟 Good Work!','🏆 Excellent!','👑 Grammar Hero!'];
+  const pct=Math.round((quizCorrect/12)*100);
+  document.getElementById('boss-final-score').textContent=quizCorrect+'/12';
+  let ti=0;
+  if(pct>=90)ti=4;else if(pct>=75)ti=3;else if(pct>=60)ti=2;else if(pct>=40)ti=1;
+  document.getElementById('boss-title').textContent=titles[ti];
+  document.getElementById('boss-msg').textContent='Score: '+pct+'% — XP earned: '+xp+' — Level: '+getLevel(xp).name;
+  if(pct>=75)triggerStreakConfetti();
+}
+
+// ── checkInput with Gamification ─────────────────────────────
+function checkInputG(btn,okMsg,errMsg){
+  const parent=btn.closest('.iq');
+  const input=parent.querySelector('.interactive-input');
+  const fb=parent.querySelector('.feedback-box');
+  if(!input)return;
+
+  const expected=input.getAttribute('data-ans').trim().toLowerCase().replace(/[.!?—"']/g,'');
+  const userAns=input.value.trim().toLowerCase().replace(/[.!?—"']/g,'');
+
+  // Flexible match for join exercises
+  let isRight=(userAns===expected);
+  // Also accept 'because' version for so/because reversible joins
+  const altAnswers={
+    'she was late, so she missed the bus':'she missed the bus because she was late',
+    'i was thirsty, so i drank some water':'i drank some water because i was thirsty'
+  };
+  if(!isRight&&altAnswers[expected]&&userAns===altAnswers[expected])isRight=true;
+
+  if(isRight){
+    input.classList.remove('is-wrong');
+    input.classList.add('is-correct');
+    if(fb){fb.className='feedback-box fb-correct';fb.textContent=okMsg;}
+    playCorrect();
+    triggerConfetti();
+    addXP(10,true);
+    if(!btn.dataset.completed){
+      btn.dataset.completed='true';
+      completedTotal++;
+      updateProgressBar();
+      const exId=input.closest('.ex-body')?.querySelector('[id$="-score"]')?.id?.replace('-score','');
+      if(exId){
+        if(S[exId]===undefined)S[exId]=0;
+        S[exId]++;
+        const sc=document.getElementById(`${exId}-score`);
+        if(sc)sc.textContent=S[exId];
+      }
+    }
+  } else {
+    input.classList.remove('is-correct');
+    input.classList.add('is-wrong');
+    input.classList.add('shake');setTimeout(()=>input.classList.remove('shake'),450);
+    if(fb){fb.className='feedback-box fb-wrong';fb.textContent=errMsg;}
+    playWrong();
+    resetStreak();
+  }
+}
+
+// ── Reveal One ─────────────────────────────────────────────────
+function revealOne(id,btn){
+  if(S[id]===undefined)S[id]=0;
+  const targets=Array.from(document.querySelectorAll(`[data-ex="${id}"]`));
+  const i=S[id];
+  if(i<targets.length){
+    const t=targets[i];
+    t.classList.add('visible');
+    if(t.classList.contains('mcq-opt')){
+      const col=getComputedStyle(t).getPropertyValue('--c').trim()||'#0F766E';
+      t.style.background=col;t.style.borderColor=col;t.style.color='white';
+    }
+    S[id]++;
+    completedTotal++;
+    updateProgressBar();
+    addXP(5,false);
+    const sc=document.getElementById(`${id}-score`);
+    if(sc)sc.textContent=S[id];
+  }
+  if(S[id]>=targets.length){
+    btn.innerHTML='✓ All revealed';
+    btn.style.opacity='.55';btn.style.cursor='default';
+    triggerConfetti();
+  }
+}
+
+// ── Reset ──────────────────────────────────────────────────────
+function resetEx(id){
+  S[id]=0;
+  if(id==='quiz')quizCorrect=0;
+  document.querySelectorAll(`[data-ex="${id}"]`).forEach(el=>{
+    el.classList.remove('visible');
+    if(el.classList.contains('mcq-opt')){
+      el.style.background='';el.style.borderColor='';el.style.color='';
+      el.classList.remove('selected-correct','selected-wrong');
+      el.style.pointerEvents='';
+      delete el.dataset.completed;
+    }
+  });
+  document.querySelectorAll('.interactive-input').forEach(inp=>{
+    inp.value='';inp.classList.remove('is-correct','is-wrong');
+  });
+  document.querySelectorAll('.check-btn').forEach(b=>delete b.dataset.completed);
+  document.querySelectorAll('.mcq-feedback,.feedback-box').forEach(f=>{
+    f.className=f.className.replace(/fb-correct|fb-wrong/g,'').trim();
+    f.style.display='none';f.textContent='';
+  });
+  const card=document.getElementById('boss-score-card');
+  if(card&&id==='quiz')card.classList.remove('visible');
+  const sc=document.getElementById(`${id}-score`);
+  if(sc)sc.textContent=0;
+  const rb=document.querySelector(`button[onclick="revealOne('${id}',this)"]`);
+  if(rb){rb.innerHTML='▶ Reveal next answer';rb.style.opacity='1';rb.style.cursor='pointer';}
+}
+
+// ── Legacy selectMCQ (reveal buttons) ────────────────────────
+function selectMCQ(el,isCorrect,exId){
+  selectMCQG(el,isCorrect,exId,isCorrect?'✅ صحيح!':'❌ حاول مرة أخرى');
+}
+
+// Init
+updateXPBar();
+
+
+// ── BOSS BATTLE ──
+const BOSS_TOTAL=12;
+let bossInterval,bossTime=60,bossStarted=false,bossHP=BOSS_TOTAL,myHP=100;
+
+function getBACtx(){const ctx=getAudioCtx();if(ctx&&ctx.state==='suspended')ctx.resume();return ctx;}
+function playTick(){try{const ctx=getBACtx(),o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='square';o.frequency.value=bossTime<=10?880:440;g.gain.setValueAtTime(.04,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.08);o.start(ctx.currentTime);o.stop(ctx.currentTime+.09);}catch(e){}}
+function updateBossHUD(){const t=document.getElementById('b-time');if(t)t.textContent=bossTime;const tm=document.getElementById('b-timer');if(tm)tm.classList.toggle('hurry',bossTime<=10);}
+
+function startBoss(){
+  if(bossStarted)return;bossStarted=true;
+  const ov=document.getElementById('boss-overlay');if(ov)ov.style.display='none';
+  document.getElementById('boss-hud-fixed').classList.add('active');
+  updateBossHUD();
+  bossInterval=setInterval(()=>{bossTime--;updateBossHUD();playTick();if(bossTime<=0){clearInterval(bossInterval);setTimeout(showGameOver,250);}},1000);
+}
+
+function updateBossHP(correct){
+  if(!bossStarted)return;
+  if(correct){
+    bossHP--;
+    const pct=Math.max(0,(bossHP/BOSS_TOTAL)*100);
+    const bar=document.getElementById('b-boss-bar'),pctEl=document.getElementById('b-boss-pct');
+    if(bar)bar.style.width=pct+'%';if(pctEl)pctEl.textContent=Math.round(pct)+'%';
+    if(bossHP<=0){clearInterval(bossInterval);setTimeout(()=>showGameOver('win'),300);}
+  }else{
+    // Wrong: lose 10s AND reduce player HP
+    bossTime=Math.max(0,bossTime-10);
+    updateBossHUD();
+    myHP=Math.max(0,myHP-10);
+    const myBar=document.getElementById('b-my-bar'),myPct=document.getElementById('b-my-pct');
+    if(myBar)myBar.style.width=myHP+'%';if(myPct)myPct.textContent=myHP+'%';
+    if(myHP<=0){clearInterval(bossInterval);setTimeout(showGameOver,300);}
+  }
+}
+
+function showGameOver(result){
+  const m=document.getElementById('gameover-modal');if(!m)return;
+  if(result==='win'){
+    m.querySelector('#go-title').textContent='🏆 أنت هزمت الوحش!';
+    m.querySelector('#go-title').style.color='#10B981';
+    m.querySelector('div').style.borderColor='#10B981';
+    m.querySelector('#go-sub').textContent='مبروك! أتممت التحدي النهائي! 🎉';
+    m.querySelector('#go-sub').style.color='#bbf7d0';
+    m.querySelector('#go-body').innerHTML='أثبتت أنك أقوى من الوحش!<br><strong style="color:#fbbf24">⭐ احتفظ بهذه النتيجة!</strong>';
+    triggerConfetti();
+  }
+  m.style.display='flex';
+}
+
+function retryBoss(){
+  document.getElementById('gameover-modal').style.display='none';
+  bossStarted=false;bossTime=60;bossHP=BOSS_TOTAL;myHP=100;clearInterval(bossInterval);
+  document.getElementById('boss-hud-fixed').classList.remove('active');
+  const bar=document.getElementById('b-boss-bar'),pct=document.getElementById('b-boss-pct');
+  if(bar)bar.style.width='100%';if(pct)pct.textContent='100%';
+  const myBar=document.getElementById('b-my-bar'),myPct=document.getElementById('b-my-pct');
+  if(myBar)myBar.style.width='100%';if(myPct)myPct.textContent='100%';
+  const m=document.getElementById('gameover-modal');
+  if(m){m.querySelector('#go-title').textContent='GAME OVER';m.querySelector('#go-title').style.color='#ef4444';m.querySelector('div').style.borderColor='#DC2E5D';m.querySelector('#go-sub').textContent='الوحش انتصر هذه المرة!';m.querySelector('#go-sub').style.color='#fde68a';m.querySelector('#go-body').innerHTML='نفد الوقت قبل إكمال التحدي 😤<br>راجع القواعد وأعد المحاولة!<br><strong style="color:#fbbf24">أنت أقوى من الوحش 💪</strong>';}
+  const ov=document.getElementById('boss-overlay');if(ov)ov.style.display='flex';
+  updateBossHUD();
+}
+
+function closeGameOver(){
+  clearInterval(bossInterval);bossStarted=false;bossTime=60;bossHP=BOSS_TOTAL;myHP=100;
+  const hud=document.getElementById('boss-hud-fixed');if(hud)hud.classList.remove('active');
+  document.getElementById('gameover-modal').style.display='none';
+  showTab(0);
+}
+
+function closeBossOverlay(){
+  const ov=document.getElementById('boss-overlay');if(ov)ov.style.display='none';
+  showTab(0);
+}
+
+
+/* ── Pill-nav: wheel → horizontal scroll + drag to scroll ── */
+(function(){
+  const nav = document.querySelector('.pill-nav');
+  if(!nav) return;
+  nav.addEventListener('wheel', function(e){
+    if(e.deltaY !== 0){ e.preventDefault(); nav.scrollLeft += e.deltaY * 1.2; }
+  }, {passive:false});
+  let isDown=false, startX, scrollStart;
+  nav.addEventListener('mousedown', function(e){
+    if(e.target.tagName==='BUTTON') return;
+    isDown=true; nav.classList.add('is-dragging');
+    startX=e.pageX-nav.offsetLeft; scrollStart=nav.scrollLeft;
+  });
+  document.addEventListener('mouseup', function(){ isDown=false; nav.classList.remove('is-dragging'); });
+  nav.addEventListener('mouseleave', function(){ isDown=false; nav.classList.remove('is-dragging'); });
+  nav.addEventListener('mousemove', function(e){
+    if(!isDown) return; e.preventDefault();
+    nav.scrollLeft = scrollStart - (e.pageX - nav.offsetLeft - startX) * 1.5;
+  });
+  let lastActiveBtn = nav.querySelector('button.active');
+  const observer = new MutationObserver(function(){
+    const active = nav.querySelector('button.active');
+    if(!active || active===lastActiveBtn) return;
+    lastActiveBtn = active;
+    const navRect=nav.getBoundingClientRect(), btnRect=active.getBoundingClientRect();
+    const center=(btnRect.left-navRect.left)+nav.scrollLeft+btnRect.width/2;
+    nav.scrollTo({left:Math.max(0,center-navRect.width/2), behavior:'smooth'});
+  });
+  observer.observe(nav, {subtree:true, attributeFilter:['class']});
+})();
+</script>
+
+<!-- GAME OVER MODAL -->
+<div id="gameover-modal" style="display:none;position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.82);align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+  <div style="background:linear-gradient(135deg,#1e1b4b,#4c1d95);border:3px solid #DC2E5D;border-radius:20px;padding:34px 26px;max-width:400px;width:90%;text-align:center;box-shadow:0 0 60px rgba(220,46,93,.6);">
+    <div style="font-size:4.5rem;margin-bottom:4px">💀</div>
+    <h2 style="color:#ef4444;font-size:1.9rem;margin:6px 0;font-weight:900" id="go-title">GAME OVER</h2>
+    <p style="color:#fde68a;font-size:1.05rem;font-weight:800;margin:4px 0 8px" id="go-sub">الوحش انتصر هذه المرة!</p>
+    <p style="color:#c4b5fd;font-size:.9rem;line-height:1.7;margin:0 0 22px" id="go-body">نفد الوقت قبل إكمال التحدي 😤<br>راجع القواعد وأعد المحاولة!<br><strong style="color:#fbbf24">أنت أقوى من الوحش 💪</strong></p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button onclick="retryBoss()" style="background:linear-gradient(135deg,#DC2E5D,#7C3AED);color:white;border:none;border-radius:12px;padding:12px 26px;font-size:1rem;font-weight:900;cursor:pointer;transition:.15s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">🔄 أعد المحاولة</button>
+      <button onclick="closeGameOver()" style="background:rgba(255,255,255,.1);color:#e2e8f0;border:2px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 20px;font-size:1rem;font-weight:700;cursor:pointer;" onmouseover="this.style.background='rgba(255,255,255,.2)'" onmouseout="this.style.background='rgba(255,255,255,.1)'">📖 مراجعة الدروس</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NEW: STUDENT NAME OVERLAY ═══ -->
+<div class="ns-overlay" id="name-overlay">
+  <div class="ns-card">
+    <h2>📝 Enter Your Name</h2>
+    <p>يرجى إدخال اسمك قبل بدء الدرس</p>
+    <input type="text" id="student-name-input" class="interactive-input" placeholder="Your name... / اسمك..." style="margin-top:16px;width:100%;max-width:280px;text-align:center;font-size:1rem;">
+    <div><button class="ns-start-btn" onclick="confirmStudentName()">▶ Continue</button></div>
+  </div>
+</div>
+<div class="ns-overlay" id="difficulty-overlay">
+  <div class="ns-card">
+    <h2>🎮 Choose Your Difficulty</h2>
+    <p>اختر مستوى الصعوبة قبل بدء الدرس</p>
+    <div class="diff-grid">
+      <div class="diff-opt" onclick="chooseDifficulty('easy')">
+        <span class="em">🟢</span>
+        <span><span class="nm">Easy Mode</span><span class="ds">More guidance • Less typing • More hints • Beginner friendly<br><span dir="rtl">مزيد من المساعدة • كتابة أقل • تلميحات أكثر</span></span></span>
+      </div>
+      <div class="diff-opt" onclick="chooseDifficulty('normal')">
+        <span class="em">🟡</span>
+        <span><span class="nm">Normal Mode</span><span class="ds">Current experience • No changes<br><span dir="rtl">التجربة الحالية • بدون تغييرات</span></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ns-overlay" id="avatar-overlay">
+  <div class="ns-card">
+    <h2>🎮 Choose Your Avatar</h2>
+    <p>اختر شخصيتك قبل بدء المغامرة!</p>
+    <div class="avatar-grid" id="avatar-grid">
+      <div class="avatar-opt" data-av="⚽" onclick="pickAvatar(this,'⚽')"><span class="em">⚽</span><span class="nm">Football Hero</span><span class="nm-ar">بطل كرة القدم</span></div>
+      <div class="avatar-opt" data-av="🎮" onclick="pickAvatar(this,'🎮')"><span class="em">🎮</span><span class="nm">Gamer</span><span class="nm-ar">لاعب محترف</span></div>
+      <div class="avatar-opt" data-av="🚀" onclick="pickAvatar(this,'🚀')"><span class="em">🚀</span><span class="nm">Space Explorer</span><span class="nm-ar">مستكشف الفضاء</span></div>
+      <div class="avatar-opt" data-av="🤖" onclick="pickAvatar(this,'🤖')"><span class="em">🤖</span><span class="nm">Robot Warrior</span><span class="nm-ar">محارب آلي</span></div>
+    </div>
+    <button class="ns-start-btn" id="avatar-start-btn" disabled onclick="confirmAvatar()">▶ Start Lesson</button>
+  </div>
+</div>
+<div class="ns-overlay" id="boss-mode-overlay">
+  <div class="ns-card">
+    <h2>⏱️ Choose Boss Mode</h2>
+    <p>اختر نمط تحدي الوحش</p>
+    <div class="diff-grid">
+      <div class="diff-opt" onclick="startBossWithMode('timed')">
+        <span class="em">⚡</span>
+        <span><span class="nm">Timed Challenge</span><span class="ds">60-second countdown • wrong answers cost time<br><span dir="rtl">تحدي بالوقت — الأخطاء تخصم وقتاً</span></span></span>
+      </div>
+      <div class="diff-opt" onclick="startBossWithMode('practice')">
+        <span class="em">🎯</span>
+        <span><span class="nm">Practice Mode</span><span class="ds">No timer • same HP, phases, XP & rewards<br><span dir="rtl">بدون وقت — نفس نظام الطاقة والمراحل</span></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ns-overlay" id="levelup-overlay">
+  <div class="ns-card">
+    <div class="levelup-badge" id="levelup-emoji">🥈</div>
+    <div style="font-size:.8rem;color:#c4b5fd;font-weight:700;">LEVEL UP! 🎉</div>
+    <div class="levelup-name" id="levelup-name">Explorer</div>
+    <p style="margin-top:8px">لقد ارتقيت لمستوى جديد! استمر بالتقدم 💪</p>
+    <button class="ns-start-btn" onclick="closeLevelUp()">Continue ▶</button>
+  </div>
+</div>
+<div class="ach-toast" id="ach-toast"><span class="em">🏆</span><span id="ach-toast-text">Achievement Unlocked!</span></div>
+<div class="speed-toast" id="speed-toast">⚡ Fast Answer +15 XP</div>
+<div class="ach-toast" id="reward-toast" style="top:60px">🎁 Reward!</div>
+<div class="ns-overlay" id="ach-panel-overlay">
+  <div class="ns-card">
+    <h2>🏆 Achievements</h2>
+    <p>إنجازاتك في هذا الدرس</p>
+    <div class="ach-list" id="ach-list"></div>
+    <button class="ns-start-btn" onclick="closeAchPanel()">Close</button>
+  </div>
+</div>
+<div class="ns-overlay" id="report-overlay">
+  <div class="ns-card" style="max-width:480px">
+    <h2>📊 Lesson Report</h2>
+    <div class="report-grade" id="report-grade-emoji">A</div>
+    <div class="report-grid" id="report-grid"></div>
+    <div class="report-actions">
+      <button onclick="downloadCertificatePng()">📜 Download Certificate</button>
+      <button class="secondary" onclick="closeReport()">Close</button>
+    </div>
+  </div>
+</div>
+<canvas id="cert-canvas" width="1000" height="700" style="display:none"></canvas>
+
+<script>
+(function(){
+
+function formatDate(d){
+  d=d||new Date();
+  const yyyy=d.getFullYear();
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const dd=String(d.getDate()).padStart(2,'0');
+  return yyyy+'/'+mm+'/'+dd;
+}
+
+const ACHIEVEMENTS=[
+  {id:'first-correct', em:'🏆', tt:'First Correct Answer', ds:'أول إجابة صحيحة'},
+  {id:'streak5',        em:'🔥', tt:'5 Correct in a Row',  ds:'٥ إجابات صحيحة متتالية'},
+  {id:'xp100',          em:'⚡', tt:'Earn 100 XP',          ds:'اجمع ١٠٠ نقطة خبرة'},
+  {id:'mission1',       em:'🎯', tt:'Complete First Mission', ds:'أكمل أول مهمة'},
+  {id:'all-grammar',    em:'📘', tt:'Finish All Grammar Tabs', ds:'أنهِ جميع دروس القواعد'},
+  {id:'boss-defeat',    em:'👾', tt:'Defeat Final Boss',    ds:'اهزم الوحش النهائي'},
+  {id:'legend',         em:'💎', tt:'Reach Top Rank',       ds:'وصلت لأعلى رتبة'}
+];
+let unlocked={};
+let prevLevelName=null;
+function checkLevelUp(){
+  const name=getLevel(xp).name;
+  if(prevLevelName!==null&&name!==prevLevelName){
+    showLevelUp(name);
+    if(LEVELS.findIndex(l=>l.name===name)>=LEVELS.length-2)unlockAchievement('legend');
+  }
+  prevLevelName=name;
+}
+function showLevelUp(name){
+  document.getElementById('levelup-emoji').textContent='🎉';
+  document.getElementById('levelup-name').textContent=name;
+  document.getElementById('levelup-overlay').classList.add('show');
+  triggerConfetti();
+}
+window.closeLevelUp=function(){document.getElementById('levelup-overlay').classList.remove('show');};
+function unlockAchievement(id){
+  if(unlocked[id])return;
+  unlocked[id]=true;
+  const a=ACHIEVEMENTS.find(x=>x.id===id);
+  if(a)showAchToast(a);
+  renderAchPanel();
+  saveState();
+}
+function showAchToast(a){
+  const t=document.getElementById('ach-toast');
+  document.getElementById('ach-toast-text').textContent=a.tt+' 🎉';
+  t.classList.add('show');
+  playCorrect();
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+function getAchievementProgress(id){
+  switch(id){
+    case 'first-correct': return {cur:Math.min(1,totalCorrectAttempts),max:1};
+    case 'streak5':       return {cur:Math.min(5,maxStreak),max:5};
+    case 'xp100':         return {cur:Math.min(100,xp),max:100};
+    case 'mission1':      return {cur:unlocked['mission1']?1:0,max:1};
+    case 'all-grammar':   return {cur:GRAMMAR_TABS.filter(t=>grammarSeen[t]).length,max:GRAMMAR_TABS.length};
+    case 'boss-defeat':   return {cur:Math.min(BOSS_PHASES.length,bossPhaseIdx),max:BOSS_PHASES.length};
+    case 'legend':        return {cur:Math.min(LEVELS.length-1,LEVELS.findIndex(l=>l.name===getLevel(xp).name)+1),max:LEVELS.length-1};
+    default:               return {cur:unlocked[id]?1:0,max:1};
+  }
+}
+function renderAchPanel(){
+  const list=document.getElementById('ach-list');
+  if(!list)return;
+  list.innerHTML=ACHIEVEMENTS.map(a=>{
+    const u=!!unlocked[a.id];
+    const p=getAchievementProgress(a.id);
+    const pct=p.max?Math.min(100,Math.round((p.cur/p.max)*100)):0;
+    return '<div class="ach-row'+(u?' unlocked':'')+'"><span class="em">'+a.em+'</span>'
+      +'<div style="flex:1"><div class="tt">'+a.tt+'</div><div class="ds">'+a.ds+(u?' ✅':'')+'</div>'
+      +'<div class="ach-progress-track"><div class="ach-progress-fill" style="width:'+pct+'%"></div></div>'
+      +'<div class="ach-progress-label">'+p.cur+' / '+p.max+'</div></div></div>';
+  }).join('');
+}
+window.openAchPanel=function(){renderAchPanel();document.getElementById('ach-panel-overlay').classList.add('show');};
+window.closeAchPanel=function(){document.getElementById('ach-panel-overlay').classList.remove('show');};
+
+let chosenAvatar=null;
+window.pickAvatar=function(el,em){
+  document.querySelectorAll('.avatar-opt').forEach(o=>o.classList.remove('picked'));
+  el.classList.add('picked');
+  chosenAvatar=em;
+  document.getElementById('avatar-start-btn').disabled=false;
+};
+window.confirmAvatar=function(){
+  if(!chosenAvatar)return;
+  document.getElementById('avatar-overlay').classList.remove('show');
+  updateAvatarChip();
+  saveState();
+};
+function updateAvatarChip(){
+  const chip=document.getElementById('hud-avatar-chip');
+  if(chip&&chosenAvatar)chip.textContent=chosenAvatar;
+}
+const NAME_KEY='u4reflexivebecause_student_name';
+let studentName=localStorage.getItem(NAME_KEY)||'';
+function updateNameDisplays(){
+  const chip=document.getElementById('hud-name-chip');
+  if(chip)chip.textContent=studentName?('👤 '+studentName):'👤 Student';
+}
+window.confirmStudentName=function(){
+  const inp=document.getElementById('student-name-input');
+  const val=(inp?inp.value:'').trim();
+  if(!val){ if(inp){inp.classList.add('shake');setTimeout(()=>inp.classList.remove('shake'),400);} return; }
+  studentName=val;
+  localStorage.setItem(NAME_KEY,val);
+  document.getElementById('name-overlay').classList.remove('show');
+  updateNameDisplays();
+  if(!difficultyMode)document.getElementById('difficulty-overlay').classList.add('show');
+  else if(!chosenAvatar)document.getElementById('avatar-overlay').classList.add('show');
+};
+
+let questionStartTime=Date.now();
+function resetQuestionTimer(){questionStartTime=Date.now();}
+function awardSpeedBonus(){
+  const secs=(Date.now()-questionStartTime)/1000;
+  resetQuestionTimer();
+  let bonus=5,label='🚀 Speed Master +5 XP';
+  if(secs<5){bonus=15;label='⚡ Fast Answer +15 XP';}
+  else if(secs<=10){bonus=10;label='🔥 Lightning Bonus +10 XP';}
+  addXP(bonus,false);
+  const t=document.getElementById('speed-toast');
+  if(t){t.textContent=label;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1400);}
+}
+
+let totalAttempts=0,totalCorrectAttempts=0,totalWrongAttempts=0,maxStreak=0,lessonStartTime=Date.now(),bossResult='Not Attempted';
+
+let rewardsGranted={};
+function grantOneTimeReward(key,amount,label){
+  if(rewardsGranted[key])return;
+  rewardsGranted[key]=true;
+  addXP(amount,false);
+  showRewardToast(label);
+  saveState();
+}
+function showRewardToast(label){
+  const t=document.getElementById('reward-toast');
+  if(!t)return;
+  t.textContent=label;t.classList.add('show');triggerConfetti();
+  setTimeout(()=>t.classList.remove('show'),2600);
+}
+function checkFirstMissionComplete(iq){
+  const tab=iq.closest('.page');
+  if(!tab||tab.id!=='tab-1')return;
+  const all=tab.querySelectorAll('.interactive-input[data-ans]');
+  if(!all.length)return;
+  const allDone=Array.from(all).every(i=>i.classList.contains('is-correct'));
+  if(allDone)grantOneTimeReward('mission1complete',25,'🎯 First Mission Complete! +25 XP');
+}
+
+const DIFF_KEY='u4reflexivebecause_difficulty_mode';
+let difficultyMode=localStorage.getItem(DIFF_KEY);
+function easyModeActive(){ return difficultyMode==='easy'; }
+function updateModeBadge(){
+  const b=document.getElementById('ns-mode-badge');
+  if(!b)return;
+  b.textContent=difficultyMode==='easy' ? '🟢 Easy Mode' : '🟡 Normal Mode';
+}
+window.openDifficultyOverlay=function(){document.getElementById('difficulty-overlay').classList.add('show');};
+window.chooseDifficulty=function(mode){
+  difficultyMode=mode;
+  localStorage.setItem(DIFF_KEY,mode);
+  document.getElementById('difficulty-overlay').classList.remove('show');
+  updateModeBadge();
+  if(mode==='easy'){ applyEasyModeToInputs(); insertWordBanksForFreeText(); }
+  else { removeEasyModeFromInputs(); removeWordBanksForFreeText(); }
+  if(!chosenAvatar) document.getElementById('avatar-overlay').classList.add('show');
+  saveState();
+};
+function buildMaskedAnswer(ans){
+  let revealed=false;
+  return ans.split('').map(ch=>{ if(/[A-Za-z]/.test(ch)){ if(!revealed){revealed=true;return ch;} return '_'; } return ch; }).join('');
+}
+function applyEasyModeToInputs(){
+  document.querySelectorAll('.interactive-input[data-ans]').forEach(input=>{
+    if(input.dataset.easyInit)return;
+    input.dataset.easyInit='1';
+    if(input.dataset.origPlaceholder===undefined) input.dataset.origPlaceholder=input.getAttribute('placeholder')||'';
+    const ans=input.getAttribute('data-ans')||'';
+    const masked=buildMaskedAnswer(ans);
+    const iq=input.closest('.iq');
+    const hintBtn=iq?iq.querySelector('.hint-btn'):null;
+    if(!iq||iq.querySelector('.easy-letter-btn'))return;
+    const letterBtn=document.createElement('button');
+    letterBtn.type='button';letterBtn.className='hint-btn easy-letter-btn';
+    letterBtn.textContent='🔎 First Letter';
+    letterBtn.onclick=function(){input.setAttribute('placeholder',masked);this.disabled=true;};
+    const lenBtn=document.createElement('button');
+    lenBtn.type='button';lenBtn.className='hint-btn easy-len-btn';
+    lenBtn.textContent='📏 Word Length';
+    lenBtn.onclick=function(){
+      const letters=ans.replace(/[^A-Za-z]/g,'').length;
+      const box=iq.querySelector('.hint-box');
+      if(box){box.classList.add('visible');box.textContent='📏 '+letters+' letters ('+letters+' حرف)';}
+      this.disabled=true;
+    };
+    const anchor=hintBtn||input;
+    anchor.insertAdjacentElement('afterend',letterBtn);
+    letterBtn.insertAdjacentElement('afterend',lenBtn);
+    if(hintBtn){
+      const extraHintBtn=document.createElement('button');
+      extraHintBtn.type='button';extraHintBtn.className='hint-btn easy-extra-hint-btn';
+      extraHintBtn.textContent='🟢 Easy Hint';
+      extraHintBtn.onclick=function(){hintBtn.click();this.disabled=true;};
+      lenBtn.insertAdjacentElement('afterend',extraHintBtn);
+    }
+  });
+}
+function removeEasyModeFromInputs(){
+  document.querySelectorAll('.easy-letter-btn,.easy-len-btn,.easy-extra-hint-btn').forEach(b=>b.remove());
+  document.querySelectorAll('.interactive-input[data-easy-init]').forEach(input=>{
+    input.removeAttribute('data-easy-init');
+    input.setAttribute('placeholder',input.dataset.origPlaceholder||'');
+  });
+}
+function showEasyRetry(container,attemptsLeft){
+  if(!container)return;
+  let warn=container.querySelector(':scope > .easy-retry-note');
+  if(!warn){ warn=document.createElement('div'); warn.className='empty-warning easy-retry-note'; container.appendChild(warn); }
+  const msgs=[
+    {en:"🟢 Great try! Give it another go — you've got this!",ar:"🟢 محاولة رائعة! جرّب مرة أخرى!"},
+    {en:"🟢 So close! One more try before the answer is revealed.",ar:"🟢 قريب جداً! محاولة أخيرة!"}
+  ];
+  const m=msgs[Math.max(0,Math.min(msgs.length-1,msgs.length-attemptsLeft))]||msgs[0];
+  warn.innerHTML=m.en+'<span>'+m.ar+'</span>';
+  warn.classList.add('visible');
+  clearTimeout(warn._hideTimer);
+  warn._hideTimer=setTimeout(()=>warn.classList.remove('visible'),3000);
+}
+function shuffleArr(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function insertWordBanksForFreeText(){
+  document.querySelectorAll('.interactive-input.wide[data-ans]').forEach(input=>{
+    const iq=input.closest('.iq');
+    if(!iq||iq.querySelector('.easy-wb-box'))return;
+    const ans=input.getAttribute('data-ans')||'';
+    const words=shuffleArr(ans.replace(/[.,!?]/g,'').split(/\s+/).filter(Boolean));
+    const box=document.createElement('div');
+    box.className='easy-wb-box';
+    box.innerHTML='<strong>🟢 Word Bank / بنك الكلمات</strong><div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px">'
+      +words.map(w=>'<span class="wb-chip">'+w+'</span>').join('')+'</div>';
+    iq.appendChild(box);
+  });
+}
+function removeWordBanksForFreeText(){ document.querySelectorAll('.easy-wb-box').forEach(b=>b.remove()); }
+
+let completedQuestions={};
+function isQuestionCompleted(qid){return !!(qid&&completedQuestions[qid]);}
+function markQuestionCompleted(qid){if(!qid)return;completedQuestions[qid]=true;saveState();}
+function assignQIDs(){
+  document.querySelectorAll('.iq').forEach((el,i)=>{ if(el.querySelector('.interactive-input[data-ans]')&&!el.dataset.qid)el.dataset.qid='iq'+i; });
+  document.querySelectorAll('.mcq-block').forEach((el,i)=>{ if(!el.dataset.qid)el.dataset.qid='mcq'+i; });
+}
+function showAlreadyCompleted(container){
+  if(!container)return;
+  let msg=container.querySelector(':scope > .already-done-note');
+  if(!msg){ msg=document.createElement('div'); msg.className='empty-warning already-done-note';
+    msg.innerHTML='✅ Already completed.<span dir="rtl">✅ تم إكمال هذا السؤال مسبقاً.</span>'; container.appendChild(msg); }
+  msg.classList.add('visible');
+  clearTimeout(msg._hideTimer);
+  msg._hideTimer=setTimeout(()=>msg.classList.remove('visible'),2200);
+}
+
+const SKILL_MAP={
+  ex1:'Reflexive Pronouns',
+  ex2:'Reflexive Pronouns (Fill In)',
+  ex3:'Because vs So',
+  ex4:'Because/So (Joining)',
+  ex5:'Fix the Mistake (Mixed)',
+  quiz:'Boss Challenge (Mixed)'
+};
+let categoryStats={};
+function deriveExId(el){
+  const box=el.closest('.ex-body');
+  const scoreEl=box?box.querySelector('[id$="-score"]'):null;
+  return scoreEl?scoreEl.id.replace('-score',''):null;
+}
+function recordCategoryAttempt(exId,correct){
+  if(!exId)return;
+  const skill=SKILL_MAP[exId]||exId;
+  if(!categoryStats[skill])categoryStats[skill]={correct:0,attempts:0};
+  categoryStats[skill].attempts++;
+  if(correct)categoryStats[skill].correct++;
+}
+
+function normalizeAnswer(s){
+  return String(s||'').toLowerCase().replace(/[.,!?—"']/g,'').replace(/\s+/g,' ').trim();
+}
+function isEmptyAnswer(v){ return !v || String(v).replace(/[\s\t\n\r]+/g,'').length===0; }
+function showEmptyWarning(container){
+  if(!container)return;
+  let warn=container.querySelector(':scope > .empty-warning:not(.easy-retry-note):not(.already-done-note)');
+  if(!warn){ warn=document.createElement('div'); warn.className='empty-warning';
+    warn.innerHTML='⚠️ Please write an answer first.<span>⚠️ اكتب إجابة أولاً قبل التحقق.</span>'; container.appendChild(warn); }
+  warn.classList.add('visible');
+  clearTimeout(warn._hideTimer);
+  warn._hideTimer=setTimeout(()=>warn.classList.remove('visible'),3000);
+}
+
+/* ---------- WRAP EXISTING FUNCTIONS ---------- */
+let suppressRewards=false;
+const _addXP=window.addXP;
+window.addXP=function(pts,isStreak){
+  if(suppressRewards)return;
+  _addXP(pts,isStreak);
+  if(pts>0){
+    checkLevelUp();
+    if(xp>=100)unlockAchievement('xp100');
+  }
+  saveState();
+};
+
+const _checkInputG=window.checkInputG;
+window.checkInputG=function(btn,okMsg,errMsg){
+  const iq=btn.closest('.iq');
+  const qid=iq?iq.dataset.qid:null;
+  if(qid&&isQuestionCompleted(qid)){ showAlreadyCompleted(iq); return; }
+  const input=iq?iq.querySelector('.interactive-input'):null;
+  if(input&&isEmptyAnswer(input.value)){ showEmptyWarning(iq); return; }
+  if(easyModeActive()&&input){
+    const expected=normalizeAnswer(input.getAttribute('data-ans'));
+    const userAns=normalizeAnswer(input.value);
+    const attempts=parseInt(input.dataset.easyAttempts||'0',10);
+    if(userAns!==expected&&attempts<2){
+      input.dataset.easyAttempts=String(attempts+1);
+      showEasyRetry(iq,2-attempts);
+      return;
+    }
+  }
+  const prevStreak=streak;
+  _checkInputG(btn,okMsg,errMsg);
+  if(input){
+    input.dataset.easyAttempts='0';
+    const isCorrect=input.classList.contains('is-correct');
+    const isWrong=input.classList.contains('is-wrong');
+    if(isCorrect||isWrong){
+      recordCategoryAttempt(deriveExId(btn),isCorrect);
+      totalAttempts++;
+      if(isCorrect){
+        totalCorrectAttempts++;
+        if(streak>maxStreak)maxStreak=streak;
+        unlockAchievement('first-correct');
+        if(streak>=5)unlockAchievement('streak5');
+        awardSpeedBonus();
+      }else{
+        totalWrongAttempts++;
+        resetQuestionTimer();
+      }
+      saveState();
+    }
+    if(isCorrect&&qid){ markQuestionCompleted(qid); checkFirstMissionComplete(iq); }
+  }
+};
+
+const _selectMCQG=window.selectMCQG;
+window.selectMCQG=function(el,isCorrect,exId,feedback){
+  const block=el.closest('.mcq-block');
+  const qid=block?block.dataset.qid:null;
+  if(qid&&isQuestionCompleted(qid)){ showAlreadyCompleted(block); return; }
+  _selectMCQG(el,isCorrect,exId,feedback);
+  if(isCorrect&&qid)markQuestionCompleted(qid);
+  recordCategoryAttempt(exId,isCorrect);
+  totalAttempts++;
+  if(isCorrect){
+    totalCorrectAttempts++;
+    if(streak>maxStreak)maxStreak=streak;
+    unlockAchievement('first-correct');
+    if(streak>=5)unlockAchievement('streak5');
+    awardSpeedBonus();
+  }else{
+    totalWrongAttempts++;
+    resetQuestionTimer();
+  }
+  saveState();
+};
+
+const _selectMCQGQuiz=window.selectMCQGQuiz;
+window.selectMCQGQuiz=function(el,isCorrect,exId,feedback){
+  const block=el.closest('.mcq-block');
+  const qid=block?block.dataset.qid:null;
+  if(qid&&isQuestionCompleted(qid)){ showAlreadyCompleted(block); return; }
+  const prevBossTime=typeof bossTime!=='undefined'?bossTime:null;
+  const prevMyHP=typeof myHP!=='undefined'?myHP:null;
+  _selectMCQGQuiz(el,isCorrect,exId,feedback);
+  if(bossPracticeMode&&!isCorrect){
+    if(prevBossTime!==null){bossTime=prevBossTime;const bt=document.getElementById('b-time');if(bt)bt.textContent='∞';}
+    if(prevMyHP!==null){
+      myHP=prevMyHP;
+      const mb=document.getElementById('b-my-bar');if(mb)mb.style.width=myHP+'%';
+      const mp=document.getElementById('b-my-pct');if(mp)mp.textContent=myHP+'%';
+    }
+  }
+  if(isCorrect&&qid)markQuestionCompleted(qid);
+  recordCategoryAttempt('quiz',isCorrect);
+  totalAttempts++;
+  if(isCorrect){
+    totalCorrectAttempts++;
+    if(streak>maxStreak)maxStreak=streak;
+    unlockAchievement('first-correct');
+    if(streak>=5)unlockAchievement('streak5');
+    awardSpeedBonus();
+  }else{
+    totalWrongAttempts++;
+    resetQuestionTimer();
+  }
+  saveState();
+  const wrap=el.closest('.ex-card')||document.body;
+  wrap.classList.add('screen-shake');setTimeout(()=>wrap.classList.remove('screen-shake'),350);
+  showDamageFloat(isCorrect);
+  if(isCorrect)checkBossPhaseProgress();
+  if(typeof bossHP!=='undefined'&&bossHP<=0){
+    bossResult='Victory 🏆';
+    unlockAchievement('boss-defeat');
+    grantOneTimeReward('bossVictory',100,'👾 Final Boss Defeated! +100 XP');
+    saveState();
+  }
+};
+
+const _revealOne=window.revealOne;
+window.revealOne=function(id,btn){
+  const prevCompletedTotal=completedTotal;
+  suppressRewards=true;
+  try{ _revealOne(id,btn); } finally { suppressRewards=false; }
+  if(completedTotal!==prevCompletedTotal){ completedTotal=prevCompletedTotal; updateProgressBar(); }
+  saveState();
+};
+
+const _resetEx=window.resetEx;
+window.resetEx=function(id){
+  _resetEx(id);
+  document.querySelectorAll('.interactive-input').forEach(inp=>{inp.dataset.easyAttempts='0';});
+  document.querySelectorAll('.easy-letter-btn,.easy-len-btn,.easy-extra-hint-btn').forEach(b=>{b.disabled=false;});
+  document.querySelectorAll('[data-ex="'+id+'"]').forEach(marker=>{
+    const row=marker.closest('.item-row');
+    const block=marker.closest('.mcq-block');
+    const targets=[];
+    if(block)targets.push(block);
+    if(row){ const iq=row.querySelector('.iq'); if(iq)targets.push(iq); }
+    targets.forEach(t=>{ if(t.dataset.qid&&isQuestionCompleted(t.dataset.qid))showAlreadyCompleted(t); });
+  });
+  saveState();
+};
+
+const _showTab=window.showTab;
+window.showTab=function(n){
+  _showTab(n);
+  const bossHud=document.getElementById('boss-hud-fixed');
+  if(bossHud){
+    if(n===9&&typeof bossStarted!=='undefined'&&bossStarted){ bossHud.classList.add('active'); }
+    else{ bossHud.classList.remove('active'); }
+  }
+  resetQuestionTimer();
+  checkAllGrammarSeen(n);
+  if(n===8&&typeof paintStoryScreen==='function')paintStoryScreen(storyIdx);
+  lastTab=n;
+  saveState();
+};
+
+const GRAMMAR_TABS=[0,3];
+let grammarSeen={};
+GRAMMAR_TABS.forEach(t=>{grammarSeen[t]=false;});
+function checkAllGrammarSeen(n){
+  if(GRAMMAR_TABS.includes(n))grammarSeen[n]=true;
+  if(GRAMMAR_TABS.every(t=>grammarSeen[t])){
+    unlockAchievement('all-grammar');
+    grantOneTimeReward('grammarComplete',50,'📘 Grammar Completion! +50 XP');
+  }
+  if(n===1)unlockAchievement('mission1');
+}
+
+function showDamageFloat(isCorrect){
+  const el=document.createElement('div');
+  el.className='dmg-float';
+  el.textContent=isCorrect?'-1 HP 💥':'-10s ⏱️';
+  el.style.color=isCorrect?'#22c55e':'#ef4444';
+  el.style.left=(40+Math.random()*40)+'vw';
+  el.style.top=(30+Math.random()*10)+'vh';
+  document.body.appendChild(el);
+  if(el.animate){
+    el.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(-50px)',opacity:0}],{duration:800,easing:'ease-out'}).onfinish=()=>el.remove();
+  }else{ setTimeout(()=>el.remove(),800); }
+}
+
+/* ---------- MULTI-PHASE BOSS + OPTIONAL TIMER ---------- */
+const BOSS_PHASES=[
+  {name:'Reflexive Pronouns',   color:'linear-gradient(90deg,#0F766E,#16A34A)'},
+  {name:'Because / So',        color:'linear-gradient(90deg,#2563EB,#7C3AED)'}
+];
+const BOSS_PHASE_OF_INDEX=[0,0,1,1,0,1,0,1,0,1,0,1];
+let bossPhaseIdx=0;
+let bossPhaseBlocks=[];
+let bossPracticeMode=false;
+window.openBossModeSelector=function(){document.getElementById('boss-mode-overlay').classList.add('show');};
+window.startBossWithMode=function(mode){
+  bossPracticeMode=(mode==='practice');
+  document.getElementById('boss-mode-overlay').classList.remove('show');
+  if(bossPracticeMode){ startBossPractice(); } else { startBoss(); }
+};
+function startBossPractice(){
+  if(bossStarted)return;
+  bossStarted=true;
+  const ov=document.getElementById('boss-overlay');
+  if(ov)ov.style.display='none';
+  document.getElementById('boss-hud-fixed').classList.add('active');
+  const timeEl=document.getElementById('b-time');
+  if(timeEl)timeEl.textContent='∞';
+  const timerWrap=document.getElementById('b-timer');
+  if(timerWrap){timerWrap.innerHTML='🎯 Practice Mode';timerWrap.classList.remove('hurry');}
+}
+function setupBossPhases(){
+  const body=document.querySelector('#tab-9 .ex-body');
+  if(!body||body.dataset.phasesInit)return;
+  body.dataset.phasesInit='1';
+  const blocks=Array.from(body.querySelectorAll('.mcq-block'));
+  bossPhaseBlocks=BOSS_PHASES.map(()=>[]);
+  blocks.forEach((block,i)=>{
+    const p=BOSS_PHASE_OF_INDEX[i]!==undefined?BOSS_PHASE_OF_INDEX[i]:0;
+    bossPhaseBlocks[p].push(block);
+  });
+  bossPhaseBlocks.forEach((group,p)=>{
+    if(!group.length)return;
+    const banner=document.createElement('div');
+    banner.className='phase-banner phase-banner-'+p;
+    banner.style.background=BOSS_PHASES[p].color;
+    banner.textContent='⚔️ Phase '+(p+1)+' / '+BOSS_PHASES.length+' — '+BOSS_PHASES[p].name;
+    banner.style.display=p===0?'':'none';
+    group[0].parentNode.insertBefore(banner,group[0]);
+    group.forEach(b=>{ b.style.display=p===0?'':'none'; });
+  });
+  updateBossHPColor(0);
+}
+function updateBossHPColor(p){
+  const bar=document.getElementById('b-boss-bar');
+  if(bar&&BOSS_PHASES[p])bar.style.background=BOSS_PHASES[p].color;
+}
+function checkBossPhaseProgress(){
+  const group=bossPhaseBlocks[bossPhaseIdx];
+  if(!group||!group.length)return;
+  const allDone=group.every(b=>b.dataset.qid&&isQuestionCompleted(b.dataset.qid));
+  if(allDone)advanceBossPhase();
+}
+function advanceBossPhase(){
+  const finishedIdx=bossPhaseIdx;
+  showPhaseClearedBanner(finishedIdx);
+  bossPhaseIdx++;
+  saveState();
+  if(bossPhaseIdx>=BOSS_PHASES.length)return;
+  setTimeout(()=>{
+    bossPhaseBlocks[finishedIdx].forEach(b=>b.style.display='none');
+    const oldBanner=document.querySelector('.phase-banner-'+finishedIdx);
+    if(oldBanner)oldBanner.style.display='none';
+    const nextGroup=bossPhaseBlocks[bossPhaseIdx];
+    if(nextGroup&&nextGroup.length){
+      nextGroup.forEach(b=>b.style.display='');
+      const nb=document.querySelector('.phase-banner-'+bossPhaseIdx);
+      if(nb){nb.style.display='';nb.classList.add('phase-enter');setTimeout(()=>nb.classList.remove('phase-enter'),700);}
+    }
+    updateBossHPColor(bossPhaseIdx);
+  },1200);
+}
+function showPhaseClearedBanner(idx){
+  const toast=document.createElement('div');
+  toast.className='phase-cleared-toast';
+  toast.textContent='⚔️ Phase '+(idx+1)+' Cleared!';
+  document.body.appendChild(toast);
+  triggerConfetti();
+  playCorrect();
+  setTimeout(()=>toast.remove(),1400);
+}
+function restoreBossPhaseVisibility(){
+  if(!bossPhaseBlocks.length)return;
+  bossPhaseBlocks.forEach((group,p)=>{
+    const banner=document.querySelector('.phase-banner-'+p);
+    const visible=p===bossPhaseIdx;
+    group.forEach(b=>{b.style.display=visible?'':'none';});
+    if(banner)banner.style.display=visible?'':'none';
+  });
+  updateBossHPColor(bossPhaseIdx);
+}
+function recomputeBossStateFromCompletion(){
+  if(!bossPhaseBlocks.length)return;
+  let doneCount=0;
+  bossPhaseIdx=0;
+  bossPhaseBlocks.forEach((group,p)=>{
+    const allDone=group.length>0&&group.every(b=>b.dataset.qid&&isQuestionCompleted(b.dataset.qid));
+    group.forEach(b=>{ if(b.dataset.qid&&isQuestionCompleted(b.dataset.qid))doneCount++; });
+    if(allDone)bossPhaseIdx=p+1;
+  });
+  bossPhaseIdx=Math.min(BOSS_PHASES.length-1,bossPhaseIdx);
+  if(typeof bossHP!=='undefined'){
+    bossHP=Math.max(0,BOSS_TOTAL-doneCount);
+    const bar=document.getElementById('b-boss-bar');
+    const pctEl=document.getElementById('b-boss-pct');
+    const pct=Math.max(0,(bossHP/BOSS_TOTAL)*100);
+    if(bar)bar.style.width=pct+'%';
+    if(pctEl)pctEl.textContent=Math.round(pct)+'%';
+  }
+}
+function paintCompletedBossBlocks(){
+  document.querySelectorAll('#tab-9 .mcq-block').forEach(b=>{
+    if(b.dataset.qid&&isQuestionCompleted(b.dataset.qid))b.classList.add('already-solved');
+  });
+}
+const _retryBoss=window.retryBoss;
+window.retryBoss=function(){
+  _retryBoss();
+  bossResult='Retrying';
+  recomputeBossStateFromCompletion();
+  paintCompletedBossBlocks();
+  restoreBossPhaseVisibility();
+  saveState();
+};
+
+/* ---------- STORY MODE ---------- */
+const STORY=[
+  {em:'🪞',en:"Omar looked at himself in the mirror before his first day at his new job.",ar:"نظر عمر إلى نفسه في المرآة قبل أول يوم في عمله الجديد.",q:"Omar looked at _______ in the mirror.",opts:['himself','herself','themselves'],correct:0,xp:10},
+  {em:'🍳',en:"He decided to cook breakfast by himself, without asking his mother for help.",ar:"قرر أن يطبخ الفطور بنفسه، دون أن يطلب المساعدة من أمه.",q:"He cooked breakfast _______.",opts:['by himself','by herself','by itself'],correct:0,xp:10},
+  {em:'😴',en:"Omar was very tired, so he decided to go to bed early that night.",ar:"كان عمر متعباً جداً، لذلك قرر أن ينام مبكراً تلك الليلة.",q:"Omar was tired, _______ he went to bed early.",opts:['so','because','and'],correct:0,xp:10},
+  {em:'🏠',en:"He stayed home from work because he wasn't feeling well.",ar:"بقي في المنزل بدلاً من الذهاب للعمل لأنه لم يكن يشعر بخير.",q:"He stayed home _______ he wasn't feeling well.",opts:['because','so','but'],correct:0,xp:10},
+  {em:'🎉',en:"At the party, everyone enjoyed themselves dancing and laughing together.",ar:"في الحفلة، استمتع الجميع بأنفسهم بالرقص والضحك معاً.",q:"Everyone enjoyed _______ at the party.",opts:['themselves','himself','ourselves'],correct:0,xp:10},
+  {em:'🍰',en:"Omar learned to be independent — he even baked this cake all by himself!",ar:"تعلم عمر الاستقلالية — بل خبز هذه الكعكة بنفسه تماماً!",q:"Did you make this cake _______?",opts:['yourself','myself','herself'],correct:0,xp:15}
+];
+let storyIdx=0,storyAnswered={};
+let lastTab=0;
+function paintStoryScreen(i){
+  document.querySelectorAll('.story-screen').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  const fill=document.getElementById('story-progress-fill');
+  if(fill)fill.style.width=Math.round(((i+1)/STORY.length)*100)+'%';
+}
+window.storyGo=function(i){ storyIdx=i; paintStoryScreen(i); saveState(); };
+function renderStory(){
+  const wrap=document.getElementById('story-screens');
+  if(!wrap||wrap.dataset.built)return;
+  wrap.dataset.built='1';
+  const escAttr=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  wrap.innerHTML=STORY.map((s,i)=>{
+    const plainEn=s.en.replace(/<[^>]+>/g,'');
+    return (
+    '<div class="story-screen" id="story-s'+i+'" data-i="'+i+'">'+
+      '<div class="story-emoji">'+s.em+'</div>'+
+      '<div class="story-text">'+s.en+' <button type="button" class="audio-btn" data-speak="'+escAttr(plainEn)+'" onclick="speak(this.dataset.speak)">🔊</button></div>'+
+      '<div class="story-text-ar" dir="rtl">'+s.ar+'</div>'+
+      '<div class="story-q"><div style="font-weight:700;font-size:.86rem;margin-bottom:8px">'+s.q+'</div>'+
+      '<div class="mcq-opts" id="story-opts'+i+'">'+
+        s.opts.map((o,oi)=>'<div class="story-mcq-opt" onclick="answerStory('+i+','+oi+',this)">'+o+'</div>').join('')+
+      '</div></div>'+
+      '<div class="story-nav">'+
+        (i>0?'<button class="secondary" onclick="storyGo('+(i-1)+')">◀ Back</button>':'<button class="secondary" disabled>◀ Back</button>')+
+        (i<STORY.length-1?'<button id="story-next'+i+'" disabled onclick="storyGo('+(i+1)+')">Next ▶</button>':'<button id="story-next'+i+'" disabled onclick="storyFinish()">Finish 🏁</button>')+
+      '</div>'+
+    '</div>'
+    );
+  }).join('');
+  paintStoryScreen(0);
+}
+function restoreStoryAnsweredState(){
+  Object.keys(storyAnswered).forEach(key=>{
+    const i=parseInt(key,10);
+    if(isNaN(i)||!STORY[i])return;
+    const optsWrap=document.getElementById('story-opts'+i);
+    if(optsWrap){ Array.from(optsWrap.children).forEach((o,idx)=>{ if(idx===STORY[i].correct)o.classList.add('selected-correct'); }); }
+    const nextBtn=document.getElementById('story-next'+i);
+    if(nextBtn)nextBtn.disabled=false;
+  });
+}
+window.answerStory=function(i,oi,el){
+  if(storyAnswered[i])return;
+  storyAnswered[i]=true;
+  const correct=STORY[i].correct===oi;
+  const opts=document.getElementById('story-opts'+i).children;
+  Array.from(opts).forEach((o,idx)=>{
+    if(idx===STORY[i].correct)o.classList.add('selected-correct');
+    else if(idx===oi&&!correct)o.classList.add('selected-wrong');
+  });
+  if(correct){playCorrect();triggerConfetti();addXP(STORY[i].xp,true);}else{playWrong();resetStreak();}
+  document.getElementById('story-next'+i).disabled=false;
+  saveState();
+};
+window.storyFinish=function(){
+  triggerConfetti();
+  grantOneTimeReward('storyComplete',50,'📖 Story Mode Complete! +50 XP');
+  saveState();
+};
+
+/* ---------- REPORT + SMART INSIGHTS ---------- */
+function computeSkillInsights(){
+  const entries=Object.entries(categoryStats).filter(([,v])=>v&&v.attempts>=2).map(([name,v])=>({name,acc:v.correct/v.attempts}));
+  if(!entries.length)return {strongest:'Not enough data yet',weakest:'Not enough data yet'};
+  entries.sort((a,b)=>b.acc-a.acc);
+  const strongest=entries[0],weakest=entries[entries.length-1];
+  const fmt=e=>e.name+' ('+Math.round(e.acc*100)+'%)';
+  return { strongest:fmt(strongest), weakest:(entries.length>1&&weakest.acc<strongest.acc)?fmt(weakest):'Keep practicing more categories to see this!' };
+}
+window.openReport=function(){
+  const accuracy=totalAttempts?Math.round((totalCorrectAttempts/totalAttempts)*100):0;
+  const mins=Math.floor((Date.now()-lessonStartTime)/60000);
+  const secs=Math.floor(((Date.now()-lessonStartTime)%60000)/1000);
+  let grade='C',emoji='🙂';
+  if(accuracy>=95){grade='A+';emoji='🌟';} else if(accuracy>=85){grade='A';emoji='🎉';} else if(accuracy>=70){grade='B';emoji='👍';}
+  document.getElementById('report-grade-emoji').textContent=emoji+' '+grade;
+  const achCount=Object.keys(unlocked).length;
+  const storyDone=Object.keys(storyAnswered).length;
+  const bossPhasesDone=Math.min(BOSS_PHASES.length,bossPhaseIdx);
+  const completionPct=typeof totalInteractiveItems!=='undefined'&&totalInteractiveItems?Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100)):0;
+  const insights=computeSkillInsights();
+  document.getElementById('report-grid').innerHTML=[
+    ['Student',studentName||'—'],['Avatar',chosenAvatar||'—'],['Total XP',xp],['Rank',getLevel(xp).name],
+    ['Accuracy',accuracy+'%'],['Correct Answers',totalCorrectAttempts],['Wrong Answers',totalWrongAttempts],['Total Attempts',totalAttempts],
+    ['Achievements',achCount+' / '+ACHIEVEMENTS.length],['Story Completion',storyDone+' / '+STORY.length],
+    ['Boss Completion',bossPhasesDone+' / '+BOSS_PHASES.length+' phases'],['Best Streak',maxStreak],
+    ['Time Spent',mins+'m '+secs+'s'],['Date',formatDate()],['Completion',completionPct+'%'],
+    ['✅ Strongest Skill',insights.strongest],['⚠ Needs More Practice',insights.weakest],['Grade',grade]
+  ].map(([l,v])=>'<div class="report-stat"><div class="lbl">'+l+'</div><div class="val">'+v+'</div></div>').join('');
+  document.getElementById('report-overlay').classList.add('show');
+};
+window.closeReport=function(){document.getElementById('report-overlay').classList.remove('show');};
+
+/* ---------- CERTIFICATE ---------- */
+window.downloadCertificatePng=function(){
+  try{
+    const c=document.getElementById('cert-canvas');
+    if(!c){ alert('Certificate canvas not found — please reload the page and try again.'); return; }
+    const ctx=c.getContext('2d');
+    if(!ctx){ alert('Your browser blocked canvas rendering. Please try a different browser, then try again.'); return; }
+    const grad=ctx.createLinearGradient(0,0,1000,700);
+    grad.addColorStop(0,'#1e1b4b');grad.addColorStop(1,'#4c1d95');
+    ctx.fillStyle=grad;ctx.fillRect(0,0,1000,700);
+    ctx.strokeStyle='#F59E0B';ctx.lineWidth=8;ctx.strokeRect(20,20,960,660);
+    ctx.strokeStyle='rgba(255,255,255,.4)';ctx.lineWidth=2;ctx.strokeRect(36,36,928,628);
+    ctx.textAlign='center';
+    ctx.font='90px sans-serif';ctx.fillStyle='#fff';ctx.fillText(chosenAvatar||'🎮',500,170);
+    ctx.font='900 40px Georgia, serif';ctx.fillStyle='#F59E0B';ctx.fillText('CERTIFICATE OF ACHIEVEMENT',500,235);
+    ctx.font='22px sans-serif';ctx.fillStyle='#c4b5fd';ctx.fillText('U4 Grammar — Reflexive Pronouns & Because/So',500,270);
+    ctx.font='800 36px sans-serif';ctx.fillStyle='#fff';
+    ctx.fillText(studentName||'Student',500,335);
+    ctx.font='800 26px sans-serif';ctx.fillStyle='#e2e8f0';
+    const accuracy=totalAttempts?Math.round((totalCorrectAttempts/totalAttempts)*100):0;
+    const completionPct=(typeof totalInteractiveItems!=='undefined'&&totalInteractiveItems)?Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100)):0;
+    ctx.fillText('Score: '+xp+' XP   |   Rank: '+getLevel(xp).name,500,390);
+    ctx.fillText('Accuracy: '+accuracy+'%   |   Completion: '+completionPct+'%',500,430);
+    ctx.font='22px sans-serif';ctx.fillStyle='#c4b5fd';
+    ctx.fillText('Awarded on '+formatDate(),500,500);
+    ctx.font='700 26px sans-serif';ctx.fillStyle='#F59E0B';
+    ctx.fillText('— Teacher Jaber —',500,600);
+    const dataUrl=c.toDataURL('image/png');
+    if(!dataUrl||dataUrl==='data:,'){ alert('Could not generate the certificate image. Please try again.'); return; }
+    const link=document.createElement('a');
+    link.download='U4-Reflexive-Because-Certificate.png';
+    link.href=dataUrl;
+    link.style.display='none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }catch(err){
+    console.error('Certificate generation failed:',err);
+    alert('Something went wrong generating the certificate: '+err.message);
+  }
+};
+
+/* ---------- SAVE SYSTEM ---------- */
+const SAVE_KEY='u4reflexivebecause_save_v1';
+function safePlainObject(v){ return (v&&typeof v==='object'&&!Array.isArray(v))?v:{}; }
+function safeNumber(v,fallback){ return (typeof v==='number'&&isFinite(v))?v:fallback; }
+function saveState(){
+  try{
+    localStorage.setItem(SAVE_KEY,JSON.stringify({
+      xp,streak,completedTotal,unlocked,chosenAvatar,totalAttempts,totalCorrectAttempts,totalWrongAttempts,maxStreak,bossResult,
+      S,quizCorrect,grammarSeen,storyAnswered,completedQuestions,bossPhaseIdx,rewardsGranted,lastTab,storyIdx,categoryStats
+    }));
+  }catch(e){ console.warn('Could not save progress:',e); }
+}
+function loadState(){
+  try{
+    const raw=localStorage.getItem(SAVE_KEY);
+    if(!raw)return false;
+    let d;
+    try{ d=JSON.parse(raw); } catch(parseErr){ console.warn('Saved progress was corrupted — starting fresh.',parseErr); return false; }
+    if(!d||typeof d!=='object'){ console.warn('Saved progress had an unexpected shape — starting fresh.'); return false; }
+    xp=safeNumber(d.xp,0);streak=safeNumber(d.streak,0);completedTotal=safeNumber(d.completedTotal,0);
+    unlocked=safePlainObject(d.unlocked);chosenAvatar=(typeof d.chosenAvatar==='string')?d.chosenAvatar:null;
+    totalAttempts=safeNumber(d.totalAttempts,0);totalCorrectAttempts=safeNumber(d.totalCorrectAttempts,0);totalWrongAttempts=safeNumber(d.totalWrongAttempts,0);maxStreak=safeNumber(d.maxStreak,0);
+    bossResult=(typeof d.bossResult==='string')?d.bossResult:'Not Attempted';
+    Object.assign(S,safePlainObject(d.S));
+    quizCorrect=safeNumber(d.quizCorrect,0);
+    const gs=safePlainObject(d.grammarSeen);
+    GRAMMAR_TABS.forEach(t=>{grammarSeen[t]=!!gs[t];});
+    storyAnswered=safePlainObject(d.storyAnswered);
+    completedQuestions=safePlainObject(d.completedQuestions);
+    rewardsGranted=safePlainObject(d.rewardsGranted);
+    categoryStats=safePlainObject(d.categoryStats);
+    lastTab=Math.min(9,Math.max(0,Math.round(safeNumber(d.lastTab,0))));
+    storyIdx=Math.min(STORY.length-1,Math.max(0,Math.round(safeNumber(d.storyIdx,0))));
+    bossPhaseIdx=Math.min(BOSS_PHASES.length-1,Math.max(0,Math.round(safeNumber(d.bossPhaseIdx,0))));
+    document.getElementById('xp-count').textContent=xp;
+    document.getElementById('streak-count').textContent=streak;
+    updateProgressBar();
+    prevLevelName=getLevel(xp).name;
+    document.getElementById('level-badge').textContent=prevLevelName;
+    return true;
+  }catch(e){ console.warn('Could not restore saved progress:',e); return false; }
+}
+
+/* ---------- RESET PROGRESS ---------- */
+window.confirmResetProgress = function() {
+  const modal = document.getElementById('reset-confirm-modal');
+  if (modal) {
+    modal.classList.add('show');
+  } else {
+    // Fallback if modal is missing
+    executeResetProgress();
+  }
+};
+
+window.closeResetModal = function() {
+  const modal = document.getElementById('reset-confirm-modal');
+  if (modal) {
+    modal.classList.remove('show');
+  }
+};
+
+window.executeResetProgress = function() {
+  try {
+    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(DIFF_KEY);
+    localStorage.removeItem(NAME_KEY);
+  } catch (e) {
+    console.error('Could not clear localStorage:', e);
+  }
+  location.reload();
+};
+/* ---------- DEFENSIVE AUDIT ---------- */
+function auditAllQuestions(){
+  document.querySelectorAll('.mcq-opt,.story-mcq-opt').forEach(opt=>{
+    if(!opt.textContent.trim()){
+      console.warn('MCQ option with blank text detected and repaired:',opt);
+      opt.textContent='(missing option)';opt.style.opacity='.5';opt.onclick=null;
+    }
+  });
+  STORY.forEach((s,i)=>{
+    if(!Array.isArray(s.opts)||s.opts.some(o=>!o||!String(o).trim())||typeof s.correct!=='number'||s.correct<0||s.correct>=s.opts.length){
+      console.warn('Story Mode screen '+i+' has a corrupted option set.',s);
+    }
+  });
+}
+
+/* ---------- INIT ---------- */
+function initApp(){
+  try{
+    assignQIDs();
+    const restored=loadState();
+    const restoredLastTab=lastTab, restoredStoryIdx=storyIdx;
+    renderAchPanel();
+    renderStory();
+    paintStoryScreen(restoredStoryIdx);
+    setupBossPhases();
+    auditAllQuestions();
+    recomputeBossStateFromCompletion();
+    paintCompletedBossBlocks();
+    restoreBossPhaseVisibility();
+    restoreStoryAnsweredState();
+    updateModeBadge();
+    updateNameDisplays();
+    if(easyModeActive()){applyEasyModeToInputs();insertWordBanksForFreeText();}
+    if(chosenAvatar){
+      document.querySelectorAll('.avatar-opt').forEach(o=>{if(o.getAttribute('data-av')===chosenAvatar)o.classList.add('picked');});
+      updateAvatarChip();
+    }
+    if(!studentName){ document.getElementById('name-overlay').classList.add('show'); }
+    else if(!difficultyMode){ document.getElementById('difficulty-overlay').classList.add('show'); }
+    else if(!chosenAvatar){ document.getElementById('avatar-overlay').classList.add('show'); }
+    else if(restored){ showTab(restoredLastTab); }
+    if(prevLevelName===null)prevLevelName=getLevel(xp).name;
+    resetQuestionTimer();
+    const startBtn=document.querySelector('#boss-overlay button[onclick="startBoss()"]');
+    if(startBtn)startBtn.setAttribute('onclick','openBossModeSelector()');
+  }catch(err){
+    console.error('Lesson initialization error:',err);
+  }
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initApp);
+}else{
+  initApp();
+}
+
+})();
+</script>
+
+</body>
+</html>
