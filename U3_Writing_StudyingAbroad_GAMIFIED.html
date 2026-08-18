@@ -1,0 +1,2974 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U3 Writing – Studying in a Foreign Country | Teacher Jaber</title>
+<style>
+:root {
+  --navy:#1E3A5F; --teal:#0F766E; --coral:#DC2E5D; --gold:#F59E0B;
+  --green:#16A34A; --blue:#2563EB; --purple:#7C3AED; --orange:#EA580C;
+  --ink:#1F2937; --slate:#475569; --light:#F8FAFC; --gray:#E5E7EB;
+  --white:#FFFFFF; --yellow:#FEF3C7; --softblue:#EFF6FF; --softgreen:#F0FDF4;
+  --softpink:#FFF0F3; --softpurple:#F5F3FF;
+  --card-bg:#FFFFFF; --body-bg:#F8FAFC; --border-col:#E5E7EB;
+  --text-muted:#475569; --header-bg:rgba(30,58,95,.88); --nav-bg:#0f1e30;
+  --input-bg:#FFFFFF; --note-bg:#FEF3C7; --alt-bg:#F8FAFC;
+}
+body.dark-mode {
+  --ink:#E2E8F0; --slate:#94A3B8; --light:#0F172A; --gray:#334155;
+  --white:#1E293B; --body-bg:#0F172A; --border-col:#334155;
+  --text-muted:#94A3B8; --header-bg:rgba(10,20,40,.95); --nav-bg:#070E1A;
+  --input-bg:#1E293B; --note-bg:#1A1000; --alt-bg:#1A2535;
+  --softblue:#0C1A3D; --softgreen:#0A1F12; --softpink:#1F0A10; --softpurple:#160A2E;
+  --yellow:#1A1000; --card-bg:#1E293B;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Calibri,Arial,sans-serif;background:var(--body-bg);color:var(--ink);transition:background .3s,color .3s;}
+
+/* ── HEADER ── */
+.site-header{background:linear-gradient(135deg,#0F766E,#1E3A5F 55%,#F59E0B);padding:0;position:sticky;top:0;z-index:200;box-shadow:0 3px 20px rgba(0,0,0,.35);}
+.header-inner{background:rgba(10,20,30,.85);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.header-left h1{font-size:1rem;font-weight:800;color:white;line-height:1.2;}
+.header-left .sub{font-size:.72rem;color:#99f6e4;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.header-badge{background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:800;padding:4px 11px;border-radius:20px;white-space:nowrap;}
+.dark-toggle{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;cursor:pointer;color:white;font-size:.75rem;font-weight:700;padding:5px 12px;transition:.2s;white-space:nowrap;display:flex;align-items:center;gap:5px;}
+.dark-toggle:hover{background:rgba(255,255,255,.28);}
+
+.hud-bar{background:rgba(5,15,25,.9);padding:5px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.hud-item{display:flex;align-items:center;gap:5px;font-size:.75rem;font-weight:800;color:white;}
+.xp-badge{background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#1a0a00;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:900;transition:transform .15s;}
+.xp-badge.bump{transform:scale(1.35);}
+.streak-badge{background:linear-gradient(135deg,#EA580C,#F97316);color:white;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:900;}
+.level-badge{background:var(--purple);color:white;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:800;}
+.hud-mini-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-size:.68rem;font-weight:700;padding:4px 9px;border-radius:14px;cursor:pointer;transition:.2s;}
+.hud-mini-btn:hover{background:rgba(255,255,255,.22);}
+.hud-avatar{font-size:1.05rem;}
+@keyframes streakPulse{0%{transform:scale(1);}50%{transform:scale(1.4);}100%{transform:scale(1);}}
+.streak-pop{animation:streakPulse .4s ease;}
+
+.progress-container{height:6px;width:100%;background:rgba(255,255,255,.2);border-radius:3px;}
+.progress-bar{height:100%;width:0%;background:var(--gold);transition:width .4s ease;border-radius:3px;}
+
+.pill-nav{display:flex;overflow-x:auto;gap:4px;background:var(--nav-bg);padding:7px 14px 10px;scrollbar-width:thin;scrollbar-color:#0F766E rgba(255,255,255,.08);cursor:grab;user-select:none;}
+.pill-nav.is-dragging{cursor:grabbing;}
+.pill-nav::-webkit-scrollbar{height:5px;display:block;}
+.pill-nav::-webkit-scrollbar-track{background:rgba(255,255,255,.06);border-radius:10px;margin:0 14px;}
+.pill-nav::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#0F766E,#2563EB);border-radius:10px;}
+.pill-nav button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;cursor:pointer;color:#94a3b8;font-size:.74rem;font-weight:600;padding:6px 13px;white-space:nowrap;transition:.2s;font-family:inherit;}
+.pill-nav button.active{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:800;}
+.pill-nav button:hover:not(.active){background:rgba(255,255,255,.15);color:white;}
+.pill-nav button.locked{opacity:.45;}
+
+.container{max-width:980px;margin:0 auto;padding:22px 14px 90px;}
+.page{display:none;animation:fadeIn .22s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.audio-btn{background:#E2E8F0;border:none;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:.75rem;margin-left:5px;vertical-align:middle;transition:.2s;color:var(--navy);}
+body.dark-mode .audio-btn{background:#334155;color:#CBD5E1;}
+.audio-btn:hover{background:var(--blue);color:white;transform:scale(1.1);}
+
+/* STEP HEADER CARD */
+.step-box{background:var(--card-bg);border-radius:16px;box-shadow:0 3px 20px rgba(0,0,0,.08);overflow:hidden;margin-bottom:22px;border:1px solid var(--border-col);}
+.step-header{padding:16px 22px;display:flex;align-items:center;gap:13px;color:white;position:relative;overflow:hidden;}
+.step-header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
+.step-num{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:900;flex-shrink:0;position:relative;}
+.step-title-en{font-size:1.12rem;font-weight:800;position:relative;}
+.step-title-ar{font-size:.86rem;opacity:.85;margin-top:2px;direction:rtl;position:relative;}
+.step-body{padding:18px 22px;}
+.step-goal{background:var(--alt-bg);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:9px 14px;margin-bottom:16px;font-size:.85rem;line-height:1.6;}
+.step-goal .ar{direction:rtl;color:var(--slate);margin-top:3px;}
+
+/* CARD (sub sections inside a step) */
+.sub-card{background:var(--alt-bg);border:1px solid var(--border-col);border-radius:12px;padding:16px;margin-bottom:16px;}
+.sub-card h3{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:2px;}
+body.dark-mode .sub-card h3{color:#5eead4;}
+.sub-card .h-ar{font-size:.78rem;color:var(--slate);direction:rtl;margin-bottom:10px;}
+
+/* VOCAB FLIP CARDS */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:6px;}
+.flip-card{perspective:1000px;height:170px;cursor:pointer;}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:0 3px 14px rgba(0,0,0,.1);}
+.flip-front{background:linear-gradient(135deg,#0F766E,#2563EB);color:white;}
+.flip-front .fw{font-size:1.25rem;font-weight:900;}
+.flip-front .ftap{font-size:.68rem;opacity:.8;margin-top:8px;}
+.flip-back{background:var(--card-bg);border:2px solid var(--teal);transform:rotateY(180deg);color:var(--ink);}
+.flip-back .fm-en{font-size:.86rem;font-weight:700;}
+.flip-back .fm-ar{font-size:.82rem;color:var(--slate);direction:rtl;margin-top:3px;}
+.flip-back .fex{font-size:.78rem;font-style:italic;margin-top:8px;color:var(--teal);}
+.flip-card .card-audio{position:absolute;top:6px;right:6px;z-index:5;}
+
+/* MATCH */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:520px){.match-wrap{grid-template-columns:1fr;}}
+.match-item{padding:9px 13px;border-radius:9px;border:2px solid var(--border-col);background:var(--card-bg);margin-bottom:8px;cursor:pointer;font-size:.85rem;transition:.15s;}
+.match-item.selA{border-color:var(--blue);background:var(--softblue);}
+.match-item.selB{border-color:var(--blue);background:var(--softblue);}
+.match-item.done{border-color:var(--green);background:var(--softgreen);cursor:default;opacity:.85;}
+.match-item.wrong{animation:shake .4s ease;border-color:var(--coral) !important;}
+.match-item .ar{direction:rtl;color:var(--slate);font-size:.78rem;}
+@keyframes shake{0%,100%{transform:translateX(0);}15%{transform:translateX(-8px);}30%{transform:translateX(8px);}45%{transform:translateX(-6px);}60%{transform:translateX(6px);}75%{transform:translateX(-3px);}90%{transform:translateX(3px);}}
+.shake{animation:shake .45s ease;}
+
+/* DND blanks / sequence */
+.dnd-activity{margin-bottom:6px;}
+.dnd-wordbank{display:flex;flex-wrap:wrap;gap:8px;padding:12px;background:var(--softblue);border:2px dashed var(--blue);border-radius:10px;margin-bottom:14px;min-height:48px;}
+body.dark-mode .dnd-wordbank{background:#0C1A3D;}
+.dnd-word{background:var(--blue);color:white;padding:6px 13px;border-radius:20px;font-size:.82rem;font-weight:700;cursor:grab;user-select:none;transition:.15s;}
+.dnd-word:hover{filter:brightness(1.12);transform:translateY(-1px);}
+.dnd-word.dragging{opacity:.4;}
+.dnd-sentence{font-size:.88rem;line-height:2.4;padding:8px 0;border-bottom:1px dashed var(--border-col);}
+.dnd-sentence:last-child{border-bottom:none;}
+.dnd-blank{display:inline-flex;min-width:90px;min-height:30px;padding:2px 6px;border:2px dashed var(--slate);border-radius:8px;vertical-align:middle;margin:0 3px;justify-content:center;align-items:center;transition:.15s;}
+.dnd-blank.drag-over{border-color:var(--blue);background:var(--softblue);}
+.dnd-blank.correct{border-style:solid;border-color:var(--green);background:var(--softgreen);}
+.dnd-blank.incorrect{border-style:solid;border-color:var(--coral);background:var(--softpink);}
+.dnd-sequence{display:flex;flex-wrap:wrap;gap:8px;min-height:52px;padding:12px;border:2px dashed var(--slate);border-radius:10px;background:var(--card-bg);margin-bottom:10px;}
+.dnd-sequence.drag-over{border-color:var(--blue);background:var(--softblue);}
+.dnd-sequence.correct{border-color:var(--green);border-style:solid;background:var(--softgreen);}
+.dnd-sequence.incorrect{border-color:var(--coral);border-style:solid;background:var(--softpink);}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;margin-bottom:8px;align-items:center;}
+.rbtn{display:inline-flex;align-items:center;gap:6px;border:none;border-radius:8px;cursor:pointer;font-size:.8rem;font-weight:700;padding:9px 16px;transition:.18s;font-family:inherit;color:white;background:var(--teal);}
+.rbtn:hover{filter:brightness(1.12);transform:translateY(-1px);}
+.rbtn.gray{background:#6B7280;}
+.rbtn.coral{background:var(--coral);}
+.rbtn.gold{background:var(--gold);color:var(--navy);}
+.rbtn.purple{background:var(--purple);}
+.rbtn.blue{background:var(--blue);}
+.rbtn:disabled{opacity:.5;cursor:default;transform:none;}
+.hint-btn{display:inline-flex;align-items:center;gap:5px;border:2px solid var(--gold);border-radius:20px;cursor:pointer;font-size:.74rem;font-weight:700;padding:5px 12px;background:transparent;color:var(--gold);transition:.2s;font-family:inherit;}
+.hint-btn:hover{background:var(--gold);color:var(--navy);}
+
+.feedback-box{display:none;border-radius:8px;padding:9px 13px;font-size:.82rem;margin-top:8px;line-height:1.6;}
+.feedback-box.show{display:block;}
+.feedback-box.ok{background:var(--softgreen);border:1px solid var(--green);color:#065F46;}
+.feedback-box.bad{background:var(--softpink);border:1px solid var(--coral);color:#9D174D;}
+body.dark-mode .feedback-box.ok{background:#052E16;color:#86EFAC;}
+body.dark-mode .feedback-box.bad{background:#3B0A1E;color:#F9A8D4;}
+.feedback-box .ar{direction:rtl;margin-top:4px;font-weight:700;}
+.score-line{font-size:.81rem;color:var(--slate);margin:6px 0 12px;}
+.score-line span{font-weight:800;color:var(--navy);font-size:.92rem;}
+body.dark-mode .score-line span{color:#5eead4;}
+
+/* MCQ pill toggles */
+.toggle-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+.toggle-opt{padding:6px 15px;border-radius:20px;font-size:.82rem;border:2px solid var(--border-col);color:var(--ink);cursor:pointer;transition:.2s;background:var(--card-bg);font-weight:600;}
+.toggle-opt:hover{border-color:var(--blue);}
+.toggle-opt.correct-pick{background:var(--green);color:white;border-color:var(--green);}
+.toggle-opt.wrong-pick{background:var(--coral);color:white;border-color:var(--coral);}
+.item-row{padding:10px 0;border-bottom:1px solid var(--border-col);font-size:.88rem;}
+.item-row:last-child{border:none;}
+
+/* TS/SS/CS labels */
+.label-pills{display:flex;gap:6px;margin-top:6px;}
+.label-pill{padding:4px 11px;border-radius:14px;font-size:.72rem;font-weight:800;border:2px solid var(--border-col);cursor:pointer;background:var(--card-bg);color:var(--ink);}
+.label-pill[data-lab="TS"]:hover{border-color:var(--blue);}
+.label-pill[data-lab="SS"]:hover{border-color:var(--green);}
+.label-pill[data-lab="CS"]:hover{border-color:var(--purple);}
+.label-pill.right{color:white;border-color:transparent;}
+.label-pill.right[data-lab="TS"]{background:var(--blue);}
+.label-pill.right[data-lab="SS"]{background:var(--green);}
+.label-pill.right[data-lab="CS"]{background:var(--purple);}
+.label-pill.wrong{background:var(--coral);color:white;border-color:var(--coral);}
+
+/* STRUCTURE TABLE */
+.struct-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:6px;border-radius:10px;overflow:hidden;}
+.struct-table th{padding:9px 11px;text-align:left;font-weight:800;color:white;}
+.struct-table td{padding:10px 11px;border-bottom:1px solid var(--border-col);color:var(--ink);background:var(--card-bg);vertical-align:top;}
+.struct-table tr:last-child td{border:none;}
+.struct-table .partname{font-weight:800;}
+.struct-table .ar{font-size:.75rem;color:var(--slate);direction:rtl;}
+.struct-table .ex{font-style:italic;}
+.row-ts td.partname{color:var(--blue);}
+.row-ss td.partname{color:var(--green);}
+.row-cs td.partname{color:var(--purple);}
+.row-ts{border-left:4px solid var(--blue);}
+.row-ss{border-left:4px solid var(--green);}
+.row-cs{border-left:4px solid var(--purple);}
+
+/* READING CARD */
+.reading-card{background:linear-gradient(135deg,#fffbea,#fff);border:2px solid var(--gold);border-radius:14px;padding:22px;font-size:1.02rem;line-height:2.1;position:relative;}
+body.dark-mode .reading-card{background:linear-gradient(135deg,#1a1500,#1E293B);}
+.reading-card .gloss-word{cursor:pointer;border-bottom:2px dotted var(--teal);font-weight:700;position:relative;transition:.2s;}
+.reading-card.hl-on .gloss-word{background:var(--yellow);border-radius:4px;padding:0 2px;}
+.gloss-popup{display:none;position:absolute;bottom:135%;left:50%;transform:translateX(-50%);background:var(--navy);color:white;padding:9px 13px;border-radius:10px;font-size:.78rem;line-height:1.5;white-space:nowrap;z-index:50;box-shadow:0 6px 20px rgba(0,0,0,.3);}
+.gloss-popup .ar{direction:rtl;color:#99f6e4;margin-top:3px;}
+.gloss-word.popped .gloss-popup{display:block;}
+.gloss-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--navy);}
+
+/* GUIDED WRITING */
+.guide-block{margin-bottom:18px;}
+.guide-label{font-size:.85rem;font-weight:800;color:var(--gold);margin-bottom:2px;}
+.guide-label .ar{font-size:.76rem;color:var(--slate);font-weight:600;direction:rtl;}
+.guide-starter{font-size:.86rem;font-weight:800;color:var(--navy);margin-bottom:5px;}
+body.dark-mode .guide-starter{color:#5eead4;}
+.guide-input{width:100%;min-height:56px;padding:11px 13px;border:2px solid var(--border-col);border-radius:10px;font-size:.9rem;font-family:inherit;resize:vertical;background:var(--input-bg);color:var(--ink);transition:.2s;}
+.guide-input:focus{outline:none;border-color:var(--blue);}
+.guide-input.filled{border-color:var(--green);}
+.vocab-bank{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0;}
+.vocab-chip{background:var(--softpurple);color:var(--purple);border:1px solid var(--purple);padding:5px 12px;border-radius:16px;font-size:.78rem;font-weight:700;cursor:pointer;transition:.15s;}
+.vocab-chip:hover{background:var(--purple);color:white;}
+body.dark-mode .vocab-chip{background:#160A2E;}
+.coach-msg{background:var(--softblue);border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:.84rem;margin:14px 0;line-height:1.6;}
+body.dark-mode .coach-msg{background:#0C1A3D;}
+.mini-progress-wrap{background:var(--border-col);border-radius:10px;height:9px;overflow:hidden;margin:8px 0 16px;}
+.mini-progress{height:100%;background:linear-gradient(90deg,var(--teal),var(--green));width:0%;transition:width .4s ease;}
+
+/* PROGRESSIVE SUPPORT SYSTEM (Guided Writing v2) */
+.guide-block{border:1px solid var(--border-col);border-radius:14px;padding:15px 16px 16px;background:var(--card-bg);}
+.guide-block-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+.support-level-badge{font-size:.63rem;font-weight:800;padding:3px 9px;border-radius:12px;white-space:nowrap;flex-shrink:0;}
+.support-level-badge.lvl1{background:#D1FAE5;color:#065F46;}
+.support-level-badge.lvl2{background:#DBEAFE;color:#1E40AF;}
+.support-level-badge.lvl3{background:#FEF3C7;color:#92400E;}
+.support-level-badge.lvl4{background:#FFE4E6;color:#9F1239;}
+.support-level-badge.lvl5{background:#E2E8F0;color:#1F2937;}
+body.dark-mode .support-level-badge.lvl1{background:#052E16;color:#86EFAC;}
+body.dark-mode .support-level-badge.lvl2{background:#0C1A3D;color:#93C5FD;}
+body.dark-mode .support-level-badge.lvl3{background:#1A1000;color:#FCD34D;}
+body.dark-mode .support-level-badge.lvl4{background:#3B0A1E;color:#FDA4AF;}
+body.dark-mode .support-level-badge.lvl5{background:#334155;color:#CBD5E1;}
+.support-toggle-row{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0 4px;}
+.support-chip{background:var(--alt-bg);border:1px solid var(--border-col);color:var(--ink);font-size:.72rem;font-weight:700;padding:5px 11px;border-radius:14px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:4px;}
+.support-chip:hover{border-color:var(--teal);}
+.support-chip.on{background:var(--teal);color:white;border-color:var(--teal);}
+.support-chip.used{box-shadow:0 0 0 2px var(--gold) inset;}
+.support-panel{display:none;background:var(--alt-bg);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:9px 12px;margin-top:7px;font-size:.79rem;line-height:1.6;}
+.support-panel.open{display:block;}
+.support-panel.locked-panel{border-left-color:var(--slate);color:var(--slate);font-style:italic;}
+.support-panel ul{margin:2px 0 0 18px;}
+.support-panel .ar{direction:rtl;color:var(--slate);margin-top:2px;}
+.support-panel .vocab-mini{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.support-panel .vocab-mini .vocab-chip{font-size:.74rem;padding:4px 10px;}
+.hint-reveal-box{background:var(--yellow);border:1px solid var(--gold);border-radius:8px;padding:8px 11px;font-size:.79rem;margin-top:7px;color:#92400E;display:none;}
+.hint-reveal-box.show{display:block;}
+body.dark-mode .hint-reveal-box{background:#1A1000;color:var(--gold);}
+.help-used-tag{font-size:.66rem;color:var(--coral);font-weight:800;margin-left:6px;}
+
+/* MEMORY CHALLENGE */
+.memory-card{background:var(--card-bg);border:2px solid var(--teal);border-radius:14px;padding:20px;position:relative;transition:.3s;}
+.memory-card.hidden-text{filter:blur(9px);user-select:none;pointer-events:none;}
+.memory-timer{position:sticky;top:120px;display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:white;padding:8px 16px;border-radius:20px;font-weight:800;font-size:.9rem;margin-bottom:12px;}
+.attempt-card{border:2px solid var(--border-col);border-radius:12px;padding:14px;margin-bottom:14px;}
+.attempt-card.locked{opacity:.5;}
+.attempt-title{font-weight:800;color:var(--teal);font-size:.9rem;margin-bottom:8px;}
+.attempt-title .ar{font-size:.76rem;color:var(--slate);font-weight:600;direction:rtl;}
+textarea.free-input{width:100%;min-height:110px;padding:12px 14px;border:2px solid var(--border-col);border-radius:10px;font-size:.9rem;font-family:inherit;resize:vertical;background:var(--input-bg);color:var(--ink);}
+textarea.free-input:focus{outline:none;border-color:var(--blue);}
+.mem-ok{color:var(--green);font-weight:700;}
+.mem-miss{color:var(--coral);text-decoration:line-through;text-decoration-color:var(--coral);}
+.score-ring-wrap{display:flex;align-items:center;gap:16px;margin:10px 0;}
+.score-ring{width:74px;height:74px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:white;flex-shrink:0;}
+
+/* WRITING STUDIO */
+.studio-layout{display:grid;grid-template-columns:2fr 1fr;gap:18px;}
+@media(max-width:760px){.studio-layout{grid-template-columns:1fr;}}
+.studio-main textarea{width:100%;min-height:260px;padding:16px;border:2px solid var(--border-col);border-radius:12px;font-size:.95rem;line-height:1.8;font-family:inherit;resize:vertical;background:var(--input-bg);color:var(--ink);}
+.studio-main textarea:focus{outline:none;border-color:var(--blue);}
+.counter-row{display:flex;gap:14px;margin-top:8px;font-size:.8rem;color:var(--slate);flex-wrap:wrap;}
+.counter-row b{color:var(--navy);}
+body.dark-mode .counter-row b{color:#5eead4;}
+.sidebar-card{background:var(--alt-bg);border:1px solid var(--border-col);border-radius:12px;padding:14px;margin-bottom:14px;}
+.sidebar-card h4{font-size:.85rem;font-weight:800;margin-bottom:8px;color:var(--navy);}
+body.dark-mode .sidebar-card h4{color:#5eead4;}
+.check-item{display:flex;align-items:flex-start;gap:8px;font-size:.8rem;padding:5px 0;cursor:pointer;}
+.check-item input{margin-top:2px;width:16px;height:16px;accent-color:var(--green);flex-shrink:0;}
+.check-item.auto{opacity:.9;}
+.tip-item{font-size:.78rem;padding:4px 0;color:var(--slate);line-height:1.5;}
+
+/* SELF CHECK */
+.selfcheck-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px dashed var(--coral);border-radius:10px;margin-bottom:10px;background:var(--card-bg);cursor:pointer;transition:.15s;}
+.selfcheck-item.checked{background:var(--softgreen);border-color:var(--green);border-style:solid;}
+.selfcheck-item input{width:20px;height:20px;accent-color:var(--green);flex-shrink:0;}
+.selfcheck-item .txt{font-size:.87rem;}
+.selfcheck-item .txt .ar{color:var(--slate);font-size:.78rem;direction:rtl;}
+.score-badge-big{font-size:2.2rem;font-weight:900;text-align:center;color:var(--navy);}
+body.dark-mode .score-badge-big{color:#5eead4;}
+
+/* BOSS */
+.boss-header{color:white;position:relative;overflow:hidden;background:linear-gradient(135deg,#7C3AED,#DC2E5D 55%,#F59E0B);padding:20px 22px;border-radius:14px 14px 0 0;}
+.boss-header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
+.boss-title{font-size:1.5rem;font-weight:900;position:relative;}
+.boss-sub{font-size:.85rem;opacity:.85;margin-top:4px;position:relative;direction:rtl;}
+.phase-locked{text-align:center;padding:40px 20px;color:var(--slate);font-size:.9rem;}
+.phase-block{display:none;}
+.phase-block.active{display:block;}
+.phase-tabs{display:flex;gap:8px;margin:14px 22px 0;flex-wrap:wrap;}
+.phase-tab{padding:6px 13px;border-radius:14px;font-size:.75rem;font-weight:800;background:var(--gray);color:var(--slate);}
+.phase-tab.done{background:var(--green);color:white;}
+.phase-tab.on{background:var(--gold);color:var(--navy);}
+
+/* ACHIEVEMENTS / OVERLAYS */
+.ns-overlay{display:none;position:fixed;inset:0;background:rgba(10,15,25,.82);z-index:500;align-items:center;justify-content:center;padding:16px;}
+.ns-overlay.show{display:flex;}
+.ns-card{background:linear-gradient(160deg,#1E1140,#0f1e30);border:2px solid var(--gold);border-radius:20px;padding:26px 24px;max-width:420px;width:100%;text-align:center;color:white;max-height:88vh;overflow-y:auto;}
+.ns-card h2{font-size:1.2rem;margin-bottom:6px;}
+.ns-card p{font-size:.82rem;color:#cbd5e1;direction:rtl;}
+.ns-start-btn{margin-top:16px;background:var(--gold);color:var(--navy);border:none;border-radius:24px;padding:11px 26px;font-size:.9rem;font-weight:900;cursor:pointer;transition:.2s;}
+.ns-start-btn:hover{transform:translateY(-2px);filter:brightness(1.08);}
+.ns-start-btn:disabled{opacity:.4;cursor:default;transform:none;}
+.avatar-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+.avatar-opt{background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.15);border-radius:14px;padding:14px 8px;cursor:pointer;transition:.18s;}
+.avatar-opt:hover{background:rgba(255,255,255,.15);}
+.avatar-opt.picked{border-color:var(--gold);background:rgba(245,158,11,.18);}
+.avatar-opt .em{font-size:1.9rem;display:block;}
+.avatar-opt .nm{font-size:.74rem;font-weight:800;display:block;margin-top:4px;}
+.avatar-opt .nm-ar{font-size:.68rem;color:#cbd5e1;direction:rtl;display:block;}
+.ach-list{display:flex;flex-direction:column;gap:8px;margin:14px 0;text-align:left;max-height:320px;overflow-y:auto;}
+.ach-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border-radius:10px;padding:9px 12px;font-size:.78rem;}
+.ach-row.locked{opacity:.35;}
+.ach-row .em{font-size:1.4rem;}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0;text-align:left;}
+.report-cell{background:rgba(255,255,255,.06);border-radius:10px;padding:9px 11px;font-size:.76rem;}
+.report-cell b{display:block;font-size:1rem;color:var(--gold);}
+.report-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+.report-actions button{background:var(--gold);color:var(--navy);border:none;border-radius:10px;padding:10px 18px;font-size:.82rem;font-weight:800;cursor:pointer;}
+.report-actions button.secondary{background:rgba(255,255,255,.12);color:white;}
+
+.xp-toast,.ach-toast{position:fixed;right:20px;top:70px;background:linear-gradient(135deg,#1E3A5F,#0F766E);color:white;border-radius:12px;padding:10px 18px;font-size:.9rem;font-weight:800;z-index:9999;box-shadow:0 8px 30px rgba(0,0,0,.25);opacity:0;transform:translateY(-10px) scale(.9);transition:opacity .25s,transform .25s;pointer-events:none;}
+.xp-toast.show,.ach-toast.show{opacity:1;transform:translateY(0) scale(1);}
+.ach-toast{background:linear-gradient(135deg,#F59E0B,#DC2E5D);top:120px;}
+
+@media(max-width:480px){
+  .avatar-grid{grid-template-columns:1fr 1fr;}
+  .report-grid{grid-template-columns:1fr;}
+  .studio-layout{grid-template-columns:1fr;}
+  .header-left h1{font-size:.85rem;}
+}
+/* ═══ STORY MODE ═══ */
+.story-header{background:linear-gradient(135deg,#7C3AED,#2563EB 60%,#0F766E);color:white;padding:22px;border-radius:14px 14px 0 0;text-align:center;position:relative;overflow:hidden;}
+.story-header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
+.story-hero{font-size:2.6rem;display:block;margin-bottom:6px;position:relative;}
+.story-title-en{font-size:1.35rem;font-weight:900;position:relative;}
+.story-title-ar{font-size:.88rem;opacity:.85;margin-top:4px;direction:rtl;position:relative;}
+.story-progress-wrap{margin:16px 0 20px;}
+.story-progress-track{height:8px;background:var(--border-col);border-radius:6px;overflow:hidden;}
+.story-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--purple),var(--teal));transition:width .4s ease;}
+.story-dots{display:flex;justify-content:space-between;margin-top:8px;}
+.story-dot{width:26px;height:26px;border-radius:50%;background:var(--gray);color:var(--slate);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;border:2px solid transparent;transition:.2s;cursor:pointer;}
+.story-dot.done{background:var(--green);color:white;}
+.story-dot.current{border-color:var(--purple);background:var(--purple);color:white;transform:scale(1.15);}
+.story-stage{background:var(--alt-bg);border:1px solid var(--border-col);border-radius:14px;padding:20px;min-height:260px;}
+.story-scene-art{font-size:3.2rem;text-align:center;margin-bottom:10px;}
+.story-narration{background:var(--card-bg);border-left:4px solid var(--purple);border-radius:0 10px 10px 0;padding:12px 16px;font-size:.95rem;line-height:1.7;margin-bottom:16px;}
+.story-narration .ar{direction:rtl;color:var(--slate);margin-top:5px;font-size:.85rem;}
+.story-challenge-label{font-size:.78rem;font-weight:800;color:var(--purple);text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px;}
+body.dark-mode .story-challenge-label{color:#c4b5fd;}
+
+/* ═══ BOSS BATTLE ═══ */
+.mode-select-grid{display:flex;flex-direction:column;gap:12px;margin:16px 0;}
+.mode-opt{background:rgba(255,255,255,.06);border:2px solid var(--border-col);border-radius:14px;padding:16px;cursor:pointer;transition:.18s;display:flex;align-items:flex-start;gap:14px;text-align:left;}
+.mode-opt:hover{border-color:var(--purple);transform:translateY(-2px);}
+.mode-opt .em{font-size:1.9rem;flex-shrink:0;}
+.mode-opt .nm{font-size:1rem;font-weight:900;display:block;margin-bottom:3px;color:var(--ink);}
+.mode-opt .ds{font-size:.8rem;color:var(--slate);line-height:1.6;}
+.mode-opt .ds .ar{direction:rtl;margin-top:2px;display:block;}
+.boss-hud-live{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+@media(max-width:520px){.boss-hud-live{grid-template-columns:1fr;}}
+.hp-block{background:var(--card-bg);border:1px solid var(--border-col);border-radius:12px;padding:10px 13px;}
+.hp-label-row{display:flex;justify-content:space-between;font-size:.76rem;font-weight:800;margin-bottom:5px;}
+.hp-track{height:16px;background:var(--gray);border-radius:8px;overflow:hidden;position:relative;}
+.hp-fill{height:100%;transition:width .5s cubic-bezier(.34,1.56,.64,1);border-radius:8px;}
+.hp-fill.boss{background:linear-gradient(90deg,#DC2E5D,#F59E0B);}
+.hp-fill.player{background:linear-gradient(90deg,#16A34A,#0F766E);}
+.boss-phase-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.boss-phase-pip{flex:1;min-width:70px;text-align:center;padding:7px 4px;border-radius:10px;font-size:.66rem;font-weight:800;background:var(--gray);color:var(--slate);border:2px solid transparent;transition:.2s;}
+.boss-phase-pip.on{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+.boss-phase-pip.cleared{background:var(--green);color:white;}
+.boss-arena{position:relative;background:var(--alt-bg);border:1px solid var(--border-col);border-radius:14px;padding:20px;min-height:120px;text-align:center;overflow:hidden;}
+.boss-avatar{font-size:3.4rem;display:inline-block;transition:transform .25s ease;}
+.boss-avatar.hit{animation:bossHit .4s ease;}
+@keyframes bossHit{0%{transform:translateX(0) scale(1);}25%{transform:translateX(-10px) scale(.94);filter:brightness(1.8) saturate(2);}50%{transform:translateX(8px) scale(1.02);}100%{transform:translateX(0) scale(1);}}
+.player-avatar{font-size:2.6rem;display:inline-block;transition:transform .25s ease;}
+.player-avatar.hit{animation:bossHit .4s ease;}
+.dmg-float{position:absolute;font-weight:900;font-size:1.3rem;pointer-events:none;animation:dmgFloat 1s ease forwards;z-index:20;}
+.dmg-float.dmg-boss{color:#DC2E5D;}
+.dmg-float.dmg-player{color:#EA580C;}
+@keyframes dmgFloat{0%{transform:translateY(0) scale(.7);opacity:0;}20%{transform:translateY(-8px) scale(1.15);opacity:1;}100%{transform:translateY(-55px) scale(1);opacity:0;}}
+.boss-question-card{background:var(--card-bg);border:1px solid var(--border-col);border-radius:12px;padding:16px;margin-top:16px;}
+.boss-timer-bar-wrap{height:6px;background:var(--gray);border-radius:4px;overflow:hidden;margin-bottom:10px;display:none;}
+.boss-timer-bar-wrap.show{display:block;}
+.boss-timer-bar{height:100%;background:linear-gradient(90deg,var(--green),var(--gold),var(--coral));width:100%;transition:width 1s linear;}
+.boss-victory-screen,.boss-gameover-screen{display:none;text-align:center;padding:26px 10px;}
+.boss-victory-screen.show,.boss-gameover-screen.show{display:block;}
+.boss-report-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:420px;margin:16px auto;text-align:left;}
+.boss-report-cell{background:var(--alt-bg);border:1px solid var(--border-col);border-radius:10px;padding:9px 12px;font-size:.78rem;}
+.boss-report-cell b{display:block;font-size:1.1rem;color:var(--purple);}
+
+/* ═══ SMART WRITING ANALYSIS ═══ */
+.quality-score-wrap{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
+.quality-ring{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.25rem;color:white;flex-shrink:0;position:relative;}
+.analysis-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.8rem;}
+.analysis-row .ic{width:18px;text-align:center;flex-shrink:0;}
+.analysis-row.ok{color:#065F46;}
+.analysis-row.warn{color:#92400E;}
+body.dark-mode .analysis-row.ok{color:#86EFAC;}
+body.dark-mode .analysis-row.warn{color:#FCD34D;}
+
+/* ═══ MEMORY ANALYSIS v2 ═══ */
+.mem-metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0;}
+@media(max-width:480px){.mem-metric-grid{grid-template-columns:1fr;}}
+.mem-metric{background:var(--card-bg);border:1px solid var(--border-col);border-radius:10px;padding:9px 12px;text-align:center;}
+.mem-metric b{display:block;font-size:1.15rem;}
+.mem-metric span{font-size:.68rem;color:var(--slate);}
+.mem-level-badge{display:inline-block;padding:6px 16px;border-radius:20px;font-weight:900;font-size:.85rem;margin-top:6px;}
+.mem-extra{color:var(--purple);font-weight:700;text-decoration:underline wavy;}
+.mem-order{color:var(--gold);font-weight:700;border-bottom:2px dotted var(--gold);}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>✍️ U3 Writing – Studying in a Foreign Country | الدراسة في بلد أجنبي</h1>
+      <div class="sub">Writing Workshop &nbsp;•&nbsp; Super Goal 3 &nbsp;•&nbsp; Teacher Jaber</div>
+    </div>
+    <div class="header-right">
+      <button class="dark-toggle" onclick="toggleDark()" id="dark-btn">🌙 Dark Mode</button>
+      <span class="header-badge">Super Goal</span>
+    </div>
+  </div>
+  <div class="hud-bar">
+    <div class="hud-item">⚡ XP: <span class="xp-badge" id="xp-display">0</span></div>
+    <div class="hud-item">🔥 Streak: <span class="streak-badge" id="streak-display">0</span></div>
+    <div class="hud-item"><span class="hud-avatar" id="hud-avatar-chip">✍️</span><span id="hud-name-chip">Student</span> <span class="level-badge" id="level-badge" style="background:var(--purple)">🥉 Beginner Writer</span></div>
+    <div class="hud-item"><button class="hud-mini-btn" onclick="openAchPanel()">🏆 Achievements</button><button class="hud-mini-btn" onclick="openReport()">📊 Report</button><button class="hud-mini-btn" onclick="confirmResetProgress()" style="background:rgba(220,46,93,.25);border-color:#DC2E5D;">🗑 Reset</button></div>
+    <div style="flex:1;min-width:80px;">
+      <div class="progress-container"><div id="main-progress" class="progress-bar"></div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="pill-nav" id="pill-nav">
+  <button class="active" onclick="showTab(0)">📚 Vocabulary</button>
+  <button onclick="showTab(1)">✏️ Sentence Building</button>
+  <button onclick="showTab(2)">📖 Model Paragraph</button>
+  <button onclick="showTab(3)">🏗 Paragraph Structure</button>
+  <button onclick="showTab(4)">📝 Guided Writing</button>
+  <button onclick="showTab(5)">🧠 Write from Memory</button>
+  <button onclick="showTab(6)">📖 Story Mode</button>
+  <button onclick="showTab(7)">🎯 Free Writing</button>
+  <button onclick="showTab(8)">✅ Self Check</button>
+  <button onclick="showTab(9)">👾 Final Writing Challenge</button>
+</nav>
+
+<div class="xp-toast" id="xp-toast">+10 XP ⭐</div>
+<div class="ach-toast" id="ach-toast"><span class="em">🏆</span> <span id="ach-toast-text">Achievement Unlocked!</span></div>
+
+<div class="container">
+
+<!-- ============ TAB 0 — VOCABULARY ============ -->
+<div class="page active" id="tab-0">
+  <div class="step-box">
+    <div class="step-header" style="background:linear-gradient(135deg,#0F766E,#2563EB)">
+      <div class="step-num">1</div>
+      <div><div class="step-title-en">Step 1: Vocabulary</div><div class="step-title-ar">الخطوة الأولى: المفردات</div></div>
+    </div>
+    <div class="step-body">
+      <div class="step-goal">📌 Study these key words from the paragraph before you write. Flip each card, then complete the activities below.
+        <div class="ar">ادرس هذه الكلمات الأساسية من الفقرة قبل الكتابة. اقلب كل بطاقة، ثم أكمل الأنشطة التالية.</div>
+      </div>
+
+      <div class="sub-card">
+        <h3>🃏 Flashcards — flip to reveal meaning</h3>
+        <div class="h-ar">اضغط على البطاقة لقلبها ومعرفة المعنى</div>
+        <div class="vocab-grid" id="vocab-flip-grid"></div>
+      </div>
+
+      <div class="sub-card">
+        <h3>Exercise A — Drag the correct word into each blank</h3>
+        <div class="h-ar">اسحب الكلمة الصحيحة من البنك إلى الفراغ المناسب</div>
+        <div class="dnd-activity" id="vocabA">
+          <div class="dnd-wordbank" id="vocabA-bank"></div>
+          <div id="vocabA-sentences"></div>
+          <div class="btn-row">
+            <button class="rbtn" onclick="checkVocabA()">✓ Check Answers</button>
+            <button class="rbtn gray" onclick="resetVocabA()">↺ Reset</button>
+            <button class="hint-btn" onclick="hintVocabA()">💡 Hint</button>
+          </div>
+          <div class="feedback-box" id="vocabA-fb"></div>
+        </div>
+      </div>
+
+      <div class="sub-card">
+        <h3>Exercise B — Match Activity: tap a word, then tap its meaning</h3>
+        <div class="h-ar">اضغط على الكلمة ثم اضغط على معناها الصحيح لمطابقتها</div>
+        <div class="match-wrap">
+          <div id="match-colA"></div>
+          <div id="match-colB"></div>
+        </div>
+        <div class="score-line">Matched: <span id="match-score">0</span> / 5</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 1 — SENTENCE BUILDING ============ -->
+<div class="page" id="tab-1">
+  <div class="step-box">
+    <div class="step-header" style="background:linear-gradient(135deg,#2563EB,#7C3AED)">
+      <div class="step-num">2</div>
+      <div><div class="step-title-en">Step 2: Sentence Building</div><div class="step-title-ar">الخطوة الثانية: بناء الجمل</div></div>
+    </div>
+    <div class="step-body">
+      <div class="step-goal">📌 Learn how to build the sentences you'll read in the paragraph next.
+        <div class="ar">تعلّم كيف تُبنى الجمل التي ستقرأها في الفقرة القادمة.</div>
+      </div>
+
+      <div class="sub-card">
+        <h3>Activity 1 — Drag one word to complete each sentence</h3>
+        <div class="h-ar">اسحب كلمة من الصندوق لإكمال كل جملة</div>
+        <div class="dnd-activity" id="sentA">
+          <div class="dnd-wordbank" id="sentA-bank"></div>
+          <div id="sentA-sentences"></div>
+          <div class="btn-row">
+            <button class="rbtn" onclick="checkSentA()">✓ Check Answers</button>
+            <button class="rbtn gray" onclick="resetSentA()">↺ Reset</button>
+          </div>
+          <div class="feedback-box" id="sentA-fb"></div>
+        </div>
+      </div>
+
+      <div class="sub-card">
+        <h3>Activity 2 — Unscramble: drag the words into the correct order</h3>
+        <div class="h-ar">رتّب الكلمات لتكوين جملة صحيحة بالسحب</div>
+        <div id="unscramble-list"></div>
+      </div>
+
+      <div class="sub-card">
+        <h3>Activity 3 — Choose the correct verb form</h3>
+        <div class="h-ar">اختر شكل الفعل الصحيح في كل جملة</div>
+        <div id="verbform-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 2 — MODEL PARAGRAPH ============ -->
+<div class="page" id="tab-2">
+  <div class="step-box">
+    <div class="step-header" style="background:linear-gradient(135deg,#F59E0B,#DC2E5D)">
+      <div class="step-num">3</div>
+      <div><div class="step-title-en">Step 3: Model Paragraph</div><div class="step-title-ar">الخطوة الثالثة: الفقرة النموذجية</div></div>
+    </div>
+    <div class="step-body">
+      <div class="step-goal">📌 Read carefully. Find the vocabulary words from Step 1 inside the text.
+        <div class="ar">اقرأ بعناية. ودقّق على مفردات الخطوة الأولى داخل النص.</div>
+      </div>
+
+      <div class="btn-row">
+        <button class="rbtn gold" onclick="readParagraph()">🔊 Read Aloud</button>
+        <button class="rbtn purple" id="hl-toggle-btn" onclick="toggleHighlight()">✨ Highlight Vocabulary</button>
+      </div>
+      <div class="reading-card" id="reading-card"></div>
+
+      <div class="sub-card" style="margin-top:18px;">
+        <h3>Comprehension Questions — answer in one sentence</h3>
+        <div class="h-ar">أسئلة الفهم — أجب بجملة واحدة</div>
+        <div id="comp-questions"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 3 — PARAGRAPH STRUCTURE ============ -->
+<div class="page" id="tab-3">
+  <div class="step-box">
+    <div class="step-header" style="background:linear-gradient(135deg,#7C3AED,#2563EB)">
+      <div class="step-num">4</div>
+      <div><div class="step-title-en">Step 4: Paragraph Structure</div><div class="step-title-ar">الخطوة الرابعة: بنية الفقرة</div></div>
+    </div>
+    <div class="step-body">
+      <div class="step-goal">📌 A good paragraph is built from three parts. Learn each one, then practise finding them.
+        <div class="ar">تتكوّن الفقرة الجيدة من ثلاثة أجزاء. تعلّم كل جزء ثم تدرّب على إيجاده.</div>
+      </div>
+
+      <table class="struct-table">
+        <thead><tr style="background:var(--navy)"><th>Part الجزء</th><th>What It Does</th><th>From the Paragraph</th></tr></thead>
+        <tbody>
+          <tr class="row-ts"><td class="partname">🔵 Topic Sentence<div class="ar">الجملة الرئيسية</div></td><td>States the main idea<div class="ar">تحدد الفكرة الرئيسية</div></td><td class="ex">Studying in a new country is a great experience.</td></tr>
+          <tr class="row-ss"><td class="partname">🟢 Supporting Sentences<div class="ar">الجمل الداعمة</div></td><td>Give details and examples<div class="ar">تعطي تفاصيل وأمثلة</div></td><td class="ex">You can learn… It helps you grow… It can even help…</td></tr>
+          <tr class="row-cs"><td class="partname">🟣 Concluding Sentence<div class="ar">جملة الخاتمة</div></td><td>Gives a solution or summary<div class="ar">تقدم حلاً أو خاتمة</div></td><td class="ex">I think everyone should try living in a new place once!</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-card" style="margin-top:18px;">
+        <h3>Exercise A — Label each sentence: TS, SS, or CS</h3>
+        <div class="h-ar">ضع تسمية لكل جملة: TS أو SS أو CS</div>
+        <div id="labelex-list"></div>
+      </div>
+
+      <div class="sub-card">
+        <h3>Exercise B — Visual Paragraph Builder: drag the sentences into the correct order</h3>
+        <div class="h-ar">اسحب الجمل لترتيبها بالترتيب الصحيح لبناء الفقرة</div>
+        <div class="dnd-wordbank" id="orderEx-bank" style="min-height:70px;"></div>
+        <div class="dnd-sequence" id="orderEx-zone" style="min-height:170px;flex-direction:column;align-items:stretch;"></div>
+        <div class="btn-row">
+          <button class="rbtn" onclick="checkOrderEx()">✓ Check Order</button>
+          <button class="rbtn gray" onclick="resetOrderEx()">↺ Reset</button>
+        </div>
+        <div class="feedback-box" id="orderEx-fb"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 4 — GUIDED WRITING ============ -->
+<div class="page" id="tab-4">
+  <div class="step-box">
+    <div class="step-header" style="background:linear-gradient(135deg,#F59E0B,#EA580C)">
+      <div class="step-num">5</div>
+      <div><div class="step-title-en">Step 5: Guided Paragraph Writing</div><div class="step-title-ar">الخطوة الخامسة: كتابة الفقرة بتوجيه</div></div>
+    </div>
+    <div class="step-body">
+      <div class="step-goal">📌 Complete the paragraph frame using the vocabulary and ideas from the lesson. Each box gives you a little less help than the last — by the Concluding Sentence, you're writing on your own!
+        <div class="ar">أكمل قالب الفقرة باستخدام مفردات الدرس وأفكاره. كل صندوق يقدّم مساعدة أقل من السابق — وبحلول جملة الخاتمة، ستكتب بمفردك!</div>
+      </div>
+
+      <div class="vocab-bank" id="guided-vocab-bank"></div>
+      <div class="mini-progress-wrap"><div class="mini-progress" id="guided-progress"></div></div>
+      <div class="coach-msg" id="guided-coach">👋 Start with the topic sentence — click a box below to begin!</div>
+
+      <div id="guided-blocks"></div>
+
+      <div class="btn-row">
+        <button class="rbtn gold" onclick="checkGuided()">✓ Finish My Paragraph</button>
+        <button class="rbtn gray" onclick="resetGuided()">↺ Reset</button>
+      </div>
+      <div class="feedback-box" id="guided-fb"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 5 — WRITE FROM MEMORY ============ -->
+<div class="page" id="tab-5">
+  <div class="step-box">
+    <div class="step-header" style="background:linear-gradient(135deg,#DC2E5D,#7C3AED)">
+      <div class="step-num">6</div>
+      <div><div class="step-title-en">Step 6: Write from Memory</div><div class="step-title-ar">الخطوة السادسة: الكتابة من الذاكرة</div></div>
+    </div>
+    <div class="step-body">
+      <div class="step-goal">📌 How to practise: 1. Read the paragraph 3 times &nbsp;2. Cover it &nbsp;3. Write from memory &nbsp;4. Check and correct &nbsp;5. Repeat!
+        <div class="ar">كيفية التدريب: ١. اقرأ ثلاث مرات ٢. غطّ الفقرة ٣. اكتبها من ذاكرتك ٤. تحقق وصحّح ٥. كرّرها!</div>
+      </div>
+
+      <div class="memory-card" id="memory-card">
+        <div id="memory-text"></div>
+      </div>
+      <div class="btn-row">
+        <button class="rbtn coral" id="hide-mem-btn" onclick="hideMemoryText()">🙈 I'm Ready — Hide &amp; Start Timer</button>
+        <button class="rbtn gray" id="show-mem-btn" onclick="showMemoryText()" style="display:none;">👁 Show Paragraph Again</button>
+        <div class="memory-timer" id="memory-timer" style="display:none;">⏱ <span id="mem-time">0</span>s</div>
+      </div>
+
+      <div id="attempts-wrap"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 6 — STORY MODE ============ -->
+<div class="page" id="tab-6">
+  <div class="step-box">
+    <div class="story-header">
+      <span class="story-hero">✈️</span>
+      <div class="story-title-en">Story Mode: Noor's Study Abroad Journey</div>
+      <div class="story-title-ar">وضع القصة: رحلة نور للدراسة بالخارج</div>
+    </div>
+    <div class="step-body">
+      <div class="step-goal">📌 Follow Noor through six scenes and use everything you've learned — vocabulary, sentences, comprehension, structure, and writing — to help tell her study-abroad story.
+        <div class="ar">تابع نور عبر ست مشاهد واستخدم كل ما تعلمته لمساعدتها على سرد قصة دراستها بالخارج.</div>
+      </div>
+
+      <div class="story-progress-wrap">
+        <div class="story-progress-track"><div class="story-progress-fill" id="story-progress-fill"></div></div>
+        <div class="story-dots" id="story-dots"></div>
+      </div>
+
+      <div class="story-stage" id="story-stage"></div>
+
+      <div class="btn-row" style="justify-content:space-between;">
+        <button class="rbtn gray" id="story-prev-btn" onclick="storyPrev()">◀ Previous</button>
+        <span style="font-size:.8rem;color:var(--slate);" id="story-screen-label"></span>
+        <button class="rbtn purple" id="story-next-btn" onclick="storyNext()">Next ▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 7 — FREE WRITING ============ -->
+<div class="page" id="tab-7">
+  <div class="step-box">
+    <div class="step-header" style="background:linear-gradient(135deg,#16A34A,#0F766E)">
+      <div class="step-num">7</div>
+      <div><div class="step-title-en">Step 7: Free Writing — Writing Studio</div><div class="step-title-ar">الخطوة السابعة: الكتابة الحرة — استوديو الكتابة</div></div>
+    </div>
+    <div class="step-body">
+      <div class="step-goal">✏️ Write a paragraph about studying in a foreign country. Use: a topic sentence, at least 3 supporting sentences, and a concluding sentence.
+        <div class="ar">اكتب فقرة عن الدراسة في بلد أجنبي. استخدم: جملة رئيسية، ثلاث جمل داعمة على الأقل، وجملة خاتمة.</div>
+      </div>
+
+      <div class="studio-layout">
+        <div class="studio-main">
+          <textarea id="studio-text" placeholder="Start writing here... / ابدأ الكتابة هنا..." oninput="updateStudioCounters()"></textarea>
+          <div class="counter-row">
+            <span>Words: <b id="word-count">0</b></span>
+            <span>Sentences: <b id="sent-count">0</b></span>
+            <span>Vocabulary used: <b id="vocab-used-count">0</b> / 5</span>
+          </div>
+          <div class="btn-row">
+            <button class="rbtn" onclick="getStudioFeedback()">💬 Get Feedback</button>
+            <button class="rbtn gray" onclick="clearStudio()">🗑 Clear</button>
+          </div>
+          <div class="feedback-box" id="studio-fb"></div>
+        </div>
+        <div class="studio-sidebar">
+          <div class="sidebar-card">
+            <h4>✅ Writing Checklist</h4>
+            <label class="check-item"><input type="checkbox" id="chk-topic" onchange="saveStudioChecklist()"><span>A topic sentence <span style="color:var(--slate)">جملة رئيسية</span></span></label>
+            <label class="check-item"><input type="checkbox" id="chk-support" onchange="saveStudioChecklist()"><span>3 supporting sentences <span style="color:var(--slate)">3 جمل داعمة</span></span></label>
+            <label class="check-item"><input type="checkbox" id="chk-conclude" onchange="saveStudioChecklist()"><span>A concluding sentence <span style="color:var(--slate)">جملة خاتمة</span></span></label>
+            <label class="check-item auto"><input type="checkbox" id="chk-vocab" disabled><span>Vocabulary used <span style="color:var(--slate)">استخدام مفردات</span></span></label>
+            <label class="check-item"><input type="checkbox" id="chk-punct" onchange="saveStudioChecklist()"><span>Correct punctuation <span style="color:var(--slate)">علامات ترقيم صحيحة</span></span></label>
+          </div>
+          <div class="sidebar-card">
+            <h4>🧩 Vocabulary Reminders</h4>
+            <div class="vocab-bank" id="studio-vocab-bank"></div>
+          </div>
+          <div class="sidebar-card">
+            <h4>💡 Writing Tips</h4>
+            <div class="tip-item">• Start your topic sentence with a capital letter.</div>
+            <div class="tip-item">• Use simple present tense and modals like "can" for general truths.</div>
+            <div class="tip-item">• End every sentence with a full stop.</div>
+            <div class="tip-item">• Try to use at least 2 lesson words.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 8 — SELF CHECK ============ -->
+<div class="page" id="tab-8">
+  <div class="step-box">
+    <div class="step-header" style="background:linear-gradient(135deg,#DC2E5D,#F59E0B)">
+      <div class="step-num">8</div>
+      <div><div class="step-title-en">Step 8: Self-Check</div><div class="step-title-ar">الخطوة الثامنة: قائمة المراجعة الذاتية</div></div>
+    </div>
+    <div class="step-body">
+      <div class="step-goal">📌 Check your free-writing paragraph against these five points, then see your readiness score.
+        <div class="ar">راجع فقرتك من الكتابة الحرة على هذه النقاط الخمس، ثم شاهد درجة استعدادك.</div>
+      </div>
+
+      <div id="selfcheck-list"></div>
+
+      <div class="sub-card" style="text-align:center;">
+        <h3>My Score</h3>
+        <div class="score-badge-big"><span id="sc-score">0</span> / 5</div>
+        <div id="sc-message" style="margin-top:8px;font-size:.86rem;color:var(--slate);"></div>
+      </div>
+
+      <div class="step-goal" style="margin-top:16px;background:var(--softblue);border-left-color:var(--blue);">💡 <strong>Tip:</strong> Repeat this worksheet every day for one week. By Day 7, you will write the paragraph with confidence!
+        <div class="ar">تلميح: كرر هذه الورقة كل يوم لمدة أسبوع. بحلول اليوم السابع، ستكتب الفقرة بثقة!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 9 — FINAL WRITING CHALLENGE (BOSS BATTLE) ============ -->
+<div class="page" id="tab-9">
+  <div class="step-box">
+    <div class="boss-header">
+      <span style="font-size:2.6rem;position:relative;display:block;margin-bottom:6px;">👾</span>
+      <div class="boss-title">Writing Boss Battle</div>
+      <div class="boss-sub">اهزم خمسة وحوش للكتابة لتصبح بطل الكتابة النهائي!</div>
+    </div>
+    <div class="step-body">
+
+      <!-- MODE SELECT SCREEN -->
+      <div id="boss-mode-select">
+        <div class="step-goal">📌 Choose how you want to battle. Both modes give the same XP and rewards.
+          <div class="ar">اختر طريقة المعركة. كلا الوضعين يمنحانك نفس النقاط والمكافآت.</div>
+        </div>
+        <div class="mode-select-grid">
+          <div class="mode-opt" onclick="startBossMode('timed')">
+            <span class="em">⏱</span>
+            <span><span class="nm">Timed Challenge</span><span class="ds">A countdown clock is ticking. Wrong answers cost you extra time — think fast and accurately!<div class="ar">هناك عداد تنازلي. الإجابات الخاطئة تكلفك وقتاً إضافياً — فكّر بسرعة ودقة!</div></span></span>
+          </div>
+          <div class="mode-opt" onclick="startBossMode('practice')">
+            <span class="em">🎯</span>
+            <span><span class="nm">Practice Mode</span><span class="ds">No timer, no time pressure — same HP battle, phases, XP and rewards, just at your own pace.<div class="ar">بدون وقت أو ضغط — نفس المعركة والمراحل والمكافآت، بالسرعة التي تناسبك.</div></span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BATTLE SCREEN -->
+      <div id="boss-battle-screen" style="display:none;">
+        <div class="boss-timer-bar-wrap" id="boss-timer-wrap">
+          <div class="boss-timer-bar" id="boss-timer-bar"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:.78rem;color:var(--slate);font-weight:700;" id="boss-mode-label"></span>
+          <span style="font-size:.78rem;color:var(--slate);font-weight:700;" id="boss-timer-label"></span>
+        </div>
+
+        <div class="boss-phase-row" id="boss-phase-row"></div>
+
+        <div class="boss-hud-live">
+          <div class="hp-block">
+            <div class="hp-label-row"><span id="boss-name-label">👹 Boss</span><span id="boss-hp-text">100/100</span></div>
+            <div class="hp-track"><div class="hp-fill boss" id="boss-hp-fill" style="width:100%;"></div></div>
+          </div>
+          <div class="hp-block">
+            <div class="hp-label-row"><span>🛡️ You</span><span id="player-hp-text">100/100</span></div>
+            <div class="hp-track"><div class="hp-fill player" id="player-hp-fill" style="width:100%;"></div></div>
+          </div>
+        </div>
+
+        <div class="boss-arena" id="boss-arena">
+          <span class="player-avatar" id="player-avatar-el">🛡️</span>
+          <span style="font-size:1.6rem;margin:0 14px;">⚔️</span>
+          <span class="boss-avatar" id="boss-avatar-el">👹</span>
+        </div>
+
+        <div class="boss-question-card" id="boss-question-card"></div>
+      </div>
+
+      <!-- VICTORY -->
+      <div class="boss-victory-screen" id="boss-victory">
+        <div style="font-size:3.6rem;">🏆</div>
+        <div style="font-size:1.35rem;font-weight:900;color:var(--gold);margin:8px 0;">All Five Bosses Defeated!</div>
+        <div style="direction:rtl;color:var(--slate);margin-bottom:10px;">هزمت الوحوش الخمسة جميعاً! أنت بطل الكتابة النهائي!</div>
+        <div class="boss-report-grid" id="boss-victory-report"></div>
+        <button class="rbtn gold" onclick="openReport()">📊 View My Lesson Report</button>
+      </div>
+
+      <!-- GAME OVER -->
+      <div class="boss-gameover-screen" id="boss-gameover">
+        <div style="font-size:3.2rem;">💥</div>
+        <div style="font-size:1.25rem;font-weight:900;color:var(--coral);margin:8px 0;">You Were Defeated!</div>
+        <div style="direction:rtl;color:var(--slate);margin-bottom:10px;">هُزمت! لكن يمكنك المحاولة مرة أخرى.</div>
+        <div style="font-size:.85rem;color:var(--slate);margin-bottom:14px;">Don't worry — your XP so far is safe. Try this boss again!</div>
+        <button class="rbtn coral" onclick="retryCurrentBossPhase()">🔁 Try Again</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</div><!-- /container -->
+
+<footer style="background:var(--navy);color:#94a3b8;text-align:center;padding:12px;padding-bottom:90px;font-size:.78rem;">
+  Prepared by Teacher Jaber &nbsp;•&nbsp; U3 Writing — Studying in a Foreign Country &nbsp;•&nbsp; Super Goal 3 ✍️
+</footer>
+
+<!-- ═══ OVERLAYS ═══ -->
+<div class="ns-overlay" id="name-overlay">
+  <div class="ns-card">
+    <h2>📝 Enter Your Name</h2>
+    <p>يرجى إدخال اسمك قبل بدء الدرس</p>
+    <input type="text" id="student-name-input" class="guide-input" style="max-width:280px;text-align:center;margin:16px auto 0;color:#111;" placeholder="Your name... / اسمك...">
+    <div><button class="ns-start-btn" onclick="confirmStudentName()">▶ Continue</button></div>
+  </div>
+</div>
+
+<div class="ns-overlay" id="avatar-overlay">
+  <div class="ns-card">
+    <h2>🎮 Choose Your Avatar</h2>
+    <p>اختر شخصيتك قبل بدء الرحلة!</p>
+    <div class="avatar-grid" id="avatar-grid">
+      <div class="avatar-opt" data-av="✍️" onclick="pickAvatar(this,'✍️')"><span class="em">✍️</span><span class="nm">Word Wizard</span><span class="nm-ar">ساحر الكلمات</span></div>
+      <div class="avatar-opt" data-av="📖" onclick="pickAvatar(this,'📖')"><span class="em">📖</span><span class="nm">Story Builder</span><span class="nm-ar">باني القصص</span></div>
+      <div class="avatar-opt" data-av="🖋️" onclick="pickAvatar(this,'🖋️')"><span class="em">🖋️</span><span class="nm">Pen Master</span><span class="nm-ar">سيد القلم</span></div>
+      <div class="avatar-opt" data-av="🏆" onclick="pickAvatar(this,'🏆')"><span class="em">🏆</span><span class="nm">Writing Champ</span><span class="nm-ar">بطل الكتابة</span></div>
+    </div>
+    <button class="ns-start-btn" id="avatar-start-btn" disabled onclick="confirmAvatar()">▶ Start Lesson</button>
+  </div>
+</div>
+
+<div class="ns-overlay" id="reset-confirm-modal">
+  <div class="ns-card" style="border-color:#DC2E5D;">
+    <h2 style="color:#DC2E5D;">🗑 Reset Progress</h2>
+    <p style="direction:ltr;text-align:left;line-height:1.6;">Are you sure you want to reset all progress? This will permanently erase your XP, level, and achievements.<br><br><span dir="rtl">هل أنت متأكد من رغبتك بإعادة تعيين كل التقدم؟ لا يمكن التراجع عن هذا.</span></p>
+    <div style="display:flex;gap:10px;justify-content:center;margin-top:16px;">
+      <button onclick="executeResetProgress()" style="background:#DC2E5D;color:white;border:none;border-radius:10px;padding:11px 20px;font-size:.85rem;font-weight:800;cursor:pointer;">Yes, Reset</button>
+      <button onclick="closeResetModal()" style="background:rgba(255,255,255,.12);color:#fff;border:none;border-radius:10px;padding:11px 20px;font-size:.85rem;font-weight:800;cursor:pointer;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="ns-overlay" id="ach-panel-overlay">
+  <div class="ns-card">
+    <h2>🏆 Achievements</h2>
+    <p>إنجازاتك في هذا الدرس</p>
+    <div class="ach-list" id="ach-list"></div>
+    <button class="ns-start-btn" onclick="closeAchPanel()">Close</button>
+  </div>
+</div>
+
+<div class="ns-overlay" id="report-overlay">
+  <div class="ns-card" style="max-width:480px;">
+    <h2>📊 Lesson Report</h2>
+    <div style="font-size:2.4rem;" id="report-grade-emoji">✍️</div>
+    <div class="report-grid" id="report-grid"></div>
+    <div class="report-actions">
+      <button onclick="downloadCertificate()">📜 Download Certificate</button>
+      <button class="secondary" onclick="closeReport()">Close</button>
+    </div>
+  </div>
+</div>
+<canvas id="cert-canvas" width="1000" height="700" style="display:none"></canvas>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const VOCAB = [
+  {w:'experience', ar:'تجربة', en:'something you do or that happens to you, especially something new', ex:'Studying abroad is a great experience.'},
+  {w:'culture', ar:'ثقافة', en:'the customs, arts, and way of life of a group of people', ex:'You can learn about new cultures and languages.'},
+  {w:'grow', ar:'ينمو / يتطوّر', en:'to develop or improve over time', ex:'It helps you grow as a person.'},
+  {w:'friends', ar:'أصدقاء', en:'people you know well and like', ex:'You can make new friends.'},
+  {w:'job', ar:'وظيفة', en:'the work you do to earn money', ex:'It can help you get a better job.'}
+];
+
+const PARAGRAPH_SENTENCES = [
+  "Studying in a new country is a great experience.",
+  "You can learn about new cultures and languages.",
+  "It helps you grow as a person and make new friends.",
+  "It can even help you get a better job later.",
+  "I think everyone should try living in a new place once!"
+];
+const PARAGRAPH_TEXT = PARAGRAPH_SENTENCES.join(' ');
+const SENT_LABELS = ['TS','SS','SS','SS','CS']; // matches PARAGRAPH_SENTENCES order
+
+const VOCABA_SENT = [
+  {before:'Studying abroad is an amazing', blank:'experience', after:'.'},
+  {before:'Every country has its own', blank:'culture', after:'.'},
+  {before:'Travelling helps you', blank:'grow', after:'as a person.'},
+  {before:'I made many new', blank:'friends', after:'during my trip.'},
+  {before:'She found a great', blank:'job', after:'after finishing her studies.'}
+];
+
+const SENTA_SENT = [
+  {before:'Studying abroad is a great', blank:'experience', after:'.'},
+  {before:'You can learn about a new', blank:'culture', after:'.'},
+  {before:'It helps you', blank:'grow', after:'as a person.'},
+  {before:'You can make new', blank:'friends', after:'.'},
+  {before:'It can help you get a better', blank:'job', after:'.'}
+];
+const SENTA_BANK = ['experience','culture','grow','friends','job'];
+
+const UNSCRAMBLE = [
+  {words:['Studying','abroad','is','a','great','experience.'], answer:'Studying abroad is a great experience.'},
+  {words:['You','can','learn','new','cultures.'], answer:'You can learn new cultures.'},
+  {words:['I','made','many','new','friends.'], answer:'I made many new friends.'}
+];
+
+const VERBFORM = [
+  {before:'Studying abroad', opts:['help','helps'], correct:'helps', after:'you grow.'},
+  {before:'You', opts:['can','cans'], correct:'can', after:'learn about new cultures.'},
+  {before:'She', opts:['make','makes'], correct:'makes', after:'new friends every year.'},
+  {before:'They', opts:['think','thinks'], correct:'think', after:'everyone should travel.'}
+];
+
+const COMP_Q = [
+  {q:"What can you learn about when studying in a new country?", ar:"ماذا يمكنك أن تتعلم عندما تدرس في بلد جديد؟", keys:['culture','language'], model:'You can learn about new cultures and languages.'},
+  {q:"What does studying in a new country help you do, besides making friends?", ar:"ماذا تساعدك الدراسة في بلد جديد على فعله، إلى جانب تكوين صداقات؟", keys:['grow'], model:'It helps you grow as a person.'},
+  {q:"What does the writer think everyone should do?", ar:"ماذا يعتقد الكاتب أنه يجب على الجميع فعله؟", keys:['try','living','new place'], model:'The writer thinks everyone should try living in a new place once.'}
+];
+
+const ORDER_EX_SHUFFLED = [3,0,2,4,1]; // indices into PARAGRAPH_SENTENCES for Step4 Ex B display order
+
+/* Progressive-release scaffold: supportLevel 1 = full support, 5 = independent.
+   Each box gets an idea-prompt list and vocabulary suggestions sized to its level,
+   and the "model example" hint itself becomes less complete as the level rises. */
+const GUIDED_FRAME = [
+  {
+    label:'Topic Sentence', ar:'الجملة الرئيسية',
+    starter:'Studying in a new country is', model:'Studying in a new country is a great experience.',
+    supportLevel:1, levelName:'Full Support', levelNameAr:'دعم كامل',
+    ideas:['Say what studying in a new country is like.','This is the main idea sentence.'],
+    ideasAr:'اذكر ما هي الدراسة في بلد جديد — هذه هي الجملة الرئيسية.',
+    vocab:['experience']
+  },
+  {
+    label:'Supporting Sentence 1', ar:'الجملة الداعمة الأولى',
+    starter:'You can learn about', model:'You can learn about new cultures and languages.',
+    supportLevel:2, levelName:'Guided Support', levelNameAr:'دعم موجّه',
+    ideas:['Give your first detail — what can you learn about?','Think about cultures or languages.'],
+    ideasAr:'أعطِ أول تفصيل — ماذا يمكنك أن تتعلم؟ فكّر في الثقافات أو اللغات.',
+    vocab:['culture']
+  },
+  {
+    label:'Supporting Sentence 2', ar:'الجملة الداعمة الثانية',
+    starter:'It helps you', model:'It helps you grow as a person and make new friends.',
+    supportLevel:3, levelName:'Light Support', levelNameAr:'دعم خفيف',
+    ideas:['Give a second detail about personal growth or friendship.'],
+    ideasAr:'أعطِ تفصيلاً ثانياً عن النمو الشخصي أو الصداقة.',
+    vocab:['grow','friends']
+  },
+  {
+    label:'Supporting Sentence 3', ar:'الجملة الداعمة الثالثة',
+    starter:'It can even help you', model:'It can even help you get a better job later.',
+    supportLevel:4, levelName:'Minimal Support', levelNameAr:'دعم بسيط جداً',
+    ideas:['Give a third detail — think about future benefits like a job.'],
+    ideasAr:'أعطِ تفصيلاً ثالثاً — فكّر في فوائد مستقبلية مثل الوظيفة.',
+    vocab:['job']
+  },
+  {
+    label:'Concluding Sentence', ar:'جملة الخاتمة',
+    starter:'I think everyone should', model:'I think everyone should try living in a new place once!',
+    supportLevel:5, levelName:'Independent', levelNameAr:'مستقل تماماً',
+    ideas:['Wrap up with your opinion or a recommendation.'],
+    ideasAr:'اختم برأيك أو بتوصية.',
+    vocab:[]
+  }
+];
+
+const SELFCHECK = [
+  "I wrote 5 sentences. — كتبت خمس جمل.",
+  "I used vocabulary from the lesson. — استخدمت مفردات الدرس.",
+  "I used correct verb forms (simple present & modals). — استخدمت أشكال الأفعال الصحيحة (المضارع البسيط وأفعال الوجوب).",
+  "I ended with a concluding sentence. — أنهيت بجملة خاتمة.",
+  "I checked my spelling and punctuation. — تحققت من الإملاء وعلامات الترقيم."
+];
+
+/* ============================================================
+   STORY MODE DATA — "Noor's Study Abroad Journey"
+   ============================================================ */
+const STORY_SCREENS = [
+  {
+    scene:'✈️',
+    narration:"Noor is excited about her exchange program in Japan.",
+    narrationAr:"ليلى متحمسة لبرنامج التبادل الدراسي في اليابان.",
+    label:'Vocabulary Challenge', labelAr:'تحدي المفردات',
+    type:'vocab',
+    prompt:"Which word means 'something you do or that happens to you, especially something new'?",
+    promptAr:"أي كلمة تعني 'شيء تفعله أو يحدث لك، خاصة شيء جديد'؟",
+    opts:['experience','culture','job'], correct:'experience',
+    why:"'Experience' means something new that happens to you and that you learn from.", whyAr:"'Experience' تعني شيئاً جديداً يحدث لك وتتعلم منه."
+  },
+  {
+    scene:'🏯',
+    narration:"Noor wants to learn about Japanese culture.",
+    narrationAr:"تريد نور أن تتعلم عن الثقافة اليابانية.",
+    label:'Sentence Challenge', labelAr:'تحدي الجملة',
+    type:'sentence',
+    prompt:"Choose the grammatically correct sentence:",
+    promptAr:"اختر الجملة الصحيحة نحوياً:",
+    opts:['Noor learn about new cultures.','Noor learns about new cultures.','Noor learning about new cultures.'],
+    correct:'Noor learns about new cultures.',
+    why:"Singular subject 'Noor' (she) needs '-s': learn → learns.", whyAr:"الفاعل المفرد (Noor/she) يحتاج '-s': learn ← learns."
+  },
+  {
+    scene:'🤝',
+    narration:"Studying abroad helped Noor grow more confident and make international friends.",
+    narrationAr:"ساعدت الدراسة بالخارج نور على النمو بثقة أكبر وتكوين صداقات دولية.",
+    label:'Comprehension Challenge', labelAr:'تحدي الفهم',
+    type:'comprehension',
+    prompt:"In one sentence, how did studying abroad help Noor?",
+    promptAr:"بجملة واحدة، كيف ساعدت الدراسة بالخارج نور؟",
+    keys:['grow','confident','friends'], model:'It helped Noor grow more confident and make international friends.'
+  },
+  {
+    scene:'🧩',
+    narration:"Help organise Noor's paragraph about her experience.",
+    narrationAr:"ساعد في ترتيب فقرة نور عن تجربتها.",
+    label:'Structure Challenge', labelAr:'تحدي البنية',
+    type:'order',
+    sentences:[
+      "Studying abroad is an unforgettable experience.",
+      "Noor learned about Japanese culture and language.",
+      "She grew more confident and made new friends.",
+      "She believes everyone should study abroad once."
+    ]
+  },
+  {
+    scene:'✍️',
+    narration:"Write one piece of advice for students who want to study abroad.",
+    narrationAr:"اكتب نصيحة واحدة للطلاب الذين يريدون الدراسة بالخارج.",
+    label:'Mini Writing Challenge', labelAr:'تحدي كتابة مصغر',
+    type:'write',
+    prompt:"Give one piece of advice (write a full sentence):",
+    promptAr:"أعطِ نصيحة واحدة (اكتب جملة كاملة):",
+    example:"Students should keep an open mind and try new things."
+  },
+  {
+    scene:'🎉',
+    narration:"Great job! Noor is ready to start her new adventure — thanks to you!",
+    narrationAr:"عمل رائع! نور مستعدة الآن لبدء مغامرتها الجديدة — بفضلك!",
+    label:'Story Complete', labelAr:'اكتملت القصة',
+    type:'end'
+  }
+];
+
+/* ============================================================
+   WRITING BOSS BATTLE DATA — 5 phases, HP-based battle
+   Damage per phase totals 20 HP (100 HP / 5 phases), split evenly
+   across that phase's questions.
+   ============================================================ */
+const BOSS_PHASES = [
+  {
+    id:1, name:'Topic Sentence Boss', nameAr:'وحش الجملة الرئيسية', icon:'👹', bossName:'Topicus', avatar:'👹',
+    questions:[
+      { type:'mcq',
+        prompt:'Which sentence is the strongest topic sentence?', promptAr:'أي جملة هي الجملة الرئيسية الأقوى؟',
+        opts:[
+          {t:"Japan has great food and beautiful temples.", correct:false},
+          {t:"Studying in a new country is a great experience.", correct:true},
+          {t:"My friend studied in France last year.", correct:false}
+        ],
+        why_correct:"A topic sentence states the main idea in a clear, general way.", why_correct_ar:"الجملة الرئيسية تذكر الفكرة العامة بأسلوب واضح وعام.",
+        why_wrong:"That's either too specific or off-topic to be the topic sentence.", why_wrong_ar:"إما محددة جداً أو خارج الموضوع لتكون جملة رئيسية."
+      },
+      { type:'mcq',
+        prompt:'Which sentence best introduces a paragraph about studying abroad?', promptAr:'أي جملة تقدّم فقرة عن الدراسة بالخارج بشكل أفضل؟',
+        opts:[
+          {t:"Airports are busy places.", correct:false},
+          {t:"Studying abroad can change your life.", correct:true},
+          {t:"I bought a new suitcase yesterday.", correct:false}
+        ],
+        why_correct:"This gives a clear, general main idea the paragraph can develop.", why_correct_ar:"تعطي فكرة عامة واضحة يمكن للفقرة تطويرها.",
+        why_wrong:"Too small a detail, or unrelated, to introduce a general paragraph.", why_wrong_ar:"تفصيل صغير جداً، أو غير مرتبط، لتقديم فقرة عامة."
+      }
+    ]
+  },
+  {
+    id:2, name:'Supporting Sentence Boss', nameAr:'وحش الجمل الداعمة', icon:'🐉', bossName:'Supportosaurus', avatar:'🐉',
+    questions:[
+      { type:'mcq',
+        prompt:"Which sentence BEST supports: 'You can learn about new cultures and languages'?", promptAr:'أي جملة تدعم الفكرة أعلاه بشكل أفضل؟',
+        opts:[
+          {t:"You might try new foods and traditions.", correct:true},
+          {t:"Cats sleep a lot during the day.", correct:false},
+          {t:"I have a red backpack.", correct:false}
+        ],
+        why_correct:"It gives a specific detail that develops the idea of learning about culture.", why_correct_ar:"تعطي تفصيلاً محدداً يطوّر فكرة تعلّم الثقافة.",
+        why_wrong:"It doesn't add a relevant detail about learning cultures.", why_wrong_ar:"لا تضيف تفصيلاً ذا صلة بتعلّم الثقافات."
+      },
+      { type:'mcq',
+        prompt:"Which sentence BEST supports: 'It helps you grow as a person'?", promptAr:'أي جملة تدعم الفكرة أعلاه بشكل أفضل؟',
+        opts:[
+          {t:"You become more independent and confident.", correct:true},
+          {t:"The bus was late again today.", correct:false},
+          {t:"She really likes chocolate.", correct:false}
+        ],
+        why_correct:"It's a relevant, specific detail about personal growth.", why_correct_ar:"تفصيل محدد وذو صلة بالنمو الشخصي.",
+        why_wrong:"It's unrelated to the topic of personal growth.", why_wrong_ar:"غير مرتبطة بموضوع النمو الشخصي."
+      }
+    ]
+  },
+  {
+    id:3, name:'Paragraph Organization Boss', nameAr:'وحش تنظيم الفقرة', icon:'🐙', bossName:'Chaosquid', avatar:'🐙',
+    questions:[
+      { type:'order',
+        prompt:'Drag the sentences into the correct paragraph order to land a critical hit!', promptAr:'اسحب الجمل بالترتيب الصحيح لتوجيه ضربة حاسمة!',
+        sentences: PARAGRAPH_SENTENCES // single source of truth — no duplicated paragraph text
+      }
+    ]
+  },
+  {
+    id:4, name:'Conclusion Boss', nameAr:'وحش الخاتمة', icon:'👺', bossName:'Endrilith', avatar:'👺',
+    questions:[
+      { type:'mcq',
+        prompt:'Which is the strongest concluding sentence?', promptAr:'أي جملة هي أقوى جملة خاتمة؟',
+        opts:[
+          {t:"Airports are usually very big.", correct:false},
+          {t:"I think everyone should try living in a new place once!", correct:true},
+          {t:"Japan is a country in Asia.", correct:false}
+        ],
+        why_correct:"This gives a personal opinion and wraps up the whole paragraph.", why_correct_ar:"تقدم رأياً شخصياً وتختم الفقرة كاملة.",
+        why_wrong:"That's just a fact, not a concluding idea.", why_wrong_ar:"مجرد حقيقة، وليست فكرة ختامية."
+      },
+      { type:'mcq',
+        prompt:'Which sentence best wraps up a paragraph about the benefits of studying abroad?', promptAr:'أي جملة تختم بشكل أفضل فقرة عن فوائد الدراسة بالخارج؟',
+        opts:[
+          {t:"He has a blue passport.", correct:false},
+          {t:"With an open mind, anyone can benefit from studying abroad.", correct:true},
+          {t:"She has long black hair.", correct:false}
+        ],
+        why_correct:"It offers a meaningful closing idea that ties the paragraph together.", why_correct_ar:"تقدم فكرة ختامية ذات معنى تربط الفقرة.",
+        why_wrong:"That's just a physical description, not a concluding idea.", why_wrong_ar:"مجرد وصف جسدي، وليست فكرة ختامية."
+      }
+    ]
+  },
+  {
+    id:5, name:'Ultimate Writing Boss', nameAr:'الوحش النهائي للكتابة', icon:'🐲', bossName:'The Paragraph Dragon', avatar:'🐲',
+    questions:[
+      { type:'mcq',
+        prompt:'What kind of sentence is this? "I think everyone should try living in a new place once!"', promptAr:'ما نوع هذه الجملة؟',
+        opts:[
+          {t:"Topic Sentence", correct:false},
+          {t:"Supporting Sentence", correct:false},
+          {t:"Concluding Sentence", correct:true}
+        ],
+        why_correct:"It wraps up the paragraph with a personal opinion — that's a concluding sentence.", why_correct_ar:"تختم الفقرة برأي شخصي — هذه جملة خاتمة.",
+        why_wrong:"Look again — it wraps up the paragraph, which signals a conclusion.", why_wrong_ar:"انظر مجدداً — إنها تختم الفقرة، وهذا يدل على الخاتمة."
+      },
+      { type:'mcq',
+        prompt:'What makes a paragraph complete?', promptAr:'ما الذي يجعل الفقرة مكتملة؟',
+        opts:[
+          {t:"Just any five sentences in any order", correct:false},
+          {t:"A topic sentence, supporting sentences, and a concluding sentence, in order", correct:true},
+          {t:"Only using vocabulary words", correct:false}
+        ],
+        why_correct:"A complete paragraph needs all three parts, structured in the right order.", why_correct_ar:"الفقرة المكتملة تحتاج الأجزاء الثلاثة، مرتبة بالترتيب الصحيح.",
+        why_wrong:"Order and structure matter — not just random sentences or vocabulary.", why_wrong_ar:"الترتيب والبنية مهمان — وليس فقط جملاً عشوائية أو مفردات."
+      }
+    ]
+  }
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let xp=0, streak=0, completedTotal=0, studentName='', chosenAvatar='';
+let unlockedAch={};
+const TOTAL_ITEMS=58; // rough total interactive checkpoints across the lesson
+let stepDone={vocab:false,sentence:false,reading:false,structure:false,guided:false,memory:false,story:false,free:false,selfcheck:false,boss:false};
+let bossMode=null, bossHP=100, playerHP=100, bossPhaseIdx=0, bossQIdx=0, bossAnswering=false;
+let bossTimerInt=null, bossTimeLeft=0, bossWrongCount=0, bossXPEarned=0;
+let bossDone={1:false,2:false,3:false,4:false,5:false};
+let storyIdx=0, storyMaxUnlocked=0, storyScreenDone={};
+let memTimerInt=null, memSeconds=0;
+
+const LEVELS=[
+  {min:0,emoji:'🥉',name:'Beginner Writer',nameAr:'كاتب مبتدئ'},
+  {min:60,emoji:'🥈',name:'Rising Writer',nameAr:'كاتب صاعد'},
+  {min:150,emoji:'🥇',name:'Skilled Writer',nameAr:'كاتب ماهر'},
+  {min:280,emoji:'💎',name:'Master Writer',nameAr:'كاتب محترف'},
+  {min:400,emoji:'👑',name:'Writing Champion',nameAr:'بطل الكتابة'}
+];
+const ACHIEVEMENTS=[
+  {id:'vocab',em:'📚',name:'Word Collector',ar:'جامع الكلمات',cond:()=>stepDone.vocab},
+  {id:'sentence',em:'✏️',name:'Sentence Builder',ar:'بنّاء الجمل',cond:()=>stepDone.sentence},
+  {id:'reading',em:'📖',name:'Careful Reader',ar:'قارئ متمعن',cond:()=>stepDone.reading},
+  {id:'structure',em:'🏗',name:'Structure Master',ar:'خبير البنية',cond:()=>stepDone.structure},
+  {id:'guided',em:'📝',name:'Guided Writer',ar:'كاتب موجّه',cond:()=>stepDone.guided},
+  {id:'memory',em:'🧠',name:'Memory Champion',ar:'بطل الذاكرة',cond:()=>stepDone.memory},
+  {id:'free',em:'🎯',name:'Independent Writer',ar:'كاتب مستقل',cond:()=>stepDone.free},
+  {id:'selfcheck',em:'✅',name:'Careful Checker',ar:'مراجع دقيق',cond:()=>stepDone.selfcheck},
+  {id:'boss',em:'👾',name:'Writing Champion',ar:'بطل الكتابة النهائي',cond:()=>stepDone.boss},
+  {id:'independent',em:'🦅',name:'Self-Reliant Writer',ar:'كاتب معتمد على نفسه',cond:()=>!!unlockedAch['independent']},
+  {id:'story',em:'📖',name:'Story Explorer',ar:'مستكشف القصة',cond:()=>stepDone.story},
+  {id:'flawless_boss',em:'⚡',name:'Flawless Victory',ar:'انتصار مثالي',cond:()=>!!unlockedAch['flawless_boss']}
+];
+
+/* ============================================================
+   CORE UTILITIES
+   ============================================================ */
+function toggleDark(){
+  document.body.classList.toggle('dark-mode');
+  document.getElementById('dark-btn').textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+}
+function showTab(n){
+  document.querySelectorAll('.page').forEach((p,i)=>p.classList.toggle('active',i===n));
+  document.querySelectorAll('.pill-nav button').forEach((b,i)=>b.classList.toggle('active',i===n));
+  window.scrollTo({top:0,behavior:'smooth'});
+  saveState();
+}
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US'; u.rate=0.85; u.pitch=1;
+  function pick(){
+    const voices=window.speechSynthesis.getVoices();
+    const pref=['Samantha','Karen','Daniel','Google US English','Google UK English Female','Microsoft Zira','Microsoft David','Alex'];
+    for(const n of pref){const v=voices.find(v=>v.name===n); if(v){u.voice=v;break;}}
+    if(!u.voice) u.voice=voices.find(v=>v.lang==='en-US')||voices.find(v=>v.lang&&v.lang.startsWith('en'))||null;
+    window.speechSynthesis.speak(u);
+  }
+  const voices=window.speechSynthesis.getVoices();
+  if(voices.length>0) pick(); else window.speechSynthesis.onvoiceschanged=pick;
+}
+function readParagraph(){ speak(PARAGRAPH_TEXT); }
+
+const AudioCtx=window.AudioContext||window.webkitAudioContext;
+let audioCtx=null;
+function getACtx(){ if(!audioCtx) audioCtx=new AudioCtx(); if(audioCtx.state==='suspended') audioCtx.resume(); return audioCtx; }
+function playCorrectSound(){
+  try{
+    const ctx=getACtx();
+    [[0,523],[0.12,659],[0.24,784]].forEach(([t,f])=>{
+      const o=ctx.createOscillator(),g=ctx.createGain();
+      o.connect(g);g.connect(ctx.destination);o.type='sine';
+      o.frequency.setValueAtTime(f,ctx.currentTime+t);
+      g.gain.setValueAtTime(0.22,ctx.currentTime+t);
+      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+t+0.25);
+      o.start(ctx.currentTime+t);o.stop(ctx.currentTime+t+0.28);
+    });
+  }catch(e){}
+}
+function playWrongSound(){
+  try{
+    const ctx=getACtx(),o=ctx.createOscillator(),g=ctx.createGain();
+    o.connect(g);g.connect(ctx.destination);o.type='sawtooth';
+    o.frequency.setValueAtTime(200,ctx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(80,ctx.currentTime+0.35);
+    g.gain.setValueAtTime(0.18,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.38);
+    o.start(ctx.currentTime);o.stop(ctx.currentTime+0.4);
+  }catch(e){}
+}
+function triggerConfetti(big){
+  const colors=['#FFD700','#7C3AED','#DC2E5D','#10B981','#3B82F6','#F59E0B'];
+  const count=big?80:40;
+  for(let i=0;i<count;i++){
+    const el=document.createElement('div');
+    el.style.cssText='position:fixed;width:'+(big?10:7)+'px;height:'+(big?10:7)+'px;border-radius:50%;pointer-events:none;z-index:9999;';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.left=Math.random()*100+'vw'; el.style.top='-10px';
+    document.body.appendChild(el);
+    const tx=(Math.random()-.5)*220;
+    el.animate([
+      {transform:'translate(0,0) rotate(0deg)',opacity:1},
+      {transform:`translate(${tx}px,${window.innerHeight*.85}px) rotate(${Math.random()*720}deg)`,opacity:0}
+    ],{duration:1300+Math.random()*900,easing:'cubic-bezier(.25,.46,.45,.94)',delay:Math.random()*400}).onfinish=()=>el.remove();
+  }
+}
+function addXP(a){
+  xp+=a;
+  const el=document.getElementById('xp-display');
+  el.textContent=xp; el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
+  showXPToast('+'+a+' XP ⭐');
+  updateLevelBadge();
+  checkAchievements();
+  saveState();
+}
+function updateStreak(correct){
+  if(correct) streak++; else streak=0;
+  const s=document.getElementById('streak-display');
+  s.textContent=streak; s.classList.remove('streak-pop'); void s.offsetWidth; s.classList.add('streak-pop');
+  saveState();
+}
+function showXPToast(msg){
+  const t=document.getElementById('xp-toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1400);
+}
+function showAchToast(name){
+  const t=document.getElementById('ach-toast');
+  document.getElementById('ach-toast-text').textContent=name+' unlocked!';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+function bumpProgress(n){
+  completedTotal+=n;
+  const bar=document.getElementById('main-progress');
+  bar.style.width=Math.min(100,Math.round((completedTotal/TOTAL_ITEMS)*100))+'%';
+  saveState();
+}
+function updateLevelBadge(){
+  let lvl=LEVELS[0];
+  for(const l of LEVELS) if(xp>=l.min) lvl=l;
+  document.getElementById('level-badge').textContent=lvl.emoji+' '+lvl.name;
+}
+function checkAchievements(){
+  ACHIEVEMENTS.forEach(a=>{
+    if(!unlockedAch[a.id] && a.cond()){
+      unlockedAch[a.id]=true;
+      showAchToast(a.em+' '+a.name);
+    }
+  });
+  saveState();
+}
+function markStepDone(step,xpAward){
+  if(stepDone[step]) return;
+  stepDone[step]=true;
+  addXP(xpAward);
+  triggerConfetti(true);
+  checkAchievements();
+}
+function normalizeAnswer(s){
+  return String(s||'').toLowerCase().replace(/[.,!?]/g,'').replace(/\s+/g,' ').trim();
+}
+function isEmptyAnswer(v){ return v===null||v===undefined||String(v).replace(/\s+/g,'').length===0; }
+
+/* ============================================================
+   PERSISTENCE — single storage manager (one root key)
+   Every save/load in the app goes through AppStorage.get/set/clear.
+   This is Unit 3's own storage key — deliberately separate from
+   Unit 1's and Unit 2's, so progress in each lesson is independent.
+   ============================================================ */
+const STORAGE_KEY='sg3_u3_writing_state_v1';
+const AppStorage={
+  _cache:null,
+  _read(){
+    if(this._cache) return this._cache;
+    let store=null;
+    try{ const raw=localStorage.getItem(STORAGE_KEY); if(raw) store=JSON.parse(raw); }catch(e){}
+    this._cache = store || {};
+    return this._cache;
+  },
+  get(key,fallback){
+    const store=this._read();
+    return (store && Object.prototype.hasOwnProperty.call(store,key) && store[key]!=null) ? store[key] : fallback;
+  },
+  set(key,value){
+    const store=this._read();
+    store[key]=value;
+    try{ localStorage.setItem(STORAGE_KEY,JSON.stringify(store)); }catch(e){}
+  },
+  clear(){
+    try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+    this._cache=null;
+  }
+};
+
+/* ============================================================
+   XP & ACHIEVEMENTS — unified reward engine
+   Every "correct answer" / "wrong answer" moment in the lesson
+   (Vocabulary, Sentence Building, Story, Memory, Guided Writing,
+   Boss Battle, Self-Check, Free Writing) flows through these two
+   functions instead of each feature re-implementing the same
+   sound + XP + streak + progress + confetti boilerplate.
+   ============================================================ */
+function awardCorrect({xp=0, progress=1, confetti=false, bigConfetti=false, sound=true, streak=true}={}){
+  if(sound) playCorrectSound();
+  if(confetti||bigConfetti) triggerConfetti(bigConfetti);
+  if(xp) addXP(xp);
+  if(streak) updateStreak(true);
+  if(progress) bumpProgress(progress);
+}
+function awardWrong({sound=true, streak=true}={}){
+  if(sound) playWrongSound();
+  if(streak) updateStreak(false);
+}
+
+/* ============================================================
+   GENERIC DRAG & DROP (mouse + touch-friendly tap fallback)
+   ============================================================ */
+let draggedEl=null;
+function initDnDWord(w){
+  if(w.dataset.dndInit) return;
+  w.dataset.dndInit='1';
+  w.setAttribute('draggable','true');
+  w.addEventListener('dragstart',()=>{draggedEl=w;w.classList.add('dragging');});
+  w.addEventListener('dragend',()=>{w.classList.remove('dragging');draggedEl=null;});
+  w.addEventListener('click',()=>tapMoveWord(w));
+}
+function initDnDZone(z){
+  if(z.dataset.dndInit) return;
+  z.dataset.dndInit='1';
+  z.addEventListener('dragover',e=>{e.preventDefault();z.classList.add('drag-over');});
+  z.addEventListener('dragleave',()=>z.classList.remove('drag-over'));
+  z.addEventListener('drop',e=>{
+    e.preventDefault();z.classList.remove('drag-over');
+    if(!draggedEl) return;
+    if(z.classList.contains('dnd-blank') && z.querySelector('.dnd-word') && z.querySelector('.dnd-word')!==draggedEl){
+      const bank=z.closest('.dnd-activity,.sub-card').querySelector('.dnd-wordbank');
+      if(bank) bank.appendChild(z.querySelector('.dnd-word'));
+    }
+    z.appendChild(draggedEl);
+  });
+}
+function tapMoveWord(w){
+  const scope=w.closest('.dnd-activity,.sub-card,.story-stage,.boss-question-card')||document;
+  if(w.parentElement.classList.contains('dnd-wordbank')){
+    // move into the first empty blank, or into a sequence zone
+    const emptyBlank=scope.querySelector('.dnd-blank:empty');
+    if(emptyBlank){ emptyBlank.appendChild(w); return; }
+    const seq=scope.querySelector('.dnd-sequence');
+    if(seq){ seq.appendChild(w); return; }
+  }else{
+    const bank=scope.querySelector('.dnd-wordbank');
+    if(bank) bank.appendChild(w);
+  }
+}
+function refreshDnD(root){
+  (root||document).querySelectorAll('.dnd-word').forEach(initDnDWord);
+  (root||document).querySelectorAll('.dnd-blank,.dnd-sequence,.dnd-wordbank').forEach(initDnDZone);
+}
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+/* ============================================================
+   VOCAB SYSTEM — Tab 0
+   ============================================================ */
+function buildVocabFlipCards(){
+  const grid=document.getElementById('vocab-flip-grid');
+  grid.innerHTML=VOCAB.map((v,i)=>`
+    <div class="flip-card" id="flip-${i}" onclick="flipCard(${i})">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="fw">${v.w}</div>
+          <div class="ftap">👆 Tap to flip</div>
+        </div>
+        <div class="flip-back">
+          <div class="fm-en">${v.en}</div>
+          <div class="fm-ar">${v.ar}</div>
+          <div class="fex">"${v.ex}"</div>
+        </div>
+      </div>
+      <button type="button" class="audio-btn card-audio" onclick="event.stopPropagation();speak('${v.w}. ${v.ex.replace(/'/g,"\\'")}')">🔊</button>
+    </div>`).join('');
+}
+let flippedSet={};
+function flipCard(i){
+  const c=document.getElementById('flip-'+i);
+  c.classList.toggle('flipped');
+  if(!flippedSet[i]){ flippedSet[i]=true; if(Object.keys(flippedSet).length===VOCAB.length){ addXP(5); } }
+}
+
+function buildVocabA(){
+  const bank=document.getElementById('vocabA-bank');
+  bank.innerHTML=shuffle(VOCAB.map(v=>v.w)).map(w=>`<span class="dnd-word" data-word="${w}">${w}</span>`).join('');
+  const box=document.getElementById('vocabA-sentences');
+  box.innerHTML=VOCABA_SENT.map((s,i)=>`<div class="dnd-sentence">${i+1}. ${s.before} <span class="dnd-blank" data-ans="${s.blank}" id="vocabA-blank-${i}"></span> ${s.after}</div>`).join('');
+  refreshDnD(document.getElementById('vocabA'));
+}
+let vocabAScored=false;
+function checkVocabA(){
+  let correct=0;
+  VOCABA_SENT.forEach((s,i)=>{
+    const blank=document.getElementById('vocabA-blank-'+i);
+    const word=blank.querySelector('.dnd-word');
+    blank.classList.remove('correct','incorrect');
+    if(word && normalizeAnswer(word.textContent)===normalizeAnswer(s.blank)){ blank.classList.add('correct'); correct++; }
+    else if(word){ blank.classList.add('incorrect'); }
+  });
+  const fb=document.getElementById('vocabA-fb');
+  fb.className='feedback-box show';
+  if(correct===VOCABA_SENT.length){
+    fb.classList.add('ok');
+    if(vocabAScored){
+      fb.innerHTML='✅ Still correct — nice consistency! (XP already awarded for this exercise)<div class="ar">لا تزال صحيحة! (تم منح النقاط مسبقاً لهذا التمرين)</div>';
+      return;
+    }
+    fb.innerHTML='✅ Excellent! All 5 blanks correct.<div class="ar">ممتاز! كل الفراغات الخمسة صحيحة.</div>';
+    awardCorrect({xp:15});
+    vocabAScored=true;
+    markStepPartial('vocabA');
+  }else{
+    fb.classList.add('bad');
+    fb.innerHTML=`⚠️ ${correct}/5 correct. Check the red blanks and try again.<div class="ar">${correct}/5 صحيحة. راجع الفراغات الحمراء وحاول مجدداً.</div>`;
+    awardWrong();
+  }
+}
+function resetVocabA(){ buildVocabA(); document.getElementById('vocabA-fb').classList.remove('show'); vocabAScored=false; }
+function hintVocabA(){
+  const fb=document.getElementById('vocabA-fb');
+  fb.className='feedback-box show ok';
+  fb.innerHTML='💡 Hint: match each word to its meaning from the flashcards above — "experience" is about something new, "job" is about work.<div class="ar">تلميح: طابق كل كلمة بمعناها من البطاقات أعلاه.</div>';
+}
+
+let matchState={selA:null,selB:null,matched:0};
+function buildMatch(){
+  matchState={selA:null,selB:null,matched:0};
+  document.getElementById('match-score').textContent='0';
+  const colA=shuffle(VOCAB.map((v,i)=>({...v,idx:i})));
+  const colB=shuffle(VOCAB.map((v,i)=>({...v,idx:i})));
+  document.getElementById('match-colA').innerHTML=colA.map(v=>`<div class="match-item" data-idx="${v.idx}" onclick="selectMatch(this,'A',${v.idx})">${v.w}</div>`).join('');
+  document.getElementById('match-colB').innerHTML=colB.map(v=>`<div class="match-item" data-idx="${v.idx}" onclick="selectMatch(this,'B',${v.idx})"><span>${v.en}</span><div class="ar">${v.ar}</div></div>`).join('');
+}
+function selectMatch(el,col,idx){
+  if(el.classList.contains('done')) return;
+  if(col==='A'){
+    document.querySelectorAll('#match-colA .match-item').forEach(e=>e.classList.remove('selA'));
+    el.classList.add('selA'); matchState.selA={el,idx};
+  }else{
+    document.querySelectorAll('#match-colB .match-item').forEach(e=>e.classList.remove('selB'));
+    el.classList.add('selB'); matchState.selB={el,idx};
+  }
+  if(matchState.selA && matchState.selB){
+    if(matchState.selA.idx===matchState.selB.idx){
+      matchState.selA.el.classList.remove('selA'); matchState.selA.el.classList.add('done');
+      matchState.selB.el.classList.remove('selB'); matchState.selB.el.classList.add('done');
+      matchState.matched++;
+      document.getElementById('match-score').textContent=matchState.matched;
+      awardCorrect({xp:8, confetti:false});
+      if(matchState.matched===VOCAB.length){ triggerConfetti(true); markStepPartial('matchDone'); }
+    }else{
+      matchState.selA.el.classList.add('wrong'); matchState.selB.el.classList.add('wrong');
+      awardWrong();
+      setTimeout(()=>{
+        matchState.selA.el.classList.remove('selA','wrong');
+        matchState.selB.el.classList.remove('selB','wrong');
+      },600);
+    }
+    matchState.selA=null; matchState.selB=null;
+  }
+}
+let vocabProgress={vocabA:false,matchDone:false};
+function markStepPartial(which){
+  vocabProgress[which]=true;
+  if(vocabProgress.vocabA && vocabProgress.matchDone) markStepDone('vocab',20);
+}
+
+/* ============================================================
+   SENTENCE BUILDING — Tab 1
+   ============================================================ */
+function buildSentA(){
+  document.getElementById('sentA-bank').innerHTML=shuffle(SENTA_BANK).map(w=>`<span class="dnd-word" data-word="${w}">${w}</span>`).join('');
+  document.getElementById('sentA-sentences').innerHTML=SENTA_SENT.map((s,i)=>`<div class="dnd-sentence">${i+1}. ${s.before} <span class="dnd-blank" data-ans="${s.blank}" id="sentA-blank-${i}"></span> ${s.after}</div>`).join('');
+  refreshDnD(document.getElementById('sentA'));
+}
+let sentAScored=false;
+function checkSentA(){
+  let correct=0;
+  SENTA_SENT.forEach((s,i)=>{
+    const blank=document.getElementById('sentA-blank-'+i);
+    const word=blank.querySelector('.dnd-word');
+    blank.classList.remove('correct','incorrect');
+    if(word && normalizeAnswer(word.textContent)===normalizeAnswer(s.blank)){ blank.classList.add('correct'); correct++; }
+    else if(word){ blank.classList.add('incorrect'); }
+  });
+  const fb=document.getElementById('sentA-fb');
+  fb.className='feedback-box show';
+  if(correct===SENTA_SENT.length){
+    fb.classList.add('ok');
+    if(sentAScored){
+      fb.innerHTML='✅ Still correct — nice consistency! (XP already awarded for this exercise)<div class="ar">لا تزال صحيحة! (تم منح النقاط مسبقاً)</div>';
+      return;
+    }
+    fb.innerHTML='✅ Great job! All sentences complete.<div class="ar">عمل رائع! كل الجمل مكتملة.</div>';
+    awardCorrect({xp:15});
+    sentAScored=true;
+    sentProgress.sentA=true; checkSentDone();
+  }else{
+    fb.classList.add('bad');
+    fb.innerHTML=`⚠️ ${correct}/5 correct. Fix the red blanks.<div class="ar">${correct}/5 صحيحة. صحح الفراغات الحمراء.</div>`;
+    awardWrong();
+  }
+}
+function resetSentA(){ buildSentA(); document.getElementById('sentA-fb').classList.remove('show'); sentAScored=false; }
+
+function buildUnscramble(){
+  const wrap=document.getElementById('unscramble-list');
+  wrap.innerHTML=UNSCRAMBLE.map((u,i)=>`
+    <div class="sub-card" style="background:var(--card-bg);margin-bottom:12px;">
+      <div style="font-weight:700;font-size:.85rem;margin-bottom:8px;">Sentence ${i+1}</div>
+      <div class="dnd-wordbank" id="unsc-bank-${i}"></div>
+      <div class="dnd-sequence" id="unsc-zone-${i}"></div>
+      <div class="btn-row">
+        <button class="rbtn" onclick="checkUnscramble(${i})">✓ Check</button>
+        <button class="rbtn gray" onclick="resetUnscramble(${i})">↺ Reset</button>
+      </div>
+      <div class="feedback-box" id="unsc-fb-${i}"></div>
+    </div>`).join('');
+  UNSCRAMBLE.forEach((u,i)=>{
+    document.getElementById('unsc-bank-'+i).innerHTML=shuffle(u.words).map(w=>`<span class="dnd-word" data-word="${w}">${w}</span>`).join('');
+    refreshDnD(document.getElementById('unsc-bank-'+i).closest('.sub-card'));
+  });
+}
+let unscrambleDone={};
+function checkUnscramble(i){
+  const zone=document.getElementById('unsc-zone-'+i);
+  const words=Array.from(zone.querySelectorAll('.dnd-word')).map(w=>w.textContent.trim());
+  if(words.length===0){ showEmptyFb('unsc-fb-'+i); return; }
+  const built=words.join(' ');
+  const fb=document.getElementById('unsc-fb-'+i);
+  fb.className='feedback-box show';
+  if(normalizeAnswer(built)===normalizeAnswer(UNSCRAMBLE[i].answer)){
+    zone.classList.add('correct'); zone.classList.remove('incorrect');
+    fb.classList.add('ok');
+    if(unscrambleDone[i]){
+      fb.innerHTML='✅ Still correct! (XP already awarded for this sentence)<div class="ar">لا تزال صحيحة! (تم منح النقاط مسبقاً)</div>';
+      return;
+    }
+    fb.innerHTML='✅ Correct: "'+UNSCRAMBLE[i].answer+'"<div class="ar">إجابة صحيحة!</div>';
+    awardCorrect({xp:10});
+    unscrambleDone[i]=true; checkSentDone();
+  }else{
+    zone.classList.add('incorrect'); zone.classList.remove('correct');
+    fb.classList.add('bad');
+    fb.innerHTML='⚠️ Not quite — check the word order and try again.<div class="ar">ليست صحيحة تماماً — تحقق من ترتيب الكلمات وحاول مجدداً.</div>';
+    awardWrong();
+  }
+}
+function resetUnscramble(i){
+  document.getElementById('unsc-bank-'+i).innerHTML=shuffle(UNSCRAMBLE[i].words).map(w=>`<span class="dnd-word" data-word="${w}">${w}</span>`).join('');
+  document.getElementById('unsc-zone-'+i).innerHTML=''; document.getElementById('unsc-zone-'+i).classList.remove('correct','incorrect');
+  document.getElementById('unsc-fb-'+i).classList.remove('show');
+  delete unscrambleDone[i];
+  refreshDnD(document.getElementById('unsc-bank-'+i).closest('.sub-card'));
+}
+function showEmptyFb(id){
+  const fb=document.getElementById(id);
+  fb.className='feedback-box show bad';
+  fb.innerHTML='⚠️ Please drag some words first.<div class="ar">اسحب بعض الكلمات أولاً.</div>';
+}
+
+function buildVerbform(){
+  const wrap=document.getElementById('verbform-list');
+  wrap.innerHTML=VERBFORM.map((v,i)=>`
+    <div class="item-row">
+      ${i+1}. ${v.before} <span id="vf-slot-${i}">____</span> ${v.after}
+      <div class="toggle-row">
+        ${v.opts.map(o=>`<span class="toggle-opt" onclick="pickVerbForm(${i},'${o}',this)">${o}</span>`).join('')}
+      </div>
+    </div>`).join('');
+}
+let verbformDone={};
+function pickVerbForm(i,val,el){
+  const row=el.closest('.item-row');
+  if(row.classList.contains('locked-solved')) return; // already scored — ignore further clicks
+  row.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('correct-pick','wrong-pick'));
+  const correct=VERBFORM[i].correct;
+  if(val===correct){
+    el.classList.add('correct-pick');
+    document.getElementById('vf-slot-'+i).textContent=val;
+    awardCorrect({xp:8});
+    verbformDone[i]=true; checkSentDone();
+    row.classList.add('locked-solved');
+    row.querySelectorAll('.toggle-opt').forEach(o=>o.style.pointerEvents='none');
+  }else{
+    el.classList.add('wrong-pick');
+    awardWrong();
+  }
+}
+let sentProgress={sentA:false};
+function checkSentDone(){
+  const unscOK=Object.keys(unscrambleDone).length===UNSCRAMBLE.length;
+  const vfOK=Object.keys(verbformDone).length===VERBFORM.length;
+  if(sentProgress.sentA && unscOK && vfOK) markStepDone('sentence',25);
+}
+
+/* ============================================================
+   MODEL PARAGRAPH — Tab 2
+   ============================================================ */
+let hlOn=false;
+function buildReadingCard(){
+  const card=document.getElementById('reading-card');
+  let html=PARAGRAPH_TEXT;
+  VOCAB.forEach(v=>{
+    const re=new RegExp('\\b'+v.w+'\\b','i');
+    html=html.replace(re, m=>`<span class="gloss-word" data-word="${v.w}" onclick="toggleGloss(this)">${m}<span class="gloss-popup"><b>${v.w}</b> — ${v.en}<div class="ar">${v.ar}</div></span></span>`);
+  });
+  card.innerHTML=html;
+}
+function toggleHighlight(){
+  hlOn=!hlOn;
+  document.getElementById('reading-card').classList.toggle('hl-on',hlOn);
+  document.getElementById('hl-toggle-btn').textContent = hlOn ? '✨ Hide Highlight' : '✨ Highlight Vocabulary';
+  if(hlOn){ addXPOnce('hlSeen',5); }
+}
+let onceFlags={};
+function addXPOnce(flag,amt){
+  if(onceFlags[flag]) return;
+  onceFlags[flag]=true; addXP(amt);
+}
+function toggleGloss(el){
+  document.querySelectorAll('.gloss-word.popped').forEach(g=>{ if(g!==el) g.classList.remove('popped'); });
+  el.classList.toggle('popped');
+}
+
+function buildCompQuestions(){
+  const wrap=document.getElementById('comp-questions');
+  wrap.innerHTML=COMP_Q.map((q,i)=>`
+    <div class="item-row" id="comp-row-${i}" style="border-bottom:1px solid var(--border-col);padding:12px 0;">
+      <div style="font-weight:700;margin-bottom:2px;">${i+1}. ${q.q} <span class="help-used-tag" id="comp-credited-${i}" style="display:none;color:var(--green);">✓ credited</span></div>
+      <div style="font-size:.78rem;color:var(--slate);direction:rtl;margin-bottom:8px;">${q.ar}</div>
+      <textarea class="guide-input" id="comp-ans-${i}" placeholder="Write your answer here..." style="min-height:44px;"></textarea>
+      <div class="btn-row">
+        <button class="rbtn" onclick="checkComp(${i})">✓ Check</button>
+        <button class="hint-btn" onclick="revealComp(${i})">👁 Show model answer</button>
+      </div>
+      <div class="feedback-box" id="comp-fb-${i}"></div>
+    </div>`).join('');
+}
+let compDone={};
+function checkComp(i){
+  const val=document.getElementById('comp-ans-'+i).value;
+  const fb=document.getElementById('comp-fb-'+i);
+  if(isEmptyAnswer(val)){ fb.className='feedback-box show bad'; fb.innerHTML='⚠️ Please write an answer first.<div class="ar">اكتب إجابة أولاً.</div>'; return; }
+  const norm=normalizeAnswer(val);
+  const hit=COMP_Q[i].keys.some(k=>norm.includes(k));
+  fb.className='feedback-box show';
+  if(hit){
+    fb.classList.add('ok');
+    if(compDone[i]){
+      fb.innerHTML='✅ Correct — you already earned credit for this question.<div class="ar">صحيحة — لقد حصلت على النقاط لهذا السؤال مسبقاً.</div>';
+      return;
+    }
+    fb.innerHTML='✅ Good answer! Model: "'+COMP_Q[i].model+'"<div class="ar">إجابة جيدة!</div>';
+    awardCorrect({xp:10});
+    compDone[i]=true; checkReadingDone();
+    lockRevealButton(i);
+  }else{
+    fb.classList.add('bad');
+    fb.innerHTML='💡 Close — re-read the paragraph and try again, or tap "Show model answer".<div class="ar">اقترب من الصواب — أعد قراءة الفقرة وحاول مجدداً.</div>';
+    awardWrong();
+  }
+}
+function revealComp(i){
+  const fb=document.getElementById('comp-fb-'+i);
+  fb.className='feedback-box show ok';
+  if(compDone[i]){
+    fb.innerHTML='📖 Model answer: "'+COMP_Q[i].model+'" <span style="color:var(--slate);font-weight:400;">(already credited — no extra progress for viewing again)</span>';
+    return;
+  }
+  fb.innerHTML='📖 Model answer: "'+COMP_Q[i].model+'"<div style="margin-top:4px;color:var(--slate);font-size:.76rem;">Revealing counts as completing the question, but for full XP try answering it yourself next time.</div>';
+  compDone[i]=true; checkReadingDone(); bumpProgress(1);
+  lockRevealButton(i);
+}
+function lockRevealButton(i){
+  const tag=document.getElementById('comp-credited-'+i);
+  if(tag) tag.style.display='inline';
+}
+function checkReadingDone(){
+  if(Object.keys(compDone).length===COMP_Q.length) markStepDone('reading',20);
+}
+
+/* ============================================================
+   PARAGRAPH STRUCTURE — Tab 3
+   ============================================================ */
+function buildLabelEx(){
+  const order=[1,0,4,3,2]; // display order matching worksheet Exercise A
+  const wrap=document.getElementById('labelex-list');
+  wrap.innerHTML=order.map((idx,i)=>`
+    <div class="item-row">
+      ${i+1}. ${PARAGRAPH_SENTENCES[idx]}
+      <div class="label-pills" id="labelex-${i}" data-correct="${SENT_LABELS[idx]}">
+        <span class="label-pill" data-lab="TS" onclick="pickLabel(${i},'TS',this)">TS</span>
+        <span class="label-pill" data-lab="SS" onclick="pickLabel(${i},'SS',this)">SS</span>
+        <span class="label-pill" data-lab="CS" onclick="pickLabel(${i},'CS',this)">CS</span>
+      </div>
+    </div>`).join('');
+}
+let labelDone={};
+function pickLabel(i,val,el){
+  const group=document.getElementById('labelex-'+i);
+  if(group.classList.contains('locked-solved')) return; // already scored
+  const correct=group.dataset.correct;
+  group.querySelectorAll('.label-pill').forEach(p=>p.classList.remove('right','wrong'));
+  if(val===correct){
+    el.classList.add('right');
+    awardCorrect({xp:6});
+    labelDone[i]=true; checkStructureDone();
+    group.classList.add('locked-solved');
+    group.querySelectorAll('.label-pill').forEach(p=>p.style.pointerEvents='none');
+  }else{
+    el.classList.add('wrong');
+    awardWrong();
+  }
+}
+
+let orderExDone=false;
+function buildOrderEx(){
+  document.getElementById('orderEx-bank').innerHTML=ORDER_EX_SHUFFLED.map(idx=>`<span class="dnd-word" data-idx="${idx}" style="max-width:100%;white-space:normal;text-align:left;">${PARAGRAPH_SENTENCES[idx]}</span>`).join('');
+  document.getElementById('orderEx-zone').innerHTML='';
+  refreshDnD(document.getElementById('tab-3'));
+}
+function checkOrderEx(){
+  const zone=document.getElementById('orderEx-zone');
+  const chosen=Array.from(zone.querySelectorAll('.dnd-word')).map(w=>w.textContent.trim());
+  const fb=document.getElementById('orderEx-fb');
+  if(chosen.length<PARAGRAPH_SENTENCES.length){ fb.className='feedback-box show bad'; fb.innerHTML='⚠️ Drag all 5 sentences into the box first.<div class="ar">اسحب كل الجمل الخمس أولاً.</div>'; return; }
+  const ok=chosen.every((s,i)=>normalizeAnswer(s)===normalizeAnswer(PARAGRAPH_SENTENCES[i]));
+  fb.className='feedback-box show';
+  if(ok){
+    zone.classList.add('correct'); zone.classList.remove('incorrect');
+    fb.classList.add('ok');
+    if(orderExDone){
+      fb.innerHTML='✅ Still correct! (XP already awarded for this exercise)<div class="ar">لا تزال صحيحة! (تم منح النقاط مسبقاً)</div>';
+      return;
+    }
+    fb.innerHTML='✅ Perfect paragraph order!<div class="ar">ترتيب الفقرة صحيح تماماً!</div>';
+    awardCorrect({xp:20, confetti:true});
+    orderExDone=true; checkStructureDone();
+  }else{
+    zone.classList.add('incorrect'); zone.classList.remove('correct');
+    fb.classList.add('bad');
+    fb.innerHTML='⚠️ Not quite the right order. Remember: Topic → Supporting → Concluding.<div class="ar">الترتيب غير صحيح تماماً. تذكر: رئيسية ← داعمة ← خاتمة.</div>';
+    awardWrong();
+  }
+}
+function resetOrderEx(){ buildOrderEx(); document.getElementById('orderEx-fb').classList.remove('show'); orderExDone=false; }
+function checkStructureDone(){
+  if(Object.keys(labelDone).length===5 && orderExDone) markStepDone('structure',25);
+}
+
+/* ============================================================
+   GUIDED WRITING — Tab 4
+   ============================================================ */
+/* Per-box state: which support panels are open, which have been used at least once
+   (used to soften the completion message + gate the "Independent Writer" achievement) */
+let guidedPanelState={}; // {i: {idea:bool, vocab:bool, example:bool}}
+let guidedHelpUsed={};   // {i: true} once ANY support was opened for that box
+
+function buildGuided(){
+  document.getElementById('guided-vocab-bank').innerHTML=VOCAB.map(v=>`<span class="vocab-chip" onclick="insertVocabChip('${v.w}')">${v.w}</span>`).join('');
+  GUIDED_FRAME.forEach((g,i)=>{ guidedPanelState[i]={idea:false,vocab:false,example:false}; guidedHelpUsed[i]=false; });
+
+  document.getElementById('guided-blocks').innerHTML=GUIDED_FRAME.map((g,i)=>{
+    const lvl=g.supportLevel;
+    // Support fades as the level rises: idea prompts open by default only at level 1,
+    // the vocab-suggestion chip only appears at levels 1-3, and level 5 hides everything
+    // except the sentence starter — matching the "gradual release" goal.
+    const showVocabChip = lvl<=3;
+    const showIdeaChip = true; // idea prompts always available, but never auto-opened past level 1
+    return `
+    <div class="guide-block" id="guided-block-${i}">
+      <div class="guide-block-head">
+        <div class="guide-label">${g.label} <span class="ar">${g.ar}</span></div>
+        <span class="support-level-badge lvl${lvl}">${'🟢🔵🟡🟠⚪'[lvl-1]} ${g.levelName}</span>
+      </div>
+      <div class="guide-starter">${g.starter} ...</div>
+      <textarea class="guide-input" id="guided-input-${i}" placeholder="Continue the sentence..." oninput="updateGuidedProgress()"></textarea>
+
+      <div class="support-toggle-row">
+        ${showIdeaChip?`<span class="support-chip" id="chip-idea-${i}" onclick="toggleSupportPanel(${i},'idea')">💭 Idea Prompt</span>`:''}
+        ${showVocabChip?`<span class="support-chip" id="chip-vocab-${i}" onclick="toggleSupportPanel(${i},'vocab')">🧩 Vocabulary</span>`:''}
+        <span class="support-chip" id="chip-example-${i}" onclick="toggleSupportPanel(${i},'example')">📖 ${lvl<=2?'Model Example':lvl===3?'Partial Hint':'Keyword Hint'}</span>
+      </div>
+
+      <div class="support-panel" id="panel-idea-${i}">
+        <ul>${g.ideas.map(x=>`<li>${x}</li>`).join('')}</ul>
+        <div class="ar">${g.ideasAr}</div>
+      </div>
+      <div class="support-panel" id="panel-vocab-${i}">
+        Try using: 
+        <div class="vocab-mini">${g.vocab.map(w=>`<span class="vocab-chip" onclick="insertVocabChip('${w}',${i})">${w}</span>`).join('')}</div>
+      </div>
+      <div class="support-panel" id="panel-example-${i}"></div>
+
+      <div class="feedback-box" id="guided-hint-${i}"></div>
+    </div>`;
+  }).join('');
+}
+
+let guidedFocusIdx=0;
+document.addEventListener('focusin',e=>{
+  if(e.target && e.target.id && e.target.id.startsWith('guided-input-')) guidedFocusIdx=parseInt(e.target.id.split('-').pop());
+});
+function insertVocabChip(word,idx){
+  const target = (idx!==undefined) ? idx : guidedFocusIdx;
+  const ta=document.getElementById('guided-input-'+target);
+  if(!ta) return;
+  ta.value = ta.value ? (ta.value.trim()+' '+word+' ') : (word+' ');
+  updateGuidedProgress();
+  ta.focus();
+}
+
+/* Opens/closes one of the three support panels for box i, and — the first time any
+   panel is opened for that box — renders its content according to the box's support
+   level (so later boxes reveal less). Toggling never re-lowers XP already earned;
+   it only marks that help was used, for the completion message + achievement gate. */
+function toggleSupportPanel(i,type){
+  const g=GUIDED_FRAME[i];
+  const panel=document.getElementById('panel-'+type+'-'+i);
+  const chip=document.getElementById('chip-'+type+'-'+i);
+  const isOpen=panel.classList.contains('open');
+
+  if(type==='example' && !panel.dataset.rendered){
+    panel.innerHTML=renderExampleHint(g);
+    panel.dataset.rendered='1';
+  }
+
+  if(isOpen){
+    panel.classList.remove('open'); chip.classList.remove('on');
+  }else{
+    panel.classList.add('open'); chip.classList.add('on');
+    if(!guidedHelpUsed[i]){
+      guidedHelpUsed[i]=true;
+      chip.classList.add('used');
+      if(!chip.querySelector('.help-used-tag')) chip.insertAdjacentHTML('beforeend','<span class="help-used-tag">used</span>');
+    }
+  }
+  guidedPanelState[i][type]=!isOpen;
+  updateGuidedProgress();
+}
+
+/* Level 1-2: full model sentence. Level 3: half the sentence, then a click-through
+   reveals the rest. Level 4-5: only a single suggested keyword — the learner has to
+   build the sentence themselves. This is the "help gradually decreases" mechanic. */
+function renderExampleHint(g){
+  const i=GUIDED_FRAME.indexOf(g);
+  if(g.supportLevel<=2){
+    return `📖 Model: "${g.model}"`;
+  }
+  if(g.supportLevel===3){
+    const words=g.model.split(' ');
+    const half=words.slice(0,Math.ceil(words.length/2)).join(' ');
+    return `<span id="partial-hint-${i}">📖 Starts like: "${half} …"</span> <button type="button" class="hint-btn" style="margin-left:6px;" onclick="revealFullExampleHint(${i})">Reveal rest</button>`;
+  }
+  return `🔑 Try building your sentence around: <strong>"${g.vocab[0]}"</strong>. No full example this time — you've got this!`;
+}
+function revealFullExampleHint(i){
+  const span=document.getElementById('partial-hint-'+i);
+  if(span) span.textContent='📖 Model: "'+GUIDED_FRAME[i].model+'"';
+  guidedHelpUsed[i]=true;
+}
+
+const COACH_MSGS=[
+  "👋 Start with the topic sentence — click a box below to begin!",
+  "✅ Great start! Now add your first supporting sentence.",
+  "💪 Keep going — one more supporting sentence to go!",
+  "🔥 Almost there — add your last supporting detail! Notice you're getting less help now.",
+  "🏁 Finish strong with a concluding sentence — try it with minimal support!",
+  "🎉 All five parts complete — click 'Finish My Paragraph'!"
+];
+function updateGuidedProgress(){
+  let filled=0;
+  GUIDED_FRAME.forEach((g,i)=>{
+    const ta=document.getElementById('guided-input-'+i);
+    const ok=ta && ta.value.trim().length>=3;
+    ta.classList.toggle('filled',ok);
+    if(ok) filled++;
+  });
+  document.getElementById('guided-progress').style.width=(filled/GUIDED_FRAME.length*100)+'%';
+  document.getElementById('guided-coach').textContent=COACH_MSGS[filled];
+}
+let guidedFinishRewarded=false;
+function checkGuided(){
+  updateGuidedProgress();
+  let filled=0;
+  GUIDED_FRAME.forEach((g,i)=>{ if(document.getElementById('guided-input-'+i).value.trim().length>=3) filled++; });
+  const fb=document.getElementById('guided-fb');
+  fb.className='feedback-box show';
+  if(filled===GUIDED_FRAME.length){
+    const helpCount=Object.values(guidedHelpUsed).filter(Boolean).length;
+    fb.classList.add('ok');
+    if(guidedFinishRewarded){
+      fb.innerHTML='✅ Your paragraph is already saved and credited — feel free to keep polishing it, but no extra XP is given for clicking Finish again.<div class="ar">تم حفظ فقرتك ومنح النقاط مسبقاً — يمكنك متابعة التحسين، لكن لن تحصل على نقاط إضافية.</div>';
+      saveGuidedText();
+      return;
+    }
+    let msg='✅ Wonderful! You completed your guided paragraph.<div class="ar">رائع! أكملت فقرتك الموجهة.</div>';
+    if(helpCount===0){
+      msg+='<div style="margin-top:6px;">🌟 You wrote every sentence with <strong>no support</strong> — amazing independence!</div>';
+    }else if(helpCount<=2){
+      msg+='<div style="margin-top:6px;">👏 You used a little help on '+helpCount+' box(es) — try even less next time!</div>';
+    }else{
+      msg+='<div style="margin-top:6px;">💡 You leaned on support quite a bit — that\'s okay! Re-read Step 3\'s paragraph and try Step 6 (Write from Memory) to build confidence.</div>';
+    }
+    fb.innerHTML=msg;
+    // Anti-exploit: full XP for independent completion, tapering as more help is used —
+    // so a learner who leans on every hint still finishes the step, but earns less.
+    const xpAward = Math.max(10, 25 - helpCount*3);
+    awardCorrect({xp:xpAward, progress:2, confetti:true});
+    guidedFinishRewarded=true;
+    if(helpCount===0){ unlockedAch['independent']=true; showAchToast('🦅 Self-Reliant Writer'); }
+    markStepDone('guided',15);
+    saveGuidedText();
+  }else{
+    fb.classList.add('bad');
+    fb.innerHTML=`⚠️ Please complete all ${GUIDED_FRAME.length} boxes (${filled}/${GUIDED_FRAME.length} done).<div class="ar">أكمل كل الصناديق الخمسة.</div>`;
+    awardWrong();
+  }
+}
+function saveGuidedText(){
+  const parts=GUIDED_FRAME.map((g,i)=>g.starter+' '+document.getElementById('guided-input-'+i).value.trim());
+  AppStorage.set('guidedText', parts.join(' '));
+}
+function resetGuided(){
+  GUIDED_FRAME.forEach((g,i)=>{
+    document.getElementById('guided-input-'+i).value='';
+    document.getElementById('guided-input-'+i).classList.remove('filled');
+    document.getElementById('guided-hint-'+i).classList.remove('show');
+    ['idea','vocab','example'].forEach(type=>{
+      const panel=document.getElementById('panel-'+type+'-'+i);
+      const chip=document.getElementById('chip-'+type+'-'+i);
+      if(panel){ panel.classList.remove('open'); panel.removeAttribute('data-rendered'); panel.innerHTML=''; }
+      if(chip){ chip.classList.remove('on','used'); const tag=chip.querySelector('.help-used-tag'); if(tag) tag.remove(); }
+    });
+    guidedPanelState[i]={idea:false,vocab:false,example:false};
+    guidedHelpUsed[i]=false;
+  });
+  document.getElementById('guided-fb').classList.remove('show');
+  guidedFinishRewarded=false;
+  updateGuidedProgress();
+}
+
+/* ============================================================
+   MEMORY MODE — Tab 5
+   ============================================================ */
+function buildMemory(){
+  document.getElementById('memory-text').innerHTML='<p style="font-size:1.02rem;line-height:2;">'+PARAGRAPH_TEXT+'</p><button type="button" class="audio-btn" onclick="speak(\''+PARAGRAPH_TEXT.replace(/'/g,"\\'")+'\')" style="margin-top:8px;">🔊 Listen</button>';
+  buildAttempts();
+}
+function hideMemoryText(){
+  document.getElementById('memory-card').classList.add('hidden-text');
+  document.getElementById('hide-mem-btn').style.display='none';
+  document.getElementById('show-mem-btn').style.display='inline-flex';
+  document.getElementById('memory-timer').style.display='inline-flex';
+  memSeconds=0;
+  document.getElementById('mem-time').textContent='0';
+  clearInterval(memTimerInt);
+  memTimerInt=setInterval(()=>{ memSeconds++; document.getElementById('mem-time').textContent=memSeconds; },1000);
+  document.querySelectorAll('.attempt-card').forEach(c=>c.classList.remove('locked'));
+}
+function showMemoryText(){
+  document.getElementById('memory-card').classList.remove('hidden-text');
+  document.getElementById('hide-mem-btn').style.display='inline-flex';
+  document.getElementById('show-mem-btn').style.display='none';
+  document.getElementById('memory-timer').style.display='none';
+  clearInterval(memTimerInt);
+}
+function buildAttempts(){
+  const wrap=document.getElementById('attempts-wrap');
+  wrap.innerHTML=[0,1,2].map(i=>`
+    <div class="attempt-card locked" id="attempt-card-${i}">
+      <div class="attempt-title">Attempt ${i+1} <span class="ar">(المحاولة ${['الأولى','الثانية','الثالثة'][i]})</span></div>
+      <textarea class="free-input" id="attempt-input-${i}" placeholder="Write the paragraph from memory..."></textarea>
+      <div class="btn-row">
+        <button class="rbtn purple" onclick="checkMemory(${i})">🧠 Compare with Original</button>
+      </div>
+      <div id="attempt-result-${i}"></div>
+    </div>`).join('');
+}
+/* ============================================================
+   ADVANCED MEMORY ANALYSIS — word / order / sentence accuracy
+   ============================================================ */
+function computeMemoryAnalysis(original, student){
+  const stripPunct = s => s.replace(/[.,!?]/g,'');
+  const origWords = stripPunct(original).split(/\s+/).filter(Boolean);
+  const studWords = stripPunct(student).split(/\s+/).filter(Boolean);
+  const origLower = origWords.map(w=>w.toLowerCase());
+  const studLower = studWords.map(w=>w.toLowerCase());
+
+  // Word accuracy — multiset-aware: how many original words appear (with correct
+  // multiplicity) anywhere in the student's text.
+  const freq={};
+  studLower.forEach(w=>{ freq[w]=(freq[w]||0)+1; });
+  let wordMatches=0;
+  origLower.forEach(w=>{ if(freq[w]>0){ freq[w]--; wordMatches++; } });
+  const wordAccuracy = origWords.length ? Math.round((wordMatches/origWords.length)*100) : 0;
+
+  // Order accuracy — Longest Common Subsequence between the two word sequences.
+  const n=origLower.length, m=studLower.length;
+  const dp=Array.from({length:n+1},()=>new Array(m+1).fill(0));
+  for(let a=1;a<=n;a++){
+    for(let b=1;b<=m;b++){
+      if(origLower[a-1]===studLower[b-1]) dp[a][b]=dp[a-1][b-1]+1;
+      else dp[a][b]=Math.max(dp[a-1][b],dp[a][b-1]);
+    }
+  }
+  const lcsLen=dp[n][m];
+  const orderAccuracy = origWords.length ? Math.round((lcsLen/origWords.length)*100) : 0;
+
+  // Backtrack the DP table to find which original-word positions are part of the LCS
+  // (i.e. remembered *in the correct order*, as opposed to just remembered anywhere).
+  const inOrderIdx=new Set();
+  { let a=n,b=m;
+    while(a>0&&b>0){
+      if(origLower[a-1]===studLower[b-1]){ inOrderIdx.add(a-1); a--; b--; }
+      else if(dp[a-1][b]>=dp[a][b-1]) a--;
+      else b--;
+    }
+  }
+
+  // Sentence accuracy — for each of the 5 known original sentences, check whether a
+  // reasonably-matching sentence exists in the student's text (>=70% word overlap).
+  const studSentencesRaw = student.split(/[.!?]+/).map(s=>s.trim()).filter(Boolean);
+  const studSentenceWordSets = studSentencesRaw.map(s=>new Set(stripPunct(s).toLowerCase().split(/\s+/).filter(Boolean)));
+  let sentenceMatches=0;
+  PARAGRAPH_SENTENCES.forEach(origSent=>{
+    const origSet=new Set(stripPunct(origSent).toLowerCase().split(/\s+/).filter(Boolean));
+    const found = studSentenceWordSets.some(sset=>{
+      let overlap=0; origSet.forEach(w=>{ if(sset.has(w)) overlap++; });
+      return origSet.size>0 && (overlap/origSet.size)>=0.7;
+    });
+    if(found) sentenceMatches++;
+  });
+  const sentenceAccuracy = Math.round((sentenceMatches/PARAGRAPH_SENTENCES.length)*100);
+
+  const overallSimilarity = Math.round(wordAccuracy*0.4 + orderAccuracy*0.3 + sentenceAccuracy*0.3);
+
+  // Visual comparison: green = remembered in the correct order, gold = remembered but
+  // out of order, red = missing entirely.
+  const studFreqForHighlight={}; studLower.forEach(w=>{ studFreqForHighlight[w]=(studFreqForHighlight[w]||0)+1; });
+  const highlightedOriginal = origWords.map((w,idx)=>{
+    const lw=origLower[idx];
+    const presentAnywhere = studFreqForHighlight[lw]>0;
+    if(presentAnywhere) studFreqForHighlight[lw]--;
+    if(inOrderIdx.has(idx)) return '<span class="mem-ok">'+w+'</span>';
+    if(presentAnywhere) return '<span class="mem-order">'+w+'</span>';
+    return '<span class="mem-miss">'+w+'</span>';
+  }).join(' ');
+
+  // Extra words — words the student wrote that never appear in the original at all.
+  const origFreqAll={}; origLower.forEach(w=>{ origFreqAll[w]=(origFreqAll[w]||0)+1; });
+  const extraWords=[];
+  studWords.forEach((w,idx)=>{ if(!origFreqAll[studLower[idx]]) extraWords.push(w); });
+
+  let level,levelAr,levelEm,levelColor;
+  if(overallSimilarity>=95){ level='Gold Memory Master'; levelAr='بطل الذاكرة الذهبي'; levelEm='🏆'; levelColor='linear-gradient(135deg,#F59E0B,#FBBF24)'; }
+  else if(overallSimilarity>=80){ level='Silver Memory Master'; levelAr='بطل الذاكرة الفضي'; levelEm='🥈'; levelColor='linear-gradient(135deg,#94A3B8,#CBD5E1)'; }
+  else if(overallSimilarity>=60){ level='Bronze Memory Master'; levelAr='بطل الذاكرة البرونزي'; levelEm='🥉'; levelColor='linear-gradient(135deg,#CD7F32,#E5A45B)'; }
+  else { level='Keep Practising'; levelAr='واصل التدريب'; levelEm='📚'; levelColor='var(--slate)'; }
+
+  return { wordAccuracy, orderAccuracy, sentenceAccuracy, overallSimilarity, highlightedOriginal, extraWords, level, levelAr, levelEm, levelColor };
+}
+
+let memAttemptScored={};
+function checkMemory(i){
+  const userText=document.getElementById('attempt-input-'+i).value;
+  if(isEmptyAnswer(userText)){
+    document.getElementById('attempt-result-'+i).innerHTML='<div class="feedback-box show bad">⚠️ Please write something first.<div class="ar">اكتب شيئاً أولاً.</div></div>';
+    return;
+  }
+  const a=computeMemoryAnalysis(PARAGRAPH_TEXT, userText);
+  const alreadyScored=memAttemptScored[i];
+  const resultBox=document.getElementById('attempt-result-'+i);
+  resultBox.innerHTML=`
+    <div class="mem-metric-grid">
+      <div class="mem-metric"><b>${a.wordAccuracy}%</b><span>Word Accuracy</span></div>
+      <div class="mem-metric"><b>${a.orderAccuracy}%</b><span>Order Accuracy</span></div>
+      <div class="mem-metric"><b>${a.sentenceAccuracy}%</b><span>Sentence Accuracy</span></div>
+      <div class="mem-metric"><b>${a.overallSimilarity}%</b><span>Overall Similarity</span></div>
+    </div>
+    <div style="text-align:center;">
+      <span class="mem-level-badge" style="background:${a.levelColor};color:${a.overallSimilarity<60?'#fff':'#1a0a00'};">${a.levelEm} ${a.level}</span>
+      <div style="font-size:.76rem;color:var(--slate);margin-top:2px;direction:rtl;">${a.levelAr}</div>
+    </div>
+    <div style="font-size:.78rem;margin:10px 0 4px;">
+      <span class="mem-ok">Green</span> = remembered in order &nbsp; <span class="mem-order">Gold</span> = remembered but out of order &nbsp; <span class="mem-miss">Red</span> = missing
+      <div class="ar" style="color:var(--slate);margin-top:2px;">أخضر = تذكرتها بالترتيب، ذهبي = تذكرتها لكن بترتيب خاطئ، أحمر = فاتتك</div>
+    </div>
+    <div style="font-size:.9rem;line-height:2;padding:10px;background:var(--card-bg);border-radius:8px;border:1px solid var(--border-col);">${a.highlightedOriginal}</div>
+    ${a.extraWords.length ? `<div style="font-size:.78rem;margin-top:8px;"><strong>Extra words you added:</strong> <span class="mem-extra">${a.extraWords.join(', ')}</span><div class="ar" style="color:var(--slate);">كلمات إضافية أضفتها</div></div>` : ''}
+    ${alreadyScored?'<div style="margin-top:6px;color:var(--slate);font-size:.74rem;">(Comparison updated — XP for this attempt was already awarded the first time you compared.)</div>':''}
+  `;
+  if(alreadyScored){ return; } // anti-exploit: only the first comparison per attempt earns XP/progress
+  let xpAward=5;
+  if(a.overallSimilarity>=95){ xpAward=25; awardCorrect({xp:xpAward, progress:0, confetti:true}); }
+  else if(a.overallSimilarity>=80){ xpAward=18; awardCorrect({xp:xpAward, progress:0}); }
+  else if(a.overallSimilarity>=60){ xpAward=10; awardCorrect({xp:xpAward, progress:0}); }
+  else { addXP(xpAward); awardWrong(); }
+  bumpProgress(1);
+  memAttemptScored[i]=true;
+  memAttemptDone[i]=true;
+  checkMemoryStepDone();
+}
+let memAttemptDone={};
+function checkMemoryStepDone(){
+  if(Object.keys(memAttemptDone).length>=1) markStepDone('memory',20);
+}
+
+/* ============================================================
+   WRITING STUDIO — Tab 7: Free Writing
+   ============================================================ */
+function buildStudio(){
+  document.getElementById('studio-vocab-bank').innerHTML=VOCAB.map(v=>`<span class="vocab-chip" onclick="insertStudioChip('${v.w}')">${v.w}</span>`).join('');
+  const saved=AppStorage.get('studioText');
+  if(saved) document.getElementById('studio-text').value=saved;
+  loadStudioChecklist();
+  updateStudioCounters();
+}
+function insertStudioChip(word){
+  const ta=document.getElementById('studio-text');
+  ta.value = ta.value ? (ta.value.trim()+' '+word+' ') : (word+' ');
+  updateStudioCounters();
+  ta.focus();
+}
+function updateStudioCounters(){
+  const text=document.getElementById('studio-text').value;
+  const words=text.trim().length ? text.trim().split(/\s+/) : [];
+  document.getElementById('word-count').textContent=words.length;
+  const sentences=text.split(/[.!?]+/).map(s=>s.trim()).filter(Boolean);
+  document.getElementById('sent-count').textContent=sentences.length;
+  const lower=text.toLowerCase();
+  let vocabUsed=0;
+  VOCAB.forEach(v=>{ if(new RegExp('\\b'+v.w+'\\b','i').test(lower)) vocabUsed++; });
+  document.getElementById('vocab-used-count').textContent=vocabUsed;
+  document.getElementById('chk-vocab').checked = vocabUsed>0;
+  AppStorage.set('studioText', text);
+}
+/* ============================================================
+   SMART WRITING ANALYSIS — rule-based paragraph analyzer
+   ============================================================ */
+function analyzeWriting(text){
+  const trimmed=text.trim();
+  let sentences=trimmed.split(/(?<=[.!?])\s+/).map(s=>s.trim()).filter(Boolean);
+  if(!sentences.length) sentences=trimmed.split(/[.!?]+/).map(s=>s.trim()).filter(Boolean);
+  const wordCount = trimmed.length ? trimmed.split(/\s+/).length : 0;
+  const lower=trimmed.toLowerCase();
+  const vocabFound = VOCAB.filter(v=>new RegExp('\\b'+v.w+'\\b','i').test(lower)).map(v=>v.w);
+
+  const firstSentence = sentences[0]||'';
+  const lastSentence = sentences[sentences.length-1]||'';
+  const supportSentences = sentences.length>2 ? sentences.slice(1,-1) : [];
+
+  const hasTopicSentence = sentences.length>=1 && firstSentence.split(/\s+/).filter(Boolean).length>=4 && /^[A-Z]/.test(firstSentence);
+  const conclusionSignals=/\b(with|so|therefore|finally|overall|think|should|believe|recommend|everyone)\b/i;
+  const hasConclusion = sentences.length>=4 && lastSentence.trim().length>0 && normalizeAnswer(lastSentence)!==normalizeAnswer(firstSentence);
+  const strongConclusion = hasConclusion && conclusionSignals.test(lastSentence);
+  const punctuationOK = sentences.length>0 && sentences.every(s=>/[.!?]$/.test(s.trim())) && /^[A-Z]/.test(trimmed);
+
+  // Weighted 0–100 quality score
+  let score=0;
+  score += hasTopicSentence?20:0;
+  score += Math.min(supportSentences.length,3)/3*30;
+  score += hasConclusion ? (strongConclusion?20:12) : 0;
+  score += Math.min(vocabFound.length,2)/2*15;
+  score += punctuationOK?15:0;
+  score = Math.round(Math.max(0,Math.min(100,score)));
+
+  const rows=[
+    {ok:hasTopicSentence,
+     text: hasTopicSentence?'Strong topic sentence detected.':'Topic sentence needs work — start with a clear main idea.',
+     textAr: hasTopicSentence?'تم رصد جملة رئيسية قوية.':'الجملة الرئيسية تحتاج تحسيناً — ابدأ بفكرة رئيسية واضحة.'},
+    {ok:supportSentences.length>=3,
+     text: supportSentences.length>=3?`${supportSentences.length} supporting sentences found.`:`Only ${supportSentences.length} supporting sentence(s) detected — aim for at least 3.`,
+     textAr: supportSentences.length>=3?`تم إيجاد ${supportSentences.length} جمل داعمة.`:`تم إيجاد ${supportSentences.length} فقط — استهدف ثلاث جمل على الأقل.`},
+    {ok:hasConclusion,
+     text: strongConclusion?'Strong concluding sentence detected.':(hasConclusion?'A concluding sentence is present, but could be stronger.':'Conclusion needs improvement — add a wrap-up sentence.'),
+     textAr: strongConclusion?'تم رصد جملة خاتمة قوية.':(hasConclusion?'هناك جملة خاتمة، لكن يمكن تقويتها.':'الخاتمة تحتاج تحسيناً — أضف جملة ختامية.')},
+    {ok:vocabFound.length>0,
+     text: vocabFound.length>0?`Vocabulary from the lesson used correctly (${vocabFound.join(', ')}).`:'Try to use at least one lesson word.',
+     textAr: vocabFound.length>0?`تم استخدام مفردات الدرس (${vocabFound.join('، ')}).`:'حاول استخدام كلمة واحدة على الأقل من كلمات الدرس.'},
+    {ok:punctuationOK,
+     text: punctuationOK?'Punctuation and capitalization look correct.':'Check punctuation — start with a capital letter and end each sentence with . ! or ?',
+     textAr: punctuationOK?'علامات الترقيم والأحرف الكبيرة صحيحة.':'راجع علامات الترقيم — ابدأ بحرف كبير وأنهِ كل جملة بنقطة أو علامة.'},
+    {ok:true, info:true, text:`${wordCount} words, ${sentences.length} sentences.`, textAr:`${wordCount} كلمة، ${sentences.length} جملة.`}
+  ];
+  return {score, rows, wordCount, sentenceCount:sentences.length, vocabFound};
+}
+
+let studioBestScore=0;
+function getStudioFeedback(){
+  const text=document.getElementById('studio-text').value;
+  const fb=document.getElementById('studio-fb');
+  if(isEmptyAnswer(text)){
+    fb.className='feedback-box show bad';
+    fb.innerHTML='⚠️ Write your paragraph first, then ask for feedback.<div class="ar">اكتب فقرتك أولاً.</div>';
+    return;
+  }
+  const a=analyzeWriting(text);
+  const ringColor = a.score>=85?'var(--green)':a.score>=60?'var(--gold)':'var(--coral)';
+  const rowsHtml=a.rows.map(r=>`<div class="analysis-row ${r.info?'':(r.ok?'ok':'warn')}"><span class="ic">${r.info?'ℹ️':(r.ok?'✅':'⚠️')}</span><span>${r.text}<div class="ar" style="font-size:.72rem;color:var(--slate);">${r.textAr}</div></span></div>`).join('');
+  // Anti-exploit: XP is only earned for the *improvement* in quality score over the
+  // best ever reached for this paragraph — repeatedly clicking "Get Feedback" on
+  // unchanged (or worse) text earns nothing further, capped at 30 XP total.
+  const newlyEarned = Math.max(0, Math.round(a.score*0.3) - Math.round(studioBestScore*0.3));
+  fb.className='feedback-box show '+(a.score>=60?'ok':'bad');
+  fb.innerHTML=`
+    <div class="quality-score-wrap">
+      <div class="quality-ring" style="background:${ringColor}">${a.score}</div>
+      <div style="font-size:.85rem;font-weight:700;">${a.score>=85?'Excellent paragraph!':a.score>=60?'Good — getting there!':'Keep revising your paragraph.'}
+        <div class="ar" style="font-weight:600;color:var(--slate);font-size:.78rem;">${a.score>=85?'فقرة ممتازة!':a.score>=60?'جيدة — أنت تقترب!':'واصل تحسين فقرتك.'}</div>
+      </div>
+    </div>
+    ${rowsHtml}
+    ${newlyEarned===0 && studioBestScore>0 ? '<div style="margin-top:6px;color:var(--slate);font-size:.74rem;">(No new XP until your score improves further.)</div>' : ''}
+  `;
+  if(newlyEarned>0){
+    awardCorrect({xp:newlyEarned, confetti:(a.score>=85), streak:false});
+    studioBestScore=Math.max(studioBestScore,a.score);
+  }
+  freeWritingAttempted=true; checkFreeDone();
+}
+function clearStudio(){
+  document.getElementById('studio-text').value='';
+  updateStudioCounters();
+  document.getElementById('studio-fb').classList.remove('show');
+}
+function saveStudioChecklist(){
+  const state={
+    topic:document.getElementById('chk-topic').checked,
+    support:document.getElementById('chk-support').checked,
+    conclude:document.getElementById('chk-conclude').checked,
+    punct:document.getElementById('chk-punct').checked
+  };
+  AppStorage.set('studioChecklist', state);
+  const allChecked=state.topic&&state.support&&state.conclude&&state.punct;
+  if(allChecked){ freeChecklistDone=true; checkFreeDone(); }
+}
+function loadStudioChecklist(){
+  const s=AppStorage.get('studioChecklist');
+  if(!s) return;
+  document.getElementById('chk-topic').checked=!!s.topic;
+  document.getElementById('chk-support').checked=!!s.support;
+  document.getElementById('chk-conclude').checked=!!s.conclude;
+  document.getElementById('chk-punct').checked=!!s.punct;
+}
+let freeWritingAttempted=false, freeChecklistDone=false;
+function checkFreeDone(){
+  if(freeWritingAttempted && freeChecklistDone) markStepDone('free',25);
+}
+
+/* ============================================================
+   SELF-CHECK — Tab 8
+   ============================================================ */
+function buildSelfCheck(){
+  const wrap=document.getElementById('selfcheck-list');
+  wrap.innerHTML=SELFCHECK.map((s,i)=>{
+    const [en,ar]=s.split(' — ');
+    return `<label class="selfcheck-item" id="scitem-${i}">
+      <input type="checkbox" onchange="onSelfCheck(${i},this)">
+      <span class="txt">${en}<div class="ar">${ar}</div></span>
+    </label>`;
+  }).join('');
+  const saved=AppStorage.get('selfCheck');
+  if(saved){
+    saved.forEach((v,i)=>{
+      if(v){ document.querySelector('#scitem-'+i+' input').checked=true; document.getElementById('scitem-'+i).classList.add('checked'); selfCheckRewarded[i]=true; }
+    });
+  }
+  updateSelfCheckScore();
+}
+let selfCheckRewarded={};
+function onSelfCheck(i,el){
+  document.getElementById('scitem-'+i).classList.toggle('checked',el.checked);
+  updateSelfCheckScore();
+  if(el.checked && !selfCheckRewarded[i]){ addXP(4); selfCheckRewarded[i]=true; }
+}
+function updateSelfCheckScore(){
+  const boxes=document.querySelectorAll('#selfcheck-list input[type=checkbox]');
+  let count=0; const states=[];
+  boxes.forEach(b=>{ if(b.checked) count++; states.push(b.checked); });
+  document.getElementById('sc-score').textContent=count;
+  AppStorage.set('selfCheck', states);
+  const msgEl=document.getElementById('sc-message');
+  if(count===5){
+    msgEl.textContent='🌟 Fully ready! Your paragraph meets every goal.';
+    markStepDone('selfcheck',20);
+  }else if(count>=3){
+    msgEl.textContent='👍 Almost ready — review the unchecked points.';
+  }else{
+    msgEl.textContent='✏️ Keep revising your paragraph, then check again.';
+  }
+}
+
+/* ============================================================
+   TAB 6 — STORY MODE: "Noor's Study Abroad Journey"
+   ============================================================ */
+function buildStory(){
+  renderStoryScreen(storyIdx);
+}
+function renderStoryDots(){
+  const wrap=document.getElementById('story-dots');
+  if(!wrap) return;
+  wrap.innerHTML=STORY_SCREENS.map((s,i)=>{
+    const cls = storyScreenDone[i] ? 'done' : (i===storyIdx?'current':'');
+    return `<div class="story-dot ${cls}" onclick="storyJump(${i})">${i+1}</div>`;
+  }).join('');
+}
+function storyJump(i){
+  if(i>storyMaxUnlocked) return;
+  renderStoryScreen(i);
+}
+function renderStoryScreen(i){
+  storyIdx=i;
+  const s=STORY_SCREENS[i];
+  const stage=document.getElementById('story-stage');
+  document.getElementById('story-screen-label').textContent=`Scene ${i+1} / ${STORY_SCREENS.length}`;
+  document.getElementById('story-progress-fill').style.width=(i/(STORY_SCREENS.length-1)*100)+'%';
+  renderStoryDots();
+  const prevBtn=document.getElementById('story-prev-btn');
+  prevBtn.disabled = i===0; prevBtn.style.opacity = i===0?'.5':'1';
+
+  let html = `<div class="story-scene-art">${s.scene}</div>
+    <div class="story-narration">${s.narration}<div class="ar">${s.narrationAr}</div></div>`;
+  if(s.type!=='end'){
+    html += `<div class="story-challenge-label">${s.label} <span style="text-transform:none;color:var(--slate);font-weight:600;">${s.labelAr}</span></div>`;
+  }
+
+  if(s.type==='vocab' || s.type==='sentence'){
+    html += `<div style="font-weight:700;margin-bottom:3px;">${s.prompt}</div><div style="font-size:.78rem;color:var(--slate);direction:rtl;margin-bottom:10px;">${s.promptAr}</div>
+      <div id="story-opts">${s.opts.map((o,oi)=>`<div class="toggle-opt" style="display:block;margin-bottom:8px;padding:10px 14px;" onclick="storyPickOption(${oi},this)">${o}</div>`).join('')}</div>`;
+  }else if(s.type==='comprehension'){
+    html += `<div style="font-weight:700;margin-bottom:3px;">${s.prompt}</div><div style="font-size:.78rem;color:var(--slate);direction:rtl;margin-bottom:10px;">${s.promptAr}</div>
+      <textarea class="guide-input" id="story-comp-input" placeholder="Write your answer..." style="min-height:50px;"></textarea>
+      <div class="btn-row"><button class="rbtn" onclick="storyCheckComprehension()">✓ Check</button></div>`;
+  }else if(s.type==='order'){
+    html += `<div class="dnd-wordbank" id="story-order-bank" style="min-height:70px;"></div>
+      <div class="dnd-sequence" id="story-order-zone" style="min-height:150px;flex-direction:column;align-items:stretch;"></div>
+      <div class="btn-row"><button class="rbtn purple" onclick="storyCheckOrder()">✓ Check Order</button></div>`;
+  }else if(s.type==='write'){
+    html += `<div style="font-weight:700;margin-bottom:3px;">${s.prompt}</div><div style="font-size:.78rem;color:var(--slate);direction:rtl;margin-bottom:10px;">${s.promptAr}</div>
+      <textarea class="guide-input" id="story-write-input" placeholder="Your advice..." style="min-height:50px;"></textarea>
+      <div class="btn-row"><button class="rbtn" onclick="storyCheckWrite()">✓ Submit Advice</button><button class="hint-btn" onclick="storyShowWriteExample()">💡 Example</button></div>`;
+  }else if(s.type==='end'){
+    html += `<div style="text-align:center;margin-top:8px;"><button class="rbtn gold" onclick="storyFinish()">🏁 Finish Story</button></div>`;
+  }
+  html += `<div class="feedback-box" id="story-fb"></div>`;
+  stage.innerHTML=html;
+
+  if(s.type==='order'){
+    document.getElementById('story-order-bank').innerHTML=shuffle(s.sentences).map(sent=>`<span class="dnd-word" style="max-width:100%;white-space:normal;text-align:left;">${sent}</span>`).join('');
+    document.getElementById('story-order-zone').innerHTML='';
+    refreshDnD(stage);
+  }
+
+  const nextBtn=document.getElementById('story-next-btn');
+  nextBtn.style.display = s.type==='end' ? 'none' : 'inline-flex';
+  nextBtn.textContent = storyScreenDone[i] ? 'Next ▶' : 'Next ▶';
+  saveState();
+}
+function storyPrev(){ if(storyIdx>0) renderStoryScreen(storyIdx-1); }
+function storyNext(){
+  const s=STORY_SCREENS[storyIdx];
+  if(s.type!=='end' && !storyScreenDone[storyIdx]){
+    const fb=document.getElementById('story-fb');
+    fb.className='feedback-box show bad';
+    fb.innerHTML="⚠️ Complete this scene's challenge before moving on.<div class=\"ar\">أكمل تحدي هذا المشهد قبل المتابعة.</div>";
+    return;
+  }
+  if(storyIdx<STORY_SCREENS.length-1) renderStoryScreen(storyIdx+1);
+}
+function storyMarkDone(i,xpAmt){
+  if(storyScreenDone[i]) return; // anti-exploit: each scene's challenge only rewards once
+  storyScreenDone[i]=true;
+  storyMaxUnlocked=Math.max(storyMaxUnlocked,i+1);
+  awardCorrect({xp:xpAmt});
+  renderStoryDots();
+  if(Object.keys(storyScreenDone).length>=STORY_SCREENS.length-1) markStepDone('story',20); // all 5 challenge scenes done
+}
+function storyPickOption(oi,el){
+  const s=STORY_SCREENS[storyIdx];
+  if(storyScreenDone[storyIdx]) return;
+  const opts=document.getElementById('story-opts');
+  opts.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('correct-pick','wrong-pick'));
+  const fb=document.getElementById('story-fb');
+  fb.className='feedback-box show';
+  if(s.opts[oi]===s.correct){
+    el.classList.add('correct-pick');
+    fb.classList.add('ok'); fb.innerHTML='✅ '+(s.why||'Correct!')+`<div class="ar">${s.whyAr||''}</div>`;
+    storyMarkDone(storyIdx,10);
+  }else{
+    el.classList.add('wrong-pick');
+    fb.classList.add('bad'); fb.innerHTML="❌ Try again — think about Noor's situation.<div class=\"ar\">حاول مجدداً — فكّر في وضع نور.</div>";
+    awardWrong();
+  }
+}
+function storyCheckComprehension(){
+  const s=STORY_SCREENS[storyIdx];
+  const val=document.getElementById('story-comp-input').value;
+  const fb=document.getElementById('story-fb');
+  if(isEmptyAnswer(val)){ fb.className='feedback-box show bad'; fb.innerHTML='⚠️ Write an answer first.<div class="ar">اكتب إجابة أولاً.</div>'; return; }
+  const norm=normalizeAnswer(val);
+  const hit=s.keys.some(k=>norm.includes(k));
+  fb.className='feedback-box show';
+  if(hit){
+    fb.classList.add('ok'); fb.innerHTML='✅ Great! Model: "'+s.model+'"<div class="ar">أحسنت!</div>';
+    storyMarkDone(storyIdx,10);
+  }else{
+    fb.classList.add('bad'); fb.innerHTML="💡 Close — think about how studying abroad helped Noor.<div class=\"ar\">اقترب — فكّر كيف ساعدت الدراسة بالخارج نور.</div>";
+    awardWrong();
+  }
+}
+function storyCheckOrder(){
+  const s=STORY_SCREENS[storyIdx];
+  const zone=document.getElementById('story-order-zone');
+  const chosen=Array.from(zone.querySelectorAll('.dnd-word')).map(w=>w.textContent.trim());
+  const fb=document.getElementById('story-fb');
+  if(chosen.length<s.sentences.length){ fb.className='feedback-box show bad'; fb.innerHTML='⚠️ Drag all the sentences into the box first.<div class="ar">اسحب كل الجمل أولاً.</div>'; return; }
+  const ok=chosen.every((sent,idx)=>normalizeAnswer(sent)===normalizeAnswer(s.sentences[idx]));
+  fb.className='feedback-box show';
+  if(ok){
+    zone.classList.add('correct'); zone.classList.remove('incorrect');
+    fb.classList.add('ok'); fb.innerHTML='✅ Perfectly organised!<div class="ar">تم الترتيب بشكل مثالي!</div>';
+    triggerConfetti(false);
+    storyMarkDone(storyIdx,15);
+  }else{
+    zone.classList.add('incorrect'); zone.classList.remove('correct');
+    fb.classList.add('bad'); fb.innerHTML='⚠️ Not quite — remember: topic, then support, then conclusion.<div class="ar">ليست صحيحة تماماً — تذكر: رئيسية ثم داعمة ثم خاتمة.</div>';
+    awardWrong();
+  }
+}
+function storyShowWriteExample(){
+  const s=STORY_SCREENS[storyIdx];
+  const fb=document.getElementById('story-fb');
+  fb.className='feedback-box show ok';
+  fb.innerHTML='💡 Example: "'+s.example+'"';
+}
+function storyCheckWrite(){
+  const val=document.getElementById('story-write-input').value.trim();
+  const fb=document.getElementById('story-fb');
+  if(isEmptyAnswer(val)){ fb.className='feedback-box show bad'; fb.innerHTML='⚠️ Write your advice first.<div class="ar">اكتب نصيحتك أولاً.</div>'; return; }
+  const wordCount=val.split(/\s+/).filter(Boolean).length;
+  fb.className='feedback-box show';
+  if(wordCount>=4 && /[.!?]$/.test(val)){
+    fb.classList.add('ok'); fb.innerHTML="✅ Great advice! It will really help future students.<div class=\"ar\">نصيحة رائعة! ستساعد الطلاب مستقبلاً بالتأكيد.</div>";
+    storyMarkDone(storyIdx,10);
+  }else{
+    fb.classList.add('bad'); fb.innerHTML='💡 Try a full sentence with at least 4 words, ending with a period.<div class="ar">حاول كتابة جملة كاملة بأربع كلمات على الأقل، تنتهي بنقطة.</div>';
+    awardWrong();
+  }
+}
+function storyFinish(){
+  const fb=document.getElementById('story-fb');
+  fb.className='feedback-box show ok';
+  fb.innerHTML='🎉 Story complete! Great job helping Noor tell her story.<div class="ar">اكتملت القصة! عمل رائع في مساعدة نور على سرد قصتها.</div>';
+  triggerConfetti(true); playCorrectSound();
+  // Note: stepDone.story is already set by storyMarkDone() the moment the 5th
+  // challenge scene is completed — Scene 6 can only be reached after that happens,
+  // so markStepDone() is intentionally NOT called again here (it would be a no-op).
+  saveState();
+}
+
+/* ============================================================
+   BOSS BATTLE — Tab 9 (5 phases, HP-based)
+   ============================================================ */
+const BOSS_Q_TIME=20; // seconds per question in Timed Challenge mode
+function buildBossModeSelect(){
+  document.getElementById('boss-mode-select').style.display='block';
+  document.getElementById('boss-battle-screen').style.display='none';
+  document.getElementById('boss-victory').classList.remove('show');
+  document.getElementById('boss-gameover').classList.remove('show');
+}
+function startBossMode(mode){
+  bossMode=mode;
+  bossHP=100; playerHP=100; bossPhaseIdx=0; bossQIdx=0; bossAnswering=false;
+  bossWrongCount=0; bossXPEarned=0;
+  bossDone={1:false,2:false,3:false,4:false,5:false};
+  document.getElementById('boss-mode-select').style.display='none';
+  document.getElementById('boss-battle-screen').style.display='block';
+  document.getElementById('boss-mode-label').textContent = mode==='timed' ? '⏱ Timed Challenge' : '🎯 Practice Mode';
+  document.getElementById('boss-timer-wrap').classList.toggle('show', mode==='timed');
+  renderBossPhaseRow();
+  renderBossQuestion();
+  saveState();
+}
+function updateBossHUD(){
+  document.getElementById('boss-hp-fill').style.width=Math.max(0,bossHP)+'%';
+  document.getElementById('boss-hp-text').textContent=Math.max(0,bossHP)+'/100';
+  document.getElementById('player-hp-fill').style.width=Math.max(0,playerHP)+'%';
+  document.getElementById('player-hp-text').textContent=Math.max(0,playerHP)+'/100';
+  const phase=BOSS_PHASES[bossPhaseIdx];
+  if(phase){
+    document.getElementById('boss-name-label').textContent=phase.avatar+' '+phase.bossName;
+    document.getElementById('boss-avatar-el').textContent=phase.avatar;
+  }
+}
+function renderBossPhaseRow(){
+  document.getElementById('boss-phase-row').innerHTML=BOSS_PHASES.map((p,i)=>
+    `<div class="boss-phase-pip ${bossDone[p.id]?'cleared':(i===bossPhaseIdx?'on':'')}">${p.icon} P${i+1}</div>`).join('');
+}
+function renderBossQuestion(){
+  clearBossTimer();
+  bossAnswering=false;
+  const phase=BOSS_PHASES[bossPhaseIdx];
+  if(!phase) return;
+  const q=phase.questions[bossQIdx];
+  updateBossHUD(); renderBossPhaseRow();
+  document.getElementById('boss-avatar-el').classList.remove('hit');
+  document.getElementById('player-avatar-el').classList.remove('hit');
+
+  let html = `<div class="story-challenge-label">${phase.name} <span style="text-transform:none;color:var(--slate);font-weight:600;">${phase.nameAr}</span> — Q${bossQIdx+1}/${phase.questions.length}</div>
+    <div style="font-weight:700;margin-bottom:4px;">${q.prompt}</div>
+    <div style="font-size:.78rem;color:var(--slate);direction:rtl;margin-bottom:12px;">${q.promptAr}</div>`;
+  if(q.type==='mcq'){
+    html += `<div id="boss-mcq-opts">${q.opts.map((o,oi)=>`<div class="toggle-opt" style="display:block;margin-bottom:8px;padding:10px 14px;" onclick="bossAnswerMCQ(${oi},this)">${o.t}</div>`).join('')}</div>`;
+  }else if(q.type==='order'){
+    html += `<div class="dnd-wordbank" id="boss-order-bank" style="min-height:70px;"></div>
+      <div class="dnd-sequence" id="boss-order-zone" style="min-height:170px;flex-direction:column;align-items:stretch;"></div>
+      <div class="btn-row"><button class="rbtn coral" onclick="bossAnswerOrder()">⚔️ Attack with Correct Order</button></div>`;
+  }
+  html += `<div class="feedback-box" id="boss-q-fb"></div>`;
+  const card=document.getElementById('boss-question-card');
+  card.innerHTML=html;
+
+  if(q.type==='order'){
+    document.getElementById('boss-order-bank').innerHTML=shuffle(q.sentences).map(s=>`<span class="dnd-word" style="max-width:100%;white-space:normal;text-align:left;">${s}</span>`).join('');
+    document.getElementById('boss-order-zone').innerHTML='';
+    refreshDnD(card);
+  }
+  if(bossMode==='timed') startBossTimer();
+}
+function startBossTimer(){
+  clearBossTimer();
+  bossTimeLeft=BOSS_Q_TIME;
+  const bar=document.getElementById('boss-timer-bar');
+  const label=document.getElementById('boss-timer-label');
+  bar.style.transition='none'; bar.style.width='100%';
+  requestAnimationFrame(()=>{ bar.style.transition='width 1s linear'; });
+  label.textContent='⏳ '+bossTimeLeft+'s';
+  bossTimerInt=setInterval(()=>{
+    bossTimeLeft--;
+    bar.style.width=Math.max(0,(bossTimeLeft/BOSS_Q_TIME)*100)+'%';
+    label.textContent='⏳ '+Math.max(0,bossTimeLeft)+'s';
+    if(bossTimeLeft<=0){ clearBossTimer(); bossTimeExpired(); }
+  },1000);
+}
+function clearBossTimer(){ if(bossTimerInt){ clearInterval(bossTimerInt); bossTimerInt=null; } }
+function bossTimeExpired(){
+  if(bossAnswering) return;
+  bossAnswering=true;
+  const fb=document.getElementById('boss-q-fb');
+  fb.className='feedback-box show bad';
+  fb.innerHTML="⏰ Time's up! That counts as a miss.<div class=\"ar\">انتهى الوقت! تُحتسب كإجابة خاطئة.</div>";
+  awardWrong({streak:false}); // timeout doesn't break the streak, only a wrong pick does
+  applyPlayerDamage(15);
+  setTimeout(()=>{ if(playerHP<=0){ triggerBossGameOver(); } else { advanceBossQuestion(); } },1100);
+}
+function spawnDamageFloat(target,amount){
+  const arena=document.getElementById('boss-arena');
+  const targetEl = target==='boss' ? document.getElementById('boss-avatar-el') : document.getElementById('player-avatar-el');
+  const el=document.createElement('div');
+  el.className='dmg-float '+(target==='boss'?'dmg-boss':'dmg-player');
+  el.textContent='-'+amount;
+  const arenaRect=arena.getBoundingClientRect(), tRect=targetEl.getBoundingClientRect();
+  el.style.left=Math.max(0,(tRect.left-arenaRect.left+tRect.width/2-10))+'px';
+  el.style.top=Math.max(0,(tRect.top-arenaRect.top-6))+'px';
+  arena.appendChild(el);
+  setTimeout(()=>el.remove(),1050);
+  targetEl.classList.remove('hit'); void targetEl.offsetWidth; targetEl.classList.add('hit');
+}
+function applyBossDamage(amount){ bossHP=Math.max(0,bossHP-amount); spawnDamageFloat('boss',amount); updateBossHUD(); }
+function applyPlayerDamage(amount){ playerHP=Math.max(0,playerHP-amount); bossWrongCount++; spawnDamageFloat('player',amount); updateBossHUD(); }
+
+function bossAnswerMCQ(oi,el){
+  if(bossAnswering) return;
+  bossAnswering=true; clearBossTimer();
+  const phase=BOSS_PHASES[bossPhaseIdx]; const q=phase.questions[bossQIdx];
+  const opts=document.getElementById('boss-mcq-opts');
+  opts.querySelectorAll('.toggle-opt').forEach(o=>o.style.pointerEvents='none');
+  const fb=document.getElementById('boss-q-fb');
+  fb.className='feedback-box show';
+  const dmg = Math.round(20/phase.questions.length);
+  if(q.opts[oi].correct){
+    el.classList.add('correct-pick');
+    fb.classList.add('ok'); fb.innerHTML='✅ '+(q.why_correct||'Correct!')+`<div class="ar">${q.why_correct_ar||''}</div>`;
+    applyBossDamage(dmg);
+    bossXPEarned+=10;
+    awardCorrect({xp:10});
+  }else{
+    el.classList.add('wrong-pick');
+    const correctIdx=q.opts.findIndex(o=>o.correct);
+    if(correctIdx>=0) opts.children[correctIdx].classList.add('correct-pick');
+    fb.classList.add('bad'); fb.innerHTML='❌ '+(q.why_wrong||'Not quite.')+`<div class="ar">${q.why_wrong_ar||''}</div>`;
+    awardWrong();
+    applyPlayerDamage(15);
+  }
+  setTimeout(()=>{
+    if(playerHP<=0){ triggerBossGameOver(); return; }
+    advanceBossQuestion();
+  },1200);
+}
+function bossAnswerOrder(){
+  if(bossAnswering) return;
+  const phase=BOSS_PHASES[bossPhaseIdx]; const q=phase.questions[bossQIdx];
+  const zone=document.getElementById('boss-order-zone');
+  const chosen=Array.from(zone.querySelectorAll('.dnd-word')).map(w=>w.textContent.trim());
+  const fb=document.getElementById('boss-q-fb');
+  if(chosen.length<q.sentences.length){ fb.className='feedback-box show bad'; fb.innerHTML='⚠️ Drag all sentences into the box first.<div class="ar">اسحب كل الجمل أولاً.</div>'; return; }
+  bossAnswering=true; clearBossTimer();
+  const ok=chosen.every((s,idx)=>normalizeAnswer(s)===normalizeAnswer(q.sentences[idx]));
+  fb.className='feedback-box show';
+  if(ok){
+    zone.classList.add('correct'); zone.classList.remove('incorrect');
+    fb.classList.add('ok'); fb.innerHTML='✅ Perfect order! Critical hit!<div class="ar">ترتيب مثالي! ضربة حاسمة!</div>';
+    applyBossDamage(20);
+    bossXPEarned+=20;
+    awardCorrect({xp:20, progress:2, confetti:true});
+  }else{
+    zone.classList.add('incorrect'); zone.classList.remove('correct');
+    fb.classList.add('bad'); fb.innerHTML='⚠️ Not quite the right order — the boss resists!<div class="ar">الترتيب غير صحيح — الوحش يقاوم!</div>';
+    awardWrong();
+    applyPlayerDamage(15);
+  }
+  setTimeout(()=>{
+    if(playerHP<=0){ triggerBossGameOver(); return; }
+    if(!ok){
+      // Organisation is worth practising — let them retry rather than skipping it.
+      bossAnswering=false;
+      const bank=document.getElementById('boss-order-bank');
+      zone.querySelectorAll('.dnd-word').forEach(w=>bank.appendChild(w));
+      zone.classList.remove('incorrect');
+      return;
+    }
+    advanceBossQuestion();
+  },1300);
+}
+function advanceBossQuestion(){
+  const phase=BOSS_PHASES[bossPhaseIdx];
+  bossQIdx++;
+  if(bossQIdx>=phase.questions.length){ clearBossPhase(); }
+  else{ renderBossQuestion(); }
+}
+function clearBossPhase(){
+  const phase=BOSS_PHASES[bossPhaseIdx];
+  bossDone[phase.id]=true;
+  renderBossPhaseRow();
+  if(bossPhaseIdx>=BOSS_PHASES.length-1){ triggerBossVictory(); return; }
+  bossPhaseIdx++; bossQIdx=0;
+  const fb=document.getElementById('boss-q-fb');
+  if(fb){ fb.className='feedback-box show ok'; fb.innerHTML='🎉 Phase cleared! Next boss incoming...<div class="ar">تم اجتياز المرحلة! الوحش التالي قادم...</div>'; }
+  setTimeout(()=>renderBossQuestion(),900);
+}
+function triggerBossVictory(){
+  clearBossTimer();
+  document.getElementById('boss-battle-screen').style.display='none';
+  document.getElementById('boss-victory').classList.add('show');
+  playCorrectSound(); // confetti is fired once, by markStepDone() below
+  const flawless = bossWrongCount===0;
+  if(flawless){ unlockedAch['flawless_boss']=true; showAchToast('⚡ Flawless Victory'); }
+  document.getElementById('boss-victory-report').innerHTML=`
+    <div class="boss-report-cell"><b>${bossXPEarned}</b>XP Earned</div>
+    <div class="boss-report-cell"><b>${bossWrongCount}</b>Wrong Answers</div>
+    <div class="boss-report-cell"><b>${Math.max(0,playerHP)}/100</b>HP Remaining</div>
+    <div class="boss-report-cell"><b>${flawless?'⚡ Flawless':'✅ Victory'}</b>Result</div>`;
+  markStepDone('boss',30);
+  saveState();
+}
+function triggerBossGameOver(){
+  clearBossTimer();
+  document.getElementById('boss-battle-screen').style.display='none';
+  document.getElementById('boss-gameover').classList.add('show');
+  playWrongSound();
+}
+function retryCurrentBossPhase(){
+  document.getElementById('boss-gameover').classList.remove('show');
+  document.getElementById('boss-battle-screen').style.display='block';
+  playerHP=100; bossAnswering=false;
+  updateBossHUD();
+  renderBossQuestion();
+}
+
+/* ============================================================
+   ONBOARDING / NAME / AVATAR
+   ============================================================ */
+function confirmStudentName(){
+  const val=document.getElementById('student-name-input').value.trim();
+  studentName = val || 'Student';
+  document.getElementById('hud-name-chip').textContent=studentName;
+  document.getElementById('name-overlay').classList.remove('show');
+  saveState();
+  if(!chosenAvatar) document.getElementById('avatar-overlay').classList.add('show');
+}
+function pickAvatar(el,av){
+  document.querySelectorAll('.avatar-opt').forEach(o=>o.classList.remove('picked'));
+  el.classList.add('picked');
+  chosenAvatar=av;
+  document.getElementById('avatar-start-btn').disabled=false;
+}
+function confirmAvatar(){
+  if(!chosenAvatar) return;
+  document.getElementById('hud-avatar-chip').textContent=chosenAvatar;
+  document.getElementById('avatar-overlay').classList.remove('show');
+  saveState();
+}
+
+/* ============================================================
+   REPORTING — achievements panel / lesson report / certificate
+   ============================================================ */
+function openAchPanel(){
+  const list=document.getElementById('ach-list');
+  list.innerHTML=ACHIEVEMENTS.map(a=>{
+    const on=!!unlockedAch[a.id];
+    return `<div class="ach-row ${on?'':'locked'}"><span class="em">${a.em}</span><div><div>${a.name}</div><div class="ar">${a.ar}</div></div></div>`;
+  }).join('');
+  document.getElementById('ach-panel-overlay').classList.add('show');
+}
+function closeAchPanel(){ document.getElementById('ach-panel-overlay').classList.remove('show'); }
+
+function openReport(){
+  const totalSteps=Object.keys(stepDone).length;
+  const stepsDone=Object.values(stepDone).filter(Boolean).length;
+  const achCount=Object.keys(unlockedAch).length;
+  document.getElementById('report-grid').innerHTML=`
+    <div class="report-cell"><b>${xp}</b>Total XP</div>
+    <div class="report-cell"><b>${streak}</b>Current Streak</div>
+    <div class="report-cell"><b>${stepsDone}/${totalSteps}</b>Steps Completed</div>
+    <div class="report-cell"><b>${achCount}/${ACHIEVEMENTS.length}</b>Achievements</div>
+    <div class="report-cell"><b>${document.getElementById('main-progress').style.width||'0%'}</b>Overall Progress</div>
+    <div class="report-cell"><b>${stepDone.boss?'✅':'—'}</b>Boss Challenge</div>`;
+  document.getElementById('report-overlay').classList.add('show');
+}
+function closeReport(){ document.getElementById('report-overlay').classList.remove('show'); }
+
+function downloadCertificate(){
+  const canvas=document.getElementById('cert-canvas');
+  const ctx=canvas.getContext('2d');
+  const g=ctx.createLinearGradient(0,0,1000,700);
+  g.addColorStop(0,'#0F766E'); g.addColorStop(0.5,'#1E3A5F'); g.addColorStop(1,'#F59E0B');
+  ctx.fillStyle=g; ctx.fillRect(0,0,1000,700);
+  ctx.fillStyle='rgba(255,255,255,.95)'; ctx.fillRect(30,30,940,640);
+  ctx.strokeStyle='#F59E0B'; ctx.lineWidth=6; ctx.strokeRect(30,30,940,640);
+  ctx.textAlign='center';
+  ctx.fillStyle='#1E3A5F'; ctx.font='bold 42px Georgia'; ctx.fillText('Certificate of Achievement',500,140);
+  ctx.font='22px Georgia'; ctx.fillStyle='#475569'; ctx.fillText('Super Goal 3 — Unit 3 Writing: Studying in a Foreign Country',500,180);
+  ctx.font='bold 36px Georgia'; ctx.fillStyle='#0F766E'; ctx.fillText(studentName || 'Student', 500, 300);
+  ctx.font='18px Arial'; ctx.fillStyle='#1F2937';
+  ctx.fillText('has successfully completed the Writing Workshop', 500, 340);
+  ctx.font='bold 20px Arial'; ctx.fillStyle='#DC2E5D';
+  ctx.fillText('Total XP: '+xp+'   •   Steps Completed: '+Object.values(stepDone).filter(Boolean).length+'/'+Object.keys(stepDone).length, 500, 400);
+  ctx.font='16px Arial'; ctx.fillStyle='#475569';
+  const d=new Date(); const dateStr=d.getFullYear()+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getDate()).padStart(2,'0');
+  ctx.fillText('Date: '+dateStr, 500, 450);
+  ctx.font='bold 22px Georgia'; ctx.fillStyle='#F59E0B'; ctx.fillText('Teacher Jaber • Super Goal 🏆', 500, 600);
+  const link=document.createElement('a');
+  link.download='writing_certificate_'+(studentName||'student').replace(/\s+/g,'_')+'.png';
+  link.href=canvas.toDataURL('image/png');
+  link.click();
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+function confirmResetProgress(){ document.getElementById('reset-confirm-modal').classList.add('show'); }
+function closeResetModal(){ document.getElementById('reset-confirm-modal').classList.remove('show'); }
+function executeResetProgress(){
+  AppStorage.clear();
+  location.reload();
+}
+
+/* ============================================================
+   PERSISTENCE — app state save/load (uses the Storage manager
+   defined in CORE UTILITIES above)
+   ============================================================ */
+function saveState(){
+  AppStorage.set('core', {
+    xp,streak,completedTotal,studentName,chosenAvatar,unlockedAch,stepDone,bossDone,
+    storyIdx,storyMaxUnlocked,storyScreenDone
+  });
+}
+function safeObj(v){ return (v&&typeof v==='object'&&!Array.isArray(v))?v:{}; }
+function loadState(){
+  try{
+    const d=AppStorage.get('core');
+    if(!d) return false;
+    xp=d.xp||0; streak=d.streak||0; completedTotal=d.completedTotal||0;
+    studentName=d.studentName||''; chosenAvatar=d.chosenAvatar||'';
+    unlockedAch=safeObj(d.unlockedAch); stepDone=Object.assign(stepDone,safeObj(d.stepDone)); bossDone=Object.assign(bossDone,safeObj(d.bossDone));
+    storyScreenDone=safeObj(d.storyScreenDone);
+    storyMaxUnlocked=(typeof d.storyMaxUnlocked==='number')?d.storyMaxUnlocked:0;
+    storyIdx=Math.min(STORY_SCREENS.length-1,Math.max(0,Math.round((typeof d.storyIdx==='number')?d.storyIdx:0)));
+    document.getElementById('xp-display').textContent=xp;
+    document.getElementById('streak-display').textContent=streak;
+    document.getElementById('main-progress').style.width=Math.min(100,Math.round((completedTotal/TOTAL_ITEMS)*100))+'%';
+    updateLevelBadge();
+    if(studentName) document.getElementById('hud-name-chip').textContent=studentName;
+    if(chosenAvatar) document.getElementById('hud-avatar-chip').textContent=chosenAvatar;
+    return true;
+  }catch(e){ return false; }
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+function initApp(){
+  loadState();
+  buildVocabFlipCards(); buildVocabA(); buildMatch();
+  buildSentA(); buildUnscramble(); buildVerbform();
+  buildReadingCard(); buildCompQuestions();
+  buildLabelEx(); buildOrderEx();
+  buildGuided(); updateGuidedProgress();
+  buildMemory();
+  buildStory();
+  buildStudio();
+  buildSelfCheck();
+  buildBossModeSelect();
+
+  if(!studentName){ document.getElementById('name-overlay').classList.add('show'); }
+  else if(!chosenAvatar){ document.getElementById('avatar-overlay').classList.add('show'); }
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initApp);
+else initApp();
+
+/* Pill nav drag-to-scroll for desktop mouse users */
+(function(){
+  const nav=document.getElementById('pill-nav');
+  let isDown=false,startX,scrollLeft;
+  nav.addEventListener('mousedown',e=>{isDown=true;nav.classList.add('is-dragging');startX=e.pageX-nav.offsetLeft;scrollLeft=nav.scrollLeft;});
+  nav.addEventListener('mouseleave',()=>{isDown=false;nav.classList.remove('is-dragging');});
+  nav.addEventListener('mouseup',()=>{isDown=false;nav.classList.remove('is-dragging');});
+  nav.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-nav.offsetLeft;nav.scrollLeft=scrollLeft-(x-startX);});
+})();
+</script>
+</body>
+</html>
