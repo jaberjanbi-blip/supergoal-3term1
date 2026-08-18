@@ -1,0 +1,2710 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U3 Grammar – When Are You Traveling? | Teacher Jaber</title>
+<style>
+/* ── CSS Variables & Dark Mode ── */
+:root {
+  --navy:#1E3A5F;--teal:#0F766E;--coral:#DC2E5D;--gold:#F59E0B;
+  --green:#16A34A;--blue:#2563EB;--purple:#7C3AED;--orange:#EA580C;
+  --ink:#1F2937;--slate:#475569;--light:#F8FAFC;--gray:#E5E7EB;
+  --yellow:#FEF3C7;--softblue:#EFF6FF;--softgreen:#F0FDF4;
+  --softpink:#FFF0F3;--softpurple:#F5F3FF;--softorange:#FFF7ED;--softyellow:#FFFBEB;
+  --bg:#F8FAFC;--card:#ffffff;--border:#E5E7EB;--text:#1F2937;--subtext:#475569;
+  --input-bg:#ffffff;--input-border:#E5E7EB;--footer-bg:#1E3A5F;--footer-text:#94a3b8;
+  --inst-bg:#F8FAFC;--note-bg:#FEF3C7;
+}
+body.dark {
+  --bg:#0f172a;--card:#1e293b;--border:#334155;--text:#e2e8f0;--subtext:#94a3b8;
+  --input-bg:#0f172a;--input-border:#334155;--footer-bg:#020617;--footer-text:#64748b;
+  --inst-bg:#1e293b;--note-bg:#1a1000;--light:#0f172a;--gray:#334155;
+  --softblue:#0c1a3d;--softgreen:#0a1f12;--softpink:#1f0a10;--softpurple:#160a2e;
+  --softorange:#2d1a08;--softyellow:#2d2300;
+  --ink:#e2e8f0;--slate:#94a3b8;--yellow:#1a1000;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Calibri,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;}
+
+/* ── Site Header (Identical to U2) ── */
+.site-header{background:linear-gradient(135deg,#7C3AED,#DC2E5D 55%,#F59E0B);padding:0;position:sticky;top:0;z-index:200;box-shadow:0 3px 20px rgba(0,0,0,.35);}
+.header-inner{background:rgba(20,10,40,.85);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.header-left h1{font-size:1rem;font-weight:800;color:white;line-height:1.2;}
+.header-left .sub{font-size:.72rem;color:#c4b5fd;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.header-badge{background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:800;padding:4px 11px;border-radius:20px;white-space:nowrap;}
+
+/* ── Dark Mode Toggle (Identical to U2) ── */
+.dark-toggle{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;cursor:pointer;color:white;font-size:.75rem;font-weight:700;padding:5px 12px;transition:.2s;white-space:nowrap;display:flex;align-items:center;gap:5px;}
+.dark-toggle:hover{background:rgba(255,255,255,.28);}
+
+/* ── XP & Streak HUD (Identical to U2) ── */
+.hud-bar{background:rgba(20,5,40,.9);padding:5px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.hud-item{display:flex;align-items:center;gap:5px;font-size:.75rem;font-weight:800;color:white;}
+.xp-badge{background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#1a0a00;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:900;transition:transform .15s;}
+.xp-badge.bump{transform:scale(1.35);}
+.streak-badge{background:linear-gradient(135deg,#EA580C,#F97316);color:white;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:900;display:flex;align-items:center;gap:3px;}
+.streak-badge.hot{animation:streakPulse .4s ease;}
+@keyframes streakPulse{0%{transform:scale(1);}50%{transform:scale(1.4);}100%{transform:scale(1);}}
+.level-badge{background:var(--purple);color:white;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:800;}
+
+/* ── Progress Bar ── */
+.progress-container{height:5px;width:100%;background:rgba(255,255,255,.2);}
+.progress-bar{height:100%;width:0%;background:var(--gold);transition:width .4s ease;}
+
+/* ── XP Floating Popup ── */
+.xp-popup{position:fixed;pointer-events:none;font-size:1.1rem;font-weight:900;color:#F59E0B;text-shadow:0 0 10px rgba(245,158,11,.6);z-index:9999;opacity:0;}
+.xp-popup.show{animation:xpFloat .9s ease forwards;}
+@keyframes xpFloat{0%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(-60px);}}
+
+/* ── Pill Nav (Identical to U2) ── */
+.pill-nav{display:flex;overflow-x:auto;gap:6px;background:#110820;padding:8px 12px 11px;scrollbar-width:thin;scrollbar-color:#0F766E rgba(255,255,255,.08);cursor:grab;user-select:none;}
+.pill-nav.is-dragging{cursor:grabbing;}
+.pill-nav::-webkit-scrollbar{height:5px;display:block;}
+.pill-nav::-webkit-scrollbar-track{background:rgba(255,255,255,.06);border-radius:10px;margin:0 12px;}
+.pill-nav::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#0F766E,#2563EB);border-radius:10px;}
+.pill-nav::-webkit-scrollbar-thumb:hover{background:linear-gradient(90deg,#0e6965,#1d4ed8);}
+.pill-nav button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:20px;cursor:pointer;color:#94a3b8;font-size:.75rem;font-weight:600;padding:6px 14px;white-space:nowrap;transition:.18s;font-family:inherit;}
+.pill-nav button.active{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:800;}
+.pill-nav button:hover:not(.active){background:rgba(255,255,255,.16);color:white;}
+
+/* ── Layout ── */
+.container{max-width:960px;margin:0 auto;padding:20px 14px 70px;}
+.page{display:none;animation:fadeIn .22s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── Audio Button ── */
+.audio-btn{background:rgba(0,0,0,.08);border:none;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:.75rem;margin-left:6px;vertical-align:middle;transition:.2s;color:var(--navy);}
+body.dark .audio-btn{color:#e2e8f0;background:rgba(255,255,255,.12);}
+.audio-btn:hover{background:var(--blue);color:white;transform:scale(1.12);}
+
+/* ── Grammar Box ── */
+.grammar-box{background:var(--card);border-radius:16px;box-shadow:0 3px 20px rgba(0,0,0,.1);overflow:hidden;margin-bottom:22px;border:1px solid var(--border);}
+.grammar-header{padding:15px 22px;display:flex;align-items:center;gap:13px;}
+.g-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:900;flex-shrink:0;}
+.g-title{font-size:1.05rem;font-weight:800;color:white;}
+.g-title-ar{font-size:.85rem;color:rgba(255,255,255,.78);margin-top:3px;direction:rtl;}
+.grammar-body{padding:18px 22px;}
+
+.formula-bar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;border-radius:11px;padding:12px 16px;margin-bottom:16px;}
+.f-circle{width:21px;height:21px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0;}
+.f-pill{font-size:.83rem;font-weight:700;padding:5px 12px;border-radius:20px;white-space:nowrap;}
+.f-plus{font-size:.95rem;font-weight:800;opacity:.65;}
+.f-label{font-size:.78rem;font-weight:800;padding:4px 12px;border-radius:6px;flex-shrink:0;}
+
+.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:16px;}
+@media(max-width:560px){.two-cols{grid-template-columns:1fr;}}
+
+.signal-box{border-radius:10px;padding:12px 14px;}
+.signal-box h4{font-size:.88rem;font-weight:800;margin-bottom:8px;}
+.signal-pill{display:inline-block;background:rgba(255,255,255,.7);color:#1F2937;border-radius:20px;padding:3px 11px;font-size:.8rem;font-weight:700;margin:2px;border:1px solid rgba(0,0,0,.08);}
+body.dark .signal-pill{background:rgba(255,255,255,.14);color:#f1f5f9;border-color:rgba(255,255,255,.3);}
+
+.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:10px;}
+@media(max-width:560px){.compare-row{grid-template-columns:1fr;}}
+.cmp-col{border-radius:9px;padding:11px 13px;}
+.cmp-col h4{font-size:.84rem;font-weight:800;margin-bottom:7px;}
+.cmp-ex{font-size:.83rem;padding:3px 0;border-bottom:1px solid rgba(0,0,0,.06);}
+.cmp-ex:last-child{border:none;}
+.cmp-ex .ar{font-size:.75rem;color:var(--subtext);direction:rtl;text-align:right;}
+
+.note{background:var(--note-bg);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:9px 13px;margin:11px 0;font-size:.85rem;line-height:1.65;color:var(--text);direction:rtl;text-align:right;}
+.note strong{color:var(--navy);}
+body.dark .note strong{color:var(--gold);}
+
+/* ── Exercise Card ── */
+.ex-card{background:var(--card);border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.09);overflow:hidden;margin-bottom:20px;border:1px solid var(--border);}
+.ex-head{padding:14px 22px 10px;border-bottom:1px solid var(--border);}
+.ex-title{font-size:1.02rem;font-weight:800;color:var(--navy);}
+body.dark .ex-title{color:#c4b5fd;}
+.ex-title-ar{font-size:.84rem;color:var(--subtext);direction:rtl;margin-top:2px;}
+.lv{font-size:.66rem;font-weight:800;padding:3px 10px;border-radius:20px;display:inline-block;margin-top:5px;}
+.lv-beg{background:#D1FAE5;color:#065F46;}
+.lv-int{background:#FEF3C7;color:#92400E;}
+.lv-adv{background:#FCE7F3;color:#9D174D;}
+.lv-quiz{background:#EDE9FE;color:#4C1D95;}
+.lv-boss{background:linear-gradient(135deg,#1a0000,#7f0000);color:#ffaaaa;border:1px solid #cc0000;}
+.ex-inst{padding:8px 22px;background:var(--inst-bg);border-bottom:1px solid var(--border);font-size:.85rem;color:var(--subtext);font-style:italic;}
+.ex-inst-ar{padding:4px 22px 8px;background:var(--inst-bg);border-bottom:1px solid var(--border);font-size:.8rem;color:var(--subtext);direction:rtl;text-align:right;}
+.ex-body{padding:16px 22px;}
+
+/* ── Buttons ── */
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px;}
+.rbtn{display:inline-flex;align-items:center;gap:6px;border:none;border-radius:8px;cursor:pointer;font-size:.8rem;font-weight:700;padding:8px 14px;transition:.17s;font-family:inherit;color:white;}
+.rbtn:hover{filter:brightness(1.12);transform:translateY(-1px);}
+.score-line{font-size:.81rem;color:var(--subtext);margin-bottom:13px;}
+.score-line span{font-weight:800;color:var(--text);font-size:.9rem;}
+
+/* ── Items & Inputs ── */
+.item-row{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.item-row:last-child{border-bottom:none;}
+.inum{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:white;flex-shrink:0;margin-top:2px;}
+.iq{flex:1;font-size:.9rem;line-height:1.55;min-width:180px;}
+.iq .hint{font-size:.76rem;color:var(--subtext);font-style:italic;}
+
+.interactive-input{padding:6px 10px;font-size:.87rem;font-weight:600;border:2px solid var(--input-border);border-radius:8px;outline:none;transition:.2s;width:150px;font-family:inherit;margin-top:4px;background:var(--input-bg);color:var(--text);}
+.interactive-input.wide{width:100%;max-width:320px;}
+.interactive-input:focus{border-color:var(--blue);}
+.interactive-input.is-correct{border-color:var(--green);background:#F0FDF4;}
+body.dark .interactive-input.is-correct{background:#0a1f12;}
+.interactive-input.is-wrong{border-color:var(--coral);background:#FFF0F3;}
+body.dark .interactive-input.is-wrong{background:#1f0a10;}
+
+.check-btn{background:var(--navy);color:white;border:none;padding:6px 11px;border-radius:6px;font-size:.76rem;font-weight:700;cursor:pointer;transition:.2s;margin-left:4px;}
+.check-btn:hover{background:var(--blue);}
+
+.hint-btn{background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#1a0a00;border:none;padding:5px 10px;border-radius:6px;font-size:.74rem;font-weight:800;cursor:pointer;margin-left:4px;transition:.18s;}
+.hint-btn:hover{filter:brightness(1.1);transform:scale(1.05);}
+.hint-box{display:none;direction:rtl;text-align:right;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid var(--gold);border-radius:8px;padding:7px 12px;margin-top:6px;font-size:.8rem;color:#78350f;font-weight:600;line-height:1.5;animation:fadeIn .2s ease;}
+body.dark .hint-box{background:#1a1000;color:#fbbf24;border-color:#78350f;}
+.hint-box.visible{display:block;}
+
+.explanation-box{display:none;direction:rtl;text-align:right;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid var(--green);border-radius:10px;padding:10px 14px;margin-top:8px;font-size:.81rem;color:#14532d;line-height:1.65;animation:fadeIn .25s ease;}
+body.dark .explanation-box{background:#0a1f12;color:#86efac;border-color:#16a34a;}
+.explanation-box.visible{display:block;}
+.explanation-box.wrong-exp{background:linear-gradient(135deg,#fff0f3,#ffe4e6);border-color:var(--coral);color:#881337;}
+body.dark .explanation-box.wrong-exp{background:#1f0a10;color:#fca5a5;border-color:#dc2626;}
+.exp-title{font-weight:900;font-size:.83rem;margin-bottom:4px;display:flex;align-items:center;gap:5px;}
+
+.ians{flex:1;font-size:.85rem;font-weight:700;color:white;padding:6px 13px;border-radius:8px;opacity:0;transform:translateX(8px);transition:opacity .3s ease,transform .3s ease;min-width:55px;line-height:1.45;display:none;}
+.ians.visible{opacity:1;transform:translateX(0);display:block;}
+
+/* ── MCQ ── */
+.mcq-block{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.mcq-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.mcq-q{font-size:.9rem;font-weight:600;margin-bottom:7px;color:var(--text);}
+.mcq-opts{display:flex;gap:7px;flex-wrap:wrap;}
+.mcq-opt{padding:5px 13px;border-radius:20px;font-size:.8rem;border:2px solid var(--border);color:var(--text);cursor:pointer;transition:.18s;user-select:none;background:var(--card);}
+.mcq-opt:hover{border-color:var(--blue);background:var(--softblue);}
+.mcq-opt.selected-correct{background:var(--green)!important;color:white!important;border-color:var(--green)!important;font-weight:800;}
+.mcq-opt.selected-wrong{background:var(--coral)!important;color:white!important;border-color:var(--coral)!important;}
+
+/* ── Highlights ── */
+.hi-p{color:var(--purple);font-weight:800;}
+.hi-t{color:var(--teal);font-weight:800;}
+.hi-c{color:var(--coral);font-weight:800;}
+.hi-b{color:var(--blue);font-weight:800;}
+.hi-g{color:var(--green);font-weight:800;}
+.hi-o{color:var(--orange);font-weight:800;}
+
+/* ── Boss Banner ── */
+.boss-banner{background:linear-gradient(135deg,#1a0000,#7f0000,#1a0000);border-radius:12px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px;border:2px solid #cc0000;animation:bossGlow 2s infinite;}
+@keyframes bossGlow{0%,100%{box-shadow:0 0 10px rgba(200,0,0,.4);}50%{box-shadow:0 0 25px rgba(200,0,0,.8);}}
+.boss-icon{font-size:2rem;}
+.boss-title{color:#ff6666;font-size:1.05rem;font-weight:900;text-shadow:0 0 12px rgba(255,50,50,.7);}
+.boss-sub{color:#ffaaaa;font-size:.78rem;direction:rtl;}
+
+/* ── Final Score Card ── */
+.final-score-card{background:linear-gradient(135deg,var(--navy),var(--purple));border-radius:16px;padding:24px;text-align:center;color:white;margin-top:20px;display:none;}
+.final-score-card.visible{display:block;animation:fadeIn .4s ease;}
+.final-score-big{font-size:3rem;font-weight:900;margin:8px 0;}
+
+@media(max-width:480px){
+  .header-inner{padding:8px 12px;}
+  .header-left h1{font-size:.88rem;}
+  .ex-body{padding:12px 14px;}
+  .grammar-body{padding:14px 14px;}
+  .interactive-input.wide{max-width:100%;}
+}
+
+  /* ── SHAKE ── */
+  @keyframes shake{0%,100%{transform:translateX(0);}15%{transform:translateX(-8px);}30%{transform:translateX(8px);}45%{transform:translateX(-6px);}60%{transform:translateX(6px);}75%{transform:translateX(-3px);}90%{transform:translateX(3px);}}
+  .shake{animation:shake .45s ease;border-color:#ef4444 !important;box-shadow:0 0 0 3px rgba(239,68,68,.35) !important;}
+  /* ── BOSS FIXED HUD ── */
+  .boss-hud-fixed{display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;background:rgba(20,10,40,.97);padding:10px 18px;gap:12px;align-items:center;border-top:2px solid #7C3AED;box-shadow:0 -4px 20px rgba(0,0,0,.4);}
+  .boss-hud-fixed.active{display:flex;}
+  .b-hp-wrap{flex:1;}
+  .b-hp-label{font-size:.7rem;color:#c4b5fd;font-weight:700;margin-bottom:3px;display:flex;justify-content:space-between;}
+  .b-hp-track{height:13px;background:rgba(255,255,255,.15);border-radius:20px;overflow:hidden;}
+  .b-hp-bar{height:100%;width:100%;background:linear-gradient(90deg,#DC2E5D,#ef4444);border-radius:20px;transition:width .5s ease;}
+  .b-my-bar{height:100%;width:100%;background:linear-gradient(90deg,#16A34A,#22c55e);border-radius:20px;transition:width .5s ease;}
+  .b-timer{font-size:1.4rem;font-weight:900;color:white;background:rgba(255,255,255,.1);border-radius:10px;padding:6px 14px;min-width:75px;text-align:center;}
+  .b-timer.hurry{color:#ef4444;animation:shake .5s infinite;}
+
+/* ═══════════════════════════════════════════
+   DARK MODE COMPREHENSIVE FIXES  
+   ═══════════════════════════════════════════ */
+
+/* Cards & containers */
+.dark .grammar-box,
+.dark .ex-card,
+.dark .info-card,
+.dark .note-box,
+.dark .compare-grid > div,
+.dark .compare-col,
+.dark .form-card,
+.dark .formula-box,
+.dark .ref-table-wrap,
+.dark .pos-card,
+.dark .freq-table-wrap,
+.dark .rule-card,
+.dark .example-card {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+/* Text elements */
+.dark .grammar-body,
+.dark .ex-body,
+.dark .ex-inst,
+.dark .ex-inst-ar,
+.dark .item-q,
+.dark .mcq-q,
+.dark .iq,
+.dark .scramble-words,
+.dark p,
+.dark li,
+.dark td, .dark th,
+.dark label,
+.dark .word-meaning,
+.dark .freq-ar,
+.dark .freq-ex,
+.dark .note-text,
+.dark .rule-text,
+.dark .rule-en,
+.dark .rule-ar,
+.dark .def-text,
+.dark .hint-box,
+.dark .tip-box {
+  color: var(--text) !important;
+}
+
+.dark .subtext,
+.dark small,
+.dark .caption,
+.dark .freq-pct,
+.dark .sub-text {
+  color: var(--subtext) !important;
+}
+
+/* MCQ Options */
+.dark .mcq-opt:not(.selected-correct):not(.selected-wrong) {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+.dark .mcq-opt:hover:not(.selected-correct):not(.selected-wrong) {
+  background: #2d3f55 !important;
+}
+
+/* Interactive inputs */
+.dark .interactive-input {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+.dark .interactive-input::placeholder { color: #64748b !important; }
+.dark .interactive-input.is-correct { background: #0a1f12 !important; border-color: #16a34a !important; }
+.dark .interactive-input.is-wrong   { background: #1f0a10 !important; border-color: #dc2626 !important; }
+
+/* Tables */
+.dark table, .dark .ref-table {
+  background: var(--card) !important;
+}
+.dark th {
+  background: #1e3a5f !important;
+  color: #e2e8f0 !important;
+}
+.dark td {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+}
+.dark tr:nth-child(even) td { background: #1a2742 !important; }
+
+/* Explanation / hint boxes */
+.dark .explanation-box,
+.dark .explain-box,
+.dark .exp-box,
+.dark .hint-tooltip,
+.dark .hint-box {
+  background: #1a1000 !important;
+  color: #fde68a !important;
+  border-color: #854d0e !important;
+}
+
+/* Soft color boxes — override light pastels */
+.dark .softblue-bg, .dark [style*="background:var(--softblue)"], .dark [style*="background: var(--softblue)"] { background: #0c1a3d !important; }
+.dark .softgreen-bg, .dark [style*="background:var(--softgreen)"] { background: #0a1f12 !important; }
+.dark .softpink-bg, .dark [style*="background:var(--softpink)"] { background: #1f0a10 !important; }
+.dark .softpurple-bg, .dark [style*="background:var(--softpurple)"] { background: #160a2e !important; }
+
+/* DnD word cards */
+.dark .dnd-dropzone {
+  background: #0c1a3d !important;
+  border-color: #2563eb !important;
+}
+.dark .dnd-word {
+  background: #1e3a5f !important;
+  color: #e2e8f0 !important;
+}
+
+/* Navigation tabs */
+.dark .pill-nav, .dark .tab-nav {
+  background: #020617 !important;
+}
+.dark .pill-nav button:not(.active),
+.dark .tab-nav button:not(.active) {
+  background: #1e293b !important;
+  color: #94a3b8 !important;
+}
+.dark .pill-nav button.active,
+.dark .tab-nav button.active {
+  color: #1e293b !important;
+}
+
+/* Score / progress lines */
+.dark .score-line { color: #94a3b8 !important; }
+.dark .score-line span { color: #93c5fd !important; }
+.dark .progress-track { background: #1e293b !important; }
+
+/* Item rows */
+.dark .item-row { border-color: #334155 !important; }
+.dark .item-num { color: white !important; }
+
+/* Reveal / check buttons in dark */
+.dark .reveal-btn { opacity: .9; }
+.dark .hint-btn { background: #1a1000 !important; color: #fde68a !important; }
+
+/* Answer boxes */
+.dark .item-ans, .dark .ians { filter: brightness(.9); }
+
+/* Grammar headers stay colored (they have explicit gradients) */
+
+/* Scramble rows */
+.dark .scramble-row { border-color: #334155 !important; }
+
+
+/* ── Word-by-word formula alignment ── */
+.fwbw-row{display:flex;align-items:flex-start;gap:6px;flex-wrap:nowrap;padding:10px 0;margin-bottom:10px;direction:ltr;overflow:hidden;}
+.fwbw-token{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0;}
+.fwbw-en{font-size:.76rem;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;color:white;}
+.fwbw-ar{font-size:.67rem;font-weight:700;color:rgba(0,0,0,.55);white-space:nowrap;direction:rtl;text-align:center;}
+.fwbw-sep{font-size:.9rem;font-weight:800;color:var(--subtext);padding-top:7px;align-self:flex-start;flex-shrink:0;}
+
+/* ═══════════════════════════════════════════════════════════
+   PARITY UPGRADE CSS — ported from the reference lesson
+   ═══════════════════════════════════════════════════════════ */
+.ns-overlay{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;background:rgba(8,6,20,.86);backdrop-filter:blur(6px);padding:16px;}
+.ns-overlay.show{display:flex;}
+.ns-card{background:linear-gradient(160deg,#1e1b4b,#3b1360);border:2px solid rgba(255,255,255,.15);border-radius:20px;max-width:460px;width:100%;max-height:92vh;overflow-y:auto;padding:26px 22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);color:#fff;}
+.ns-card h2{font-size:1.35rem;font-weight:900;margin-bottom:6px;}
+.ns-card p{font-size:.85rem;color:#c4b5fd;line-height:1.6;}
+.avatar-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 6px;}
+.avatar-opt{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:14px;padding:16px 8px;cursor:pointer;transition:.18s;}
+.avatar-opt:hover{background:rgba(255,255,255,.16);transform:translateY(-3px);}
+.avatar-opt.picked{border-color:var(--gold);background:rgba(245,158,11,.18);}
+.avatar-opt .em{font-size:2.4rem;display:block;margin-bottom:6px;}
+.avatar-opt .nm{font-size:.78rem;font-weight:800;}
+.avatar-opt .nm-ar{font-size:.7rem;color:#c4b5fd;direction:rtl;}
+.ns-start-btn{margin-top:16px;background:var(--gold);color:#1a0a00;border:none;border-radius:12px;padding:13px 30px;font-size:1rem;font-weight:900;cursor:pointer;transition:.15s;}
+.ns-start-btn:hover{filter:brightness(1.08);transform:scale(1.03);}
+.ns-start-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.diff-grid{display:flex;flex-direction:column;gap:12px;margin:18px 0 6px;}
+.diff-opt{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 16px;cursor:pointer;transition:.18s;text-align:left;display:flex;align-items:flex-start;gap:12px;}
+.diff-opt:hover{background:rgba(255,255,255,.16);transform:translateY(-2px);}
+.diff-opt .em{font-size:1.8rem;flex-shrink:0;}
+.diff-opt .nm{font-size:.95rem;font-weight:900;display:block;margin-bottom:3px;}
+.diff-opt .ds{font-size:.74rem;color:#c4b5fd;line-height:1.6;}
+.hud-avatar{font-size:1.15rem;background:rgba(255,255,255,.12);border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;}
+.hud-mini-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:16px;font-size:.68rem;font-weight:700;padding:4px 10px;cursor:pointer;transition:.15s;white-space:nowrap;}
+.hud-mini-btn:hover{background:rgba(255,255,255,.25);}
+.levelup-badge{font-size:4rem;margin-bottom:6px;animation:lvlPop .6s ease;}
+@keyframes lvlPop{0%{transform:scale(.2) rotate(-20deg);opacity:0;}60%{transform:scale(1.25) rotate(8deg);opacity:1;}100%{transform:scale(1) rotate(0);}}
+.levelup-name{font-size:1.6rem;font-weight:900;background:linear-gradient(90deg,#F59E0B,#DC2E5D,#7C3AED);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.ach-toast{position:fixed;left:50%;top:14px;transform:translateX(-50%) translateY(-30px);opacity:0;z-index:9999;background:linear-gradient(135deg,#F59E0B,#DC2E5D);color:#fff;border-radius:14px;padding:10px 18px;font-size:.82rem;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:opacity .3s,transform .3s;display:flex;align-items:center;gap:8px;pointer-events:none;max-width:90vw;}
+.ach-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.ach-toast .em{font-size:1.4rem;}
+.ach-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;text-align:left;}
+.ach-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:9px 12px;opacity:.45;}
+.ach-row.unlocked{opacity:1;background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4);}
+.ach-row .em{font-size:1.5rem;}
+.ach-row .tt{font-size:.82rem;font-weight:800;}
+.ach-row .ds{font-size:.68rem;color:#c4b5fd;}
+.ach-progress-track{height:7px;background:rgba(255,255,255,.12);border-radius:10px;overflow:hidden;margin-top:6px;}
+.ach-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#F59E0B,#DC2E5D);transition:width .4s ease;}
+.ach-progress-label{font-size:.66rem;color:#c4b5fd;font-weight:700;margin-top:3px;text-align:right;}
+.speed-toast{position:fixed;right:20px;top:118px;background:linear-gradient(135deg,#16A34A,#22c55e);color:#fff;border-radius:12px;padding:7px 14px;font-size:.78rem;font-weight:800;z-index:9998;opacity:0;transform:translateX(20px);transition:opacity .25s,transform .25s;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+.speed-toast.show{opacity:1;transform:translateX(0);}
+.story-wrap{max-width:560px;margin:0 auto;}
+.story-progress-track{height:8px;background:rgba(0,0,0,.08);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+body.dark .story-progress-track{background:rgba(255,255,255,.1);}
+.story-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#7C3AED,#DC2E5D);transition:width .4s ease;}
+.story-screen{display:none;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-shadow:0 3px 20px rgba(0,0,0,.08);}
+.story-screen.active{display:block;animation:fadeIn .25s ease;}
+.story-emoji{font-size:2.6rem;text-align:center;margin-bottom:8px;}
+.story-text{font-size:.95rem;line-height:1.65;color:var(--text);margin-bottom:6px;}
+.story-text-ar{font-size:.86rem;line-height:1.8;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:10px;font-family:'Segoe UI',Tahoma,Arial,sans-serif;}
+.story-q{background:var(--softpurple);border:1px solid var(--purple);border-radius:10px;padding:12px;margin-top:10px;}
+body.dark .story-q{background:#160A2E;}
+.story-nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px;}
+.story-nav button{flex:1;background:var(--purple);color:#fff;border:none;border-radius:10px;padding:11px;font-size:.85rem;font-weight:800;cursor:pointer;transition:.15s;}
+.story-nav button:hover{filter:brightness(1.1);}
+.story-nav button:disabled{opacity:.35;cursor:not-allowed;}
+.story-nav button.secondary{background:#6B7280;}
+.story-mcq-opt{padding:7px 16px;border-radius:20px;font-size:.85rem;border:2px solid var(--border);color:var(--text);cursor:pointer;transition:.2s;user-select:none;background:var(--card);display:inline-block;margin:3px;}
+.story-mcq-opt:hover{border-color:var(--blue);background:var(--softblue);}
+.story-mcq-opt.selected-correct{background:var(--green)!important;color:white!important;border-color:var(--green)!important;font-weight:700;}
+.story-mcq-opt.selected-wrong{background:var(--coral)!important;color:white!important;border-color:var(--coral)!important;}
+.phase-banner{margin:0 0 14px;padding:10px 14px;border-radius:12px;color:#fff;font-weight:800;font-size:.85rem;text-align:center;box-shadow:0 3px 14px rgba(0,0,0,.2);}
+.phase-banner.phase-enter{animation:phaseBannerEnter .6s ease;}
+@keyframes phaseBannerEnter{0%{transform:translateY(-14px) scale(.9);opacity:0;}100%{transform:translateY(0) scale(1);opacity:1;}}
+.phase-cleared-toast{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%) scale(.4);opacity:0;z-index:9999;background:linear-gradient(135deg,#F59E0B,#DC2E5D);color:#fff;font-weight:900;font-size:1.4rem;padding:18px 34px;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:phaseClearedPop 1.4s ease forwards;pointer-events:none;text-align:center;}
+@keyframes phaseClearedPop{0%{transform:translate(-50%,-50%) scale(.4);opacity:0;}20%{transform:translate(-50%,-50%) scale(1.1);opacity:1;}80%{transform:translate(-50%,-50%) scale(1);opacity:1;}100%{transform:translate(-50%,-50%) scale(.9);opacity:0;}}
+.mcq-block.already-solved{opacity:.5;}
+.mcq-block.already-solved .mcq-opt{pointer-events:none;}
+.screen-shake{animation:shake .35s ease;}
+@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-8px);}40%{transform:translateX(7px);}60%{transform:translateX(-5px);}80%{transform:translateX(3px);}}
+.dmg-float{position:fixed;z-index:9999;font-weight:900;font-size:1.4rem;text-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none;}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;text-align:left;}
+.report-stat{background:rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;}
+.report-stat .lbl{font-size:.66rem;color:#c4b5fd;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.report-stat .val{font-size:1.15rem;font-weight:900;}
+.report-grade{font-size:3rem;font-weight:900;margin:8px 0;}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
+.report-actions button{background:var(--gold);color:#1a0a00;border:none;border-radius:10px;padding:11px 18px;font-size:.85rem;font-weight:800;cursor:pointer;}
+.report-actions button.secondary{background:rgba(255,255,255,.12);color:#fff;}
+.hint-btn.easy-letter-btn,.hint-btn.easy-len-btn,.hint-btn.easy-extra-hint-btn{background:transparent;border:1.5px solid var(--green);color:var(--green);}
+.hint-btn.easy-letter-btn:hover,.hint-btn.easy-len-btn:hover,.hint-btn.easy-extra-hint-btn:hover{background:var(--green);color:#fff;}
+.hint-btn:disabled{opacity:.5;cursor:default;}
+.empty-warning{display:none;background:#FEF3C7;border:1px solid var(--coral);border-radius:8px;padding:6px 10px;font-size:.78rem;color:#9D174D;margin-top:6px;line-height:1.5;}
+body.dark .empty-warning{background:#2D0A14;color:#F9A8D4;}
+.empty-warning.visible{display:block;}
+.empty-warning span{display:block;direction:rtl;text-align:right;font-family:'Segoe UI',Tahoma,Arial,sans-serif;margin-top:2px;}
+.empty-warning.easy-retry-note{background:var(--softgreen);border-color:var(--green);color:#065F46;}
+body.dark .empty-warning.easy-retry-note{background:#052E16;color:#86EFAC;}
+.empty-warning.already-done-note{background:var(--softblue);border-color:var(--blue);color:#1E3A5F;}
+body.dark .empty-warning.already-done-note{background:#0C1A3D;color:#93c5fd;}
+.easy-wb-box{background:var(--softgreen);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0 0;font-size:.82rem;}
+body.dark .easy-wb-box{background:#052E16;}
+.wb-chip{background:var(--softblue);color:var(--blue);padding:4px 12px;border-radius:14px;font-size:.78rem;font-weight:700;display:inline-block;}
+body.dark .wb-chip{background:#0C1A3D;color:#60A5FA;}
+/* Dark-mode readability audit: ensure every new + pre-existing element stays WCAG-AA */
+body.dark .ex-title,body.dark .score-line span{color:#c4b5fd!important;}
+body.dark .note{color:#fbbf24!important;}body.dark .note strong{color:#fbbf24!important;}
+body.dark .g-title,body.dark .mission-title{color:#fff!important;}
+body.dark .fc-formula,body.dark .fc-body,body.dark .fc-row{color:var(--text)!important;}
+body.dark .passive-table td,body.dark .pro-table td{color:var(--text)!important;}
+body.dark .was-cell{background:#3a2a05!important;color:#fde68a!important;}
+body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
+@media(max-width:480px){
+  .avatar-grid{grid-template-columns:1fr 1fr;}
+  .report-grid{grid-template-columns:1fr;}
+  .hud-mini-btn{padding:4px 8px;font-size:.62rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="xp-popup" class="xp-popup"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>🎮 U3 Grammar – When Are You Traveling? | متى ستسافر؟</h1>
+      <div class="sub">Present Progressive &nbsp;•&nbsp; Going to / Will &nbsp;•&nbsp; Teacher Jaber</div>
+    </div>
+    <div class="header-right">
+      <button class="dark-toggle" onclick="toggleDark()" id="dark-btn">🌙 Dark Mode</button>
+      <span class="header-badge">Super Goal</span>
+    </div>
+  </div>
+  <div class="hud-bar">
+    <div class="hud-item">⚡ XP: <span class="xp-badge" id="xp-display">0</span></div>
+    <div class="hud-item">🔥 Streak: <span class="streak-badge" id="streak-display">0</span></div>
+    <div class="hud-item">🏅 Level: <span class="level-badge" id="level-display">Rookie 🌱</span></div>
+    <div class="hud-item"><span class="hud-mini-btn" id="hud-name-chip" style="cursor:default">👤 Student</span><span class="hud-avatar" id="hud-avatar-chip">⚽</span></div>
+    <div class="hud-item"><button class="hud-mini-btn" onclick="openAchPanel()">🏆</button><button class="hud-mini-btn" onclick="openReport()">📊 Report</button><button class="hud-mini-btn" id="ns-mode-badge" onclick="openDifficultyOverlay()">🟡 Normal Mode</button><button class="hud-mini-btn" onclick="confirmResetProgress()" style="background:rgba(220,46,93,.25);border-color:#DC2E5D;">🗑 Reset Progress</button></div>
+    <div style="flex:1;min-width:80px;">
+      <div class="progress-container" style="height:6px;border-radius:3px;">
+        <div id="main-progress" class="progress-bar" style="border-radius:3px;"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="pill-nav">
+  <button class="active" onclick="showTab(0)">📘 Grammar 1 – Present Progressive</button>
+  <button onclick="showTab(1)">🎯 Mission 1 – Fill in</button>
+  <button onclick="showTab(2)">📘 Grammar 2 – Going to / Will</button>
+  <button onclick="showTab(3)">🎯 Mission 2 – Choose</button>
+  <button onclick="showTab(4)">🎯 Mission 3 – Negative &amp; Questions</button>
+  <button onclick="showTab(5)">🎯 Mission 4 – Fix Mistakes</button>
+  <button onclick="showTab(6)">🎮 Story Mode</button>
+  <button onclick="showTab(7)">👹 Boss Fight – Final Challenge</button>
+</nav>
+<!-- Reset Progress Confirmation Modal -->
+<div class="ns-overlay" id="reset-confirm-modal">
+  <div class="ns-card" style="border-color: #DC2E5D;">
+    <h2 style="color: #DC2E5D;">🗑 Reset Progress</h2>
+    <p style="margin: 12px 0; line-height: 1.6;">
+      Are you sure you want to reset all progress?<br>
+      This will permanently erase your XP, level, rank, achievements, and statistics. This cannot be undone.<br><br>
+      <span dir="rtl">هل أنت متأكد من رغبتك في إعادة تعيين كل التقدم؟ لا يمكن التراجع عن هذا.</span>
+    </p>
+    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 16px;">
+      <button onclick="executeResetProgress()" style="background: #DC2E5D; color: white; border: none; border-radius: 10px; padding: 11px 20px; font-size: 0.85rem; font-weight: 800; cursor: pointer;">Yes, Reset</button>
+      <button class="secondary" onclick="closeResetModal()" style="background: rgba(255,255,255,0.12); color: #fff; border: none; border-radius: 10px; padding: 11px 20px; font-size: 0.85rem; font-weight: 800; cursor: pointer;">Cancel</button>
+    </div>
+  </div>
+</div>
+<!-- FIXED BOSS HUD -->
+<div class="boss-hud-fixed" id="boss-hud-fixed">
+  <span style="font-size:1.5rem">👹</span>
+  <div class="b-hp-wrap">
+    <div class="b-hp-label"><span>👹 Boss HP</span><span id="b-boss-pct">100%</span></div>
+    <div class="b-hp-track"><div class="b-hp-bar" id="b-boss-bar"></div></div>
+  </div>
+  <div class="b-hp-wrap">
+    <div class="b-hp-label"><span>❤️ طاقتك</span><span id="b-my-pct">100%</span></div>
+    <div class="b-hp-track"><div class="b-my-bar" id="b-my-bar"></div></div>
+  </div>
+  <div class="b-timer" id="b-timer">⏳ <span id="b-time">60</span>s</div>
+</div>
+
+<div class="container">
+
+<!-- TAB 0 — Grammar 1: Present Progressive -->
+<div class="page active" id="tab-0">
+  <div class="grammar-box">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#0F766E,#2563EB)">
+      <div class="g-num" style="background:var(--gold);color:var(--navy)">1</div>
+      <div>
+        <div class="g-title">Present Progressive — المضارع المستمر</div>
+        <div class="g-title-ar">يُستخدم للأحداث التي تجري الآن، أو لترتيبات مؤكدة في المستقبل</div>
+      </div>
+    </div>
+    <div class="grammar-body">
+      <div class="formula-bar" style="background:var(--navy)">
+        <span class="f-label" style="background:var(--gold);color:var(--navy)">التكوين</span>
+        <div class="f-circle" style="background:var(--gold);color:var(--navy)">1</div>
+        <span class="f-pill" style="background:rgba(255,255,255,.15);color:white">الفاعل</span>
+        <span class="f-plus" style="color:#94a3b8">+</span>
+        <div class="f-circle" style="background:var(--teal);color:white">2</div>
+        <span class="f-pill" style="background:rgba(255,255,255,.15);color:white">am / is / are</span>
+        <span class="f-plus" style="color:#94a3b8">+</span>
+        <div class="f-circle" style="background:var(--blue);color:white">3</div>
+        <span class="f-pill" style="background:rgba(255,255,255,.15);color:white">الفعل + ing</span>
+      </div>
+      <div class="two-cols">
+        <div class="signal-box" style="background:var(--softblue);border:2px solid var(--blue)">
+          <h4 style="color:var(--blue)">🕐 كلمات دالة للآن</h4>
+          <div>
+            <span class="signal-pill" style="border-color:var(--blue)">now</span>
+            <span class="signal-pill" style="border-color:var(--blue)">at the moment</span>
+            <span class="signal-pill" style="border-color:var(--blue)">right now</span>
+            <span class="signal-pill" style="border-color:var(--blue)">Look!</span>
+            <span class="signal-pill" style="border-color:var(--blue)">Listen!</span>
+          </div>
+          <div style="margin-top:8px;font-size:.82rem;direction:rtl;text-align:right;color:var(--subtext);">الآن &nbsp;•&nbsp; في هذه اللحظة</div>
+        </div>
+        <div class="signal-box" style="background:var(--softorange);border:2px solid var(--orange)">
+          <h4 style="color:var(--orange)">📅 كلمات دالة للمستقبل</h4>
+          <div>
+            <span class="signal-pill" style="border-color:var(--orange)">tonight</span>
+            <span class="signal-pill" style="border-color:var(--orange)">tomorrow</span>
+            <span class="signal-pill" style="border-color:var(--orange)">next week</span>
+            <span class="signal-pill" style="border-color:var(--orange)">next month</span>
+          </div>
+          <div style="margin-top:8px;font-size:.82rem;direction:rtl;text-align:right;color:var(--subtext);">الليلة &nbsp;•&nbsp; غداً &nbsp;•&nbsp; الأسبوع المقبل</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="cmp-col" style="background:var(--softblue);border:2px solid var(--blue)">
+          <h4 style="color:var(--blue)">الآن — Right Now</h4>
+          <div class="cmp-ex">
+            <div>My friends <span class="hi-b">are waiting</span> for me now. <button type="button" class="audio-btn" onclick="speak('My friends are waiting for me at the airport.')">🔊</button></div>
+            <div class="ar">أصدقائي ينتظرونني الآن.</div>
+          </div>
+          <div class="cmp-ex">
+            <div>She <span class="hi-b">is packing</span> her bags right now. <button type="button" class="audio-btn" onclick="speak('She is packing her bags right now.')">🔊</button></div>
+            <div class="ar">هي تحزم حقائبها الآن.</div>
+          </div>
+        </div>
+        <div class="cmp-col" style="background:var(--softorange);border:2px solid var(--orange)">
+          <h4 style="color:var(--orange)">ترتيب مستقبلي — Future Arrangement</h4>
+          <div class="cmp-ex">
+            <div>My friends <span class="hi-o">are arriving</span> tomorrow. <button type="button" class="audio-btn" onclick="speak('My friends are arriving tomorrow.')">🔊</button></div>
+            <div class="ar">أصدقائي سيصلون غداً.</div>
+          </div>
+          <div class="cmp-ex">
+            <div>We <span class="hi-o">are traveling</span> to Makkah next week. <button type="button" class="audio-btn" onclick="speak('We are traveling to Makkah next week.')">🔊</button></div>
+            <div class="ar">سنسافر إلى مكة الأسبوع القادم.</div>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        ⚠️ <strong>ملاحظة:</strong> التعبيرات الزمنية مثل <strong>tonight</strong>, <strong>tomorrow</strong>, <strong>next week</strong> تدل على أن الجملة تتحدث عن <strong>المستقبل</strong> وليس الحاضر.
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:6px">
+        <div style="background:var(--softgreen);border-radius:8px;padding:10px;text-align:center;border:2px solid var(--green)">
+          <div style="font-weight:800;color:var(--green);font-size:1rem">am</div>
+          <div style="font-size:.8rem;color:var(--subtext);margin-top:4px">I</div>
+        </div>
+        <div style="background:var(--softblue);border-radius:8px;padding:10px;text-align:center;border:2px solid var(--blue)">
+          <div style="font-weight:800;color:var(--blue);font-size:1rem">is</div>
+          <div style="font-size:.8rem;color:var(--subtext);margin-top:4px">He / She / It</div>
+        </div>
+        <div style="background:var(--softpurple);border-radius:8px;padding:10px;text-align:center;border:2px solid var(--purple)">
+          <div style="font-weight:800;color:var(--purple);font-size:1rem">are</div>
+          <div style="font-size:.8rem;color:var(--subtext);margin-top:4px">You / We / They</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 1 — Ex 1: Fill in Present Progressive -->
+<div class="page" id="tab-1">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">Mission 1 – Fill in the correct form</div>
+      <div class="ex-title-ar">اكتب الصيغة الصحيحة للمضارع المستمر</div>
+      <span class="lv lv-beg">BEGINNER</span>
+    </div>
+    <div class="ex-inst">Write the correct Present Progressive form of the verb in brackets.</div>
+    <div class="ex-inst-ar">اكتب الصيغة الصحيحة للمضارع المستمر للفعل بين القوسين.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--teal)" onclick="revealOne('ex1',this)">▶ Reveal next</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex1')">↺ Reset</button>
+      </div>
+      <div class="score-line">Score: <span id="ex1-score">0</span> / 8 &nbsp;|&nbsp; ⚡ <span id="ex1-xp">0</span> XP earned</div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">1</div>
+        <div class="iq">Look! The plane <input type="text" class="interactive-input" data-ans="is arriving" autocomplete="off" autocorrect="off" spellcheck="false" data-hint="الفاعل (The plane) مفرد ⟵ is + arriving" data-exp="الإجابة الصحيحة هي 【is arriving】 — لأن الفاعل (The plane) مفرد ⟵ نستخدم is + arriving"> now. <span class="hint">(arrive)</span>
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <button type="button" class="audio-btn" onclick="speak('Look! The plane is arriving now.')">🔊</button>
+          <div class="hint-box">💡 الصيغة الصحيحة: is + arrive + ing = is arriving</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">is arriving ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">2</div>
+        <div class="iq">We <input type="text" class="interactive-input" data-ans="are traveling" autocomplete="off" autocorrect="off" spellcheck="false" data-hint="الكلمة (next week) تدل على ترتيب مستقبلي ⟵ are + traveling" data-exp="الإجابة الصحيحة هي 【are traveling】 — العبارة (next week) تدل على ترتيب مستقبلي ⟵ مضارع مستمر"> to Makkah next week. <span class="hint">(travel)</span>
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <button type="button" class="audio-btn" onclick="speak('We are traveling to Makkah next week.')">🔊</button>
+          <div class="hint-box">💡 الصيغة الصحيحة: are + travel + ing = are traveling</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">are traveling ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">3</div>
+        <div class="iq">What <input type="text" class="interactive-input" style="width:60px" data-ans="are" autocomplete="off" autocorrect="off" spellcheck="false" data-hint="الضمير you يأخذ are" data-exp="في السؤال نضع are قبل الضمير you"> you <input type="text" class="interactive-input" style="width:90px" data-ans="doing" autocomplete="off" autocorrect="off" spellcheck="false" data-hint="الفعل مع ing ⟵ doing" data-exp="الفعل do يضاف له ing فتصبح doing"> tonight? <span class="hint">(do)</span>
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <button type="button" class="audio-btn" onclick="speak('What are you doing tonight?')">🔊</button>
+          <div class="hint-box">💡 الصيغة الصحيحة: are / doing</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">are — doing ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">4</div>
+        <div class="iq">She <input type="text" class="interactive-input" data-ans="is packing" autocomplete="off" autocorrect="off" spellcheck="false" data-hint="الضمير She مفرد ⟵ is packing" data-exp="الإجابة الصحيحة هي 【is packing】 — التعبير (right now) يدل على الآن"> her bags right now. <span class="hint">(pack)</span>
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <button type="button" class="audio-btn" onclick="speak('She is packing her bags right now.')">🔊</button>
+          <div class="hint-box">💡 الصيغة الصحيحة: is + pack + ing = is packing</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">is packing ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">5</div>
+        <div class="iq">Listen! The students <input type="text" class="interactive-input" data-ans="are listening" autocomplete="off" autocorrect="off" spellcheck="false" data-hint="الفاعل (The students) جمع ⟵ are listening" data-exp="الإجابة الصحيحة هي 【are listening】 — التنبيه (!Listen) يدل على حدث يقع الآن"> to the teacher. <span class="hint">(listen)</span>
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <button type="button" class="audio-btn" onclick="speak('Listen! The students are listening to the teacher.')">🔊</button>
+          <div class="hint-box">💡 الصيغة الصحيحة: are + listen + ing = are listening</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">are listening ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">6</div>
+        <div class="iq">He <input type="text" class="interactive-input" data-ans="is meeting" autocomplete="off" autocorrect="off" spellcheck="false" data-hint="الفاعل He مفرد ⟵ is meeting" data-exp="الإجابة الصحيحة هي 【is meeting】 — الكلمة (tomorrow) تدل على ترتيب مستقبلي مؤكد"> his friends tomorrow. <span class="hint">(meet)</span>
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <button type="button" class="audio-btn" onclick="speak('He is meeting his friends tomorrow.')">🔊</button>
+          <div class="hint-box">💡 الصيغة الصحيحة: is + meet + ing = is meeting</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">is meeting ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">7</div>
+        <div class="iq">My parents <input type="text" class="interactive-input" data-ans="are sleeping" autocomplete="off" autocorrect="off" spellcheck="false" data-hint="الفاعل (My parents) جمع ⟵ are sleeping" data-exp="الإجابة الصحيحة هي 【are sleeping】 — التعبير (at the moment) يدل على الآن"> at the moment. <span class="hint">(sleep)</span>
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <button type="button" class="audio-btn" onclick="speak('My parents are sleeping at the moment.')">🔊</button>
+          <div class="hint-box">💡 الصيغة الصحيحة: are + sleep + ing = are sleeping</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">are sleeping ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">8</div>
+        <div class="iq">I <input type="text" class="interactive-input" data-ans="am flying" autocomplete="off" autocorrect="off" spellcheck="false" data-hint="الضمير I يأخذ am" data-exp="الإجابة الصحيحة هي 【am flying】 — التعبير (next month) يدل على ترتيب مستقبلي مؤكد"> to London next month. <span class="hint">(fly)</span>
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <button type="button" class="audio-btn" onclick="speak('I am flying to London next month.')">🔊</button>
+          <div class="hint-box">💡 الصيغة الصحيحة: am + fly + ing = am flying</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">am flying ✓</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2 — Grammar 2: Going to / Will -->
+<div class="page" id="tab-2">
+  <div class="grammar-box">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#DC2E5D,#7C3AED)">
+      <div class="g-num" style="background:var(--gold);color:var(--navy)">2</div>
+      <div>
+        <div class="g-title">Future: Going to &amp; Will — المستقبل</div>
+        <div class="g-title-ar">Going to للخطط المؤكدة &nbsp;•&nbsp; Will للخطط غير المؤكدة</div>
+      </div>
+    </div>
+    <div class="grammar-body">
+      <div class="two-cols">
+        <div>
+          <div style="background:var(--coral);border-radius:8px 8px 0 0;padding:9px 13px;font-weight:800;color:white;font-size:.88rem;direction:rtl;text-align:right;">🎯 Going to — خطط مؤكدة ونوايا</div>
+          <div style="background:var(--softpink);border-radius:0 0 8px 8px;padding:13px;border:2px solid var(--coral);border-top:none">
+            <div class="fwbw-row">
+              <div class="fwbw-token">
+                <span class="fwbw-en" style="background:var(--coral)">① Subject</span>
+                <span class="fwbw-ar">الفاعل</span>
+              </div>
+              <span class="fwbw-sep">+</span>
+              <div class="fwbw-token">
+                <span class="fwbw-en" style="background:var(--coral)">② am/is/are</span>
+                <span class="fwbw-ar">فعل مساعد</span>
+              </div>
+              <span class="fwbw-sep">+</span>
+              <div class="fwbw-token">
+                <span class="fwbw-en" style="background:var(--coral)">③ going to</span>
+                <span class="fwbw-ar"><bdi>سوف</bdi> / <bdi>سـ</bdi></span>
+              </div>
+              <span class="fwbw-sep">+</span>
+              <div class="fwbw-token">
+                <span class="fwbw-en" style="background:var(--navy)">④ Verb</span>
+                <span class="fwbw-ar">الفعل</span>
+              </div>
+            </div>
+            <div style="font-size:.82rem;line-height:1.8">
+              <div>I'm <span class="hi-c">going to</span> travel to Europe. <button type="button" class="audio-btn" onclick="speak('I am going to travel to Europe.')">🔊</button></div>
+              <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;">لديّ خطة للسفر — مؤكدة</div>
+              <div>I'm <span class="hi-c">not going to</span> travel this year. <button type="button" class="audio-btn" onclick="speak('I am not going to travel this year.')">🔊</button></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="background:var(--purple);border-radius:8px 8px 0 0;padding:9px 13px;font-weight:800;color:white;font-size:.88rem;direction:rtl;text-align:right;">💭 Will — مع maybe/probably</div>
+          <div style="background:var(--softpurple);border-radius:0 0 8px 8px;padding:13px;border:2px solid var(--purple);border-top:none">
+            <div class="fwbw-row">
+              <div class="fwbw-token">
+                <span class="fwbw-en" style="background:var(--purple)">① Subject</span>
+                <span class="fwbw-ar">الفاعل</span>
+              </div>
+              <span class="fwbw-sep">+</span>
+              <div class="fwbw-token">
+                <span class="fwbw-en" style="background:var(--orange)">② maybe</span>
+                <span class="fwbw-ar">ربما</span>
+              </div>
+              <span class="fwbw-sep">+</span>
+              <div class="fwbw-token">
+                <span class="fwbw-en" style="background:var(--purple)">③ will</span>
+                <span class="fwbw-ar"><bdi>سوف</bdi> / <bdi>سـ</bdi></span>
+              </div>
+              <span class="fwbw-sep">+</span>
+              <div class="fwbw-token">
+                <span class="fwbw-en" style="background:var(--navy)">④ Verb</span>
+                <span class="fwbw-ar">الفعل</span>
+              </div>
+            </div>
+            <div style="font-size:.82rem;line-height:1.8">
+              <div>Maybe I<span class="hi-p">'ll</span> stay with friends. <button type="button" class="audio-btn" onclick="speak('Maybe I will stay with friends.')">🔊</button></div>
+              <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;">ربما — لست متأكداً</div>
+              <div>I probably <span class="hi-p">won't</span> stay in a hotel. <button type="button" class="audio-btn" onclick="speak('I probably won\'t stay in a hotel.')">🔊</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--navy);border-radius:10px;padding:13px 16px;margin-bottom:14px">
+        <div style="color:var(--gold);font-weight:800;font-size:.9rem;margin-bottom:10px;direction:rtl;text-align:right;">📌 الفرق بين Going to و Will</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="background:rgba(220,46,93,.25);border-radius:8px;padding:10px;border:1px solid var(--coral)">
+            <div style="color:#fca5a5;font-weight:800;margin-bottom:5px;font-size:.85rem;direction:rtl;text-align:right;">Going to ✅ خطة مؤكدة</div>
+            <div style="color:white;font-size:.82rem;line-height:1.6">I'm going to visit my grandma. <button type="button" class="audio-btn" onclick="speak('I am going to visit my grandma.')">🔊</button><br><span style="opacity:.7;font-size:.74rem;direction:rtl;text-align:right;display:block;">لديّ خطة محددة مسبقاً</span></div>
+          </div>
+          <div style="background:rgba(124,58,237,.25);border-radius:8px;padding:10px;border:1px solid var(--purple)">
+            <div style="color:#c4b5fd;font-weight:800;margin-bottom:5px;font-size:.85rem;direction:rtl;text-align:right;">Will 💭 غير مؤكدة</div>
+            <div style="color:white;font-size:.82rem;line-height:1.6">Maybe I'll visit my grandma. <button type="button" class="audio-btn" onclick="speak('Maybe I will visit my grandma.')">🔊</button><br><span style="opacity:.7;font-size:.74rem;direction:rtl;text-align:right;display:block;">ربما — لست متأكداً بعد</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        💡 نستخدم <strong>going to</strong> للخطط المؤكدة والقرارات السابقة، بينما نستخدم <strong>will</strong> مع <strong>maybe / probably</strong> للخطط غير المؤكدة.
+      </div>
+      <div style="font-weight:800;color:var(--text);margin-bottom:10px;font-size:.9rem;direction:rtl;text-align:right;">✗ صيغة النفي</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:var(--softpink);border-radius:8px;padding:10px;border:1px solid var(--coral);font-size:.83rem;line-height:1.7">
+          <div style="font-weight:800;color:var(--coral);margin-bottom:5px">Going to → Negative</div>
+          I'm <strong>not going to</strong> travel.<br>She <strong>isn't going to</strong> come.<br>They <strong>aren't going to</strong> stay.
+        </div>
+        <div style="background:var(--softpurple);border-radius:8px;padding:10px;border:1px solid var(--purple);font-size:.83rem;line-height:1.7">
+          <div style="font-weight:800;color:var(--purple);margin-bottom:5px">Will → Negative = Won't</div>
+          I <strong>won't</strong> stay in a hotel.<br>She probably <strong>won't</strong> come.<br>They <strong>won't</strong> travel by bus.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 3 — Ex 2: Choose Going to / Will -->
+<div class="page" id="tab-3">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">Mission 2 – Choose the correct answer</div>
+      <div class="ex-title-ar">اختر going to أو will حسب المعنى والسياق</div>
+      <span class="lv lv-int">INTERMEDIATE</span>
+    </div>
+    <div class="ex-inst">Choose going to or will based on the context.</div>
+    <div class="ex-inst-ar">اختر going to أو will حسب السياق والمعنى.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--coral)" onclick="revealOne('ex2',this)">▶ Reveal next</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex2')">↺ Reset</button>
+      </div>
+      <div class="score-line">Score: <span id="ex2-score">0</span> / 8 &nbsp;|&nbsp; ⚡ <span id="ex2-xp">0</span> XP earned</div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">1. I bought my ticket. I _______ visit my relatives in KSA. <button type="button" class="audio-btn" onclick="speak('I bought my ticket. I am going to visit my relatives in KSA.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'ex2','','اشترى التذكرة = خطة مؤكدة ⟵ نستخدم (am going to).')">am going to</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'ex2','will تُستخدم مع غير المؤكد','(will) تُستخدم مع عدم التأكد، بينما شراء التذكرة يدل على خطة مؤكدة.')">will</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">2. Maybe we _______ go to the beach. <button type="button" class="audio-btn" onclick="speak('Maybe we will go to the beach.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'ex2','','وجود (Maybe) يدل على عدم التأكد ⟵ نستخدم (will).')">will</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'ex2','going to للخطط المؤكدة وليست مع maybe','(are going to) للخطط المؤكدة، ولا تناسب وجود كلمة (Maybe).')">are going to</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">3. She isn't sure, but she probably _______ come. <button type="button" class="audio-btn" onclick="speak('She isn\'t sure, but she probably won\'t come.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'ex2','','وجود (probably) مع عدم التأكد ⟵ نستخدم (won\'t).')">won't</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'ex2','isn\'t going to للقرار المؤكد','(isn\'t going to) للقرار المؤكد، لكن الجملة تحتوي على (probably).')">isn't going to</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">4. Look at those clouds! It _______ rain. <button type="button" class="audio-btn" onclick="speak('Look at those clouds! It is going to rain.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'ex2','','وجود دليل واضح (الغيوم) ⟵ نستخدم (is going to).')">is going to</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'ex2','will مع وجود دليل ليست الخيار الأدق','مع وجود دليل مرئي واضح نستخدم (going to) وليس (will).')">will</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">5. I have a plan. I _______ study medicine at university. <button type="button" class="audio-btn" onclick="speak('I have a plan. I am going to study medicine at university.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'ex2','','خطة سابقة ومؤكدة ⟵ نستخدم (am going to).')">am going to</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'ex2','will للقرارات السريعة وليس الخطط المسبقة','(will) للقرارات اللحظية، أما الخطة المسبقة فتستخدم (going to).')">will</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">6. I'm not sure. I probably _______ travel this summer. <button type="button" class="audio-btn" onclick="speak('I\'m not sure. I probably won\'t travel this summer.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'ex2','','(probably + not sure) تدل على عدم التأكد ⟵ (won\'t).')">won't</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'ex2','am not going to للقرار المؤكد','(am not going to) للقرار القاطع، أما السياق هنا غير مؤكد.')">am not going to</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">7. She booked the hotel. She _______ stay there. <button type="button" class="audio-btn" onclick="speak('She booked the hotel. She is going to stay there.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'ex2','','حجز الفندق دليل على خطة مؤكدة ⟵ (is going to).')">is going to</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'ex2','will للخطط غير المؤكدة','تم حجز الفندق بالفعل فتصبح خطة مؤكدة تستخدم (going to).')">will</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">8. Maybe he _______ visit us next week. <button type="button" class="audio-btn" onclick="speak('Maybe he will visit us next week.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'ex2','','وجود (Maybe) يدل على عدم التأكد ⟵ (will).')">will</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'ex2','is going to لا تتناسب مع maybe','(is going to) تتطلب تأكيداً ولا تُستخدم مع (Maybe).')">is going to</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 4 — Ex 3: Negative & Questions -->
+<div class="page" id="tab-4">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">Mission 3 – Negative &amp; Questions</div>
+      <div class="ex-title-ar">حوّل الجملة إلى النفي ثم إلى سؤال</div>
+      <span class="lv lv-int">INTERMEDIATE</span>
+    </div>
+    <div class="ex-inst">Rewrite each sentence correctly according to the required prompt.</div>
+    <div class="ex-inst-ar">أعد كتابة الجملة بشكل صحيح حسب المطلوب.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--blue)" onclick="revealOne('ex3',this)">▶ Reveal next</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex3')">↺ Reset</button>
+      </div>
+      <div class="score-line">Score: <span id="ex3-score">0</span> / 6 &nbsp;|&nbsp; ⚡ <span id="ex3-xp">0</span> XP earned</div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">1</div>
+        <div class="iq">
+          She <strong>is going to</strong> travel next month. → <em>Negative?</em> <button type="button" class="audio-btn" onclick="speak('She is going to travel next month.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="She isn't going to travel next month." placeholder="Type negative..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="النفي: نضع not بعد is" data-exp="في النفي مع (going to): نضع (not) بعد (is) فتصبح (isn't going to).">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 البداية الصحيحة: 【She isn't going to travel next month.】</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex3" style="background:var(--coral)">She <strong>isn't going to</strong> travel next month. ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">2</div>
+        <div class="iq">
+          She <strong>is going to</strong> travel next month. → <em>Question?</em> <button type="button" class="audio-btn" onclick="speak('Is she going to travel next month?')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="Is she going to travel next month?" placeholder="Type question..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="السؤال: نضع is في بداية الجملة" data-exp="في السؤال: نقدم الفعل المساعد (Is) إلى بداية الجملة فتصبح (Is she going to...?)">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 السؤال يبدأ بـ: 【Is she going to travel next month?】</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex3" style="background:var(--blue)"><strong>Is</strong> she <strong>going to</strong> travel next month? ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">3</div>
+        <div class="iq">
+          They <strong>will</strong> stay in a hotel. → <em>Negative?</em> <button type="button" class="audio-btn" onclick="speak('They will stay in a hotel.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="They won't stay in a hotel." placeholder="Type negative..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="النفي: will + not = won't" data-exp="نفي (will) المختصر هو (won't). الجملة الصحيحة: 【They won't stay in a hotel.】">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 تذكر أن: will + not = won't</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex3" style="background:var(--coral)">They <strong>won't</strong> stay in a hotel. ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">4</div>
+        <div class="iq">
+          They <strong>will</strong> stay in a hotel. → <em>Question?</em> <button type="button" class="audio-btn" onclick="speak('Will they stay in a hotel?')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="Will they stay in a hotel?" placeholder="Type question..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="السؤال: نضع Will في بداية الجملة" data-exp="في السؤال: نقدم الفعل المساعد (Will) للبداية فتصبح (Will they stay...?)">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 السؤال يبدأ بـ: 【Will they stay in a hotel?】</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex3" style="background:var(--blue)"><strong>Will</strong> they stay in a hotel? ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">5</div>
+        <div class="iq">
+          He <strong>is flying</strong> to Dubai tonight. → <em>Negative?</em> <button type="button" class="audio-btn" onclick="speak('He is flying to Dubai tonight.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="He isn't flying to Dubai tonight." placeholder="Type negative..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="النفي: is + not = isn't" data-exp="في المضارع المستمر نضع (not) بعد (is) فتصبح (isn't flying).">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 البداية الصحيحة: 【He isn't flying to Dubai tonight.】</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex3" style="background:var(--coral)">He <strong>isn't flying</strong> to Dubai tonight. ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--blue)">6</div>
+        <div class="iq">
+          He <strong>is flying</strong> to Dubai tonight. → <em>Question?</em> <button type="button" class="audio-btn" onclick="speak('Is he flying to Dubai tonight?')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="Is he flying to Dubai tonight?" placeholder="Type question..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="السؤال: نضع Is في البداية" data-exp="في السؤال مع المضارع المستمر: نقدم (Is) للبداية فتصبح (Is he flying...?)">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 السؤال يبدأ بـ: 【Is he flying to Dubai tonight?】</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex3" style="background:var(--blue)"><strong>Is</strong> he <strong>flying</strong> to Dubai tonight? ✓</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 5 — Ex 4: Find the mistake -->
+<div class="page" id="tab-5">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">Mission 4 – Find the mistake</div>
+      <div class="ex-title-ar">كل جملة فيها خطأ واحد — ابحث عنه وصحّحه</div>
+      <span class="lv lv-adv">ADVANCED</span>
+    </div>
+    <div class="ex-inst">Each sentence has ONE mistake. Find it and rewrite correctly.</div>
+    <div class="ex-inst-ar">كل جملة تحتوي على خطأ واحد — صحّحها.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--orange)" onclick="revealOne('ex4',this)">▶ Reveal next</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex4')">↺ Reset</button>
+      </div>
+      <div class="score-line">Score: <span id="ex4-score">0</span> / 8 &nbsp;|&nbsp; ⚡ <span id="ex4-xp">0</span> XP earned</div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">1</div>
+        <div class="iq" style="background:var(--softpink);padding:6px 10px;border-radius:6px">
+          Look! The plane <u style="color:var(--coral)">arrive</u> now. <button type="button" class="audio-btn" onclick="speak('Look! The plane is arriving now.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="Look! The plane is arriving now." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="كلمة Look! تدل على حدث يحدث الآن ⟵ is arriving" data-exp="الخطأ في (arrive). كلمة (Look!) تدل على مضارع مستمر ⟵ الصحيح: 【is arriving】.">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 التعديل: Look! The plane is arriving now.</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green)">Look! The plane <strong>is arriving</strong> now. ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">2</div>
+        <div class="iq" style="background:var(--softpink);padding:6px 10px;border-radius:6px">
+          She <u style="color:var(--coral)">is go to</u> visit her aunt next week. <button type="button" class="audio-btn" onclick="speak('She is going to visit her aunt next week.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="She is going to visit her aunt next week." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="الصيغة الصحيحة هي is going to وليست is go to" data-exp="الخطأ في (is go to). تركيب القواعد الصحيح هو: 【is going to】.">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 التعديل: She is going to visit her aunt next week.</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green)">She <strong>is going to</strong> visit her aunt next week. ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">3</div>
+        <div class="iq" style="background:var(--softpink);padding:6px 10px;border-radius:6px">
+          I bought my ticket. I <u style="color:var(--coral)">will</u> travel to London. <button type="button" class="audio-btn" onclick="speak('I bought my ticket. I am going to travel to London.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="I bought my ticket. I am going to travel to London." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="شراء التذكرة = خطة مؤكدة ⟵ am going to" data-exp="الخطأ في (will). شراء التذكرة يعني خطة مؤكدة ⟵ الصحيح: 【am going to】.">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 التعديل: I am going to travel to London.</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green)">I bought my ticket. I <strong>am going to</strong> travel to London. ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">4</div>
+        <div class="iq" style="background:var(--softpink);padding:6px 10px;border-radius:6px">
+          Maybe I <u style="color:var(--coral)">am going to</u> stay with friends. <button type="button" class="audio-btn" onclick="speak('Maybe I will stay with friends.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="Maybe I will stay with friends." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="عدم التأكد مع Maybe يحتاج will" data-exp="الخطأ في (am going to) مع (Maybe). كلمة (Maybe) تعني عدم تأكد ⟵ الصحيح: 【will】.">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 التعديل: Maybe I will stay with friends.</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green)">Maybe I <strong>will</strong> stay with friends. ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">5</div>
+        <div class="iq" style="background:var(--softpink);padding:6px 10px;border-radius:6px">
+          What are you <u style="color:var(--coral)">do</u> tonight? <button type="button" class="audio-btn" onclick="speak('What are you doing tonight?')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="What are you doing tonight?" placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="المضارع المستمر يتطلب إضافة ing للفعل ⟵ doing" data-exp="الخطأ في (do). بعد (are) نحتاج مضارع مستمر ⟵ الصحيح: 【doing】.">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 التعديل: What are you doing tonight?</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green)">What are you <strong>doing</strong> tonight? ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">6</div>
+        <div class="iq" style="background:var(--softpink);padding:6px 10px;border-radius:6px">
+          She probably <u style="color:var(--coral)">isn't going to</u> come — she's not sure yet. <button type="button" class="audio-btn" onclick="speak('She probably won\'t come — she\'s not sure yet.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="She probably won't come — she's not sure yet." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="كلمة probably مع غير مؤكد تحتاج won't" data-exp="الخطأ في (isn't going to). وجود (probably) مع عدم التأكد يتطلب ⟵ 【won't】.">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 التعديل: She probably won't come — she's not sure yet.</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green)">She probably <strong>won't</strong> come — she's not sure yet. ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">7</div>
+        <div class="iq" style="background:var(--softpink);padding:6px 10px;border-radius:6px">
+          He <u style="color:var(--coral)">are going to</u> travel next month. <button type="button" class="audio-btn" onclick="speak('He is going to travel next month.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="He is going to travel next month." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="الفاعل He مفرد وياخذ is" data-exp="الخطأ في (are). الضمير (He) مفرد ويأخذ (is) ⟵ الصحيح: 【is going to】.">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 التعديل: He is going to travel next month.</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green)">He <strong>is going to</strong> travel next month. ✓</div>
+      </div>
+
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">8</div>
+        <div class="iq" style="background:var(--softpink);padding:6px 10px;border-radius:6px">
+          We <u style="color:var(--coral)">will</u> fly to Jeddah — we booked flights last week! <button type="button" class="audio-btn" onclick="speak('We are going to fly to Jeddah — we booked flights last week!')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="We are going to fly to Jeddah — we booked flights last week!" placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" spellcheck="false" data-hint="حجز التذاكر خطة مؤكدة ⟵ are going to" data-exp="الخطأ في (will). حجز الرحلة يعني خطة مؤكدة ⟵ الصحيح: 【are going to】.">
+          <button class="check-btn" onclick="checkInput(this)">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this)">💡 Hint</button>
+          <div class="hint-box">💡 التعديل: We are going to fly to Jeddah...</div>
+          <div class="explanation-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green)">We <strong>are going to</strong> fly to Jeddah — we booked flights last week! ✓</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEW TAB — Story Mode (added; does not touch any original lesson content) -->
+<div class="page" id="tab-story">
+  <div class="story-wrap">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#7C3AED,#2563EB);border-radius:14px;margin-bottom:12px;padding:14px 18px;">
+      <div style="text-align:center;width:100%">
+        <div class="g-title" style="color:#fff">🎮 Story Mode — Noura's Trip Plans</div>
+        <div class="g-title-ar" style="color:#93c5fd">وضع القصة — خطط سفر نورة</div>
+      </div>
+    </div>
+    <div class="story-progress-track"><div class="story-progress-fill" id="story-progress-fill"></div></div>
+    <div id="story-screens"></div>
+  </div>
+</div>
+
+<!-- TAB 6 — BOSS FIGHT -->
+
+<div id="boss-overlay" style="display:none;position:fixed;inset:0;z-index:800;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(76,29,149,.97),rgba(220,46,93,.97));text-align:center;padding:28px;">
+  <span style="font-size:4rem;margin-bottom:8px">👹</span>
+  <h2 style="color:white;font-size:1.9rem;margin:0 0 8px;font-weight:900">FINAL BOSS CHALLENGE</h2>
+  <p style="color:#e2e8f0;font-size:.95rem;line-height:1.7;direction:rtl;margin:0 0 22px">لديك 60 ثانية لهزيمة الوحش!<br>✅ كل إجابة صحيحة تسلب طاقة الوحش 💥<br>❌ كل خطأ يسلب 10 ثوانٍ من وقتك ⚠️<br>شريط الطاقة يُثبَّت في أسفل الشاشة عند البدء!</p>
+  <button onclick="startBoss()" style="background:#F59E0B;color:#1e1b4b;border:none;border-radius:14px;font-size:1.15rem;font-weight:900;padding:14px 34px;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:.15s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">⚔️ ابدأ التحدي الآن!</button>
+  <button onclick="closeBossOverlay()" style="margin-top:14px;background:rgba(255,255,255,.15);color:white;border:2px solid rgba(255,255,255,.35);border-radius:12px;font-size:.95rem;font-weight:700;padding:10px 26px;cursor:pointer;transition:.15s;" onmouseover="this.style.background='rgba(255,255,255,.25)'" onmouseout="this.style.background='rgba(255,255,255,.15)'">⬅️ رجوع إلى الدروس</button>
+</div>
+<div class="page" id="tab-7">
+  <div class="boss-banner">
+    <div class="boss-icon">👹</div>
+    <div>
+      <div class="boss-title">⚔️ FINAL BOSS CHALLENGE — تحدي الوحش!</div>
+      <div class="boss-sub">اختبار شامل: Present Progressive + Going to + Will! +15 XP لكل إجابة!</div>
+    </div>
+  </div>
+  <div class="ex-card" style="border:2px solid #cc0000;">
+    <div class="ex-head" style="background:linear-gradient(135deg,#1a0000,#2a0010)">
+      <div class="ex-title" style="color:#ff8888;">👹 Final Boss Challenge – Mixed Practice</div>
+      <div class="ex-title-ar" style="color:#ffaaaa;">جميع نقاط قواعد الوحدة الثالثة مدموجة</div>
+      <span class="lv lv-boss">👹 BOSS LEVEL</span>
+    </div>
+    <div class="ex-inst">Choose the correct answer — all grammar points mixed. +15 XP per correct answer!</div>
+    <div class="ex-inst-ar">اختر الإجابة الصحيحة — جميع النقاط النحوية مختلطة. +15 XP لكل إجابة!</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:linear-gradient(135deg,#7f0000,#cc0000);" onclick="revealOne('quiz',this)">▶ Reveal next</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('quiz')">↺ Reset Boss</button>
+      </div>
+      <div class="score-line">Score: <span id="quiz-score">0</span> / 12 &nbsp;|&nbsp; ⚡ <span id="quiz-xp">0</span> XP earned</div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q1. Look! The plane _______ now. <button type="button" class="audio-btn" onclick="speak('Look! The plane is arriving now.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','arrives للمضارع البسيط وليس للمستمر الآن','(arrives) للمضارع البسيط. الكلمة (Look!) تتطلب مضارع مستمر.')">arrives</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','وجود (Look! + now) يتطلب مضارع مستمر (is arriving).')">is arriving</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','arrived للماضي وليس للحاضر','(arrived) في زمن الماضي.')">arrived</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q2. What _______ you _______ tonight? <button type="button" class="audio-btn" onclick="speak('What are you doing tonight?')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','تركيب غير صحيح للمضارع المستمر','نحتاج صيغة المضارع المستمر للمستقبل القريب.')">do / do</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','التكعيب الصحيح: are + do + ing.')">are / doing</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','is لا تأتي مع you','الضمير (you) يأخذ (are) وليس (is).')">is / doing</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q3. I have my ticket. I _______ travel to Dubai. <button type="button" class="audio-btn" onclick="speak('I have my ticket. I am going to travel to Dubai.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','will للخطط غير المؤكدة','وجود التذكرة يجعل الخطة مؤكدة ⟵ (going to).')">will</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','وجود التذكرة دليل على خطة مؤكدة (am going to).')">am going to</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','traveled للماضي','(traveled) زمن ماضٍ.')">traveled</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q4. Maybe she _______ visit us next weekend. <button type="button" class="audio-btn" onclick="speak('Maybe she will visit us next weekend.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','وجود (Maybe) يدل على عدم التأكد ⟵ (will).')">will</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','is going to لا تجتمع مع maybe','(is going to) للخطط المؤكدة ولا تجتمع عادة مع (Maybe).')">is going to</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','visits للمضارع البسيط','(visits) مضارع بسيط.')">visits</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q5. She _______ her bags right now. <button type="button" class="audio-btn" onclick="speak('She is packing her bags right now.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','packs للمضارع البسيط','(packs) مضارع بسيط، لكن لدينا (right now).')">packs</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','packed للماضي','(packed) ماضٍ.')">packed</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','وجود (right now) يتطلب مضارع مستمر (is packing).')">is packing</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q6. They probably _______ stay in a hotel. <button type="button" class="audio-btn" onclick="speak('They probably won\'t stay in a hotel.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','وجود (probably) مع عدم التأكد يتطلب (won\'t).')">won't</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','aren\'t going to للقرار المؤكد القاطع','(aren\'t going to) للقرار القاطع المسبق.')">aren't going to</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','don\'t للمضارع البسيط','(don\'t) نفي للمضارع البسيط.')">don't</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q7. My friends _______ tomorrow. They have tickets. <button type="button" class="audio-btn" onclick="speak('My friends are going to arrive tomorrow. They have tickets.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','امتلاك التذاكر دليل قاطع على خطة مؤكدة.')">are going to arrive</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','will ليست الأفضل عند وجود التذاكر','وجود التذاكر يجعل (going to) هي الأدق.')">will arrive</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','arrived للماضي','(arrived) ماضٍ.')">arrived</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q8. Listen! Someone _______ at the door. <button type="button" class="audio-btn" onclick="speak('Listen! Someone is knocking at the door.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','knocks للمضارع البسيط','(knocks) مضارع بسيط.')">knocks</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','تنبيه (Listen!) يدل على حادث يقع الآن ⟵ (is knocking).')">is knocking</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','knocked للماضي','(knocked) ماضٍ.')">knocked</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q9. _______ you going to travel this summer? <button type="button" class="audio-btn" onclick="speak('Are you going to travel this summer?')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','السؤال مع (going to) والضمير (you) يبدأ بـ (Are).')">Are</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','Will لا تستخدم مع going to','(Will) لا تجتمع في تركيب واحد مع (going to).')">Will</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','Do للمضارع البسيط','(Do) سؤال للمضارع البسيط.')">Do</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q10. _______ he stay with you? — Maybe. <button type="button" class="audio-btn" onclick="speak('Will he stay with you? Maybe.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','Is تتطلب going to أو ing','(Is) تتطلب تركيب (going to) أو مضارع مستمر.')">Is</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','كلمة (Maybe) في الإجابة تؤكد استخدام (Will) في السؤال.')">Will</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','Does للمضارع البسيط','(Does) سؤال للمضارع البسيط.')">Does</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q11. She _______ travel this year — no money. <button type="button" class="audio-btn" onclick="speak('She isn\'t going to travel this year — no money.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','won\'t لغير المؤكد بينما الخطة هنا مؤكدة','السياق يوضح عدم وجود المال مما يعني قراراً قاطعاً بعدم السفر.')">won't</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','عدم وجود المال حقيقة مؤكدة تمنع السفر ⟵ (isn\'t going to).')">isn't going to</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','doesn\'t going to تركيب خاطئ','(doesn\'t going to) تركيب غير صحيح قواعدياً.')">doesn't going to</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div class="mcq-block">
+        <div class="mcq-q">Q12. We _______ to Makkah next week — we booked everything! <button type="button" class="audio-btn" onclick="speak('We are going to travel to Makkah next week — we booked everything!')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','will travel غير دقيقة مع حجز كل شيء','حجز كل شيء يعبر عن ترتيبات جازمة ومؤكدة.')">will travel</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,true,'quiz','','حجز كل المستلزمات دليل على خطة مؤكدة جداً.')">are going to travel</div>
+          <div class="mcq-opt" onclick="selectMCQ(this,false,'quiz','are traveling ممكن لكن are going to travel أشمل للنيات','(are going to travel) خيار ممتاز ومناسب للنوايا المؤكدة.')">are traveling</div>
+        </div>
+        <div class="explanation-box"></div>
+      </div>
+
+      <div id="final-score-card" class="final-score-card">
+        <div style="font-size:2rem">🏆</div>
+        <div class="final-score-big" id="final-xp-total">0 XP</div>
+        <div style="font-size:.9rem;opacity:.85">Boss Defeated! You're a Grammar Hero!</div>
+        <div style="font-size:.82rem;margin-top:8px;opacity:.7;direction:rtl">لقد هزمت الوحش! أنت بطل القواعد!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .container -->
+
+<footer style="background:var(--footer-bg);color:var(--footer-text);text-align:center;padding:13px;padding-bottom:90px;font-size:.77rem">
+  🎮 Prepared by Teacher Jaber &nbsp;•&nbsp; U3 Grammar – When Are You Traveling? &nbsp;•&nbsp; Super Goal
+</footer>
+
+<script>
+/* ════════ GAMIFICATION ════════ */
+let XP = 0, streak = 0, completedTotal = 0;
+const totalInteractiveItems = 34;
+const LEVELS = [
+  {min:0,label:'Rookie 🌱'},{min:50,label:'Explorer ⚡'},
+  {min:120,label:'Fighter 🗡️'},{min:220,label:'Champion 🏅'},
+  {min:350,label:'Legend 👑'},{min:500,label:'Grammar Hero 🎓'},
+];
+function getLevel(xp){let l=LEVELS[0];for(const x of LEVELS){if(xp>=x.min)l=x;}return l.label;}
+
+function awardXP(amount, el) {
+  XP += amount;
+  document.getElementById('xp-display').textContent = XP;
+  document.getElementById('level-display').textContent = getLevel(XP);
+  const badge = document.getElementById('xp-display');
+  badge.classList.remove('bump'); void badge.offsetWidth; badge.classList.add('bump');
+  setTimeout(()=>badge.classList.remove('bump'),300);
+  const popup = document.getElementById('xp-popup');
+  popup.textContent = '+' + amount + ' XP!';
+  if(el){const r=el.getBoundingClientRect();popup.style.left=(r.left+r.width/2-30)+'px';popup.style.top=(r.top+window.scrollY-10)+'px';}
+  else{popup.style.left='50%';popup.style.top='40%';}
+  popup.classList.remove('show'); void popup.offsetWidth; popup.classList.add('show');
+  setTimeout(()=>popup.classList.remove('show'),900);
+}
+
+function increaseStreak(){
+  streak++;
+  const badge=document.getElementById('streak-display');
+  badge.textContent=streak; badge.classList.remove('hot'); void badge.offsetWidth; badge.classList.add('hot');
+  setTimeout(()=>badge.classList.remove('hot'),400);
+}
+function resetStreak(){streak=0;document.getElementById('streak-display').textContent=0;}
+
+/* ════════ AUDIO ════════ */
+const AudioCtx=window.AudioContext||window.webkitAudioContext;
+let audioCtx=null;
+function getAudio(){if(!audioCtx)audioCtx=new AudioCtx();return audioCtx;}
+function playCorrectSound(){try{const ctx=getAudio();const o1=ctx.createOscillator(),o2=ctx.createOscillator(),g=ctx.createGain();o1.connect(g);o2.connect(g);g.connect(ctx.destination);o1.type='sine';o2.type='sine';o1.frequency.setValueAtTime(523,ctx.currentTime);o1.frequency.setValueAtTime(659,ctx.currentTime+0.1);o2.frequency.setValueAtTime(784,ctx.currentTime+0.2);g.gain.setValueAtTime(0.22,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.5);o1.start(ctx.currentTime);o2.start(ctx.currentTime+0.2);o1.stop(ctx.currentTime+0.35);o2.stop(ctx.currentTime+0.5);}catch(e){}}
+function playWrongSound(){try{const ctx=getAudio();const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='sawtooth';o.frequency.setValueAtTime(220,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(110,ctx.currentTime+0.25);g.gain.setValueAtTime(0.18,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.3);o.start(ctx.currentTime);o.stop(ctx.currentTime+0.3);}catch(e){}}
+function playStreakSound(){try{const ctx=getAudio();[523,659,784,1047].forEach((f,i)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='sine';o.frequency.setValueAtTime(f,ctx.currentTime+i*0.08);g.gain.setValueAtTime(0.15,ctx.currentTime+i*0.08);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.08+0.12);o.start(ctx.currentTime+i*0.08);o.stop(ctx.currentTime+i*0.08+0.15);});}catch(e){}}
+
+/* ════════ DARK MODE ════════ */
+function toggleDark(){
+  document.body.classList.toggle('dark');
+  document.getElementById('dark-btn').textContent=document.body.classList.contains('dark')?'☀️ Light Mode':'🌙 Dark Mode';
+}
+
+/* ════════ TABS ════════ */
+function showTab(n){
+  document.querySelectorAll('.page').forEach((p,i)=>p.classList.toggle('active',i===n));
+  document.querySelectorAll('.pill-nav button').forEach((b,i)=>b.classList.toggle('active',i===n));
+  window.scrollTo({top:0,behavior:'smooth'});
+  const _ov=document.getElementById('boss-overlay');
+  if(_ov)_ov.style.display=(n===7&&!(typeof bossStarted!=='undefined'&&bossStarted))?'flex':'none';
+}
+
+/* ════════ SPEECH ════════ */
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.82;
+  u.pitch = 1.0;
+  u.volume = 1.0;
+
+  function pickVoice(){
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = [
+      'Samantha','Karen','Daniel','Google US English',
+      'Google UK English Female','Microsoft Zira','Microsoft David',
+      'Alex','Victoria','Moira','Fiona','Tessa'
+    ];
+    for(const name of preferred){
+      const v = voices.find(v => v.name === name);
+      if(v){ u.voice = v; break; }
+    }
+    if(!u.voice){
+      u.voice = voices.find(v => v.lang === 'en-US') ||
+                voices.find(v => v.lang.startsWith('en')) ||
+                null;
+    }
+    window.speechSynthesis.speak(u);
+  }
+
+  const voices = window.speechSynthesis.getVoices();
+  if(voices.length > 0){ pickVoice(); }
+  else { window.speechSynthesis.onvoiceschanged = pickVoice; }
+}
+
+/* ════════ HINT ════════ */
+function showHint(btn){
+  const hintBox=btn.closest('.iq').querySelector('.hint-box');
+  if(!hintBox)return;
+  hintBox.classList.toggle('visible');
+  btn.textContent=hintBox.classList.contains('visible')?'🙈 Hide':'💡 Hint';
+}
+
+/* ════════ CONFETTI ════════ */
+function triggerConfetti(){
+  const colors=['#FFD700','#7C3AED','#DC2E5D','#10B981','#3B82F6','#F59E0B'];
+  for(let i=0;i<45;i++){
+    const el=document.createElement('div');
+    el.style.cssText='position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:9999;';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.left=Math.random()*100+'vw';el.style.top='-10px';
+    document.body.appendChild(el);
+    const tx=(Math.random()-.5)*200;
+    el.animate([
+      {transform:'translate(0,0) rotate(0deg)',opacity:1},
+      {transform:`translate(${tx}px,${window.innerHeight*.8}px) rotate(${Math.random()*720}deg)`,opacity:0}
+    ],{duration:1300+Math.random()*800,easing:'cubic-bezier(.25,.46,.45,.94)',delay:Math.random()*350}).onfinish=()=>el.remove();
+  }
+}
+
+/* ════════ PROGRESS ════════ */
+function updateProgressBar(){const bar=document.getElementById('main-progress');if(bar){const pct=Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100));bar.style.width=pct+'%';}}
+
+/* ════════ XP DISPLAY ════════ */
+const S={};
+function updateExXP(exId,amount){const el=document.getElementById(exId+'-xp');if(el)el.textContent=parseInt(el.textContent||0)+amount;}
+
+function getExXPId(el){
+  const page=el.closest('.page');if(!page)return null;
+  const idx=Array.from(document.querySelectorAll('.page')).indexOf(page);
+  const map={1:'ex1',3:'ex2',4:'ex3',5:'ex4',7:'quiz'};
+  return map[idx]||null;
+}
+
+/* ════════ FORMAT EXPLANATION ════════ */
+function formatExp(text){
+  return text.replace(/【([^】]+)】/g,
+    '<span dir="ltr" style="display:inline-block;unicode-bidi:embed;font-weight:700;background:rgba(0,0,0,.06);border-radius:4px;padding:0 4px;">$1</span>');
+}
+
+/* ════════ CHECK INPUT ════════ */
+function checkInput(btn){
+  const iq=btn.closest('.iq');
+  const inputs=iq.querySelectorAll('.interactive-input');
+  if(!inputs.length)return;
+  const alreadyDone=Array.from(inputs).every(i=>i.classList.contains('is-correct'));
+  if(alreadyDone)return;
+
+  let allCorrect=true;
+  inputs.forEach(input=>{
+    const expected=input.getAttribute('data-ans').trim().toLowerCase().replace(/[.!?—"']/g,'');
+    const userAns=input.value.trim().toLowerCase().replace(/[.!?—"']/g,'');
+    if(userAns===expected){input.classList.remove('is-wrong');input.classList.add('is-correct');}
+    else{input.classList.remove('is-correct');input.classList.add('is-wrong');input.classList.add('shake');setTimeout(()=>input.classList.remove('shake'),450);allCorrect=false;}
+  });
+
+  const firstInput=inputs[0];
+  const expText=firstInput.getAttribute('data-exp')||'';
+  const expBox=iq.querySelector('.explanation-box');
+  const exId=getExXPId(btn);
+  const isBoss=btn.closest('#tab-7')!==null;
+  const xpAmt=isBoss?15:10;
+
+  if(allCorrect){
+    playCorrectSound();
+    increaseStreak();
+    if(streak>0&&streak%3===0)playStreakSound();
+    awardXP(xpAmt,btn);
+    if(exId)updateExXP(exId,xpAmt);
+    completedTotal++;updateProgressBar();
+    if(expBox){expBox.className='explanation-box visible';expBox.innerHTML='<div class="exp-title">✅ إجابة صحيحة!</div>'+formatExp(expText);}
+    triggerConfetti();
+  } else {
+    playWrongSound();resetStreak();
+    if(expBox){expBox.className='explanation-box wrong-exp visible';expBox.innerHTML='<div class="exp-title">❌ حاول مرة أخرى</div>'+formatExp(expText);}
+  }
+}
+
+/* ════════ MCQ ════════ */
+function selectMCQ(el,isCorrect,exId,wrongMsg,rightMsg){
+  const container=el.closest('.mcq-opts');
+  const block=el.closest('.mcq-block');
+  const expBox=block?block.querySelector('.explanation-box'):null;
+  if(container.querySelector('.selected-correct'))return;
+  container.querySelectorAll('.mcq-opt').forEach(o=>o.classList.remove('selected-correct','selected-wrong'));
+  if(isCorrect){
+    el.classList.add('selected-correct');
+    playCorrectSound();increaseStreak();
+    if(streak>0&&streak%3===0)playStreakSound();
+    awardXP(15,el);updateExXP('quiz',15);
+    completedTotal++;updateProgressBar();
+    if(S[exId]===undefined)S[exId]=0;S[exId]++;
+    const sc=document.getElementById(exId+'-score');if(sc)sc.textContent=S[exId];
+    triggerConfetti();if(bossStarted&&exId==='quiz')updateBossHP(true);
+    if(expBox){expBox.className='explanation-box visible';expBox.innerHTML='<div class="exp-title">✅ ممتاز!</div>'+formatExp(rightMsg||'');}
+    if(S['quiz']>=12){setTimeout(()=>{const card=document.getElementById('final-score-card');if(card){card.classList.add('visible');card.querySelector('#final-xp-total').textContent=XP+' XP Total!';}triggerConfetti();playStreakSound();},600);}
+  } else {
+    el.classList.add('selected-wrong');el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),450);playWrongSound();resetStreak();if(bossStarted&&exId==='quiz')updateBossHP(false);
+    if(expBox){expBox.className='explanation-box wrong-exp visible';expBox.innerHTML='<div class="exp-title">❌ خطأ — حاول مرة أخرى</div>'+formatExp(wrongMsg||'');}
+  }
+}
+
+/* ════════ REVEAL ONE BY ONE ════════ */
+function revealOne(id,btn){
+  if(S[id]===undefined)S[id]=0;
+  const targets=Array.from(document.querySelectorAll('[data-ex="'+id+'"]'));
+  const i=S[id];
+  if(i<targets.length){
+    const t=targets[i];t.classList.add('visible');
+    if(t.classList.contains('mcq-opt')){const col=getComputedStyle(t).getPropertyValue('--c').trim()||'#0F766E';t.style.background=col;t.style.borderColor=col;t.style.color='white';}
+    S[id]++;completedTotal++;updateProgressBar();
+    awardXP(5,btn);updateExXP(id==='quiz'?'quiz':id,5);
+    const sc=document.getElementById(id+'-score');if(sc)sc.textContent=S[id];
+  }
+  if(S[id]>=targets.length){btn.innerHTML='✓ All revealed';btn.style.opacity='.55';btn.style.cursor='default';triggerConfetti();}
+}
+
+/* ════════ RESET ════════ */
+function resetEx(id){
+  S[id]=0;
+  document.querySelectorAll('[data-ex="'+id+'"]').forEach(el=>{
+    el.classList.remove('visible');
+    if(el.classList.contains('mcq-opt')){el.style.background='';el.style.borderColor='';el.style.color='';el.classList.remove('selected-correct','selected-wrong');}
+  });
+  const pageIdx={ex1:1,ex2:3,ex3:4,ex4:5,quiz:7}[id];
+  const page=document.getElementById('tab-'+pageIdx);
+  if(page){
+    page.querySelectorAll('.interactive-input').forEach(i=>{i.value='';i.classList.remove('is-correct','is-wrong');});
+    page.querySelectorAll('.explanation-box').forEach(b=>{b.className='explanation-box';b.innerHTML='';});
+    page.querySelectorAll('.hint-box').forEach(b=>b.classList.remove('visible'));
+    page.querySelectorAll('.hint-btn').forEach(b=>b.textContent='💡 Hint');
+  }
+  const sc=document.getElementById(id+'-score');if(sc)sc.textContent=0;
+  const xpEl=document.getElementById(id+'-xp');if(xpEl)xpEl.textContent=0;
+  const btn=document.querySelector('button[onclick="revealOne(\''+id+'\',this)"]');
+  if(btn){btn.innerHTML='▶ Reveal next';btn.style.opacity='1';btn.style.cursor='pointer';}
+  if(id==='quiz'){const fc=document.getElementById('final-score-card');if(fc)fc.classList.remove('visible');}
+}
+
+
+// ── BOSS BATTLE ──
+const BOSS_TOTAL=12;
+let bossInterval,bossTime=60,bossStarted=false,bossHP=BOSS_TOTAL,myHP=100;
+
+function getBACtx(){if(!window._bac)window._bac=new(window.AudioContext||window.webkitAudioContext)();if(window._bac.state==='suspended')window._bac.resume();return window._bac;}
+function playTick(){try{const ctx=getBACtx(),o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='square';o.frequency.value=bossTime<=10?880:440;g.gain.setValueAtTime(.04,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.08);o.start(ctx.currentTime);o.stop(ctx.currentTime+.09);}catch(e){}}
+function updateBossHUD(){const t=document.getElementById('b-time');if(t)t.textContent=bossTime;const tm=document.getElementById('b-timer');if(tm)tm.classList.toggle('hurry',bossTime<=10);}
+
+function startBoss(){
+  if(bossStarted)return;
+  bossStarted=true;
+  const ov=document.getElementById('boss-overlay');if(ov)ov.style.display='none';
+  document.getElementById('boss-hud-fixed').classList.add('active');
+  updateBossHUD();
+  bossInterval=setInterval(()=>{bossTime--;updateBossHUD();playTick();if(bossTime<=0){clearInterval(bossInterval);setTimeout(showGameOver,250);}},1000);
+}
+
+function updateBossHP(correct){
+  if(!bossStarted)return;
+  if(correct){
+    bossHP--;
+    const pct=Math.max(0,(bossHP/BOSS_TOTAL)*100);
+    const bar=document.getElementById('b-boss-bar'),pctEl=document.getElementById('b-boss-pct');
+    if(bar)bar.style.width=pct+'%';if(pctEl)pctEl.textContent=Math.round(pct)+'%';
+    if(bossHP<=0){clearInterval(bossInterval);setTimeout(()=>showGameOver('win'),300);}
+  }else{
+    // Wrong: lose 10s AND reduce player HP
+    bossTime=Math.max(0,bossTime-10);
+    updateBossHUD();
+    myHP=Math.max(0,myHP-10);
+    const myBar=document.getElementById('b-my-bar'),myPct=document.getElementById('b-my-pct');
+    if(myBar)myBar.style.width=myHP+'%';if(myPct)myPct.textContent=myHP+'%';
+    if(myHP<=0){clearInterval(bossInterval);setTimeout(showGameOver,300);}
+  }
+}
+
+function showGameOver(result){
+  const m=document.getElementById('gameover-modal');if(!m)return;
+  if(result==='win'){
+    m.querySelector('#go-title').textContent='🏆 أنت هزمت الوحش!';
+    m.querySelector('#go-title').style.color='#10B981';
+    m.querySelector('div').style.borderColor='#10B981';
+    m.querySelector('#go-sub').textContent='مبروك! أتممت التحدي النهائي! 🎉';
+    m.querySelector('#go-sub').style.color='#bbf7d0';
+    m.querySelector('#go-body').innerHTML='أثبتت أنك أقوى من الوحش!<br><strong style="color:#fbbf24">⭐ احتفظ بهذه النتيجة!</strong>';
+    triggerConfetti();
+  }
+  m.style.display='flex';
+}
+
+function retryBoss(){
+  document.getElementById('gameover-modal').style.display='none';
+  bossStarted=false;bossTime=60;bossHP=BOSS_TOTAL;
+  clearInterval(bossInterval);
+  document.getElementById('boss-hud-fixed').classList.remove('active');
+  const bar=document.getElementById('b-boss-bar'),pct=document.getElementById('b-boss-pct');
+  if(bar)bar.style.width='100%';if(pct)pct.textContent='100%';
+  const myBar=document.getElementById('b-my-bar'),myPct=document.getElementById('b-my-pct');
+  if(myBar)myBar.style.width='100%';if(myPct)myPct.textContent='100%';
+  // Reset modal styling for next game-over
+  const m=document.getElementById('gameover-modal');
+  if(m){m.querySelector('#go-title').textContent='GAME OVER';m.querySelector('#go-title').style.color='#ef4444';m.querySelector('div').style.borderColor='#DC2E5D';m.querySelector('#go-sub').textContent='الوحش انتصر هذه المرة!';m.querySelector('#go-sub').style.color='#fde68a';m.querySelector('#go-body').innerHTML='نفد الوقت قبل إكمال التحدي 😤<br>راجع القواعد وأعد المحاولة!<br><strong style="color:#fbbf24">أنت أقوى من الوحش 💪</strong>';}
+  const ov=document.getElementById('boss-overlay');if(ov)ov.style.display='flex';
+  updateBossHUD();
+}
+
+function closeGameOver(){
+  clearInterval(bossInterval);
+  bossStarted=false;bossTime=60;bossHP=BOSS_TOTAL;
+  const hud=document.getElementById('boss-hud-fixed');if(hud)hud.classList.remove('active');
+  document.getElementById('gameover-modal').style.display='none';
+  showTab(0);
+}
+
+
+function closeBossOverlay(){
+  const ov=document.getElementById('boss-overlay')||document.getElementById('boss-overlay-adv')||document.getElementById('boss-start-overlay');
+  if(ov)ov.style.display='none';
+  showTab(0);
+}
+
+/* ── Pill-nav: wheel → horizontal scroll + drag to scroll ── */
+(function(){
+  const nav = document.querySelector('.pill-nav');
+  if(!nav) return;
+  nav.addEventListener('wheel', function(e){
+    if(e.deltaY !== 0){ e.preventDefault(); nav.scrollLeft += e.deltaY * 1.2; }
+  }, {passive:false});
+  let isDown=false, startX, scrollStart;
+  nav.addEventListener('mousedown', function(e){
+    if(e.target.tagName==='BUTTON') return;
+    isDown=true; nav.classList.add('is-dragging');
+    startX=e.pageX-nav.offsetLeft; scrollStart=nav.scrollLeft;
+  });
+  document.addEventListener('mouseup', function(){ isDown=false; nav.classList.remove('is-dragging'); });
+  nav.addEventListener('mouseleave', function(){ isDown=false; nav.classList.remove('is-dragging'); });
+  nav.addEventListener('mousemove', function(e){
+    if(!isDown) return; e.preventDefault();
+    nav.scrollLeft = scrollStart - (e.pageX - nav.offsetLeft - startX) * 1.5;
+  });
+  let lastActiveBtn = nav.querySelector('button.active');
+  const observer = new MutationObserver(function(){
+    const active = nav.querySelector('button.active');
+    if(!active || active===lastActiveBtn) return;
+    lastActiveBtn = active;
+    const navRect=nav.getBoundingClientRect(), btnRect=active.getBoundingClientRect();
+    const center=(btnRect.left-navRect.left)+nav.scrollLeft+btnRect.width/2;
+    nav.scrollTo({left:Math.max(0,center-navRect.width/2), behavior:'smooth'});
+  });
+  observer.observe(nav, {subtree:true, attributeFilter:['class']});
+})();
+</script>
+
+<!-- GAME OVER MODAL -->
+<div id="gameover-modal" style="display:none;position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.82);align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+  <div style="background:linear-gradient(135deg,#1e1b4b,#4c1d95);border:3px solid #DC2E5D;border-radius:20px;padding:34px 26px;max-width:400px;width:90%;text-align:center;box-shadow:0 0 60px rgba(220,46,93,.6);">
+    <div style="font-size:4.5rem;margin-bottom:4px">💀</div>
+    <h2 style="color:#ef4444;font-size:1.9rem;margin:6px 0;font-weight:900" id="go-title">GAME OVER</h2>
+    <p style="color:#fde68a;font-size:1.05rem;font-weight:800;margin:4px 0 8px" id="go-sub">الوحش انتصر هذه المرة!</p>
+    <p style="color:#c4b5fd;font-size:.9rem;line-height:1.7;margin:0 0 22px" id="go-body">نفد الوقت قبل إكمال التحدي 😤<br>راجع القواعد وأعد المحاولة!<br><strong style="color:#fbbf24">أنت أقوى من الوحش 💪</strong></p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button onclick="retryBoss()" style="background:linear-gradient(135deg,#DC2E5D,#7C3AED);color:white;border:none;border-radius:12px;padding:12px 26px;font-size:1rem;font-weight:900;cursor:pointer;transition:.15s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">🔄 أعد المحاولة</button>
+      <button onclick="closeGameOver()" style="background:rgba(255,255,255,.1);color:#e2e8f0;border:2px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 20px;font-size:1rem;font-weight:700;cursor:pointer;" onmouseover="this.style.background='rgba(255,255,255,.2)'" onmouseout="this.style.background='rgba(255,255,255,.1)'">📖 مراجعة الدروس</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NEW: STUDENT NAME OVERLAY ═══ -->
+<div class="ns-overlay" id="name-overlay">
+  <div class="ns-card">
+    <h2>📝 Enter Your Name</h2>
+    <p>يرجى إدخال اسمك قبل بدء الدرس</p>
+    <input type="text" id="student-name-input" class="interactive-input wide" placeholder="Your name... / اسمك..." style="margin-top:16px;width:100%;max-width:280px;text-align:center;font-size:1rem;">
+    <div><button class="ns-start-btn" onclick="confirmStudentName()">▶ Continue</button></div>
+  </div>
+</div>
+
+<!-- ═══ NEW: DIFFICULTY SELECTOR OVERLAY ═══ -->
+<div class="ns-overlay" id="difficulty-overlay">
+  <div class="ns-card">
+    <h2>🎮 Choose Your Difficulty</h2>
+    <p>اختر مستوى الصعوبة قبل بدء الدرس</p>
+    <div class="diff-grid">
+      <div class="diff-opt" onclick="chooseDifficulty('easy')">
+        <span class="em">🟢</span>
+        <span><span class="nm">Easy Mode</span><span class="ds">More guidance • Less typing • More hints • Beginner friendly<br><span dir="rtl">مزيد من المساعدة • كتابة أقل • تلميحات أكثر</span></span></span>
+      </div>
+      <div class="diff-opt" onclick="chooseDifficulty('normal')">
+        <span class="em">🟡</span>
+        <span><span class="nm">Normal Mode</span><span class="ds">Current experience • No changes<br><span dir="rtl">التجربة الحالية • بدون تغييرات</span></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NEW: AVATAR SELECTION OVERLAY ═══ -->
+<div class="ns-overlay" id="avatar-overlay">
+  <div class="ns-card">
+    <h2>🎮 Choose Your Avatar</h2>
+    <p>اختر شخصيتك قبل بدء المغامرة!</p>
+    <div class="avatar-grid" id="avatar-grid">
+      <div class="avatar-opt" data-av="⚽" onclick="pickAvatar(this,'⚽')"><span class="em">⚽</span><span class="nm">Football Hero</span><span class="nm-ar">بطل كرة القدم</span></div>
+      <div class="avatar-opt" data-av="🎮" onclick="pickAvatar(this,'🎮')"><span class="em">🎮</span><span class="nm">Gamer</span><span class="nm-ar">لاعب محترف</span></div>
+      <div class="avatar-opt" data-av="🚀" onclick="pickAvatar(this,'🚀')"><span class="em">🚀</span><span class="nm">Space Explorer</span><span class="nm-ar">مستكشف الفضاء</span></div>
+      <div class="avatar-opt" data-av="🤖" onclick="pickAvatar(this,'🤖')"><span class="em">🤖</span><span class="nm">Robot Warrior</span><span class="nm-ar">محارب آلي</span></div>
+    </div>
+    <button class="ns-start-btn" id="avatar-start-btn" disabled onclick="confirmAvatar()">▶ Start Lesson</button>
+  </div>
+</div>
+
+<!-- ═══ NEW: BOSS MODE SELECTOR OVERLAY ═══ -->
+<div class="ns-overlay" id="boss-mode-overlay">
+  <div class="ns-card">
+    <h2>⏱️ Choose Boss Mode</h2>
+    <p>اختر نمط تحدي الوحش</p>
+    <div class="diff-grid">
+      <div class="diff-opt" onclick="startBossWithMode('timed')">
+        <span class="em">⚡</span>
+        <span><span class="nm">Timed Challenge</span><span class="ds">60-second countdown • wrong answers cost time<br><span dir="rtl">تحدي بالوقت — الأخطاء تخصم وقتاً</span></span></span>
+      </div>
+      <div class="diff-opt" onclick="startBossWithMode('practice')">
+        <span class="em">🎯</span>
+        <span><span class="nm">Practice Mode</span><span class="ds">No timer • same HP, phases, XP & rewards<br><span dir="rtl">بدون وقت — نفس نظام الطاقة والمراحل</span></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NEW: LEVEL UP POPUP ═══ -->
+<div class="ns-overlay" id="levelup-overlay">
+  <div class="ns-card">
+    <div class="levelup-badge" id="levelup-emoji">🥈</div>
+    <div style="font-size:.8rem;color:#c4b5fd;font-weight:700;">LEVEL UP! 🎉</div>
+    <div class="levelup-name" id="levelup-name">Explorer ⚡</div>
+    <p style="margin-top:8px">لقد ارتقيت لمستوى جديد! استمر بالتقدم 💪</p>
+    <button class="ns-start-btn" onclick="closeLevelUp()">Continue ▶</button>
+  </div>
+</div>
+
+<!-- ═══ NEW: ACHIEVEMENT / SPEED / REWARD TOASTS ═══ -->
+<div class="ach-toast" id="ach-toast"><span class="em">🏆</span><span id="ach-toast-text">Achievement Unlocked!</span></div>
+<div class="speed-toast" id="speed-toast">⚡ Fast Answer +15 XP</div>
+<div class="ach-toast" id="reward-toast" style="top:60px">🎁 Reward!</div>
+
+<!-- ═══ NEW: ACHIEVEMENT PANEL ═══ -->
+<div class="ns-overlay" id="ach-panel-overlay">
+  <div class="ns-card">
+    <h2>🏆 Achievements</h2>
+    <p>إنجازاتك في هذا الدرس</p>
+    <div class="ach-list" id="ach-list"></div>
+    <button class="ns-start-btn" onclick="closeAchPanel()">Close</button>
+  </div>
+</div>
+
+<!-- ═══ NEW: END OF LESSON REPORT ═══ -->
+<div class="ns-overlay" id="report-overlay">
+  <div class="ns-card" style="max-width:480px">
+    <h2>📊 Lesson Report</h2>
+    <div class="report-grade" id="report-grade-emoji">A</div>
+    <div class="report-grid" id="report-grid"></div>
+    <div class="report-actions">
+      <button onclick="downloadCertificatePng()">📜 Download Certificate</button>
+      <button class="secondary" onclick="closeReport()">Close</button>
+    </div>
+  </div>
+</div>
+<canvas id="cert-canvas" width="1000" height="700" style="display:none"></canvas>
+
+<script>
+(function(){
+
+function formatDate(d){
+  d=d||new Date();
+  const yyyy=d.getFullYear();
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const dd=String(d.getDate()).padStart(2,'0');
+  return yyyy+'/'+mm+'/'+dd;
+}
+
+/* ---------- ACHIEVEMENT SYSTEM ---------- */
+const ACHIEVEMENTS=[
+  {id:'first-correct', em:'🏆', tt:'First Correct Answer', ds:'أول إجابة صحيحة'},
+  {id:'streak5',        em:'🔥', tt:'5 Correct in a Row',  ds:'٥ إجابات صحيحة متتالية'},
+  {id:'xp100',          em:'⚡', tt:'Earn 100 XP',          ds:'اجمع ١٠٠ نقطة خبرة'},
+  {id:'mission1',       em:'🎯', tt:'Complete First Mission', ds:'أكمل أول مهمة'},
+  {id:'all-grammar',    em:'📘', tt:'Finish All Grammar Tabs', ds:'أنهِ جميع دروس القواعد'},
+  {id:'boss-defeat',    em:'👾', tt:'Defeat Final Boss',    ds:'اهزم الوحش النهائي'},
+  {id:'legend',         em:'💎', tt:'Reach Top Rank',       ds:'وصلت لأعلى رتبة'}
+];
+let unlocked={};
+let prevLevelLabel=null;
+function checkLevelUp(){
+  const label=getLevel(XP);
+  if(prevLevelLabel!==null&&label!==prevLevelLabel){
+    showLevelUp(label);
+    if(LEVELS.findIndex(l=>l.label===label)>=LEVELS.length-2)unlockAchievement('legend');
+  }
+  prevLevelLabel=label;
+  const badge=document.getElementById('level-display');
+  if(badge)badge.textContent=label;
+}
+function showLevelUp(label){
+  const emojiMatch=label.match(/\p{Emoji}/gu);
+  document.getElementById('levelup-emoji').textContent=emojiMatch?emojiMatch[emojiMatch.length-1]:'🎉';
+  document.getElementById('levelup-name').textContent=label;
+  document.getElementById('levelup-overlay').classList.add('show');
+  triggerConfetti();
+}
+window.closeLevelUp=function(){document.getElementById('levelup-overlay').classList.remove('show');};
+function unlockAchievement(id){
+  if(unlocked[id])return;
+  unlocked[id]=true;
+  const a=ACHIEVEMENTS.find(x=>x.id===id);
+  if(a)showAchToast(a);
+  renderAchPanel();
+  saveState();
+}
+function showAchToast(a){
+  const t=document.getElementById('ach-toast');
+  document.getElementById('ach-toast-text').textContent=a.tt+' 🎉';
+  t.classList.add('show');
+  playCorrectSound();
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+function getAchievementProgress(id){
+  switch(id){
+    case 'first-correct': return {cur:Math.min(1,totalCorrectAttempts),max:1};
+    case 'streak5':       return {cur:Math.min(5,maxStreak),max:5};
+    case 'xp100':         return {cur:Math.min(100,XP),max:100};
+    case 'mission1':      return {cur:unlocked['mission1']?1:0,max:1};
+    case 'all-grammar':   return {cur:GRAMMAR_TABS.filter(t=>grammarSeen[t]).length,max:GRAMMAR_TABS.length};
+    case 'boss-defeat':   return {cur:Math.min(BOSS_PHASES.length,bossPhaseIdx),max:BOSS_PHASES.length};
+    case 'legend':        return {cur:Math.min(LEVELS.length-1,LEVELS.findIndex(l=>l.label===getLevel(XP))+1),max:LEVELS.length-1};
+    default:               return {cur:unlocked[id]?1:0,max:1};
+  }
+}
+function renderAchPanel(){
+  const list=document.getElementById('ach-list');
+  if(!list)return;
+  list.innerHTML=ACHIEVEMENTS.map(a=>{
+    const u=!!unlocked[a.id];
+    const p=getAchievementProgress(a.id);
+    const pct=p.max?Math.min(100,Math.round((p.cur/p.max)*100)):0;
+    return '<div class="ach-row'+(u?' unlocked':'')+'"><span class="em">'+a.em+'</span>'
+      +'<div style="flex:1"><div class="tt">'+a.tt+'</div><div class="ds">'+a.ds+(u?' ✅':'')+'</div>'
+      +'<div class="ach-progress-track"><div class="ach-progress-fill" style="width:'+pct+'%"></div></div>'
+      +'<div class="ach-progress-label">'+p.cur+' / '+p.max+'</div></div></div>';
+  }).join('');
+}
+window.openAchPanel=function(){renderAchPanel();document.getElementById('ach-panel-overlay').classList.add('show');};
+window.closeAchPanel=function(){document.getElementById('ach-panel-overlay').classList.remove('show');};
+
+/* ---------- AVATAR + NAME SYSTEM ---------- */
+let chosenAvatar=null;
+window.pickAvatar=function(el,em){
+  document.querySelectorAll('.avatar-opt').forEach(o=>o.classList.remove('picked'));
+  el.classList.add('picked');
+  chosenAvatar=em;
+  document.getElementById('avatar-start-btn').disabled=false;
+};
+window.confirmAvatar=function(){
+  if(!chosenAvatar)return;
+  document.getElementById('avatar-overlay').classList.remove('show');
+  updateAvatarChip();
+  saveState();
+};
+function updateAvatarChip(){
+  const chip=document.getElementById('hud-avatar-chip');
+  if(chip&&chosenAvatar)chip.textContent=chosenAvatar;
+}
+const NAME_KEY='u3presentprogfuture_student_name';
+let studentName=localStorage.getItem(NAME_KEY)||'';
+function updateNameDisplays(){
+  const chip=document.getElementById('hud-name-chip');
+  if(chip)chip.textContent=studentName?('👤 '+studentName):'👤 Student';
+  const certInput=document.getElementById('student-name');
+  if(certInput&&studentName&&!certInput.value)certInput.value=studentName;
+}
+window.confirmStudentName=function(){
+  const inp=document.getElementById('student-name-input');
+  const val=(inp?inp.value:'').trim();
+  if(!val){ if(inp){inp.classList.add('shake');setTimeout(()=>inp.classList.remove('shake'),400);} return; }
+  studentName=val;
+  localStorage.setItem(NAME_KEY,val);
+  document.getElementById('name-overlay').classList.remove('show');
+  updateNameDisplays();
+  if(!difficultyMode)document.getElementById('difficulty-overlay').classList.add('show');
+  else if(!chosenAvatar)document.getElementById('avatar-overlay').classList.add('show');
+};
+
+/* ---------- SPEED BONUS ---------- */
+let questionStartTime=Date.now();
+function resetQuestionTimer(){questionStartTime=Date.now();}
+function awardSpeedBonus(){
+  const secs=(Date.now()-questionStartTime)/1000;
+  resetQuestionTimer();
+  let bonus=5,label='🚀 Speed Master +5 XP';
+  if(secs<5){bonus=15;label='⚡ Fast Answer +15 XP';}
+  else if(secs<=10){bonus=10;label='🔥 Lightning Bonus +10 XP';}
+  awardXP(bonus);
+  const t=document.getElementById('speed-toast');
+  if(t){t.textContent=label;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1400);}
+}
+
+/* ---------- STAT TRACKING ---------- */
+let totalAttempts=0,totalCorrectAttempts=0,totalWrongAttempts=0,maxStreak=0,lessonStartTime=Date.now(),bossResult='Not Attempted';
+
+/* ---------- ONE-TIME REWARDS ---------- */
+let rewardsGranted={};
+function grantOneTimeReward(key,amount,label){
+  if(rewardsGranted[key])return;
+  rewardsGranted[key]=true;
+  awardXP(amount);
+  showRewardToast(label);
+  saveState();
+}
+function showRewardToast(label){
+  const t=document.getElementById('reward-toast');
+  if(!t)return;
+  t.textContent=label;t.classList.add('show');triggerConfetti();
+  setTimeout(()=>t.classList.remove('show'),2600);
+}
+function checkFirstMissionComplete(iq){
+  const tab=iq.closest('.page');
+  if(!tab||tab.id!=='tab-1')return;
+  const all=tab.querySelectorAll('.interactive-input[data-ans]');
+  if(!all.length)return;
+  const allDone=Array.from(all).every(i=>i.classList.contains('is-correct'));
+  if(allDone)grantOneTimeReward('mission1complete',25,'🎯 First Mission Complete! +25 XP');
+}
+
+/* ---------- EASY MODE ---------- */
+const DIFF_KEY='u3presentprogfuture_difficulty_mode';
+let difficultyMode=localStorage.getItem(DIFF_KEY);
+function easyModeActive(){ return difficultyMode==='easy'; }
+function updateModeBadge(){
+  const b=document.getElementById('ns-mode-badge');
+  if(!b)return;
+  b.textContent=difficultyMode==='easy' ? '🟢 Easy Mode' : '🟡 Normal Mode';
+}
+window.openDifficultyOverlay=function(){document.getElementById('difficulty-overlay').classList.add('show');};
+window.chooseDifficulty=function(mode){
+  difficultyMode=mode;
+  localStorage.setItem(DIFF_KEY,mode);
+  document.getElementById('difficulty-overlay').classList.remove('show');
+  updateModeBadge();
+  if(mode==='easy'){ applyEasyModeToInputs(); insertWordBanksForFreeText(); }
+  else { removeEasyModeFromInputs(); removeWordBanksForFreeText(); }
+  if(!chosenAvatar) document.getElementById('avatar-overlay').classList.add('show');
+  saveState();
+};
+function buildMaskedAnswer(ans){
+  let revealed=false;
+  return ans.split('').map(ch=>{ if(/[A-Za-z]/.test(ch)){ if(!revealed){revealed=true;return ch;} return '_'; } return ch; }).join('');
+}
+function applyEasyModeToInputs(){
+  document.querySelectorAll('.interactive-input[data-ans]').forEach(input=>{
+    if(input.dataset.easyInit)return;
+    input.dataset.easyInit='1';
+    if(input.dataset.origPlaceholder===undefined) input.dataset.origPlaceholder=input.getAttribute('placeholder')||'';
+    const ans=input.getAttribute('data-ans')||'';
+    const masked=buildMaskedAnswer(ans);
+    const iq=input.closest('.iq');
+    const hintBtn=iq?iq.querySelector('.hint-btn'):null;
+    if(!iq||!hintBtn||iq.querySelector('.easy-letter-btn'))return;
+    const letterBtn=document.createElement('button');
+    letterBtn.type='button';letterBtn.className='hint-btn easy-letter-btn';
+    letterBtn.textContent='🔎 First Letter';
+    letterBtn.onclick=function(){input.setAttribute('placeholder',masked);this.disabled=true;};
+    const lenBtn=document.createElement('button');
+    lenBtn.type='button';lenBtn.className='hint-btn easy-len-btn';
+    lenBtn.textContent='📏 Word Length';
+    lenBtn.onclick=function(){
+      const letters=ans.replace(/[^A-Za-z]/g,'').length;
+      const box=iq.querySelector('.hint-box');
+      if(box){box.classList.add('visible');box.textContent='📏 '+letters+' letters ('+letters+' حرف)';}
+      this.disabled=true;
+    };
+    const extraHintBtn=document.createElement('button');
+    extraHintBtn.type='button';extraHintBtn.className='hint-btn easy-extra-hint-btn';
+    extraHintBtn.textContent='🟢 Easy Hint';
+    extraHintBtn.onclick=function(){showHint(hintBtn);this.disabled=true;};
+    hintBtn.insertAdjacentElement('afterend',letterBtn);
+    letterBtn.insertAdjacentElement('afterend',lenBtn);
+    lenBtn.insertAdjacentElement('afterend',extraHintBtn);
+  });
+}
+function removeEasyModeFromInputs(){
+  document.querySelectorAll('.easy-letter-btn,.easy-len-btn,.easy-extra-hint-btn').forEach(b=>b.remove());
+  document.querySelectorAll('.interactive-input[data-easy-init]').forEach(input=>{
+    input.removeAttribute('data-easy-init');
+    input.setAttribute('placeholder',input.dataset.origPlaceholder||'');
+  });
+}
+function showEasyRetry(container,attemptsLeft){
+  if(!container)return;
+  let warn=container.querySelector(':scope > .easy-retry-note');
+  if(!warn){ warn=document.createElement('div'); warn.className='empty-warning easy-retry-note'; container.appendChild(warn); }
+  const msgs=[
+    {en:"🟢 Great try! Give it another go — you've got this!",ar:"🟢 محاولة رائعة! جرّب مرة أخرى!"},
+    {en:"🟢 So close! One more try before the answer is revealed.",ar:"🟢 قريب جداً! محاولة أخيرة!"}
+  ];
+  const m=msgs[Math.max(0,Math.min(msgs.length-1,msgs.length-attemptsLeft))]||msgs[0];
+  warn.innerHTML=m.en+'<span>'+m.ar+'</span>';
+  warn.classList.add('visible');
+  clearTimeout(warn._hideTimer);
+  warn._hideTimer=setTimeout(()=>warn.classList.remove('visible'),3000);
+}
+function shuffleArr(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function insertWordBanksForFreeText(){
+  document.querySelectorAll('.interactive-input.wide[data-ans]').forEach(input=>{
+    const iq=input.closest('.iq');
+    if(!iq||iq.querySelector('.easy-wb-box'))return;
+    const ans=input.getAttribute('data-ans')||'';
+    const words=shuffleArr(ans.replace(/[.,!?]/g,'').split(/\s+/).filter(Boolean));
+    const box=document.createElement('div');
+    box.className='easy-wb-box';
+    box.innerHTML='<strong>🟢 Word Bank / بنك الكلمات</strong><div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px">'
+      +words.map(w=>'<span class="wb-chip">'+w+'</span>').join('')+'</div>';
+    iq.appendChild(box);
+  });
+}
+function removeWordBanksForFreeText(){ document.querySelectorAll('.easy-wb-box').forEach(b=>b.remove()); }
+
+/* ---------- COMPLETION LOCK (anti-XP-exploit) ---------- */
+let completedQuestions={};
+function isQuestionCompleted(qid){return !!(qid&&completedQuestions[qid]);}
+function markQuestionCompleted(qid){if(!qid)return;completedQuestions[qid]=true;saveState();}
+function assignQIDs(){
+  document.querySelectorAll('.iq').forEach((el,i)=>{ if(el.querySelector('.interactive-input[data-ans]')&&!el.dataset.qid)el.dataset.qid='iq'+i; });
+  document.querySelectorAll('.mcq-block').forEach((el,i)=>{ if(!el.dataset.qid)el.dataset.qid='mcq'+i; });
+}
+function showAlreadyCompleted(container){
+  if(!container)return;
+  let msg=container.querySelector(':scope > .already-done-note');
+  if(!msg){ msg=document.createElement('div'); msg.className='empty-warning already-done-note';
+    msg.innerHTML='✅ Already completed.<span dir="rtl">✅ تم إكمال هذا السؤال مسبقاً.</span>'; container.appendChild(msg); }
+  msg.classList.add('visible');
+  clearTimeout(msg._hideTimer);
+  msg._hideTimer=setTimeout(()=>msg.classList.remove('visible'),2200);
+}
+
+/* ---------- SKILL CATEGORY TRACKING ---------- */
+const SKILL_MAP={
+  ex1:'Present Progressive (Now)',
+  ex2:'Going to / Will (Choice)',
+  ex3:'Negative & Questions',
+  ex4:'Fix the Mistake (Mixed)',
+  quiz:'Boss Challenge (Mixed)'
+};
+let categoryStats={};
+function recordCategoryAttempt(exId,correct){
+  if(!exId)return;
+  const skill=SKILL_MAP[exId]||exId;
+  if(!categoryStats[skill])categoryStats[skill]={correct:0,attempts:0};
+  categoryStats[skill].attempts++;
+  if(correct)categoryStats[skill].correct++;
+}
+
+/* ---------- FLEXIBLE ANSWER MATCHING ---------- */
+function normalizeAnswer(s){
+  return String(s||'').toLowerCase().replace(/[.,!?—"']/g,'').replace(/\s+/g,' ').trim();
+}
+function isEmptyAnswer(v){ return !v || String(v).replace(/[\s\t\n\r]+/g,'').length===0; }
+function showEmptyWarning(container){
+  if(!container)return;
+  let warn=container.querySelector(':scope > .empty-warning:not(.easy-retry-note):not(.already-done-note)');
+  if(!warn){ warn=document.createElement('div'); warn.className='empty-warning';
+    warn.innerHTML='⚠️ Please write an answer first.<span>⚠️ اكتب إجابة أولاً قبل التحقق.</span>'; container.appendChild(warn); }
+  warn.classList.add('visible');
+  clearTimeout(warn._hideTimer);
+  warn._hideTimer=setTimeout(()=>warn.classList.remove('visible'),3000);
+}
+
+/* ---------- WRAP EXISTING FUNCTIONS (no original bodies changed) ---------- */
+let suppressRewards=false;
+const _awardXP=window.awardXP;
+window.awardXP=function(amount,el){
+  if(suppressRewards)return;
+  _awardXP(amount,el);
+  if(amount>0){
+    checkLevelUp();
+    if(XP>=100)unlockAchievement('xp100');
+  }
+  saveState();
+};
+
+const _increaseStreak=window.increaseStreak;
+window.increaseStreak=function(){
+  _increaseStreak();
+  totalAttempts++;totalCorrectAttempts++;
+  if(streak>maxStreak)maxStreak=streak;
+  unlockAchievement('first-correct');
+  if(streak>=5)unlockAchievement('streak5');
+  awardSpeedBonus();
+  saveState();
+};
+const _resetStreak=window.resetStreak;
+window.resetStreak=function(){
+  _resetStreak();
+  totalAttempts++;totalWrongAttempts++;
+  resetQuestionTimer();
+  saveState();
+};
+
+const _checkInput=window.checkInput;
+window.checkInput=function(btn){
+  const iq=btn.closest('.iq');
+  const qid=iq?iq.dataset.qid:null;
+  if(qid&&isQuestionCompleted(qid)){ showAlreadyCompleted(iq); return; }
+  const inputs=iq?Array.from(iq.querySelectorAll('.interactive-input')):[];
+  if(inputs.length&&inputs.every(i=>isEmptyAnswer(i.value))){ showEmptyWarning(iq); return; }
+  if(easyModeActive()&&inputs.length===1){
+    const singleInput=inputs[0];
+    const expected=normalizeAnswer(singleInput.getAttribute('data-ans'));
+    const userAns=normalizeAnswer(singleInput.value);
+    const attempts=parseInt(singleInput.dataset.easyAttempts||'0',10);
+    if(userAns!==expected&&attempts<2){
+      singleInput.dataset.easyAttempts=String(attempts+1);
+      showEasyRetry(iq,2-attempts);
+      return;
+    }
+  }
+  _checkInput(btn);
+  if(inputs.length){
+    inputs.forEach(i=>{i.dataset.easyAttempts='0';});
+    const allCorrect=inputs.every(i=>i.classList.contains('is-correct'));
+    const anyWrong=inputs.some(i=>i.classList.contains('is-wrong'));
+    if(allCorrect||anyWrong)recordCategoryAttempt(getExXPId(btn),allCorrect);
+    if(allCorrect&&qid){ markQuestionCompleted(qid); checkFirstMissionComplete(iq); }
+  }
+};
+
+const _selectMCQ=window.selectMCQ;
+window.selectMCQ=function(el,isCorrect,exId,wrongMsg,rightMsg){
+  const block=el.closest('.mcq-block');
+  const qid=block?block.dataset.qid:null;
+  if(qid&&isQuestionCompleted(qid)){ showAlreadyCompleted(block); return; }
+  const prevBossTime=(exId==='quiz'&&typeof bossTime!=='undefined')?bossTime:null;
+  const prevMyHP=(exId==='quiz'&&typeof myHP!=='undefined')?myHP:null;
+  _selectMCQ(el,isCorrect,exId,wrongMsg,rightMsg);
+  if(exId==='quiz'&&bossPracticeMode&&!isCorrect){
+    if(prevBossTime!==null){bossTime=prevBossTime;const bt=document.getElementById('b-time');if(bt)bt.textContent='∞';}
+    if(prevMyHP!==null){
+      myHP=prevMyHP;
+      const mb=document.getElementById('b-my-bar');if(mb)mb.style.width=myHP+'%';
+      const mp=document.getElementById('b-my-pct');if(mp)mp.textContent=myHP+'%';
+    }
+  }
+  if(isCorrect&&qid)markQuestionCompleted(qid);
+  recordCategoryAttempt(exId,isCorrect);
+  if(exId==='quiz'){
+    const wrap=el.closest('.ex-card')||document.body;
+    wrap.classList.add('screen-shake');setTimeout(()=>wrap.classList.remove('screen-shake'),350);
+    showDamageFloat(isCorrect);
+    if(isCorrect)checkBossPhaseProgress();
+    if(typeof bossHP!=='undefined'&&bossHP<=0){
+      bossResult='Victory 🏆';
+      unlockAchievement('boss-defeat');
+      grantOneTimeReward('bossVictory',100,'👾 Final Boss Defeated! +100 XP');
+      saveState();
+    }
+  }
+};
+
+const _revealOne=window.revealOne;
+window.revealOne=function(id,btn){
+  const prevCompletedTotal=completedTotal;
+  suppressRewards=true;
+  try{ _revealOne(id,btn); } finally { suppressRewards=false; }
+  if(completedTotal!==prevCompletedTotal){ completedTotal=prevCompletedTotal; updateProgressBar(); }
+  saveState();
+};
+
+const _resetEx=window.resetEx;
+window.resetEx=function(id){
+  _resetEx(id);
+  document.querySelectorAll('.interactive-input').forEach(inp=>{inp.dataset.easyAttempts='0';});
+  document.querySelectorAll('.easy-letter-btn,.easy-len-btn,.easy-extra-hint-btn').forEach(b=>{b.disabled=false;});
+  document.querySelectorAll('[data-ex="'+id+'"]').forEach(marker=>{
+    const row=marker.closest('.item-row');
+    const block=marker.closest('.mcq-block');
+    const targets=[];
+    if(block)targets.push(block);
+    if(row){ const iq=row.querySelector('.iq'); if(iq)targets.push(iq); }
+    targets.forEach(t=>{ if(t.dataset.qid&&isQuestionCompleted(t.dataset.qid))showAlreadyCompleted(t); });
+  });
+  saveState();
+};
+
+const _showTab=window.showTab;
+window.showTab=function(n){
+  _showTab(n);
+  const bossHud=document.getElementById('boss-hud-fixed');
+  if(bossHud){
+    if(n===7&&typeof bossStarted!=='undefined'&&bossStarted){ bossHud.classList.add('active'); }
+    else{ bossHud.classList.remove('active'); }
+  }
+  resetQuestionTimer();
+  checkAllGrammarSeen(n);
+  if(n===6&&typeof paintStoryScreen==='function')paintStoryScreen(storyIdx);
+  lastTab=n;
+  saveState();
+};
+
+const GRAMMAR_TABS=[0,2];
+let grammarSeen={};
+GRAMMAR_TABS.forEach(t=>{grammarSeen[t]=false;});
+function checkAllGrammarSeen(n){
+  if(GRAMMAR_TABS.includes(n))grammarSeen[n]=true;
+  if(GRAMMAR_TABS.every(t=>grammarSeen[t])){
+    unlockAchievement('all-grammar');
+    grantOneTimeReward('grammarComplete',50,'📘 Grammar Completion! +50 XP');
+  }
+  if(n===1)unlockAchievement('mission1');
+}
+
+function showDamageFloat(isCorrect){
+  const el=document.createElement('div');
+  el.className='dmg-float';
+  el.textContent=isCorrect?'-1 HP 💥':'-10s ⏱️';
+  el.style.color=isCorrect?'#22c55e':'#ef4444';
+  el.style.left=(40+Math.random()*40)+'vw';
+  el.style.top=(30+Math.random()*10)+'vh';
+  document.body.appendChild(el);
+  if(el.animate){
+    el.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(-50px)',opacity:0}],{duration:800,easing:'ease-out'}).onfinish=()=>el.remove();
+  }else{ setTimeout(()=>el.remove(),800); }
+}
+
+/* ---------- MULTI-PHASE BOSS + OPTIONAL TIMER ---------- */
+const BOSS_PHASES=[
+  {name:'Present Progressive (Now)', color:'linear-gradient(90deg,#0F766E,#16A34A)'},
+  {name:'Going to (Plans)',          color:'linear-gradient(90deg,#2563EB,#7C3AED)'},
+  {name:'Will (Predictions)',        color:'linear-gradient(90deg,#7C3AED,#F59E0B)'}
+];
+const BOSS_PHASE_OF_INDEX=[0,1,1,2,0,2,1,0,1,2,2,1];
+let bossPhaseIdx=0;
+let bossPhaseBlocks=[];
+let bossPracticeMode=false;
+window.openBossModeSelector=function(){document.getElementById('boss-mode-overlay').classList.add('show');};
+window.startBossWithMode=function(mode){
+  bossPracticeMode=(mode==='practice');
+  document.getElementById('boss-mode-overlay').classList.remove('show');
+  if(bossPracticeMode){ startBossPractice(); } else { startBoss(); }
+};
+function startBossPractice(){
+  if(bossStarted)return;
+  bossStarted=true;
+  const ov=document.getElementById('boss-overlay');
+  if(ov)ov.style.display='none';
+  document.getElementById('boss-hud-fixed').classList.add('active');
+  const timeEl=document.getElementById('b-time');
+  if(timeEl)timeEl.textContent='∞';
+  const timerWrap=document.getElementById('b-timer');
+  if(timerWrap){timerWrap.innerHTML='🎯 Practice Mode';timerWrap.classList.remove('hurry');}
+}
+function setupBossPhases(){
+  const body=document.querySelector('#tab-7 .ex-body');
+  if(!body||body.dataset.phasesInit)return;
+  body.dataset.phasesInit='1';
+  const blocks=Array.from(body.querySelectorAll('.mcq-block'));
+  bossPhaseBlocks=BOSS_PHASES.map(()=>[]);
+  blocks.forEach((block,i)=>{
+    const p=BOSS_PHASE_OF_INDEX[i]!==undefined?BOSS_PHASE_OF_INDEX[i]:0;
+    bossPhaseBlocks[p].push(block);
+  });
+  bossPhaseBlocks.forEach((group,p)=>{
+    if(!group.length)return;
+    const banner=document.createElement('div');
+    banner.className='phase-banner phase-banner-'+p;
+    banner.style.background=BOSS_PHASES[p].color;
+    banner.textContent='⚔️ Phase '+(p+1)+' / '+BOSS_PHASES.length+' — '+BOSS_PHASES[p].name;
+    banner.style.display=p===0?'':'none';
+    group[0].parentNode.insertBefore(banner,group[0]);
+    group.forEach(b=>{ b.style.display=p===0?'':'none'; });
+  });
+  updateBossHPColor(0);
+}
+function updateBossHPColor(p){
+  const bar=document.getElementById('b-boss-bar');
+  if(bar&&BOSS_PHASES[p])bar.style.background=BOSS_PHASES[p].color;
+}
+function checkBossPhaseProgress(){
+  const group=bossPhaseBlocks[bossPhaseIdx];
+  if(!group||!group.length)return;
+  const allDone=group.every(b=>b.dataset.qid&&isQuestionCompleted(b.dataset.qid));
+  if(allDone)advanceBossPhase();
+}
+function advanceBossPhase(){
+  const finishedIdx=bossPhaseIdx;
+  showPhaseClearedBanner(finishedIdx);
+  bossPhaseIdx++;
+  saveState();
+  if(bossPhaseIdx>=BOSS_PHASES.length)return;
+  setTimeout(()=>{
+    bossPhaseBlocks[finishedIdx].forEach(b=>b.style.display='none');
+    const oldBanner=document.querySelector('.phase-banner-'+finishedIdx);
+    if(oldBanner)oldBanner.style.display='none';
+    const nextGroup=bossPhaseBlocks[bossPhaseIdx];
+    if(nextGroup&&nextGroup.length){
+      nextGroup.forEach(b=>b.style.display='');
+      const nb=document.querySelector('.phase-banner-'+bossPhaseIdx);
+      if(nb){nb.style.display='';nb.classList.add('phase-enter');setTimeout(()=>nb.classList.remove('phase-enter'),700);}
+    }
+    updateBossHPColor(bossPhaseIdx);
+  },1200);
+}
+function showPhaseClearedBanner(idx){
+  const toast=document.createElement('div');
+  toast.className='phase-cleared-toast';
+  toast.textContent='⚔️ Phase '+(idx+1)+' Cleared!';
+  document.body.appendChild(toast);
+  triggerConfetti();
+  playCorrectSound();
+  setTimeout(()=>toast.remove(),1400);
+}
+function restoreBossPhaseVisibility(){
+  if(!bossPhaseBlocks.length)return;
+  bossPhaseBlocks.forEach((group,p)=>{
+    const banner=document.querySelector('.phase-banner-'+p);
+    const visible=p===bossPhaseIdx;
+    group.forEach(b=>{b.style.display=visible?'':'none';});
+    if(banner)banner.style.display=visible?'':'none';
+  });
+  updateBossHPColor(bossPhaseIdx);
+}
+function recomputeBossStateFromCompletion(){
+  if(!bossPhaseBlocks.length)return;
+  let doneCount=0;
+  bossPhaseIdx=0;
+  bossPhaseBlocks.forEach((group,p)=>{
+    const allDone=group.length>0&&group.every(b=>b.dataset.qid&&isQuestionCompleted(b.dataset.qid));
+    group.forEach(b=>{ if(b.dataset.qid&&isQuestionCompleted(b.dataset.qid))doneCount++; });
+    if(allDone)bossPhaseIdx=p+1;
+  });
+  bossPhaseIdx=Math.min(BOSS_PHASES.length-1,bossPhaseIdx);
+  if(typeof bossHP!=='undefined'){
+    bossHP=Math.max(0,BOSS_TOTAL-doneCount);
+    const bar=document.getElementById('b-boss-bar');
+    const pctEl=document.getElementById('b-boss-pct');
+    const pct=Math.max(0,(bossHP/BOSS_TOTAL)*100);
+    if(bar)bar.style.width=pct+'%';
+    if(pctEl)pctEl.textContent=Math.round(pct)+'%';
+  }
+}
+function paintCompletedBossBlocks(){
+  document.querySelectorAll('#tab-7 .mcq-block').forEach(b=>{
+    if(b.dataset.qid&&isQuestionCompleted(b.dataset.qid))b.classList.add('already-solved');
+  });
+}
+const _retryBoss=window.retryBoss;
+window.retryBoss=function(){
+  _retryBoss();
+  bossResult='Retrying';
+  recomputeBossStateFromCompletion();
+  paintCompletedBossBlocks();
+  restoreBossPhaseVisibility();
+  saveState();
+};
+
+/* ---------- STORY MODE ---------- */
+const STORY=[
+  {em:'✈️',en:"Noura is planning her summer trip. \"Look! The plane is landing now,\" she says, watching from the window.",ar:"تخطط نورة لرحلتها الصيفية. تقول وهي تنظر من النافذة: انظر! الطائرة تهبط الآن.",q:"Look! The plane _______ now.",opts:['is landing','lands','will land'],correct:0,xp:10},
+  {em:'🎫',en:"\"I have my ticket. I am going to travel to Dubai,\" Noura tells her friend excitedly.",ar:"تخبر نورة صديقتها بحماس: لدي تذكرتي. سأسافر إلى دبي.",q:"I have my ticket. I _______ travel to Dubai. (arranged plan)",opts:['am going to','will','am'],correct:0,xp:10},
+  {em:'🧳',en:"\"She is packing her bags right now,\" her mother says, peeking into the room.",ar:"تقول والدتها وهي تطل على الغرفة: إنها تحزم حقائبها الآن.",q:"She _______ her bags right now. (pack)",opts:['is packing','packs','will pack'],correct:0,xp:10},
+  {em:'🔮',en:"Noura isn't sure about her cousin's plans. \"Maybe she will visit us next weekend,\" she guesses.",ar:"لم تكن نورة متأكدة من خطط ابنة عمها. تخمن: ربما ستزورنا نهاية الأسبوع القادم.",q:"Maybe she _______ visit us next weekend. (prediction/guess)",opts:['will','is going to','is'],correct:0,xp:10},
+  {em:'🏨',en:"\"My friends are traveling tomorrow — they have tickets already,\" Noura explains.",ar:"تشرح نورة: أصدقائي مسافرون غداً — لديهم تذاكر بالفعل.",q:"My friends _______ tomorrow. They have tickets. (arranged plan)",opts:['are traveling','travel','will travel'],correct:0,xp:10},
+  {em:'🚪',en:"Listen! Someone is knocking at the door — it might be the taxi driver!",ar:"استمع! أحدهم يطرق الباب الآن — ربما يكون سائق سيارة الأجرة!",q:"Listen! Someone _______ at the door.",opts:['is knocking','knocks','will knock'],correct:0,xp:15}
+];
+let storyIdx=0,storyAnswered={};
+let lastTab=0;
+function paintStoryScreen(i){
+  document.querySelectorAll('.story-screen').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  const fill=document.getElementById('story-progress-fill');
+  if(fill)fill.style.width=Math.round(((i+1)/STORY.length)*100)+'%';
+}
+window.storyGo=function(i){ storyIdx=i; paintStoryScreen(i); saveState(); };
+function renderStory(){
+  const wrap=document.getElementById('story-screens');
+  if(!wrap||wrap.dataset.built)return;
+  wrap.dataset.built='1';
+  const escAttr=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  wrap.innerHTML=STORY.map((s,i)=>{
+    const plainEn=s.en.replace(/<[^>]+>/g,'');
+    return (
+    '<div class="story-screen" id="story-s'+i+'" data-i="'+i+'">'+
+      '<div class="story-emoji">'+s.em+'</div>'+
+      '<div class="story-text">'+s.en+' <button type="button" class="audio-btn" data-speak="'+escAttr(plainEn)+'" onclick="speak(this.dataset.speak)">🔊</button></div>'+
+      '<div class="story-text-ar" dir="rtl">'+s.ar+'</div>'+
+      '<div class="story-q"><div style="font-weight:700;font-size:.86rem;margin-bottom:8px">'+s.q+'</div>'+
+      '<div class="mcq-opts" id="story-opts'+i+'">'+
+        s.opts.map((o,oi)=>'<div class="story-mcq-opt" onclick="answerStory('+i+','+oi+',this)">'+o+'</div>').join('')+
+      '</div></div>'+
+      '<div class="story-nav">'+
+        (i>0?'<button class="secondary" onclick="storyGo('+(i-1)+')">◀ Back</button>':'<button class="secondary" disabled>◀ Back</button>')+
+        (i<STORY.length-1?'<button id="story-next'+i+'" disabled onclick="storyGo('+(i+1)+')">Next ▶</button>':'<button id="story-next'+i+'" disabled onclick="storyFinish()">Finish 🏁</button>')+
+      '</div>'+
+    '</div>'
+    );
+  }).join('');
+  paintStoryScreen(0);
+}
+function restoreStoryAnsweredState(){
+  Object.keys(storyAnswered).forEach(key=>{
+    const i=parseInt(key,10);
+    if(isNaN(i)||!STORY[i])return;
+    const optsWrap=document.getElementById('story-opts'+i);
+    if(optsWrap){ Array.from(optsWrap.children).forEach((o,idx)=>{ if(idx===STORY[i].correct)o.classList.add('selected-correct'); }); }
+    const nextBtn=document.getElementById('story-next'+i);
+    if(nextBtn)nextBtn.disabled=false;
+  });
+}
+window.answerStory=function(i,oi,el){
+  if(storyAnswered[i])return;
+  storyAnswered[i]=true;
+  const correct=STORY[i].correct===oi;
+  const opts=document.getElementById('story-opts'+i).children;
+  Array.from(opts).forEach((o,idx)=>{
+    if(idx===STORY[i].correct)o.classList.add('selected-correct');
+    else if(idx===oi&&!correct)o.classList.add('selected-wrong');
+  });
+  if(correct){playCorrectSound();triggerConfetti();awardXP(STORY[i].xp);increaseStreak();}else{playWrongSound();resetStreak();}
+  document.getElementById('story-next'+i).disabled=false;
+  saveState();
+};
+window.storyFinish=function(){
+  triggerConfetti();
+  grantOneTimeReward('storyComplete',50,'📖 Story Mode Complete! +50 XP');
+  saveState();
+};
+
+/* ---------- REPORT + SMART INSIGHTS ---------- */
+function computeSkillInsights(){
+  const entries=Object.entries(categoryStats).filter(([,v])=>v&&v.attempts>=2).map(([name,v])=>({name,acc:v.correct/v.attempts}));
+  if(!entries.length)return {strongest:'Not enough data yet',weakest:'Not enough data yet'};
+  entries.sort((a,b)=>b.acc-a.acc);
+  const strongest=entries[0],weakest=entries[entries.length-1];
+  const fmt=e=>e.name+' ('+Math.round(e.acc*100)+'%)';
+  return { strongest:fmt(strongest), weakest:(entries.length>1&&weakest.acc<strongest.acc)?fmt(weakest):'Keep practicing more categories to see this!' };
+}
+window.openReport=function(){
+  const accuracy=totalAttempts?Math.round((totalCorrectAttempts/totalAttempts)*100):0;
+  const mins=Math.floor((Date.now()-lessonStartTime)/60000);
+  const secs=Math.floor(((Date.now()-lessonStartTime)%60000)/1000);
+  let grade='C',emoji='🙂';
+  if(accuracy>=95){grade='A+';emoji='🌟';} else if(accuracy>=85){grade='A';emoji='🎉';} else if(accuracy>=70){grade='B';emoji='👍';}
+  document.getElementById('report-grade-emoji').textContent=emoji+' '+grade;
+  const achCount=Object.keys(unlocked).length;
+  const storyDone=Object.keys(storyAnswered).length;
+  const bossPhasesDone=Math.min(BOSS_PHASES.length,bossPhaseIdx);
+  const completionPct=typeof totalInteractiveItems!=='undefined'&&totalInteractiveItems?Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100)):0;
+  const insights=computeSkillInsights();
+  document.getElementById('report-grid').innerHTML=[
+    ['Student',studentName||'—'],['Avatar',chosenAvatar||'—'],['Total XP',XP],['Rank',getLevel(XP)],
+    ['Accuracy',accuracy+'%'],['Correct Answers',totalCorrectAttempts],['Wrong Answers',totalWrongAttempts],['Total Attempts',totalAttempts],
+    ['Achievements',achCount+' / '+ACHIEVEMENTS.length],['Story Completion',storyDone+' / '+STORY.length],
+    ['Boss Completion',bossPhasesDone+' / '+BOSS_PHASES.length+' phases'],['Best Streak',maxStreak],
+    ['Time Spent',mins+'m '+secs+'s'],['Date',formatDate()],['Completion',completionPct+'%'],
+    ['✅ Strongest Skill',insights.strongest],['⚠ Needs More Practice',insights.weakest],['Grade',grade]
+  ].map(([l,v])=>'<div class="report-stat"><div class="lbl">'+l+'</div><div class="val">'+v+'</div></div>').join('');
+  document.getElementById('report-overlay').classList.add('show');
+};
+window.closeReport=function(){document.getElementById('report-overlay').classList.remove('show');};
+
+/* ---------- CERTIFICATE GENERATOR ---------- */
+window.downloadCertificatePng=function(){
+  try{
+    const c=document.getElementById('cert-canvas');
+    if(!c){ alert('Certificate canvas not found — please reload the page and try again.'); return; }
+    const ctx=c.getContext('2d');
+    if(!ctx){ alert('Your browser blocked canvas rendering. Please try a different browser, then try again.'); return; }
+    const grad=ctx.createLinearGradient(0,0,1000,700);
+    grad.addColorStop(0,'#1e1b4b');grad.addColorStop(1,'#4c1d95');
+    ctx.fillStyle=grad;ctx.fillRect(0,0,1000,700);
+    ctx.strokeStyle='#F59E0B';ctx.lineWidth=8;ctx.strokeRect(20,20,960,660);
+    ctx.strokeStyle='rgba(255,255,255,.4)';ctx.lineWidth=2;ctx.strokeRect(36,36,928,628);
+    ctx.textAlign='center';
+    ctx.font='90px sans-serif';ctx.fillStyle='#fff';ctx.fillText(chosenAvatar||'🎮',500,170);
+    ctx.font='900 40px Georgia, serif';ctx.fillStyle='#F59E0B';ctx.fillText('CERTIFICATE OF ACHIEVEMENT',500,235);
+    ctx.font='22px sans-serif';ctx.fillStyle='#c4b5fd';ctx.fillText('Present Progressive & Future (Going to / Will)',500,270);
+    ctx.font='800 36px sans-serif';ctx.fillStyle='#fff';
+    const certNameInput=document.getElementById('student-name');
+    ctx.fillText((certNameInput&&certNameInput.value.trim())||studentName||'Student',500,335);
+    ctx.font='800 26px sans-serif';ctx.fillStyle='#e2e8f0';
+    const accuracy=totalAttempts?Math.round((totalCorrectAttempts/totalAttempts)*100):0;
+    const completionPct=(typeof totalInteractiveItems!=='undefined'&&totalInteractiveItems)?Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100)):0;
+    ctx.fillText('Score: '+XP+' XP   |   Rank: '+getLevel(XP),500,390);
+    ctx.fillText('Accuracy: '+accuracy+'%   |   Completion: '+completionPct+'%',500,430);
+    ctx.font='22px sans-serif';ctx.fillStyle='#c4b5fd';
+    ctx.fillText('Awarded on '+formatDate(),500,500);
+    ctx.font='700 26px sans-serif';ctx.fillStyle='#F59E0B';
+    ctx.fillText('— Teacher Jaber —',500,600);
+    const dataUrl=c.toDataURL('image/png');
+    if(!dataUrl||dataUrl==='data:,'){ alert('Could not generate the certificate image. Please try again.'); return; }
+    const link=document.createElement('a');
+    link.download='PresentProgressive-Future-Certificate.png';
+    link.href=dataUrl;
+    link.style.display='none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }catch(err){
+    console.error('Certificate generation failed:',err);
+    alert('Something went wrong generating the certificate: '+err.message);
+  }
+};
+
+/* ---------- SAVE SYSTEM ---------- */
+const SAVE_KEY='u3presentprogfuture_save_v1';
+function safePlainObject(v){ return (v&&typeof v==='object'&&!Array.isArray(v))?v:{}; }
+function safeNumber(v,fallback){ return (typeof v==='number'&&isFinite(v))?v:fallback; }
+function saveState(){
+  try{
+    localStorage.setItem(SAVE_KEY,JSON.stringify({
+      XP,streak,completedTotal,unlocked,chosenAvatar,totalAttempts,totalCorrectAttempts,totalWrongAttempts,maxStreak,bossResult,
+      S,grammarSeen,storyAnswered,completedQuestions,bossPhaseIdx,rewardsGranted,lastTab,storyIdx,categoryStats
+    }));
+  }catch(e){ console.warn('Could not save progress:',e); }
+}
+function loadState(){
+  try{
+    const raw=localStorage.getItem(SAVE_KEY);
+    if(!raw)return false;
+    let d;
+    try{ d=JSON.parse(raw); } catch(parseErr){ console.warn('Saved progress was corrupted — starting fresh.',parseErr); return false; }
+    if(!d||typeof d!=='object'){ console.warn('Saved progress had an unexpected shape — starting fresh.'); return false; }
+    XP=safeNumber(d.XP,0);streak=safeNumber(d.streak,0);completedTotal=safeNumber(d.completedTotal,0);
+    unlocked=safePlainObject(d.unlocked);chosenAvatar=(typeof d.chosenAvatar==='string')?d.chosenAvatar:null;
+    totalAttempts=safeNumber(d.totalAttempts,0);totalCorrectAttempts=safeNumber(d.totalCorrectAttempts,0);totalWrongAttempts=safeNumber(d.totalWrongAttempts,0);maxStreak=safeNumber(d.maxStreak,0);
+    bossResult=(typeof d.bossResult==='string')?d.bossResult:'Not Attempted';
+    Object.assign(S,safePlainObject(d.S));
+    const gs=safePlainObject(d.grammarSeen);
+    GRAMMAR_TABS.forEach(t=>{grammarSeen[t]=!!gs[t];});
+    storyAnswered=safePlainObject(d.storyAnswered);
+    completedQuestions=safePlainObject(d.completedQuestions);
+    rewardsGranted=safePlainObject(d.rewardsGranted);
+    categoryStats=safePlainObject(d.categoryStats);
+    lastTab=Math.min(7,Math.max(0,Math.round(safeNumber(d.lastTab,0))));
+    storyIdx=Math.min(STORY.length-1,Math.max(0,Math.round(safeNumber(d.storyIdx,0))));
+    bossPhaseIdx=Math.min(BOSS_PHASES.length-1,Math.max(0,Math.round(safeNumber(d.bossPhaseIdx,0))));
+    document.getElementById('xp-display').textContent=XP;
+    document.getElementById('streak-display').textContent=streak;
+    updateProgressBar();
+    prevLevelLabel=getLevel(XP);
+    document.getElementById('level-display').textContent=prevLevelLabel;
+    return true;
+  }catch(e){ console.warn('Could not restore saved progress:',e); return false; }
+}
+
+/* ---------- RESET PROGRESS ---------- */
+window.confirmResetProgress = function() {
+  const modal = document.getElementById('reset-confirm-modal');
+  if (modal) {
+    modal.classList.add('show');
+  } else {
+    // Fallback if modal is missing
+    executeResetProgress();
+  }
+};
+
+window.closeResetModal = function() {
+  const modal = document.getElementById('reset-confirm-modal');
+  if (modal) {
+    modal.classList.remove('show');
+  }
+};
+
+window.executeResetProgress = function() {
+  try {
+    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(DIFF_KEY);
+    localStorage.removeItem(NAME_KEY);
+  } catch (e) {
+    console.error('Could not clear localStorage:', e);
+  }
+  location.reload();
+};
+/* ---------- DEFENSIVE MCQ/STORY AUDIT ---------- */
+function auditAllQuestions(){
+  document.querySelectorAll('.mcq-opt,.story-mcq-opt').forEach(opt=>{
+    if(!opt.textContent.trim()){
+      console.warn('MCQ option with blank text detected and repaired:',opt);
+      opt.textContent='(missing option)';opt.style.opacity='.5';opt.onclick=null;
+    }
+  });
+  STORY.forEach((s,i)=>{
+    if(!Array.isArray(s.opts)||s.opts.some(o=>!o||!String(o).trim())||typeof s.correct!=='number'||s.correct<0||s.correct>=s.opts.length){
+      console.warn('Story Mode screen '+i+' has a corrupted option set.',s);
+    }
+  });
+}
+
+/* ---------- INIT ---------- */
+function initApp(){
+  try{
+    assignQIDs();
+    const restored=loadState();
+    const restoredLastTab=lastTab, restoredStoryIdx=storyIdx;
+    renderAchPanel();
+    renderStory();
+    paintStoryScreen(restoredStoryIdx);
+    setupBossPhases();
+    auditAllQuestions();
+    recomputeBossStateFromCompletion();
+    paintCompletedBossBlocks();
+    restoreBossPhaseVisibility();
+    restoreStoryAnsweredState();
+    updateModeBadge();
+    updateNameDisplays();
+    if(easyModeActive()){applyEasyModeToInputs();insertWordBanksForFreeText();}
+    if(chosenAvatar){
+      document.querySelectorAll('.avatar-opt').forEach(o=>{if(o.getAttribute('data-av')===chosenAvatar)o.classList.add('picked');});
+      updateAvatarChip();
+    }
+    if(!studentName){ document.getElementById('name-overlay').classList.add('show'); }
+    else if(!difficultyMode){ document.getElementById('difficulty-overlay').classList.add('show'); }
+    else if(!chosenAvatar){ document.getElementById('avatar-overlay').classList.add('show'); }
+    else if(restored){ showTab(restoredLastTab); }
+    if(prevLevelLabel===null)prevLevelLabel=getLevel(XP);
+    resetQuestionTimer();
+    const startBtn=document.querySelector('#boss-overlay button[onclick="startBoss()"]');
+    if(startBtn)startBtn.setAttribute('onclick','openBossModeSelector()');
+  }catch(err){
+    console.error('Lesson initialization error:',err);
+  }
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initApp);
+}else{
+  initApp();
+}
+
+})();
+</script>
+
+</body>
+</html>
