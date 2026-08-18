@@ -1,0 +1,2640 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U3 Grammar – Infinitives & Time Clauses | Teacher Jaber</title>
+<style>
+:root{
+  --navy:#1E3A5F;--teal:#0F766E;--coral:#DC2E5D;--gold:#F59E0B;
+  --green:#16A34A;--blue:#2563EB;--purple:#7C3AED;--orange:#EA580C;
+  --pink:#DB2777;--ink:#1F2937;--slate:#475569;--light:#F8FAFC;
+  --gray:#E5E7EB;--yellow:#FEF3C7;--softblue:#EFF6FF;
+  --softgreen:#F0FDF4;--softpink:#FFF0F3;--softpurple:#F5F3FF;
+  --softyellow:#FFFBEB;--softteal:#F0FDFA;
+  --bg:var(--light);--card:#fff;--border:var(--gray);
+  --text:var(--ink);--subtext:var(--slate);
+}
+body.dark{
+  --bg:#0f172a;--card:#1e293b;--border:#334155;
+  --text:#e2e8f0;--subtext:#94a3b8;--light:#0f172a;
+  --gray:#334155;--yellow:#2d2200;--softblue:#1e2d4a;
+  --softgreen:#0d2418;--softpink:#2d1020;--softpurple:#1e1535;
+  --softyellow:#2d2300;--softteal:#0d2420;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Calibri,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;}
+
+/* ── Site Header (Identical to U2) ── */
+.site-header{background:linear-gradient(135deg,#7C3AED,#DC2E5D 55%,#F59E0B);padding:0;position:sticky;top:0;z-index:200;box-shadow:0 3px 20px rgba(0,0,0,.35);}
+.header-inner{background:rgba(20,10,40,.85);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.header-left h1{font-size:1rem;font-weight:800;color:white;line-height:1.2;}
+.header-left .sub{font-size:.72rem;color:#c4b5fd;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.header-badge{background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:800;padding:4px 11px;border-radius:20px;white-space:nowrap;}
+
+/* ── Dark Mode Toggle (Identical to U2) ── */
+.dark-toggle{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;cursor:pointer;color:white;font-size:.75rem;font-weight:700;padding:5px 12px;transition:.2s;white-space:nowrap;display:flex;align-items:center;gap:5px;}
+.dark-toggle:hover{background:rgba(255,255,255,.28);}
+
+/* ── XP & Streak HUD Bar (Identical to U2) ── */
+.hud-bar{background:rgba(20,5,40,.9);padding:5px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.hud-item{display:flex;align-items:center;gap:5px;font-size:.75rem;font-weight:800;color:white;}
+.xp-badge{background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#1a0a00;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:900;transition:transform .15s;}
+.xp-badge.bump{transform:scale(1.35);}
+.streak-badge{background:linear-gradient(135deg,#EA580C,#F97316);color:white;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:900;display:flex;align-items:center;gap:3px;}
+.streak-badge.hot{animation:streakPulse .4s ease;}
+@keyframes streakPulse{0%{transform:scale(1);}50%{transform:scale(1.4);}100%{transform:scale(1);}}
+.level-badge{background:var(--purple);color:white;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:800;}
+
+/* ── Progress Bar (Identical to U2) ── */
+.progress-container{height:5px;width:100%;background:rgba(255,255,255,.2);}
+.progress-bar{height:100%;width:0%;background:var(--gold);transition:width .4s ease;}
+
+.xp-bubble{position:fixed;pointer-events:none;font-size:1.1rem;font-weight:900;color:var(--gold);text-shadow:0 2px 8px rgba(0,0,0,.4);z-index:9999;animation:xpFloat 1.2s ease forwards;}
+@keyframes xpFloat{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-60px) scale(1.3);}}
+
+.pill-nav{display:flex;overflow-x:auto;gap:6px;background:#110820;padding:8px 18px 11px;scrollbar-width:thin;scrollbar-color:#7C3AED rgba(255,255,255,.08);cursor:grab;user-select:none;}
+.pill-nav.is-dragging{cursor:grabbing;}
+.pill-nav::-webkit-scrollbar{height:5px;display:block;}
+.pill-nav::-webkit-scrollbar-track{background:rgba(255,255,255,.06);border-radius:10px;margin:0 18px;}
+.pill-nav::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#7C3AED,#DC2E5D);border-radius:10px;}
+.pill-nav::-webkit-scrollbar-thumb:hover{background:linear-gradient(90deg,#6D28D9,#be185d);}
+.pill-nav button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:20px;cursor:pointer;color:#94a3b8;font-size:.75rem;font-weight:600;padding:6px 14px;white-space:nowrap;transition:.18s;font-family:inherit;}
+.pill-nav button.active{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:800;}
+.pill-nav button:hover:not(.active){background:rgba(255,255,255,.16);color:white;}
+.pill-nav button.boss-tab{background:rgba(220,46,93,.2);border-color:var(--coral);color:#fca5a5;}
+.pill-nav button.boss-tab.active{background:var(--coral);color:white;}
+.container{max-width:960px;margin:0 auto;padding:24px 16px 70px;}
+.page{display:none;animation:fadeIn .22s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:translateY(0);}}
+.audio-btn{background:#E2E8F0;border:none;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:.75rem;margin-left:6px;vertical-align:middle;transition:.2s;color:var(--navy);}
+.audio-btn:hover{background:var(--blue);color:white;transform:scale(1.1);}
+body.dark .audio-btn{background:#334155;color:#e2e8f0;}
+.grammar-box{background:var(--card);border-radius:16px;box-shadow:0 3px 20px rgba(0,0,0,.08);overflow:hidden;margin-bottom:22px;}
+.grammar-header{padding:15px 22px;display:flex;align-items:center;gap:13px;}
+.g-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:900;flex-shrink:0;}
+.g-title{font-size:1.05rem;font-weight:800;color:white;}
+.g-title-ar{font-size:.86rem;color:rgba(255,255,255,.78);margin-top:3px;direction:rtl;text-align:right;unicode-bidi:isolate;}
+.grammar-body{padding:18px 22px;}
+.conj-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.conj-pill{padding:6px 14px;border-radius:20px;font-size:.83rem;font-weight:700;color:white;}
+.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+@media(max-width:580px){.two-cols{grid-template-columns:1fr;}}
+.cmp-table{width:100%;border-collapse:collapse;font-size:.82rem;border-radius:10px;overflow:hidden;margin-bottom:14px;}
+.cmp-table th{padding:9px 13px;text-align:left;font-weight:800;color:white;}
+.cmp-table td{padding:8px 13px;border-bottom:1px solid var(--border);}
+.cmp-table tr:last-child td{border:none;}
+.cmp-table .ar{font-size:.75rem;color:var(--subtext);direction:rtl;text-align:right;unicode-bidi:isolate;}
+.note{background:var(--yellow);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:9px 13px;margin:11px 0;font-size:.86rem;line-height:1.65;direction:rtl;text-align:right;unicode-bidi:isolate;}
+.note strong{color:var(--navy);}
+body.dark .note strong{color:#fde68a;}
+.note-blue{background:var(--softblue);border-left-color:var(--blue);}
+.note-teal{background:var(--softteal);border-left-color:var(--teal);}
+.note-purple{background:var(--softpurple);border-left-color:var(--purple);}
+.note-green{background:var(--softgreen);border-left-color:var(--green);}
+.gold-rule{background:linear-gradient(135deg,#F59E0B,#EA580C);border-radius:10px;padding:13px 16px;margin-bottom:14px;color:white;}
+.gold-rule .title{font-weight:800;font-size:.92rem;margin-bottom:7px;direction:rtl;text-align:right;unicode-bidi:isolate;}
+.gold-rule .body{font-size:.83rem;line-height:1.7;direction:rtl;text-align:right;unicode-bidi:isolate;}
+.exc-rule{background:linear-gradient(135deg,#DC2E5D,#7C3AED);border-radius:10px;padding:13px 16px;margin-bottom:14px;color:white;}
+.exc-rule .title{font-weight:800;font-size:.92rem;margin-bottom:7px;direction:rtl;text-align:right;unicode-bidi:isolate;}
+.exc-rule .body{font-size:.83rem;line-height:1.7;direction:rtl;text-align:right;unicode-bidi:isolate;}
+.ex-card{background:var(--card);border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.07);overflow:hidden;margin-bottom:20px;}
+.ex-head{padding:14px 22px 10px;border-bottom:1px solid var(--border);}
+.ex-title{font-size:1.05rem;font-weight:800;color:var(--navy);}
+body.dark .ex-title{color:#93c5fd;}
+.ex-title-ar{font-size:.86rem;color:var(--subtext);direction:rtl;text-align:right;unicode-bidi:isolate;margin-top:2px;}
+.lv{font-size:.67rem;font-weight:800;padding:3px 10px;border-radius:20px;display:inline-block;margin-top:5px;}
+.lv-beg{background:#D1FAE5;color:#065F46;}
+.lv-int{background:#FEF3C7;color:#92400E;}
+.lv-adv{background:#FCE7F3;color:#9D174D;}
+.lv-quiz{background:#EDE9FE;color:#4C1D95;}
+.ex-inst{padding:8px 22px;background:var(--softblue);border-bottom:1px solid var(--border);font-size:.86rem;color:var(--subtext);font-style:italic;}
+.ex-inst-ar{padding:4px 22px 8px;background:var(--softblue);border-bottom:1px solid var(--border);font-size:.81rem;color:var(--subtext);direction:rtl;text-align:right;unicode-bidi:isolate;}
+.ex-body{padding:16px 22px;}
+.btn-row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:13px;}
+.rbtn{display:inline-flex;align-items:center;gap:6px;border:none;border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:700;padding:8px 16px;transition:.17s;font-family:inherit;color:white;}
+.rbtn:hover{filter:brightness(1.12);transform:translateY(-1px);}
+.score-line{font-size:.82rem;color:var(--subtext);margin-bottom:13px;}
+.score-line span{font-weight:800;color:var(--navy);font-size:.93rem;}
+body.dark .score-line span{color:#93c5fd;}
+.item-row{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.item-row:last-child{border-bottom:none;}
+.inum{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.77rem;font-weight:800;color:white;flex-shrink:0;margin-top:2px;}
+.iq{flex:1;font-size:.91rem;line-height:1.55;min-width:200px;}
+.iq .hint{font-size:.77rem;color:var(--subtext);font-style:italic;direction:rtl;text-align:right;display:inline-block;unicode-bidi:isolate;}
+.interactive-input{padding:6px 10px;font-size:.88rem;font-weight:600;border:2px solid var(--border);border-radius:8px;outline:none;transition:.2s;width:150px;font-family:inherit;margin-top:4px;background:var(--card);color:var(--text);}
+.interactive-input.wide{width:270px;}
+.interactive-input:focus{border-color:var(--blue);}
+.interactive-input.is-correct{border-color:var(--green);background:var(--softgreen);}
+.interactive-input.is-wrong{border-color:var(--coral);background:var(--softpink);}
+.check-btn{background:var(--navy);color:white;border:none;padding:6px 12px;border-radius:6px;font-size:.78rem;font-weight:700;cursor:pointer;transition:.2s;margin-left:4px;}
+.check-btn:hover{background:var(--blue);}
+.hint-btn{background:rgba(245,158,11,.15);border:1px solid var(--gold);color:var(--orange);border-radius:6px;font-size:.74rem;font-weight:700;cursor:pointer;padding:4px 9px;margin-left:4px;transition:.2s;font-family:inherit;}
+.hint-btn:hover{background:var(--gold);color:var(--navy);}
+.explain-box{margin-top:6px;padding:8px 12px;border-radius:8px;font-size:.82rem;line-height:1.65;direction:rtl;text-align:right;unicode-bidi:isolate;display:none;border-right:3px solid var(--teal);}
+.explain-box.visible{display:block;}
+.correct-explain{background:var(--softgreen);border-color:var(--green);}
+.wrong-explain{background:var(--softpink);border-color:var(--coral);}
+.ians{flex:1;font-size:.87rem;font-weight:700;color:white;padding:6px 13px;border-radius:8px;opacity:0;transform:translateX(8px);transition:opacity .3s ease,transform .3s ease;min-width:55px;line-height:1.45;display:none;}
+.ians.visible{opacity:1;transform:translateX(0);display:block;}
+.mcq-block{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.mcq-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.mcq-q{font-size:.91rem;font-weight:600;margin-bottom:7px;color:var(--text);}
+.mcq-opts{display:flex;gap:7px;flex-wrap:wrap;}
+.mcq-opt{padding:5px 13px;border-radius:20px;font-size:.81rem;border:2px solid var(--border);color:var(--text);transition:.18s;cursor:pointer;user-select:none;background:var(--card);}
+.mcq-opt:hover{border-color:var(--blue);background:var(--softblue);}
+.mcq-opt.selected-correct{background:var(--green)!important;color:white!important;border-color:var(--green)!important;font-weight:800;}
+.mcq-opt.selected-wrong{background:var(--coral)!important;color:white!important;border-color:var(--coral)!important;}
+.mcq-opt[data-ex].visible{font-weight:800;border-color:transparent;}
+.hi-t{color:var(--teal);font-weight:800;}
+.hi-c{color:var(--coral);font-weight:800;}
+.hi-b{color:var(--blue);font-weight:800;}
+.hi-g{color:var(--green);font-weight:800;}
+.hi-p{color:var(--purple);font-weight:800;}
+.hi-o{color:var(--orange);font-weight:800;}
+.boss-header{background:linear-gradient(135deg,#DC2E5D,#7C3AED);border-radius:14px;padding:18px 22px;margin-bottom:18px;text-align:center;}
+.boss-title{font-size:1.4rem;font-weight:900;color:white;margin-bottom:4px;}
+.boss-sub{font-size:.85rem;color:rgba(255,255,255,.78);}
+.boss-hp-bar{height:12px;background:rgba(255,255,255,.2);border-radius:6px;margin-top:12px;overflow:hidden;}
+.boss-hp-fill{height:100%;background:linear-gradient(90deg,#F59E0B,#DC2E5D);border-radius:6px;transition:width .5s ease;}
+.result-card{background:linear-gradient(135deg,#1E3A5F,#7C3AED);border-radius:16px;padding:28px;text-align:center;margin-top:16px;display:none;}
+.result-card.visible{display:block;}
+.result-card h2{color:var(--gold);font-size:1.5rem;font-weight:900;margin-bottom:10px;}
+.result-card p{color:rgba(255,255,255,.85);font-size:.95rem;margin-bottom:16px;}
+.result-stars{font-size:2rem;letter-spacing:4px;margin-bottom:12px;}
+.result-rank{font-size:1rem;font-weight:800;padding:8px 20px;border-radius:20px;display:inline-block;margin-bottom:14px;}
+bdi{unicode-bidi:isolate;}
+
+  /* ── SHAKE ── */
+  @keyframes shake{0%,100%{transform:translateX(0);}15%{transform:translateX(-8px);}30%{transform:translateX(8px);}45%{transform:translateX(-6px);}60%{transform:translateX(6px);}75%{transform:translateX(-3px);}90%{transform:translateX(3px);}}
+  .shake{animation:shake .45s ease;border-color:#ef4444 !important;box-shadow:0 0 0 3px rgba(239,68,68,.35) !important;}
+  /* ── BOSS FIXED HUD ── */
+  .boss-hud-fixed{display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;background:rgba(20,10,40,.97);padding:10px 18px;gap:12px;align-items:center;border-top:2px solid #7C3AED;box-shadow:0 -4px 20px rgba(0,0,0,.4);}
+  .boss-hud-fixed.active{display:flex;}
+  .b-hp-wrap{flex:1;}
+  .b-hp-label{font-size:.7rem;color:#c4b5fd;font-weight:700;margin-bottom:3px;display:flex;justify-content:space-between;}
+  .b-hp-track{height:13px;background:rgba(255,255,255,.15);border-radius:20px;overflow:hidden;}
+  .b-hp-bar{height:100%;width:100%;background:linear-gradient(90deg,#DC2E5D,#ef4444);border-radius:20px;transition:width .5s ease;}
+  .b-my-bar{height:100%;width:100%;background:linear-gradient(90deg,#16A34A,#22c55e);border-radius:20px;transition:width .5s ease;}
+  .b-timer{font-size:1.4rem;font-weight:900;color:white;background:rgba(255,255,255,.1);border-radius:10px;padding:6px 14px;min-width:75px;text-align:center;}
+  .b-timer.hurry{color:#ef4444;animation:shake .5s infinite;}
+
+/* ═══════════════════════════════════════════
+   DARK MODE COMPREHENSIVE FIXES  
+   ═══════════════════════════════════════════ */
+
+/* Cards & containers */
+.dark .grammar-box,
+.dark .ex-card,
+.dark .info-card,
+.dark .note-box,
+.dark .compare-grid > div,
+.dark .compare-col,
+.dark .form-card,
+.dark .formula-box,
+.dark .ref-table-wrap,
+.dark .pos-card,
+.dark .freq-table-wrap,
+.dark .rule-card,
+.dark .example-card {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+/* Text elements */
+.dark .grammar-body,
+.dark .ex-body,
+.dark .ex-inst,
+.dark .ex-inst-ar,
+.dark .item-q,
+.dark .mcq-q,
+.dark .iq,
+.dark .scramble-words,
+.dark p,
+.dark li,
+.dark td, .dark th,
+.dark label,
+.dark .word-meaning,
+.dark .freq-ar,
+.dark .freq-ex,
+.dark .note-text,
+.dark .rule-text,
+.dark .rule-en,
+.dark .rule-ar,
+.dark .def-text,
+.dark .hint-box,
+.dark .tip-box {
+  color: var(--text) !important;
+}
+
+.dark .subtext,
+.dark small,
+.dark .caption,
+.dark .freq-pct,
+.dark .sub-text {
+  color: var(--subtext) !important;
+}
+
+/* MCQ Options */
+.dark .mcq-opt:not(.selected-correct):not(.selected-wrong) {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+.dark .mcq-opt:hover:not(.selected-correct):not(.selected-wrong) {
+  background: #2d3f55 !important;
+}
+
+/* Interactive inputs */
+.dark .interactive-input {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+.dark .interactive-input::placeholder { color: #64748b !important; }
+.dark .interactive-input.is-correct { background: #0a1f12 !important; border-color: #16a34a !important; }
+.dark .interactive-input.is-wrong   { background: #1f0a10 !important; border-color: #dc2626 !important; }
+
+/* Tables */
+.dark table, .dark .ref-table {
+  background: var(--card) !important;
+}
+.dark th {
+  background: #1e3a5f !important;
+  color: #e2e8f0 !important;
+}
+.dark td {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+}
+.dark tr:nth-child(even) td { background: #1a2742 !important; }
+
+/* Explanation / hint boxes */
+.dark .explanation-box,
+.dark .explain-box,
+.dark .exp-box,
+.dark .hint-tooltip,
+.dark .hint-box {
+  background: #1a1000 !important;
+  color: #fde68a !important;
+  border-color: #854d0e !important;
+}
+
+/* Soft color boxes — override light pastels */
+.dark .softblue-bg, .dark [style*="background:var(--softblue)"], .dark [style*="background: var(--softblue)"] { background: #0c1a3d !important; }
+.dark .softgreen-bg, .dark [style*="background:var(--softgreen)"] { background: #0a1f12 !important; }
+.dark .softpink-bg, .dark [style*="background:var(--softpink)"] { background: #1f0a10 !important; }
+.dark .softpurple-bg, .dark [style*="background:var(--softpurple)"] { background: #160a2e !important; }
+
+/* DnD word cards */
+.dark .dnd-dropzone {
+  background: #0c1a3d !important;
+  border-color: #2563eb !important;
+}
+.dark .dnd-word {
+  background: #1e3a5f !important;
+  color: #e2e8f0 !important;
+}
+
+/* Navigation tabs */
+.dark .pill-nav, .dark .tab-nav {
+  background: #020617 !important;
+}
+.dark .pill-nav button:not(.active),
+.dark .tab-nav button:not(.active) {
+  background: #1e293b !important;
+  color: #94a3b8 !important;
+}
+.dark .pill-nav button.active,
+.dark .tab-nav button.active {
+  color: #1e293b !important;
+}
+
+/* Score / progress lines */
+.dark .score-line { color: #94a3b8 !important; }
+.dark .score-line span { color: #93c5fd !important; }
+.dark .progress-track { background: #1e293b !important; }
+
+/* Item rows */
+.dark .item-row { border-color: #334155 !important; }
+.dark .item-num { color: white !important; }
+
+/* Reveal / check buttons in dark */
+.dark .reveal-btn { opacity: .9; }
+.dark .hint-btn { background: #1a1000 !important; color: #fde68a !important; }
+
+/* Answer boxes */
+.dark .item-ans, .dark .ians { filter: brightness(.9); }
+
+/* Grammar headers stay colored (they have explicit gradients) */
+
+/* Scramble rows */
+.dark .scramble-row { border-color: #334155 !important; }
+
+
+/* ── Word-by-word formula alignment ── */
+.fwbw-row{display:flex;align-items:flex-start;gap:6px;flex-wrap:nowrap;padding:10px 0;margin-bottom:10px;direction:ltr;overflow:hidden;}
+.fwbw-token{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0;}
+.fwbw-en{font-size:.76rem;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;color:white;}
+.fwbw-ar{font-size:.67rem;font-weight:700;color:rgba(0,0,0,.55);white-space:nowrap;direction:rtl;text-align:center;}
+.fwbw-sep{font-size:.9rem;font-weight:800;color:var(--subtext);padding-top:7px;align-self:flex-start;flex-shrink:0;}
+
+/* ═══════════════════════════════════════════════════════════
+   PARITY UPGRADE CSS — ported from the reference lesson
+   ═══════════════════════════════════════════════════════════ */
+.ns-overlay{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;background:rgba(8,6,20,.86);backdrop-filter:blur(6px);padding:16px;}
+.ns-overlay.show{display:flex;}
+.ns-card{background:linear-gradient(160deg,#1e1b4b,#3b1360);border:2px solid rgba(255,255,255,.15);border-radius:20px;max-width:460px;width:100%;max-height:92vh;overflow-y:auto;padding:26px 22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);color:#fff;}
+.ns-card h2{font-size:1.35rem;font-weight:900;margin-bottom:6px;}
+.ns-card p{font-size:.85rem;color:#c4b5fd;line-height:1.6;}
+.avatar-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 6px;}
+.avatar-opt{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:14px;padding:16px 8px;cursor:pointer;transition:.18s;}
+.avatar-opt:hover{background:rgba(255,255,255,.16);transform:translateY(-3px);}
+.avatar-opt.picked{border-color:var(--gold);background:rgba(245,158,11,.18);}
+.avatar-opt .em{font-size:2.4rem;display:block;margin-bottom:6px;}
+.avatar-opt .nm{font-size:.78rem;font-weight:800;}
+.avatar-opt .nm-ar{font-size:.7rem;color:#c4b5fd;direction:rtl;}
+.ns-start-btn{margin-top:16px;background:var(--gold);color:#1a0a00;border:none;border-radius:12px;padding:13px 30px;font-size:1rem;font-weight:900;cursor:pointer;transition:.15s;}
+.ns-start-btn:hover{filter:brightness(1.08);transform:scale(1.03);}
+.ns-start-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.diff-grid{display:flex;flex-direction:column;gap:12px;margin:18px 0 6px;}
+.diff-opt{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 16px;cursor:pointer;transition:.18s;text-align:left;display:flex;align-items:flex-start;gap:12px;}
+.diff-opt:hover{background:rgba(255,255,255,.16);transform:translateY(-2px);}
+.diff-opt .em{font-size:1.8rem;flex-shrink:0;}
+.diff-opt .nm{font-size:.95rem;font-weight:900;display:block;margin-bottom:3px;}
+.diff-opt .ds{font-size:.74rem;color:#c4b5fd;line-height:1.6;}
+.hud-avatar{font-size:1.15rem;background:rgba(255,255,255,.12);border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;}
+.hud-mini-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:16px;font-size:.68rem;font-weight:700;padding:4px 10px;cursor:pointer;transition:.15s;white-space:nowrap;}
+.hud-mini-btn:hover{background:rgba(255,255,255,.25);}
+.levelup-badge{font-size:4rem;margin-bottom:6px;animation:lvlPop .6s ease;}
+@keyframes lvlPop{0%{transform:scale(.2) rotate(-20deg);opacity:0;}60%{transform:scale(1.25) rotate(8deg);opacity:1;}100%{transform:scale(1) rotate(0);}}
+.levelup-name{font-size:1.6rem;font-weight:900;background:linear-gradient(90deg,#F59E0B,#DC2E5D,#7C3AED);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.ach-toast{position:fixed;left:50%;top:14px;transform:translateX(-50%) translateY(-30px);opacity:0;z-index:9999;background:linear-gradient(135deg,#F59E0B,#DC2E5D);color:#fff;border-radius:14px;padding:10px 18px;font-size:.82rem;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:opacity .3s,transform .3s;display:flex;align-items:center;gap:8px;pointer-events:none;max-width:90vw;}
+.ach-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.ach-toast .em{font-size:1.4rem;}
+.ach-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;text-align:left;}
+.ach-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:9px 12px;opacity:.45;}
+.ach-row.unlocked{opacity:1;background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4);}
+.ach-row .em{font-size:1.5rem;}
+.ach-row .tt{font-size:.82rem;font-weight:800;}
+.ach-row .ds{font-size:.68rem;color:#c4b5fd;}
+.ach-progress-track{height:7px;background:rgba(255,255,255,.12);border-radius:10px;overflow:hidden;margin-top:6px;}
+.ach-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#F59E0B,#DC2E5D);transition:width .4s ease;}
+.ach-progress-label{font-size:.66rem;color:#c4b5fd;font-weight:700;margin-top:3px;text-align:right;}
+.speed-toast{position:fixed;right:20px;top:118px;background:linear-gradient(135deg,#16A34A,#22c55e);color:#fff;border-radius:12px;padding:7px 14px;font-size:.78rem;font-weight:800;z-index:9998;opacity:0;transform:translateX(20px);transition:opacity .25s,transform .25s;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+.speed-toast.show{opacity:1;transform:translateX(0);}
+.story-wrap{max-width:560px;margin:0 auto;}
+.story-progress-track{height:8px;background:rgba(0,0,0,.08);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+body.dark .story-progress-track{background:rgba(255,255,255,.1);}
+.story-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#7C3AED,#DC2E5D);transition:width .4s ease;}
+.story-screen{display:none;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-shadow:0 3px 20px rgba(0,0,0,.08);}
+.story-screen.active{display:block;animation:fadeIn .25s ease;}
+.story-emoji{font-size:2.6rem;text-align:center;margin-bottom:8px;}
+.story-text{font-size:.95rem;line-height:1.65;color:var(--text);margin-bottom:6px;}
+.story-text-ar{font-size:.86rem;line-height:1.8;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:10px;font-family:'Segoe UI',Tahoma,Arial,sans-serif;}
+.story-q{background:var(--softpurple);border:1px solid var(--purple);border-radius:10px;padding:12px;margin-top:10px;}
+body.dark .story-q{background:#160A2E;}
+.story-nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px;}
+.story-nav button{flex:1;background:var(--purple);color:#fff;border:none;border-radius:10px;padding:11px;font-size:.85rem;font-weight:800;cursor:pointer;transition:.15s;}
+.story-nav button:hover{filter:brightness(1.1);}
+.story-nav button:disabled{opacity:.35;cursor:not-allowed;}
+.story-nav button.secondary{background:#6B7280;}
+.story-mcq-opt{padding:7px 16px;border-radius:20px;font-size:.85rem;border:2px solid var(--border);color:var(--text);cursor:pointer;transition:.2s;user-select:none;background:var(--card);display:inline-block;margin:3px;}
+.story-mcq-opt:hover{border-color:var(--blue);background:var(--softblue);}
+.story-mcq-opt.selected-correct{background:var(--green)!important;color:white!important;border-color:var(--green)!important;font-weight:700;}
+.story-mcq-opt.selected-wrong{background:var(--coral)!important;color:white!important;border-color:var(--coral)!important;}
+.phase-banner{margin:0 0 14px;padding:10px 14px;border-radius:12px;color:#fff;font-weight:800;font-size:.85rem;text-align:center;box-shadow:0 3px 14px rgba(0,0,0,.2);}
+.phase-banner.phase-enter{animation:phaseBannerEnter .6s ease;}
+@keyframes phaseBannerEnter{0%{transform:translateY(-14px) scale(.9);opacity:0;}100%{transform:translateY(0) scale(1);opacity:1;}}
+.phase-cleared-toast{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%) scale(.4);opacity:0;z-index:9999;background:linear-gradient(135deg,#F59E0B,#DC2E5D);color:#fff;font-weight:900;font-size:1.4rem;padding:18px 34px;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:phaseClearedPop 1.4s ease forwards;pointer-events:none;text-align:center;}
+@keyframes phaseClearedPop{0%{transform:translate(-50%,-50%) scale(.4);opacity:0;}20%{transform:translate(-50%,-50%) scale(1.1);opacity:1;}80%{transform:translate(-50%,-50%) scale(1);opacity:1;}100%{transform:translate(-50%,-50%) scale(.9);opacity:0;}}
+.mcq-block.already-solved{opacity:.5;}
+.mcq-block.already-solved .mcq-opt{pointer-events:none;}
+.screen-shake{animation:shake .35s ease;}
+@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-8px);}40%{transform:translateX(7px);}60%{transform:translateX(-5px);}80%{transform:translateX(3px);}}
+.dmg-float{position:fixed;z-index:9999;font-weight:900;font-size:1.4rem;text-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none;}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;text-align:left;}
+.report-stat{background:rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;}
+.report-stat .lbl{font-size:.66rem;color:#c4b5fd;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.report-stat .val{font-size:1.15rem;font-weight:900;}
+.report-grade{font-size:3rem;font-weight:900;margin:8px 0;}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
+.report-actions button{background:var(--gold);color:#1a0a00;border:none;border-radius:10px;padding:11px 18px;font-size:.85rem;font-weight:800;cursor:pointer;}
+.report-actions button.secondary{background:rgba(255,255,255,.12);color:#fff;}
+.hint-btn.easy-letter-btn,.hint-btn.easy-len-btn,.hint-btn.easy-extra-hint-btn{background:transparent;border:1.5px solid var(--green);color:var(--green);}
+.hint-btn.easy-letter-btn:hover,.hint-btn.easy-len-btn:hover,.hint-btn.easy-extra-hint-btn:hover{background:var(--green);color:#fff;}
+.hint-btn:disabled{opacity:.5;cursor:default;}
+.empty-warning{display:none;background:#FEF3C7;border:1px solid var(--coral);border-radius:8px;padding:6px 10px;font-size:.78rem;color:#9D174D;margin-top:6px;line-height:1.5;}
+body.dark .empty-warning{background:#2D0A14;color:#F9A8D4;}
+.empty-warning.visible{display:block;}
+.empty-warning span{display:block;direction:rtl;text-align:right;font-family:'Segoe UI',Tahoma,Arial,sans-serif;margin-top:2px;}
+.empty-warning.easy-retry-note{background:var(--softgreen);border-color:var(--green);color:#065F46;}
+body.dark .empty-warning.easy-retry-note{background:#052E16;color:#86EFAC;}
+.empty-warning.already-done-note{background:var(--softblue);border-color:var(--blue);color:#1E3A5F;}
+body.dark .empty-warning.already-done-note{background:#0C1A3D;color:#93c5fd;}
+.easy-wb-box{background:var(--softgreen);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0 0;font-size:.82rem;}
+body.dark .easy-wb-box{background:#052E16;}
+.wb-chip{background:var(--softblue);color:var(--blue);padding:4px 12px;border-radius:14px;font-size:.78rem;font-weight:700;display:inline-block;}
+body.dark .wb-chip{background:#0C1A3D;color:#60A5FA;}
+/* Dark-mode readability audit: ensure every new + pre-existing element stays WCAG-AA */
+body.dark .ex-title,body.dark .score-line span{color:#c4b5fd!important;}
+body.dark .note{color:#fbbf24!important;}body.dark .note strong{color:#fbbf24!important;}
+body.dark .g-title,body.dark .mission-title{color:#fff!important;}
+body.dark .fc-formula,body.dark .fc-body,body.dark .fc-row{color:var(--text)!important;}
+body.dark .passive-table td,body.dark .pro-table td{color:var(--text)!important;}
+body.dark .was-cell{background:#3a2a05!important;color:#fde68a!important;}
+body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
+@media(max-width:480px){
+  .avatar-grid{grid-template-columns:1fr 1fr;}
+  .report-grid{grid-template-columns:1fr;}
+  .hud-mini-btn{padding:4px 8px;font-size:.62rem;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>U3 Grammar – Infinitives of Purpose &amp; Time Clauses</h1>
+      <div class="sub">المصدر لبيان السبب &nbsp;•&nbsp; الجمل الزمنية &nbsp;•&nbsp; حروف الجر &nbsp;•&nbsp; Teacher Jaber</div>
+    </div>
+    <div class="header-right">
+      <button class="dark-toggle" onclick="toggleDark()" id="dark-toggle">🌙 Dark Mode</button>
+      <span class="header-badge">Super Goal</span>
+    </div>
+  </div>
+  <div class="hud-bar">
+    <div class="hud-item">⚡ XP: <span class="xp-badge" id="xp-count">0</span></div>
+    <div class="hud-item">🔥 Streak: <span class="streak-badge" id="streak-count">0</span></div>
+    <div class="hud-item">🏅 Level: <span class="level-badge" id="level-badge">Rookie 🌱</span></div>
+    <div class="hud-item"><span class="hud-mini-btn" id="hud-name-chip" style="cursor:default">👤 Student</span><span class="hud-avatar" id="hud-avatar-chip">⚽</span></div>
+    <div class="hud-item"><button class="hud-mini-btn" onclick="openAchPanel()">🏆</button><button class="hud-mini-btn" onclick="openReport()">📊 Report</button><button class="hud-mini-btn" id="ns-mode-badge" onclick="openDifficultyOverlay()">🟡 Normal Mode</button><button class="hud-mini-btn" onclick="confirmResetProgress()" style="background:rgba(220,46,93,.25);border-color:#DC2E5D;">🗑 Reset Progress</button></div>
+    <div style="flex:1;min-width:80px;">
+      <div class="progress-container" style="height:6px;border-radius:3px;">
+        <div id="main-progress" class="progress-bar" style="border-radius:3px;"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Pill Navigation with Grammar Tabs Updated -->
+<nav class="pill-nav">
+  <button class="active" onclick="showTab(0)">📘 Grammar 1 – Infinitives</button>
+  <button onclick="showTab(1)">✏️ Mission 1 – Complete</button>
+  <button onclick="showTab(2)">✏️ Mission 2 – Join</button>
+  <button onclick="showTab(3)">📘 Grammar 2 – Time Clauses</button>
+  <button onclick="showTab(4)">✏️ Mission 3 – Choose Form</button>
+  <button onclick="showTab(5)">✏️ Mission 4 – Fix Mistakes</button>
+  <button onclick="showTab(6)">📘 Grammar 3 – Prepositions</button>
+  <button onclick="showTab(7)">✏️ Mission 5 – Prepositions Ex</button>
+  <button onclick="showTab(8)">🎮 Story Mode</button>
+  <button class="boss-tab" onclick="showTab(9)">👹 Boss Fight</button>
+</nav>
+<!-- Reset Progress Confirmation Modal -->
+<div class="ns-overlay" id="reset-confirm-modal">
+  <div class="ns-card" style="border-color: #DC2E5D;">
+    <h2 style="color: #DC2E5D;">🗑 Reset Progress</h2>
+    <p style="margin: 12px 0; line-height: 1.6;">
+      Are you sure you want to reset all progress?<br>
+      This will permanently erase your XP, level, rank, achievements, and statistics. This cannot be undone.<br><br>
+      <span dir="rtl">هل أنت متأكد من رغبتك في إعادة تعيين كل التقدم؟ لا يمكن التراجع عن هذا.</span>
+    </p>
+    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 16px;">
+      <button onclick="executeResetProgress()" style="background: #DC2E5D; color: white; border: none; border-radius: 10px; padding: 11px 20px; font-size: 0.85rem; font-weight: 800; cursor: pointer;">Yes, Reset</button>
+      <button class="secondary" onclick="closeResetModal()" style="background: rgba(255,255,255,0.12); color: #fff; border: none; border-radius: 10px; padding: 11px 20px; font-size: 0.85rem; font-weight: 800; cursor: pointer;">Cancel</button>
+    </div>
+  </div>
+</div>
+<!-- FIXED BOSS HUD -->
+<div class="boss-hud-fixed" id="boss-hud-fixed">
+  <span style="font-size:1.5rem">👹</span>
+  <div class="b-hp-wrap">
+    <div class="b-hp-label"><span>👹 Boss HP</span><span id="b-boss-pct">100%</span></div>
+    <div class="b-hp-track"><div class="b-hp-bar" id="b-boss-bar"></div></div>
+  </div>
+  <div class="b-hp-wrap">
+    <div class="b-hp-label"><span>❤️ طاقتك</span><span id="b-my-pct">100%</span></div>
+    <div class="b-hp-track"><div class="b-my-bar" id="b-my-bar"></div></div>
+  </div>
+  <div class="b-timer" id="b-timer">⏳ <span id="b-time">60</span>s</div>
+</div>
+
+<div class="container">
+
+<!-- TAB 0 — Grammar 1: Infinitives of Purpose -->
+<div class="page active" id="tab-0">
+  <div class="grammar-box">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#0F766E,#2563EB)">
+      <div class="g-num" style="background:var(--gold);color:var(--navy)">3</div>
+      <div>
+        <div class="g-title">Infinitives of Purpose (to + verb) — المصدر لبيان السبب</div>
+        <div class="g-title-ar">نستخدم <bdi dir="ltr">(to + verb)</bdi> لبيان سبب/غرض قيام الناس بالأشياء (لماذا؟)</div>
+      </div>
+    </div>
+    <div class="grammar-body">
+      <div class="two-cols">
+        <div style="background:var(--softblue);border-radius:10px;padding:14px;border:2px solid var(--blue)">
+          <div style="font-weight:800;color:var(--blue);margin-bottom:10px;font-size:.92rem">📐 القاعدة — Formula</div>
+          <div class="fwbw-row">
+            <div class="fwbw-token">
+              <span class="fwbw-en" style="background:var(--coral)">① Subject</span>
+              <span class="fwbw-ar">الفاعل</span>
+            </div>
+            <span class="fwbw-sep">+</span>
+            <div class="fwbw-token">
+              <span class="fwbw-en" style="background:var(--navy)">② Verb</span>
+              <span class="fwbw-ar">الفعل</span>
+            </div>
+            <span class="fwbw-sep">+</span>
+            <div class="fwbw-token">
+              <span class="fwbw-en" style="background:var(--teal)">③ to</span>
+              <span class="fwbw-ar">لـ / كي</span>
+            </div>
+            <span class="fwbw-sep">+</span>
+            <div class="fwbw-token">
+              <span class="fwbw-en" style="background:var(--blue)">④ Verb</span>
+              <span class="fwbw-ar">السبب</span>
+            </div>
+          </div>
+          <div style="font-size:.82rem;line-height:1.8">
+            <div>I'm going to KSA <span class="hi-t">to visit</span> relatives. <button type="button" class="audio-btn" onclick="speak('I am going to KSA to visit relatives.')">🔊</button></div>
+            <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;margin-bottom:5px;unicode-bidi:isolate;">سأذهب إلى السعودية لكي أزور أقاربي.</div>
+            <div>She studies hard <span class="hi-t">to pass</span> the exam. <button type="button" class="audio-btn" onclick="speak('She studies hard to pass the exam.')">🔊</button></div>
+            <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;unicode-bidi:isolate;">تدرس بجد لكي تنجح في الاختبار.</div>
+          </div>
+        </div>
+        <div style="background:var(--softteal);border-radius:10px;padding:14px;border:2px solid var(--teal)">
+          <div style="font-weight:800;color:var(--teal);margin-bottom:10px;font-size:.92rem">💡 الاستخدام — Usage</div>
+          <div style="font-size:.82rem;line-height:1.8;direction:rtl;text-align:right;unicode-bidi:isolate;">
+            نستخدم <strong><bdi dir="ltr">(to + verb)</bdi></strong> للإجابة عن:<br>
+            <strong style="color:var(--coral)"><bdi dir="ltr">Why? / لماذا؟</bdi></strong><br><br>
+            يمكن استبدال <strong><bdi dir="ltr">to + verb</bdi></strong> بـ:<br>
+            • <strong><bdi dir="ltr">in order to</bdi></strong><br>
+            • <strong><bdi dir="ltr">so as to</bdi></strong>
+          </div>
+          <div style="margin-top:10px;background:var(--card);border-radius:8px;padding:9px;font-size:.81rem;line-height:1.7">
+            <div>I study <span class="hi-t">to</span> pass = <span class="hi-b">in order to</span> pass</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--softgreen);border-radius:10px;padding:13px;border:2px solid var(--green);margin-bottom:14px">
+        <div style="font-weight:800;color:var(--green);margin-bottom:8px">✅ أمثلة — More Examples</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.82rem">
+          <div>
+            <div>She saved money <span class="hi-g">to buy</span> a new phone. <button type="button" class="audio-btn" onclick="speak('She saved money to buy a new phone.')">🔊</button></div>
+            <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;unicode-bidi:isolate;">وفّرت المال لتشتري هاتفاً.</div>
+          </div>
+          <div>
+            <div>He called the hotel <span class="hi-g">to book</span> a room. <button type="button" class="audio-btn" onclick="speak('He called the hotel to book a room.')">🔊</button></div>
+            <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;unicode-bidi:isolate;">اتصل بالفندق لحجز غرفة.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 1 — Ex 1 (Mission 1) -->
+<div class="page" id="tab-1">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">Exercise 1 – Complete with (to + verb)</div>
+      <div class="ex-title-ar">أكمل الجمل بالمصدر المناسب</div>
+      <span class="lv lv-beg">BEGINNER</span>
+    </div>
+    <div class="ex-inst">Complete each sentence with the correct infinitive of purpose.</div>
+    <div class="ex-inst-ar">أكمل كل جملة بالمصدر الصحيح <bdi dir="ltr">(to + verb)</bdi>.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--teal)" onclick="revealOne('ex1',this)">▶ كشف الإجابة</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex1')">↺ Reset</button>
+      </div>
+      <div class="score-line">النقاط: <span id="ex1-score">0</span> / 8</div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">1</div>
+        <div class="iq">He went to the airport <input type="text" class="interactive-input" data-ans="to meet" autocomplete="off" autocorrect="off" spellcheck="false"> his friend. <span class="hint">(meet)</span>
+          <button class="check-btn" onclick="checkInput(this,'ex1','الخطأ الشائع: <bdi dir=&quot;ltr&quot;>for meet</bdi> — الصحيح: <bdi dir=&quot;ltr&quot;>to meet</bdi> لأننا نبيّن الغرض')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الصيغة الصحيحة: <bdi dir=&quot;ltr&quot;>to + meet</bdi> (بمعنى: لمقابلة)')">💡</button>
+          <button type="button" class="audio-btn" onclick="speak('He went to the airport to meet his friend.')">🔊</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">to meet</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">2</div>
+        <div class="iq">We use a map <input type="text" class="interactive-input" data-ans="to find" autocomplete="off" autocorrect="off" spellcheck="false"> the way. <span class="hint">(find)</span>
+          <button class="check-btn" onclick="checkInput(this,'ex1','نستخدم <bdi dir=&quot;ltr&quot;>to find</bdi> لبيان غرض استخدام الخريطة')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الصيغة الصحيحة: <bdi dir=&quot;ltr&quot;>to + find</bdi> (بمعنى: لإيجاد)')">💡</button>
+          <button type="button" class="audio-btn" onclick="speak('We use a map to find the way.')">🔊</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">to find</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">3</div>
+        <div class="iq">I saved money <input type="text" class="interactive-input" data-ans="to buy" autocomplete="off" autocorrect="off" spellcheck="false"> a new phone. <span class="hint">(buy)</span>
+          <button class="check-btn" onclick="checkInput(this,'ex1','نستخدم <bdi dir=&quot;ltr&quot;>to buy</bdi> لبيان غرض الادخار')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الصيغة الصحيحة: <bdi dir=&quot;ltr&quot;>to + buy</bdi> (بمعنى: لشراء)')">💡</button>
+          <button type="button" class="audio-btn" onclick="speak('I saved money to buy a new phone.')">🔊</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">to buy</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">4</div>
+        <div class="iq">She called the hotel <input type="text" class="interactive-input" data-ans="to book" autocomplete="off" autocorrect="off" spellcheck="false"> a room. <span class="hint">(book)</span>
+          <button class="check-btn" onclick="checkInput(this,'ex1','نستخدم <bdi dir=&quot;ltr&quot;>to book</bdi> لبيان غرض الاتصال')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الصيغة الصحيحة: <bdi dir=&quot;ltr&quot;>to + book</bdi> (بمعنى: للحجز)')">💡</button>
+          <button type="button" class="audio-btn" onclick="speak('She called the hotel to book a room.')">🔊</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">to book</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">5</div>
+        <div class="iq">She studies hard <input type="text" class="interactive-input" data-ans="to pass" autocomplete="off" autocorrect="off" spellcheck="false"> the exam. <span class="hint">(pass)</span>
+          <button class="check-btn" onclick="checkInput(this,'ex1','نستخدم <bdi dir=&quot;ltr&quot;>to pass</bdi> لبيان غرض الدراسة')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الصيغة الصحيحة: <bdi dir=&quot;ltr&quot;>to + pass</bdi> (بمعنى: للنجاح)')">💡</button>
+          <button type="button" class="audio-btn" onclick="speak('She studies hard to pass the exam.')">🔊</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">to pass</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">6</div>
+        <div class="iq">He got up early <input type="text" class="interactive-input" data-ans="to catch" autocomplete="off" autocorrect="off" spellcheck="false"> the plane. <span class="hint">(catch)</span>
+          <button class="check-btn" onclick="checkInput(this,'ex1','نستخدم <bdi dir=&quot;ltr&quot;>to catch</bdi> لبيان سبب الاستيقاظ المبكر')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الصيغة الصحيحة: <bdi dir=&quot;ltr&quot;>to + catch</bdi> (بمعنى: للحاق بـ)')">💡</button>
+          <button type="button" class="audio-btn" onclick="speak('He got up early to catch the plane.')">🔊</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">to catch</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">7</div>
+        <div class="iq">They went to the library <input type="text" class="interactive-input" data-ans="to borrow" autocomplete="off" autocorrect="off" spellcheck="false"> some books. <span class="hint">(borrow)</span>
+          <button class="check-btn" onclick="checkInput(this,'ex1','نستخدم <bdi dir=&quot;ltr&quot;>to borrow</bdi> لبيان سبب الذهاب للمكتبة')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الصيغة الصحيحة: <bdi dir=&quot;ltr&quot;>to + borrow</bdi> (بمعنى: للاستعارة)')">💡</button>
+          <button type="button" class="audio-btn" onclick="speak('They went to the library to borrow some books.')">🔊</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">to borrow</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--teal)">8</div>
+        <div class="iq">I'm going to KSA <input type="text" class="interactive-input" data-ans="to visit" autocomplete="off" autocorrect="off" spellcheck="false"> my relatives. <span class="hint">(visit)</span>
+          <button class="check-btn" onclick="checkInput(this,'ex1','نستخدم <bdi dir=&quot;ltr&quot;>to visit</bdi> لبيان غرض السفر')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الصيغة الصحيحة: <bdi dir=&quot;ltr&quot;>to + visit</bdi> (بمعنى: للزيارة)')">💡</button>
+          <button type="button" class="audio-btn" onclick="speak('I am going to KSA to visit my relatives.')">🔊</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex1" style="background:var(--teal)">to visit</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2 — Ex 2: Join Sentences (Mission 2) -->
+<div class="page" id="tab-2">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">Exercise 2 – Join the sentences</div>
+      <div class="ex-title-ar">ادمج الجملتين باستخدام <bdi dir="ltr">to + verb</bdi></div>
+      <span class="lv lv-int">INTERMEDIATE</span>
+    </div>
+    <div class="ex-inst">Join the two sentences using to + verb.</div>
+    <div class="ex-inst-ar">ادمج الجملتين — احذف «<bdi dir="ltr">wanted to</bdi>» وضع <bdi dir="ltr">to</bdi> مكانها.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--blue)" onclick="revealOne('ex2',this)">▶ كشف الإجابة</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex2')">↺ Reset</button>
+      </div>
+      <div class="score-line">النقاط: <span id="ex2-score">0</span> / 6</div>
+      <div class="note note-blue" style="margin-bottom:13px">📌 <strong>مثال:</strong> She went to the store. She wanted to buy milk. → She went to the store <strong>to buy</strong> milk.</div>
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--blue)">1</div>
+        <div class="iq" style="min-width:200px">He went to the bank. He wanted to get some money. <button type="button" class="audio-btn" onclick="speak('He went to the bank to get some money.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="He went to the bank to get some money." placeholder="ادمج الجملتين..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex2','احذف <bdi dir=&quot;ltr&quot;>wanted to</bdi> وضع مكانها <bdi dir=&quot;ltr&quot;>to get</bdi>')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الجملة المدمجة: <bdi dir=&quot;ltr&quot;>He went to the bank to get some money.</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--blue);min-width:230px">He went to the bank <strong>to get</strong> some money.</div>
+      </div>
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--blue)">2</div>
+        <div class="iq" style="min-width:200px">She studied a lot. She wanted to pass the exam. <button type="button" class="audio-btn" onclick="speak('She studied a lot to pass the exam.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="She studied a lot to pass the exam." placeholder="ادمج الجملتين..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex2','عبارة <bdi dir=&quot;ltr&quot;>to pass</bdi> تحل محل <bdi dir=&quot;ltr&quot;>wanted to pass</bdi>')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الجملة المدمجة: <bdi dir=&quot;ltr&quot;>She studied a lot to pass the exam.</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--blue);min-width:230px">She studied a lot <strong>to pass</strong> the exam.</div>
+      </div>
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--blue)">3</div>
+        <div class="iq" style="min-width:200px">They went to the gym. They wanted to exercise. <button type="button" class="audio-btn" onclick="speak('They went to the gym to exercise.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="They went to the gym to exercise." placeholder="ادمج الجملتين..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex2','عبارة <bdi dir=&quot;ltr&quot;>to exercise</bdi> هي الغرض من الذهاب')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الجملة المدمجة: <bdi dir=&quot;ltr&quot;>They went to the gym to exercise.</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--blue);min-width:230px">They went to the gym <strong>to exercise</strong>.</div>
+      </div>
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--blue)">4</div>
+        <div class="iq" style="min-width:200px">I saved money. I wanted to travel abroad. <button type="button" class="audio-btn" onclick="speak('I saved money to travel abroad.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="I saved money to travel abroad." placeholder="ادمج الجملتين..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex2','عبارة <bdi dir=&quot;ltr&quot;>to travel abroad</bdi> تبيّن سبب الادخار')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الجملة المدمجة: <bdi dir=&quot;ltr&quot;>I saved money to travel abroad.</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--blue);min-width:230px">I saved money <strong>to travel</strong> abroad.</div>
+      </div>
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--blue)">5</div>
+        <div class="iq" style="min-width:200px">We use dictionaries. We want to find word meanings. <button type="button" class="audio-btn" onclick="speak('We use dictionaries to find word meanings.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="We use dictionaries to find word meanings." placeholder="ادمج الجملتين..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex2','عبارة <bdi dir=&quot;ltr&quot;>to find</bdi> تبيّن غرض استخدام القاموس')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الجملة المدمجة: <bdi dir=&quot;ltr&quot;>We use dictionaries to find word meanings.</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--blue);min-width:230px">We use dictionaries <strong>to find</strong> word meanings.</div>
+      </div>
+      <div class="item-row" style="flex-wrap:wrap;gap:6px">
+        <div class="inum" style="background:var(--blue)">6</div>
+        <div class="iq" style="min-width:200px">He woke up early. He wanted to catch the bus. <button type="button" class="audio-btn" onclick="speak('He woke up early to catch the bus.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="He woke up early to catch the bus." placeholder="ادمج الجملتين..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex2','عبارة <bdi dir=&quot;ltr&quot;>to catch</bdi> تبيّن سبب الاستيقاظ المبكر')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'الجملة المدمجة: <bdi dir=&quot;ltr&quot;>He woke up early to catch the bus.</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex2" style="background:var(--blue);min-width:230px">He woke up early <strong>to catch</strong> the bus.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 3 — Grammar 2: Time Clauses -->
+<div class="page" id="tab-3">
+  <div class="grammar-box">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#7C3AED,#DC2E5D)">
+      <div class="g-num" style="background:var(--gold);color:var(--navy)">4</div>
+      <div>
+        <div class="g-title">Time Clauses — الجمل الزمنية</div>
+        <div class="g-title-ar">الجمل الزمنية تبدأ بأحد الروابط الزمنية</div>
+      </div>
+    </div>
+    <div class="grammar-body">
+      <div style="margin-bottom:14px">
+        <div style="font-weight:800;color:var(--text);margin-bottom:9px;font-size:.9rem;direction:rtl;text-align:right;unicode-bidi:isolate;">🔗 الروابط الزمنية</div>
+        <div class="conj-row">
+          <span class="conj-pill" style="background:var(--teal)"><bdi dir="ltr">when</bdi> (عندما)</span>
+          <span class="conj-pill" style="background:var(--blue)"><bdi dir="ltr">while</bdi> (بينما)</span>
+          <span class="conj-pill" style="background:var(--purple)"><bdi dir="ltr">until</bdi> (حتى)</span>
+          <span class="conj-pill" style="background:var(--coral)"><bdi dir="ltr">before</bdi> (قبل)</span>
+          <span class="conj-pill" style="background:var(--green)"><bdi dir="ltr">after</bdi> (بعد)</span>
+          <span class="conj-pill" style="background:var(--orange)"><bdi dir="ltr">as soon as</bdi> (بمجرد أن)</span>
+        </div>
+      </div>
+      <div class="gold-rule">
+        <div class="title">⭐ القاعدة الذهبية — توافق الزمن</div>
+        <div class="body">زمن الجملة الزمنية يطابق زمن الجملة الأساسية</div>
+      </div>
+      <div class="exc-rule">
+        <div class="title">⚠️ استثناء مهم جداً — لا مستقبل في الجملة الزمنية</div>
+        <div class="body">إذا كانت الجملة الأساسية مستقبلاً، نستخدم المضارع البسيط في الجملة الزمنية — لا <bdi dir="ltr">will</bdi></div>
+      </div>
+      <div class="two-cols">
+        <div style="background:var(--softblue);border-radius:10px;overflow:hidden;border:2px solid var(--blue)">
+          <div style="background:var(--blue);padding:8px 13px;font-weight:800;color:white;font-size:.86rem;direction:rtl;text-align:right;unicode-bidi:isolate;">الماضي — Past</div>
+          <div style="padding:12px 13px">
+            <div style="font-size:.82rem;margin-bottom:8px">
+              <div>They went skiing <span class="hi-b">when</span> they <span class="hi-b">were</span> on vacation. <button type="button" class="audio-btn" onclick="speak('They went skiing when they were on vacation.')">🔊</button></div>
+              <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;unicode-bidi:isolate;">تزلّجوا عندما كانوا في إجازة.</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--softgreen);border-radius:10px;overflow:hidden;border:2px solid var(--green)">
+          <div style="background:var(--green);padding:8px 13px;font-weight:800;color:white;font-size:.86rem;direction:rtl;text-align:right;unicode-bidi:isolate;">المستقبل — مضارع بسيط في الجملة الزمنية!</div>
+          <div style="padding:12px 13px">
+            <div style="font-size:.82rem;margin-bottom:8px">
+              <div>They'll go skiing <span class="hi-g">when</span> they <span class="hi-g">are</span> on vacation. <button type="button" class="audio-btn" onclick="speak('They will go skiing when they are on vacation.')">🔊</button></div>
+              <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;unicode-bidi:isolate;">سيتزلّجون عندما يكونون في إجازة.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="note note-purple">
+        📌 <strong>نضع فاصلة (,) بعد الجملة الزمنية إذا جاءت في البداية:</strong><br>
+        <span dir="ltr" style="display:block;text-align:left;margin-top:4px"><strong>As soon as</strong> we arrive<strong>,</strong> we're going straight to the hotel.</span>
+      </div>
+      <table class="cmp-table">
+        <tr style="background:var(--navy)"><th>الرابط</th><th>المعنى</th><th>مثال مستقبل</th><th>مثال ماضي</th></tr>
+        <tr><td><strong class="hi-t">when</strong></td><td class="ar">عندما</td><td style="font-size:.79rem">Call me <strong>when</strong> you arrive. <button type="button" class="audio-btn" onclick="speak('Call me when you arrive.')">🔊</button></td><td style="font-size:.79rem">She cried <strong>when</strong> she heard. <button type="button" class="audio-btn" onclick="speak('She cried when she heard the news.')">🔊</button></td></tr>
+        <tr><td><strong class="hi-b">while</strong></td><td class="ar">بينما</td><td style="font-size:.79rem">I'll read <strong>while</strong> you sleep. <button type="button" class="audio-btn" onclick="speak('I will read while you sleep.')">🔊</button></td><td style="font-size:.79rem">He fell <strong>while</strong> he was running. <button type="button" class="audio-btn" onclick="speak('He fell while he was running.')">🔊</button></td></tr>
+        <tr><td><strong class="hi-p">until</strong></td><td class="ar">حتى</td><td style="font-size:.79rem">Wait <strong>until</strong> the bus comes. <button type="button" class="audio-btn" onclick="speak('Wait until the bus comes.')">🔊</button></td><td style="font-size:.79rem">She waited <strong>until</strong> he arrived. <button type="button" class="audio-btn" onclick="speak('She waited until he arrived.')">🔊</button></td></tr>
+        <tr><td><strong class="hi-c">before</strong></td><td class="ar">قبل</td><td style="font-size:.79rem">Check passport <strong>before</strong> you travel. <button type="button" class="audio-btn" onclick="speak('Check your passport before you travel.')">🔊</button></td><td style="font-size:.79rem">He ate <strong>before</strong> he left. <button type="button" class="audio-btn" onclick="speak('He ate before he left.')">🔊</button></td></tr>
+        <tr><td><strong class="hi-g">after</strong></td><td class="ar">بعد</td><td style="font-size:.79rem">I'll call <strong>after</strong> I land. <button type="button" class="audio-btn" onclick="speak('I will call you after I land.')">🔊</button></td><td style="font-size:.79rem">She rested <strong>after</strong> she arrived. <button type="button" class="audio-btn" onclick="speak('She rested after she arrived.')">🔊</button></td></tr>
+        <tr><td><strong class="hi-o">as soon as</strong></td><td class="ar">بمجرد أن</td><td style="font-size:.79rem"><strong>As soon as</strong> I arrive, I'll call. <button type="button" class="audio-btn" onclick="speak('As soon as I arrive, I will call you.')">🔊</button></td><td style="font-size:.79rem"><strong>As soon as</strong> he saw her, he smiled. <button type="button" class="audio-btn" onclick="speak('As soon as he saw her, he smiled.')">🔊</button></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 4 — Ex 3: Choose Form (Mission 3) -->
+<div class="page" id="tab-4">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">Exercise 3 – Choose the correct form</div>
+      <div class="ex-title-ar">اختر الصيغة الصحيحة للفعل في الجملة الزمنية</div>
+      <span class="lv lv-int">INTERMEDIATE</span>
+    </div>
+    <div class="ex-inst">No future in time clauses! Choose correctly.</div>
+    <div class="ex-inst-ar">تذكر: لا مستقبل في الجملة الزمنية!</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--purple)" onclick="revealOne('ex3',this)">▶ كشف الإجابة</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex3')">↺ Reset</button>
+      </div>
+      <div class="score-line">النقاط: <span id="ex3-score">0</span> / 8</div>
+      <div class="mcq-block">
+        <div class="mcq-q">1. I'll call you when I _______ home. <button type="button" class="audio-btn" onclick="speak('I will call you when I arrive home.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQ(this,true,'ex3','<bdi dir=&quot;ltr&quot;>arrive ✓</bdi> — لا مستقبل بعد <bdi dir=&quot;ltr&quot;>when</bdi> — نستخدم المضارع البسيط')">arrive</div>
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQ(this,false,'ex3','لا نستخدم <bdi dir=&quot;ltr&quot;>will</bdi> في الجملة الزمنية — الصحيح: <bdi dir=&quot;ltr&quot;>arrive</bdi>')">will arrive</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">2. We'll wait until the bus _______. <button type="button" class="audio-btn" onclick="speak('We will wait here until the bus comes.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQ(this,true,'ex3','<bdi dir=&quot;ltr&quot;>comes ✓</bdi> — مضارع بسيط بعد <bdi dir=&quot;ltr&quot;>until</bdi> في سياق مستقبل')">comes</div>
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQ(this,false,'ex3','لا <bdi dir=&quot;ltr&quot;>will</bdi> بعد <bdi dir=&quot;ltr&quot;>until</bdi> — الصحيح: <bdi dir=&quot;ltr&quot;>comes</bdi>')">will come</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">3. Before you _______, check your passport. <button type="button" class="audio-btn" onclick="speak('Before you travel, check your passport.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQ(this,true,'ex3','<bdi dir=&quot;ltr&quot;>travel ✓</bdi> — مضارع بسيط بعد <bdi dir=&quot;ltr&quot;>before</bdi> في الجملة الزمنية')">travel</div>
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQ(this,false,'ex3','لا <bdi dir=&quot;ltr&quot;>will</bdi> بعد <bdi dir=&quot;ltr&quot;>before</bdi> في الجملة الزمنية')">will travel</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">4. As soon as the rain stops, we'll leave. — هل <bdi dir="ltr">stops</bdi> صحيحة؟ <button type="button" class="audio-btn" onclick="speak('As soon as the rain stops, we will leave.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQ(this,true,'ex3','<bdi dir=&quot;ltr&quot;>stops ✓</bdi> صحيحة — مضارع بسيط بعد <bdi dir=&quot;ltr&quot;>as soon as</bdi>، هذا هو الصحيح')">✓ صحيح</div>
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQ(this,false,'ex3','<bdi dir=&quot;ltr&quot;>stops</bdi> صحيحة — المضارع البسيط هو الصواب بعد <bdi dir=&quot;ltr&quot;>as soon as</bdi>')">✗ خطأ</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">5. They went to the museum when they _______ on vacation. <button type="button" class="audio-btn" onclick="speak('They went to the museum when they were on vacation.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQ(this,false,'ex3','<bdi dir=&quot;ltr&quot;>went</bdi> ماضٍ ⟵ الجملة الزمنية يجب أن تكون ماضياً: <bdi dir=&quot;ltr&quot;>were</bdi>')">are</div>
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQ(this,true,'ex3','<bdi dir=&quot;ltr&quot;>were ✓</bdi> — <bdi dir=&quot;ltr&quot;>went</bdi> ماضٍ ⟵ توافق الزمن ⟵ <bdi dir=&quot;ltr&quot;>were</bdi>')">were</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">6. After she _______, she went to bed. <button type="button" class="audio-btn" onclick="speak('After she arrived, she went to bed.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQ(this,false,'ex3','<bdi dir=&quot;ltr&quot;>went</bdi> ماضٍ ⟵ الجملة الزمنية يجب أن تكون ماضياً: <bdi dir=&quot;ltr&quot;>arrived</bdi>')">arrives</div>
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQ(this,true,'ex3','<bdi dir=&quot;ltr&quot;>arrived ✓</bdi> — <bdi dir=&quot;ltr&quot;>went</bdi> ماضٍ ⟵ توافق الزمن ⟵ <bdi dir=&quot;ltr&quot;>arrived</bdi>')">arrived</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">7. I'll text you as soon as we _______. <button type="button" class="audio-btn" onclick="speak('I will text you as soon as we land.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQ(this,true,'ex3','<bdi dir=&quot;ltr&quot;>land ✓</bdi> — لا <bdi dir=&quot;ltr&quot;>will</bdi> بعد <bdi dir=&quot;ltr&quot;>as soon as</bdi> — نستخدم المضارع')">land</div>
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQ(this,false,'ex3','لا <bdi dir=&quot;ltr&quot;>will</bdi> في الجملة الزمنية — الصحيح: <bdi dir=&quot;ltr&quot;>land</bdi>')">will land</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">8. She was reading while her brother _______. <button type="button" class="audio-btn" onclick="speak('She was reading while her brother slept.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="ex3x" onclick="selectMCQ(this,false,'ex3','<bdi dir=&quot;ltr&quot;>was reading</bdi> ماضٍ مستمر ⟵ الجملة الزمنية تكون ماضياً: <bdi dir=&quot;ltr&quot;>slept</bdi>')">sleeps</div>
+          <div class="mcq-opt correct" data-ex="ex3" onclick="selectMCQ(this,true,'ex3','<bdi dir=&quot;ltr&quot;>slept ✓</bdi> — <bdi dir=&quot;ltr&quot;>was reading</bdi> ماضٍ ⟵ توافق الزمن ⟵ <bdi dir=&quot;ltr&quot;>slept</bdi>')">slept</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 5 — Ex 4: Find Mistake (Mission 4) -->
+<div class="page" id="tab-5">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">Exercise 4 – Find the mistake</div>
+      <div class="ex-title-ar">كل جملة فيها خطأ واحد — ابحث عنه وصحّحه</div>
+      <span class="lv lv-adv">ADVANCED</span>
+    </div>
+    <div class="ex-inst">Each sentence has ONE mistake. Rewrite it correctly.</div>
+    <div class="ex-inst-ar">كل جملة تحتوي على خطأ واحد — صحّحها.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--orange)" onclick="revealOne('ex4',this)">▶ كشف الإجابة</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex4')">↺ Reset</button>
+      </div>
+      <div class="score-line">النقاط: <span id="ex4-score">0</span> / 8</div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">1</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          He went to the store <u style="color:var(--coral)">for buy</u> some bread. <button type="button" class="audio-btn" onclick="speak('He went to the store to buy some bread.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="He went to the store to buy some bread." placeholder="صحّح الجملة..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex4','الخطأ في <bdi dir=&quot;ltr&quot;>for buy</bdi> — لا نستخدم <bdi dir=&quot;ltr&quot;>for</bdi> مع الفعل. الصحيح: <bdi dir=&quot;ltr&quot;>to buy</bdi>')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'تغيير: <bdi dir=&quot;ltr&quot;>for → to</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green);min-width:230px">He went to the store <strong>to buy</strong> some bread.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">2</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          She studies hard <u style="color:var(--coral)">to passed</u> the exam. <button type="button" class="audio-btn" onclick="speak('She studies hard to pass the exam.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="She studies hard to pass the exam." placeholder="صحّح الجملة..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex4','الخطأ في <bdi dir=&quot;ltr&quot;>to passed</bdi> — بعد <bdi dir=&quot;ltr&quot;>to</bdi> نستخدم المصدر الأساسي. الصحيح: <bdi dir=&quot;ltr&quot;>to pass</bdi>')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'بعد <bdi dir=&quot;ltr&quot;>to</bdi> لا نصرّف الفعل')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green);min-width:230px">She studies hard <strong>to pass</strong> the exam.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">3</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          I'll call you when I <u style="color:var(--coral)">will arrive</u> home. <button type="button" class="audio-btn" onclick="speak('I will call you when I arrive home.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="I'll call you when I arrive home." placeholder="صحّح الجملة..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex4','الخطأ في <bdi dir=&quot;ltr&quot;>will arrive</bdi> بعد <bdi dir=&quot;ltr&quot;>when</bdi> — لا مستقبل في الجملة الزمنية. الصحيح: <bdi dir=&quot;ltr&quot;>arrive</bdi>')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'احذف <bdi dir=&quot;ltr&quot;>will</bdi> بعد <bdi dir=&quot;ltr&quot;>when</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green);min-width:230px">I'll call you when I <strong>arrive</strong> home.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">4</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          Before you <u style="color:var(--coral)">will travel</u>, check your passport. <button type="button" class="audio-btn" onclick="speak('Before you travel, check your passport.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="Before you travel, check your passport." placeholder="صحّح الجملة..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex4','الخطأ في <bdi dir=&quot;ltr&quot;>will travel</bdi> بعد <bdi dir=&quot;ltr&quot;>before</bdi> — الصحيح: <bdi dir=&quot;ltr&quot;>travel</bdi> مضارع بسيط')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'احذف <bdi dir=&quot;ltr&quot;>will</bdi> بعد <bdi dir=&quot;ltr&quot;>before</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green);min-width:230px">Before you <strong>travel</strong>, check your passport.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">5</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          They went skiing when they <u style="color:var(--coral)">are</u> on vacation. <button type="button" class="audio-btn" onclick="speak('They went skiing when they were on vacation.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="They went skiing when they were on vacation." placeholder="صحّح الجملة..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex4','الخطأ في <bdi dir=&quot;ltr&quot;>are</bdi> — <bdi dir=&quot;ltr&quot;>went</bdi> ماضٍ، لذا الجملة الزمنية يجب أن تكون ماضياً. الصحيح: <bdi dir=&quot;ltr&quot;>were</bdi>')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'<bdi dir=&quot;ltr&quot;>went</bdi> ماضٍ ⟵ <bdi dir=&quot;ltr&quot;>were</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green);min-width:230px">They went skiing when they <strong>were</strong> on vacation.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">6</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          We use maps <u style="color:var(--coral)">to finding</u> the way. <button type="button" class="audio-btn" onclick="speak('We use maps to find the way.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="We use maps to find the way." placeholder="صحّح الجملة..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex4','الخطأ في <bdi dir=&quot;ltr&quot;>to finding</bdi> — لا <bdi dir=&quot;ltr&quot;>ing</bdi> بعد <bdi dir=&quot;ltr&quot;>to</bdi> في المصدر. الصحيح: <bdi dir=&quot;ltr&quot;>to find</bdi>')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'احذف <bdi dir=&quot;ltr&quot;>ing</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green);min-width:230px">We use maps <strong>to find</strong> the way.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">7</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          As soon as the bus will come, we'll leave. <button type="button" class="audio-btn" onclick="speak('As soon as the bus comes, we will leave.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="As soon as the bus comes, we'll leave." placeholder="صحّح الجملة..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex4','الخطأ في <bdi dir=&quot;ltr&quot;>will come</bdi> — لا مستقبل بعد <bdi dir=&quot;ltr&quot;>as soon as</bdi>. الصحيح: <bdi dir=&quot;ltr&quot;>comes</bdi>')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'احذف <bdi dir=&quot;ltr&quot;>will</bdi> بعد <bdi dir=&quot;ltr&quot;>as soon as</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green);min-width:230px">As soon as the bus <strong>comes</strong>, we'll leave.</div>
+      </div>
+      <div class="item-row">
+        <div class="inum" style="background:var(--orange)">8</div>
+        <div class="iq" style="background:var(--softpink);padding:5px 10px;border-radius:6px">
+          She saved money <u style="color:var(--coral)">for to buy</u> a new laptop. <button type="button" class="audio-btn" onclick="speak('She saved money to buy a new laptop.')">🔊</button><br>
+          <input type="text" class="interactive-input wide" data-ans="She saved money to buy a new laptop." placeholder="صحّح الجملة..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="check-btn" onclick="checkInput(this,'ex4','الخطأ في <bdi dir=&quot;ltr&quot;>for to buy</bdi> — لا نجمع <bdi dir=&quot;ltr&quot;>for</bdi> و <bdi dir=&quot;ltr&quot;>to</bdi>. الصحيح: <bdi dir=&quot;ltr&quot;>to buy</bdi> فقط')">✓ Check</button>
+          <button class="hint-btn" onclick="showHint(this,'احذف <bdi dir=&quot;ltr&quot;>for</bdi>')">💡</button>
+          <div class="explain-box"></div>
+        </div>
+        <div class="ians" data-ex="ex4" style="background:var(--green);min-width:230px">She saved money <strong>to buy</strong> a new laptop.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 6 — Grammar 3: Prepositions of Movement -->
+<div class="page" id="tab-6">
+  <div class="grammar-box">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#EA580C,#DC2E5D)">
+      <div class="g-num" style="background:var(--gold);color:var(--navy)">5</div>
+      <div>
+        <div class="g-title">Prepositions of Movement — حروف الجر للحركة</div>
+        <div class="g-title-ar">تصف اتجاه الحركة من مكان إلى آخر</div>
+      </div>
+    </div>
+    <div class="grammar-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+        <div style="background:var(--softyellow);border:2px solid var(--orange);border-radius:10px;padding:13px">
+          <div style="font-weight:800;color:var(--orange);font-size:1rem">across</div>
+          <div style="font-size:.77rem;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:6px;unicode-bidi:isolate;">عبر / من جهة لأخرى</div>
+          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;margin-bottom:6px;font-size:1.2rem">——<strong style="color:var(--orange)">|</strong>——</div>
+          <div style="font-size:.82rem"><em>The train went <strong style="color:var(--orange)">across</strong> the bridge.</em> <button type="button" class="audio-btn" onclick="speak('The train went across the bridge.')">🔊</button></div>
+          <div style="font-size:.74rem;color:var(--subtext);direction:rtl;text-align:right;unicode-bidi:isolate;">ذهب القطار عبر الجسر.</div>
+        </div>
+        <div style="background:var(--softteal);border:2px solid var(--teal);border-radius:10px;padding:13px">
+          <div style="font-weight:800;color:var(--teal);font-size:1rem">along</div>
+          <div style="font-size:.77rem;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:6px;unicode-bidi:isolate;">على طول</div>
+          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;margin-bottom:6px;font-size:1.2rem">————<strong style="color:var(--teal)">→</strong></div>
+          <div style="font-size:.82rem"><em>We walked <strong style="color:var(--teal)">along</strong> the river.</em> <button type="button" class="audio-btn" onclick="speak('We walked along the river.')">🔊</button></div>
+          <div style="font-size:.74rem;color:var(--subtext);direction:rtl;text-align:right;unicode-bidi:isolate;">مشينا على طول النهر.</div>
+        </div>
+        <div style="background:var(--softpurple);border:2px solid var(--purple);border-radius:10px;padding:13px">
+          <div style="font-weight:800;color:var(--purple);font-size:1rem">around</div>
+          <div style="font-size:.77rem;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:6px;unicode-bidi:isolate;">حول</div>
+          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;margin-bottom:6px;font-size:1.2rem">↺</div>
+          <div style="font-size:.82rem"><em>We walked <strong style="color:var(--purple)">around</strong> the park.</em> <button type="button" class="audio-btn" onclick="speak('We walked around the park.')">🔊</button></div>
+          <div style="font-size:.74rem;color:var(--subtext);direction:rtl;text-align:right;unicode-bidi:isolate;">مشينا حول الحديقة.</div>
+        </div>
+        <div style="background:var(--softblue);border:2px solid var(--blue);border-radius:10px;padding:13px">
+          <div style="font-weight:800;color:var(--blue);font-size:1rem">through</div>
+          <div style="font-size:.77rem;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:6px;unicode-bidi:isolate;">خلال / عبر داخل</div>
+          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;margin-bottom:6px;font-size:1.2rem">[<strong style="color:var(--blue)">→</strong>]</div>
+          <div style="font-size:.82rem"><em>The train went <strong style="color:var(--blue)">through</strong> the tunnel.</em> <button type="button" class="audio-btn" onclick="speak('The train went through the tunnel.')">🔊</button></div>
+          <div style="font-size:.74rem;color:var(--subtext);direction:rtl;text-align:right;unicode-bidi:isolate;">ذهب القطار خلال النفق.</div>
+        </div>
+        <div style="background:var(--softgreen);border:2px solid var(--green);border-radius:10px;padding:13px">
+          <div style="font-weight:800;color:var(--green);font-size:1rem">into</div>
+          <div style="font-size:.77rem;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:6px;unicode-bidi:isolate;">إلى داخل</div>
+          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;margin-bottom:6px;font-size:1.2rem"><strong style="color:var(--green)">→</strong>□</div>
+          <div style="font-size:.82rem"><em>He got <strong style="color:var(--green)">into</strong> the car.</em> <button type="button" class="audio-btn" onclick="speak('He got into the car.')">🔊</button></div>
+          <div style="font-size:.74rem;color:var(--subtext);direction:rtl;text-align:right;unicode-bidi:isolate;">دخل السيارة.</div>
+        </div>
+        <div style="background:var(--softpink);border:2px solid var(--coral);border-radius:10px;padding:13px">
+          <div style="font-weight:800;color:var(--coral);font-size:1rem">out of</div>
+          <div style="font-size:.77rem;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:6px;unicode-bidi:isolate;">إلى خارج</div>
+          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;margin-bottom:6px;font-size:1.2rem">□<strong style="color:var(--coral)">→</strong></div>
+          <div style="font-size:.82rem"><em>The cat ran <strong style="color:var(--coral)">out of</strong> the house.</em> <button type="button" class="audio-btn" onclick="speak('The cat ran out of the house.')">🔊</button></div>
+          <div style="font-size:.74rem;color:var(--subtext);direction:rtl;text-align:right;unicode-bidi:isolate;">جرت القطة خارج المنزل.</div>
+        </div>
+        <div style="background:var(--softyellow);border:2px solid var(--gold);border-radius:10px;padding:13px">
+          <div style="font-weight:800;color:var(--orange);font-size:1rem">to / towards</div>
+          <div style="font-size:.77rem;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:6px;unicode-bidi:isolate;">نحو / باتجاه</div>
+          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;margin-bottom:6px;font-size:1.2rem">·<strong style="color:var(--orange)">→</strong>🚪</div>
+          <div style="font-size:.82rem"><em>She walked <strong style="color:var(--orange)">towards</strong> the door.</em> <button type="button" class="audio-btn" onclick="speak('She walked towards the door.')">🔊</button></div>
+          <div style="font-size:.74rem;color:var(--subtext);direction:rtl;text-align:right;unicode-bidi:isolate;">مشت نحو الباب.</div>
+        </div>
+        <div style="background:var(--softpurple);border:2px solid var(--purple);border-radius:10px;padding:13px">
+          <div style="font-weight:800;color:var(--purple);font-size:1rem">away from</div>
+          <div style="font-size:.77rem;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:6px;unicode-bidi:isolate;">بعيداً عن</div>
+          <div style="background:var(--card);border-radius:6px;padding:6px;text-align:center;margin-bottom:6px;font-size:1.2rem">🐶<strong style="color:var(--purple)">→</strong>·</div>
+          <div style="font-size:.82rem"><em>The dog ran <strong style="color:var(--purple)">away from</strong> the cat.</em> <button type="button" class="audio-btn" onclick="speak('The dog ran away from the cat.')">🔊</button></div>
+          <div style="font-size:.74rem;color:var(--subtext);direction:rtl;text-align:right;unicode-bidi:isolate;">جرى الكلب بعيداً عن القطة.</div>
+        </div>
+      </div>
+      <div style="background:var(--navy);border-radius:10px;padding:13px;margin-bottom:14px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="text-align:center">
+            <div style="font-weight:800;color:var(--gold);font-size:1rem;margin-bottom:4px">over</div>
+            <div style="font-size:.77rem;color:#93c5fd;margin-bottom:6px;direction:rtl;text-align:center;unicode-bidi:isolate;">فوق</div>
+            <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:6px;font-size:1.2rem;color:white">↗ ——</div>
+            <div style="font-size:.79rem;color:white;margin-top:6px;font-style:italic">The cat jumped <strong style="color:var(--gold)">over</strong> the fence. <button type="button" class="audio-btn" onclick="speak('The cat jumped over the fence.')">🔊</button></div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-weight:800;color:var(--gold);font-size:1rem;margin-bottom:4px">under</div>
+            <div style="font-size:.77rem;color:#93c5fd;margin-bottom:6px;direction:rtl;text-align:center;unicode-bidi:isolate;">تحت</div>
+            <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:6px;font-size:1.2rem;color:white">—— ↘</div>
+            <div style="font-size:.79rem;color:white;margin-top:6px;font-style:italic">It hid <strong style="color:var(--gold)">under</strong> the table. <button type="button" class="audio-btn" onclick="speak('It hid under the table.')">🔊</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="note note-teal">
+        💡 <strong>تذكّر:</strong> <bdi dir="ltr">into</bdi> = إلى داخل &nbsp;|&nbsp; <bdi dir="ltr">out of</bdi> = إلى خارج &nbsp;|&nbsp; <bdi dir="ltr">through</bdi> = المرور عبر شيء مغلق
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 7 — Ex 5: Prepositions (Mission 5) -->
+<div class="page" id="tab-7">
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">Exercise 5 – Choose the correct preposition</div>
+      <div class="ex-title-ar">اختر حرف الجر الصحيح</div>
+      <span class="lv lv-int">INTERMEDIATE</span>
+    </div>
+    <div class="ex-inst">Choose the correct preposition of movement.</div>
+    <div class="ex-inst-ar">اختر حرف الجر الصحيح للحركة.</div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--orange)" onclick="revealOne('ex5',this)">▶ كشف الإجابة</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('ex5')">↺ Reset</button>
+      </div>
+      <div class="score-line">النقاط: <span id="ex5-score">0</span> / 8</div>
+      <div class="mcq-block">
+        <div class="mcq-q">1. The train went _______ the tunnel. <button type="button" class="audio-btn" onclick="speak('The train went through the tunnel.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex5" onclick="selectMCQ(this,true,'ex5','<bdi dir=&quot;ltr&quot;>through ✓</bdi> = المرور عبر الداخل — النفق مغلق')">through</div>
+          <div class="mcq-opt" data-ex="ex5x" onclick="selectMCQ(this,false,'ex5','<bdi dir=&quot;ltr&quot;>across</bdi> = من جانب لآخر — يُستخدم مع الجسور')">across</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">2. We walked _______ the river to the bridge. <button type="button" class="audio-btn" onclick="speak('We walked along the river to the bridge.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex5" onclick="selectMCQ(this,true,'ex5','<bdi dir=&quot;ltr&quot;>along ✓</bdi> = على طول — نمشي بجانب النهر')">along</div>
+          <div class="mcq-opt" data-ex="ex5x" onclick="selectMCQ(this,false,'ex5','<bdi dir=&quot;ltr&quot;>into</bdi> = إلى داخل — لا نمشي داخل النهر')">into</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">3. The cat ran _______ the house. <button type="button" class="audio-btn" onclick="speak('The cat ran out of the house.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex5" onclick="selectMCQ(this,true,'ex5','<bdi dir=&quot;ltr&quot;>out of ✓</bdi> = إلى خارج — القطة خرجت')">out of</div>
+          <div class="mcq-opt" data-ex="ex5x" onclick="selectMCQ(this,false,'ex5','<bdi dir=&quot;ltr&quot;>through</bdi> = عبر الداخل — لو مرت عبر ممر')">through</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">4. He got _______ the car and drove off. <button type="button" class="audio-btn" onclick="speak('He got into the car and drove off.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex5" onclick="selectMCQ(this,true,'ex5','<bdi dir=&quot;ltr&quot;>into ✓</bdi> = إلى داخل — دخل السيارة')">into</div>
+          <div class="mcq-opt" data-ex="ex5x" onclick="selectMCQ(this,false,'ex5','<bdi dir=&quot;ltr&quot;>across</bdi> = عبر — لا ينطبق على الدخول إلى السيارة')">across</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">5. They swam _______ the lake to the other side. <button type="button" class="audio-btn" onclick="speak('They swam across the lake to the other side.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex5" onclick="selectMCQ(this,true,'ex5','<bdi dir=&quot;ltr&quot;>across ✓</bdi> = من ضفة لأخرى')">across</div>
+          <div class="mcq-opt" data-ex="ex5x" onclick="selectMCQ(this,false,'ex5','<bdi dir=&quot;ltr&quot;>along</bdi> = على طول — كانوا سيسبحون بجانب البحيرة')">along</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">6. She walked _______ the door to greet her guest. <button type="button" class="audio-btn" onclick="speak('She walked towards the door to greet her guest.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex5" onclick="selectMCQ(this,true,'ex5','<bdi dir=&quot;ltr&quot;>towards ✓</bdi> = نحو — مشت في اتجاه الباب')">towards</div>
+          <div class="mcq-opt" data-ex="ex5x" onclick="selectMCQ(this,false,'ex5','<bdi dir=&quot;ltr&quot;>away from</bdi> = بعيداً عن — هذا عكس المعنى')">away from</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">7. The dog ran _______ the cat and hid. <button type="button" class="audio-btn" onclick="speak('The dog ran away from the cat and hid behind the sofa.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex5" onclick="selectMCQ(this,true,'ex5','<bdi dir=&quot;ltr&quot;>away from ✓</bdi> = بعيداً عن — الكلب هرب')">away from</div>
+          <div class="mcq-opt" data-ex="ex5x" onclick="selectMCQ(this,false,'ex5','<bdi dir=&quot;ltr&quot;>towards</bdi> = نحو — عكس المعنى')">towards</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">8. The children ran _______ the park twice. <button type="button" class="audio-btn" onclick="speak('The children ran around the park twice.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="ex5" onclick="selectMCQ(this,true,'ex5','<bdi dir=&quot;ltr&quot;>around ✓</bdi> = حول — ركضوا حول الحديقة')">around</div>
+          <div class="mcq-opt" data-ex="ex5x" onclick="selectMCQ(this,false,'ex5','<bdi dir=&quot;ltr&quot;>through</bdi> = خلال — لو ركضوا عبر داخل الحديقة')">through</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEW TAB — Story Mode (added; does not touch any original lesson content) -->
+<div class="page" id="tab-8">
+  <div class="story-wrap">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#7C3AED,#2563EB);border-radius:14px;margin-bottom:12px;padding:14px 18px;">
+      <div style="text-align:center;width:100%">
+        <div class="g-title" style="color:#fff">🎮 Story Mode — Yusuf's Busy Day</div>
+        <div class="g-title-ar" style="color:#93c5fd">وضع القصة — يوم يوسف المزدحم</div>
+      </div>
+    </div>
+    <div class="story-progress-track"><div class="story-progress-fill" id="story-progress-fill"></div></div>
+    <div id="story-screens"></div>
+  </div>
+</div>
+
+<!-- TAB 8 — BOSS FIGHT -->
+
+<div id="boss-overlay" style="display:none;position:fixed;inset:0;z-index:800;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(76,29,149,.97),rgba(220,46,93,.97));text-align:center;padding:28px;">
+  <span style="font-size:4rem;margin-bottom:8px">👹</span>
+  <h2 style="color:white;font-size:1.9rem;margin:0 0 8px;font-weight:900">FINAL BOSS CHALLENGE</h2>
+  <p style="color:#e2e8f0;font-size:.95rem;line-height:1.7;direction:rtl;margin:0 0 22px">لديك 60 ثانية لهزيمة الوحش!<br>✅ كل إجابة صحيحة تسلب طاقة الوحش 💥<br>❌ كل خطأ يسلب 10 ثوانٍ من وقتك ⚠️<br>شريط الطاقة يُثبَّت في أسفل الشاشة عند البدء!</p>
+  <button onclick="startBoss()" style="background:#F59E0B;color:#1e1b4b;border:none;border-radius:14px;font-size:1.15rem;font-weight:900;padding:14px 34px;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:.15s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">⚔️ ابدأ التحدي الآن!</button>
+  <button onclick="closeBossOverlay()" style="margin-top:14px;background:rgba(255,255,255,.15);color:white;border:2px solid rgba(255,255,255,.35);border-radius:12px;font-size:.95rem;font-weight:700;padding:10px 26px;cursor:pointer;transition:.15s;" onmouseover="this.style.background='rgba(255,255,255,.25)'" onmouseout="this.style.background='rgba(255,255,255,.15)'">⬅️ رجوع إلى الدروس</button>
+</div>
+<div class="page" id="tab-9">
+  <div class="boss-header">
+    <div class="boss-title">👹 Boss Fight — اختبار نهائي شامل</div>
+    <div class="boss-sub">Infinitives + Time Clauses + Prepositions — جميع القواعد مدموجة</div>
+    <div class="boss-hp-bar"><div class="boss-hp-fill" id="boss-hp" style="width:100%"></div></div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head">
+      <div class="ex-title">🏆 Final Boss – Mixed Quiz</div>
+      <div class="ex-title-ar">اختر الإجابة الصحيحة — كل القواعد مختلطة</div>
+      <span class="lv lv-quiz">QUIZ</span>
+    </div>
+    <div class="ex-body">
+      <div class="btn-row">
+        <button class="rbtn" style="background:var(--gold);color:var(--navy)" onclick="revealOne('quiz',this)">▶ كشف الإجابة</button>
+        <button class="rbtn" style="background:#6B7280" onclick="resetEx('quiz')">↺ Reset</button>
+      </div>
+      <div class="score-line">النقاط: <span id="quiz-score">0</span> / 12</div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q1. He went to the airport _______ his friend. <button type="button" class="audio-btn" onclick="speak('He went to the airport to meet his friend.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>for meet</bdi> خطأ — لا نستخدم <bdi dir=&quot;ltr&quot;>for</bdi> مع الفعل لبيان الغرض')">for meet</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>to meet ✓</bdi> — <bdi dir=&quot;ltr&quot;>to + verb</bdi> لبيان الغرض')">to meet</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>to meeting</bdi> خطأ — لا <bdi dir=&quot;ltr&quot;>ing</bdi> بعد <bdi dir=&quot;ltr&quot;>to</bdi> في المصدر')">to meeting</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q2. I saved money _______ a new car. <button type="button" class="audio-btn" onclick="speak('I saved money to buy a new car.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>for buying</bdi> خطأ')">for buying</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>for to buy</bdi> خطأ — لا نجمع <bdi dir=&quot;ltr&quot;>for</bdi> و <bdi dir=&quot;ltr&quot;>to</bdi>')">for to buy</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>to buy ✓</bdi> — لبيان غرض الادخار')">to buy</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q3. I'll call you when I _______ home. <button type="button" class="audio-btn" onclick="speak('I will call you when I arrive home.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>arrive ✓</bdi> — لا مستقبل بعد <bdi dir=&quot;ltr&quot;>when</bdi>')">arrive</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>will arrive</bdi> خطأ — لا <bdi dir=&quot;ltr&quot;>will</bdi> في الجملة الزمنية')">will arrive</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>arrived</bdi> خطأ — الجملة الأساسية مستقبل')">arrived</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q4. They went skiing when they _______ on vacation. <button type="button" class="audio-btn" onclick="speak('They went skiing when they were on vacation.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>are</bdi> خطأ — <bdi dir=&quot;ltr&quot;>went</bdi> ماضٍ ⟵ يجب ماضٍ في الجملة الزمنية')">are</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>will be</bdi> خطأ — <bdi dir=&quot;ltr&quot;>went</bdi> ماضٍ، لا مستقبل')">will be</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>were ✓</bdi> — توافق الزمن مع <bdi dir=&quot;ltr&quot;>went</bdi>')">were</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q5. We'll wait here until the bus _______. <button type="button" class="audio-btn" onclick="speak('We will wait here until the bus comes.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>comes ✓</bdi> — مضارع بسيط بعد <bdi dir=&quot;ltr&quot;>until</bdi> في سياق مستقبل')">comes</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>will come</bdi> خطأ — لا <bdi dir=&quot;ltr&quot;>will</bdi> في الجملة الزمنية')">will come</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>came</bdi> خطأ — الجملة الأساسية مستقبل')">came</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q6. She studies hard _______ the exam. <button type="button" class="audio-btn" onclick="speak('She studies hard to pass the exam.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>for pass</bdi> خطأ')">for pass</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>to pass ✓</bdi> — <bdi dir=&quot;ltr&quot;>to + verb</bdi> لبيان الغرض')">to pass</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>to passing</bdi> خطأ — لا <bdi dir=&quot;ltr&quot;>ing</bdi> بعد <bdi dir=&quot;ltr&quot;>to</bdi>')">to passing</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q7. _______ she arrived, she called her mother. <button type="button" class="audio-btn" onclick="speak('As soon as she arrived, she called her mother.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>Until</bdi> = حتى — لا يناسب معنى الفورية')">Until</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>As soon as ✓</bdi> = بمجرد أن — تدل على الفورية')">As soon as</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>While</bdi> = بينما — تدل على التزامن لا التتابع الفوري')">While</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q8. Before you _______, check your luggage. <button type="button" class="audio-btn" onclick="speak('Before you travel, check your luggage.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>travel ✓</bdi> — مضارع بسيط بعد <bdi dir=&quot;ltr&quot;>before</bdi>')">travel</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>will travel</bdi> خطأ — لا <bdi dir=&quot;ltr&quot;>will</bdi> في الجملة الزمنية')">will travel</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>traveled</bdi> خطأ — الجملة لا تشير إلى الماضي')">traveled</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q9. The train went _______ the tunnel. <button type="button" class="audio-btn" onclick="speak('The train went through the tunnel.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>through ✓</bdi> = عبر الداخل — النفق مغلق')">through</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>across</bdi> = من جانب لآخر — للجسور')">across</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>into</bdi> = إلى داخل — يدل على الدخول لا المرور')">into</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q10. I'll go shopping _______ you cook dinner. <button type="button" class="audio-btn" onclick="speak('I will go shopping while you cook dinner.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>until</bdi> = حتى — لا يناسب التزامن')">until</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>while ✓</bdi> = بينما — حدثان في نفس الوقت')">while</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>before</bdi> = قبل — يدل على التتابع لا التزامن')">before</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q11. He woke up early _______ the plane. <button type="button" class="audio-btn" onclick="speak('He woke up early to catch the plane.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>for catching</bdi> خطأ — لا <bdi dir=&quot;ltr&quot;>for + ing</bdi> لبيان الغرض')">for catching</div>
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>to catch ✓</bdi> — <bdi dir=&quot;ltr&quot;>to + verb</bdi> لبيان الغرض')">to catch</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>caught</bdi> خطأ — هذا ماضٍ لا مصدر')">caught</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+      <div class="mcq-block">
+        <div class="mcq-q">Q12. As soon as we _______, we'll go to the hotel. <button type="button" class="audio-btn" onclick="speak('As soon as we arrive, we will go to the hotel.')">🔊</button></div>
+        <div class="mcq-opts">
+          <div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz','<bdi dir=&quot;ltr&quot;>arrive ✓</bdi> — مضارع بسيط بعد <bdi dir=&quot;ltr&quot;>as soon as</bdi>')">arrive</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>will arrive</bdi> خطأ — لا <bdi dir=&quot;ltr&quot;>will</bdi> في الجملة الزمنية')">will arrive</div>
+          <div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz','<bdi dir=&quot;ltr&quot;>arrived</bdi> خطأ — الجملة الأساسية مستقبل')">arrived</div>
+        </div>
+        <div class="explain-box mcq-explain"></div>
+      </div>
+    </div>
+  </div>
+  <div class="result-card" id="result-card">
+    <div class="result-stars" id="result-stars">⭐⭐⭐</div>
+    <h2 id="result-title">🎉 أحسنت!</h2>
+    <p id="result-msg">لقد أكملت الاختبار النهائي!</p>
+    <div class="result-rank" id="result-rank" style="background:var(--gold);color:var(--navy)">Grammar Hero 🏆</div>
+  </div>
+</div>
+
+</div><!-- /container -->
+<footer style="background:var(--navy);color:#94a3b8;text-align:center;padding:13px;padding-bottom:90px;font-size:.78rem">
+  Prepared by Teacher Jaber &nbsp;•&nbsp; U3 Grammar – Infinitives &amp; Time Clauses &amp; Prepositions &nbsp;•&nbsp; Super Goal
+</footer>
+
+<script>
+function toggleDark(){
+  document.body.classList.toggle('dark');
+  document.getElementById('dark-toggle').textContent=document.body.classList.contains('dark')?'☀️ Light Mode':'🌙 Dark Mode';
+}
+const TAB_IDS=[0,1,2,3,4,5,6,7,8,9];
+function showTab(n){
+  TAB_IDS.forEach(t=>{var el=document.getElementById('tab-'+t);if(el)el.classList.remove('active');});
+  var target=document.getElementById('tab-'+n);if(target)target.classList.add('active');
+  document.querySelectorAll('.pill-nav button').forEach((b,i)=>b.classList.toggle('active',i===n));
+  window.scrollTo({top:0,behavior:'smooth'});
+  const _ov=document.getElementById('boss-overlay');
+  if(_ov)_ov.style.display=(n===9&&!(typeof bossStarted!=='undefined'&&bossStarted))?'flex':'none';
+}
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.82;
+  u.pitch = 1.0;
+  u.volume = 1.0;
+
+  function pickVoice(){
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = [
+      'Samantha','Karen','Daniel','Google US English',
+      'Google UK English Female','Microsoft Zira','Microsoft David',
+      'Alex','Victoria','Moira','Fiona','Tessa'
+    ];
+    for(const name of preferred){
+      const v = voices.find(v => v.name === name);
+      if(v){ u.voice = v; break; }
+    }
+    if(!u.voice){
+      u.voice = voices.find(v => v.lang === 'en-US') ||
+                voices.find(v => v.lang.startsWith('en')) ||
+                null;
+    }
+    window.speechSynthesis.speak(u);
+  }
+
+  const voices = window.speechSynthesis.getVoices();
+  if(voices.length > 0){ pickVoice(); }
+  else { window.speechSynthesis.onvoiceschanged = pickVoice; }
+}
+const AudioCtx=window.AudioContext||window.webkitAudioContext;let ctx;
+function getCtx(){if(!ctx)ctx=new AudioCtx();return ctx;}
+function playSound(type){
+  try{const ac=getCtx(),o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);
+  if(type==='correct'){o.frequency.value=880;g.gain.setValueAtTime(.3,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.4);o.start();o.stop(ac.currentTime+.4);}
+  else if(type==='wrong'){o.frequency.value=200;o.type='sawtooth';g.gain.setValueAtTime(.2,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.3);o.start();o.stop(ac.currentTime+.3);}
+  else{o.frequency.value=440;g.gain.setValueAtTime(.1,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.15);o.start();o.stop(ac.currentTime+.15);}}catch(e){}
+}
+function triggerConfetti(){
+  const colors=['#FFD700','#7C3AED','#DC2E5D','#10B981','#3B82F6','#F59E0B'];
+  for(let i=0;i<45;i++){
+    const el=document.createElement('div');
+    el.style.cssText='position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:9999;';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.left=Math.random()*100+'vw';el.style.top='-10px';
+    document.body.appendChild(el);
+    const tx=(Math.random()-.5)*200;
+    el.animate([
+      {transform:'translate(0,0) rotate(0deg)',opacity:1},
+      {transform:`translate(${tx}px,${window.innerHeight*.8}px) rotate(${Math.random()*720}deg)`,opacity:0}
+    ],{duration:1300+Math.random()*800,easing:'cubic-bezier(.25,.46,.45,.94)',delay:Math.random()*350}).onfinish=()=>el.remove();
+  }
+}
+let xp=0,streak=0;
+const LEVELS=[[0,'Rookie 🌱'],[100,'Explorer 🗺️'],[200,'Learner 📚'],[350,'Challenger ⚡'],[500,'Expert 🎯'],[700,'Grammar Hero 🏆']];
+function addXP(pts,el){
+  xp+=pts;streak++;
+  document.getElementById('xp-count').textContent=xp;
+  document.getElementById('streak-count').textContent=streak;
+  const lv=LEVELS.filter(l=>xp>=l[0]).pop();
+  document.getElementById('level-badge').textContent=lv[1];
+  showXPBubble('+'+pts+' XP',el);
+}
+function showXPBubble(text,el){
+  const b=document.createElement('div');b.className='xp-bubble';b.textContent=text;
+  const rect=el?el.getBoundingClientRect():{left:window.innerWidth/2,top:window.innerHeight/2};
+  b.style.left=(rect.left+rect.width/2-20)+'px';b.style.top=(rect.top+window.scrollY-10)+'px';
+  document.body.appendChild(b);setTimeout(()=>b.remove(),1300);
+}
+let completedTotal=0;const totalInteractiveItems=56;
+function updateProgressBar(){const bar=document.getElementById('main-progress');if(bar)bar.style.width=Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100))+'%';}
+function updateBossHPSimple(){const answered=S['quiz']||0;const hp=document.getElementById('boss-hp');if(hp)hp.style.width=Math.max(0,100-Math.round((answered/12)*100))+'%';if(answered>=12)showResultCard();}
+function showResultCard(){
+  const card=document.getElementById('result-card');if(!card||card.classList.contains('visible'))return;card.classList.add('visible');
+  const score=S['quiz']||0;const stars=score>=10?'⭐⭐⭐':score>=7?'⭐⭐':'⭐';
+  const rank=score>=10?'Grammar Hero 🏆':score>=7?'Expert 🎯':'Keep Going 💪';
+  document.getElementById('result-stars').textContent=stars;
+  document.getElementById('result-title').textContent=score>=10?'🎉 ممتاز!':score>=7?'👏 أحسنت!':'💪 حاول مجدداً';
+  document.getElementById('result-msg').textContent='نتيجتك: '+score+' / 12';
+  document.getElementById('result-rank').textContent=rank;triggerConfetti();
+}
+function showHint(btn,text){
+  const box=btn.closest('.iq').querySelector('.explain-box');if(!box)return;
+  box.innerHTML='💡 '+text;box.className='explain-box visible';box.style.background='var(--softyellow)';box.style.borderColor='var(--gold)';addXP(5,btn);
+}
+function checkInput(btn,exId,explanation){
+  const parent=btn.closest('.iq');const inputs=parent.querySelectorAll('.interactive-input');const box=parent.querySelector('.explain-box');let allCorrect=true;
+  inputs.forEach(inp=>{
+    const exp=inp.getAttribute('data-ans').trim().toLowerCase().replace(/[.!?—"']/g,'');
+    const usr=inp.value.trim().toLowerCase().replace(/[.!?—"']/g,'');
+    if(usr===exp){inp.classList.remove('is-wrong');inp.classList.add('is-correct');}
+    else{inp.classList.remove('is-correct');inp.classList.add('is-wrong');inp.classList.add('shake');setTimeout(()=>inp.classList.remove('shake'),450);allCorrect=false;}
+  });
+  if(box&&explanation){box.innerHTML=(allCorrect?'✅ ':'❌ ')+explanation;box.className='explain-box visible '+(allCorrect?'correct-explain':'wrong-explain');}
+  if(allCorrect&&!btn.dataset.completed){
+    btn.dataset.completed='true';triggerConfetti();playSound('correct');addXP(10,btn);completedTotal++;updateProgressBar();
+    if(exId){if(S[exId]===undefined)S[exId]=0;S[exId]++;const sc=document.getElementById(exId+'-score');if(sc)sc.textContent=S[exId];}
+  } else if(!allCorrect){playSound('wrong');streak=0;document.getElementById('streak-count').textContent=0;}
+}
+function selectMCQ(el,isCorrect,exId,explanation){
+  const container=el.closest('.mcq-opts');container.querySelectorAll('.mcq-opt').forEach(o=>o.classList.remove('selected-correct','selected-wrong'));
+  const block=el.closest('.mcq-block');const explainBox=block?block.querySelector('.explain-box'):null;
+  if(isCorrect){
+    el.classList.add('selected-correct');triggerConfetti();if(bossStarted&&exId==='quiz')updateBossHP(true);playSound('correct');
+    if(!el.dataset.completed){el.dataset.completed='true';addXP(15,el);completedTotal++;updateProgressBar();}
+    if(S[exId]===undefined)S[exId]=0;S[exId]++;const sc=document.getElementById(exId+'-score');if(sc)sc.textContent=S[exId];
+    if(exId==='quiz')updateBossHPSimple();
+    if(explainBox&&explanation){explainBox.innerHTML='✅ '+explanation;explainBox.className='explain-box visible correct-explain';}
+  } else {
+    el.classList.add('selected-wrong');el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),450);playSound('wrong');streak=0;document.getElementById('streak-count').textContent=0;if(bossStarted&&exId==='quiz')updateBossHP(false);
+    if(explainBox&&explanation){explainBox.innerHTML='❌ '+explanation;explainBox.className='explain-box visible wrong-explain';}
+  }
+}
+const S={};
+function revealOne(id,btn){
+  if(S[id]===undefined)S[id]=0;const targets=Array.from(document.querySelectorAll('[data-ex="'+id+'"]'));const i=S[id];
+  if(i<targets.length){const t=targets[i];t.classList.add('visible');
+    if(t.classList.contains('mcq-opt')){const col=getComputedStyle(t).getPropertyValue('--c').trim()||'#0F766E';t.style.background=col;t.style.borderColor=col;t.style.color='white';}
+    S[id]++;completedTotal++;updateProgressBar();if(id==='quiz')updateBossHPSimple();const sc=document.getElementById(id+'-score');if(sc)sc.textContent=S[id];
+  }
+  if(S[id]>=targets.length){btn.innerHTML='✓ اكتمل';btn.style.opacity='.55';btn.style.cursor='default';triggerConfetti();}
+}
+function resetEx(id){
+  S[id]=0;
+  document.querySelectorAll('[data-ex="'+id+'"]').forEach(el=>{el.classList.remove('visible');if(el.classList.contains('mcq-opt')){el.style.background='';el.style.borderColor='';el.style.color='';el.classList.remove('selected-correct','selected-wrong');delete el.dataset.completed;}});
+  document.querySelectorAll('.interactive-input').forEach(inp=>{inp.value='';inp.classList.remove('is-correct','is-wrong');});
+  document.querySelectorAll('.check-btn').forEach(b=>delete b.dataset.completed);
+  document.querySelectorAll('.explain-box').forEach(b=>{b.className='explain-box';b.innerHTML='';});
+  const sc=document.getElementById(id+'-score');if(sc)sc.textContent=0;
+  const btn=document.querySelector('button[onclick="revealOne(\''+id+'\',this)"]');if(btn){btn.innerHTML='▶ كشف الإجابة';btn.style.opacity='1';btn.style.cursor='pointer';}
+  if(id==='quiz'){const hp=document.getElementById('boss-hp');if(hp)hp.style.width='100%';const rc=document.getElementById('result-card');if(rc)rc.classList.remove('visible');}
+}
+
+
+// ── BOSS BATTLE ──
+const BOSS_TOTAL=12;
+let bossInterval,bossTime=60,bossStarted=false,bossHP=BOSS_TOTAL,myHP=100;
+
+function getBACtx(){if(!window._bac)window._bac=new(window.AudioContext||window.webkitAudioContext)();if(window._bac.state==='suspended')window._bac.resume();return window._bac;}
+function playTick(){try{const ctx=getBACtx(),o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='square';o.frequency.value=bossTime<=10?880:440;g.gain.setValueAtTime(.04,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.08);o.start(ctx.currentTime);o.stop(ctx.currentTime+.09);}catch(e){}}
+function updateBossHUD(){const t=document.getElementById('b-time');if(t)t.textContent=bossTime;const tm=document.getElementById('b-timer');if(tm)tm.classList.toggle('hurry',bossTime<=10);}
+
+function startBoss(){
+  if(bossStarted)return;
+  bossStarted=true;
+  const ov=document.getElementById('boss-overlay');if(ov)ov.style.display='none';
+  document.getElementById('boss-hud-fixed').classList.add('active');
+  updateBossHUD();
+  bossInterval=setInterval(()=>{bossTime--;updateBossHUD();playTick();if(bossTime<=0){clearInterval(bossInterval);setTimeout(showGameOver,250);}},1000);
+}
+
+function updateBossHP(correct){
+  if(!bossStarted)return;
+  if(correct){
+    bossHP--;
+    const pct=Math.max(0,(bossHP/BOSS_TOTAL)*100);
+    const bar=document.getElementById('b-boss-bar'),pctEl=document.getElementById('b-boss-pct');
+    if(bar)bar.style.width=pct+'%';if(pctEl)pctEl.textContent=Math.round(pct)+'%';
+    if(bossHP<=0){clearInterval(bossInterval);setTimeout(()=>showGameOver('win'),300);}
+  }else{
+    // Wrong: lose 10s AND reduce player HP
+    bossTime=Math.max(0,bossTime-10);
+    updateBossHUD();
+    myHP=Math.max(0,myHP-10);
+    const myBar=document.getElementById('b-my-bar'),myPct=document.getElementById('b-my-pct');
+    if(myBar)myBar.style.width=myHP+'%';if(myPct)myPct.textContent=myHP+'%';
+    if(myHP<=0){clearInterval(bossInterval);setTimeout(showGameOver,300);}
+  }
+}
+
+function showGameOver(result){
+  const m=document.getElementById('gameover-modal');if(!m)return;
+  if(result==='win'){
+    m.querySelector('#go-title').textContent='🏆 أنت هزمت الوحش!';
+    m.querySelector('#go-title').style.color='#10B981';
+    m.querySelector('div').style.borderColor='#10B981';
+    m.querySelector('#go-sub').textContent='مبروك! أتممت التحدي النهائي! 🎉';
+    m.querySelector('#go-sub').style.color='#bbf7d0';
+    m.querySelector('#go-body').innerHTML='أثبتت أنك أقوى من الوحش!<br><strong style="color:#fbbf24">⭐ احتفظ بهذه النتيجة!</strong>';
+    triggerConfetti();
+  }
+  m.style.display='flex';
+}
+
+function retryBoss(){
+  document.getElementById('gameover-modal').style.display='none';
+  bossStarted=false;bossTime=60;bossHP=BOSS_TOTAL;
+  clearInterval(bossInterval);
+  document.getElementById('boss-hud-fixed').classList.remove('active');
+  const bar=document.getElementById('b-boss-bar'),pct=document.getElementById('b-boss-pct');
+  if(bar)bar.style.width='100%';if(pct)pct.textContent='100%';
+  const myBar=document.getElementById('b-my-bar'),myPct=document.getElementById('b-my-pct');
+  if(myBar)myBar.style.width='100%';if(myPct)myPct.textContent='100%';
+  // Reset modal styling for next game-over
+  const m=document.getElementById('gameover-modal');
+  if(m){m.querySelector('#go-title').textContent='GAME OVER';m.querySelector('#go-title').style.color='#ef4444';m.querySelector('div').style.borderColor='#DC2E5D';m.querySelector('#go-sub').textContent='الوحش انتصر هذه المرة!';m.querySelector('#go-sub').style.color='#fde68a';m.querySelector('#go-body').innerHTML='نفد الوقت قبل إكمال التحدي 😤<br>راجع القواعد وأعد المحاولة!<br><strong style="color:#fbbf24">أنت أقوى من الوحش 💪</strong>';}
+  const ov=document.getElementById('boss-overlay');if(ov)ov.style.display='flex';
+  updateBossHUD();
+}
+
+function closeGameOver(){
+  clearInterval(bossInterval);
+  bossStarted=false;bossTime=60;bossHP=BOSS_TOTAL;
+  const hud=document.getElementById('boss-hud-fixed');if(hud)hud.classList.remove('active');
+  document.getElementById('gameover-modal').style.display='none';
+  showTab(0);
+}
+
+
+function closeBossOverlay(){
+  const ov=document.getElementById('boss-overlay')||document.getElementById('boss-overlay-adv')||document.getElementById('boss-start-overlay');
+  if(ov)ov.style.display='none';
+  showTab(0);
+}
+
+/* ── Pill-nav: wheel → horizontal scroll + drag to scroll ── */
+(function(){
+  const nav = document.querySelector('.pill-nav');
+  if(!nav) return;
+  nav.addEventListener('wheel', function(e){
+    if(e.deltaY !== 0){ e.preventDefault(); nav.scrollLeft += e.deltaY * 1.2; }
+  }, {passive:false});
+  let isDown=false, startX, scrollStart;
+  nav.addEventListener('mousedown', function(e){
+    if(e.target.tagName==='BUTTON') return;
+    isDown=true; nav.classList.add('is-dragging');
+    startX=e.pageX-nav.offsetLeft; scrollStart=nav.scrollLeft;
+  });
+  document.addEventListener('mouseup', function(){ isDown=false; nav.classList.remove('is-dragging'); });
+  nav.addEventListener('mouseleave', function(){ isDown=false; nav.classList.remove('is-dragging'); });
+  nav.addEventListener('mousemove', function(e){
+    if(!isDown) return; e.preventDefault();
+    nav.scrollLeft = scrollStart - (e.pageX - nav.offsetLeft - startX) * 1.5;
+  });
+  let lastActiveBtn = nav.querySelector('button.active');
+  const observer = new MutationObserver(function(){
+    const active = nav.querySelector('button.active');
+    if(!active || active===lastActiveBtn) return;
+    lastActiveBtn = active;
+    const navRect=nav.getBoundingClientRect(), btnRect=active.getBoundingClientRect();
+    const center=(btnRect.left-navRect.left)+nav.scrollLeft+btnRect.width/2;
+    nav.scrollTo({left:Math.max(0,center-navRect.width/2), behavior:'smooth'});
+  });
+  observer.observe(nav, {subtree:true, attributeFilter:['class']});
+})();
+</script>
+
+<!-- GAME OVER MODAL -->
+<div id="gameover-modal" style="display:none;position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.82);align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+  <div style="background:linear-gradient(135deg,#1e1b4b,#4c1d95);border:3px solid #DC2E5D;border-radius:20px;padding:34px 26px;max-width:400px;width:90%;text-align:center;box-shadow:0 0 60px rgba(220,46,93,.6);">
+    <div style="font-size:4.5rem;margin-bottom:4px">💀</div>
+    <h2 style="color:#ef4444;font-size:1.9rem;margin:6px 0;font-weight:900" id="go-title">GAME OVER</h2>
+    <p style="color:#fde68a;font-size:1.05rem;font-weight:800;margin:4px 0 8px" id="go-sub">الوحش انتصر هذه المرة!</p>
+    <p style="color:#c4b5fd;font-size:.9rem;line-height:1.7;margin:0 0 22px" id="go-body">نفد الوقت قبل إكمال التحدي 😤<br>راجع القواعد وأعد المحاولة!<br><strong style="color:#fbbf24">أنت أقوى من الوحش 💪</strong></p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button onclick="retryBoss()" style="background:linear-gradient(135deg,#DC2E5D,#7C3AED);color:white;border:none;border-radius:12px;padding:12px 26px;font-size:1rem;font-weight:900;cursor:pointer;transition:.15s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">🔄 أعد المحاولة</button>
+      <button onclick="closeGameOver()" style="background:rgba(255,255,255,.1);color:#e2e8f0;border:2px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 20px;font-size:1rem;font-weight:700;cursor:pointer;" onmouseover="this.style.background='rgba(255,255,255,.2)'" onmouseout="this.style.background='rgba(255,255,255,.1)'">📖 مراجعة الدروس</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NEW: STUDENT NAME OVERLAY ═══ -->
+<div class="ns-overlay" id="name-overlay">
+  <div class="ns-card">
+    <h2>📝 Enter Your Name</h2>
+    <p>يرجى إدخال اسمك قبل بدء الدرس</p>
+    <input type="text" id="student-name-input" class="interactive-input" placeholder="Your name... / اسمك..." style="margin-top:16px;width:100%;max-width:280px;text-align:center;font-size:1rem;">
+    <div><button class="ns-start-btn" onclick="confirmStudentName()">▶ Continue</button></div>
+  </div>
+</div>
+
+<!-- ═══ NEW: DIFFICULTY SELECTOR OVERLAY ═══ -->
+<div class="ns-overlay" id="difficulty-overlay">
+  <div class="ns-card">
+    <h2>🎮 Choose Your Difficulty</h2>
+    <p>اختر مستوى الصعوبة قبل بدء الدرس</p>
+    <div class="diff-grid">
+      <div class="diff-opt" onclick="chooseDifficulty('easy')">
+        <span class="em">🟢</span>
+        <span><span class="nm">Easy Mode</span><span class="ds">More guidance • Less typing • More hints • Beginner friendly<br><span dir="rtl">مزيد من المساعدة • كتابة أقل • تلميحات أكثر</span></span></span>
+      </div>
+      <div class="diff-opt" onclick="chooseDifficulty('normal')">
+        <span class="em">🟡</span>
+        <span><span class="nm">Normal Mode</span><span class="ds">Current experience • No changes<br><span dir="rtl">التجربة الحالية • بدون تغييرات</span></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NEW: AVATAR SELECTION OVERLAY ═══ -->
+<div class="ns-overlay" id="avatar-overlay">
+  <div class="ns-card">
+    <h2>🎮 Choose Your Avatar</h2>
+    <p>اختر شخصيتك قبل بدء المغامرة!</p>
+    <div class="avatar-grid" id="avatar-grid">
+      <div class="avatar-opt" data-av="⚽" onclick="pickAvatar(this,'⚽')"><span class="em">⚽</span><span class="nm">Football Hero</span><span class="nm-ar">بطل كرة القدم</span></div>
+      <div class="avatar-opt" data-av="🎮" onclick="pickAvatar(this,'🎮')"><span class="em">🎮</span><span class="nm">Gamer</span><span class="nm-ar">لاعب محترف</span></div>
+      <div class="avatar-opt" data-av="🚀" onclick="pickAvatar(this,'🚀')"><span class="em">🚀</span><span class="nm">Space Explorer</span><span class="nm-ar">مستكشف الفضاء</span></div>
+      <div class="avatar-opt" data-av="🤖" onclick="pickAvatar(this,'🤖')"><span class="em">🤖</span><span class="nm">Robot Warrior</span><span class="nm-ar">محارب آلي</span></div>
+    </div>
+    <button class="ns-start-btn" id="avatar-start-btn" disabled onclick="confirmAvatar()">▶ Start Lesson</button>
+  </div>
+</div>
+
+<!-- ═══ NEW: BOSS MODE SELECTOR OVERLAY ═══ -->
+<div class="ns-overlay" id="boss-mode-overlay">
+  <div class="ns-card">
+    <h2>⏱️ Choose Boss Mode</h2>
+    <p>اختر نمط تحدي الوحش</p>
+    <div class="diff-grid">
+      <div class="diff-opt" onclick="startBossWithMode('timed')">
+        <span class="em">⚡</span>
+        <span><span class="nm">Timed Challenge</span><span class="ds">60-second countdown • wrong answers cost time<br><span dir="rtl">تحدي بالوقت — الأخطاء تخصم وقتاً</span></span></span>
+      </div>
+      <div class="diff-opt" onclick="startBossWithMode('practice')">
+        <span class="em">🎯</span>
+        <span><span class="nm">Practice Mode</span><span class="ds">No timer • same HP, phases, XP & rewards<br><span dir="rtl">بدون وقت — نفس نظام الطاقة والمراحل</span></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NEW: LEVEL UP POPUP ═══ -->
+<div class="ns-overlay" id="levelup-overlay">
+  <div class="ns-card">
+    <div class="levelup-badge" id="levelup-emoji">🥈</div>
+    <div style="font-size:.8rem;color:#c4b5fd;font-weight:700;">LEVEL UP! 🎉</div>
+    <div class="levelup-name" id="levelup-name">Explorer 🗺️</div>
+    <p style="margin-top:8px">لقد ارتقيت لمستوى جديد! استمر بالتقدم 💪</p>
+    <button class="ns-start-btn" onclick="closeLevelUp()">Continue ▶</button>
+  </div>
+</div>
+
+<!-- ═══ NEW: ACHIEVEMENT / SPEED / REWARD TOASTS ═══ -->
+<div class="ach-toast" id="ach-toast"><span class="em">🏆</span><span id="ach-toast-text">Achievement Unlocked!</span></div>
+<div class="speed-toast" id="speed-toast">⚡ Fast Answer +15 XP</div>
+<div class="ach-toast" id="reward-toast" style="top:60px">🎁 Reward!</div>
+
+<!-- ═══ NEW: ACHIEVEMENT PANEL ═══ -->
+<div class="ns-overlay" id="ach-panel-overlay">
+  <div class="ns-card">
+    <h2>🏆 Achievements</h2>
+    <p>إنجازاتك في هذا الدرس</p>
+    <div class="ach-list" id="ach-list"></div>
+    <button class="ns-start-btn" onclick="closeAchPanel()">Close</button>
+  </div>
+</div>
+
+<!-- ═══ NEW: END OF LESSON REPORT ═══ -->
+<div class="ns-overlay" id="report-overlay">
+  <div class="ns-card" style="max-width:480px">
+    <h2>📊 Lesson Report</h2>
+    <div class="report-grade" id="report-grade-emoji">A</div>
+    <div class="report-grid" id="report-grid"></div>
+    <div class="report-actions">
+      <button onclick="downloadCertificatePng()">📜 Download Certificate</button>
+      <button class="secondary" onclick="closeReport()">Close</button>
+    </div>
+  </div>
+</div>
+<canvas id="cert-canvas" width="1000" height="700" style="display:none"></canvas>
+
+<script>
+(function(){
+
+function formatDate(d){
+  d=d||new Date();
+  const yyyy=d.getFullYear();
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const dd=String(d.getDate()).padStart(2,'0');
+  return yyyy+'/'+mm+'/'+dd;
+}
+
+/* ---------- ACHIEVEMENTS ---------- */
+const ACHIEVEMENTS=[
+  {id:'first-correct', em:'🏆', tt:'First Correct Answer', ds:'أول إجابة صحيحة'},
+  {id:'streak5',        em:'🔥', tt:'5 Correct in a Row',  ds:'٥ إجابات صحيحة متتالية'},
+  {id:'xp100',          em:'⚡', tt:'Earn 100 XP',          ds:'اجمع ١٠٠ نقطة خبرة'},
+  {id:'mission1',       em:'🎯', tt:'Complete First Mission', ds:'أكمل أول مهمة'},
+  {id:'all-grammar',    em:'📘', tt:'Finish All Grammar Tabs', ds:'أنهِ جميع دروس القواعد'},
+  {id:'boss-defeat',    em:'👾', tt:'Defeat Final Boss',    ds:'اهزم الوحش النهائي'},
+  {id:'legend',         em:'💎', tt:'Reach Top Rank',       ds:'وصلت لأعلى رتبة'}
+];
+let unlocked={};
+let prevLevelLabel=null;
+function currentLevelLabel(){ const lv=LEVELS.filter(l=>xp>=l[0]).pop(); return lv?lv[1]:LEVELS[0][1]; }
+function checkLevelUp(){
+  const label=currentLevelLabel();
+  if(prevLevelLabel!==null&&label!==prevLevelLabel){
+    showLevelUp(label);
+    if(LEVELS.findIndex(l=>l[1]===label)>=LEVELS.length-2)unlockAchievement('legend');
+  }
+  prevLevelLabel=label;
+}
+function showLevelUp(label){
+  const emojiMatch=label.match(/\p{Emoji}/gu);
+  document.getElementById('levelup-emoji').textContent=emojiMatch?emojiMatch[emojiMatch.length-1]:'🎉';
+  document.getElementById('levelup-name').textContent=label;
+  document.getElementById('levelup-overlay').classList.add('show');
+  triggerConfetti();
+}
+window.closeLevelUp=function(){document.getElementById('levelup-overlay').classList.remove('show');};
+function unlockAchievement(id){
+  if(unlocked[id])return;
+  unlocked[id]=true;
+  const a=ACHIEVEMENTS.find(x=>x.id===id);
+  if(a)showAchToast(a);
+  renderAchPanel();
+  saveState();
+}
+function showAchToast(a){
+  const t=document.getElementById('ach-toast');
+  document.getElementById('ach-toast-text').textContent=a.tt+' 🎉';
+  t.classList.add('show');
+  playSound('correct');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+function getAchievementProgress(id){
+  switch(id){
+    case 'first-correct': return {cur:Math.min(1,totalCorrectAttempts),max:1};
+    case 'streak5':       return {cur:Math.min(5,maxStreak),max:5};
+    case 'xp100':         return {cur:Math.min(100,xp),max:100};
+    case 'mission1':      return {cur:unlocked['mission1']?1:0,max:1};
+    case 'all-grammar':   return {cur:GRAMMAR_TABS.filter(t=>grammarSeen[t]).length,max:GRAMMAR_TABS.length};
+    case 'boss-defeat':   return {cur:Math.min(BOSS_PHASES.length,bossPhaseIdx),max:BOSS_PHASES.length};
+    case 'legend':        return {cur:Math.min(LEVELS.length-1,LEVELS.findIndex(l=>l[1]===currentLevelLabel())+1),max:LEVELS.length-1};
+    default:               return {cur:unlocked[id]?1:0,max:1};
+  }
+}
+function renderAchPanel(){
+  const list=document.getElementById('ach-list');
+  if(!list)return;
+  list.innerHTML=ACHIEVEMENTS.map(a=>{
+    const u=!!unlocked[a.id];
+    const p=getAchievementProgress(a.id);
+    const pct=p.max?Math.min(100,Math.round((p.cur/p.max)*100)):0;
+    return '<div class="ach-row'+(u?' unlocked':'')+'"><span class="em">'+a.em+'</span>'
+      +'<div style="flex:1"><div class="tt">'+a.tt+'</div><div class="ds">'+a.ds+(u?' ✅':'')+'</div>'
+      +'<div class="ach-progress-track"><div class="ach-progress-fill" style="width:'+pct+'%"></div></div>'
+      +'<div class="ach-progress-label">'+p.cur+' / '+p.max+'</div></div></div>';
+  }).join('');
+}
+window.openAchPanel=function(){renderAchPanel();document.getElementById('ach-panel-overlay').classList.add('show');};
+window.closeAchPanel=function(){document.getElementById('ach-panel-overlay').classList.remove('show');};
+
+/* ---------- AVATAR + NAME ---------- */
+let chosenAvatar=null;
+window.pickAvatar=function(el,em){
+  document.querySelectorAll('.avatar-opt').forEach(o=>o.classList.remove('picked'));
+  el.classList.add('picked');
+  chosenAvatar=em;
+  document.getElementById('avatar-start-btn').disabled=false;
+};
+window.confirmAvatar=function(){
+  if(!chosenAvatar)return;
+  document.getElementById('avatar-overlay').classList.remove('show');
+  updateAvatarChip();
+  saveState();
+};
+function updateAvatarChip(){
+  const chip=document.getElementById('hud-avatar-chip');
+  if(chip&&chosenAvatar)chip.textContent=chosenAvatar;
+}
+const NAME_KEY='u3infinitivetc_student_name';
+let studentName=localStorage.getItem(NAME_KEY)||'';
+function updateNameDisplays(){
+  const chip=document.getElementById('hud-name-chip');
+  if(chip)chip.textContent=studentName?('👤 '+studentName):'👤 Student';
+}
+window.confirmStudentName=function(){
+  const inp=document.getElementById('student-name-input');
+  const val=(inp?inp.value:'').trim();
+  if(!val){ if(inp){inp.classList.add('shake');setTimeout(()=>inp.classList.remove('shake'),400);} return; }
+  studentName=val;
+  localStorage.setItem(NAME_KEY,val);
+  document.getElementById('name-overlay').classList.remove('show');
+  updateNameDisplays();
+  if(!difficultyMode)document.getElementById('difficulty-overlay').classList.add('show');
+  else if(!chosenAvatar)document.getElementById('avatar-overlay').classList.add('show');
+};
+
+/* ---------- SPEED BONUS ---------- */
+let questionStartTime=Date.now();
+function resetQuestionTimer(){questionStartTime=Date.now();}
+function awardSpeedBonus(){
+  const secs=(Date.now()-questionStartTime)/1000;
+  resetQuestionTimer();
+  let bonus=5,label='🚀 Speed Master +5 XP';
+  if(secs<5){bonus=15;label='⚡ Fast Answer +15 XP';}
+  else if(secs<=10){bonus=10;label='🔥 Lightning Bonus +10 XP';}
+  addXP(bonus);
+  const t=document.getElementById('speed-toast');
+  if(t){t.textContent=label;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1400);}
+}
+
+/* ---------- STATS ---------- */
+let totalAttempts=0,totalCorrectAttempts=0,totalWrongAttempts=0,maxStreak=0,lessonStartTime=Date.now(),bossResult='Not Attempted';
+
+/* ---------- ONE-TIME REWARDS ---------- */
+let rewardsGranted={};
+function grantOneTimeReward(key,amount,label){
+  if(rewardsGranted[key])return;
+  rewardsGranted[key]=true;
+  addXP(amount);
+  showRewardToast(label);
+  saveState();
+}
+function showRewardToast(label){
+  const t=document.getElementById('reward-toast');
+  if(!t)return;
+  t.textContent=label;t.classList.add('show');triggerConfetti();
+  setTimeout(()=>t.classList.remove('show'),2600);
+}
+function checkFirstMissionComplete(iq){
+  const tab=iq.closest('.page');
+  if(!tab||tab.id!=='tab-1')return;
+  const all=tab.querySelectorAll('.interactive-input[data-ans]');
+  if(!all.length)return;
+  const allDone=Array.from(all).every(i=>i.classList.contains('is-correct'));
+  if(allDone)grantOneTimeReward('mission1complete',25,'🎯 First Mission Complete! +25 XP');
+}
+
+/* ---------- EASY MODE ---------- */
+const DIFF_KEY='u3infinitivetc_difficulty_mode';
+let difficultyMode=localStorage.getItem(DIFF_KEY);
+function easyModeActive(){ return difficultyMode==='easy'; }
+function updateModeBadge(){
+  const b=document.getElementById('ns-mode-badge');
+  if(!b)return;
+  b.textContent=difficultyMode==='easy' ? '🟢 Easy Mode' : '🟡 Normal Mode';
+}
+window.openDifficultyOverlay=function(){document.getElementById('difficulty-overlay').classList.add('show');};
+window.chooseDifficulty=function(mode){
+  difficultyMode=mode;
+  localStorage.setItem(DIFF_KEY,mode);
+  document.getElementById('difficulty-overlay').classList.remove('show');
+  updateModeBadge();
+  if(mode==='easy'){ applyEasyModeToInputs(); insertWordBanksForFreeText(); }
+  else { removeEasyModeFromInputs(); removeWordBanksForFreeText(); }
+  if(!chosenAvatar) document.getElementById('avatar-overlay').classList.add('show');
+  saveState();
+};
+function buildMaskedAnswer(ans){
+  let revealed=false;
+  return ans.split('').map(ch=>{ if(/[A-Za-z]/.test(ch)){ if(!revealed){revealed=true;return ch;} return '_'; } return ch; }).join('');
+}
+function applyEasyModeToInputs(){
+  document.querySelectorAll('.interactive-input[data-ans]').forEach(input=>{
+    if(input.dataset.easyInit)return;
+    input.dataset.easyInit='1';
+    if(input.dataset.origPlaceholder===undefined) input.dataset.origPlaceholder=input.getAttribute('placeholder')||'';
+    const ans=input.getAttribute('data-ans')||'';
+    const masked=buildMaskedAnswer(ans);
+    const iq=input.closest('.iq');
+    const hintBtn=iq?iq.querySelector('.hint-btn'):null;
+    if(!iq||iq.querySelector('.easy-letter-btn'))return;
+    const letterBtn=document.createElement('button');
+    letterBtn.type='button';letterBtn.className='hint-btn easy-letter-btn';
+    letterBtn.textContent='🔎 First Letter';
+    letterBtn.onclick=function(){input.setAttribute('placeholder',masked);this.disabled=true;};
+    const lenBtn=document.createElement('button');
+    lenBtn.type='button';lenBtn.className='hint-btn easy-len-btn';
+    lenBtn.textContent='📏 Word Length';
+    lenBtn.onclick=function(){
+      const letters=ans.replace(/[^A-Za-z]/g,'').length;
+      const box=iq.querySelector('.explain-box');
+      if(box){box.classList.add('visible');box.textContent='📏 '+letters+' letters ('+letters+' حرف)';}
+      this.disabled=true;
+    };
+    const anchor=hintBtn||input;
+    anchor.insertAdjacentElement('afterend',letterBtn);
+    letterBtn.insertAdjacentElement('afterend',lenBtn);
+    if(hintBtn){
+      const extraHintBtn=document.createElement('button');
+      extraHintBtn.type='button';extraHintBtn.className='hint-btn easy-extra-hint-btn';
+      extraHintBtn.textContent='🟢 Easy Hint';
+      extraHintBtn.onclick=function(){hintBtn.click();this.disabled=true;};
+      lenBtn.insertAdjacentElement('afterend',extraHintBtn);
+    }
+  });
+}
+function removeEasyModeFromInputs(){
+  document.querySelectorAll('.easy-letter-btn,.easy-len-btn,.easy-extra-hint-btn').forEach(b=>b.remove());
+  document.querySelectorAll('.interactive-input[data-easy-init]').forEach(input=>{
+    input.removeAttribute('data-easy-init');
+    input.setAttribute('placeholder',input.dataset.origPlaceholder||'');
+  });
+}
+function showEasyRetry(container,attemptsLeft){
+  if(!container)return;
+  let warn=container.querySelector(':scope > .easy-retry-note');
+  if(!warn){ warn=document.createElement('div'); warn.className='empty-warning easy-retry-note'; container.appendChild(warn); }
+  const msgs=[
+    {en:"🟢 Great try! Give it another go — you've got this!",ar:"🟢 محاولة رائعة! جرّب مرة أخرى!"},
+    {en:"🟢 So close! One more try before the answer is revealed.",ar:"🟢 قريب جداً! محاولة أخيرة!"}
+  ];
+  const m=msgs[Math.max(0,Math.min(msgs.length-1,msgs.length-attemptsLeft))]||msgs[0];
+  warn.innerHTML=m.en+'<span>'+m.ar+'</span>';
+  warn.classList.add('visible');
+  clearTimeout(warn._hideTimer);
+  warn._hideTimer=setTimeout(()=>warn.classList.remove('visible'),3000);
+}
+function shuffleArr(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function insertWordBanksForFreeText(){
+  document.querySelectorAll('.interactive-input.wide[data-ans]').forEach(input=>{
+    const iq=input.closest('.iq');
+    if(!iq||iq.querySelector('.easy-wb-box'))return;
+    const ans=input.getAttribute('data-ans')||'';
+    const words=shuffleArr(ans.replace(/[.,!?]/g,'').split(/\s+/).filter(Boolean));
+    const box=document.createElement('div');
+    box.className='easy-wb-box';
+    box.innerHTML='<strong>🟢 Word Bank / بنك الكلمات</strong><div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px">'
+      +words.map(w=>'<span class="wb-chip">'+w+'</span>').join('')+'</div>';
+    iq.appendChild(box);
+  });
+}
+function removeWordBanksForFreeText(){ document.querySelectorAll('.easy-wb-box').forEach(b=>b.remove()); }
+
+/* ---------- COMPLETION LOCK ---------- */
+let completedQuestions={};
+function isQuestionCompleted(qid){return !!(qid&&completedQuestions[qid]);}
+function markQuestionCompleted(qid){if(!qid)return;completedQuestions[qid]=true;saveState();}
+function assignQIDs(){
+  document.querySelectorAll('.iq').forEach((el,i)=>{ if(el.querySelector('.interactive-input[data-ans]')&&!el.dataset.qid)el.dataset.qid='iq'+i; });
+  document.querySelectorAll('.mcq-block').forEach((el,i)=>{ if(!el.dataset.qid)el.dataset.qid='mcq'+i; });
+}
+function showAlreadyCompleted(container){
+  if(!container)return;
+  let msg=container.querySelector(':scope > .already-done-note');
+  if(!msg){ msg=document.createElement('div'); msg.className='empty-warning already-done-note';
+    msg.innerHTML='✅ Already completed.<span dir="rtl">✅ تم إكمال هذا السؤال مسبقاً.</span>'; container.appendChild(msg); }
+  msg.classList.add('visible');
+  clearTimeout(msg._hideTimer);
+  msg._hideTimer=setTimeout(()=>msg.classList.remove('visible'),2200);
+}
+
+/* ---------- SKILL CATEGORY TRACKING ---------- */
+const SKILL_MAP={
+  ex1:'Infinitive of Purpose',
+  ex2:'Infinitive of Purpose (Joining)',
+  ex3:'Time Clauses',
+  ex4:'Time Clauses (Fix Mistakes)',
+  ex5:'Prepositions',
+  quiz:'Boss Challenge (Mixed)'
+};
+let categoryStats={};
+function recordCategoryAttempt(exId,correct){
+  if(!exId)return;
+  const skill=SKILL_MAP[exId]||exId;
+  if(!categoryStats[skill])categoryStats[skill]={correct:0,attempts:0};
+  categoryStats[skill].attempts++;
+  if(correct)categoryStats[skill].correct++;
+}
+
+/* ---------- FLEXIBLE ANSWER MATCHING ---------- */
+function normalizeAnswer(s){
+  return String(s||'').toLowerCase().replace(/[.,!?—"']/g,'').replace(/\s+/g,' ').trim();
+}
+function isEmptyAnswer(v){ return !v || String(v).replace(/[\s\t\n\r]+/g,'').length===0; }
+function showEmptyWarning(container){
+  if(!container)return;
+  let warn=container.querySelector(':scope > .empty-warning:not(.easy-retry-note):not(.already-done-note)');
+  if(!warn){ warn=document.createElement('div'); warn.className='empty-warning';
+    warn.innerHTML='⚠️ Please write an answer first.<span>⚠️ اكتب إجابة أولاً قبل التحقق.</span>'; container.appendChild(warn); }
+  warn.classList.add('visible');
+  clearTimeout(warn._hideTimer);
+  warn._hideTimer=setTimeout(()=>warn.classList.remove('visible'),3000);
+}
+
+/* ---------- WRAP EXISTING FUNCTIONS ---------- */
+let suppressRewards=false;
+const _addXP=window.addXP;
+window.addXP=function(pts,el){
+  if(suppressRewards)return;
+  _addXP(pts,el);
+  if(pts>0){
+    checkLevelUp();
+    if(xp>=100)unlockAchievement('xp100');
+  }
+  saveState();
+};
+
+const _checkInput=window.checkInput;
+window.checkInput=function(btn,exId,explanation){
+  const iq=btn.closest('.iq');
+  const qid=iq?iq.dataset.qid:null;
+  if(qid&&isQuestionCompleted(qid)){ showAlreadyCompleted(iq); return; }
+  const inputs=iq?Array.from(iq.querySelectorAll('.interactive-input')):[];
+  if(inputs.length&&inputs.every(i=>isEmptyAnswer(i.value))){ showEmptyWarning(iq); return; }
+  if(easyModeActive()&&inputs.length===1){
+    const singleInput=inputs[0];
+    const expected=normalizeAnswer(singleInput.getAttribute('data-ans'));
+    const userAns=normalizeAnswer(singleInput.value);
+    const attempts=parseInt(singleInput.dataset.easyAttempts||'0',10);
+    if(userAns!==expected&&attempts<2){
+      singleInput.dataset.easyAttempts=String(attempts+1);
+      showEasyRetry(iq,2-attempts);
+      return;
+    }
+  }
+  const prevStreak=streak;
+  _checkInput(btn,exId,explanation);
+  if(inputs.length){
+    inputs.forEach(i=>{i.dataset.easyAttempts='0';});
+    const allCorrect=inputs.every(i=>i.classList.contains('is-correct'));
+    const anyWrong=inputs.some(i=>i.classList.contains('is-wrong'));
+    if(allCorrect||anyWrong){
+      recordCategoryAttempt(exId,allCorrect);
+      totalAttempts++;
+      if(allCorrect){
+        totalCorrectAttempts++;
+        if(streak>maxStreak)maxStreak=streak;
+        unlockAchievement('first-correct');
+        if(streak>=5)unlockAchievement('streak5');
+        awardSpeedBonus();
+      }else{
+        totalWrongAttempts++;
+        resetQuestionTimer();
+      }
+      saveState();
+    }
+    if(allCorrect&&qid){ markQuestionCompleted(qid); checkFirstMissionComplete(iq); }
+  }
+};
+
+const _selectMCQ=window.selectMCQ;
+window.selectMCQ=function(el,isCorrect,exId,explanation){
+  const block=el.closest('.mcq-block');
+  const qid=block?block.dataset.qid:null;
+  if(qid&&isQuestionCompleted(qid)){ showAlreadyCompleted(block); return; }
+  const prevBossTime=(exId==='quiz'&&typeof bossTime!=='undefined')?bossTime:null;
+  const prevMyHP=(exId==='quiz'&&typeof myHP!=='undefined')?myHP:null;
+  _selectMCQ(el,isCorrect,exId,explanation);
+  if(exId==='quiz'&&bossPracticeMode&&!isCorrect){
+    if(prevBossTime!==null){bossTime=prevBossTime;const bt=document.getElementById('b-time');if(bt)bt.textContent='∞';}
+    if(prevMyHP!==null){
+      myHP=prevMyHP;
+      const mb=document.getElementById('b-my-bar');if(mb)mb.style.width=myHP+'%';
+      const mp=document.getElementById('b-my-pct');if(mp)mp.textContent=myHP+'%';
+    }
+  }
+  if(isCorrect&&qid)markQuestionCompleted(qid);
+  recordCategoryAttempt(exId,isCorrect);
+  totalAttempts++;
+  if(isCorrect){
+    totalCorrectAttempts++;
+    if(streak>maxStreak)maxStreak=streak;
+    unlockAchievement('first-correct');
+    if(streak>=5)unlockAchievement('streak5');
+    awardSpeedBonus();
+  }else{
+    totalWrongAttempts++;
+    resetQuestionTimer();
+  }
+  saveState();
+  if(exId==='quiz'){
+    const wrap=el.closest('.ex-card')||document.body;
+    wrap.classList.add('screen-shake');setTimeout(()=>wrap.classList.remove('screen-shake'),350);
+    showDamageFloat(isCorrect);
+    if(isCorrect)checkBossPhaseProgress();
+    if(typeof bossHP!=='undefined'&&bossHP<=0){
+      bossResult='Victory 🏆';
+      unlockAchievement('boss-defeat');
+      grantOneTimeReward('bossVictory',100,'👾 Final Boss Defeated! +100 XP');
+      saveState();
+    }
+  }
+};
+
+const _revealOne=window.revealOne;
+window.revealOne=function(id,btn){
+  const prevCompletedTotal=completedTotal;
+  suppressRewards=true;
+  try{ _revealOne(id,btn); } finally { suppressRewards=false; }
+  if(completedTotal!==prevCompletedTotal){ completedTotal=prevCompletedTotal; updateProgressBar(); }
+  saveState();
+};
+
+const _resetEx=window.resetEx;
+window.resetEx=function(id){
+  _resetEx(id);
+  document.querySelectorAll('.interactive-input').forEach(inp=>{inp.dataset.easyAttempts='0';});
+  document.querySelectorAll('.easy-letter-btn,.easy-len-btn,.easy-extra-hint-btn').forEach(b=>{b.disabled=false;});
+  document.querySelectorAll('[data-ex="'+id+'"]').forEach(marker=>{
+    const row=marker.closest('.item-row');
+    const block=marker.closest('.mcq-block');
+    const targets=[];
+    if(block)targets.push(block);
+    if(row){ const iq=row.querySelector('.iq'); if(iq)targets.push(iq); }
+    targets.forEach(t=>{ if(t.dataset.qid&&isQuestionCompleted(t.dataset.qid))showAlreadyCompleted(t); });
+  });
+  saveState();
+};
+
+const _showTab=window.showTab;
+window.showTab=function(n){
+  _showTab(n);
+  const bossHud=document.getElementById('boss-hud-fixed');
+  if(bossHud){
+    if(n===9&&typeof bossStarted!=='undefined'&&bossStarted){ bossHud.classList.add('active'); }
+    else{ bossHud.classList.remove('active'); }
+  }
+  resetQuestionTimer();
+  checkAllGrammarSeen(n);
+  if(n===8&&typeof paintStoryScreen==='function')paintStoryScreen(storyIdx);
+  lastTab=n;
+  saveState();
+};
+
+const GRAMMAR_TABS=[0,3,6];
+let grammarSeen={};
+GRAMMAR_TABS.forEach(t=>{grammarSeen[t]=false;});
+function checkAllGrammarSeen(n){
+  if(GRAMMAR_TABS.includes(n))grammarSeen[n]=true;
+  if(GRAMMAR_TABS.every(t=>grammarSeen[t])){
+    unlockAchievement('all-grammar');
+    grantOneTimeReward('grammarComplete',50,'📘 Grammar Completion! +50 XP');
+  }
+  if(n===1)unlockAchievement('mission1');
+}
+
+function showDamageFloat(isCorrect){
+  const el=document.createElement('div');
+  el.className='dmg-float';
+  el.textContent=isCorrect?'-1 HP 💥':'-10s ⏱️';
+  el.style.color=isCorrect?'#22c55e':'#ef4444';
+  el.style.left=(40+Math.random()*40)+'vw';
+  el.style.top=(30+Math.random()*10)+'vh';
+  document.body.appendChild(el);
+  if(el.animate){
+    el.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(-50px)',opacity:0}],{duration:800,easing:'ease-out'}).onfinish=()=>el.remove();
+  }else{ setTimeout(()=>el.remove(),800); }
+}
+
+/* ---------- MULTI-PHASE BOSS + OPTIONAL TIMER ---------- */
+const BOSS_PHASES=[
+  {name:'Infinitive of Purpose',            color:'linear-gradient(90deg,#0F766E,#16A34A)'},
+  {name:'Time Clauses & Prepositions',      color:'linear-gradient(90deg,#2563EB,#7C3AED)'}
+];
+const BOSS_PHASE_OF_INDEX=[0,0,1,1,1,0,1,1,1,1,0,1];
+let bossPhaseIdx=0;
+let bossPhaseBlocks=[];
+let bossPracticeMode=false;
+window.openBossModeSelector=function(){document.getElementById('boss-mode-overlay').classList.add('show');};
+window.startBossWithMode=function(mode){
+  bossPracticeMode=(mode==='practice');
+  document.getElementById('boss-mode-overlay').classList.remove('show');
+  if(bossPracticeMode){ startBossPractice(); } else { startBoss(); }
+};
+function startBossPractice(){
+  if(bossStarted)return;
+  bossStarted=true;
+  const ov=document.getElementById('boss-overlay');
+  if(ov)ov.style.display='none';
+  document.getElementById('boss-hud-fixed').classList.add('active');
+  const timeEl=document.getElementById('b-time');
+  if(timeEl)timeEl.textContent='∞';
+  const timerWrap=document.getElementById('b-timer');
+  if(timerWrap){timerWrap.innerHTML='🎯 Practice Mode';timerWrap.classList.remove('hurry');}
+}
+function setupBossPhases(){
+  const body=document.querySelector('#tab-9 .ex-body');
+  if(!body||body.dataset.phasesInit)return;
+  body.dataset.phasesInit='1';
+  const blocks=Array.from(body.querySelectorAll('.mcq-block'));
+  bossPhaseBlocks=BOSS_PHASES.map(()=>[]);
+  blocks.forEach((block,i)=>{
+    const p=BOSS_PHASE_OF_INDEX[i]!==undefined?BOSS_PHASE_OF_INDEX[i]:0;
+    bossPhaseBlocks[p].push(block);
+  });
+  bossPhaseBlocks.forEach((group,p)=>{
+    if(!group.length)return;
+    const banner=document.createElement('div');
+    banner.className='phase-banner phase-banner-'+p;
+    banner.style.background=BOSS_PHASES[p].color;
+    banner.textContent='⚔️ Phase '+(p+1)+' / '+BOSS_PHASES.length+' — '+BOSS_PHASES[p].name;
+    banner.style.display=p===0?'':'none';
+    group[0].parentNode.insertBefore(banner,group[0]);
+    group.forEach(b=>{ b.style.display=p===0?'':'none'; });
+  });
+  updateBossHPColor(0);
+}
+function updateBossHPColor(p){
+  const bar=document.getElementById('b-boss-bar');
+  if(bar&&BOSS_PHASES[p])bar.style.background=BOSS_PHASES[p].color;
+}
+function checkBossPhaseProgress(){
+  const group=bossPhaseBlocks[bossPhaseIdx];
+  if(!group||!group.length)return;
+  const allDone=group.every(b=>b.dataset.qid&&isQuestionCompleted(b.dataset.qid));
+  if(allDone)advanceBossPhase();
+}
+function advanceBossPhase(){
+  const finishedIdx=bossPhaseIdx;
+  showPhaseClearedBanner(finishedIdx);
+  bossPhaseIdx++;
+  saveState();
+  if(bossPhaseIdx>=BOSS_PHASES.length)return;
+  setTimeout(()=>{
+    bossPhaseBlocks[finishedIdx].forEach(b=>b.style.display='none');
+    const oldBanner=document.querySelector('.phase-banner-'+finishedIdx);
+    if(oldBanner)oldBanner.style.display='none';
+    const nextGroup=bossPhaseBlocks[bossPhaseIdx];
+    if(nextGroup&&nextGroup.length){
+      nextGroup.forEach(b=>b.style.display='');
+      const nb=document.querySelector('.phase-banner-'+bossPhaseIdx);
+      if(nb){nb.style.display='';nb.classList.add('phase-enter');setTimeout(()=>nb.classList.remove('phase-enter'),700);}
+    }
+    updateBossHPColor(bossPhaseIdx);
+  },1200);
+}
+function showPhaseClearedBanner(idx){
+  const toast=document.createElement('div');
+  toast.className='phase-cleared-toast';
+  toast.textContent='⚔️ Phase '+(idx+1)+' Cleared!';
+  document.body.appendChild(toast);
+  triggerConfetti();
+  playSound('correct');
+  setTimeout(()=>toast.remove(),1400);
+}
+function restoreBossPhaseVisibility(){
+  if(!bossPhaseBlocks.length)return;
+  bossPhaseBlocks.forEach((group,p)=>{
+    const banner=document.querySelector('.phase-banner-'+p);
+    const visible=p===bossPhaseIdx;
+    group.forEach(b=>{b.style.display=visible?'':'none';});
+    if(banner)banner.style.display=visible?'':'none';
+  });
+  updateBossHPColor(bossPhaseIdx);
+}
+function recomputeBossStateFromCompletion(){
+  if(!bossPhaseBlocks.length)return;
+  let doneCount=0;
+  bossPhaseIdx=0;
+  bossPhaseBlocks.forEach((group,p)=>{
+    const allDone=group.length>0&&group.every(b=>b.dataset.qid&&isQuestionCompleted(b.dataset.qid));
+    group.forEach(b=>{ if(b.dataset.qid&&isQuestionCompleted(b.dataset.qid))doneCount++; });
+    if(allDone)bossPhaseIdx=p+1;
+  });
+  bossPhaseIdx=Math.min(BOSS_PHASES.length-1,bossPhaseIdx);
+  if(typeof bossHP!=='undefined'){
+    bossHP=Math.max(0,BOSS_TOTAL-doneCount);
+    const bar=document.getElementById('b-boss-bar');
+    const pctEl=document.getElementById('b-boss-pct');
+    const pct=Math.max(0,(bossHP/BOSS_TOTAL)*100);
+    if(bar)bar.style.width=pct+'%';
+    if(pctEl)pctEl.textContent=Math.round(pct)+'%';
+  }
+}
+function paintCompletedBossBlocks(){
+  document.querySelectorAll('#tab-9 .mcq-block').forEach(b=>{
+    if(b.dataset.qid&&isQuestionCompleted(b.dataset.qid))b.classList.add('already-solved');
+  });
+}
+const _retryBoss=window.retryBoss;
+window.retryBoss=function(){
+  _retryBoss();
+  bossResult='Retrying';
+  recomputeBossStateFromCompletion();
+  paintCompletedBossBlocks();
+  restoreBossPhaseVisibility();
+  saveState();
+};
+
+/* ---------- STORY MODE ---------- */
+const STORY=[
+  {em:'✈️',en:"Yusuf went to the airport to meet his uncle, who was arriving from abroad.",ar:"ذهب يوسف إلى المطار ليقابل عمه القادم من الخارج.",q:"Yusuf went to the airport _______ his uncle.",opts:['to meet','for meet','meeting'],correct:0,xp:10},
+  {em:'💰',en:"He has been saving money to buy a new bicycle for months.",ar:"يدخر المال منذ أشهر ليشتري دراجة جديدة.",q:"He saved money _______ a new bicycle.",opts:['to buy','for buy','buying'],correct:0,xp:10},
+  {em:'📞',en:"\"I'll call you when I arrive home,\" Yusuf tells his mother before leaving.",ar:"يقول يوسف لأمه قبل أن يغادر: سأتصل بك عندما أصل إلى المنزل.",q:"I'll call you when I _______ home. (arrive, present for future)",opts:['arrive','will arrive','arrived'],correct:0,xp:10},
+  {em:'🚌',en:"\"We'll wait here until the bus arrives,\" his uncle says at the station.",ar:"يقول عمه في المحطة: سننتظر هنا حتى تصل الحافلة.",q:"We'll wait here until the bus _______. (arrive)",opts:['arrives','will arrive','arrived'],correct:0,xp:10},
+  {em:'📚',en:"Yusuf studies hard every night to pass his exams with excellent grades.",ar:"يذاكر يوسف بجد كل ليلة لينجح في امتحاناته بدرجات ممتازة.",q:"He studies hard _______ his exams.",opts:['to pass','for pass','passing'],correct:0,xp:10},
+  {em:'🧳',en:"\"Before you leave, check your luggage carefully,\" his mother reminds him.",ar:"تذكّره أمه: قبل أن تغادر، تحقق من أمتعتك جيداً.",q:"Before you _______, check your luggage.",opts:['leave','will leave','left'],correct:0,xp:15}
+];
+let storyIdx=0,storyAnswered={};
+let lastTab=0;
+function paintStoryScreen(i){
+  document.querySelectorAll('.story-screen').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  const fill=document.getElementById('story-progress-fill');
+  if(fill)fill.style.width=Math.round(((i+1)/STORY.length)*100)+'%';
+}
+window.storyGo=function(i){ storyIdx=i; paintStoryScreen(i); saveState(); };
+function renderStory(){
+  const wrap=document.getElementById('story-screens');
+  if(!wrap||wrap.dataset.built)return;
+  wrap.dataset.built='1';
+  const escAttr=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  wrap.innerHTML=STORY.map((s,i)=>{
+    const plainEn=s.en.replace(/<[^>]+>/g,'');
+    return (
+    '<div class="story-screen" id="story-s'+i+'" data-i="'+i+'">'+
+      '<div class="story-emoji">'+s.em+'</div>'+
+      '<div class="story-text">'+s.en+' <button type="button" class="audio-btn" data-speak="'+escAttr(plainEn)+'" onclick="speak(this.dataset.speak)">🔊</button></div>'+
+      '<div class="story-text-ar" dir="rtl">'+s.ar+'</div>'+
+      '<div class="story-q"><div style="font-weight:700;font-size:.86rem;margin-bottom:8px">'+s.q+'</div>'+
+      '<div class="mcq-opts" id="story-opts'+i+'">'+
+        s.opts.map((o,oi)=>'<div class="story-mcq-opt" onclick="answerStory('+i+','+oi+',this)">'+o+'</div>').join('')+
+      '</div></div>'+
+      '<div class="story-nav">'+
+        (i>0?'<button class="secondary" onclick="storyGo('+(i-1)+')">◀ Back</button>':'<button class="secondary" disabled>◀ Back</button>')+
+        (i<STORY.length-1?'<button id="story-next'+i+'" disabled onclick="storyGo('+(i+1)+')">Next ▶</button>':'<button id="story-next'+i+'" disabled onclick="storyFinish()">Finish 🏁</button>')+
+      '</div>'+
+    '</div>'
+    );
+  }).join('');
+  paintStoryScreen(0);
+}
+function restoreStoryAnsweredState(){
+  Object.keys(storyAnswered).forEach(key=>{
+    const i=parseInt(key,10);
+    if(isNaN(i)||!STORY[i])return;
+    const optsWrap=document.getElementById('story-opts'+i);
+    if(optsWrap){ Array.from(optsWrap.children).forEach((o,idx)=>{ if(idx===STORY[i].correct)o.classList.add('selected-correct'); }); }
+    const nextBtn=document.getElementById('story-next'+i);
+    if(nextBtn)nextBtn.disabled=false;
+  });
+}
+window.answerStory=function(i,oi,el){
+  if(storyAnswered[i])return;
+  storyAnswered[i]=true;
+  const correct=STORY[i].correct===oi;
+  const opts=document.getElementById('story-opts'+i).children;
+  Array.from(opts).forEach((o,idx)=>{
+    if(idx===STORY[i].correct)o.classList.add('selected-correct');
+    else if(idx===oi&&!correct)o.classList.add('selected-wrong');
+  });
+  if(correct){
+    playSound('correct');triggerConfetti();addXP(STORY[i].xp);
+  }else{
+    playSound('wrong');streak=0;const sd=document.getElementById('streak-count');if(sd)sd.textContent=0;
+  }
+  document.getElementById('story-next'+i).disabled=false;
+  saveState();
+};
+window.storyFinish=function(){
+  triggerConfetti();
+  grantOneTimeReward('storyComplete',50,'📖 Story Mode Complete! +50 XP');
+  saveState();
+};
+
+/* ---------- REPORT + SMART INSIGHTS ---------- */
+function computeSkillInsights(){
+  const entries=Object.entries(categoryStats).filter(([,v])=>v&&v.attempts>=2).map(([name,v])=>({name,acc:v.correct/v.attempts}));
+  if(!entries.length)return {strongest:'Not enough data yet',weakest:'Not enough data yet'};
+  entries.sort((a,b)=>b.acc-a.acc);
+  const strongest=entries[0],weakest=entries[entries.length-1];
+  const fmt=e=>e.name+' ('+Math.round(e.acc*100)+'%)';
+  return { strongest:fmt(strongest), weakest:(entries.length>1&&weakest.acc<strongest.acc)?fmt(weakest):'Keep practicing more categories to see this!' };
+}
+window.openReport=function(){
+  const accuracy=totalAttempts?Math.round((totalCorrectAttempts/totalAttempts)*100):0;
+  const mins=Math.floor((Date.now()-lessonStartTime)/60000);
+  const secs=Math.floor(((Date.now()-lessonStartTime)%60000)/1000);
+  let grade='C',emoji='🙂';
+  if(accuracy>=95){grade='A+';emoji='🌟';} else if(accuracy>=85){grade='A';emoji='🎉';} else if(accuracy>=70){grade='B';emoji='👍';}
+  document.getElementById('report-grade-emoji').textContent=emoji+' '+grade;
+  const achCount=Object.keys(unlocked).length;
+  const storyDone=Object.keys(storyAnswered).length;
+  const bossPhasesDone=Math.min(BOSS_PHASES.length,bossPhaseIdx);
+  const completionPct=typeof totalInteractiveItems!=='undefined'&&totalInteractiveItems?Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100)):0;
+  const insights=computeSkillInsights();
+  document.getElementById('report-grid').innerHTML=[
+    ['Student',studentName||'—'],['Avatar',chosenAvatar||'—'],['Total XP',xp],['Rank',currentLevelLabel()],
+    ['Accuracy',accuracy+'%'],['Correct Answers',totalCorrectAttempts],['Wrong Answers',totalWrongAttempts],['Total Attempts',totalAttempts],
+    ['Achievements',achCount+' / '+ACHIEVEMENTS.length],['Story Completion',storyDone+' / '+STORY.length],
+    ['Boss Completion',bossPhasesDone+' / '+BOSS_PHASES.length+' phases'],['Best Streak',maxStreak],
+    ['Time Spent',mins+'m '+secs+'s'],['Date',formatDate()],['Completion',completionPct+'%'],
+    ['✅ Strongest Skill',insights.strongest],['⚠ Needs More Practice',insights.weakest],['Grade',grade]
+  ].map(([l,v])=>'<div class="report-stat"><div class="lbl">'+l+'</div><div class="val">'+v+'</div></div>').join('');
+  document.getElementById('report-overlay').classList.add('show');
+};
+window.closeReport=function(){document.getElementById('report-overlay').classList.remove('show');};
+
+/* ---------- CERTIFICATE ---------- */
+window.downloadCertificatePng=function(){
+  try{
+    const c=document.getElementById('cert-canvas');
+    if(!c){ alert('Certificate canvas not found — please reload the page and try again.'); return; }
+    const ctx=c.getContext('2d');
+    if(!ctx){ alert('Your browser blocked canvas rendering. Please try a different browser, then try again.'); return; }
+    const grad=ctx.createLinearGradient(0,0,1000,700);
+    grad.addColorStop(0,'#1e1b4b');grad.addColorStop(1,'#4c1d95');
+    ctx.fillStyle=grad;ctx.fillRect(0,0,1000,700);
+    ctx.strokeStyle='#F59E0B';ctx.lineWidth=8;ctx.strokeRect(20,20,960,660);
+    ctx.strokeStyle='rgba(255,255,255,.4)';ctx.lineWidth=2;ctx.strokeRect(36,36,928,628);
+    ctx.textAlign='center';
+    ctx.font='90px sans-serif';ctx.fillStyle='#fff';ctx.fillText(chosenAvatar||'🎮',500,170);
+    ctx.font='900 40px Georgia, serif';ctx.fillStyle='#F59E0B';ctx.fillText('CERTIFICATE OF ACHIEVEMENT',500,235);
+    ctx.font='22px sans-serif';ctx.fillStyle='#c4b5fd';ctx.fillText('Infinitives, Time Clauses & Prepositions',500,270);
+    ctx.font='800 36px sans-serif';ctx.fillStyle='#fff';
+    ctx.fillText(studentName||'Student',500,335);
+    ctx.font='800 26px sans-serif';ctx.fillStyle='#e2e8f0';
+    const accuracy=totalAttempts?Math.round((totalCorrectAttempts/totalAttempts)*100):0;
+    const completionPct=(typeof totalInteractiveItems!=='undefined'&&totalInteractiveItems)?Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100)):0;
+    ctx.fillText('Score: '+xp+' XP   |   Rank: '+currentLevelLabel(),500,390);
+    ctx.fillText('Accuracy: '+accuracy+'%   |   Completion: '+completionPct+'%',500,430);
+    ctx.font='22px sans-serif';ctx.fillStyle='#c4b5fd';
+    ctx.fillText('Awarded on '+formatDate(),500,500);
+    ctx.font='700 26px sans-serif';ctx.fillStyle='#F59E0B';
+    ctx.fillText('— Teacher Jaber —',500,600);
+    const dataUrl=c.toDataURL('image/png');
+    if(!dataUrl||dataUrl==='data:,'){ alert('Could not generate the certificate image. Please try again.'); return; }
+    const link=document.createElement('a');
+    link.download='Infinitive-TimeClause-Certificate.png';
+    link.href=dataUrl;
+    link.style.display='none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }catch(err){
+    console.error('Certificate generation failed:',err);
+    alert('Something went wrong generating the certificate: '+err.message);
+  }
+};
+
+/* ---------- SAVE SYSTEM ---------- */
+const SAVE_KEY='u3infinitivetc_save_v1';
+function safePlainObject(v){ return (v&&typeof v==='object'&&!Array.isArray(v))?v:{}; }
+function safeNumber(v,fallback){ return (typeof v==='number'&&isFinite(v))?v:fallback; }
+function saveState(){
+  try{
+    localStorage.setItem(SAVE_KEY,JSON.stringify({
+      xp,streak,completedTotal,unlocked,chosenAvatar,totalAttempts,totalCorrectAttempts,totalWrongAttempts,maxStreak,bossResult,
+      S,grammarSeen,storyAnswered,completedQuestions,bossPhaseIdx,rewardsGranted,lastTab,storyIdx,categoryStats
+    }));
+  }catch(e){ console.warn('Could not save progress:',e); }
+}
+function loadState(){
+  try{
+    const raw=localStorage.getItem(SAVE_KEY);
+    if(!raw)return false;
+    let d;
+    try{ d=JSON.parse(raw); } catch(parseErr){ console.warn('Saved progress was corrupted — starting fresh.',parseErr); return false; }
+    if(!d||typeof d!=='object'){ console.warn('Saved progress had an unexpected shape — starting fresh.'); return false; }
+    xp=safeNumber(d.xp,0);streak=safeNumber(d.streak,0);completedTotal=safeNumber(d.completedTotal,0);
+    unlocked=safePlainObject(d.unlocked);chosenAvatar=(typeof d.chosenAvatar==='string')?d.chosenAvatar:null;
+    totalAttempts=safeNumber(d.totalAttempts,0);totalCorrectAttempts=safeNumber(d.totalCorrectAttempts,0);totalWrongAttempts=safeNumber(d.totalWrongAttempts,0);maxStreak=safeNumber(d.maxStreak,0);
+    bossResult=(typeof d.bossResult==='string')?d.bossResult:'Not Attempted';
+    Object.assign(S,safePlainObject(d.S));
+    const gs=safePlainObject(d.grammarSeen);
+    GRAMMAR_TABS.forEach(t=>{grammarSeen[t]=!!gs[t];});
+    storyAnswered=safePlainObject(d.storyAnswered);
+    completedQuestions=safePlainObject(d.completedQuestions);
+    rewardsGranted=safePlainObject(d.rewardsGranted);
+    categoryStats=safePlainObject(d.categoryStats);
+    lastTab=Math.min(9,Math.max(0,Math.round(safeNumber(d.lastTab,0))));
+    storyIdx=Math.min(STORY.length-1,Math.max(0,Math.round(safeNumber(d.storyIdx,0))));
+    bossPhaseIdx=Math.min(BOSS_PHASES.length-1,Math.max(0,Math.round(safeNumber(d.bossPhaseIdx,0))));
+    document.getElementById('xp-count').textContent=xp;
+    document.getElementById('streak-count').textContent=streak;
+    updateProgressBar();
+    prevLevelLabel=currentLevelLabel();
+    document.getElementById('level-badge').textContent=prevLevelLabel;
+    return true;
+  }catch(e){ console.warn('Could not restore saved progress:',e); return false; }
+}
+
+/* ---------- RESET PROGRESS ---------- */
+window.confirmResetProgress = function() {
+  const modal = document.getElementById('reset-confirm-modal');
+  if (modal) {
+    modal.classList.add('show');
+  } else {
+    // Fallback if modal is missing
+    executeResetProgress();
+  }
+};
+
+window.closeResetModal = function() {
+  const modal = document.getElementById('reset-confirm-modal');
+  if (modal) {
+    modal.classList.remove('show');
+  }
+};
+
+window.executeResetProgress = function() {
+  try {
+    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(DIFF_KEY);
+    localStorage.removeItem(NAME_KEY);
+  } catch (e) {
+    console.error('Could not clear localStorage:', e);
+  }
+  location.reload();
+};
+/* ---------- DEFENSIVE AUDIT ---------- */
+function auditAllQuestions(){
+  document.querySelectorAll('.mcq-opt,.story-mcq-opt').forEach(opt=>{
+    if(!opt.textContent.trim()){
+      console.warn('MCQ option with blank text detected and repaired:',opt);
+      opt.textContent='(missing option)';opt.style.opacity='.5';opt.onclick=null;
+    }
+  });
+  STORY.forEach((s,i)=>{
+    if(!Array.isArray(s.opts)||s.opts.some(o=>!o||!String(o).trim())||typeof s.correct!=='number'||s.correct<0||s.correct>=s.opts.length){
+      console.warn('Story Mode screen '+i+' has a corrupted option set.',s);
+    }
+  });
+}
+
+/* ---------- INIT ---------- */
+function initApp(){
+  try{
+    assignQIDs();
+    const restored=loadState();
+    const restoredLastTab=lastTab, restoredStoryIdx=storyIdx;
+    renderAchPanel();
+    renderStory();
+    paintStoryScreen(restoredStoryIdx);
+    setupBossPhases();
+    auditAllQuestions();
+    recomputeBossStateFromCompletion();
+    paintCompletedBossBlocks();
+    restoreBossPhaseVisibility();
+    restoreStoryAnsweredState();
+    updateModeBadge();
+    updateNameDisplays();
+    if(easyModeActive()){applyEasyModeToInputs();insertWordBanksForFreeText();}
+    if(chosenAvatar){
+      document.querySelectorAll('.avatar-opt').forEach(o=>{if(o.getAttribute('data-av')===chosenAvatar)o.classList.add('picked');});
+      updateAvatarChip();
+    }
+    if(!studentName){ document.getElementById('name-overlay').classList.add('show'); }
+    else if(!difficultyMode){ document.getElementById('difficulty-overlay').classList.add('show'); }
+    else if(!chosenAvatar){ document.getElementById('avatar-overlay').classList.add('show'); }
+    else if(restored){ showTab(restoredLastTab); }
+    if(prevLevelLabel===null)prevLevelLabel=currentLevelLabel();
+    resetQuestionTimer();
+    const startBtn=document.querySelector('#boss-overlay button[onclick="startBoss()"]');
+    if(startBtn)startBtn.setAttribute('onclick','openBossModeSelector()');
+  }catch(err){
+    console.error('Lesson initialization error:',err);
+  }
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initApp);
+}else{
+  initApp();
+}
+
+})();
+</script>
+
+</body>
+</html>
