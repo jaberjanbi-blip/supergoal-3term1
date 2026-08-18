@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 4 Vocabulary – What Do I Need To Buy? | Teacher Jaber</title>
+<!-- Confetti Library for Celebrations -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<style>
+:root {
+  /* Core Colors */
+  --coral: #FF6B6B;
+  --teal: #4ECDC4;
+  --navy: #1B4D3E;
+  --gold: #FFD93D;
+  --purple: #7C3AED;
+  --green: #16A34A;
+  --blue: #2563EB;
+  --orange: #F59E0B;
+  --pink: #EC4899;
+  
+  /* Theme Variables (Light Mode Default) */
+  --bg-color: #F0FFF4;
+  --text-main: #1A1A2E;
+  --text-muted: #666666;
+  --card-bg: #FFFFFF;
+  --card-front-bg: #FFFFFF;
+  --card-back-bg: #1B4D3E;
+  --card-back-text: #FFFFFF;
+  --block-bg: #F8FFF8;
+  --opt-bg: #F0FFF4;
+  --border-color: #E5E7EB;
+  --shadow: 0 8px 32px rgba(27,77,62,.13);
+  --nav-bg: #1A1A2E;
+}
+
+body.dark-mode {
+  /* Theme Variables (Dark Mode) */
+  --bg-color: #121212;
+  --text-main: #F0FFF4;
+  --text-muted: #A0AEC0;
+  --card-bg: #1E2922;
+  --card-front-bg: #1E2922;
+  --card-back-bg: #064E3B;
+  --card-back-text: #F0FFF4;
+  --block-bg: #14532D;
+  --opt-bg: #064E3B;
+  --border-color: #047857;
+  --shadow: 0 8px 32px rgba(0,0,0,.4);
+  --nav-bg: #0F172A;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-main);
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ── ANIMATED BG ── */
+body::before {
+  content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #16A34A22, #F59E0B22, #FF6B6B22);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── HEADER & PROGRESS (IDENTICAL TO IMAGE) ── */
+.header {
+  background: linear-gradient(90deg, #2b1738, #3e214d);
+  padding: 24px 20px 20px;
+  text-align: left;
+  border-bottom: 2px solid #1f1228;
+  position: relative;
+  z-index: 10;
+}
+.header h1 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: white;
+  text-shadow: none;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header p.subtitle {
+  color: #b5a3c6;
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+  margin-left: 2px;
+}
+.header-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+.dark-mode-btn {
+  background: transparent;
+  border: 1px solid #7a668b;
+  color: white;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: .75rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  transition: 0.2s;
+  font-family: inherit;
+}
+.dark-mode-btn:hover { background: rgba(255,255,255,0.1); }
+.super-goal-badge {
+  background: #F59E0B;
+  color: #1E3A8A;
+  font-weight: 900;
+  font-size: 0.9rem;
+  padding: 6px 20px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* STATS BAR */
+.stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  color: white;
+  font-size: 0.95rem;
+}
+.stat-label { letter-spacing: 0.5px; }
+.stat-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+.xp-val { background: #FBBF24; }
+.coin-val { background: linear-gradient(135deg,#FBBF24,#F59E0B); }
+.streak-val { background: #EA580C; color: white; }
+.score-val { background: #10B981; color: white; }
+.rank-badge { background: linear-gradient(135deg,#1E3A5F,#2563EB); color:white; padding:5px 14px; border-radius:20px; font-size:.85rem; font-weight:800; white-space:nowrap; }
+
+.header-progress-container {
+  flex: 1;
+  min-width: 150px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-left: 10px;
+}
+.header-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #b59bce; /* Distinct lavender color to match the provided image */
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.xp-float {
+  position: absolute; top: -20px; right: 0; color: var(--gold); font-weight: bold;
+  font-size: 1.2rem; pointer-events: none; opacity: 0; animation: floatUp 1s ease-out forwards; z-index: 1000;
+}
+@keyframes floatUp {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-30px) scale(1.5); }
+}
+
+/* ── NAV TABS (REMASTERED) ── */
+.nav-tabs {
+  display: flex; overflow-x: auto; gap: 10px; 
+  background: #0f172a; 
+  padding: 14px 20px;
+  scrollbar-width: thin; scrollbar-color:#4338CA rgba(255,255,255,.08);
+  position: sticky; top: 0; z-index: 100; scroll-behavior: smooth;
+  border-bottom: 1px solid #1e293b; cursor:grab; user-select:none;
+}
+.nav-tabs.is-dragging{cursor:grabbing;}
+.nav-tabs::-webkit-scrollbar { height:5px; display:block; }
+.nav-tabs::-webkit-scrollbar-track{background:rgba(255,255,255,.06);border-radius:10px;margin:0 14px;}
+.nav-tabs::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#7C3AED,#2563EB);border-radius:10px;}
+.nav-tabs::-webkit-scrollbar-thumb:hover{background:linear-gradient(90deg,#6D28D9,#1d4ed8);}
+.nav-tabs button {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 20px;
+  color: #94a3b8;
+  cursor: pointer; font-size: .88rem; font-weight: 700; 
+  padding: 8px 20px; white-space: nowrap; transition: all .2s;
+  display: flex; align-items: center; gap: 6px;
+}
+.nav-tabs button.active { 
+  background: #F59E0B; 
+  color: #1e3a8a; 
+  border-color: #F59E0B; 
+}
+.nav-tabs button:hover:not(.active) { background: #334155; color: white; }
+
+/* ── AUDIO BUTTON ── */
+.audio-btn {
+  background: var(--opt-bg); border: none; border-radius: 50%; width: 28px; height: 28px;
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+  font-size: 0.8rem; margin-left: 6px; vertical-align: middle; transition: 0.2s; color: var(--text-main);
+}
+.audio-btn:hover { background: var(--green); color: white; transform: scale(1.1); }
+.vocab-card-front .audio-btn { width: 36px; height: 36px; font-size: 1.1rem; margin-top: 10px; background: var(--bg-color); }
+
+/* ── CONTAINER & HERO INPUT ── */
+.container { max-width: 980px; margin: 0 auto; padding: 24px 14px 80px; position: relative; z-index: 1; }
+.page { display: none; animation: fadeIn 0.4s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.player-card {
+  background: var(--card-bg); padding: 15px 20px; border-radius: 15px; box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 20px; transition: background 0.3s;
+}
+.player-card input {
+  flex: 1; padding: 10px 15px; border-radius: 25px; border: 2px solid var(--border-color);
+  background: var(--block-bg); color: var(--text-main); font-size: 1rem; font-weight: bold;
+  font-family: inherit; outline: none; transition: border-color 0.3s;
+}
+.player-card input:focus { border-color: var(--teal); }
+
+/* ── SECTION TITLE ── */
+.section-title { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.section-title h2 { font-size: 1.12rem; font-weight: 800; color: var(--text-main); }
+.section-title .tag { background: linear-gradient(135deg, #1B4D3E, #16A34A); color: white; font-size: .75rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; }
+
+/* ── 3D FLIP VOCAB CARDS ── */
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 11px; margin-bottom: 22px; }
+.vocab-card { background: transparent; perspective: 1000px; height: 160px; cursor: pointer; border: none; padding: 0; }
+.vocab-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; }
+.vocab-card.flipped .vocab-card-inner { transform: rotateY(180deg); }
+.vocab-card-front, .vocab-card-back { 
+  position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; 
+  padding: 14px 11px; box-shadow: var(--shadow); display: flex; flex-direction: column; 
+  justify-content: center; align-items: center; border-top: 4px solid transparent; 
+}
+.vocab-card-front { background: var(--card-front-bg); transition: background 0.3s; }
+.vocab-card-back { background: var(--card-back-bg); color: var(--card-back-text); transform: rotateY(180deg); border-top: none; }
+.vocab-card-back .arabic { color: var(--gold); font-size: 1.1rem; font-weight: 800; margin-bottom: 6px; direction: rtl; }
+.vocab-card-back .example { color: #E5E7EB; font-size: .8rem; font-style: italic; line-height: 1.4; }
+
+.vocab-card.noun .vocab-card-front { border-top-color: #16A34A; }
+.vocab-card.verb .vocab-card-front { border-top-color: #F59E0B; }
+.vocab-card.part .vocab-card-front { border-top-color: #7C3AED; }
+.vocab-card.seq .vocab-card-front { border-top-color: #0891B2; }
+.vocab-card.expr .vocab-card-front { border-top-color: #1B4D3E; }
+
+.vocab-card .type-badge { font-size: .61rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 7px; }
+.vocab-card.noun .type-badge { background: rgba(22,163,74,0.15); color: #16A34A; }
+.vocab-card.verb .type-badge { background: rgba(245,158,11,0.15); color: #F59E0B; }
+.vocab-card.part .type-badge { background: rgba(124,58,237,0.15); color: #7C3AED; }
+.vocab-card.seq .type-badge { background: rgba(8,145,178,0.15); color: #0891B2; }
+.vocab-card.expr .type-badge { background: rgba(27,77,62,0.15); color: #1B4D3E; }
+.vocab-card .word { font-size: .93rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px; line-height: 1.3; }
+
+/* ── CATEGORY HEADER ── */
+.cat-header { display: flex; align-items: center; gap: 8px; margin-bottom: 11px; margin-top: 8px; }
+.cat-header h3 { font-size: .95rem; font-weight: 800; color: var(--text-main); }
+.cat-header .line { flex: 1; height: 2px; background: linear-gradient(90deg, var(--text-main), transparent); border-radius: 2px; opacity: 0.2; }
+
+/* ── EX CARD ── */
+.ex-card { background: var(--card-bg); border-radius: 18px; box-shadow: var(--shadow); overflow: hidden; margin-bottom: 22px; transition: background 0.3s; }
+.ex-head { padding: 16px 22px 12px; border-bottom: 2px solid var(--block-bg); }
+.ex-head h3 { font-size: 1.05rem; font-weight: 800; color: var(--text-main); }
+.ex-head p { font-size: .85rem; color: var(--text-muted); margin-top: 3px; direction: rtl; }
+.ex-lv { font-size: .65rem; font-weight: 900; padding: 4px 12px; border-radius: 20px; display: inline-block; margin-top: 5px; letter-spacing: 0.5px; }
+.ex-lv.easy { background: rgba(16,185,129,0.15); color: var(--green); }
+.ex-lv.medium { background: rgba(245,158,11,0.15); color: var(--orange); }
+.ex-lv.hard { background: rgba(255,107,107,0.15); color: var(--coral); }
+.ex-lv.boss { background: linear-gradient(135deg, #1A1A2E, #9B59B6); color: #FFF; animation: pulse 2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(155,89,182, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(155,89,182, 0); } 100% { box-shadow: 0 0 0 0 rgba(155,89,182, 0); } }
+.ex-body { padding: 18px 22px; }
+
+/* ── FILL IN BLANKS ── */
+.fill-sentence { background: var(--block-bg); border-radius: 10px; padding: 13px 16px; margin-bottom: 10px; font-size: .95rem; line-height: 1.8; border: 2px solid var(--border-color); transition: .2s; }
+.fill-sentence.correct { border-color: var(--green); background: rgba(22,163,74,0.1); }
+.fill-sentence.wrong { border-color: var(--coral); background: rgba(255,107,107,0.1); }
+.word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; padding: 13px; background: var(--opt-bg); border-radius: 12px; }
+.wb-word { background: var(--card-bg); border: 2px solid var(--navy); border-radius: 20px; padding: 6px 16px; font-size: .85rem; font-weight: 700; cursor: pointer; color: var(--text-main); transition: .2s; user-select: none; }
+.wb-word:hover { background: var(--navy); color: white; border-color: var(--navy); }
+.wb-word.used { opacity: .35; pointer-events: none; }
+.blank { display: inline-block; min-width: 130px; border-bottom: 3px solid var(--navy); text-align: center; font-weight: 800; color: var(--green); padding: 0 8px; cursor: pointer; vertical-align: middle; border-radius: 4px; transition: .2s; }
+.blank.filled { background: var(--navy); color: white; border-radius: 6px; border-bottom: none; padding: 2px 8px; }
+
+/* ── MATCHING EXERCISE ── */
+.match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+.match-col h4 { font-size: .85rem; font-weight: 800; color: var(--text-main); margin-bottom: 10px; text-align: center; }
+.m-item { background: var(--opt-bg); border: 2px solid var(--border-color); border-radius: 10px; padding: 10px 13px; text-align: center; cursor: pointer; font-size: .85rem; font-weight: 600; transition: .2s; margin-bottom: 8px; user-select: none; color: var(--text-main); }
+.m-item:hover { border-color: var(--green); background: rgba(22,163,74,0.1); color: var(--green); }
+.m-item.selected { border-color: var(--orange); background: var(--orange); color: white; transform: scale(1.02); }
+.m-item.matched-ok { border-color: var(--green); background: var(--green); color: white; pointer-events: none; opacity: 0.8; }
+.m-item.matched-bad { border-color: var(--coral); background: var(--coral); color: white; animation: shake 0.4s; }
+
+/* ── MCQ ── */
+.mcq-block { margin-bottom: 22px; padding-bottom: 22px; border-bottom: 2px solid var(--border-color); }
+.mcq-block:last-child { border: none; margin-bottom: 0; padding-bottom: 0; }
+.mcq-q { font-size: .95rem; font-weight: 700; color: var(--text-main); margin-bottom: 12px; line-height: 1.5; }
+.mcq-q em { color: var(--coral); font-style: normal; font-weight: 900; }
+.mcq-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media(max-width: 440px) { .mcq-options { grid-template-columns: 1fr; } }
+.mcq-opt { background: var(--opt-bg); border: 2px solid var(--border-color); border-radius: 10px; padding: 9px 13px; font-size: .85rem; cursor: pointer; transition: .2s; font-weight: 600; text-align: center; user-select: none; color: var(--text-main); }
+.mcq-opt:hover:not(.locked) { border-color: var(--green); background: rgba(22,163,74,0.1); color: var(--green); }
+.mcq-opt.correct { background: var(--green) !important; border-color: var(--green) !important; color: white !important; font-weight: 800; transform: scale(1.02); }
+.mcq-opt.wrong { background: var(--coral) !important; border-color: var(--coral) !important; color: white !important; }
+.mcq-opt.locked { pointer-events: none; }
+
+/* ── TYPING CHALLENGE (NEW) ── */
+.type-challenge { background: var(--block-bg); padding: 15px; border-radius: 12px; border: 2px dashed var(--border-color); text-align: center; margin-bottom: 15px; }
+.type-challenge p { margin-bottom: 10px; font-weight: bold; font-size: 1rem; color: var(--text-main); }
+.type-input { 
+  width: 80%; max-width: 300px; padding: 10px; font-size: 1.1rem; text-align: center; font-weight: bold;
+  border: 2px solid var(--navy); border-radius: 8px; background: var(--card-bg); color: var(--text-main);
+}
+.type-input.correct { border-color: var(--green); background: rgba(22,163,74,0.1); }
+.type-input.wrong { border-color: var(--coral); background: rgba(255,107,107,0.1); }
+
+/* ── SCORE BOX / BOSS SCORE ── */
+.score-box { background: linear-gradient(135deg, #1A1A2E, #4A0E4E); border-radius: 18px; padding: 30px; text-align: center; color: white; margin-bottom: 22px; display: none; box-shadow: 0 10px 30px rgba(74,14,78,0.4); border: 2px solid var(--gold); }
+.score-box .s-num { font-size: 3.5rem; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.score-box .score-label { font-size: 1rem; opacity: .9; margin-top: 4px; font-weight: bold; }
+.score-box .s-msg { font-size: 1.2rem; font-weight: 800; margin-top: 15px; color: var(--gold); }
+
+/* ── BUTTONS ── */
+.btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.btn { border: none; border-radius: 25px; cursor: pointer; font-size: .85rem; font-weight: 800; padding: 10px 22px; transition: .2s; font-family: inherit; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+.btn:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+.btn:active { transform: translateY(0); }
+.btn-primary { background: linear-gradient(135deg, #1B4D3E, #16A34A); }
+.btn-secondary { background: linear-gradient(135deg, var(--coral), var(--orange)); }
+.btn-reset { background: #6B7280; }
+.btn-boss { background: linear-gradient(135deg, #e74c3c, #8e44ad); font-size: 1rem; padding: 12px 30px; text-transform: uppercase; letter-spacing: 1px; }
+
+.score-line { font-size: .88rem; color: var(--text-muted); margin-bottom: 12px; font-weight: bold; }
+.score-line strong { color: var(--text-main); font-size: .98rem; }
+
+/* ── PROGRESS BAR ── */
+.progress-bar { width: 100%; height: 10px; background: var(--border-color); border-radius: 5px; overflow: hidden; margin-bottom: 16px; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #1B4D3E, var(--gold)); border-radius: 5px; transition: width .4s cubic-bezier(0.4, 0.2, 0.2, 1); }
+
+/* ── TRANSLATE PANEL & BUTTONS ── */
+.wb-tr-btn { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #1B4D3E, #16A34A); border: none; border-radius: 25px; color: white; cursor: pointer; font-size: .78rem; font-weight: 800; padding: 7px 18px; margin-bottom: 10px; transition: .2s; font-family: inherit; box-shadow: 0 3px 10px rgba(27,77,62,.25); }
+.wb-tr-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(27,77,62,.35); }
+.wb-tr-panel { display: none; background: linear-gradient(135deg, #0F2027, #1B4D3E); border-radius: 14px; padding: 12px 16px; margin-bottom: 14px; display: none; grid-template-columns: 1fr 1fr; gap: 8px; border: 1px solid rgba(78,205,196,.3); box-shadow: 0 4px 20px rgba(0,0,0,.3); }
+.wb-tr-panel.open { display: grid; animation: fadeSlide .2s ease; }
+.wb-tr-row { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,.06); border-radius: 9px; padding: 7px 12px; gap: 10px; }
+.wb-en { font-weight: 800; color: #4ECDC4; font-size: .85rem; letter-spacing: .3px; }
+.wb-ar { font-weight: 700; color: #FFD93D; font-size: .88rem; direction: rtl; }
+
+.tr-btn { display: inline-flex; align-items: center; gap: 4px; background: linear-gradient(135deg, #4ECDC4, #16A34A); border: none; border-radius: 20px; color: white; cursor: pointer; font-size: .75rem; font-weight: 700; padding: 5px 12px; margin-top: 6px; transition: .2s; font-family: inherit; }
+.tr-btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+.tr-tooltip { display: none; direction: rtl; background: var(--nav-bg); color: var(--gold); font-size: .9rem; font-weight: 700; padding: 10px 15px; border-radius: 10px; margin-top: 8px; text-align: right; line-height: 1.6; border-right: 4px solid #4ECDC4; }
+.tr-tooltip.show { display: block; animation: fadeSlide .2s ease; }
+
+.m-item .match-tr { display: none; font-size: .75rem; color: var(--gold); direction: rtl; background: rgba(0,0,0,0.4); border-radius: 6px; padding: 4px 8px; margin-top: 6px; font-weight: 700; width: 100%; text-align: center; }
+.match-tr-show .m-item .match-tr { display: block; }
+
+footer { background: var(--nav-bg); color: rgba(255,255,255,.6); text-align: center; padding: 16px; font-size: .8rem; margin-top: 40px; }
+footer span { display: block; margin-top: 4px; font-weight: bold; color: var(--gold); }
+
+/* ══════════════ NEW: bump animation for HUD stats ══════════════ */
+.stat-value.bump { animation: statBump .3s ease; }
+@keyframes statBump { 0%{transform:scale(1);} 50%{transform:scale(1.35);} 100%{transform:scale(1);} }
+.mcq-opt.eliminated { opacity:.25; pointer-events:none; text-decoration:line-through; }
+.btn-ghost { background: transparent; border: 2px solid rgba(255,255,255,.5); box-shadow:none; }
+
+/* ── BADGE TOAST ── */
+#badgeToast{
+  position:fixed;bottom:1.5rem;left:50%;max-width:90vw;
+  transform:translateX(-50%) translateY(150px);opacity:0;
+  background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;border-radius:16px;
+  padding:.9rem 1.6rem;font-size:.9rem;font-weight:800;display:flex;align-items:center;gap:.75rem;
+  box-shadow:0 8px 30px rgba(124,58,237,.4);z-index:9999;
+  transition:transform .4s cubic-bezier(.175,.885,.32,1.275),opacity .3s ease;pointer-events:none;
+}
+#badgeToast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+
+/* ══════════════ ONBOARDING / MODAL OVERLAYS (dark purple, identical across the series) ══════════════ */
+.ns-overlay{display:none;position:fixed;inset:0;background:rgba(10,5,20,.75);z-index:2000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px);}
+.ns-overlay.show{display:flex;animation:fadeInOv .3s ease;}
+@keyframes fadeInOv{from{opacity:0;}to{opacity:1;}}
+.ns-card{
+  background:linear-gradient(160deg,#2E1F5E 0%,#1B1140 100%);color:#EDE9FE;border-radius:22px;padding:28px 26px;
+  max-width:440px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.5);
+  text-align:center;border-top:4px solid var(--purple);
+}
+.ns-card h2{font-size:1.3rem;font-weight:900;margin-bottom:6px;color:#fff;}
+.ns-card p{color:#C9C3E0;}
+.ns-card input[type=text]{
+  width:100%;padding:12px 16px;border-radius:25px;border:2px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.08);color:#fff;font-size:1rem;font-weight:700;margin:14px 0;
+  font-family:inherit;outline:none;text-align:center;
+}
+.ns-card input[type=text]::placeholder{color:#A99FD1;}
+.ns-card input[type=text]:focus{border-color:var(--gold);}
+.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;}
+.avatar-opt{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.16);border-radius:18px;
+  padding:18px 10px;cursor:pointer;transition:.2s;font-weight:800;font-size:.92rem;color:#EDE9FE;
+}
+.avatar-opt:hover{border-color:var(--gold);background:rgba(255,255,255,.11);transform:translateY(-2px);}
+.avatar-opt.picked{border-color:var(--gold);background:rgba(255,217,61,.16);box-shadow:0 4px 14px rgba(255,217,61,.3);}
+.avatar-opt .av-emoji{font-size:2.4rem;}
+
+/* ══════════════ ACHIEVEMENTS ══════════════ */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+.ach-card{background:var(--opt-bg);border-radius:14px;padding:14px 10px;text-align:center;border:2px solid var(--border-color);transition:.2s;}
+.ach-card.unlocked{border-color:var(--gold);background:linear-gradient(145deg,rgba(255,217,61,.15),rgba(245,158,11,.1));}
+.ach-card.locked{opacity:.45;filter:grayscale(.6);}
+.ach-card .ach-icon{font-size:2rem;margin-bottom:6px;}
+.ach-card .ach-name{font-size:.8rem;font-weight:800;}
+.ach-card .ach-desc{font-size:.68rem;color:var(--text-muted);margin-top:3px;}
+
+/* ══════════════ TRUE/FALSE ══════════════ */
+.tf-card{background:var(--card-bg);border-radius:14px;padding:16px 18px;margin-bottom:14px;box-shadow:var(--shadow);}
+.tf-statement{font-size:1rem;font-weight:700;margin-bottom:10px;}
+.tf-btn-row{display:flex;gap:10px;}
+.tf-btn{flex:1;padding:10px;border-radius:10px;border:2px solid var(--border-color);background:var(--opt-bg);font-weight:800;cursor:pointer;font-family:inherit;transition:.2s;color:var(--text-main);}
+.tf-btn.correct{background:var(--green) !important;border-color:var(--green) !important;color:white !important;}
+.tf-btn.wrong{background:var(--coral) !important;border-color:var(--coral) !important;color:white !important;}
+.tf-btn.locked{pointer-events:none;}
+.tf-explain{display:none;margin-top:10px;padding:10px 14px;background:var(--block-bg);border-radius:10px;font-size:.85rem;border-right:4px solid var(--teal);}
+.tf-explain.show{display:block;animation:fadeSlide .2s ease;}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+
+/* ══════════════ OPEN QUESTIONS ══════════════ */
+.oq-card{background:var(--card-bg);border-radius:14px;padding:18px;margin-bottom:16px;box-shadow:var(--shadow);}
+.oq-q{font-weight:800;font-size:1rem;margin-bottom:10px;}
+.oq-textarea{width:100%;min-height:90px;border-radius:10px;border:2px solid var(--border-color);background:var(--block-bg);color:var(--text-main);padding:10px 14px;font-family:inherit;font-size:.9rem;resize:vertical;outline:none;}
+.oq-textarea:focus{border-color:var(--blue);}
+.oq-model{display:none;margin-top:10px;background:rgba(78,205,196,.1);border-right:4px solid var(--teal);padding:10px 14px;border-radius:10px;font-size:.88rem;}
+.oq-model.show{display:block;}
+.oq-eval{display:flex;gap:8px;margin-top:10px;}
+.oq-eval button{border:none;border-radius:20px;padding:6px 14px;font-size:.8rem;font-weight:700;cursor:pointer;background:var(--opt-bg);color:var(--text-main);font-family:inherit;}
+.oq-eval button.picked{background:var(--teal);color:white;}
+
+/* ══════════════ SPEED / TIMER ══════════════ */
+.timer-display{font-size:2rem;font-weight:900;color:var(--coral);text-align:center;margin-bottom:10px;}
+.timer-display.urgent{color:#dc2626;animation:streakPulse .5s infinite;}
+@keyframes streakPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
+.speed-result-line{font-size:1.1rem;font-weight:800;text-align:center;margin-top:10px;}
+
+/* ══════════════ BOSS HEALTH BAR ══════════════ */
+.boss-health-wrap{background:var(--block-bg);border-radius:12px;padding:12px 16px;margin-bottom:16px;}
+.boss-health-label{display:flex;justify-content:space-between;font-size:.8rem;font-weight:800;margin-bottom:6px;}
+.boss-health-bar{height:18px;background:var(--border-color);border-radius:10px;overflow:hidden;}
+.boss-health-fill{height:100%;background:linear-gradient(90deg,#22C55E,#EF4444);transition:width .4s ease;}
+.boss-stage-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.boss-stage-tag{font-size:.65rem;font-weight:800;padding:3px 10px;border-radius:20px;background:var(--opt-bg);color:var(--text-muted);}
+.boss-stage-tag.done{background:var(--green);color:white;}
+
+/* ══════════════ RESULTS DASHBOARD ══════════════ */
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px;}
+.res-stat{background:var(--card-bg);border-radius:14px;padding:16px;text-align:center;box-shadow:var(--shadow);}
+.res-stat .res-val{font-size:1.5rem;font-weight:900;color:var(--coral);}
+.res-stat .res-lbl{font-size:.72rem;color:var(--text-muted);font-weight:700;margin-top:2px;}
+.res-bar-row{margin-bottom:12px;}
+.res-bar-row .res-bar-lbl{display:flex;justify-content:space-between;font-size:.82rem;font-weight:700;margin-bottom:4px;}
+.res-bar-track{height:12px;background:var(--border-color);border-radius:6px;overflow:hidden;}
+.res-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--blue));border-radius:6px;transition:width .6s ease;}
+
+/* ══════════════ CERTIFICATE ══════════════ */
+#cert-canvas{max-width:100%;border-radius:10px;box-shadow:var(--shadow);margin:14px 0;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🛒 U4 Vocabulary – What Do I Need To Buy? | ماذا أحتاج أن أشتري؟ - المفردات</h1>
+  <p class="subtitle">Word List • Expressions • Teacher Jaber</p>
+  
+  <div class="header-actions">
+    <button id="theme-toggle" class="dark-mode-btn" onclick="toggleTheme()" title="Toggle Dark Mode">🌙 Dark Mode</button>
+    <button class="dark-mode-btn" id="avatar-chip-btn" onclick="openAvatarPicker()">🎭 <span id="avatar-chip-display">Avatar</span></button>
+    <button class="dark-mode-btn" onclick="toggleEasyMode()" id="easy-toggle-btn">💡 Easy Mode: OFF</button>
+    <button class="dark-mode-btn" style="border-color:rgba(239,68,68,.6);color:#FCA5A5" onclick="confirmResetProgress()">🗑 Reset</button>
+    <span class="super-goal-badge">Super Goal</span>
+  </div>
+  
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-icon">⚡</span> <span class="stat-label">XP:</span> <span class="stat-value xp-val" id="xp-num">0</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">🪙</span> <span class="stat-value coin-val" id="coin-num">0</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">🔥</span> <span class="stat-label">Streak:</span> <span class="stat-value streak-val" id="streak-num">0</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">✅</span> <span class="stat-label">Score:</span> <span class="stat-value score-val" id="score-num">0</span>
+    </div>
+    <div class="stat-item">
+      <span class="rank-badge" id="rank-display">🌱 New Learner</span>
+    </div>
+    <div class="header-progress-container">
+      <div id="main-progress" class="header-progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<div id="badgeToast"></div>
+
+<nav class="nav-tabs" id="nav-tabs">
+  <button class="active" onclick="showTab(0)">📋 Words (Food)</button>
+  <button onclick="showTab(1)">💬 Verbs &amp; Expressions</button>
+  <button onclick="showTab(2)">🎯 Fill in the Blanks</button>
+  <button onclick="showTab(3)">🔗 Real Talk Matching</button>
+  <button onclick="showTab(4)">✅ MCQ Quiz</button>
+  <button onclick="showTab(5)">🎯 Vocabulary Challenge</button>
+  <button onclick="showTab(6)">✅ True / False</button>
+  <button onclick="showTab(7)">⚡ Speed Challenge</button>
+  <button onclick="showTab(8)">💬 Open Questions</button>
+  <button onclick="showTab(9)">👾 Final Boss Challenge</button>
+  <button onclick="showTab(10)">🏆 My Results</button>
+</nav>
+
+<div class="container">
+
+  <!-- إدخال اسم اللاعب مضاف له الخصائص المطلوبة لمنع التصحيح التلقائي -->
+  <div class="player-card">
+    <span>👤</span>
+    <input type="text" id="student-name" placeholder="أدخل اسمك يا بطل (اختياري)..." autocomplete="off" autocorrect="off" spellcheck="false" maxlength="30" oninput="onNameInput()">
+    <span id="hud-avatar-inline" style="font-size:1.4rem;"></span>
+  </div>
+
+<!-- ══════════════════════════════════ -->
+<!-- TAB 0 — Words (Nouns)             -->
+<!-- ══════════════════════════════════ -->
+<div class="page active" id="tab-0">
+  <div class="section-title"><h2>Words &amp; Meanings</h2><span class="tag">الكلمات ومعانيها</span></div>
+  <p style="font-size:.9rem;color:var(--text-muted);margin-bottom:16px;direction:rtl;text-align:right">💡 انقر على البطاقة لقلبها ومعرفة المعنى، أو اضغط رمز الصوت للاستماع</p>
+
+  <div class="cat-header"><span>🥑</span><h3>الأسماء: أطعمة ومشروبات — Nouns (Food &amp; Drinks)</h3><div class="line"></div></div>
+  <div class="vocab-grid">
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Appetizer</div><button class="audio-btn" onclick="event.stopPropagation();speak('Appetizer')">🔊</button></div><div class="vocab-card-back"><div class="arabic">مقبلات</div><div class="example">We had appetizers before the main meal.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Avocado</div><button class="audio-btn" onclick="event.stopPropagation();speak('Avocado')">🔊</button></div><div class="vocab-card-back"><div class="arabic">أفوكادو</div><div class="example">She puts avocado in her salad.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Bean</div><button class="audio-btn" onclick="event.stopPropagation();speak('Bean')">🔊</button></div><div class="vocab-card-back"><div class="arabic">فول / بقوليات</div><div class="example">Beans are a great source of protein.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Beef</div><button class="audio-btn" onclick="event.stopPropagation();speak('Beef')">🔊</button></div><div class="vocab-card-back"><div class="arabic">لحم بقر</div><div class="example">I ordered a beef burger.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Bread</div><button class="audio-btn" onclick="event.stopPropagation();speak('Bread')">🔊</button></div><div class="vocab-card-back"><div class="arabic">خبز</div><div class="example">I buy bread every morning.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Butter</div><button class="audio-btn" onclick="event.stopPropagation();speak('Butter')">🔊</button></div><div class="vocab-card-back"><div class="arabic">زبدة</div><div class="example">She spread butter on the toast.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Carrot</div><button class="audio-btn" onclick="event.stopPropagation();speak('Carrot')">🔊</button></div><div class="vocab-card-back"><div class="arabic">جزر</div><div class="example">Carrots are good for your eyes.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Cereal</div><button class="audio-btn" onclick="event.stopPropagation();speak('Cereal')">🔊</button></div><div class="vocab-card-back"><div class="arabic">حبوب الفطور</div><div class="example">He eats cereal every morning.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Cheese</div><button class="audio-btn" onclick="event.stopPropagation();speak('Cheese')">🔊</button></div><div class="vocab-card-back"><div class="arabic">جبنة</div><div class="example">She loves cheese pizza.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Chicken</div><button class="audio-btn" onclick="event.stopPropagation();speak('Chicken')">🔊</button></div><div class="vocab-card-back"><div class="arabic">دجاج</div><div class="example">Grilled chicken is healthy.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Condiment</div><button class="audio-btn" onclick="event.stopPropagation();speak('Condiment')">🔊</button></div><div class="vocab-card-back"><div class="arabic">بهارات / توابل</div><div class="example">He added condiments to the soup.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Corn oil</div><button class="audio-btn" onclick="event.stopPropagation();speak('Corn oil')">🔊</button></div><div class="vocab-card-back"><div class="arabic">زيت الذرة</div><div class="example">Use corn oil for frying.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Crab</div><button class="audio-btn" onclick="event.stopPropagation();speak('Crab')">🔊</button></div><div class="vocab-card-back"><div class="arabic">سلطعون</div><div class="example">We had crab at the restaurant.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Cucumber</div><button class="audio-btn" onclick="event.stopPropagation();speak('Cucumber')">🔊</button></div><div class="vocab-card-back"><div class="arabic">خيار</div><div class="example">She sliced cucumber for the salad.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Dairy product</div><button class="audio-btn" onclick="event.stopPropagation();speak('Dairy product')">🔊</button></div><div class="vocab-card-back"><div class="arabic">منتجات الحليب</div><div class="example">Dairy products include milk and cheese.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Dates</div><button class="audio-btn" onclick="event.stopPropagation();speak('Dates')">🔊</button></div><div class="vocab-card-back"><div class="arabic">تمر</div><div class="example">Dates are popular in Saudi Arabia.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Egg</div><button class="audio-btn" onclick="event.stopPropagation();speak('Egg')">🔊</button></div><div class="vocab-card-back"><div class="arabic">بيضة</div><div class="example">She made a fried egg for breakfast.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Flour</div><button class="audio-btn" onclick="event.stopPropagation();speak('Flour')">🔊</button></div><div class="vocab-card-back"><div class="arabic">دقيق</div><div class="example">We need flour to make bread.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Fruit</div><button class="audio-btn" onclick="event.stopPropagation();speak('Fruit')">🔊</button></div><div class="vocab-card-back"><div class="arabic">فواكه</div><div class="example">Eat fruit every day for good health.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Garlic</div><button class="audio-btn" onclick="event.stopPropagation();speak('Garlic')">🔊</button></div><div class="vocab-card-back"><div class="arabic">ثوم</div><div class="example">Add garlic to the sauce.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Grain</div><button class="audio-btn" onclick="event.stopPropagation();speak('Grain')">🔊</button></div><div class="vocab-card-back"><div class="arabic">حبوب</div><div class="example">Grains are important for energy.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Grape</div><button class="audio-btn" onclick="event.stopPropagation();speak('Grape')">🔊</button></div><div class="vocab-card-back"><div class="arabic">عنب</div><div class="example">She bought a bunch of grapes.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Ingredient</div><button class="audio-btn" onclick="event.stopPropagation();speak('Ingredient')">🔊</button></div><div class="vocab-card-back"><div class="arabic">مكونات</div><div class="example">What ingredients do you need?</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Lamb</div><button class="audio-btn" onclick="event.stopPropagation();speak('Lamb')">🔊</button></div><div class="vocab-card-back"><div class="arabic">لحم الغنم</div><div class="example">They grilled lamb for the feast.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Lettuce</div><button class="audio-btn" onclick="event.stopPropagation();speak('Lettuce')">🔊</button></div><div class="vocab-card-back"><div class="arabic">خس</div><div class="example">Add lettuce to the sandwich.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Mango</div><button class="audio-btn" onclick="event.stopPropagation();speak('Mango')">🔊</button></div><div class="vocab-card-back"><div class="arabic">مانجو</div><div class="example">Mangoes are sweet and delicious.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Margarine</div><button class="audio-btn" onclick="event.stopPropagation();speak('Margarine')">🔊</button></div><div class="vocab-card-back"><div class="arabic">سمن</div><div class="example">She used margarine instead of butter.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Meat</div><button class="audio-btn" onclick="event.stopPropagation();speak('Meat')">🔊</button></div><div class="vocab-card-back"><div class="arabic">لحم</div><div class="example">He buys meat from the market.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Milk</div><button class="audio-btn" onclick="event.stopPropagation();speak('Milk')">🔊</button></div><div class="vocab-card-back"><div class="arabic">حليب</div><div class="example">Children need milk every day.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Mushroom</div><button class="audio-btn" onclick="event.stopPropagation();speak('Mushroom')">🔊</button></div><div class="vocab-card-back"><div class="arabic">مشروم / فطر</div><div class="example">She added mushrooms to the pizza.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Olive oil</div><button class="audio-btn" onclick="event.stopPropagation();speak('Olive oil')">🔊</button></div><div class="vocab-card-back"><div class="arabic">زيت زيتون</div><div class="example">Olive oil is healthy for cooking.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Onion</div><button class="audio-btn" onclick="event.stopPropagation();speak('Onion')">🔊</button></div><div class="vocab-card-back"><div class="arabic">بصل</div><div class="example">Chop the onion and fry it.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Papaya</div><button class="audio-btn" onclick="event.stopPropagation();speak('Papaya')">🔊</button></div><div class="vocab-card-back"><div class="arabic">بابايا</div><div class="example">Papaya is a tropical fruit.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Parsley</div><button class="audio-btn" onclick="event.stopPropagation();speak('Parsley')">🔊</button></div><div class="vocab-card-back"><div class="arabic">بقدونس</div><div class="example">Add parsley to decorate the dish.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Pepper</div><button class="audio-btn" onclick="event.stopPropagation();speak('Pepper')">🔊</button></div><div class="vocab-card-back"><div class="arabic">فلفل</div><div class="example">Add pepper to taste.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Pineapple</div><button class="audio-btn" onclick="event.stopPropagation();speak('Pineapple')">🔊</button></div><div class="vocab-card-back"><div class="arabic">أناناس</div><div class="example">Pineapple is sweet and sour.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Potato</div><button class="audio-btn" onclick="event.stopPropagation();speak('Potato')">🔊</button></div><div class="vocab-card-back"><div class="arabic">بطاطا</div><div class="example">She made mashed potato.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Recipe</div><button class="audio-btn" onclick="event.stopPropagation();speak('Recipe')">🔊</button></div><div class="vocab-card-back"><div class="arabic">وصفة طعام</div><div class="example">She followed a recipe from the book.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Rice</div><button class="audio-btn" onclick="event.stopPropagation();speak('Rice')">🔊</button></div><div class="vocab-card-back"><div class="arabic">رز</div><div class="example">Rice is a staple food in Saudi Arabia.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Salmon</div><button class="audio-btn" onclick="event.stopPropagation();speak('Salmon')">🔊</button></div><div class="vocab-card-back"><div class="arabic">سلمون</div><div class="example">Grilled salmon is delicious.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Salt</div><button class="audio-btn" onclick="event.stopPropagation();speak('Salt')">🔊</button></div><div class="vocab-card-back"><div class="arabic">ملح</div><div class="example">Don't add too much salt.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Sausage</div><button class="audio-btn" onclick="event.stopPropagation();speak('Sausage')">🔊</button></div><div class="vocab-card-back"><div class="arabic">نقانق</div><div class="example">He grilled sausages for dinner.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Seafood</div><button class="audio-btn" onclick="event.stopPropagation();speak('Seafood')">🔊</button></div><div class="vocab-card-back"><div class="arabic">طعام بحري</div><div class="example">I love seafood restaurants.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Shrimp</div><button class="audio-btn" onclick="event.stopPropagation();speak('Shrimp')">🔊</button></div><div class="vocab-card-back"><div class="arabic">جمبري</div><div class="example">Shrimp is popular in Gulf cuisine.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Squid</div><button class="audio-btn" onclick="event.stopPropagation();speak('Squid')">🔊</button></div><div class="vocab-card-back"><div class="arabic">حبار</div><div class="example">Squid can be fried or grilled.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Strawberry</div><button class="audio-btn" onclick="event.stopPropagation();speak('Strawberry')">🔊</button></div><div class="vocab-card-back"><div class="arabic">فراولة</div><div class="example">She loves strawberry ice cream.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Sugar</div><button class="audio-btn" onclick="event.stopPropagation();speak('Sugar')">🔊</button></div><div class="vocab-card-back"><div class="arabic">سكر</div><div class="example">He takes two spoons of sugar.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Vegetable</div><button class="audio-btn" onclick="event.stopPropagation();speak('Vegetable')">🔊</button></div><div class="vocab-card-back"><div class="arabic">خضار</div><div class="example">Eat more vegetables every day.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Watermelon</div><button class="audio-btn" onclick="event.stopPropagation();speak('Watermelon')">🔊</button></div><div class="vocab-card-back"><div class="arabic">بطيخ</div><div class="example">Watermelon is refreshing in summer.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Yogurt</div><button class="audio-btn" onclick="event.stopPropagation();speak('Yogurt')">🔊</button></div><div class="vocab-card-back"><div class="arabic">زبادي</div><div class="example">She eats yogurt for breakfast.</div></div></div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- TAB 1 — Verbs & Expressions       -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="tab-1">
+  <div class="section-title"><h2>Verbs &amp; Expressions</h2><span class="tag">الأفعال والتعبيرات</span></div>
+
+  <!-- Verbs -->
+  <div class="ex-card">
+    <div class="ex-head"><h3>🍳 Cooking Verbs — أفعال الطبخ</h3><p>أفعال تستخدم في المطبخ والطهي</p><span class="ex-lv medium">INTERMEDIATE</span></div>
+    <div class="ex-body">
+      <div class="vocab-grid">
+        <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Add</div><button class="audio-btn" onclick="event.stopPropagation();speak('Add')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يضيف</div><div class="example">Add salt to the soup.</div></div></div></div>
+        <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Bake</div><button class="audio-btn" onclick="event.stopPropagation();speak('Bake')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يخبز</div><div class="example">She bakes bread every Friday.</div></div></div></div>
+        <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Boil</div><button class="audio-btn" onclick="event.stopPropagation();speak('Boil')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يغلي</div><div class="example">Boil the pasta for 10 minutes.</div></div></div></div>
+        <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Cover</div><button class="audio-btn" onclick="event.stopPropagation();speak('Cover')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يغطي</div><div class="example">Cover the pot and wait.</div></div></div></div>
+        <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Fry</div><button class="audio-btn" onclick="event.stopPropagation();speak('Fry')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يقلي</div><div class="example">Fry the onion in olive oil.</div></div></div></div>
+        <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Grill</div><button class="audio-btn" onclick="event.stopPropagation();speak('Grill')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يشوي</div><div class="example">Let's grill chicken tonight.</div></div></div></div>
+        <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Mix</div><button class="audio-btn" onclick="event.stopPropagation();speak('Mix')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يخلط / يخفق</div><div class="example">Mix the flour and eggs together.</div></div></div></div>
+        <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Roast</div><button class="audio-btn" onclick="event.stopPropagation();speak('Roast')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يشوي على الجمر</div><div class="example">Roast the meat in the oven.</div></div></div></div>
+        <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Spread</div><button class="audio-btn" onclick="event.stopPropagation();speak('Spread')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يوزع</div><div class="example">Spread butter on the bread.</div></div></div></div>
+        <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Steam</div><button class="audio-btn" onclick="event.stopPropagation();speak('Steam')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يبخر</div><div class="example">Steam the vegetables for 5 minutes.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partitives -->
+  <div class="ex-card">
+    <div class="ex-head"><h3>⚖️ Partitives — الأوزان</h3><p>وحدات القياس والوزن</p><span class="ex-lv easy">BEGINNER</span></div>
+    <div class="ex-body">
+      <div class="vocab-grid">
+        <div class="vocab-card part" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Partitive</div><div class="word">Cup of</div><button class="audio-btn" onclick="event.stopPropagation();speak('Cup of')">🔊</button></div><div class="vocab-card-back"><div class="arabic">كوب من</div><div class="example">Add a cup of milk.</div></div></div></div>
+        <div class="vocab-card part" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Partitive</div><div class="word">Kilo of</div><button class="audio-btn" onclick="event.stopPropagation();speak('Kilo of')">🔊</button></div><div class="vocab-card-back"><div class="arabic">كيلو من</div><div class="example">Buy a kilo of sugar.</div></div></div></div>
+        <div class="vocab-card part" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Partitive</div><div class="word">Package of</div><button class="audio-btn" onclick="event.stopPropagation();speak('Package of')">🔊</button></div><div class="vocab-card-back"><div class="arabic">علبة من</div><div class="example">Get a package of pasta.</div></div></div></div>
+        <div class="vocab-card part" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Partitive</div><div class="word">Tablespoon of</div><button class="audio-btn" onclick="event.stopPropagation();speak('Tablespoon of')">🔊</button></div><div class="vocab-card-back"><div class="arabic">ملعقة طعام من</div><div class="example">Add a tablespoon of olive oil.</div></div></div></div>
+        <div class="vocab-card part" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Partitive</div><div class="word">Teaspoon of</div><button class="audio-btn" onclick="event.stopPropagation();speak('Teaspoon of')">🔊</button></div><div class="vocab-card-back"><div class="arabic">ملعقة شاي من</div><div class="example">Add a teaspoon of salt.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sequence & Pronouns -->
+  <div class="ex-card">
+    <div class="ex-head"><h3>🔢 Sequence &amp; Pronouns — التسلسل والضمائر</h3><p>كلمات الترتيب والتسلسل</p><span class="ex-lv easy">BEGINNER</span></div>
+    <div class="ex-body">
+      <div class="vocab-grid">
+        <div class="vocab-card seq" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Sequence</div><div class="word">First</div><button class="audio-btn" onclick="event.stopPropagation();speak('First')">🔊</button></div><div class="vocab-card-back"><div class="arabic">أولا</div><div class="example">First, wash the vegetables.</div></div></div></div>
+        <div class="vocab-card seq" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Sequence</div><div class="word">Then</div><button class="audio-btn" onclick="event.stopPropagation();speak('Then')">🔊</button></div><div class="vocab-card-back"><div class="arabic">ثم</div><div class="example">Then add the garlic.</div></div></div></div>
+        <div class="vocab-card seq" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Sequence</div><div class="word">After that</div><button class="audio-btn" onclick="event.stopPropagation();speak('After that')">🔊</button></div><div class="vocab-card-back"><div class="arabic">بعد ذلك</div><div class="example">After that, cover the pot.</div></div></div></div>
+        <div class="vocab-card seq" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Sequence</div><div class="word">Finally</div><button class="audio-btn" onclick="event.stopPropagation();speak('Finally')">🔊</button></div><div class="vocab-card-back"><div class="arabic">أخيرا</div><div class="example">Finally, serve the meal.</div></div></div></div>
+        <div class="vocab-card seq" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Pronoun</div><div class="word">Anything</div><button class="audio-btn" onclick="event.stopPropagation();speak('Anything')">🔊</button></div><div class="vocab-card-back"><div class="arabic">أي شيء</div><div class="example">Do you need anything?</div></div></div></div>
+        <div class="vocab-card seq" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Pronoun</div><div class="word">Nothing</div><button class="audio-btn" onclick="event.stopPropagation();speak('Nothing')">🔊</button></div><div class="vocab-card-back"><div class="arabic">لا شيء</div><div class="example">Nothing is missing.</div></div></div></div>
+        <div class="vocab-card seq" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Pronoun</div><div class="word">Something</div><button class="audio-btn" onclick="event.stopPropagation();speak('Something')">🔊</button></div><div class="vocab-card-back"><div class="arabic">شيء ما</div><div class="example">I need something to eat.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Making Offers -->
+  <div class="ex-card">
+    <div class="ex-head"><h3>🙋 Making Offers — تقديم المساعدة</h3><p>عبارات لتقديم المساعدة</p><span class="ex-lv easy">BEGINNER</span></div>
+    <div class="ex-body">
+      <div class="vocab-grid" style="grid-template-columns:repeat(auto-fill,minmax(210px,1fr))">
+        <div class="vocab-card expr" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Expression</div><div class="word">Do you need any help?</div><button class="audio-btn" onclick="event.stopPropagation();speak('Do you need any help')">🔊</button></div><div class="vocab-card-back"><div class="arabic">هل تحتاج إلى أي مساعدة؟</div><div class="example">Do you need any help with cooking?</div></div></div></div>
+        <div class="vocab-card expr" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Expression</div><div class="word">Would you like some more?</div><button class="audio-btn" onclick="event.stopPropagation();speak('Would you like some more')">🔊</button></div><div class="vocab-card-back"><div class="arabic">هل ترغب في المزيد؟</div><div class="example">Would you like some more rice?</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- TAB 2 — Fill in the Blanks        -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="tab-2">
+  <div class="section-title"><h2>Fill in the Blanks</h2><span class="tag">أكمل الوصف بالكلمة المناسبة</span></div>
+  <div class="ex-card">
+    <div class="ex-head">
+      <h3>A — Complete with the correct word</h3>
+      <p>اختر الكلمة المناسبة من القائمة وانقر على الفراغ لملئه</p>
+      <span class="ex-lv easy">BEGINNER</span>
+    </div>
+    <div class="ex-body">
+      <button class="wb-tr-btn" onclick="toggleWbTr(this)">🌐 ترجمة الكلمات</button>
+      <div class="wb-tr-panel">
+        <div class="wb-tr-row"><span class="wb-en">vegetarian</span><span class="wb-ar">نباتي</span></div>
+        <div class="wb-tr-row"><span class="wb-en">recipe</span><span class="wb-ar">وصفة طعام</span></div>
+        <div class="wb-tr-row"><span class="wb-en">seafood</span><span class="wb-ar">طعام بحري</span></div>
+        <div class="wb-tr-row"><span class="wb-en">olive oil</span><span class="wb-ar">زيت زيتون</span></div>
+      </div>
+      <div class="word-bank">
+        <div class="wb-word" onclick="selectWord(this,'vegetarian')">vegetarian</div>
+        <div class="wb-word" onclick="selectWord(this,'recipe')">recipe</div>
+        <div class="wb-word" onclick="selectWord(this,'seafood')">seafood</div>
+        <div class="wb-word" onclick="selectWord(this,'olive oil')">olive oil</div>
+      </div>
+
+      <button class="tr-btn" onclick="toggleTr(this)" style="margin-bottom:8px">🌐 ترجمة جملة 1</button>
+      <div class="tr-tooltip">١. أنا لا آكل اللحم. أنا ___________ .</div>
+      <div class="fill-sentence" id="fs1">
+        1. I don't eat meat. I am a <span class="blank" id="b1" onclick="fillBlank('b1','vegetarian','fs1')">___________</span>.
+        <button class="audio-btn" onclick="speak('I don\'t eat meat. I am a vegetarian.')">🔊</button>
+      </div>
+
+      <button class="tr-btn" onclick="toggleTr(this)" style="margin-bottom:8px">🌐 ترجمة جملة 2</button>
+      <div class="tr-tooltip">٢. نحتاج طماطم ومعكرونة لهذه ___________ .</div>
+      <div class="fill-sentence" id="fs2">
+        2. We need tomatoes and pasta for this <span class="blank" id="b2" onclick="fillBlank('b2','recipe','fs2')">___________</span>.
+        <button class="audio-btn" onclick="speak('We need tomatoes and pasta for this recipe.')">🔊</button>
+      </div>
+
+      <button class="tr-btn" onclick="toggleTr(this)" style="margin-bottom:8px">🌐 ترجمة جملة 3</button>
+      <div class="tr-tooltip">٣. أحب السمك والجمبري. أنا أحب ___________ .</div>
+      <div class="fill-sentence" id="fs3">
+        3. I like fish and shrimp. I like <span class="blank" id="b3" onclick="fillBlank('b3','seafood','fs3')">___________</span>.
+        <button class="audio-btn" onclick="speak('I like fish and shrimp. I like seafood.')">🔊</button>
+      </div>
+
+      <button class="tr-btn" onclick="toggleTr(this)" style="margin-bottom:8px">🌐 ترجمة جملة 4</button>
+      <div class="tr-tooltip">٤. أولاً، سخّن بعض ___________ في المقلاة.</div>
+      <div class="fill-sentence" id="fs4">
+        4. First, heat some <span class="blank" id="b4" onclick="fillBlank('b4','olive oil','fs4')">___________</span> in a pan.
+        <button class="audio-btn" onclick="speak('First, heat some olive oil in a pan.')">🔊</button>
+      </div>
+
+      <div class="btn-row" style="margin-top:16px">
+        <button class="btn btn-primary" onclick="checkFill()">✓ Check Answers</button>
+        <button class="btn btn-reset" onclick="resetFill()">↺ Reset</button>
+      </div>
+      <div id="fill-result" style="font-size:.86rem;font-weight:700;margin-top:8px;display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- TAB 3 — Real Talk Matching        -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="tab-3">
+  <div class="section-title"><h2>Real Talk Matching</h2><span class="tag">صل الكلمة بالمعنى الصحيح</span></div>
+  <div class="ex-card">
+    <div class="ex-head">
+      <h3>B — Match each phrase to its meaning</h3>
+      <p>صل كل عبارة بمعناها الصحيح باللغة الإنجليزية</p>
+      <span class="ex-lv medium">INTERMEDIATE</span>
+    </div>
+    <div class="ex-body">
+      <div class="score-line">Matched: <strong id="match-score">0 / 4</strong></div>
+      <div class="match-grid">
+        <div id="match-left">
+          <h4>Words / Phrases</h4>
+          <button class="tr-btn" style="margin-bottom:8px;width:100%" onclick="toggleColTr('match-left',this)">🌐 ترجمة</button>
+          <div class="m-item" data-id="r1" onclick="doMatch(this,'left')">1. you guys <button class="audio-btn" onclick="event.stopPropagation();speak('you guys')">🔊</button><span class="match-tr">أنتم / يا شباب (غير رسمي)</span></div>
+          <div class="m-item" data-id="r2" onclick="doMatch(this,'left')">2. I can't wait. <button class="audio-btn" onclick="speak('I can\'t wait')">🔊</button><span class="match-tr">لا أستطيع الانتظار / أنا متحمس جداً</span></div>
+          <div class="m-item" data-id="r3" onclick="doMatch(this,'left')">3. Everything's under control. <button class="audio-btn" onclick="speak('Everything is under control')">🔊</button><span class="match-tr">كل شيء تحت السيطرة</span></div>
+          <div class="m-item" data-id="r4" onclick="doMatch(this,'left')">4. I've had more than enough. <button class="audio-btn" onclick="speak('I have had more than enough')">🔊</button><span class="match-tr">لقد اكتفيت / أكلت بما يكفي</span></div>
+        </div>
+        <div id="match-right">
+          <h4>English Meanings</h4>
+          <button class="tr-btn" style="margin-bottom:8px;width:100%" onclick="toggleColTr('match-right',this)">🌐 ترجمة</button>
+          <div class="m-item" data-id="r4" onclick="doMatch(this,'right')">a. I can't eat any more <button class="audio-btn" onclick="event.stopPropagation();speak('I can\'t eat any more')">🔊</button><span class="match-tr">لا أستطيع الأكل أكثر</span></div>
+          <div class="m-item" data-id="r1" onclick="doMatch(this,'right')">b. an informal way to address two or more people <button class="audio-btn" onclick="event.stopPropagation();speak('an informal way to address two or more people')">🔊</button><span class="match-tr">طريقة غير رسمية لمخاطبة شخصين أو أكثر</span></div>
+          <div class="m-item" data-id="r2" onclick="doMatch(this,'right')">c. I am very eager for something <button class="audio-btn" onclick="event.stopPropagation();speak('I am very eager for something')">🔊</button><span class="match-tr">أنا متحمس جداً لشيء ما</span></div>
+          <div class="m-item" data-id="r3" onclick="doMatch(this,'right')">d. Everything is organized <button class="audio-btn" onclick="event.stopPropagation();speak('Everything is organized')">🔊</button><span class="match-tr">كل شيء منظم ومرتب</span></div>
+        </div>
+      </div>
+      <div class="btn-row"><button class="btn btn-reset" onclick="resetMatch()">↺ Reset Matches</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- TAB 4 — MCQ Quiz                  -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="tab-4">
+  <div class="section-title"><h2>MCQ Quiz</h2><span class="tag">اختيار من متعدد</span></div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Choose the correct answer</h3><p>اختر الإجابة الصحيحة — النتيجة تظهر فوراً</p><span class="ex-lv hard">ADVANCED</span></div>
+    <div class="ex-body">
+      <div class="progress-bar"><div class="progress-fill" id="mcq-prog" style="width:0%"></div></div>
+      <div class="score-line">Score: <strong id="mcq-score">0 / 8</strong></div>
+
+      <div class="mcq-block"><div class="mcq-q">Q1. <em>"Ingredient"</em> means: <button class="audio-btn" onclick="speak('Ingredient')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">ما معنى كلمة "Ingredient"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q1" onclick="pickQ(this)">وصفة</div><div class="mcq-opt" data-q="q1" onclick="pickQ(this)">خضار</div><div class="mcq-opt" data-q="q1" data-c onclick="pickQ(this)">مكونات</div><div class="mcq-opt" data-q="q1" onclick="pickQ(this)">توابل</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">Q2. Which word means <em>"يغلي"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">أي كلمة تعني "يغلي / يطهو بالماء الساخن"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q2" onclick="pickQ(this)">Fry</div><div class="mcq-opt" data-q="q2" data-c onclick="pickQ(this)">Boil</div><div class="mcq-opt" data-q="q2" onclick="pickQ(this)">Bake</div><div class="mcq-opt" data-q="q2" onclick="pickQ(this)">Roast</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">Q3. <em>"Dairy product"</em> means: <button class="audio-btn" onclick="speak('Dairy product')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">ما معنى "Dairy product"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q3" onclick="pickQ(this)">طعام بحري</div><div class="mcq-opt" data-q="q3" onclick="pickQ(this)">لحوم</div><div class="mcq-opt" data-q="q3" data-c onclick="pickQ(this)">منتجات الحليب</div><div class="mcq-opt" data-q="q3" onclick="pickQ(this)">حبوب</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">Q4. Which word means <em>"يشوي"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">أي كلمة تعني "يشوي / يطهو على النار"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q4" onclick="pickQ(this)">Steam</div><div class="mcq-opt" data-q="q4" onclick="pickQ(this)">Mix</div><div class="mcq-opt" data-q="q4" data-c onclick="pickQ(this)">Grill</div><div class="mcq-opt" data-q="q4" onclick="pickQ(this)">Cover</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">Q5. <em>"Tablespoon of"</em> means: <button class="audio-btn" onclick="speak('Tablespoon of')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">ما معنى "Tablespoon of"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q5" onclick="pickQ(this)">كوب من</div><div class="mcq-opt" data-q="q5" onclick="pickQ(this)">كيلو من</div><div class="mcq-opt" data-q="q5" onclick="pickQ(this)">ملعقة شاي من</div><div class="mcq-opt" data-q="q5" data-c onclick="pickQ(this)">ملعقة طعام من</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">Q6. Which word means <em>"بعد ذلك"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">أي كلمة تعني "بعد ذلك / ثم"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q6" onclick="pickQ(this)">First</div><div class="mcq-opt" data-q="q6" onclick="pickQ(this)">Finally</div><div class="mcq-opt" data-q="q6" data-c onclick="pickQ(this)">After that</div><div class="mcq-opt" data-q="q6" onclick="pickQ(this)">Then</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">Q7. <em>"I can't wait"</em> means: <button class="audio-btn" onclick="speak('I can\'t wait')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">ما معنى تعبير "I can't wait"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q7" onclick="pickQ(this)">أنا متعب</div><div class="mcq-opt" data-q="q7" data-c onclick="pickQ(this)">أنا متحمس جداً</div><div class="mcq-opt" data-q="q7" onclick="pickQ(this)">لا أستطيع المجيء</div><div class="mcq-opt" data-q="q7" onclick="pickQ(this)">كل شيء منظم</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">Q8. Which word means <em>"يخبز"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">أي كلمة تعني "يخبز / يطهو في الفرن"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q8" onclick="pickQ(this)">Fry</div><div class="mcq-opt" data-q="q8" data-c onclick="pickQ(this)">Bake</div><div class="mcq-opt" data-q="q8" onclick="pickQ(this)">Boil</div><div class="mcq-opt" data-q="q8" onclick="pickQ(this)">Steam</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- TAB 5 — VOCABULARY CHALLENGE (NEW) -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="tab-5">
+  <div class="section-title"><h2>🎯 Vocabulary Challenge</h2><span class="tag">ثلاث جولات لاختبار مفرداتك</span></div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Round 1 — Match Word to Meaning</h3><p>اضغط على الكلمة ثم على معناها الصحيح</p><span class="ex-lv easy">ROUND 1</span></div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="btn btn-reset" onclick="resetVCMatch()">↺ Reset Round 1</button></div>
+      <div class="score-line">Matched: <strong id="vc-match-score">0 / 8</strong></div>
+      <div class="match-grid"><div id="vc-match-left"><h4>Word</h4></div><div id="vc-match-right"><h4>Meaning</h4></div></div>
+    </div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Round 2 — Listen and Choose 🔊</h3><p>استمع إلى الكلمة ثم اختر معناها الصحيح</p><span class="ex-lv medium">ROUND 2</span></div>
+    <div class="ex-body">
+      <div class="score-line">Score: <strong id="vc-listen-score">0 / 6</strong></div>
+      <div id="vc-listen-container"></div>
+      <div class="btn-row"><button class="btn btn-reset" onclick="resetVCListen()">↺ Reset Round 2</button></div>
+    </div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Round 3 — Speed Round ⚡</h3><p>٤٥ ثانية فقط! أجب بسرعة لتحصل على نقاط ومكافآت إضافية</p><span class="ex-lv hard">ROUND 3</span></div>
+    <div class="ex-body">
+      <div class="timer-display" id="vc-speed-timer">45</div>
+      <div class="score-line">Score: <strong id="vc-speed-score">0 / 0</strong></div>
+      <div class="btn-row"><button class="btn btn-primary" id="vc-speed-start" onclick="startVCSpeed()">▶ Start Speed Round</button></div>
+      <div id="vc-speed-container"></div>
+      <div class="speed-result-line" id="vc-speed-result" style="display:none;"></div>
+    </div>
+  </div>
+  <div class="score-box" id="vc-final-box">
+    <div class="s-num" id="vc-final-num">0</div>
+    <div class="score-label">Total Vocabulary Challenge Score</div>
+    <div class="s-msg" id="vc-final-msg"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- TAB 6 — TRUE / FALSE (NEW)         -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="tab-6">
+  <div class="section-title"><h2>✅ True / False</h2><span class="tag">صح أم خطأ</span></div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Read each statement and decide</h3><p>اقرأ كل جملة وحدد إن كانت صحيحة أم خاطئة، ثم اطّلع على التفسير</p><span class="ex-lv medium">VOCABULARY IN CONTEXT</span></div>
+    <div class="ex-body">
+      <div class="score-line">Score: <strong id="tf-score">0 / 10</strong></div>
+      <div class="progress-bar"><div class="progress-fill" id="tf-progress" style="width:0%"></div></div>
+      <div id="tf-container"></div>
+      <div class="btn-row"><button class="btn btn-reset" onclick="resetTF()">↺ Reset</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- TAB 7 — SPEED CHALLENGE (NEW)      -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="tab-7">
+  <div class="section-title"><h2>⚡ Speed Challenge</h2><span class="tag">تحدي السرعة</span></div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>60-Second Mixed Challenge</h3><p>أسئلة عشوائية متنوعة — كلما أجبت أسرع كلما حصلت على نقاط أكثر!</p><span class="ex-lv hard">TIME ATTACK</span></div>
+    <div class="ex-body">
+      <div class="timer-display" id="sc-timer">60</div>
+      <div class="score-line">Score: <strong id="sc-score">0</strong> &nbsp;|&nbsp; Best: <strong id="sc-best">0</strong></div>
+      <div class="btn-row"><button class="btn btn-primary" id="sc-start" onclick="startSpeedChallenge()">▶ Start Challenge</button></div>
+      <div id="sc-container"></div>
+      <div class="speed-result-line" id="sc-result" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- TAB 8 — OPEN QUESTIONS (NEW)       -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="tab-8">
+  <div class="section-title"><h2>💬 Open Questions</h2><span class="tag">أسئلة نقاش مفتوحة</span></div>
+  <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:16px;direction:rtl;text-align:right">💡 اكتب إجابتك الخاصة، ثم اضغط "نموذج إجابة" للمقارنة، وقيّم نفسك</p>
+  <div id="oq-container"></div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- TAB 9 — Final Boss Challenge      -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="tab-9">
+  <div class="section-title"><h2>Final Boss Challenge</h2><span class="tag">👾 تحدي الوحش</span></div>
+
+  <div class="boss-health-wrap">
+    <div class="boss-health-label"><span>👾 Boss Health</span><span id="boss-health-pct">100%</span></div>
+    <div class="boss-health-bar"><div class="boss-health-fill" id="boss-health-fill" style="width:100%"></div></div>
+    <div class="boss-stage-tags">
+      <span class="boss-stage-tag" id="bstag-1">Typing Challenge</span>
+      <span class="boss-stage-tag" id="bstag-2">Stage 1: Vocabulary</span>
+      <span class="boss-stage-tag" id="bstag-3">Stage 2: MCQ</span>
+      <span class="boss-stage-tag" id="bstag-4">Stage 3: Listening</span>
+    </div>
+  </div>
+
+  <div class="score-box" id="final-box">
+    <div class="s-num" id="final-num">0/11</div>
+    <div class="score-label">Your Final Boss Score</div>
+    <div class="s-msg" id="final-msg"></div>
+    <div class="btn-row" style="justify-content:center;margin-top:14px;" id="cert-btn-row"></div>
+  </div>
+
+  <div class="ex-card">
+    <div class="ex-head">
+      <h3>👾 Defeat the Boss (Typing & Quiz)</h3>
+      <p>أثبت مهارتك واهزم الوحش في هذا التحدي الشامل!</p>
+      <span class="ex-lv boss">BOSS LEVEL</span>
+    </div>
+    <div class="ex-body">
+      
+      <!-- TYPING CHALLENGE -->
+      <div class="type-challenge">
+        <p>Type the English word for <span>"وصفة طعام"</span>:</p>
+        <input type="text" id="boss-type-input" class="type-input" placeholder="Type here..." autocomplete="off" autocorrect="off" spellcheck="false">
+        <div style="margin-top:10px;">
+          <button class="btn btn-secondary" onclick="checkTypingBoss(event)">✓ Check Word</button>
+        </div>
+      </div>
+
+      <div class="progress-bar"><div class="progress-fill" id="ft-prog" style="width:0%"></div></div>
+      <div class="score-line">Score: <strong id="ft-score">0 / 10</strong></div>
+
+      <div class="mcq-block"><div class="mcq-q">1. <em>"Condiment"</em> means: <button class="audio-btn" onclick="speak('Condiment')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">١. ما معنى كلمة "Condiment"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f1" onclick="pickFT(this)">مكونات</div><div class="mcq-opt" data-q="f1" onclick="pickFT(this)">وصفة</div><div class="mcq-opt" data-q="f1" data-c onclick="pickFT(this)">بهارات / توابل</div><div class="mcq-opt" data-q="f1" onclick="pickFT(this)">دقيق</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">2. Which word means <em>"يقلي"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٢. أي كلمة تعني "يقلي بالزيت"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f2" onclick="pickFT(this)">Steam</div><div class="mcq-opt" data-q="f2" data-c onclick="pickFT(this)">Fry</div><div class="mcq-opt" data-q="f2" onclick="pickFT(this)">Spread</div><div class="mcq-opt" data-q="f2" onclick="pickFT(this)">Mix</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">3. <em>"Seafood"</em> means: <button class="audio-btn" onclick="speak('Seafood')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٣. ما معنى كلمة "Seafood"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f3" onclick="pickFT(this)">طعام صحي</div><div class="mcq-opt" data-q="f3" data-c onclick="pickFT(this)">طعام بحري</div><div class="mcq-opt" data-q="f3" onclick="pickFT(this)">خضروات</div><div class="mcq-opt" data-q="f3" onclick="pickFT(this)">فواكه</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">4. Which word means <em>"أخيراً"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٤. أي كلمة تعني "أخيراً / في النهاية"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f4" onclick="pickFT(this)">Then</div><div class="mcq-opt" data-q="f4" onclick="pickFT(this)">First</div><div class="mcq-opt" data-q="f4" data-c onclick="pickFT(this)">Finally</div><div class="mcq-opt" data-q="f4" onclick="pickFT(this)">After that</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">5. <em>"Recipe"</em> means: <button class="audio-btn" onclick="speak('Recipe')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٥. ما معنى كلمة "Recipe"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f5" onclick="pickFT(this)">مكونات</div><div class="mcq-opt" data-q="f5" data-c onclick="pickFT(this)">وصفة طعام</div><div class="mcq-opt" data-q="f5" onclick="pickFT(this)">قائمة مشتريات</div><div class="mcq-opt" data-q="f5" onclick="pickFT(this)">طبق</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">6. Which word means <em>"يخلط"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٦. أي كلمة تعني "يخلط / يمزج المكونات"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f6" onclick="pickFT(this)">Cover</div><div class="mcq-opt" data-q="f6" onclick="pickFT(this)">Add</div><div class="mcq-opt" data-q="f6" data-c onclick="pickFT(this)">Mix</div><div class="mcq-opt" data-q="f6" onclick="pickFT(this)">Spread</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">7. <em>"Kilo of"</em> means: <button class="audio-btn" onclick="speak('Kilo of')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٧. ما معنى "Kilo of"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f7" onclick="pickFT(this)">علبة من</div><div class="mcq-opt" data-q="f7" onclick="pickFT(this)">كوب من</div><div class="mcq-opt" data-q="f7" onclick="pickFT(this)" data-c>كيلو من</div><div class="mcq-opt" data-q="f7" onclick="pickFT(this)">ملعقة من</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">8. Which phrase means <em>"هل ترغب في المزيد؟"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٨. أي عبارة تعني "هل تريد المزيد؟"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f8" onclick="pickFT(this)">Do you need any help?</div><div class="mcq-opt" data-q="f8" data-c onclick="pickFT(this)">Would you like some more?</div><div class="mcq-opt" data-q="f8" onclick="pickFT(this)">I can't wait.</div><div class="mcq-opt" data-q="f8" onclick="pickFT(this)">Everything is under control.</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">9. <em>"Grain"</em> means: <button class="audio-btn" onclick="speak('Grain')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٩. ما معنى كلمة "Grain"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f9" onclick="pickFT(this)">فواكه</div><div class="mcq-opt" data-q="f9" onclick="pickFT(this)">خضار</div><div class="mcq-opt" data-q="f9" data-c onclick="pickFT(this)">حبوب</div><div class="mcq-opt" data-q="f9" onclick="pickFT(this)">بقوليات</div></div></div>
+
+      <div class="mcq-block"><div class="mcq-q">10. Which word means <em>"يبخر"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">١٠. أي كلمة تعني "يطهو بالبخار"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f10" onclick="pickFT(this)">Boil</div><div class="mcq-opt" data-q="f10" onclick="pickFT(this)">Grill</div><div class="mcq-opt" data-q="f10" onclick="pickFT(this)">Roast</div><div class="mcq-opt" data-q="f10" onclick="pickFT(this)" data-c>Steam</div></div></div>
+
+      <div class="btn-row" style="margin-top:25px; justify-content:center;">
+        <button class="btn btn-boss" onclick="submitFT()">⚔️ Submit Boss Challenge ⚔️</button>
+        <button class="btn btn-reset" onclick="resetFT()">↺ Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-card">
+    <div class="ex-head"><h3>Stage 3 — Listening 🔊</h3><p>استمع إلى الكلمة واختر معناها (تُحسب ضمن صحة الوحش)</p><span class="ex-lv boss">STAGE 3</span></div>
+    <div class="ex-body">
+      <div class="score-line">Score: <strong id="boss-listen-score">0 / 4</strong></div>
+      <div id="boss-listen-container"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- TAB 10 — RESULTS DASHBOARD (NEW)   -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="tab-10">
+  <div class="section-title"><h2>🏆 My Results</h2><span class="tag">لوحة نتائجي</span></div>
+  <div class="res-grid">
+    <div class="res-stat"><div class="res-val" id="res-xp">0</div><div class="res-lbl">Total XP</div></div>
+    <div class="res-stat"><div class="res-val" id="res-coins">0</div><div class="res-lbl">Coins Earned</div></div>
+    <div class="res-stat"><div class="res-val" id="res-correct">0</div><div class="res-lbl">Correct Answers</div></div>
+    <div class="res-stat"><div class="res-val" id="res-wrong">0</div><div class="res-lbl">Wrong Answers</div></div>
+    <div class="res-stat"><div class="res-val" id="res-accuracy">0%</div><div class="res-lbl">Accuracy</div></div>
+    <div class="res-stat"><div class="res-val" id="res-sections">0/11</div><div class="res-lbl">Completed Sections</div></div>
+    <div class="res-stat"><div class="res-val" id="res-rank">🌱</div><div class="res-lbl">Current Rank</div></div>
+    <div class="res-stat"><div class="res-val" id="res-achievements">0/6</div><div class="res-lbl">Achievements</div></div>
+    <div class="res-stat"><div class="res-val" id="res-streak">0</div><div class="res-lbl">Best Streak</div></div>
+    <div class="res-stat"><div class="res-val" id="res-time">0m</div><div class="res-lbl">Time Spent</div></div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Performance by Section</h3><p>أفضل أداء وأضعف نقطة</p></div>
+    <div class="ex-body" id="res-bars-container"></div>
+    <div class="ex-body" style="padding-top:0;">
+      <p style="font-size:.85rem;font-weight:800;margin-bottom:4px;">🌟 Best Performance: <span id="res-best" style="color:var(--green);">—</span></p>
+      <p style="font-size:.85rem;font-weight:800;">📌 Weakest Area: <span id="res-weak" style="color:var(--coral);">—</span></p>
+    </div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>🥇 Achievements</h3><p>الإنجازات المحققة</p></div>
+    <div class="ex-body"><div class="ach-grid" id="ach-panel-results"></div></div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>📜 Certificate</h3><p>احصل على شهادة إتمام بعد اجتياز تحدي الوحش بنسبة ٧٠٪ فأكثر</p></div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="btn btn-primary" onclick="generateCertificate()">📜 Generate Certificate</button></div>
+      <div id="cert-container"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+<footer>
+  Prepared by Teacher Jaber
+  <span>Saad Intermediate School &nbsp;•&nbsp; Super Goal 3</span>
+</footer>
+
+<!-- ═══ NAME OVERLAY ═══ -->
+<div class="ns-overlay" id="name-overlay">
+  <div class="ns-card">
+    <h2>👋 Welcome, Hero!</h2>
+    <p style="margin-top:6px;font-size:.9rem;">Enter your name to begin your vocabulary journey<br><span dir="rtl" style="font-family:'Tajawal',sans-serif;">أدخل اسمك لبدء رحلتك في تعلم المفردات</span></p>
+    <input type="text" id="name-overlay-input" maxlength="30" placeholder="Your name / اسمك">
+    <div class="btn-row" style="justify-content:center;">
+      <button class="btn btn-primary" onclick="saveNameFromOverlay()">✓ Let's Go!</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AVATAR OVERLAY ═══ -->
+<div class="ns-overlay" id="avatar-overlay">
+  <div class="ns-card">
+    <h2>🎭 Choose Your Avatar</h2>
+    <p style="margin-top:6px;font-size:.9rem;">اختر شخصيتك في هذه الرحلة</p>
+    <div class="opt-grid">
+      <div class="avatar-opt" data-av="scholar" onclick="pickAvatar('scholar','📚')"><span class="av-emoji">📚</span>Scholar</div>
+      <div class="avatar-opt" data-av="graduate" onclick="pickAvatar('graduate','🎓')"><span class="av-emoji">🎓</span>Graduate</div>
+      <div class="avatar-opt" data-av="explorer" onclick="pickAvatar('explorer','🚀')"><span class="av-emoji">🚀</span>Explorer</div>
+      <div class="avatar-opt" data-av="champion" onclick="pickAvatar('champion','🏆')"><span class="av-emoji">🏆</span>Champion</div>
+      <div class="avatar-opt" data-av="master" onclick="pickAvatar('master','👑')"><span class="av-emoji">👑</span>Master</div>
+    </div>
+    <div class="btn-row" style="justify-content:center;margin-top:14px;">
+      <button class="btn btn-primary" onclick="closeAvatarPicker()">✓ Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RESET CONFIRMATION MODAL ═══ -->
+<div class="ns-overlay" id="reset-confirm-modal">
+  <div class="ns-card" style="border-top: 4px solid var(--coral);">
+    <h2 style="color: var(--coral);">🗑 Reset Progress</h2>
+    <p style="margin: 12px 0; line-height: 1.6;">
+      Are you sure you want to reset all progress?<br>
+      This will permanently erase XP, coins, level, rank, achievements, avatar, your name, all quiz answers and scores, streak, and report statistics. This cannot be undone.<br><br>
+      <span dir="rtl" style="font-family: 'Tajawal', sans-serif;">هل أنت متأكد من رغبتك في إعادة تعيين كل التقدم؟ لا يمكن التراجع عن هذا.</span>
+    </p>
+    <div class="btn-row" style="justify-content: center; margin-top: 16px;">
+      <button onclick="executeResetProgress()" class="btn" style="background: var(--coral); color: white; border: none;">Yes, Reset</button>
+      <button onclick="closeResetModal()" class="btn btn-ghost" style="color: #fff; border-color: rgba(255,255,255,0.4); background:transparent; border-width:2px;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ACHIEVEMENT UNLOCK OVERLAY ═══ -->
+<div class="ns-overlay" id="ach-unlock-overlay">
+  <div class="ns-card" style="border-top:4px solid var(--gold);">
+    <h2>🎉 Achievement Unlocked!</h2>
+    <div style="font-size:3.5rem;margin:14px 0;" id="ach-unlock-icon">🏅</div>
+    <div style="font-weight:900;font-size:1.1rem;" id="ach-unlock-name">—</div>
+    <div style="font-size:.85rem;margin-top:4px;" id="ach-unlock-desc">—</div>
+    <div class="btn-row" style="justify-content:center;margin-top:16px;">
+      <button class="btn btn-primary" onclick="closeAchUnlock()">Nice! ✓</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Web Audio API Sound Effects (Gamification) ──
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+let audioCtx;
+
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new AudioContext();
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function playTone(freq, type, duration, vol=0.1) {
+  initAudio();
+  const osc = audioCtx.createOscillator();
+  const gainNode = audioCtx.createGain();
+  osc.type = type;
+  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+  gainNode.gain.setValueAtTime(vol, audioCtx.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+  osc.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration);
+}
+
+function playCorrectSound() {
+  playTone(440, 'sine', 0.1);
+  setTimeout(() => playTone(660, 'sine', 0.2), 100);
+}
+
+function playWrongSound() {
+  playTone(300, 'sawtooth', 0.3);
+  setTimeout(() => playTone(250, 'sawtooth', 0.3), 150);
+}
+
+// Ensure audio context is ready on first interaction
+document.body.addEventListener('click', () => { if(!audioCtx) initAudio(); }, {once:true});
+
+// ── Theme Toggle (Dark Mode) ──
+const THEME_KEY = 'u4VocabBuyTheme';
+function toggleTheme() {
+  document.body.classList.toggle('dark-mode');
+  const btn = document.getElementById('theme-toggle');
+  const isDark = document.body.classList.contains('dark-mode');
+  btn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+  try{ localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light'); }catch(e){}
+}
+(function(){
+  try{
+    if(localStorage.getItem(THEME_KEY)==='dark'){
+      document.body.classList.add('dark-mode');
+      document.getElementById('theme-toggle').textContent='☀️ Light Mode';
+    }
+  }catch(e){}
+})();
+
+// ── TAB NAV ──
+function showTab(n) {
+  document.querySelectorAll('.page').forEach((p, i) => p.classList.toggle('active', i === n));
+  document.querySelectorAll('.nav-tabs button').forEach((b, i) => b.classList.toggle('active', i === n));
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  currentTabId = n;
+  if(n===10) renderResultsDashboard();
+  saveState();
+}
+
+/* ── Pill-nav: wheel → horizontal scroll + drag to scroll (identical pattern used across the series) ── */
+(function(){
+  const nav = document.getElementById('nav-tabs');
+  if(!nav) return;
+  nav.addEventListener('wheel', function(e){
+    if(e.deltaY !== 0){ e.preventDefault(); nav.scrollLeft += e.deltaY * 1.2; }
+  }, {passive:false});
+  let isDown=false, startX, scrollStart;
+  nav.addEventListener('mousedown', function(e){
+    if(e.target.tagName === 'BUTTON') return;
+    isDown=true; nav.classList.add('is-dragging');
+    startX = e.pageX - nav.offsetLeft; scrollStart = nav.scrollLeft;
+  });
+  document.addEventListener('mouseup', function(){ isDown=false; nav.classList.remove('is-dragging'); });
+  nav.addEventListener('mouseleave', function(){ isDown=false; nav.classList.remove('is-dragging'); });
+  nav.addEventListener('mousemove', function(e){
+    if(!isDown) return; e.preventDefault();
+    const x = e.pageX - nav.offsetLeft, walk = (x-startX)*1.5;
+    nav.scrollLeft = scrollStart - walk;
+  });
+  let lastActiveBtn = nav.querySelector('button.active');
+  const observer = new MutationObserver(function(){
+    const active = nav.querySelector('button.active');
+    if(!active || active===lastActiveBtn) return;
+    lastActiveBtn = active;
+    const navRect = nav.getBoundingClientRect(), btnRect = active.getBoundingClientRect();
+    const btnCenter = (btnRect.left-navRect.left) + nav.scrollLeft + btnRect.width/2;
+    const target = btnCenter - navRect.width/2;
+    nav.scrollTo({left:Math.max(0,target), behavior:'smooth'});
+  });
+  observer.observe(nav, {subtree:true, attributeFilter:['class']});
+})();
+
+// ── SPEECH ──
+let curWord='';
+function speak(w){
+  if(!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(w);
+  u.lang = 'en-US';
+  u.rate = 0.85;
+
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = ['Google US English', 'Microsoft Zira', 'Microsoft Zira Desktop', 'Samantha', 'Victoria'];
+  let chosenVoice = null;
+
+  for (let i = 0; i < preferred.length; i++) {
+    chosenVoice = voices.find(v => v.name === preferred[i]);
+    if (chosenVoice) break;
+  }
+
+  if (!chosenVoice) {
+    chosenVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Female') || v.name.includes('Woman') || v.name.includes('Zira') || v.name.includes('Samantha')));
+  }
+
+  if (chosenVoice) {
+    u.voice = chosenVoice;
+  }
+
+  speechSynthesis.speak(u);
+}
+function speakWord(){speak(curWord);}
+
+// ── GAMIFICATION EFFECTS (XP & Streak) ──
+let currentXP = 0;
+let streakCount = 0;
+let bestStreak = 0;
+let completedTotal = 0;
+let correctTotal = 0;
+let wrongTotal = 0;
+let coins = 0;
+const totalInteractiveItems = 27; // Fill(4) + Match(4) + MCQ(8) + Boss(11)
+
+const xpTotal = document.getElementById('xp-num');
+const streakTotal = document.getElementById('streak-num');
+const scoreTotal = document.getElementById('score-num');
+
+function showXPFloat(amount, event) {
+  const floatEl = document.createElement('div');
+  floatEl.className = 'xp-float';
+  floatEl.textContent = `+${amount} XP`;
+  
+  if(event && event.clientX) {
+    floatEl.style.left = event.clientX + 'px';
+    floatEl.style.top = (event.clientY - 20) + 'px';
+    floatEl.style.position = 'fixed';
+  } else {
+    const rect = document.querySelector('.xp-val').getBoundingClientRect();
+    floatEl.style.left = (rect.left + rect.width/2 - 20) + 'px';
+    floatEl.style.top = (rect.top - 10) + 'px';
+    floatEl.style.position = 'fixed';
+  }
+  
+  document.body.appendChild(floatEl);
+  setTimeout(() => floatEl.remove(), 1000);
+}
+
+function addCoins(n){
+  coins += n;
+  const el = document.getElementById('coin-num');
+  el.textContent = coins; el.classList.add('bump');
+  setTimeout(()=>el.classList.remove('bump'), 300);
+}
+
+function triggerSuccessEffects(e, xpPoints = 10) {
+  streakCount++;
+  correctTotal++;
+  if(streakCount>bestStreak) bestStreak=streakCount;
+  const bonus = streakCount > 2 ? 5 : 0;
+  const totalGained = xpPoints + bonus;
+  currentXP += totalGained;
+  
+  streakTotal.textContent = streakCount;
+  xpTotal.textContent = currentXP;
+  xpTotal.classList.add('bump'); setTimeout(()=>xpTotal.classList.remove('bump'),300);
+  addCoins(Math.max(1, Math.round(totalGained/5)));
+  updateRankBadge();
+  
+  playCorrectSound();
+  showXPFloat(totalGained, e);
+  
+  if (typeof confetti === 'function' && streakCount % 3 === 0) {
+    confetti({ particleCount: 50, spread: 60, origin: { y: 0.8 } });
+  }
+  checkAchievements();
+  saveState();
+}
+
+function triggerWrongEffects() {
+  streakCount = 0;
+  wrongTotal++;
+  streakTotal.textContent = streakCount;
+  playWrongSound();
+  checkAchievements();
+  saveState();
+}
+
+function updateProgressBar() {
+  const bar = document.getElementById('main-progress');
+  if (bar) {
+    const percentage = Math.min(100, Math.round((completedTotal / totalInteractiveItems) * 100));
+    bar.style.width = percentage + '%';
+  }
+  if (scoreTotal) {
+    scoreTotal.textContent = completedTotal;
+  }
+}
+
+// ── FILL IN BLANKS ──
+let selWord=null;
+const fillAnswers={b1:'vegetarian',b2:'recipe',b3:'seafood',b4:'olive oil'};
+function selectWord(el,word){document.querySelectorAll('.wb-word').forEach(w=>w.style.outline='none');selWord=word;el.style.outline='3px solid #16A34A';}
+function fillBlank(id,correct,sentId){
+  if(!selWord)return;
+  const b=document.getElementById(id);
+  b.textContent=selWord;b.classList.add('filled');b.dataset.value=selWord;
+  document.querySelectorAll('.wb-word').forEach(w=>{if(w.textContent===selWord)w.classList.add('used');});
+  selWord=null;document.querySelectorAll('.wb-word').forEach(w=>w.style.outline='none');
+}
+function checkFill(){
+  let c=0;
+  ['b1','b2','b3','b4'].forEach((id,i)=>{
+    const b=document.getElementById(id);
+    const fs=document.getElementById('fs'+(i+1));
+    if(b.dataset.value===fillAnswers[id]){c++;fs.classList.add('correct');fs.classList.remove('wrong');}
+    else{fs.classList.add('wrong');fs.classList.remove('correct');}
+  });
+  if(c===4){
+    triggerSuccessEffects(null, 40);
+    completedTotal+=4;
+    updateProgressBar();
+    perfectScoreHit = true;
+    markSection(2);
+  } else {
+    triggerWrongEffects();
+  }
+  const r=document.getElementById('fill-result');
+  r.style.display='block';
+  r.innerHTML=c===4?'🎉 Perfect! All correct!':'Score: '+c+'/4 — Review the incorrect ones.';
+  r.style.color=c===4?'#16A34A':'var(--coral)';
+}
+function resetFill(){
+  ['b1','b2','b3','b4'].forEach((id,i)=>{
+    const b=document.getElementById(id);b.textContent='___________';b.classList.remove('filled');delete b.dataset.value;
+    document.getElementById('fs'+(i+1)).classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.wb-word').forEach(w=>w.classList.remove('used'));
+  selWord=null;document.getElementById('fill-result').style.display='none';
+}
+
+// ── MATCHING ──
+let mLeft=null,mRight=null,mCount=0;
+function doMatch(el,side){
+  if(el.classList.contains('matched-ok'))return;
+  if(side==='left'){if(mLeft)mLeft.classList.remove('selected');mLeft=el;el.classList.add('selected');}
+  else{if(mRight)mRight.classList.remove('selected');mRight=el;el.classList.add('selected');}
+  
+  if(mLeft&&mRight){
+    if(mLeft.dataset.id===mRight.dataset.id){
+      mLeft.classList.remove('selected');mRight.classList.remove('selected');
+      mLeft.classList.add('matched-ok');mRight.classList.add('matched-ok');
+      mCount++;document.getElementById('match-score').textContent=mCount+' / 4';
+      triggerSuccessEffects(event);
+      completedTotal++;
+      updateProgressBar();
+      if(mCount>=4) markSection(3);
+    }else{
+      mLeft.classList.add('matched-bad');mRight.classList.add('matched-bad');
+      triggerWrongEffects();
+      setTimeout(()=>{mLeft.classList.remove('selected','matched-bad');mRight.classList.remove('selected','matched-bad');mLeft=null;mRight=null;},600);return;
+    }
+    mLeft=null;mRight=null;
+  }
+}
+function resetMatch(){document.querySelectorAll('[data-id^="r"]').forEach(e=>e.classList.remove('selected','matched-ok','matched-bad'));mLeft=null;mRight=null;mCount=0;document.getElementById('match-score').textContent='0 / 4';}
+
+// ── MCQ ──
+let qAns={},qScore=0,qTotal=0;
+function pickQ(el){
+  const q=el.dataset.q;if(qAns[q])return;qAns[q]=true;
+  const opts=document.querySelectorAll('[data-q="'+q+'"]');
+  opts.forEach(o=>o.classList.add('locked'));
+  
+  if(el.hasAttribute('data-c')){
+    el.classList.add('correct');
+    qScore++;
+    triggerSuccessEffects(event);
+    completedTotal++;
+    updateProgressBar();
+  } else {
+    el.classList.add('wrong');
+    triggerWrongEffects();
+    opts.forEach(o=>{if(o.hasAttribute('data-c'))o.classList.add('correct');});
+  }
+  qTotal++;
+  document.getElementById('mcq-score').textContent=qScore+' / 8';
+  document.getElementById('mcq-prog').style.width=(qTotal/8*100)+'%';
+  if(qTotal>=8) markSection(4);
+}
+
+// ── FINAL BOSS CHALLENGE ──
+let ftAns={},ftScore=0,ftTotal=0;
+let typingBossPassed = false;
+const totalFT = 10;
+
+function checkTypingBoss(e) {
+  const inputEl = document.getElementById('boss-type-input');
+  if(inputEl.disabled) return;
+  
+  const val = inputEl.value.trim().toLowerCase();
+  if(val === 'recipe') {
+    inputEl.classList.add('correct');
+    inputEl.disabled = true;
+    typingBossPassed = true;
+    triggerSuccessEffects(e, 20); // Extra XP for typing boss
+    completedTotal++;
+    updateProgressBar();
+    document.getElementById('bstag-1').classList.add('done');
+    updateBossHealth();
+  } else {
+    inputEl.classList.add('wrong');
+    triggerWrongEffects();
+    setTimeout(() => inputEl.classList.remove('wrong'), 800);
+  }
+}
+
+function pickFT(el){
+  const q=el.dataset.q;if(ftAns[q])return;ftAns[q]=true;
+  const opts=document.querySelectorAll('[data-q="'+q+'"]');
+  opts.forEach(o=>o.classList.add('locked'));
+  
+  if(el.hasAttribute('data-c')){
+    el.classList.add('correct');
+    ftScore++;
+    triggerSuccessEffects(event, 15); // Bonus XP for Boss
+    completedTotal++;
+    updateProgressBar();
+  } else {
+    el.classList.add('wrong');
+    triggerWrongEffects();
+    opts.forEach(o=>{if(o.hasAttribute('data-c'))o.classList.add('correct');});
+  }
+  ftTotal++;
+  document.getElementById('ft-score').textContent=ftScore+' / '+totalFT;
+  document.getElementById('ft-prog').style.width=(ftTotal/totalFT*100)+'%';
+  if(ftTotal>=1) document.getElementById('bstag-2').classList.add('done');
+  if(ftTotal>=6) document.getElementById('bstag-3').classList.add('done');
+  updateBossHealth();
+}
+
+function submitFT(){
+  const box=document.getElementById('final-box');box.style.display='block';
+  let finalScore = ftScore + (typingBossPassed ? 1 : 0);
+  let totalPossible = totalFT + 1;
+  const p = finalScore / totalPossible;
+  const pName = document.getElementById('student-name').value.trim() || 'Hero';
+  
+  let msg = '';
+  if (p === 1) {
+    msg = `🎉 Boss Defeated! Perfect Score, ${pName}!`;
+    if (typeof confetti === 'function') confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+    playCorrectSound();
+    setTimeout(playCorrectSound, 200);
+    perfectScoreHit = true;
+  } else if (p >= 0.8) {
+    msg = `👏 Great job, ${pName}! Almost perfect!`;
+    if (typeof confetti === 'function') confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
+  } else if (p >= 0.6) {
+    msg = `💪 Good effort, ${pName}! The Boss is wounded!`;
+  } else {
+    msg = `📚 The Boss was too strong, ${pName}. Keep studying!`;
+  }
+  document.getElementById('final-num').textContent = finalScore + '/' + totalPossible;
+  document.getElementById('final-msg').textContent=msg;
+  box.scrollIntoView({behavior:'smooth', block: 'center'});
+  markSection(9);
+  const certRow = document.getElementById('cert-btn-row');
+  if(p>=0.7){
+    certRow.innerHTML = '<button class="btn btn-primary" onclick="showTab(10);setTimeout(generateCertificate,300);">📜 Get Your Certificate!</button>';
+  } else {
+    certRow.innerHTML = '';
+  }
+  saveState();
+}
+
+function resetFT(){
+  document.querySelectorAll('[data-q^="f"]').forEach(o=>o.classList.remove('correct','wrong','locked'));
+  ftAns={};ftScore=0;ftTotal=0;
+  typingBossPassed = false;
+  
+  const inputEl = document.getElementById('boss-type-input');
+  inputEl.disabled = false;
+  inputEl.value = '';
+  inputEl.classList.remove('correct', 'wrong');
+  
+  document.getElementById('ft-score').textContent='0 / 0';
+  document.getElementById('ft-prog').style.width='0%';
+  document.getElementById('final-box').style.display='none';
+  bossListenAnswered={}; bossListenScore=0;
+  document.getElementById('boss-listen-score').textContent='0 / 4';
+  document.querySelectorAll('.boss-stage-tag').forEach(t=>t.classList.remove('done'));
+  renderBossListen();
+  updateBossHealth();
+}
+
+function updateBossHealth(){
+  const totalCorrect = ftScore + (typingBossPassed?1:0) + bossListenScore;
+  const totalQ = totalFT + 1 + 4;
+  const pct = Math.max(0, 100 - Math.round(totalCorrect/totalQ*100));
+  document.getElementById('boss-health-fill').style.width = pct+'%';
+  document.getElementById('boss-health-pct').textContent = pct+'%';
+  if(ftTotal>=10 && Object.keys(bossListenAnswered).length>=4) document.getElementById('bstag-4').classList.add('done');
+}
+
+// ── TRANSLATE ──
+function toggleWbTr(btn){const panel=btn.nextElementSibling;const open=panel.classList.contains('open');panel.classList.toggle('open',!open);btn.innerHTML=open?'🌐 ترجمة الكلمات':'✕ إخفاء الترجمة';}
+function toggleTr(btn){const tip=btn.nextElementSibling;const showing=tip.classList.contains('show');tip.classList.toggle('show',!showing);btn.textContent=showing?'🌐 ترجمة':'✕ إخفاء';}
+function toggleColTr(colId,btn){const col=document.getElementById(colId);const showing=col.classList.contains('match-tr-show');col.classList.toggle('match-tr-show',!showing);btn.textContent=showing?'🌐 ترجمة':'✕ إخفاء';}
+
+/* ══════════════════════════════════════════════════════════
+   NEW GAMIFICATION LAYER — coins, ranks, achievements, avatars,
+   easy mode, new tabs, save/load, certificate. Adds to (never
+   removes) everything above.
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Vocabulary data pool (drives Vocabulary Challenge / True-False / Speed Challenge) ── */
+const VOCAB=[
+  {word:'Appetizer',ar:'مقبلات'},{word:'Avocado',ar:'أفوكادو'},{word:'Bean',ar:'فول / بقوليات'},
+  {word:'Beef',ar:'لحم بقر'},{word:'Bread',ar:'خبز'},{word:'Butter',ar:'زبدة'},{word:'Carrot',ar:'جزر'},
+  {word:'Cereal',ar:'حبوب الفطور'},{word:'Cheese',ar:'جبنة'},{word:'Chicken',ar:'دجاج'},
+  {word:'Condiment',ar:'بهارات / توابل'},{word:'Corn oil',ar:'زيت الذرة'},{word:'Crab',ar:'سلطعون'},
+  {word:'Cucumber',ar:'خيار'},{word:'Dairy product',ar:'منتجات الحليب'},{word:'Dates',ar:'تمر'},
+  {word:'Egg',ar:'بيضة'},{word:'Flour',ar:'دقيق'},{word:'Fruit',ar:'فواكه'},{word:'Garlic',ar:'ثوم'},
+  {word:'Grain',ar:'حبوب'},{word:'Grape',ar:'عنب'},{word:'Ingredient',ar:'مكونات'},{word:'Lamb',ar:'لحم الغنم'},
+  {word:'Lettuce',ar:'خس'},{word:'Mango',ar:'مانجو'},{word:'Margarine',ar:'سمن'},{word:'Meat',ar:'لحم'},
+  {word:'Milk',ar:'حليب'},{word:'Mushroom',ar:'مشروم / فطر'},{word:'Olive oil',ar:'زيت زيتون'},
+  {word:'Onion',ar:'بصل'},{word:'Papaya',ar:'بابايا'},{word:'Parsley',ar:'بقدونس'},{word:'Pepper',ar:'فلفل'},
+  {word:'Pineapple',ar:'أناناس'},{word:'Potato',ar:'بطاطا'},{word:'Recipe',ar:'وصفة طعام'},{word:'Rice',ar:'رز'},
+  {word:'Salmon',ar:'سلمون'},{word:'Salt',ar:'ملح'},{word:'Sausage',ar:'نقانق'},{word:'Seafood',ar:'طعام بحري'},
+  {word:'Shrimp',ar:'جمبري'},{word:'Squid',ar:'حبار'},{word:'Strawberry',ar:'فراولة'},{word:'Sugar',ar:'سكر'},
+  {word:'Vegetable',ar:'خضار'},{word:'Watermelon',ar:'بطيخ'},{word:'Yogurt',ar:'زبادي'},
+  {word:'Add',ar:'يضيف'},{word:'Bake',ar:'يخبز'},{word:'Boil',ar:'يغلي'},{word:'Cover',ar:'يغطي'},
+  {word:'Fry',ar:'يقلي'},{word:'Grill',ar:'يشوي'},{word:'Mix',ar:'يخلط / يخفق'},{word:'Roast',ar:'يشوي على الجمر'},
+  {word:'Spread',ar:'يوزع'},{word:'Steam',ar:'يبخر'},
+  {word:'Cup of',ar:'كوب من'},{word:'Kilo of',ar:'كيلو من'},{word:'Package of',ar:'علبة من'},
+  {word:'Tablespoon of',ar:'ملعقة طعام من'},{word:'Teaspoon of',ar:'ملعقة شاي من'},
+  {word:'First',ar:'أولا'},{word:'Then',ar:'ثم'},{word:'After that',ar:'بعد ذلك'},{word:'Finally',ar:'أخيرا'},
+  {word:'Anything',ar:'أي شيء'},{word:'Nothing',ar:'لا شيء'},{word:'Something',ar:'شيء ما'},
+  {word:'Do you need any help?',ar:'هل تحتاج إلى أي مساعدة؟'},{word:'Would you like some more?',ar:'هل ترغب في المزيد؟'},
+  {word:'you guys',ar:'أنتم / يا شباب'},{word:"I can't wait.",ar:'أنا متحمس جداً'},
+  {word:"Everything's under control.",ar:'كل شيء تحت السيطرة'},{word:"I've had more than enough.",ar:'لقد اكتفيت'}
+];
+function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function makeMCQ(entry,pool){
+  const distractors=shuffle(pool.filter(v=>v.word!==entry.word)).slice(0,3).map(v=>v.ar);
+  const options=shuffle([entry.ar,...distractors]);
+  return {question:entry.word,correct:entry.ar,options};
+}
+
+/* ── Achievements ── */
+const ACHIEVEMENTS=[
+  {id:'first_steps',icon:'🥉',name:'First Steps',desc:'Complete your first activity',check:s=>s.completedTotal>=1},
+  {id:'vocab_learner',icon:'📚',name:'Vocabulary Learner',desc:'Flip 10 vocabulary cards',check:s=>Object.keys(s.flippedCards||{}).length>=10},
+  {id:'quiz_master',icon:'🎯',name:'Quiz Master',desc:'Score 100% on any quiz',check:s=>s.perfectScoreHit},
+  {id:'speedster',icon:'⚡',name:'Speedster',desc:'Finish a speed round',check:s=>s.speedRoundDone},
+  {id:'on_fire',icon:'🔥',name:'On Fire',desc:'Reach a 5-answer streak',check:s=>s.bestStreak>=5},
+  {id:'vocab_king',icon:'👑',name:'Vocabulary King',desc:'Complete every section',check:s=>Object.keys(s.sectionsDone||{}).length>=11}
+];
+/* ── Ranks ── */
+const RANKS=[
+  {xp:0,icon:'🌱',name:'New Learner'},{xp:200,icon:'📘',name:'Active Learner'},
+  {xp:500,icon:'📗',name:'Vocabulary Explorer'},{xp:1000,icon:'🎓',name:'Vocabulary Expert'},
+  {xp:2000,icon:'🏆',name:'Vocabulary Master'},{xp:5000,icon:'👑',name:'Vocabulary Legend'}
+];
+function getRank(xp){let r=RANKS[0];for(const rk of RANKS){if(xp>=rk.xp)r=rk;}return r;}
+function updateRankBadge(){const rk=getRank(currentXP);const el=document.getElementById('rank-display');if(el)el.textContent=rk.icon+' '+rk.name;}
+
+let easyMode=false,chosenAvatar=null,studentName='',flippedCards={},achievementsUnlocked={},perfectScoreHit=false,speedRoundDone=false;
+let sectionsDone={},currentTabId=0,sessionStart=Date.now(),accumulatedMs=0;
+const SAVE_KEY='u4VocabBuySave_v1',NAME_KEY='u4VocabBuyName';
+function markSection(idx){sectionsDone[idx]=true;checkAchievements();saveState();}
+
+function checkAchievements(){
+  const state={completedTotal,flippedCards,perfectScoreHit,speedRoundDone,bestStreak,sectionsDone};
+  ACHIEVEMENTS.forEach(a=>{
+    if(!achievementsUnlocked[a.id]&&a.check(state)){
+      achievementsUnlocked[a.id]=true; showBadgeToast(a); showAchUnlockOverlay(a);
+    }
+  });
+  renderAchPanels();
+}
+function showBadgeToast(a){
+  const t=document.getElementById('badgeToast');
+  t.innerHTML=a.icon+' <span>Achievement unlocked: <strong>'+a.name+'</strong></span>';
+  t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000);
+}
+function showAchUnlockOverlay(a){
+  document.getElementById('ach-unlock-icon').textContent=a.icon;
+  document.getElementById('ach-unlock-name').textContent=a.name;
+  document.getElementById('ach-unlock-desc').textContent=a.desc;
+  document.getElementById('ach-unlock-overlay').classList.add('show');
+  playCorrectSound(); setTimeout(playCorrectSound,150);
+}
+window.closeAchUnlock=function(){document.getElementById('ach-unlock-overlay').classList.remove('show');};
+function renderAchPanels(){
+  const html=ACHIEVEMENTS.map(a=>{
+    const u=!!achievementsUnlocked[a.id];
+    return '<div class="ach-card '+(u?'unlocked':'locked')+'"><div class="ach-icon">'+a.icon+'</div><div class="ach-name">'+a.name+'</div><div class="ach-desc">'+a.desc+'</div></div>';
+  }).join('');
+  const p=document.getElementById('ach-panel-results'); if(p)p.innerHTML=html;
+}
+
+/* ── Track vocab-card flips via delegation ── */
+document.addEventListener('click',e=>{
+  const card=e.target.closest&&e.target.closest('.vocab-card');
+  if(card){
+    const w=card.querySelector('.word');
+    if(w){flippedCards[w.textContent]=true;markSection(0);}
+  }
+});
+
+/* ── Name / Avatar onboarding ── */
+function onNameInput(){
+  studentName=document.getElementById('student-name').value.trim();
+  localStorage.setItem(NAME_KEY,studentName); saveState();
+}
+window.saveNameFromOverlay=function(){
+  const v=document.getElementById('name-overlay-input').value.trim();
+  studentName=v; localStorage.setItem(NAME_KEY,studentName);
+  const visible=document.getElementById('student-name'); if(visible)visible.value=v;
+  document.getElementById('name-overlay').classList.remove('show');
+  if(!chosenAvatar)document.getElementById('avatar-overlay').classList.add('show');
+  saveState();
+};
+window.openAvatarPicker=function(){document.getElementById('avatar-overlay').classList.add('show');};
+window.closeAvatarPicker=function(){document.getElementById('avatar-overlay').classList.remove('show');saveState();};
+window.pickAvatar=function(id,emoji){
+  chosenAvatar=id;
+  document.querySelectorAll('.avatar-opt').forEach(o=>o.classList.toggle('picked',o.getAttribute('data-av')===id));
+  updateAvatarDisplays(emoji); saveState();
+};
+function updateAvatarDisplays(emoji){
+  const map={scholar:'📚',graduate:'🎓',explorer:'🚀',champion:'🏆',master:'👑'};
+  const e=emoji||map[chosenAvatar]||'🎭';
+  const chip=document.getElementById('avatar-chip-display'); if(chip)chip.textContent=e;
+  const inline=document.getElementById('hud-avatar-inline'); if(inline)inline.textContent=e;
+}
+
+/* ── Easy mode ── */
+function toggleEasyMode(){
+  easyMode=!easyMode;
+  document.getElementById('easy-toggle-btn').textContent='💡 Easy Mode: '+(easyMode?'ON':'OFF');
+  document.querySelectorAll('.mcq-block').forEach(b=>attachEasyHint(b));
+  saveState();
+}
+function attachEasyHint(block){
+  let hintBtn=block.querySelector('.easy-hint-btn');
+  if(easyMode){
+    if(!hintBtn){
+      hintBtn=document.createElement('button');
+      hintBtn.className='tr-btn easy-hint-btn';
+      hintBtn.style.background='linear-gradient(135deg,var(--gold),var(--orange))';
+      hintBtn.style.marginTop='6px';
+      hintBtn.textContent='💡 Remove 2 wrong answers';
+      hintBtn.onclick=()=>easyEliminate(block);
+      block.appendChild(hintBtn);
+    }
+  } else if(hintBtn){ hintBtn.remove(); }
+}
+function easyEliminate(block){
+  // A correct option is marked either with a bare data-c attribute (static MCQ/Boss tabs)
+  // or with data-correct="true" (dynamically generated Vocabulary Challenge / Boss Listening
+  // blocks). Both conventions must be recognized, or the hint treats every option as "wrong"
+  // and can eliminate the real answer along with a distractor.
+  const wrongs=Array.from(block.querySelectorAll('.mcq-opt')).filter(o=>{
+    if(o.hasAttribute('data-c')) return false;
+    if(o.getAttribute('data-correct')==='true') return false;
+    return true;
+  });
+  shuffle(wrongs).slice(0,2).forEach(o=>o.classList.add('eliminated'));
+  const btn=block.querySelector('.easy-hint-btn');
+  if(btn){btn.disabled=true;btn.style.opacity='.5';}
+}
+
+/* ── Reset progress (custom modal, no window.confirm) ── */
+window.confirmResetProgress=function(){
+  const modal=document.getElementById('reset-confirm-modal');
+  if(modal)modal.classList.add('show'); else executeResetProgress();
+};
+window.closeResetModal=function(){
+  const modal=document.getElementById('reset-confirm-modal');
+  if(modal)modal.classList.remove('show');
+};
+window.executeResetProgress=function(){
+  try{
+    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(NAME_KEY);
+    localStorage.removeItem(THEME_KEY);
+  }catch(e){console.error('Could not clear localStorage:',e);}
+  location.reload();
+};
+
+/* ── Save / Load (localStorage) ── */
+function safeNum(v,d){return (typeof v==='number'&&!isNaN(v))?v:d;}
+function safeObj(v){return (v&&typeof v==='object'&&!Array.isArray(v))?v:{};}
+function saveState(){
+  try{
+    accumulatedMs+=(Date.now()-sessionStart); sessionStart=Date.now();
+    const data={
+      currentXP,coins,streakCount,correctTotal,wrongTotal,completedTotal,bestStreak,
+      easyMode,chosenAvatar,studentName,sectionsDone,flippedCards,achievementsUnlocked,
+      perfectScoreHit,speedRoundDone,currentTabId,accumulatedMs,
+      mCount,
+      qScore,qTotal,qAns,ftScore,ftTotal,ftAns,typingBossPassed,
+      tfAnswered,tfCorrect,tfTotal,oqEvals,
+      vcMatchedCount,vcListenAnswered,vcListenScore,vcSpeedScore,vcSpeedTotal,scBest,
+      bossListenAnswered,bossListenScore,certGenerated
+    };
+    localStorage.setItem(SAVE_KEY,JSON.stringify(data));
+    if(studentName)localStorage.setItem(NAME_KEY,studentName);
+  }catch(e){console.warn('Could not save progress',e);}
+}
+function loadState(){
+  try{
+    const raw=localStorage.getItem(SAVE_KEY); if(!raw)return false;
+    const d=JSON.parse(raw);
+    currentXP=safeNum(d.currentXP,0); coins=safeNum(d.coins,0); streakCount=safeNum(d.streakCount,0);
+    correctTotal=safeNum(d.correctTotal,0); wrongTotal=safeNum(d.wrongTotal,0); completedTotal=safeNum(d.completedTotal,0);
+    bestStreak=safeNum(d.bestStreak,0); easyMode=!!d.easyMode; chosenAvatar=(typeof d.chosenAvatar==='string')?d.chosenAvatar:null;
+    studentName=(typeof d.studentName==='string')?d.studentName:'';
+    sectionsDone=safeObj(d.sectionsDone); flippedCards=safeObj(d.flippedCards); achievementsUnlocked=safeObj(d.achievementsUnlocked);
+    perfectScoreHit=!!d.perfectScoreHit; speedRoundDone=!!d.speedRoundDone; currentTabId=safeNum(d.currentTabId,0);
+    accumulatedMs=safeNum(d.accumulatedMs,0);
+    mCount=safeNum(d.mCount,0);
+    document.getElementById('match-score').textContent=mCount+' / 4';
+    qScore=safeNum(d.qScore,0); qTotal=safeNum(d.qTotal,0); qAns=safeObj(d.qAns);
+    document.getElementById('mcq-score').textContent=qScore+' / 8';
+    document.getElementById('mcq-prog').style.width=(qTotal/8*100)+'%';
+    ftScore=safeNum(d.ftScore,0); ftTotal=safeNum(d.ftTotal,0); ftAns=safeObj(d.ftAns); typingBossPassed=!!d.typingBossPassed;
+    document.getElementById('ft-score').textContent=ftScore+' / '+totalFT;
+    document.getElementById('ft-prog').style.width=(ftTotal/totalFT*100)+'%';
+    if(typingBossPassed){
+      const inputEl=document.getElementById('boss-type-input');
+      inputEl.value='recipe'; inputEl.disabled=true; inputEl.classList.add('correct');
+    }
+    tfAnswered=safeObj(d.tfAnswered); tfCorrect=safeNum(d.tfCorrect,0); tfTotal=safeNum(d.tfTotal,0);
+    oqEvals=safeObj(d.oqEvals);
+    vcMatchedCount=safeNum(d.vcMatchedCount,0); vcListenAnswered=safeObj(d.vcListenAnswered); vcListenScore=safeNum(d.vcListenScore,0);
+    vcSpeedScore=safeNum(d.vcSpeedScore,0); vcSpeedTotal=safeNum(d.vcSpeedTotal,0); scBest=safeNum(d.scBest,0);
+    bossListenAnswered=safeObj(d.bossListenAnswered); bossListenScore=safeNum(d.bossListenScore,0); certGenerated=!!d.certGenerated;
+    return true;
+  }catch(e){console.warn('Could not restore saved progress — starting fresh.',e);return false;}
+}
+
+/* ── Vocabulary Challenge tab ── */
+const VC_MATCH_POOL=shuffle(VOCAB).slice(0,8);
+let vcSelLeft=null,vcSelRight=null,vcMatchedCount=0;
+function renderVCMatch(){
+  const left=document.getElementById('vc-match-left'),right=document.getElementById('vc-match-right');
+  if(!left||!right)return;
+  left.innerHTML='<h4>Word</h4>'+VC_MATCH_POOL.map((v,i)=>`<div class="m-item" data-id="vc${i}" onclick="selectVCMatch(this,'left')">${v.word} <button class="audio-btn" onclick="event.stopPropagation();speak('${v.word.replace(/'/g,"\\'").replace(/"/g,"&quot;")}')">🔊</button></div>`).join('');
+  const shuffled=shuffle(VC_MATCH_POOL.map((v,i)=>({...v,i})));
+  right.innerHTML='<h4>Meaning</h4>'+shuffled.map(v=>`<div class="m-item" data-id="vc${v.i}" onclick="selectVCMatch(this,'right')" style="direction:rtl">${v.ar}</div>`).join('');
+}
+function selectVCMatch(el,side){
+  if(el.classList.contains('matched-ok'))return;
+  if(side==='left'){if(vcSelLeft)vcSelLeft.classList.remove('selected');vcSelLeft=el;el.classList.add('selected');}
+  else{if(vcSelRight)vcSelRight.classList.remove('selected');vcSelRight=el;el.classList.add('selected');}
+  if(vcSelLeft&&vcSelRight){
+    if(vcSelLeft.dataset.id===vcSelRight.dataset.id){
+      vcSelLeft.classList.remove('selected');vcSelRight.classList.remove('selected');
+      vcSelLeft.classList.add('matched-ok');vcSelRight.classList.add('matched-ok');
+      vcMatchedCount++;document.getElementById('vc-match-score').textContent=vcMatchedCount+' / 8';
+      triggerSuccessEffects(event);completedTotal++;updateProgressBar();
+      if(vcMatchedCount===8){perfectScoreHit=true;checkVCComplete();}
+    }else{
+      vcSelLeft.classList.add('matched-bad');vcSelRight.classList.add('matched-bad');
+      triggerWrongEffects();
+      const l=vcSelLeft,r=vcSelRight;
+      setTimeout(()=>{l.classList.remove('selected','matched-bad');r.classList.remove('selected','matched-bad');},500);
+      vcSelLeft=null;vcSelRight=null;return;
+    }
+    vcSelLeft=null;vcSelRight=null;
+  }
+}
+function resetVCMatch(){
+  document.querySelectorAll('#vc-match-left .m-item,#vc-match-right .m-item').forEach(el=>el.classList.remove('selected','matched-ok','matched-bad'));
+  vcSelLeft=null;vcSelRight=null;vcMatchedCount=0;document.getElementById('vc-match-score').textContent='0 / 8';
+}
+const VC_LISTEN_POOL=shuffle(VOCAB).slice(0,6);
+let vcListenAnswered={},vcListenScore=0;
+function renderVCListen(){
+  const c=document.getElementById('vc-listen-container'); if(!c)return;
+  c.innerHTML=VC_LISTEN_POOL.map((v,i)=>{
+    const mcq=makeMCQ(v,VOCAB);
+    return `<div class="mcq-block" data-vcl="${i}"><div class="mcq-q">🔊 <button class="audio-btn" style="width:40px;height:40px;font-size:1.1rem;" onclick="speak('${v.word.replace(/'/g,"\\'").replace(/"/g,"&quot;")}')">🔊</button> Listen and choose the correct meaning</div><div class="mcq-options">${mcq.options.map(o=>`<div class="mcq-opt" data-vcli="${i}" data-correct="${o===mcq.correct}" onclick="pickVCListen(this,${i})" style="direction:rtl">${o}</div>`).join('')}</div></div>`;
+  }).join('');
+}
+function pickVCListen(el,i){
+  if(vcListenAnswered[i]!==undefined)return; vcListenAnswered[i]=true;
+  const opts=document.querySelectorAll(`[data-vcli="${i}"]`); opts.forEach(o=>o.classList.add('locked'));
+  if(el.dataset.correct==='true'){el.classList.add('correct');vcListenScore++;triggerSuccessEffects(event);completedTotal++;updateProgressBar();if(vcListenScore===6)perfectScoreHit=true;}
+  else{el.classList.add('wrong');triggerWrongEffects();opts.forEach(o=>{if(o.dataset.correct==='true')o.classList.add('correct');});}
+  document.getElementById('vc-listen-score').textContent=vcListenScore+' / 6';
+  if(Object.keys(vcListenAnswered).length>=6)checkVCComplete();
+}
+function resetVCListen(){vcListenAnswered={};vcListenScore=0;document.getElementById('vc-listen-score').textContent='0 / 6';renderVCListen();}
+
+let vcSpeedTimer=null,vcSpeedTimeLeft=45,vcSpeedScore=0,vcSpeedTotal=0,vcSpeedPool=[],vcSpeedIdx=0,vcSpeedStarted=false;
+function startVCSpeed(){
+  if(vcSpeedStarted)return; vcSpeedStarted=true;
+  vcSpeedScore=0;vcSpeedTotal=0;vcSpeedIdx=0;vcSpeedTimeLeft=45;
+  vcSpeedPool=shuffle(VOCAB).map(v=>makeMCQ(v,VOCAB));
+  document.getElementById('vc-speed-start').style.display='none';
+  document.getElementById('vc-speed-result').style.display='none';
+  document.getElementById('vc-speed-score').textContent='0 / 0';
+  nextVCSpeedQ();
+  vcSpeedTimer=setInterval(()=>{
+    vcSpeedTimeLeft--;
+    const td=document.getElementById('vc-speed-timer'); td.textContent=vcSpeedTimeLeft; td.classList.toggle('urgent',vcSpeedTimeLeft<=10);
+    if(vcSpeedTimeLeft<=0)endVCSpeed();
+  },1000);
+}
+function nextVCSpeedQ(){
+  const c=document.getElementById('vc-speed-container');
+  if(vcSpeedIdx>=vcSpeedPool.length)vcSpeedIdx=0;
+  const item=vcSpeedPool[vcSpeedIdx];
+  c.innerHTML=`<div class="mcq-block"><div class="mcq-q">${item.question}</div><div class="mcq-options">${item.options.map(o=>`<div class="mcq-opt" onclick="answerVCSpeed(this,'${o.replace(/'/g,"\\'").replace(/"/g,"&quot;")}','${item.correct.replace(/'/g,"\\'").replace(/"/g,"&quot;")}')" style="direction:rtl">${o}</div>`).join('')}</div></div>`;
+}
+function answerVCSpeed(el,chosen,correct){
+  if(!vcSpeedStarted)return; vcSpeedTotal++;
+  if(chosen===correct){vcSpeedScore++;currentXP+=5;xpTotal.textContent=currentXP;addCoins(2);playCorrectSound();updateRankBadge();} else{playWrongSound();}
+  document.getElementById('vc-speed-score').textContent=vcSpeedScore+' / '+vcSpeedTotal;
+  vcSpeedIdx++; if(vcSpeedTimeLeft>0)nextVCSpeedQ();
+}
+function endVCSpeed(){
+  clearInterval(vcSpeedTimer);vcSpeedTimer=null;vcSpeedStarted=false;
+  document.getElementById('vc-speed-timer').textContent='0';
+  document.getElementById('vc-speed-container').innerHTML='';
+  document.getElementById('vc-speed-start').style.display='inline-flex';
+  document.getElementById('vc-speed-start').textContent='↺ Try Again';
+  const bonus=Math.round(vcSpeedScore*3); currentXP+=bonus; xpTotal.textContent=currentXP; addCoins(Math.round(bonus/2)); updateRankBadge();
+  if(typeof confetti==='function')confetti({particleCount:80,spread:80,origin:{y:.7}});
+  const r=document.getElementById('vc-speed-result'); r.style.display='block';
+  r.textContent=`⚡ Speed Round Complete! ${vcSpeedScore}/${vcSpeedTotal} correct — Bonus: +${bonus} XP 🪙+${Math.round(bonus/2)}`;
+  speedRoundDone=true; completedTotal+=vcSpeedScore; updateProgressBar(); checkAchievements(); checkVCComplete(); saveState();
+}
+function checkVCComplete(){
+  if(vcMatchedCount>=8&&Object.keys(vcListenAnswered).length>=6&&speedRoundDone){
+    const total=vcMatchedCount+vcListenScore+vcSpeedScore;
+    document.getElementById('vc-final-box').style.display='block';
+    document.getElementById('vc-final-num').textContent=total;
+    document.getElementById('vc-final-msg').textContent='🎉 All 3 rounds complete, great work!';
+    markSection(5);
+  }
+}
+
+/* ── True / False tab ── */
+const TF_DATA=[
+  {s:'A "vegetarian" eats meat and seafood every day.',ans:false,ex:'❌ False — a vegetarian (نباتي) does NOT eat meat or seafood.'},
+  {s:'"Boil" means to cook food in hot water.',ans:true,ex:'✅ True — to boil (يغلي) means to cook something in boiling water.'},
+  {s:'"Recipe" means a set of instructions for cooking a dish.',ans:true,ex:'✅ True — a recipe (وصفة طعام) tells you how to prepare a dish.'},
+  {s:'"Olive oil" is a type of dairy product.',ans:false,ex:'❌ False — olive oil (زيت زيتون) comes from olives, not milk.'},
+  {s:'"Grill" means to cook food directly over fire or heat.',ans:true,ex:'✅ True — to grill (يشوي) means to cook food over direct heat.'},
+  {s:'"Kilo of" and "cup of" are both partitives used to measure amounts.',ans:true,ex:'✅ True — both are partitives (وحدات قياس) used before uncountable nouns.'},
+  {s:'"Finally" is usually the first step in a sequence of instructions.',ans:false,ex:'❌ False — "finally" (أخيراً) marks the last step, not the first.'},
+  {s:'"I can\'t wait" means someone feels bored about something.',ans:false,ex:'❌ False — "I can\'t wait" (أنا متحمس جداً) means someone is very excited.'},
+  {s:'"Seafood" includes food like shrimp, crab, and squid.',ans:true,ex:'✅ True — seafood (طعام بحري) includes shrimp, crab, squid, and fish.'},
+  {s:'"Ingredient" means the finished dish you serve at the table.',ans:false,ex:'❌ False — an ingredient (مكونات) is one item used to make a dish, not the finished meal.'}
+];
+let tfAnswered={},tfCorrect=0,tfTotal=0;
+function renderTF(){
+  const c=document.getElementById('tf-container'); if(!c)return;
+  c.innerHTML=TF_DATA.map((item,i)=>`
+    <div class="tf-card" id="tf-card-${i}">
+      <div class="tf-statement">${i+1}. ${item.s} <button class="audio-btn" onclick="speak('${item.s.replace(/'/g,"\\'").replace(/"/g,"&quot;")}')">🔊</button></div>
+      <div class="tf-btn-row">
+        <button class="tf-btn" onclick="answerTF(${i}, true)">✅ True</button>
+        <button class="tf-btn" onclick="answerTF(${i}, false)">❌ False</button>
+      </div>
+      <div class="tf-explain" id="tf-explain-${i}">${item.ex}</div>
+    </div>
+  `).join('');
+}
+function answerTF(i,val){
+  if(tfAnswered[i]!==undefined)return; tfAnswered[i]=val;
+  const card=document.getElementById('tf-card-'+i), btns=card.querySelectorAll('.tf-btn');
+  btns.forEach(b=>b.classList.add('locked'));
+  const correct=TF_DATA[i].ans;
+  if(val===correct){btns[val?0:1].classList.add('correct');tfCorrect++;triggerSuccessEffects(event);completedTotal++;updateProgressBar();}
+  else{btns[val?0:1].classList.add('wrong');btns[correct?0:1].classList.add('correct');triggerWrongEffects();}
+  tfTotal++;
+  document.getElementById('tf-explain-'+i).classList.add('show');
+  document.getElementById('tf-score').textContent=tfCorrect+' / '+TF_DATA.length;
+  document.getElementById('tf-progress').style.width=Math.round(tfTotal/TF_DATA.length*100)+'%';
+  if(tfCorrect===TF_DATA.length)perfectScoreHit=true;
+  if(tfTotal>=TF_DATA.length)markSection(6);
+  saveState();
+}
+function resetTF(){
+  tfAnswered={};tfCorrect=0;tfTotal=0;
+  document.getElementById('tf-score').textContent='0 / '+TF_DATA.length;
+  document.getElementById('tf-progress').style.width='0%';
+  renderTF();
+}
+
+/* ── Speed Challenge tab (60s mixed) ── */
+let scTimer=null,scTimeLeft=60,scScore=0,scBest=0,scStarted=false,scPool=[],scIdx=0,scQStart=0;
+function startSpeedChallenge(){
+  if(scStarted)return; scStarted=true; scScore=0; scTimeLeft=60; scIdx=0;
+  scPool=shuffle(VOCAB.concat(VOCAB)).map(v=>makeMCQ(v,VOCAB));
+  document.getElementById('sc-start').style.display='none';
+  document.getElementById('sc-result').style.display='none';
+  document.getElementById('sc-score').textContent='0';
+  nextSCQ();
+  scTimer=setInterval(()=>{
+    scTimeLeft--;
+    const td=document.getElementById('sc-timer'); td.textContent=scTimeLeft; td.classList.toggle('urgent',scTimeLeft<=10);
+    if(scTimeLeft<=0)endSpeedChallenge();
+  },1000);
+}
+function nextSCQ(){
+  if(scIdx>=scPool.length)scIdx=0; scQStart=Date.now();
+  const item=scPool[scIdx];
+  document.getElementById('sc-container').innerHTML=`<div class="mcq-block"><div class="mcq-q">What does <em>"${item.question}"</em> mean?</div><div class="mcq-options">${item.options.map(o=>`<div class="mcq-opt" onclick="answerSC(this,'${o.replace(/'/g,"\\'").replace(/"/g,"&quot;")}','${item.correct.replace(/'/g,"\\'").replace(/"/g,"&quot;")}')" style="direction:rtl">${o}</div>`).join('')}</div></div>`;
+}
+function answerSC(el,chosen,correct){
+  if(!scStarted)return;
+  const elapsed=(Date.now()-scQStart)/1000;
+  if(chosen===correct){const bonus=elapsed<2?8:elapsed<4?5:3;scScore+=bonus;currentXP+=bonus;xpTotal.textContent=currentXP;addCoins(1);updateRankBadge();playCorrectSound();} else{playWrongSound();}
+  document.getElementById('sc-score').textContent=scScore; scIdx++; if(scTimeLeft>0)nextSCQ();
+}
+function endSpeedChallenge(){
+  clearInterval(scTimer);scTimer=null;scStarted=false;
+  document.getElementById('sc-timer').textContent='0';
+  document.getElementById('sc-container').innerHTML='';
+  document.getElementById('sc-start').style.display='inline-flex';
+  document.getElementById('sc-start').textContent='↺ Try Again';
+  if(scScore>scBest)scBest=scScore;
+  document.getElementById('sc-best').textContent=scBest;
+  if(typeof confetti==='function')confetti({particleCount:70,spread:70,origin:{y:.7}});
+  const r=document.getElementById('sc-result'); r.style.display='block'; r.textContent="⚡ Time's up! Final score: "+scScore+' points';
+  completedTotal++; updateProgressBar(); markSection(7); saveState();
+}
+
+/* ── Open Questions tab ── */
+const OQ_DATA=[
+  {q:'What ingredients do you always keep in your kitchen?',model:'I always keep flour, sugar, salt, olive oil, and some vegetables in my kitchen.'},
+  {q:'Describe your favorite recipe, step by step.',model:'First, I fry the onion and garlic. Then I add the chicken and some pepper. After that, I add rice, and finally I serve it hot.'},
+  {q:'Are you a vegetarian, or do you eat meat and seafood?',model:"I'm not a vegetarian — I enjoy meat, seafood like shrimp and salmon, and lots of vegetables too."},
+  {q:'What would you say if a friend offered you more food but you were full?',model:"I would say, \"I've had more than enough, thank you!\""},
+  {q:'Describe a shopping list for a big dinner with your family.',model:'I would buy chicken, rice, tomatoes, an onion, garlic, some spices, and a kilo of vegetables.'},
+  {q:'Would you like some more? How do you respond politely to this question?',model:'I would say, "Sure, just a little more, thank you," or "No thanks, I\'m full."'}
+];
+let oqEvals={};
+function renderOQ(){
+  const c=document.getElementById('oq-container'); if(!c)return;
+  c.innerHTML=OQ_DATA.map((item,i)=>{
+    const safeQ=item.q.replace(/'/g,"\\'").replace(/"/g,"&quot;");
+    return '<div class="oq-card">'
+      +'<div class="oq-q">'+(i+1)+'. '+item.q+' <button class="audio-btn" onclick="speak(\''+safeQ+'\')">🔊</button></div>'
+      +'<textarea class="oq-textarea" id="oq-input-'+i+'" placeholder="Write your answer here... / اكتب إجابتك هنا"></textarea>'
+      +'<div class="btn-row" style="margin-top:8px;"><button class="btn btn-primary" onclick="showModelAnswer('+i+')">💡 Model Answer</button></div>'
+      +'<div class="oq-model" id="oq-model-'+i+'">'+item.model+'</div>'
+      +'<div style="font-size:.78rem;color:var(--text-muted);margin-top:8px;font-weight:700;">Self-evaluation:</div>'
+      +'<div class="oq-eval" id="oq-eval-'+i+'">'
+      +'<button onclick="selfEval('+i+',\'great\',this)">😊 Great</button>'
+      +'<button onclick="selfEval('+i+',\'good\',this)">🙂 Good</button>'
+      +'<button onclick="selfEval('+i+',\'practice\',this)">😕 Needs practice</button>'
+      +'</div></div>';
+  }).join('');
+}
+function showModelAnswer(i){
+  document.getElementById('oq-model-'+i).classList.add('show');
+  const val=document.getElementById('oq-input-'+i).value.trim();
+  if(val&&!oqEvals[i]){currentXP+=8;xpTotal.textContent=currentXP;addCoins(2);updateRankBadge();completedTotal++;updateProgressBar();}
+  if(Object.keys(oqEvals).length+(val?1:0)>=OQ_DATA.length)markSection(8);
+  saveState();
+}
+function selfEval(i,level,btn){
+  oqEvals[i]=level;
+  const row=document.getElementById('oq-eval-'+i);
+  row.querySelectorAll('button').forEach(b=>b.classList.remove('picked'));
+  btn.classList.add('picked');
+  if(Object.keys(oqEvals).length>=OQ_DATA.length)markSection(8);
+  saveState();
+}
+
+/* ── Boss listening stage ── */
+let bossListenAnswered={},bossListenScore=0,certGenerated=false;
+const BOSS_LISTEN_POOL=shuffle(VOCAB).slice(0,4);
+function renderBossListen(){
+  const c=document.getElementById('boss-listen-container'); if(!c)return;
+  c.innerHTML=BOSS_LISTEN_POOL.map((v,i)=>{
+    const mcq=makeMCQ(v,VOCAB);
+    return `<div class="mcq-block"><div class="mcq-q">🔊 <button class="audio-btn" style="width:38px;height:38px;" onclick="speak('${v.word.replace(/'/g,"\\'").replace(/"/g,"&quot;")}')">🔊</button> Choose the meaning</div><div class="mcq-options">${mcq.options.map(o=>`<div class="mcq-opt" data-bli="${i}" data-correct="${o===mcq.correct}" onclick="pickBossListen(this,${i})" style="direction:rtl">${o}</div>`).join('')}</div></div>`;
+  }).join('');
+}
+function pickBossListen(el,i){
+  if(bossListenAnswered[i]!==undefined)return; bossListenAnswered[i]=true;
+  document.querySelectorAll(`[data-bli="${i}"]`).forEach(o=>o.classList.add('locked'));
+  if(el.dataset.correct==='true'){el.classList.add('correct');bossListenScore++;triggerSuccessEffects(event,12);}
+  else{el.classList.add('wrong');triggerWrongEffects();document.querySelectorAll(`[data-bli="${i}"]`).forEach(o=>{if(o.dataset.correct==='true')o.classList.add('correct');});}
+  document.getElementById('boss-listen-score').textContent=bossListenScore+' / 4';
+  updateBossHealth();
+}
+
+/* ── Results dashboard ── */
+function renderResultsDashboard(){
+  document.getElementById('res-xp').textContent=currentXP;
+  document.getElementById('res-coins').textContent=coins;
+  document.getElementById('res-correct').textContent=correctTotal;
+  document.getElementById('res-wrong').textContent=wrongTotal;
+  const totalAns=correctTotal+wrongTotal;
+  document.getElementById('res-accuracy').textContent=totalAns?Math.round(correctTotal/totalAns*100)+'%':'0%';
+  document.getElementById('res-sections').textContent=Object.keys(sectionsDone).length+'/11';
+  const rk=getRank(currentXP);
+  document.getElementById('res-rank').textContent=rk.icon+' '+rk.name;
+  document.getElementById('res-achievements').textContent=Object.keys(achievementsUnlocked).length+'/'+ACHIEVEMENTS.length;
+  document.getElementById('res-streak').textContent=bestStreak;
+  const totalMs=accumulatedMs+(Date.now()-sessionStart);
+  document.getElementById('res-time').textContent=Math.max(1,Math.round(totalMs/60000))+'m';
+
+  const sections=[
+    {name:'Fill in the Blanks',score:completedTotal>=4?4:0,total:4},
+    {name:'Real Talk Matching',score:mCount,total:4},
+    {name:'MCQ Quiz',score:qScore,total:8},
+    {name:'Vocabulary Challenge',score:vcMatchedCount+vcListenScore,total:14},
+    {name:'True / False',score:tfCorrect,total:TF_DATA.length},
+    {name:'Boss Challenge',score:ftScore+(typingBossPassed?1:0)+bossListenScore,total:15}
+  ];
+  const barsC=document.getElementById('res-bars-container');
+  barsC.innerHTML=sections.map(s=>{
+    const pct=s.total?Math.round(s.score/s.total*100):0;
+    return `<div class="res-bar-row"><div class="res-bar-lbl"><span>${s.name}</span><span>${s.score}/${s.total} (${pct}%)</span></div><div class="res-bar-track"><div class="res-bar-fill" style="width:${pct}%"></div></div></div>`;
+  }).join('');
+  let best=sections[0],weak=sections[0];
+  sections.forEach(s=>{
+    const p=s.total?s.score/s.total:0;
+    if(p>(best.score/best.total||0))best=s;
+    if(p<(weak.score/weak.total||1))weak=s;
+  });
+  document.getElementById('res-best').textContent=best.name;
+  document.getElementById('res-weak').textContent=weak.name;
+  renderAchPanels();
+}
+
+/* ── Certificate generator ── */
+function generateCertificate(){
+  const name=studentName||'Hero';
+  const rk=getRank(currentXP); const score=(ftScore+(typingBossPassed?1:0))+'/'+(totalFT+1); const date=new Date().toLocaleDateString();
+  const canvas=document.createElement('canvas'); canvas.width=1000; canvas.height=700; canvas.id='cert-canvas';
+  const ctx=canvas.getContext('2d');
+  const grad=ctx.createLinearGradient(0,0,1000,700); grad.addColorStop(0,'#1A1A2E'); grad.addColorStop(1,'#4A0E4E');
+  ctx.fillStyle=grad; ctx.fillRect(0,0,1000,700);
+  ctx.strokeStyle='#FFD93D'; ctx.lineWidth=8; ctx.strokeRect(24,24,952,652);
+  ctx.strokeStyle='rgba(255,217,61,0.5)'; ctx.lineWidth=2; ctx.strokeRect(40,40,920,620);
+  ctx.textAlign='center';
+  ctx.fillStyle='#FFD93D'; ctx.font='bold 22px Arial'; ctx.fillText('CERTIFICATE OF COMPLETION',500,130);
+  ctx.fillStyle='#FFFFFF'; ctx.font='bold 40px Georgia'; ctx.fillText('U4 Vocabulary — What Do I Need To Buy?',500,190);
+  ctx.font='20px Arial'; ctx.fillStyle='#E5E7EB'; ctx.fillText('This certificate is proudly presented to',500,260);
+  ctx.font='bold 52px Georgia'; ctx.fillStyle='#FFD93D'; ctx.fillText(name,500,335);
+  ctx.font='20px Arial'; ctx.fillStyle='#E5E7EB';
+  ctx.fillText('for successfully completing the Boss Challenge with a score of '+score,500,390);
+  ctx.font='bold 22px Arial'; ctx.fillStyle='#4ECDC4';
+  ctx.fillText('XP Earned: '+currentXP+'   |   Rank: '+rk.icon+' '+rk.name,500,440);
+  ctx.font='18px Arial'; ctx.fillStyle='#94a3b8'; ctx.fillText('Date: '+date,500,490);
+  ctx.font='16px Arial'; ctx.fillStyle='#c4b5fd'; ctx.fillText('Teacher Jaber  •  Super Goal 3',500,600);
+  const container=document.getElementById('cert-container'); container.innerHTML=''; container.appendChild(canvas);
+  const btnRow=document.createElement('div'); btnRow.className='btn-row'; btnRow.style.marginTop='12px';
+  btnRow.innerHTML='<button class="btn btn-primary" onclick="downloadCertificate()">⬇ Download PNG</button><button class="btn btn-reset" onclick="printCertificate()">🖨 Print</button>';
+  container.appendChild(btnRow);
+  certGenerated=true; currentXP+=25; xpTotal.textContent=currentXP; addCoins(10); updateRankBadge();
+  if(typeof confetti==='function')confetti({particleCount:120,spread:90,origin:{y:.6}});
+  markSection(10); saveState();
+}
+function downloadCertificate(){
+  const canvas=document.getElementById('cert-canvas'); if(!canvas)return;
+  const link=document.createElement('a'); link.download='U4_Vocabulary_Certificate.png'; link.href=canvas.toDataURL('image/png'); link.click();
+}
+function printCertificate(){
+  const canvas=document.getElementById('cert-canvas'); if(!canvas)return;
+  const dataUrl=canvas.toDataURL('image/png'); const w=window.open('','_blank');
+  w.document.write('<html><head><title>Certificate</title></head><body style="margin:0;display:flex;align-items:center;justify-content:center;"><img src="'+dataUrl+'" style="max-width:100%;" onload="window.print()"></body></html>');
+  w.document.close();
+}
+
+/* ── Init: render dynamic tabs, restore save, run onboarding ── */
+document.querySelectorAll('.ns-overlay').forEach(ov=>{
+  ov.addEventListener('click',e=>{
+    if(e.target===ov&&ov.id==='ach-unlock-overlay')ov.classList.remove('show');
+  });
+});
+function initGamificationV2(){
+  try{
+    renderTF(); renderOQ(); renderVCMatch(); renderVCListen(); renderBossListen();
+    const restored=loadState();
+    const savedName=localStorage.getItem(NAME_KEY);
+    if(savedName&&!studentName)studentName=savedName;
+    if(studentName){const visible=document.getElementById('student-name'); if(visible)visible.value=studentName;}
+    updateRankBadge(); updateProgressBar();
+    document.getElementById('easy-toggle-btn').textContent='💡 Easy Mode: '+(easyMode?'ON':'OFF');
+    if(easyMode)document.querySelectorAll('.mcq-block').forEach(b=>attachEasyHint(b));
+    if(chosenAvatar)updateAvatarDisplays();
+    renderAchPanels();
+    if(!studentName){document.getElementById('name-overlay').classList.add('show');}
+    else if(!chosenAvatar){document.getElementById('avatar-overlay').classList.add('show');}
+    else if(restored){showTab(currentTabId||0);}
+  }catch(err){console.error('U4 vocabulary gamification init error:',err);}
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initGamificationV2);}
+else{initGamificationV2();}
+</script>
+</body>
+</html>
