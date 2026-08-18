@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 2 Vocabulary – Life Stories | Teacher Jaber</title>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<style>
+:root {
+  --coral:#FF6B6B; --teal:#4ECDC4; --navy:#2C3E7A; --gold:#FFD93D;
+  --purple:#9B59B6; --green:#27AE60; --blue:#2980B9; --orange:#E67E22;
+  --dark:#1A1A2E; --light:#F0F7FF; --white:#FFFFFF;
+  --shadow:0 8px 32px rgba(44,62,122,.12);
+}
+[data-theme="dark"] {
+  --light:#0f0f1a; --dark:#e2e8f0; --white:#1e1e2e;
+  --shadow:0 8px 32px rgba(0,0,0,.4);
+  --navy:#a5b4fc;
+}
+[data-theme="dark"] body { background:#0f0f1a; color:#e2e8f0; }
+[data-theme="dark"] .ex-card { background:#1e1e2e; }
+[data-theme="dark"] .ex-head { border-color:#2d2d4e; }
+[data-theme="dark"] .match-table td { border-color:#2d2d4e; }
+[data-theme="dark"] .match-table tr:nth-child(even) td { background:#252540; }
+[data-theme="dark"] .m-item { background:#252540; border-color:#3d3d6e; color:#e2e8f0; }
+[data-theme="dark"] .m-item:hover { background:#312e81; border-color:#6d28d9; color:white; }
+[data-theme="dark"] .mcq-opt { background:#252540; border-color:#3d3d6e; color:#e2e8f0; }
+[data-theme="dark"] .mcq-opt:hover:not(.locked) { background:#312e81; border-color:#6d28d9; color:white; }
+[data-theme="dark"] .vocab-card-front { background:#1e1e2e; }
+[data-theme="dark"] .vocab-card .word { color:#e2e8f0; }
+[data-theme="dark"] .ans-input { background:#252540; border-color:#3d3d6e; color:#e2e8f0; }
+[data-theme="dark"] .section-title h2 { color:#a5b4fc; }
+[data-theme="dark"] .cat-header h3 { color:#a5b4fc; }
+[data-theme="dark"] footer { background:#0a0a18; }
+[data-theme="dark"] .audio-btn { background:#252540; color:#a5b4fc; }
+[data-theme="dark"] .mcq-block { border-color:#2d2d4e; }
+[data-theme="dark"] .score-line { color:#9ca3af; }
+[data-theme="dark"] .score-line strong { color:#a5b4fc; }
+
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Segoe UI',Arial,sans-serif; background:var(--light); color:var(--dark); overflow-x:hidden; min-height:100vh; transition: background .3s, color .3s; }
+
+/* ── XP TOAST ── */
+.xp-toast {
+  position:fixed; top:80px; right:20px;
+  background:linear-gradient(135deg,#6d28d9,#a855f7);
+  color:white; font-size:1rem; font-weight:900;
+  padding:8px 18px; border-radius:25px;
+  box-shadow:0 4px 20px rgba(109,40,217,.4);
+  z-index:9999; pointer-events:none;
+  opacity:0; transform:translateY(0);
+  transition:opacity .3s, transform .5s;
+}
+.xp-toast.show { opacity:1; transform:translateY(-12px); }
+
+/* ── SITE HEADER ── */
+.site-header {
+  background: linear-gradient(135deg, #7C3AED, #DC2E5D 55%, #F59E0B);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 3px 20px rgba(0,0,0,.35);
+}
+.header-inner {
+  background: rgba(20,10,40,.85);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.header-left h1 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1.2;
+}
+.header-left .sub {
+  font-size: .72rem;
+  color: #c4b5fd;
+  margin-top: 2px;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.header-badge {
+  background: var(--gold);
+  color: #2C3E7A;
+  font-size: .7rem;
+  font-weight: 800;
+  padding: 4px 11px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Dark Mode Toggle */
+.dark-toggle {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  font-size: .75rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  transition: .2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: inherit;
+}
+.dark-toggle:hover { background: rgba(255,255,255,.28); }
+
+/* HUD Bar */
+.hud-bar {
+  background: rgba(20,5,40,.9);
+  padding: 5px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hud-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .75rem;
+  font-weight: 800;
+  color: white;
+}
+.xp-badge {
+  background: linear-gradient(135deg,#F59E0B,#FBBF24);
+  color: #1a0a00;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .72rem;
+  font-weight: 900;
+  transition: transform .15s;
+}
+.xp-badge.bump { transform: scale(1.35); }
+.streak-badge {
+  background: linear-gradient(135deg,#EA580C,#F97316);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .72rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.streak-badge.hot { animation: streakPulse .4s ease; }
+@keyframes streakPulse { 0%{transform:scale(1);} 50%{transform:scale(1.4);} 100%{transform:scale(1);} }
+.level-badge {
+  background: #9B59B6;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .72rem;
+  font-weight: 800;
+}
+
+/* Progress Bar */
+.progress-container { height: 5px; width: 100%; background: rgba(255,255,255,.2); }
+.progress-bar { height: 100%; width: 0%; background: var(--gold); transition: width .4s ease; }
+
+@media(max-width:480px) {
+  .header-inner { padding: 8px 12px; }
+  .header-left h1 { font-size: .88rem; }
+  .hud-bar { padding: 5px 12px; gap: 8px; }
+}
+
+/* ── NAV ── */
+.nav-tabs {
+  display:flex; overflow-x:auto; gap:5px;
+  background:#0d0b1f; padding:9px 12px;
+  scrollbar-width:none; position:sticky; top:0; z-index:100;
+  border-bottom:2px solid #1e1b3a;
+}
+.nav-tabs::-webkit-scrollbar { display:none; }
+.nav-tabs button {
+  background:rgba(255,255,255,.06); border:1.5px solid rgba(255,255,255,.12);
+  border-radius:22px; color:rgba(255,255,255,.6); cursor:pointer;
+  font-size:.73rem; font-weight:700; padding:7px 13px; white-space:nowrap;
+  transition:.2s; font-family:inherit; flex-shrink:0;
+}
+.nav-tabs button.active {
+  background:#FFD93D; color:#1a0a2e; border-color:#FFD93D;
+  font-weight:900; box-shadow:0 0 12px rgba(255,217,61,.35);
+}
+.nav-tabs button:hover:not(.active) {
+  background:rgba(109,40,217,.35); color:white; border-color:rgba(109,40,217,.5);
+}
+
+/* ── AUDIO BTN ── */
+.audio-btn {
+  background:#E2E8F0; border:none; border-radius:50%;
+  width:26px; height:26px; display:inline-flex; align-items:center;
+  justify-content:center; cursor:pointer; font-size:.74rem;
+  margin-left:5px; vertical-align:middle; transition:.2s; color:var(--navy);
+}
+.audio-btn:hover { background:var(--blue); color:white; transform:scale(1.1); }
+.vocab-card-front .audio-btn { width:33px; height:33px; font-size:.95rem; margin-top:7px; background:var(--light); }
+[data-theme="dark"] .vocab-card-front .audio-btn { background:#252540; }
+
+/* ── CONTAINER ── */
+.container { max-width:980px; margin:0 auto; padding:22px 14px 90px; }
+.page { display:none; }
+.page.active { display:block; }
+
+/* ── SECTION TITLE ── */
+.section-title { display:flex; align-items:center; gap:10px; margin-bottom:17px; }
+.section-title h2 { font-size:1.1rem; font-weight:800; color:var(--navy); }
+.section-title .tag { background:linear-gradient(135deg,#0F766E,#2C3E7A); color:white; font-size:.7rem; font-weight:800; padding:3px 12px; border-radius:20px; }
+
+/* ── VOCAB CARDS ── */
+.vocab-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(145px,1fr)); gap:10px; margin-bottom:20px; }
+.vocab-card { background:transparent; perspective:1000px; height:156px; cursor:pointer; border:none; box-shadow:none; padding:0; }
+.vocab-card-inner { position:relative; width:100%; height:100%; text-align:center; transition:transform .6s; transform-style:preserve-3d; }
+.vocab-card.flipped .vocab-card-inner { transform:rotateY(180deg); }
+.vocab-card-front, .vocab-card-back {
+  position:absolute; width:100%; height:100%; backface-visibility:hidden;
+  border-radius:14px; padding:12px 10px; box-shadow:var(--shadow);
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  border-top:4px solid transparent;
+}
+.vocab-card-front { background:white; }
+.vocab-card-back { background:var(--navy); color:white; transform:rotateY(180deg); border-top:none; }
+.vocab-card-back .arabic { color:var(--gold); font-size:1.05rem; font-weight:800; margin-bottom:6px; }
+.vocab-card-back .example { color:#E5E7EB; font-size:.77rem; font-style:italic; line-height:1.4; }
+.vocab-card.verb .vocab-card-front { border-top-color:#E67E22; }
+.vocab-card.noun .vocab-card-front { border-top-color:#2980B9; }
+.vocab-card.adj .vocab-card-front { border-top-color:#9B59B6; }
+.vocab-card.phrase .vocab-card-front { border-top-color:#27AE60; }
+.vocab-card .type-badge { font-size:.59rem; font-weight:800; padding:2px 8px; border-radius:20px; display:inline-block; margin-bottom:5px; }
+.vocab-card.verb .type-badge { background:#FFF0ED; color:#E67E22; }
+.vocab-card.noun .type-badge { background:#EDF5FF; color:#2980B9; }
+.vocab-card.adj .type-badge { background:#F5EDFF; color:#9B59B6; }
+.vocab-card.phrase .type-badge { background:#EDFFF5; color:#27AE60; }
+.vocab-card .word { font-size:.92rem; font-weight:800; color:var(--dark); margin-bottom:4px; line-height:1.3; }
+
+/* ── CAT HEADER ── */
+.cat-header { display:flex; align-items:center; gap:8px; margin-bottom:10px; margin-top:5px; }
+.cat-header h3 { font-size:.88rem; font-weight:800; color:var(--navy); }
+.cat-header .line { flex:1; height:2px; background:linear-gradient(90deg,var(--navy),transparent); }
+
+/* ── EX CARD ── */
+.ex-card { background:white; border-radius:17px; box-shadow:var(--shadow); overflow:hidden; margin-bottom:20px; }
+.ex-head { padding:14px 20px 10px; border-bottom:2px solid #F0F4FF; }
+.ex-head h3 { font-size:.94rem; font-weight:800; color:var(--navy); }
+.ex-head p { font-size:.8rem; color:#666; margin-top:3px; direction:rtl; }
+.ex-lv { font-size:.63rem; font-weight:800; padding:3px 10px; border-radius:20px; display:inline-block; margin-top:5px; }
+.ex-lv.easy { background:#D1FAE5; color:#065F46; }
+.ex-lv.medium { background:#FEF3C7; color:#92400E; }
+.ex-lv.hard { background:#FCE7F3; color:#9D174D; }
+.ex-lv.boss { background:linear-gradient(135deg,#7c3aed,#dc2626); color:white; }
+.ex-body { padding:16px 20px; }
+
+/* ── BOSS BANNER ── */
+.boss-banner {
+  background:linear-gradient(135deg,#1a0a2e,#7c3aed 50%,#dc2626);
+  border-radius:16px; padding:20px; text-align:center; color:white;
+  margin-bottom:18px; position:relative; overflow:hidden;
+}
+.boss-banner::before { content:'👾'; position:absolute; font-size:5rem; opacity:.08; left:-8px; top:-8px; }
+.boss-banner::after { content:'⚔️'; position:absolute; font-size:4rem; opacity:.08; right:-5px; bottom:-8px; }
+.boss-banner h2 { font-size:1.25rem; font-weight:900; text-shadow:0 2px 8px rgba(0,0,0,.4); position:relative; }
+.boss-banner p { font-size:.8rem; opacity:.85; margin-top:5px; direction:rtl; position:relative; }
+.boss-badge {
+  display:inline-block; background:linear-gradient(135deg,#FFD93D,#f59e0b);
+  color:#1a0a2e; font-size:.7rem; font-weight:900;
+  padding:4px 14px; border-radius:20px; margin-top:8px; position:relative;
+}
+
+/* ── MATCH TABLE ── */
+.match-table { width:100%; border-collapse:collapse; font-size:.83rem; border-radius:10px; overflow:hidden; margin-bottom:14px; }
+.match-table th { padding:9px 12px; font-weight:800; color:white; background:var(--navy); text-align:left; }
+.match-table td { padding:9px 12px; border-bottom:1px solid #F0F4FF; vertical-align:middle; }
+.match-table tr:last-child td { border:none; }
+.match-table tr:nth-child(even) td { background:#F8FAFF; }
+.ans-input {
+  width:48px; padding:5px 7px; border:2px solid #E5E7EB; border-radius:8px;
+  font-size:.83rem; font-weight:700; text-align:center;
+  color:var(--navy); font-family:inherit; transition:.2s;
+}
+.ans-input.correct { border-color:var(--green); background:#EDFFF5; color:var(--green); }
+.ans-input.wrong { border-color:var(--coral); background:#FFF0ED; color:var(--coral); }
+.ans-input:focus { border-color:var(--blue); outline:none; }
+.def-letter { font-weight:800; color:var(--teal); }
+
+/* ── MCQ ── */
+.mcq-block { margin-bottom:17px; padding-bottom:17px; border-bottom:2px solid #F0F4FF; }
+.mcq-block:last-child { border:none; margin-bottom:0; padding-bottom:0; }
+.mcq-q { font-size:.87rem; font-weight:700; margin-bottom:9px; line-height:1.5; }
+.mcq-q em { color:var(--navy); font-style:normal; font-weight:800; }
+.mcq-options { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+@media(max-width:420px){.mcq-options{grid-template-columns:1fr;}}
+.mcq-opt {
+  background:#F0F4FF; border:2px solid #E5E7EB; border-radius:10px;
+  padding:8px 12px; font-size:.8rem; cursor:pointer; transition:.2s;
+  font-weight:600; text-align:center; user-select:none;
+}
+.mcq-opt:hover:not(.locked) { border-color:var(--blue); background:#EDF5FF; color:var(--blue); }
+.mcq-opt.correct { background:#EDFFF5 !important; border-color:var(--green) !important; color:var(--green) !important; font-weight:800; }
+.mcq-opt.wrong { background:#FFF0ED !important; border-color:var(--coral) !important; color:var(--coral) !important; }
+.mcq-opt.locked { pointer-events:none; }
+
+/* ── MATCHING CLICK ── */
+.match-grid { display:grid; grid-template-columns:1fr 1fr; gap:13px; margin-bottom:13px; }
+.match-col h4 { font-size:.78rem; font-weight:800; color:var(--navy); margin-bottom:8px; text-align:center; }
+.m-item {
+  background:#F0F4FF; border:2px solid #E5E7EB; border-radius:10px;
+  padding:9px 11px; text-align:center; cursor:pointer; font-size:.8rem;
+  font-weight:600; transition:.2s; margin-bottom:7px; user-select:none;
+}
+.m-item:hover { border-color:var(--blue); background:#EDF5FF; color:var(--blue); }
+.m-item.selected { border-color:var(--orange); background:var(--orange); color:white; }
+.m-item.matched-ok { border-color:var(--green); background:var(--green); color:white; pointer-events:none; }
+.m-item.matched-bad { border-color:var(--coral); background:var(--coral); color:white; }
+
+/* ── BUTTONS ── */
+.btn-row { display:flex; gap:9px; flex-wrap:wrap; margin-bottom:13px; }
+.btn { border:none; border-radius:25px; cursor:pointer; font-size:.82rem; font-weight:800; padding:9px 19px; transition:.2s; font-family:inherit; color:white; }
+.btn:hover { transform:translateY(-2px); filter:brightness(1.1); }
+.btn-primary { background:linear-gradient(135deg,#0F766E,#2C3E7A); }
+.btn-reset { background:#6B7280; }
+.btn-boss { background:linear-gradient(135deg,#7c3aed,#dc2626); box-shadow:0 4px 15px rgba(124,58,237,.3); }
+.score-line { font-size:.82rem; color:#666; margin-bottom:12px; }
+.score-line strong { color:var(--navy); font-size:.9rem; }
+
+/* ── SCORE BOX ── */
+.score-box {
+  background:linear-gradient(135deg,#1a0a2e,#6d28d9);
+  border-radius:17px; padding:22px; text-align:center;
+  color:white; margin-bottom:20px; display:none;
+  box-shadow:0 8px 30px rgba(109,40,217,.3);
+}
+.score-box .s-num { font-size:2.8rem; font-weight:900; }
+.score-box .s-msg { font-size:.95rem; font-weight:700; margin-top:8px; opacity:.9; }
+.score-box .s-xp { font-size:.82rem; margin-top:5px; color:var(--gold); font-weight:800; }
+
+/* ── TRANSLATION ── */
+.tr-btn {
+  display:inline-flex; align-items:center; gap:4px;
+  background:linear-gradient(135deg,var(--teal),var(--blue));
+  border:none; border-radius:20px; color:white; cursor:pointer;
+  font-size:.7rem; font-weight:700; padding:4px 10px; margin-top:5px;
+  transition:.2s; font-family:inherit;
+}
+.tr-btn:hover { transform:translateY(-1px); filter:brightness(1.1); }
+.tr-tooltip {
+  display:none; direction:rtl;
+  background:linear-gradient(135deg,#1A1A2E,#2C3E7A);
+  color:#FFD93D; font-size:.8rem; font-weight:700;
+  padding:7px 13px; border-radius:10px; margin-top:5px;
+  text-align:right; line-height:1.7; border-right:3px solid var(--teal);
+}
+.tr-tooltip.show { display:block; animation:fadeSlide .2s ease; }
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+
+.m-item .match-tr {
+  display:none; font-size:.69rem; color:#FFD93D; direction:rtl;
+  background:rgba(44,62,122,.85); border-radius:6px;
+  padding:2px 7px; margin-top:3px; font-weight:700; width:100%; text-align:center;
+}
+.match-tr-show .m-item .match-tr { display:block; }
+
+footer { background:var(--dark); color:rgba(255,255,255,.55); text-align:center; padding:12px; font-size:.74rem; }
+
+/* ── ANIMATIONS ── */
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+.shake{animation:shake .4s ease;}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+.pulse{animation:pulse .3s ease;}
+
+/* ══════════════ HUD ADDITIONS: coins / rank / header buttons ══════════════ */
+.player-card{background:white;padding:15px 20px;border-radius:15px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+[data-theme="dark"] .player-card{background:#1e1e2e;}
+.player-card input{flex:1;min-width:140px;padding:10px 15px;border-radius:25px;border:2px solid #E5E7EB;background:#F8FAFF;color:var(--dark);font-size:1rem;font-weight:bold;font-family:inherit;outline:none;transition:border-color .3s;}
+[data-theme="dark"] .player-card input{background:#252540;border-color:#3d3d6e;color:#e2e8f0;}
+.player-card input:focus{border-color:var(--teal);}
+.coin-badge{background:linear-gradient(135deg,#FBBF24,#F59E0B);color:#452b00;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:900;transition:transform .15s;}
+.coin-badge.bump{transform:scale(1.35);}
+.rank-badge{background:linear-gradient(135deg,#1E3A5F,#2563EB);color:white;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:800;white-space:nowrap;}
+.hdr-btn{ }
+.btn-ghost{background:transparent;border:2px solid rgba(255,255,255,.5);box-shadow:none;}
+.mcq-opt.eliminated{opacity:.25;pointer-events:none;text-decoration:line-through;}
+
+/* ── BADGE TOAST ── */
+#badgeToast{
+  position:fixed;bottom:1.5rem;left:50%;max-width:90vw;
+  transform:translateX(-50%) translateY(150px);opacity:0;
+  background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;border-radius:16px;
+  padding:.9rem 1.6rem;font-size:.9rem;font-weight:800;display:flex;align-items:center;gap:.75rem;
+  box-shadow:0 8px 30px rgba(124,58,237,.4);z-index:9999;
+  transition:transform .4s cubic-bezier(.175,.885,.32,1.275),opacity .3s ease;pointer-events:none;
+}
+#badgeToast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+
+/* ══════════════ NAV: real styled scrollbar + drag-to-scroll (identical pattern used across the series) ══════════════ */
+.nav-tabs{
+  scrollbar-width:thin; scrollbar-color:#4338CA rgba(255,255,255,.08);
+  cursor:grab; user-select:none;
+}
+.nav-tabs.is-dragging{cursor:grabbing;}
+.nav-tabs::-webkit-scrollbar{height:5px;display:block;}
+.nav-tabs::-webkit-scrollbar-track{background:rgba(255,255,255,.06);border-radius:10px;margin:0 14px;}
+.nav-tabs::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#7C3AED,#2563EB);border-radius:10px;}
+.nav-tabs::-webkit-scrollbar-thumb:hover{background:linear-gradient(90deg,#6D28D9,#1d4ed8);}
+
+/* ══════════════ ONBOARDING / MODAL OVERLAYS (dark purple, identical across the series) ══════════════ */
+.ns-overlay{display:none;position:fixed;inset:0;background:rgba(10,5,20,.75);z-index:2000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px);}
+.ns-overlay.show{display:flex;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.ns-card{
+  background:linear-gradient(160deg,#2E1F5E 0%,#1B1140 100%);color:#EDE9FE;border-radius:22px;padding:28px 26px;
+  max-width:440px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.5);
+  text-align:center;border-top:4px solid var(--purple);
+}
+.ns-card h2{font-size:1.3rem;font-weight:900;margin-bottom:6px;color:#fff;}
+.ns-card p{color:#C9C3E0;}
+.ns-card input[type=text]{
+  width:100%;padding:12px 16px;border-radius:25px;border:2px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.08);color:#fff;font-size:1rem;font-weight:700;margin:14px 0;
+  font-family:inherit;outline:none;text-align:center;
+}
+.ns-card input[type=text]::placeholder{color:#A99FD1;}
+.ns-card input[type=text]:focus{border-color:var(--gold);}
+.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;}
+.avatar-opt{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.16);border-radius:18px;
+  padding:18px 10px;cursor:pointer;transition:.2s;font-weight:800;font-size:.92rem;color:#EDE9FE;
+}
+.avatar-opt:hover{border-color:var(--gold);background:rgba(255,255,255,.11);transform:translateY(-2px);}
+.avatar-opt.picked{border-color:var(--gold);background:rgba(255,217,61,.16);box-shadow:0 4px 14px rgba(255,217,61,.3);}
+.avatar-opt .av-emoji{font-size:2.4rem;}
+
+/* ══════════════ ACHIEVEMENTS ══════════════ */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+.ach-card{background:#F0F4FF;border-radius:14px;padding:14px 10px;text-align:center;border:2px solid #E5E7EB;transition:.2s;}
+[data-theme="dark"] .ach-card{background:#252540;border-color:#3d3d6e;}
+.ach-card.unlocked{border-color:var(--gold);background:linear-gradient(145deg,rgba(255,217,61,.15),rgba(255,140,66,.1));}
+.ach-card.locked{opacity:.45;filter:grayscale(.6);}
+.ach-card .ach-icon{font-size:2rem;margin-bottom:6px;}
+.ach-card .ach-name{font-size:.8rem;font-weight:800;}
+.ach-card .ach-desc{font-size:.68rem;color:#888;margin-top:3px;}
+
+/* ══════════════ TRUE/FALSE ══════════════ */
+.tf-card{background:white;border-radius:14px;padding:16px 18px;margin-bottom:14px;box-shadow:var(--shadow);}
+[data-theme="dark"] .tf-card{background:#1e1e2e;}
+.tf-statement{font-size:1rem;font-weight:700;margin-bottom:10px;}
+.tf-btn-row{display:flex;gap:10px;}
+.tf-btn{flex:1;padding:10px;border-radius:10px;border:2px solid #E5E7EB;background:#F0F4FF;font-weight:800;cursor:pointer;font-family:inherit;transition:.2s;color:var(--dark);}
+[data-theme="dark"] .tf-btn{background:#252540;border-color:#3d3d6e;color:#e2e8f0;}
+.tf-btn.correct{background:var(--green) !important;border-color:var(--green) !important;color:white !important;}
+.tf-btn.wrong{background:var(--coral) !important;border-color:var(--coral) !important;color:white !important;}
+.tf-btn.locked{pointer-events:none;}
+.tf-explain{display:none;margin-top:10px;padding:10px 14px;background:#F0F4FF;border-radius:10px;font-size:.85rem;border-right:4px solid var(--teal);}
+[data-theme="dark"] .tf-explain{background:#252540;}
+.tf-explain.show{display:block;animation:fadeSlide .2s ease;}
+
+/* ══════════════ OPEN QUESTIONS ══════════════ */
+.oq-card{background:white;border-radius:14px;padding:18px;margin-bottom:16px;box-shadow:var(--shadow);}
+[data-theme="dark"] .oq-card{background:#1e1e2e;}
+.oq-q{font-weight:800;font-size:1rem;margin-bottom:10px;}
+.oq-textarea{width:100%;min-height:90px;border-radius:10px;border:2px solid #E5E7EB;background:#F8FAFF;color:var(--dark);padding:10px 14px;font-family:inherit;font-size:.9rem;resize:vertical;outline:none;}
+[data-theme="dark"] .oq-textarea{background:#252540;border-color:#3d3d6e;color:#e2e8f0;}
+.oq-textarea:focus{border-color:var(--blue);}
+.oq-model{display:none;margin-top:10px;background:rgba(78,205,196,.1);border-right:4px solid var(--teal);padding:10px 14px;border-radius:10px;font-size:.88rem;}
+.oq-model.show{display:block;}
+.oq-eval{display:flex;gap:8px;margin-top:10px;}
+.oq-eval button{border:none;border-radius:20px;padding:6px 14px;font-size:.8rem;font-weight:700;cursor:pointer;background:#F0F4FF;color:var(--dark);font-family:inherit;}
+[data-theme="dark"] .oq-eval button{background:#252540;color:#e2e8f0;}
+.oq-eval button.picked{background:var(--teal);color:white;}
+
+/* ══════════════ SPEED / TIMER ══════════════ */
+.timer-display{font-size:2rem;font-weight:900;color:var(--coral);text-align:center;margin-bottom:10px;}
+.timer-display.urgent{color:#dc2626;animation:streakPulse .5s infinite;}
+.speed-result-line{font-size:1.1rem;font-weight:800;text-align:center;margin-top:10px;}
+
+/* ══════════════ BOSS HEALTH BAR ══════════════ */
+.boss-health-wrap{background:#F0F4FF;border-radius:12px;padding:12px 16px;margin-bottom:16px;}
+[data-theme="dark"] .boss-health-wrap{background:#1a1a30;}
+.boss-health-label{display:flex;justify-content:space-between;font-size:.8rem;font-weight:800;margin-bottom:6px;}
+.boss-health-bar{height:18px;background:#E5E7EB;border-radius:10px;overflow:hidden;}
+.boss-health-fill{height:100%;background:linear-gradient(90deg,#22C55E,#EF4444);transition:width .4s ease;}
+.boss-stage-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.boss-stage-tag{font-size:.65rem;font-weight:800;padding:3px 10px;border-radius:20px;background:#F0F4FF;color:#888;}
+[data-theme="dark"] .boss-stage-tag{background:#252540;}
+.boss-stage-tag.done{background:var(--green);color:white;}
+
+/* ══════════════ RESULTS DASHBOARD ══════════════ */
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px;}
+.res-stat{background:white;border-radius:14px;padding:16px;text-align:center;box-shadow:var(--shadow);}
+[data-theme="dark"] .res-stat{background:#1e1e2e;}
+.res-stat .res-val{font-size:1.5rem;font-weight:900;color:var(--coral);}
+.res-stat .res-lbl{font-size:.72rem;color:#888;font-weight:700;margin-top:2px;}
+.res-bar-row{margin-bottom:12px;}
+.res-bar-row .res-bar-lbl{display:flex;justify-content:space-between;font-size:.82rem;font-weight:700;margin-bottom:4px;}
+.res-bar-track{height:12px;background:#E5E7EB;border-radius:6px;overflow:hidden;}
+[data-theme="dark"] .res-bar-track{background:#3d3d6e;}
+.res-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--blue));border-radius:6px;transition:width .6s ease;}
+
+/* ══════════════ CERTIFICATE ══════════════ */
+#cert-canvas{max-width:100%;border-radius:10px;box-shadow:var(--shadow);margin:14px 0;}
+</style>
+</head>
+<body>
+
+<div class="xp-toast" id="xp-toast">+10 XP ⚡</div>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>📖 Unit 2 Vocabulary — Life Stories | الوحدة الثانية: قصص الحياة</h1>
+      <div class="sub">Words &amp; Meanings &nbsp;•&nbsp; Exercises &nbsp;•&nbsp; Teacher Jaber</div>
+    </div>
+    <div class="header-right">
+      <button class="dark-toggle hdr-btn" id="avatar-chip-btn" onclick="openAvatarPicker()">🎭 <span id="avatar-chip-display">Avatar</span></button>
+      <button class="dark-toggle hdr-btn" onclick="toggleEasyMode()" id="easy-toggle-btn">💡 Easy Mode: OFF</button>
+      <button class="dark-toggle" id="dark-toggle" onclick="toggleDark()">🌙 Dark Mode</button>
+      <button class="dark-toggle hdr-btn" style="background:rgba(239,68,68,.25);border-color:rgba(239,68,68,.5)" onclick="confirmResetProgress()">🗑 Reset</button>
+      <span class="header-badge">Super Goal</span>
+    </div>
+  </div>
+  <div class="hud-bar">
+    <div class="hud-item">⚡ XP: <span class="xp-badge" id="xp-num">0</span></div>
+    <div class="hud-item">🪙 <span class="coin-badge" id="coin-num">0</span></div>
+    <div class="hud-item"><span id="streak-icon">🔥</span> Streak: <span class="streak-badge" id="streak-num">0</span></div>
+    <div class="hud-item">✅ Score: <span class="level-badge" id="score-num" style="background:var(--green)">0</span></div>
+    <div class="hud-item"><span class="rank-badge" id="rank-display">🌱 New Learner</span></div>
+    <div style="flex:1;min-width:80px;">
+      <div class="progress-container">
+        <div id="main-progress" class="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="badgeToast"></div>
+
+<nav class="nav-tabs" id="nav-tabs">
+  <button class="active" onclick="showTab(0)">📋 Words &amp; Meanings</button>
+  <button onclick="showTab(1)">🎯 Match &amp; Define</button>
+  <button onclick="showTab(2)">💬 Real Talk Phrases</button>
+  <button onclick="showTab(3)">📖 General Vocabulary</button>
+  <button onclick="showTab(4)">🧠 MCQ Quiz</button>
+  <button onclick="showTab(5)">🎯 Vocabulary Challenge</button>
+  <button onclick="showTab(6)">✅ True / False</button>
+  <button onclick="showTab(7)">⚡ Speed Challenge</button>
+  <button onclick="showTab(8)">💬 Open Questions</button>
+  <button onclick="showTab(9)">👾 Final Boss Challenge</button>
+  <button onclick="showTab(10)">🏆 My Results</button>
+</nav>
+
+<div class="container">
+
+<div class="player-card">
+  <span>👤</span>
+  <input type="text" id="student-name-vocab" placeholder="أدخل اسمك يا بطل (اختياري)..." autocomplete="off" autocorrect="off" spellcheck="false" maxlength="30" oninput="onNameInput()">
+  <span id="hud-avatar-inline" style="font-size:1.4rem;"></span>
+</div>
+
+<!-- TAB 0 — WORD LIST -->
+<div class="page active" id="tab-0">
+  <div class="section-title"><h2>Word List</h2><span class="tag">قائمة المفردات</span></div>
+  <p style="font-size:.81rem;color:#666;margin-bottom:15px;direction:rtl;text-align:right">💡 انقر على البطاقة لقلبها ومعرفة المعنى، أو اضغط رمز الصوت للاستماع</p>
+
+  <div class="cat-header"><span>📦</span><h3>الأسماء — Nouns (1)</h3><div class="line"></div></div>
+  <div class="vocab-grid">
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Appointment</div><button class="audio-btn" onclick="event.stopPropagation();speak('Appointment')">🔊</button></div><div class="vocab-card-back"><div class="arabic">موعد</div><div class="example">I have a doctor's appointment today.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Blood</div><button class="audio-btn" onclick="event.stopPropagation();speak('Blood')">🔊</button></div><div class="vocab-card-back"><div class="arabic">دم</div><div class="example">He donated blood at the hospital.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Community</div><button class="audio-btn" onclick="event.stopPropagation();speak('Community')">🔊</button></div><div class="vocab-card-back"><div class="arabic">مجتمع</div><div class="example">She works for the local community.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Effort</div><button class="audio-btn" onclick="event.stopPropagation();speak('Effort')">🔊</button></div><div class="vocab-card-back"><div class="arabic">مجهود</div><div class="example">Great effort leads to success.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Facility</div><button class="audio-btn" onclick="event.stopPropagation();speak('Facility')">🔊</button></div><div class="vocab-card-back"><div class="arabic">مؤسسة</div><div class="example">The sports facility is open daily.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Leadership</div><button class="audio-btn" onclick="event.stopPropagation();speak('Leadership')">🔊</button></div><div class="vocab-card-back"><div class="arabic">قيادة</div><div class="example">Good leadership inspires others.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Litter</div><button class="audio-btn" onclick="event.stopPropagation();speak('Litter')">🔊</button></div><div class="vocab-card-back"><div class="arabic">نفايات</div><div class="example">Don't drop litter in the park.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Operation</div><button class="audio-btn" onclick="event.stopPropagation();speak('Operation')">🔊</button></div><div class="vocab-card-back"><div class="arabic">عملية</div><div class="example">The operation was a success.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Principal</div><button class="audio-btn" onclick="event.stopPropagation();speak('Principal')">🔊</button></div><div class="vocab-card-back"><div class="arabic">مدير / مسؤول</div><div class="example">The school principal gave a speech.</div></div></div></div>
+  </div>
+
+  <div class="cat-header"><span>📦</span><h3>الأسماء — Nouns (2)</h3><div class="line"></div></div>
+  <div class="vocab-grid">
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Attitude</div><button class="audio-btn" onclick="event.stopPropagation();speak('Attitude')">🔊</button></div><div class="vocab-card-back"><div class="arabic">موقف / سلوك</div><div class="example">He has a positive attitude.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Colleague</div><button class="audio-btn" onclick="event.stopPropagation();speak('Colleague')">🔊</button></div><div class="vocab-card-back"><div class="arabic">زميل عمل</div><div class="example">My colleague helped me finish the project.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Donation</div><button class="audio-btn" onclick="event.stopPropagation();speak('Donation')">🔊</button></div><div class="vocab-card-back"><div class="arabic">تبرع</div><div class="example">He made a donation to charity.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Employee</div><button class="audio-btn" onclick="event.stopPropagation();speak('Employee')">🔊</button></div><div class="vocab-card-back"><div class="arabic">موظف</div><div class="example">She is a dedicated employee.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Infant</div><button class="audio-btn" onclick="event.stopPropagation();speak('Infant')">🔊</button></div><div class="vocab-card-back"><div class="arabic">رضيع</div><div class="example">The infant slept all night.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">League</div><button class="audio-btn" onclick="event.stopPropagation();speak('League')">🔊</button></div><div class="vocab-card-back"><div class="arabic">دوري رياضي</div><div class="example">He plays in the national league.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Newborn</div><button class="audio-btn" onclick="event.stopPropagation();speak('Newborn')">🔊</button></div><div class="vocab-card-back"><div class="arabic">مولود</div><div class="example">The newborn was healthy and strong.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Owner</div><button class="audio-btn" onclick="event.stopPropagation();speak('Owner')">🔊</button></div><div class="vocab-card-back"><div class="arabic">مالك</div><div class="example">The owner of the shop was friendly.</div></div></div></div>
+    <div class="vocab-card noun" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Noun</div><div class="word">Twin</div><button class="audio-btn" onclick="event.stopPropagation();speak('Twin')">🔊</button></div><div class="vocab-card-back"><div class="arabic">توأم</div><div class="example">She has a twin brother.</div></div></div></div>
+  </div>
+
+  <div class="cat-header"><span>🏃</span><h3>الأفعال — Verbs</h3><div class="line"></div></div>
+  <div class="vocab-grid">
+    <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Award</div><button class="audio-btn" onclick="event.stopPropagation();speak('Award')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يربح</div><div class="example">She was awarded a gold medal.</div></div></div></div>
+    <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Donate / Receive</div><button class="audio-btn" onclick="event.stopPropagation();speak('Donate Receive')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يتبرع / يستلم</div><div class="example">He donated money to the charity.</div></div></div></div>
+    <div class="vocab-card verb" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Verb</div><div class="word">Encourage</div><button class="audio-btn" onclick="event.stopPropagation();speak('Encourage')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يشجع</div><div class="example">Teachers encourage students to learn.</div></div></div></div>
+  </div>
+
+  <div class="cat-header"><span>✨</span><h3>الصفات — Adjectives</h3><div class="line"></div></div>
+  <div class="vocab-grid">
+    <div class="vocab-card adj" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Adjective</div><div class="word">Environmental</div><button class="audio-btn" onclick="event.stopPropagation();speak('Environmental')">🔊</button></div><div class="vocab-card-back"><div class="arabic">بيئي</div><div class="example">We must solve environmental problems.</div></div></div></div>
+    <div class="vocab-card adj" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Adjective</div><div class="word">Hopeful</div><button class="audio-btn" onclick="event.stopPropagation();speak('Hopeful')">🔊</button></div><div class="vocab-card-back"><div class="arabic">متفائل</div><div class="example">She is hopeful about the future.</div></div></div></div>
+    <div class="vocab-card adj" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Adjective</div><div class="word">Outstanding</div><button class="audio-btn" onclick="event.stopPropagation();speak('Outstanding')">🔊</button></div><div class="vocab-card-back"><div class="arabic">مذهل</div><div class="example">Her results were outstanding.</div></div></div></div>
+    <div class="vocab-card adj" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Adjective</div><div class="word">Crippling</div><button class="audio-btn" onclick="event.stopPropagation();speak('Crippling')">🔊</button></div><div class="vocab-card-back"><div class="arabic">ذو إعاقة</div><div class="example">The accident was crippling.</div></div></div></div>
+    <div class="vocab-card adj" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Adjective</div><div class="word">Original</div><button class="audio-btn" onclick="event.stopPropagation();speak('Original')">🔊</button></div><div class="vocab-card-back"><div class="arabic">أصلي</div><div class="example">This is the original painting.</div></div></div></div>
+  </div>
+
+  <div class="cat-header"><span>💬</span><h3>التعابير — Phrases</h3><div class="line"></div></div>
+  <div class="vocab-grid">
+    <div class="vocab-card phrase" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Phrase</div><div class="word">Congratulations</div><button class="audio-btn" onclick="event.stopPropagation();speak('Congratulations')">🔊</button></div><div class="vocab-card-back"><div class="arabic">ألف مبروك</div><div class="example">Congratulations on your graduation!</div></div></div></div>
+    <div class="vocab-card phrase" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Phrase</div><div class="word">Wish you all the best</div><button class="audio-btn" onclick="event.stopPropagation();speak('Wish you all the best')">🔊</button></div><div class="vocab-card-back"><div class="arabic">أتمنى لك كل خير</div><div class="example">I wish you all the best in life.</div></div></div></div>
+    <div class="vocab-card phrase" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Phrase</div><div class="word">Big break</div><button class="audio-btn" onclick="event.stopPropagation();speak('Big break')">🔊</button></div><div class="vocab-card-back"><div class="arabic">فرصة كبيرة ومهمة</div><div class="example">This job is my big break.</div></div></div></div>
+    <div class="vocab-card phrase" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Phrase</div><div class="word">To be into something</div><button class="audio-btn" onclick="event.stopPropagation();speak('To be into something')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يندمج / يهتم بشيء</div><div class="example">She is really into music.</div></div></div></div>
+    <div class="vocab-card phrase" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Phrase</div><div class="word">To turn up</div><button class="audio-btn" onclick="event.stopPropagation();speak('To turn up')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يظهر فجأة</div><div class="example">He turned up late to the meeting.</div></div></div></div>
+    <div class="vocab-card phrase" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Phrase</div><div class="word">What about...?</div><button class="audio-btn" onclick="event.stopPropagation();speak('What about')">🔊</button></div><div class="vocab-card-back"><div class="arabic">ماذا عن...؟</div><div class="example">What about going to the beach?</div></div></div></div>
+    <div class="vocab-card phrase" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Phrase</div><div class="word">Comb the beach</div><button class="audio-btn" onclick="event.stopPropagation();speak('Comb the beach')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يمشط الشاطئ بحثاً عن</div><div class="example">They combed the beach for clues.</div></div></div></div>
+    <div class="vocab-card phrase" onclick="this.classList.toggle('flipped')"><div class="vocab-card-inner"><div class="vocab-card-front"><div class="type-badge">Phrase</div><div class="word">Get in touch with</div><button class="audio-btn" onclick="event.stopPropagation();speak('Get in touch with')">🔊</button></div><div class="vocab-card-back"><div class="arabic">يتواصل مع</div><div class="example">Get in touch with me anytime.</div></div></div></div>
+  </div>
+</div>
+
+<!-- TAB 1 — MISSION 1 -->
+<div class="page" id="tab-1">
+  <div class="section-title"><h2>🎯 Mission 1 — Words &amp; Meanings</h2><span class="tag">صل الكلمات بمعانيها</span></div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>A. Match Words &amp; Meanings</h3><p>اضغط على كلمة ثم على معناها الصحيح</p><span class="ex-lv medium">INTERMEDIATE</span></div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="btn btn-reset" onclick="resetMatchA()">↺ Reset</button></div>
+      <div class="score-line">Matched: <strong id="ma-score">0 / 6</strong></div>
+      <div class="match-grid">
+        <div id="ma-left">
+          <h4>Words</h4>
+          <button class="tr-btn" style="margin-bottom:8px;width:100%" onclick="toggleColTr('ma-left',this)">🌐 ترجمة</button>
+          <div class="m-item" data-id="ma1" onclick="doMatch(this,'A','left')">1. Donated <button class="audio-btn" onclick="event.stopPropagation();speak('Donated')">🔊</button><span class="match-tr">تبرّع</span></div>
+          <div class="m-item" data-id="ma2" onclick="doMatch(this,'A','left')">2. Appointment <button class="audio-btn" onclick="event.stopPropagation();speak('Appointment')">🔊</button><span class="match-tr">موعد</span></div>
+          <div class="m-item" data-id="ma3" onclick="doMatch(this,'A','left')">3. Outstanding <button class="audio-btn" onclick="event.stopPropagation();speak('Outstanding')">🔊</button><span class="match-tr">مذهل / متميز</span></div>
+          <div class="m-item" data-id="ma4" onclick="doMatch(this,'A','left')">4. Encouraged <button class="audio-btn" onclick="event.stopPropagation();speak('Encouraged')">🔊</button><span class="match-tr">شجّع</span></div>
+          <div class="m-item" data-id="ma5" onclick="doMatch(this,'A','left')">5. Gathered <button class="audio-btn" onclick="event.stopPropagation();speak('Gathered')">🔊</button><span class="match-tr">اجتمع</span></div>
+          <div class="m-item" data-id="ma6" onclick="doMatch(this,'A','left')">6. Infant <button class="audio-btn" onclick="event.stopPropagation();speak('Infant')">🔊</button><span class="match-tr">رضيع</span></div>
+        </div>
+        <div id="ma-right">
+          <h4>Definitions</h4>
+          <button class="tr-btn" style="margin-bottom:8px;width:100%" onclick="toggleColTr('ma-right',this)">🌐 ترجمة</button>
+          <div class="m-item" data-id="ma3" onclick="doMatch(this,'A','right')">a. Excellent <button class="audio-btn" onclick="event.stopPropagation();speak('Excellent')">🔊</button><span class="match-tr">ممتاز / رائع</span></div>
+          <div class="m-item" data-id="ma1" onclick="doMatch(this,'A','right')">b. Gave to charity <button class="audio-btn" onclick="event.stopPropagation();speak('Gave to charity')">🔊</button><span class="match-tr">أعطى للجمعيات الخيرية</span></div>
+          <div class="m-item" data-id="ma5" onclick="doMatch(this,'A','right')">c. met / got together <button class="audio-btn" onclick="event.stopPropagation();speak('met or got together')">🔊</button><span class="match-tr">التقى / اجتمع</span></div>
+          <div class="m-item" data-id="ma2" onclick="doMatch(this,'A','right')">d. arrangement to meet <button class="audio-btn" onclick="event.stopPropagation();speak('arrangement to meet')">🔊</button><span class="match-tr">ترتيب للقاء</span></div>
+          <div class="m-item" data-id="ma4" onclick="doMatch(this,'A','right')">e. supported to succeed <button class="audio-btn" onclick="event.stopPropagation();speak('supported to succeed')">🔊</button><span class="match-tr">دعم للنجاح</span></div>
+          <div class="m-item" data-id="ma6" onclick="doMatch(this,'A','right')">f. A baby <button class="audio-btn" onclick="event.stopPropagation();speak('A baby')">🔊</button><span class="match-tr">طفل رضيع</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>A. Write the correct letter</h3><p>اكتب الحرف المناسب أمام كل كلمة</p><span class="ex-lv easy">BEGINNER</span></div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="btn btn-primary" onclick="checkTableA()">✓ Check</button><button class="btn btn-reset" onclick="resetTableA()">↺ Reset</button></div>
+      <div id="tableA-result" style="font-size:.86rem;font-weight:700;margin-bottom:10px;display:none"></div>
+      <table class="match-table">
+        <tr><th>Ans</th><th>Word</th><th>Definition</th></tr>
+        <tr><td><input class="ans-input" id="ta1" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>1. Donated</td><td><span class="def-letter">a.</span> Excellent</td></tr>
+        <tr><td><input class="ans-input" id="ta2" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>2. Appointment</td><td><span class="def-letter">b.</span> Gave to charity</td></tr>
+        <tr><td><input class="ans-input" id="ta3" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>3. Outstanding</td><td><span class="def-letter">c.</span> met / got together</td></tr>
+        <tr><td><input class="ans-input" id="ta4" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>4. Encouraged</td><td><span class="def-letter">d.</span> arrangement to meet</td></tr>
+        <tr><td><input class="ans-input" id="ta5" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>5. Gathered</td><td><span class="def-letter">e.</span> supported to succeed</td></tr>
+        <tr><td><input class="ans-input" id="ta6" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>6. Infant</td><td><span class="def-letter">f.</span> A baby</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2 — MISSION 2 -->
+<div class="page" id="tab-2">
+  <div class="section-title"><h2>💬 Mission 2 — Real Talk Phrases</h2><span class="tag">صل التعابير بمعانيها</span></div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>B. Real Talk Phrases — Click to Match</h3><p>اضغط على العبارة ثم على معناها الصحيح</p><span class="ex-lv medium">INTERMEDIATE</span></div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="btn btn-reset" onclick="resetMatchB()">↺ Reset</button></div>
+      <div class="score-line">Matched: <strong id="mb-score">0 / 4</strong></div>
+      <div class="match-grid">
+        <div id="mb-left">
+          <h4>Phrase</h4>
+          <button class="tr-btn" style="margin-bottom:8px;width:100%" onclick="toggleColTr('mb-left',this)">🌐 ترجمة</button>
+          <div class="m-item" data-id="mb1" onclick="doMatch(this,'B','left')">1. To be into... <button class="audio-btn" onclick="event.stopPropagation();speak('To be into')">🔊</button><span class="match-tr">يهتم بـ / مندمج في</span></div>
+          <div class="m-item" data-id="mb2" onclick="doMatch(this,'B','left')">2. Big break <button class="audio-btn" onclick="event.stopPropagation();speak('Big break')">🔊</button><span class="match-tr">فرصة كبيرة ومهمة</span></div>
+          <div class="m-item" data-id="mb3" onclick="doMatch(this,'B','left')">3. What about...? <button class="audio-btn" onclick="event.stopPropagation();speak('What about')">🔊</button><span class="match-tr">ماذا عن...؟</span></div>
+          <div class="m-item" data-id="mb4" onclick="doMatch(this,'B','left')">4. To turn up <button class="audio-btn" onclick="event.stopPropagation();speak('To turn up')">🔊</button><span class="match-tr">يظهر فجأة</span></div>
+        </div>
+        <div id="mb-right">
+          <h4>Meaning</h4>
+          <button class="tr-btn" style="margin-bottom:8px;width:100%" onclick="toggleColTr('mb-right',this)">🌐 ترجمة</button>
+          <div class="m-item" data-id="mb3" onclick="doMatch(this,'B','right')">a. introduce new topic <button class="audio-btn" onclick="event.stopPropagation();speak('introduce new topic')">🔊</button><span class="match-tr">تقديم موضوع جديد</span></div>
+          <div class="m-item" data-id="mb2" onclick="doMatch(this,'B','right')">b. important opportunity <button class="audio-btn" onclick="event.stopPropagation();speak('important opportunity')">🔊</button><span class="match-tr">فرصة مهمة</span></div>
+          <div class="m-item" data-id="mb4" onclick="doMatch(this,'B','right')">c. appear unexpectedly <button class="audio-btn" onclick="event.stopPropagation();speak('appear unexpectedly')">🔊</button><span class="match-tr">يظهر بشكل مفاجئ</span></div>
+          <div class="m-item" data-id="mb1" onclick="doMatch(this,'B','right')">d. interested in / like <button class="audio-btn" onclick="event.stopPropagation();speak('interested in or like')">🔊</button><span class="match-tr">مهتم بـ / يحب</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>B. Write the correct letter</h3><p>اكتب الحرف المناسب أمام كل عبارة</p><span class="ex-lv easy">BEGINNER</span></div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="btn btn-primary" onclick="checkTableB()">✓ Check</button><button class="btn btn-reset" onclick="resetTableB()">↺ Reset</button></div>
+      <div id="tableB-result" style="font-size:.86rem;font-weight:700;margin-bottom:10px;display:none"></div>
+      <table class="match-table">
+        <tr><th>Ans</th><th>Phrase</th><th>Meaning</th></tr>
+        <tr><td><input class="ans-input" id="tb1" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>1. To be into...</td><td><span class="def-letter">a.</span> introduce new topic</td></tr>
+        <tr><td><input class="ans-input" id="tb2" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>2. Big break</td><td><span class="def-letter">b.</span> important opportunity</td></tr>
+        <tr><td><input class="ans-input" id="tb3" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>3. What about...?</td><td><span class="def-letter">c.</span> appear unexpectedly</td></tr>
+        <tr><td><input class="ans-input" id="tb4" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>4. To turn up</td><td><span class="def-letter">d.</span> interested in / like</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 3 — MISSION 3 -->
+<div class="page" id="tab-3">
+  <div class="section-title"><h2>📖 Mission 3 — General Vocabulary</h2><span class="tag">مفردات عامة</span></div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>C. General Vocabulary — Click to Match</h3><p>اضغط على الك الكلمة ثم على تعريفها</p><span class="ex-lv medium">INTERMEDIATE</span></div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="btn btn-reset" onclick="resetMatchC()">↺ Reset</button></div>
+      <div class="score-line">Matched: <strong id="mc-score">0 / 5</strong></div>
+      <div class="match-grid">
+        <div id="mc-left">
+          <h4>Word</h4>
+          <button class="tr-btn" style="margin-bottom:8px;width:100%" onclick="toggleColTr('mc-left',this)">🌐 ترجمة</button>
+          <div class="m-item" data-id="mc1" onclick="doMatch(this,'C','left')">1. Abroad <button class="audio-btn" onclick="event.stopPropagation();speak('Abroad')">🔊</button><span class="match-tr">في الخارج / خارج البلاد</span></div>
+          <div class="m-item" data-id="mc2" onclick="doMatch(this,'C','left')">2. Humanitarian <button class="audio-btn" onclick="event.stopPropagation();speak('Humanitarian')">🔊</button><span class="match-tr">إنساني</span></div>
+          <div class="m-item" data-id="mc3" onclick="doMatch(this,'C','left')">3. Relief <button class="audio-btn" onclick="event.stopPropagation();speak('Relief')">🔊</button><span class="match-tr">ارتياح / إغاثة</span></div>
+          <div class="m-item" data-id="mc4" onclick="doMatch(this,'C','left')">4. Metropolis <button class="audio-btn" onclick="event.stopPropagation();speak('Metropolis')">🔊</button><span class="match-tr">مدينة كبرى</span></div>
+          <div class="m-item" data-id="mc5" onclick="doMatch(this,'C','left')">5. Appoint <button class="audio-btn" onclick="event.stopPropagation();speak('Appoint')">🔊</button><span class="match-tr">يعيّن في منصب</span></div>
+        </div>
+        <div id="mc-right">
+          <h4>Definition</h4>
+          <button class="tr-btn" style="margin-bottom:8px;width:100%" onclick="toggleColTr('mc-right',this)">🌐 ترجمة</button>
+          <div class="m-item" data-id="mc4" onclick="doMatch(this,'C','right')">a. A big city <button class="audio-btn" onclick="event.stopPropagation();speak('A big city')">🔊</button><span class="match-tr">مدينة كبيرة</span></div>
+          <div class="m-item" data-id="mc3" onclick="doMatch(this,'C','right')">b. remove stress/pain <button class="audio-btn" onclick="event.stopPropagation();speak('remove stress or pain')">🔊</button><span class="match-tr">يزيل التوتر أو الألم</span></div>
+          <div class="m-item" data-id="mc5" onclick="doMatch(this,'C','right')">c. name for position <button class="audio-btn" onclick="event.stopPropagation();speak('name for position')">🔊</button><span class="match-tr">يختار لمنصب</span></div>
+          <div class="m-item" data-id="mc2" onclick="doMatch(this,'C','right')">d. helps other people <button class="audio-btn" onclick="event.stopPropagation();speak('helps other people')">🔊</button><span class="match-tr">يساعد الآخرين</span></div>
+          <div class="m-item" data-id="mc1" onclick="doMatch(this,'C','right')">e. In other countries <button class="audio-btn" onclick="event.stopPropagation();speak('In other countries')">🔊</button><span class="match-tr">في دول أخرى</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>C. Write the correct letter</h3><p>اكتب الحرف المناسب أمام كل كلمة</p><span class="ex-lv easy">BEGINNER</span></div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="btn btn-primary" onclick="checkTableC()">✓ Check</button><button class="btn btn-reset" onclick="resetTableC()">↺ Reset</button></div>
+      <div id="tableC-result" style="font-size:.86rem;font-weight:700;margin-bottom:10px;display:none"></div>
+      <table class="match-table">
+        <tr><th>Ans</th><th>Word</th><th>Definition</th></tr>
+        <tr><td><input class="ans-input" id="tc1" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>1. Abroad</td><td><span class="def-letter">a.</span> A big city</td></tr>
+        <tr><td><input class="ans-input" id="tc2" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>2. Humanitarian</td><td><span class="def-letter">b.</span> remove stress/pain</td></tr>
+        <tr><td><input class="ans-input" id="tc3" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>3. Relief</td><td><span class="def-letter">c.</span> name for position</td></tr>
+        <tr><td><input class="ans-input" id="tc4" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>4. Metropolis</td><td><span class="def-letter">d.</span> helps other people</td></tr>
+        <tr><td><input class="ans-input" id="tc5" maxlength="1" placeholder="?" autocomplete="off" autocorrect="off" spellcheck="false"></td><td>5. Appoint</td><td><span class="def-letter">e.</span> In other countries</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 4 — MISSION 4 MCQ -->
+<div class="page" id="tab-4">
+  <div class="section-title"><h2>🧠 Mission 4 — MCQ Quiz</h2><span class="tag">اختيار من متعدد</span></div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Choose the correct answer</h3><p>اختر الإجابة الصحيحة</p><span class="ex-lv hard">ADVANCED</span></div>
+    <div class="ex-body">
+      <div class="score-line">Score: <strong id="mcq-score">0 / 0</strong></div>
+      <div class="mcq-block"><div class="mcq-q">Q1. <em>"Outstanding"</em> means: <button class="audio-btn" onclick="speak('Outstanding')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">Q1. ما معنى كلمة "Outstanding"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q1" onclick="pickQ(this)">أصلي</div><div class="mcq-opt" data-q="q1" onclick="pickQ(this)">متفائل</div><div class="mcq-opt" data-q="q1" data-c onclick="pickQ(this)">مذهل</div><div class="mcq-opt" data-q="q1" onclick="pickQ(this)">بيئي</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">Q2. Which word means <em>"رضيع"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">Q2. أي كلمة تعني "رضيع / طفل صغير"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q2" onclick="pickQ(this)">Twin</div><div class="mcq-opt" data-q="q2" data-c onclick="pickQ(this)">Infant</div><div class="mcq-opt" data-q="q2" onclick="pickQ(this)">Newborn only</div><div class="mcq-opt" data-q="q2" onclick="pickQ(this)">Owner</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">Q3. <em>"Big break"</em> means: <button class="audio-btn" onclick="speak('Big break')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">Q3. ما معنى عبارة "Big break"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q3" onclick="pickQ(this)">يظهر فجأة</div><div class="mcq-opt" data-q="q3" onclick="pickQ(this)">ماذا عن؟</div><div class="mcq-opt" data-q="q3" data-c onclick="pickQ(this)">فرصة كبيرة ومهمة</div><div class="mcq-opt" data-q="q3" onclick="pickQ(this)">يتواصل مع</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">Q4. <em>"Encourage"</em> means: <button class="audio-btn" onclick="speak('Encourage')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">Q4. ما معنى كلمة "Encourage"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q4" onclick="pickQ(this)">يربح</div><div class="mcq-opt" data-q="q4" onclick="pickQ(this)">يتبرع</div><div class="mcq-opt" data-q="q4" data-c onclick="pickQ(this)">يشجع</div><div class="mcq-opt" data-q="q4" onclick="pickQ(this)">يظهر</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">Q5. Which word means <em>"مجتمع"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">Q5. أي كلمة تعني "المجتمع / الناس في منطقة"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q5" onclick="pickQ(this)">Effort</div><div class="mcq-opt" data-q="q5" data-c onclick="pickQ(this)">Community</div><div class="mcq-opt" data-q="q5" onclick="pickQ(this)">Leadership</div><div class="mcq-opt" data-q="q5" onclick="pickQ(this)">Facility</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">Q6. <em>"Hopeful"</em> means: <button class="audio-btn" onclick="speak('Hopeful')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">Q6. ما معنى كلمة "Hopeful"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q6" onclick="pickQ(this)">ذو إعاقة</div><div class="mcq-opt" data-q="q6" data-c onclick="pickQ(this)">متفائل</div><div class="mcq-opt" data-q="q6" onclick="pickQ(this)">أصلي</div><div class="mcq-opt" data-q="q6" onclick="pickQ(this)">بيئي</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">Q7. <em>"To turn up"</em> means: <button class="audio-btn" onclick="speak('To turn up')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">Q7. ما معنى عبارة "To turn up"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q7" onclick="pickQ(this)">يتواصل مع</div><div class="mcq-opt" data-q="q7" data-c onclick="pickQ(this)">يظهر فجأة</div><div class="mcq-opt" data-q="q7" onclick="pickQ(this)">فرصة كبيرة</div><div class="mcq-opt" data-q="q7" onclick="pickQ(this)">ماذا عن؟</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">Q8. Which word means <em>"قيادة"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">Q8. أي كلمة تعني "القيادة والتوجيه"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="q8" onclick="pickQ(this)">Operation</div><div class="mcq-opt" data-q="q8" onclick="pickQ(this)">Effort</div><div class="mcq-opt" data-q="q8" data-c onclick="pickQ(this)">Leadership</div><div class="mcq-opt" data-q="q8" onclick="pickQ(this)">Principal</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 5 — VOCABULARY CHALLENGE (NEW) -->
+<div class="page" id="tab-5">
+  <div class="section-title"><h2>🎯 Vocabulary Challenge</h2><span class="tag">ثلاث جولات لاختبار مفرداتك</span></div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Round 1 — Match Word to Meaning</h3><p>اضغط على الكلمة ثم على معناها الصحيح</p><span class="ex-lv easy">ROUND 1</span></div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="btn btn-reset" onclick="resetVCMatch()">↺ Reset Round 1</button></div>
+      <div class="score-line">Matched: <strong id="vc-match-score">0 / 8</strong></div>
+      <div class="match-grid"><div id="vc-match-left"><h4>Word</h4></div><div id="vc-match-right"><h4>Meaning</h4></div></div>
+    </div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Round 2 — Listen and Choose 🔊</h3><p>استمع إلى الكلمة ثم اختر معناها الصحيح</p><span class="ex-lv medium">ROUND 2</span></div>
+    <div class="ex-body">
+      <div class="score-line">Score: <strong id="vc-listen-score">0 / 6</strong></div>
+      <div id="vc-listen-container"></div>
+      <div class="btn-row"><button class="btn btn-reset" onclick="resetVCListen()">↺ Reset Round 2</button></div>
+    </div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Round 3 — Speed Round ⚡</h3><p>٤٥ ثانية فقط! أجب بسرعة لتحصل على نقاط ومكافآت إضافية</p><span class="ex-lv hard">ROUND 3</span></div>
+    <div class="ex-body">
+      <div class="timer-display" id="vc-speed-timer">45</div>
+      <div class="score-line">Score: <strong id="vc-speed-score">0 / 0</strong></div>
+      <div class="btn-row"><button class="btn btn-primary" id="vc-speed-start" onclick="startVCSpeed()">▶ Start Speed Round</button></div>
+      <div id="vc-speed-container"></div>
+      <div class="speed-result-line" id="vc-speed-result" style="display:none;"></div>
+    </div>
+  </div>
+  <div class="score-box" id="vc-final-box">
+    <div class="s-num" id="vc-final-num">0</div>
+    <div class="s-msg">Total Vocabulary Challenge Score</div>
+    <div class="s-xp" id="vc-final-msg"></div>
+  </div>
+</div>
+
+<!-- TAB 6 — TRUE / FALSE (NEW) -->
+<div class="page" id="tab-6">
+  <div class="section-title"><h2>✅ True / False</h2><span class="tag">صح أم خطأ</span></div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Read each statement and decide</h3><p>اقرأ كل جملة وحدد إن كانت صحيحة أم خاطئة، ثم اطّلع على التفسير</p><span class="ex-lv medium">VOCABULARY IN CONTEXT</span></div>
+    <div class="ex-body">
+      <div class="score-line">Score: <strong id="tf-score">0 / 10</strong></div>
+      <div class="progress-bar-ex" style="width:100%;height:10px;background:#E5E7EB;border-radius:5px;overflow:hidden;margin-bottom:16px;"><div class="progress-fill" id="tf-progress" style="height:100%;background:linear-gradient(90deg,var(--coral),var(--gold));width:0%;transition:width .4s;"></div></div>
+      <div id="tf-container"></div>
+      <div class="btn-row"><button class="btn btn-reset" onclick="resetTF()">↺ Reset</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 7 — SPEED CHALLENGE (NEW) -->
+<div class="page" id="tab-7">
+  <div class="section-title"><h2>⚡ Speed Challenge</h2><span class="tag">تحدي السرعة</span></div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>60-Second Mixed Challenge</h3><p>أسئلة عشوائية متنوعة — كلما أجبت أسرع كلما حصلت على نقاط أكثر!</p><span class="ex-lv hard">TIME ATTACK</span></div>
+    <div class="ex-body">
+      <div class="timer-display" id="sc-timer">60</div>
+      <div class="score-line">Score: <strong id="sc-score">0</strong> &nbsp;|&nbsp; Best: <strong id="sc-best">0</strong></div>
+      <div class="btn-row"><button class="btn btn-primary" id="sc-start" onclick="startSpeedChallenge()">▶ Start Challenge</button></div>
+      <div id="sc-container"></div>
+      <div class="speed-result-line" id="sc-result" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 8 — OPEN QUESTIONS (NEW) -->
+<div class="page" id="tab-8">
+  <div class="section-title"><h2>💬 Open Questions</h2><span class="tag">أسئلة نقاش مفتوحة</span></div>
+  <p style="font-size:.85rem;color:#666;margin-bottom:16px;direction:rtl;text-align:right">💡 اكتب إجابتك الخاصة، ثم اضغط "نموذج إجابة" للمقارنة، وقيّم نفسك</p>
+  <div id="oq-container"></div>
+</div>
+
+<!-- TAB 9 — FINAL BOSS -->
+<div class="page" id="tab-9">
+  <div class="section-title"><h2>👾 Final Boss Challenge</h2><span class="tag">تحدي الوحش النهائي</span></div>
+  <div class="boss-banner">
+    <h2>👾 تحدي الوحش النهائي</h2>
+    <p>هل أنت جاهز لمواجهة الوحش؟ أجب على كل الأسئلة لتهزمه!</p>
+    <span class="boss-badge">⚔️ FINAL BOSS CHALLENGE ⚔️</span>
+  </div>
+  <div class="boss-health-wrap">
+    <div class="boss-health-label"><span>👾 Boss Health</span><span id="boss-health-pct">100%</span></div>
+    <div class="boss-health-bar"><div class="boss-health-fill" id="boss-health-fill" style="width:100%"></div></div>
+    <div class="boss-stage-tags">
+      <span class="boss-stage-tag" id="bstag-1">Stage 1: Vocabulary</span>
+      <span class="boss-stage-tag" id="bstag-2">Stage 2: Matching</span>
+      <span class="boss-stage-tag" id="bstag-3">Stage 3: MCQ</span>
+      <span class="boss-stage-tag" id="bstag-4">Stage 4: Listening</span>
+      <span class="boss-stage-tag" id="bstag-5">Stage 5: Mixed</span>
+    </div>
+  </div>
+  <div class="score-box" id="final-box">
+    <div class="s-num" id="final-num">0/10</div>
+    <div class="s-msg" id="final-msg"></div>
+    <div class="s-xp" id="final-xp"></div>
+    <div class="btn-row" style="justify-content:center;margin-top:14px;" id="cert-btn-row"></div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>👾 Final Boss Vocabulary Test</h3><p>اختبار شامل من جميع مفردات الوحدة الثانية (Stage 1-3: Vocabulary/Matching/MCQ)</p><span class="ex-lv boss">⚔️ BOSS LEVEL</span></div>
+    <div class="ex-body">
+      <div class="score-line">Score: <strong id="ft-score">0 / 0</strong></div>
+      <div class="mcq-block"><div class="mcq-q">1. <em>"Attitude"</em> means: <button class="audio-btn" onclick="speak('Attitude')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">١. ما معنى كلمة "Attitude"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f1" onclick="pickFT(this)">رضيع</div><div class="mcq-opt" data-q="f1" data-c onclick="pickFT(this)">موقف / سلوك</div><div class="mcq-opt" data-q="f1" onclick="pickFT(this)">توأم</div><div class="mcq-opt" data-q="f1" onclick="pickFT(this)">مجهود</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">2. Which word means <em>"مالك"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٢. أي كلمة تعني "المالك / صاحب الشيء"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f2" onclick="pickFT(this)">Employee</div><div class="mcq-opt" data-q="f2" onclick="pickFT(this)">Colleague</div><div class="mcq-opt" data-q="f2" data-c onclick="pickFT(this)">Owner</div><div class="mcq-opt" data-q="f2" onclick="pickFT(this)">Infant</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">3. <em>"Abroad"</em> means: <button class="audio-btn" onclick="speak('Abroad')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٣. ما معنى كلمة "Abroad"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f3" data-c onclick="pickFT(this)">In other countries</div><div class="mcq-opt" data-q="f3" onclick="pickFT(this)">A big city</div><div class="mcq-opt" data-q="f3" onclick="pickFT(this)">helps others</div><div class="mcq-opt" data-q="f3" onclick="pickFT(this)">remove pain</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">4. <em>"Crippling"</em> means: <button class="audio-btn" onclick="speak('Crippling')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٤. ما معنى كلمة "Crippling"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f4" onclick="pickFT(this)">مذهل</div><div class="mcq-opt" data-q="f4" onclick="pickFT(this)">أصلي</div><div class="mcq-opt" data-q="f4" data-c onclick="pickFT(this)">ذو إعاقة</div><div class="mcq-opt" data-q="f4" onclick="pickFT(this)">بيئي</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">5. <em>"Get in touch with"</em> means: <button class="audio-btn" onclick="speak('Get in touch with')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٥. ما معنى عبارة "Get in touch with"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f5" onclick="pickFT(this)">يظهر فجأة</div><div class="mcq-opt" data-q="f5" data-c onclick="pickFT(this)">يتواصل مع</div><div class="mcq-opt" data-q="f5" onclick="pickFT(this)">فرصة كبيرة</div><div class="mcq-opt" data-q="f5" onclick="pickFT(this)">يمشط الشاطئ</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">6. Which word means <em>"نفايات"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٦. أي كلمة تعني "النفايات / القمامة"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f6" onclick="pickFT(this)">Effort</div><div class="mcq-opt" data-q="f6" onclick="pickFT(this)">Blood</div><div class="mcq-opt" data-q="f6" data-c onclick="pickFT(this)">Litter</div><div class="mcq-opt" data-q="f6" onclick="pickFT(this)">Facility</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">7. <em>"Metropolis"</em> means: <button class="audio-btn" onclick="speak('Metropolis')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٧. ما معنى كلمة "Metropolis"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f7" onclick="pickFT(this)">helps others</div><div class="mcq-opt" data-q="f7" onclick="pickFT(this)">In other countries</div><div class="mcq-opt" data-q="f7" data-c onclick="pickFT(this)">A big city</div><div class="mcq-opt" data-q="f7" onclick="pickFT(this)">remove pain</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">8. <em>"Environmental"</em> means: <button class="audio-btn" onclick="speak('Environmental')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٨. ما معنى كلمة "Environmental"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f8" onclick="pickFT(this)">مذهل</div><div class="mcq-opt" data-q="f8" onclick="pickFT(this)">متفائل</div><div class="mcq-opt" data-q="f8" onclick="pickFT(this)">أصلي</div><div class="mcq-opt" data-q="f8" data-c onclick="pickFT(this)">بيئي</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">9. Which word means <em>"توأم"</em>?<br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">٩. أي كلمة تعني "التوأم"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f9" onclick="pickFT(this)">Newborn</div><div class="mcq-opt" data-q="f9" data-c onclick="pickFT(this)">Twin</div><div class="mcq-opt" data-q="f9" onclick="pickFT(this)">Infant</div><div class="mcq-opt" data-q="f9" onclick="pickFT(this)">Employee</div></div></div>
+      <div class="mcq-block"><div class="mcq-q">10. <em>"Wish you all the best"</em> means: <button class="audio-btn" onclick="speak('Wish you all the best')">🔊</button><br><button class="tr-btn" onclick="toggleTr(this)">🌐 ترجمة</button><div class="tr-tooltip">١٠. ما معنى عبارة "Wish you all the best"؟</div></div><div class="mcq-options"><div class="mcq-opt" data-q="f10" onclick="pickFT(this)">ألف مبروك</div><div class="mcq-opt" data-q="f10" data-c onclick="pickFT(this)">أتمنى لك كل خير</div><div class="mcq-opt" data-q="f10" onclick="pickFT(this)">يتواصل مع</div><div class="mcq-opt" data-q="f10" onclick="pickFT(this)">فرصة كبيرة</div></div></div>
+      <div class="btn-row" style="margin-top:20px">
+        <button class="btn btn-boss" onclick="submitFT()">⚔️ Defeat the Boss!</button>
+        <button class="btn btn-reset" onclick="resetFT()">↺ Try Again</button>
+      </div>
+    </div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Stage 4 — Listening 🔊</h3><p>استمع إلى الكلمة واختر معناها (تُحسب ضمن صحة الوحش)</p><span class="ex-lv boss">STAGE 4</span></div>
+    <div class="ex-body">
+      <div class="score-line">Score: <strong id="boss-listen-score">0 / 4</strong></div>
+      <div id="boss-listen-container"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 10 — RESULTS DASHBOARD (NEW) -->
+<div class="page" id="tab-10">
+  <div class="section-title"><h2>🏆 My Results</h2><span class="tag">لوحة نتائجي</span></div>
+  <div class="res-grid">
+    <div class="res-stat"><div class="res-val" id="res-xp">0</div><div class="res-lbl">Total XP</div></div>
+    <div class="res-stat"><div class="res-val" id="res-coins">0</div><div class="res-lbl">Coins Earned</div></div>
+    <div class="res-stat"><div class="res-val" id="res-correct">0</div><div class="res-lbl">Correct Answers</div></div>
+    <div class="res-stat"><div class="res-val" id="res-wrong">0</div><div class="res-lbl">Wrong Answers</div></div>
+    <div class="res-stat"><div class="res-val" id="res-accuracy">0%</div><div class="res-lbl">Accuracy</div></div>
+    <div class="res-stat"><div class="res-val" id="res-sections">0/11</div><div class="res-lbl">Completed Sections</div></div>
+    <div class="res-stat"><div class="res-val" id="res-rank">🌱</div><div class="res-lbl">Current Rank</div></div>
+    <div class="res-stat"><div class="res-val" id="res-achievements">0/6</div><div class="res-lbl">Achievements</div></div>
+    <div class="res-stat"><div class="res-val" id="res-streak">0</div><div class="res-lbl">Best Streak</div></div>
+    <div class="res-stat"><div class="res-val" id="res-time">0m</div><div class="res-lbl">Time Spent</div></div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>Performance by Section</h3><p>أفضل أداء وأضعف نقطة</p></div>
+    <div class="ex-body" id="res-bars-container"></div>
+    <div class="ex-body" style="padding-top:0;">
+      <p style="font-size:.85rem;font-weight:800;margin-bottom:4px;">🌟 Best Performance: <span id="res-best" style="color:var(--green);">—</span></p>
+      <p style="font-size:.85rem;font-weight:800;">📌 Weakest Area: <span id="res-weak" style="color:var(--coral);">—</span></p>
+    </div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>🥇 Achievements</h3><p>الإنجازات المحققة</p></div>
+    <div class="ex-body"><div class="ach-grid" id="ach-panel-results"></div></div>
+  </div>
+  <div class="ex-card">
+    <div class="ex-head"><h3>📜 Certificate</h3><p>احصل على شهادة إتمام بعد اجتياز تحدي الوحش بنسبة ٧٠٪ فأكثر</p></div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="btn btn-primary" onclick="generateCertificate()">📜 Generate Certificate</button></div>
+      <div id="cert-container"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+<footer>Prepared by Teacher Jaber &nbsp;•&nbsp; Unit 2 Vocabulary – Life Stories &nbsp;•&nbsp; Super Goal</footer>
+
+<!-- ═══ NAME OVERLAY ═══ -->
+<div class="ns-overlay" id="name-overlay">
+  <div class="ns-card">
+    <h2>👋 Welcome, Hero!</h2>
+    <p style="margin-top:6px;font-size:.9rem;">Enter your name to begin your vocabulary journey<br><span dir="rtl" style="font-family:'Tajawal',sans-serif;">أدخل اسمك لبدء رحلتك في تعلم المفردات</span></p>
+    <input type="text" id="name-overlay-input" maxlength="30" placeholder="Your name / اسمك">
+    <div class="btn-row" style="justify-content:center;">
+      <button class="btn btn-primary" onclick="saveNameFromOverlay()">✓ Let's Go!</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AVATAR OVERLAY ═══ -->
+<div class="ns-overlay" id="avatar-overlay">
+  <div class="ns-card">
+    <h2>🎭 Choose Your Avatar</h2>
+    <p style="margin-top:6px;font-size:.9rem;">اختر شخصيتك في هذه الرحلة</p>
+    <div class="opt-grid">
+      <div class="avatar-opt" data-av="scholar" onclick="pickAvatar('scholar','📚')"><span class="av-emoji">📚</span>Scholar</div>
+      <div class="avatar-opt" data-av="graduate" onclick="pickAvatar('graduate','🎓')"><span class="av-emoji">🎓</span>Graduate</div>
+      <div class="avatar-opt" data-av="explorer" onclick="pickAvatar('explorer','🚀')"><span class="av-emoji">🚀</span>Explorer</div>
+      <div class="avatar-opt" data-av="champion" onclick="pickAvatar('champion','🏆')"><span class="av-emoji">🏆</span>Champion</div>
+      <div class="avatar-opt" data-av="master" onclick="pickAvatar('master','👑')"><span class="av-emoji">👑</span>Master</div>
+    </div>
+    <div class="btn-row" style="justify-content:center;margin-top:14px;">
+      <button class="btn btn-primary" onclick="closeAvatarPicker()">✓ Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RESET CONFIRMATION MODAL ═══ -->
+<div class="ns-overlay" id="reset-confirm-modal">
+  <div class="ns-card" style="border-top: 4px solid var(--coral);">
+    <h2 style="color: var(--coral);">🗑 Reset Progress</h2>
+    <p style="margin: 12px 0; line-height: 1.6;">
+      Are you sure you want to reset all progress?<br>
+      This will permanently erase XP, coins, level, rank, achievements, avatar, your name, all quiz answers and scores, streak, and report statistics. This cannot be undone.<br><br>
+      <span dir="rtl" style="font-family: 'Tajawal', sans-serif;">هل أنت متأكد من رغبتك في إعادة تعيين كل التقدم؟ لا يمكن التراجع عن هذا.</span>
+    </p>
+    <div class="btn-row" style="justify-content: center; margin-top: 16px;">
+      <button onclick="executeResetProgress()" class="btn" style="background: var(--coral); color: white; border: none;">Yes, Reset</button>
+      <button onclick="closeResetModal()" class="btn btn-ghost" style="color: #fff; border-color: rgba(255,255,255,0.4);">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ACHIEVEMENT UNLOCK OVERLAY ═══ -->
+<div class="ns-overlay" id="ach-unlock-overlay">
+  <div class="ns-card" style="border-top:4px solid var(--gold);">
+    <h2>🎉 Achievement Unlocked!</h2>
+    <div style="font-size:3.5rem;margin:14px 0;" id="ach-unlock-icon">🏅</div>
+    <div style="font-weight:900;font-size:1.1rem;" id="ach-unlock-name">—</div>
+    <div style="font-size:.85rem;margin-top:4px;" id="ach-unlock-desc">—</div>
+    <div class="btn-row" style="justify-content:center;margin-top:16px;">
+      <button class="btn btn-primary" onclick="closeAchUnlock()">Nice! ✓</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── WEB AUDIO API SOUNDS ──
+var audioCtx = null;
+function getCtx(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx;}
+function tone(freq,dur,type,vol){
+  try{
+    var c=getCtx(),o=c.createOscillator(),g=c.createGain();
+    o.connect(g);g.connect(c.destination);
+    o.type=type||'sine';o.frequency.value=freq;
+    g.gain.setValueAtTime(vol||0.25,c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+dur);
+    o.start();o.stop(c.currentTime+dur);
+  }catch(e){}
+}
+function playOK(){tone(523,.1,'sine',.22);setTimeout(function(){tone(659,.1,'sine',.22);},90);setTimeout(function(){tone(784,.18,'sine',.22);},180);}
+function playErr(){tone(220,.08,'sawtooth',.18);setTimeout(function(){tone(165,.15,'sawtooth',.14);},75);}
+function playBoss(){[523,659,784,1047,784,1047,1319].forEach(function(f,i){setTimeout(function(){tone(f,.16,'sine',.28);},i*110);});}
+
+// ── DARK MODE ──
+function toggleDark(){
+  var d=document.body.getAttribute('data-theme')==='dark';
+  document.body.setAttribute('data-theme',d?'':'dark');
+  document.getElementById('dark-toggle').textContent=d?'🌙 Dark Mode':'☀️ Light Mode';
+  try{localStorage.setItem('theme',d?'light':'dark');}catch(e){}
+}
+(function(){
+  try{var s=localStorage.getItem('theme');if(s==='dark'){document.body.setAttribute('data-theme','dark');document.getElementById('dark-toggle').textContent='☀️ Light Mode';}}catch(e){}
+})();
+
+// ── TABS ──
+function showTab(n){
+  document.querySelectorAll('.page').forEach(function(p,i){p.classList.toggle('active',i===n);});
+  document.querySelectorAll('.nav-tabs button').forEach(function(b,i){b.classList.toggle('active',i===n);});
+  window.scrollTo({top:0,behavior:'smooth'});
+  currentTabId=n;
+  if(n===10) renderResultsDashboard();
+  saveState();
+}
+
+/* ── Pill-nav: wheel → horizontal scroll + drag to scroll (identical pattern used across the series) ── */
+(function(){
+  var nav = document.getElementById('nav-tabs');
+  if(!nav) return;
+  nav.addEventListener('wheel', function(e){
+    if(e.deltaY !== 0){ e.preventDefault(); nav.scrollLeft += e.deltaY * 1.2; }
+  }, {passive:false});
+  var isDown=false, startX, scrollStart;
+  nav.addEventListener('mousedown', function(e){
+    if(e.target.tagName === 'BUTTON') return;
+    isDown=true; nav.classList.add('is-dragging');
+    startX = e.pageX - nav.offsetLeft; scrollStart = nav.scrollLeft;
+  });
+  document.addEventListener('mouseup', function(){ isDown=false; nav.classList.remove('is-dragging'); });
+  nav.addEventListener('mouseleave', function(){ isDown=false; nav.classList.remove('is-dragging'); });
+  nav.addEventListener('mousemove', function(e){
+    if(!isDown) return; e.preventDefault();
+    var x = e.pageX - nav.offsetLeft, walk = (x-startX)*1.5;
+    nav.scrollLeft = scrollStart - walk;
+  });
+  var lastActiveBtn = nav.querySelector('button.active');
+  var observer = new MutationObserver(function(){
+    var active = nav.querySelector('button.active');
+    if(!active || active===lastActiveBtn) return;
+    lastActiveBtn = active;
+    var navRect = nav.getBoundingClientRect(), btnRect = active.getBoundingClientRect();
+    var btnCenter = (btnRect.left-navRect.left) + nav.scrollLeft + btnRect.width/2;
+    var target = btnCenter - navRect.width/2;
+    nav.scrollTo({left:Math.max(0,target), behavior:'smooth'});
+  });
+  observer.observe(nav, {subtree:true, attributeFilter:['class']});
+})();
+
+// ── SPEECH ──
+function speak(w) {
+  if(!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(w);
+  u.lang = 'en-US';
+  u.rate = .85;
+  var voices = window.speechSynthesis.getVoices();
+  var preferred = ['Google US English', 'Microsoft Zira', 'Microsoft Zira Desktop', 'Samantha', 'Victoria'];
+  var chosenVoice = null;
+  for(var i=0; i<preferred.length; i++) {
+    chosenVoice = voices.find(function(v){ return v.name === preferred[i]; });
+    if(chosenVoice) break;
+  }
+  if(!chosenVoice) {
+    chosenVoice = voices.find(function(v){ return v.lang.indexOf('en')===0 && (v.name.indexOf('Female')>-1 || v.name.indexOf('Woman')>-1 || v.name.indexOf('Zira')>-1 || v.name.indexOf('Samantha')>-1); });
+  }
+  if(chosenVoice) u.voice = chosenVoice;
+  speechSynthesis.speak(u);
+}
+
+// ── XP / GAMIFICATION ──
+var xpTotal=0,streakCount=0,correctTotal=0,wrongTotal=0,completedTotal=0,coins=0,bestStreak=0;
+var totalItems=48;
+
+function showXPToast(n){
+  var t=document.getElementById('xp-toast');
+  t.textContent='+'+n+' XP ⚡';t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},1100);
+}
+function updateHUD(){
+  document.getElementById('xp-num').textContent=xpTotal;
+  document.getElementById('coin-num').textContent=coins;
+  document.getElementById('streak-num').textContent=streakCount;
+  document.getElementById('score-num').textContent=correctTotal;
+  var b=document.getElementById('xp-num');
+  b.classList.remove('pulse');void b.offsetWidth;b.classList.add('pulse');
+  updateRankBadge();
+}
+function addCoins(n){
+  coins+=n;
+  var el=document.getElementById('coin-num');
+  el.textContent=coins; el.classList.add('bump');
+  setTimeout(function(){el.classList.remove('bump');},300);
+}
+function updateBar(){
+  var bar=document.getElementById('main-progress');
+  if(bar)bar.style.width=Math.min(100,Math.round(completedTotal/totalItems*100))+'%';
+}
+function triggerSuccess(xp){
+  var x=xp||10;xpTotal+=x;streakCount++;correctTotal++;completedTotal++;
+  if(streakCount>bestStreak)bestStreak=streakCount;
+  addCoins(Math.max(1,Math.round(x/5)));
+  updateHUD();updateBar();playOK();showXPToast(x);
+  if(streakCount>=3&&typeof confetti==='function')confetti({particleCount:55,spread:55,origin:{y:.65}});
+  checkAchievements();saveState();
+}
+function triggerWrong(){streakCount=0;wrongTotal++;updateHUD();playErr();checkAchievements();saveState();}
+
+// ── MATCH SYSTEM ──
+var mState={A:{left:null,right:null,count:0,total:6},B:{left:null,right:null,count:0,total:4},C:{left:null,right:null,count:0,total:5}};
+var mScoreId={A:'ma-score',B:'mb-score',C:'mc-score'};
+function doMatch(el,grp,side){
+  if(el.classList.contains('matched-ok'))return;
+  var s=mState[grp];
+  if(side==='left'){if(s.left)s.left.classList.remove('selected');s.left=el;el.classList.add('selected');}
+  else{if(s.right)s.right.classList.remove('selected');s.right=el;el.classList.add('selected');}
+  if(s.left&&s.right){
+    if(s.left.dataset.id===s.right.dataset.id){
+      s.left.classList.remove('selected');s.right.classList.remove('selected');
+      s.left.classList.add('matched-ok');s.right.classList.add('matched-ok');
+      s.count++;document.getElementById(mScoreId[grp]).textContent=s.count+' / '+s.total;
+      triggerSuccess(10);
+    }else{
+      var l=s.left,r=s.right;
+      l.classList.add('matched-bad','shake');r.classList.add('matched-bad','shake');
+      triggerWrong();
+      setTimeout(function(){l.classList.remove('selected','matched-bad','shake');r.classList.remove('selected','matched-bad','shake');s.left=null;s.right=null;},620);
+      return;
+    }
+    s.left=null;s.right=null;
+  }
+}
+function resetMatchA(){document.querySelectorAll('[data-id^="ma"]').forEach(function(e){e.classList.remove('selected','matched-ok','matched-bad');});mState.A={left:null,right:null,count:0,total:6};document.getElementById('ma-score').textContent='0 / 6';}
+function resetMatchB(){document.querySelectorAll('[data-id^="mb"]').forEach(function(e){e.classList.remove('selected','matched-ok','matched-bad');});mState.B={left:null,right:null,count:0,total:4};document.getElementById('mb-score').textContent='0 / 4';}
+function resetMatchC(){document.querySelectorAll('[data-id^="mc"]').forEach(function(e){e.classList.remove('selected','matched-ok','matched-bad');});mState.C={left:null,right:null,count:0,total:5};document.getElementById('mc-score').textContent='0 / 5';}
+
+// ── TABLES ──
+var ansA={ta1:'b',ta2:'d',ta3:'a',ta4:'e',ta5:'c',ta6:'f'};
+function checkTableA(){
+  var c=0,nd=0;
+  Object.keys(ansA).forEach(function(id){
+    var inp=document.getElementById(id),v=(inp.value||'').toLowerCase().trim();
+    if(v===ansA[id]){inp.classList.add('correct');inp.classList.remove('wrong');c++;if(!inp.dataset.completed){inp.dataset.completed='1';nd++;}}
+    else{inp.classList.add('wrong');inp.classList.remove('correct');}
+  });
+  if(c===6)triggerSuccess(15);else triggerWrong();
+  if(nd>0){completedTotal+=nd-1;updateBar();}
+  var r=document.getElementById('tableA-result');r.style.display='block';r.textContent=c===6?'🎉 All correct!':'Score: '+c+'/6';r.style.color=c===6?'var(--green)':'var(--coral)';
+}
+function resetTableA(){Object.keys(ansA).forEach(function(id){var i=document.getElementById(id);i.value='';i.classList.remove('correct','wrong');delete i.dataset.completed;});document.getElementById('tableA-result').style.display='none';}
+
+var ansB={tb1:'d',tb2:'b',tb3:'a',tb4:'c'};
+function checkTableB(){
+  var c=0,nd=0;
+  Object.keys(ansB).forEach(function(id){
+    var inp=document.getElementById(id),v=(inp.value||'').toLowerCase().trim();
+    if(v===ansB[id]){inp.classList.add('correct');inp.classList.remove('wrong');c++;if(!inp.dataset.completed){inp.dataset.completed='1';nd++;}}
+    else{inp.classList.add('wrong');inp.classList.remove('correct');}
+  });
+  if(c===4)triggerSuccess(15);else triggerWrong();
+  if(nd>0){completedTotal+=nd-1;updateBar();}
+  var r=document.getElementById('tableB-result');r.style.display='block';r.textContent=c===4?'🎉 All correct!':'Score: '+c+'/4';r.style.color=c===4?'var(--green)':'var(--coral)';
+}
+function resetTableB(){Object.keys(ansB).forEach(function(id){var i=document.getElementById(id);i.value='';i.classList.remove('correct','wrong');delete i.dataset.completed;});document.getElementById('tableB-result').style.display='none';}
+
+var ansC={tc1:'e',tc2:'d',tc3:'b',tc4:'a',tc5:'c'};
+function checkTableC(){
+  var c=0,nd=0;
+  Object.keys(ansC).forEach(function(id){
+    var inp=document.getElementById(id),v=(inp.value||'').toLowerCase().trim();
+    if(v===ansC[id]){inp.classList.add('correct');inp.classList.remove('wrong');c++;if(!inp.dataset.completed){inp.dataset.completed='1';nd++;}}
+    else{inp.classList.add('wrong');inp.classList.remove('correct');}
+  });
+  if(c===5)triggerSuccess(15);else triggerWrong();
+  if(nd>0){completedTotal+=nd-1;updateBar();}
+  var r=document.getElementById('tableC-result');r.style.display='block';r.textContent=c===5?'🎉 All correct!':'Score: '+c+'/5';r.style.color=c===5?'var(--green)':'var(--coral)';
+}
+function resetTableC(){Object.keys(ansC).forEach(function(id){var i=document.getElementById(id);i.value='';i.classList.remove('correct','wrong');delete i.dataset.completed;});document.getElementById('tableC-result').style.display='none';}
+
+// ── MCQ ──
+var qAns={},qScore=0,qTotal=0;
+function pickQ(el){
+  var q=el.dataset.q;if(qAns[q])return;qAns[q]=true;
+  var opts=document.querySelectorAll('[data-q="'+q+'"]');
+  opts.forEach(function(o){o.classList.add('locked');});
+  if(el.hasAttribute('data-c')){el.classList.add('correct');qScore++;triggerSuccess(10);}
+  else{el.classList.add('wrong','shake');triggerWrong();opts.forEach(function(o){if(o.hasAttribute('data-c'))o.classList.add('correct');});}
+  qTotal++;document.getElementById('mcq-score').textContent=qScore+' / '+qTotal;
+}
+
+// ── FINAL TEST ──
+var ftAns={},ftScore=0,ftTotal=0;
+function pickFT(el){
+  var q=el.dataset.q;if(ftAns[q])return;ftAns[q]=true;
+  var opts=document.querySelectorAll('[data-q="'+q+'"]');
+  opts.forEach(function(o){o.classList.add('locked');});
+  if(el.hasAttribute('data-c')){el.classList.add('correct');ftScore++;triggerSuccess(15);}
+  else{el.classList.add('wrong','shake');triggerWrong();opts.forEach(function(o){if(o.hasAttribute('data-c'))o.classList.add('correct');});}
+  ftTotal++;document.getElementById('ft-score').textContent=ftScore+' / '+ftTotal;
+}
+function submitFT(){
+  var box=document.getElementById('final-box');box.style.display='block';
+  var p=ftScore/10,msg,bonus=0;
+  if(p===1){msg='🏆 PERFECT! You defeated the Boss!';bonus=50;playBoss();if(typeof confetti==='function')confetti({particleCount:160,spread:80,origin:{y:.5}});}
+  else if(p>=.8){msg='⚔️ Almost! The Boss is wounded!';bonus=30;}
+  else if(p>=.6){msg='💪 Good fight! Keep training!';bonus=15;}
+  else{msg='📚 The Boss wins this round. Keep studying!';bonus=5;}
+  xpTotal+=bonus;updateHUD();
+  document.getElementById('final-num').textContent=ftScore+'/10';
+  document.getElementById('final-msg').textContent=msg;
+  document.getElementById('final-xp').textContent='+ '+bonus+' XP Bonus!';
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetFT(){
+  document.querySelectorAll('[data-q^="f"]').forEach(function(o){o.classList.remove('correct','wrong','locked','shake');});
+  ftAns={};ftScore=0;ftTotal=0;
+  document.getElementById('ft-score').textContent='0 / 0';
+  document.getElementById('final-box').style.display='none';
+}
+
+// ── TRANSLATION ──
+function toggleTr(btn){
+  var tip=btn.nextElementSibling,showing=tip.classList.contains('show');
+  tip.classList.toggle('show',!showing);btn.textContent=showing?'🌐 ترجمة':'✕ إخفاء';
+}
+function toggleColTr(colId,btn){
+  var col=document.getElementById(colId),showing=col.classList.contains('match-tr-show');
+  col.classList.toggle('match-tr-show',!showing);btn.textContent=showing?'🌐 ترجمة':'✕ إخفاء';
+}
+
+/* ══════════════════════════════════════════════════════════
+   NEW GAMIFICATION LAYER — coins, ranks, achievements, avatars,
+   easy mode, new tabs, save/load, certificate. Adds to (never
+   removes) everything above.
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Vocabulary data pool (drives Vocabulary Challenge / True-False / Speed Challenge) ── */
+var VOCAB=[
+  {word:'Appointment',ar:'موعد'},{word:'Blood',ar:'دم'},{word:'Community',ar:'مجتمع'},
+  {word:'Effort',ar:'مجهود'},{word:'Facility',ar:'مؤسسة'},{word:'Leadership',ar:'قيادة'},
+  {word:'Litter',ar:'نفايات'},{word:'Operation',ar:'عملية'},{word:'Principal',ar:'مدير / مسؤول'},
+  {word:'Attitude',ar:'موقف / سلوك'},{word:'Colleague',ar:'زميل عمل'},{word:'Donation',ar:'تبرع'},
+  {word:'Employee',ar:'موظف'},{word:'Infant',ar:'رضيع'},{word:'League',ar:'دوري رياضي'},
+  {word:'Newborn',ar:'مولود'},{word:'Owner',ar:'مالك'},{word:'Twin',ar:'توأم'},
+  {word:'Award',ar:'يربح'},{word:'Donate / Receive',ar:'يتبرع / يستلم'},{word:'Encourage',ar:'يشجع'},
+  {word:'Environmental',ar:'بيئي'},{word:'Hopeful',ar:'متفائل'},{word:'Outstanding',ar:'مذهل'},
+  {word:'Crippling',ar:'ذو إعاقة'},{word:'Original',ar:'أصلي'},
+  {word:'Congratulations',ar:'ألف مبروك'},{word:'Wish you all the best',ar:'أتمنى لك كل خير'},
+  {word:'Big break',ar:'فرصة كبيرة ومهمة'},{word:'To be into something',ar:'يندمج / يهتم بشيء'},
+  {word:'To turn up',ar:'يظهر فجأة'},{word:'What about...?',ar:'ماذا عن...؟'},
+  {word:'Comb the beach',ar:'يمشط الشاطئ بحثاً عن'},{word:'Get in touch with',ar:'يتواصل مع'},
+  {word:'Abroad',ar:'في الخارج'},{word:'Humanitarian',ar:'إنساني'},{word:'Relief',ar:'ارتياح / إغاثة'},
+  {word:'Metropolis',ar:'مدينة كبرى'},{word:'Appoint',ar:'يعيّن في منصب'}
+];
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+function makeMCQ(entry,pool){
+  var distractors=shuffle(pool.filter(function(v){return v.word!==entry.word;})).slice(0,3).map(function(v){return v.ar;});
+  var options=shuffle([entry.ar].concat(distractors));
+  return {question:entry.word,correct:entry.ar,options:options};
+}
+
+/* ── Achievements ── */
+var ACHIEVEMENTS=[
+  {id:'first_steps',icon:'🥉',name:'First Steps',desc:'Complete your first activity',check:function(s){return s.completedTotal>=1;}},
+  {id:'vocab_learner',icon:'📚',name:'Vocabulary Learner',desc:'Flip 10 vocabulary cards',check:function(s){return Object.keys(s.flippedCards||{}).length>=10;}},
+  {id:'quiz_master',icon:'🎯',name:'Quiz Master',desc:'Score 100% on any quiz',check:function(s){return s.perfectScoreHit;}},
+  {id:'speedster',icon:'⚡',name:'Speedster',desc:'Finish a speed round',check:function(s){return s.speedRoundDone;}},
+  {id:'on_fire',icon:'🔥',name:'On Fire',desc:'Reach a 5-answer streak',check:function(s){return s.bestStreak>=5;}},
+  {id:'vocab_king',icon:'👑',name:'Vocabulary King',desc:'Complete every section',check:function(s){return Object.keys(s.sectionsDone||{}).length>=11;}}
+];
+/* ── Ranks ── */
+var RANKS=[
+  {xp:0,icon:'🌱',name:'New Learner'},{xp:200,icon:'📘',name:'Active Learner'},
+  {xp:500,icon:'📗',name:'Vocabulary Explorer'},{xp:1000,icon:'🎓',name:'Vocabulary Expert'},
+  {xp:2000,icon:'🏆',name:'Vocabulary Master'},{xp:5000,icon:'👑',name:'Vocabulary Legend'}
+];
+function getRank(xp){var r=RANKS[0];for(var i=0;i<RANKS.length;i++){if(xp>=RANKS[i].xp)r=RANKS[i];}return r;}
+function updateRankBadge(){var rk=getRank(xpTotal);var el=document.getElementById('rank-display');if(el)el.textContent=rk.icon+' '+rk.name;}
+
+var easyMode=false,chosenAvatar=null,studentName='',flippedCards={},achievementsUnlocked={},perfectScoreHit=false,speedRoundDone=false;
+var sectionsDone={},currentTabId=0,sessionStart=Date.now(),accumulatedMs=0;
+var SAVE_KEY='u2VocabLifeStoriesSave_v1',NAME_KEY='u2VocabLifeStoriesName';
+function markSection(idx){sectionsDone[idx]=true;checkAchievements();saveState();}
+
+function checkAchievements(){
+  var state={completedTotal:completedTotal,flippedCards:flippedCards,perfectScoreHit:perfectScoreHit,speedRoundDone:speedRoundDone,bestStreak:bestStreak,sectionsDone:sectionsDone};
+  ACHIEVEMENTS.forEach(function(a){
+    if(!achievementsUnlocked[a.id]&&a.check(state)){
+      achievementsUnlocked[a.id]=true; showBadgeToast(a); showAchUnlockOverlay(a);
+    }
+  });
+  renderAchPanels();
+}
+function showBadgeToast(a){
+  var t=document.getElementById('badgeToast');
+  t.innerHTML=a.icon+' <span>Achievement unlocked: <strong>'+a.name+'</strong></span>';
+  t.classList.add('show'); setTimeout(function(){t.classList.remove('show');},3000);
+}
+function showAchUnlockOverlay(a){
+  document.getElementById('ach-unlock-icon').textContent=a.icon;
+  document.getElementById('ach-unlock-name').textContent=a.name;
+  document.getElementById('ach-unlock-desc').textContent=a.desc;
+  document.getElementById('ach-unlock-overlay').classList.add('show');
+  playBoss();
+}
+window.closeAchUnlock=function(){document.getElementById('ach-unlock-overlay').classList.remove('show');};
+function renderAchPanels(){
+  var html=ACHIEVEMENTS.map(function(a){
+    var u=!!achievementsUnlocked[a.id];
+    return '<div class="ach-card '+(u?'unlocked':'locked')+'"><div class="ach-icon">'+a.icon+'</div><div class="ach-name">'+a.name+'</div><div class="ach-desc">'+a.desc+'</div></div>';
+  }).join('');
+  var p=document.getElementById('ach-panel-results'); if(p)p.innerHTML=html;
+}
+
+/* ── Track vocab-card flips via delegation (no need to touch each card's inline onclick) ── */
+document.addEventListener('click',function(e){
+  var card=e.target.closest&&e.target.closest('.vocab-card');
+  if(card){
+    var w=card.querySelector('.word');
+    if(w){flippedCards[w.textContent]=true;markSection(0);}
+  }
+});
+
+/* ── Name / Avatar onboarding ── */
+function onNameInput(){studentName=document.getElementById('student-name-vocab')?document.getElementById('student-name-vocab').value.trim():studentName;localStorage.setItem(NAME_KEY,studentName);saveState();}
+window.saveNameFromOverlay=function(){
+  var v=document.getElementById('name-overlay-input').value.trim();
+  studentName=v; localStorage.setItem(NAME_KEY,studentName);
+  var visible=document.getElementById('student-name-vocab'); if(visible)visible.value=v;
+  document.getElementById('name-overlay').classList.remove('show');
+  if(!chosenAvatar)document.getElementById('avatar-overlay').classList.add('show');
+  saveState();
+};
+window.openAvatarPicker=function(){document.getElementById('avatar-overlay').classList.add('show');};
+window.closeAvatarPicker=function(){document.getElementById('avatar-overlay').classList.remove('show');saveState();};
+window.pickAvatar=function(id,emoji){
+  chosenAvatar=id;
+  document.querySelectorAll('.avatar-opt').forEach(function(o){o.classList.toggle('picked',o.getAttribute('data-av')===id);});
+  updateAvatarDisplays(emoji); saveState();
+};
+function updateAvatarDisplays(emoji){
+  var map={scholar:'📚',graduate:'🎓',explorer:'🚀',champion:'🏆',master:'👑'};
+  var e=emoji||map[chosenAvatar]||'🎭';
+  var chip=document.getElementById('avatar-chip-display'); if(chip)chip.textContent=e;
+  var inline=document.getElementById('hud-avatar-inline'); if(inline)inline.textContent=e;
+}
+
+/* ── Easy mode ── */
+function toggleEasyMode(){
+  easyMode=!easyMode;
+  document.getElementById('easy-toggle-btn').textContent='💡 Easy Mode: '+(easyMode?'ON':'OFF');
+  document.querySelectorAll('.mcq-block').forEach(function(b){attachEasyHint(b);});
+  saveState();
+}
+function attachEasyHint(block){
+  var hintBtn=block.querySelector('.easy-hint-btn');
+  if(easyMode){
+    if(!hintBtn){
+      hintBtn=document.createElement('button');
+      hintBtn.className='tr-btn easy-hint-btn';
+      hintBtn.style.background='linear-gradient(135deg,var(--gold),var(--orange))';
+      hintBtn.style.marginTop='6px';
+      hintBtn.textContent='💡 Remove 2 wrong answers';
+      hintBtn.onclick=function(){easyEliminate(block);};
+      block.appendChild(hintBtn);
+    }
+  } else if(hintBtn){ hintBtn.remove(); }
+}
+function easyEliminate(block){
+  // A correct option is marked either with a bare data-c attribute (static MCQ/Boss tabs)
+  // or with data-correct="true" (dynamically generated Vocabulary Challenge / Boss Listening
+  // blocks). Both conventions must be recognized, or the hint treats every option as "wrong"
+  // and can eliminate the real answer along with a distractor.
+  var wrongs=Array.prototype.slice.call(block.querySelectorAll('.mcq-opt')).filter(function(o){
+    if(o.hasAttribute('data-c')) return false;
+    if(o.getAttribute('data-correct')==='true') return false;
+    return true;
+  });
+  shuffle(wrongs).slice(0,2).forEach(function(o){o.classList.add('eliminated');});
+  var btn=block.querySelector('.easy-hint-btn');
+  if(btn){btn.disabled=true;btn.style.opacity='.5';}
+}
+
+/* ── Reset progress (custom modal, no window.confirm) ── */
+window.confirmResetProgress=function(){
+  var modal=document.getElementById('reset-confirm-modal');
+  if(modal)modal.classList.add('show'); else executeResetProgress();
+};
+window.closeResetModal=function(){
+  var modal=document.getElementById('reset-confirm-modal');
+  if(modal)modal.classList.remove('show');
+};
+window.executeResetProgress=function(){
+  try{
+    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(NAME_KEY);
+    localStorage.removeItem('theme');
+  }catch(e){console.error('Could not clear localStorage:',e);}
+  location.reload();
+};
+
+/* ── Save / Load (localStorage) ── */
+function safeNum(v,d){return (typeof v==='number'&&!isNaN(v))?v:d;}
+function safeObj(v){return (v&&typeof v==='object'&&!Array.isArray(v))?v:{};}
+function saveState(){
+  try{
+    accumulatedMs+=(Date.now()-sessionStart); sessionStart=Date.now();
+    var data={
+      xpTotal:xpTotal,coins:coins,streakCount:streakCount,correctTotal:correctTotal,wrongTotal:wrongTotal,
+      completedTotal:completedTotal,bestStreak:bestStreak,easyMode:easyMode,chosenAvatar:chosenAvatar,
+      studentName:studentName,sectionsDone:sectionsDone,flippedCards:flippedCards,achievementsUnlocked:achievementsUnlocked,
+      perfectScoreHit:perfectScoreHit,speedRoundDone:speedRoundDone,currentTabId:currentTabId,accumulatedMs:accumulatedMs,
+      mCounts:{A:mState.A.count,B:mState.B.count,C:mState.C.count},
+      tableAVals:collectInputVals(ansA),tableBVals:collectInputVals(ansB),tableCVals:collectInputVals(ansC),
+      qScore:qScore,qTotal:qTotal,qAns:qAns,ftScore:ftScore,ftTotal:ftTotal,ftAns:ftAns,
+      tfAnswered:tfAnswered,tfCorrect:tfCorrect,tfTotal:tfTotal,oqEvals:oqEvals,
+      vcMatchedCount:vcMatchedCount,vcListenAnswered:vcListenAnswered,vcListenScore:vcListenScore,
+      vcSpeedScore:vcSpeedScore,vcSpeedTotal:vcSpeedTotal,scBest:scBest,
+      bossListenAnswered:bossListenAnswered,bossListenScore:bossListenScore,certGenerated:certGenerated
+    };
+    localStorage.setItem(SAVE_KEY,JSON.stringify(data));
+    if(studentName)localStorage.setItem(NAME_KEY,studentName);
+  }catch(e){console.warn('Could not save progress',e);}
+}
+function collectInputVals(ansMap){
+  var out={};
+  Object.keys(ansMap).forEach(function(id){var el=document.getElementById(id);if(el)out[id]=el.value;});
+  return out;
+}
+function loadState(){
+  try{
+    var raw=localStorage.getItem(SAVE_KEY); if(!raw)return false;
+    var d=JSON.parse(raw);
+    xpTotal=safeNum(d.xpTotal,0); coins=safeNum(d.coins,0); streakCount=safeNum(d.streakCount,0);
+    correctTotal=safeNum(d.correctTotal,0); wrongTotal=safeNum(d.wrongTotal,0); completedTotal=safeNum(d.completedTotal,0);
+    bestStreak=safeNum(d.bestStreak,0); easyMode=!!d.easyMode; chosenAvatar=(typeof d.chosenAvatar==='string')?d.chosenAvatar:null;
+    studentName=(typeof d.studentName==='string')?d.studentName:'';
+    sectionsDone=safeObj(d.sectionsDone); flippedCards=safeObj(d.flippedCards); achievementsUnlocked=safeObj(d.achievementsUnlocked);
+    perfectScoreHit=!!d.perfectScoreHit; speedRoundDone=!!d.speedRoundDone; currentTabId=safeNum(d.currentTabId,0);
+    accumulatedMs=safeNum(d.accumulatedMs,0);
+    var mc=safeObj(d.mCounts); mState.A.count=safeNum(mc.A,0); mState.B.count=safeNum(mc.B,0); mState.C.count=safeNum(mc.C,0);
+    document.getElementById('ma-score').textContent=mState.A.count+' / 6';
+    document.getElementById('mb-score').textContent=mState.B.count+' / 4';
+    document.getElementById('mc-score').textContent=mState.C.count+' / 5';
+    restoreTableVals('tableAVals',d); restoreTableVals('tableBVals',d); restoreTableVals('tableCVals',d);
+    if(Object.keys(safeObj(d.tableAVals)).length)checkTableA();
+    if(Object.keys(safeObj(d.tableBVals)).length)checkTableB();
+    if(Object.keys(safeObj(d.tableCVals)).length)checkTableC();
+    qScore=safeNum(d.qScore,0); qTotal=safeNum(d.qTotal,0); qAns=safeObj(d.qAns);
+    document.getElementById('mcq-score').textContent=qScore+' / '+qTotal;
+    ftScore=safeNum(d.ftScore,0); ftTotal=safeNum(d.ftTotal,0); ftAns=safeObj(d.ftAns);
+    document.getElementById('ft-score').textContent=ftScore+' / '+ftTotal;
+    tfAnswered=safeObj(d.tfAnswered); tfCorrect=safeNum(d.tfCorrect,0); tfTotal=safeNum(d.tfTotal,0);
+    oqEvals=safeObj(d.oqEvals);
+    vcMatchedCount=safeNum(d.vcMatchedCount,0); vcListenAnswered=safeObj(d.vcListenAnswered); vcListenScore=safeNum(d.vcListenScore,0);
+    vcSpeedScore=safeNum(d.vcSpeedScore,0); vcSpeedTotal=safeNum(d.vcSpeedTotal,0); scBest=safeNum(d.scBest,0);
+    bossListenAnswered=safeObj(d.bossListenAnswered); bossListenScore=safeNum(d.bossListenScore,0); certGenerated=!!d.certGenerated;
+    return true;
+  }catch(e){console.warn('Could not restore saved progress — starting fresh.',e);return false;}
+}
+function restoreTableVals(key,d){
+  var vals=safeObj(d[key]);
+  Object.keys(vals).forEach(function(id){var el=document.getElementById(id); if(el)el.value=vals[id];});
+}
+
+/* ── Vocabulary Challenge tab ── */
+var VC_MATCH_POOL=shuffle(VOCAB).slice(0,8);
+var vcSelLeft=null,vcSelRight=null,vcMatchedCount=0;
+function renderVCMatch(){
+  var left=document.getElementById('vc-match-left'),right=document.getElementById('vc-match-right');
+  if(!left||!right)return;
+  left.innerHTML='<h4>Word</h4>'+VC_MATCH_POOL.map(function(v,i){return '<div class="m-item" data-id="vc'+i+'" onclick="selectVCMatch(this,\'left\')">'+v.word+' <button class="audio-btn" onclick="event.stopPropagation();speak(\''+v.word.replace(/'/g,"\\'").replace(/"/g,"&quot;")+'\')">🔊</button></div>';}).join('');
+  var shuffled=shuffle(VC_MATCH_POOL.map(function(v,i){return {word:v.word,ar:v.ar,i:i};}));
+  right.innerHTML='<h4>Meaning</h4>'+shuffled.map(function(v){return '<div class="m-item" data-id="vc'+v.i+'" onclick="selectVCMatch(this,\'right\')" style="direction:rtl">'+v.ar+'</div>';}).join('');
+}
+function selectVCMatch(el,side){
+  if(el.classList.contains('matched-ok'))return;
+  if(side==='left'){if(vcSelLeft)vcSelLeft.classList.remove('selected');vcSelLeft=el;el.classList.add('selected');}
+  else{if(vcSelRight)vcSelRight.classList.remove('selected');vcSelRight=el;el.classList.add('selected');}
+  if(vcSelLeft&&vcSelRight){
+    if(vcSelLeft.dataset.id===vcSelRight.dataset.id){
+      vcSelLeft.classList.remove('selected');vcSelRight.classList.remove('selected');
+      vcSelLeft.classList.add('matched-ok');vcSelRight.classList.add('matched-ok');
+      vcMatchedCount++;document.getElementById('vc-match-score').textContent=vcMatchedCount+' / 8';
+      triggerSuccess(10);completedTotal++;updateBar();
+      if(vcMatchedCount===8){perfectScoreHit=true;checkVCComplete();}
+    }else{
+      vcSelLeft.classList.add('matched-bad','shake');vcSelRight.classList.add('matched-bad','shake');
+      triggerWrong();
+      (function(l,r){setTimeout(function(){l.classList.remove('selected','matched-bad','shake');r.classList.remove('selected','matched-bad','shake');},500);})(vcSelLeft,vcSelRight);
+      vcSelLeft=null;vcSelRight=null;return;
+    }
+    vcSelLeft=null;vcSelRight=null;
+  }
+}
+function resetVCMatch(){
+  document.querySelectorAll('#vc-match-left .m-item,#vc-match-right .m-item').forEach(function(el){el.classList.remove('selected','matched-ok','matched-bad');});
+  vcSelLeft=null;vcSelRight=null;vcMatchedCount=0;document.getElementById('vc-match-score').textContent='0 / 8';
+}
+var VC_LISTEN_POOL=shuffle(VOCAB).slice(0,6);
+var vcListenAnswered={},vcListenScore=0;
+function renderVCListen(){
+  var c=document.getElementById('vc-listen-container'); if(!c)return;
+  c.innerHTML=VC_LISTEN_POOL.map(function(v,i){
+    var mcq=makeMCQ(v,VOCAB);
+    return '<div class="mcq-block" data-vcl="'+i+'"><div class="mcq-q">🔊 <button class="audio-btn" style="width:40px;height:40px;font-size:1.1rem;" onclick="speak(\''+v.word.replace(/'/g,"\\'").replace(/"/g,"&quot;")+'\')">🔊</button> Listen and choose the correct meaning</div><div class="mcq-options">'+mcq.options.map(function(o){return '<div class="mcq-opt" data-vcli="'+i+'" data-correct="'+(o===mcq.correct)+'" onclick="pickVCListen(this,'+i+')" style="direction:rtl">'+o+'</div>';}).join('')+'</div></div>';
+  }).join('');
+}
+function pickVCListen(el,i){
+  if(vcListenAnswered[i]!==undefined)return; vcListenAnswered[i]=true;
+  var opts=document.querySelectorAll('[data-vcli="'+i+'"]'); opts.forEach(function(o){o.classList.add('locked');});
+  if(el.dataset.correct==='true'){el.classList.add('correct');vcListenScore++;triggerSuccess(10);completedTotal++;updateBar();if(vcListenScore===6)perfectScoreHit=true;}
+  else{el.classList.add('wrong');triggerWrong();opts.forEach(function(o){if(o.dataset.correct==='true')o.classList.add('correct');});}
+  document.getElementById('vc-listen-score').textContent=vcListenScore+' / 6';
+  if(Object.keys(vcListenAnswered).length>=6)checkVCComplete();
+}
+function resetVCListen(){vcListenAnswered={};vcListenScore=0;document.getElementById('vc-listen-score').textContent='0 / 6';renderVCListen();}
+
+var vcSpeedTimer=null,vcSpeedTimeLeft=45,vcSpeedScore=0,vcSpeedTotal=0,vcSpeedPool=[],vcSpeedIdx=0,vcSpeedStarted=false;
+function startVCSpeed(){
+  if(vcSpeedStarted)return; vcSpeedStarted=true;
+  vcSpeedScore=0;vcSpeedTotal=0;vcSpeedIdx=0;vcSpeedTimeLeft=45;
+  vcSpeedPool=shuffle(VOCAB).map(function(v){return makeMCQ(v,VOCAB);});
+  document.getElementById('vc-speed-start').style.display='none';
+  document.getElementById('vc-speed-result').style.display='none';
+  document.getElementById('vc-speed-score').textContent='0 / 0';
+  nextVCSpeedQ();
+  vcSpeedTimer=setInterval(function(){
+    vcSpeedTimeLeft--;
+    var td=document.getElementById('vc-speed-timer'); td.textContent=vcSpeedTimeLeft; td.classList.toggle('urgent',vcSpeedTimeLeft<=10);
+    if(vcSpeedTimeLeft<=0)endVCSpeed();
+  },1000);
+}
+function nextVCSpeedQ(){
+  var c=document.getElementById('vc-speed-container');
+  if(vcSpeedIdx>=vcSpeedPool.length)vcSpeedIdx=0;
+  var item=vcSpeedPool[vcSpeedIdx];
+  c.innerHTML='<div class="mcq-block"><div class="mcq-q">'+item.question+'</div><div class="mcq-options">'+item.options.map(function(o){return '<div class="mcq-opt" onclick="answerVCSpeed(this,\''+o.replace(/'/g,"\\'").replace(/"/g,"&quot;")+'\',\''+item.correct.replace(/'/g,"\\'").replace(/"/g,"&quot;")+'\')" style="direction:rtl">'+o+'</div>';}).join('')+'</div></div>';
+}
+function answerVCSpeed(el,chosen,correct){
+  if(!vcSpeedStarted)return; vcSpeedTotal++;
+  if(chosen===correct){vcSpeedScore++;xpTotal+=5;addCoins(2);updateHUD();playOK();} else{playErr();}
+  document.getElementById('vc-speed-score').textContent=vcSpeedScore+' / '+vcSpeedTotal;
+  vcSpeedIdx++; if(vcSpeedTimeLeft>0)nextVCSpeedQ();
+}
+function endVCSpeed(){
+  clearInterval(vcSpeedTimer);vcSpeedTimer=null;vcSpeedStarted=false;
+  document.getElementById('vc-speed-timer').textContent='0';
+  document.getElementById('vc-speed-container').innerHTML='';
+  document.getElementById('vc-speed-start').style.display='inline-flex';
+  document.getElementById('vc-speed-start').textContent='↺ Try Again';
+  var bonus=Math.round(vcSpeedScore*3); xpTotal+=bonus; addCoins(Math.round(bonus/2)); updateHUD();
+  if(typeof confetti==='function')confetti({particleCount:80,spread:80,origin:{y:.7}});
+  var r=document.getElementById('vc-speed-result'); r.style.display='block';
+  r.textContent='⚡ Speed Round Complete! '+vcSpeedScore+'/'+vcSpeedTotal+' correct — Bonus: +'+bonus+' XP 🪙+'+Math.round(bonus/2);
+  speedRoundDone=true; completedTotal+=vcSpeedScore; updateBar(); checkAchievements(); checkVCComplete(); saveState();
+}
+function checkVCComplete(){
+  if(vcMatchedCount>=8&&Object.keys(vcListenAnswered).length>=6&&speedRoundDone){
+    var total=vcMatchedCount+vcListenScore+vcSpeedScore;
+    document.getElementById('vc-final-box').style.display='block';
+    document.getElementById('vc-final-num').textContent=total;
+    document.getElementById('vc-final-msg').textContent='🎉 All 3 rounds complete, great work!';
+    markSection(5);
+  }
+}
+
+/* ── True / False tab ── */
+var TF_DATA=[
+  {s:'A "colleague" is someone you work with.',ans:true,ex:'✅ True — a colleague (زميل عمل) is a person you work alongside.'},
+  {s:'"Litter" means clean, tidy streets.',ans:false,ex:'❌ False — litter (نفايات) is rubbish/trash left in a public place.'},
+  {s:'"Encourage" means to stop someone from trying.',ans:false,ex:'❌ False — to encourage (يشجع) means to support and motivate someone.'},
+  {s:'A "newborn" and an "infant" both refer to very young babies.',ans:true,ex:'✅ True — both newborn (مولود) and infant (رضيع) describe very young babies.'},
+  {s:'"Outstanding" means average or ordinary.',ans:false,ex:'❌ False — outstanding (مذهل) means excellent, far above average.'},
+  {s:'"Humanitarian" work means helping other people, often in difficult situations.',ans:true,ex:'✅ True — humanitarian (إنساني) relates to helping people in need.'},
+  {s:'"Abroad" means staying in your own home country.',ans:false,ex:'❌ False — abroad (في الخارج) means in a foreign country.'},
+  {s:'A "twin" is one of two children born at the same time to the same mother.',ans:true,ex:'✅ True — twins (توأم) are siblings born together.'},
+  {s:'"To turn up" means to arrive somewhere, often unexpectedly.',ans:true,ex:'✅ True — "to turn up" (يظهر فجأة) means to arrive, sometimes without notice.'},
+  {s:'"Crippling" describes something that makes you feel strong and healthy.',ans:false,ex:'❌ False — crippling (ذو إعاقة) describes something that severely damages or weakens.'}
+];
+var tfAnswered={},tfCorrect=0,tfTotal=0;
+function renderTF(){
+  var c=document.getElementById('tf-container'); if(!c)return;
+  c.innerHTML=TF_DATA.map(function(item,i){
+    return '<div class="tf-card" id="tf-card-'+i+'"><div class="tf-statement">'+(i+1)+'. '+item.s+' <button class="audio-btn" onclick="speak(\''+item.s.replace(/'/g,"\\'").replace(/"/g,"&quot;")+'\')">🔊</button></div><div class="tf-btn-row"><button class="tf-btn" onclick="answerTF('+i+',true)">✅ True</button><button class="tf-btn" onclick="answerTF('+i+',false)">❌ False</button></div><div class="tf-explain" id="tf-explain-'+i+'">'+item.ex+'</div></div>';
+  }).join('');
+}
+function answerTF(i,val){
+  if(tfAnswered[i]!==undefined)return; tfAnswered[i]=val;
+  var card=document.getElementById('tf-card-'+i), btns=card.querySelectorAll('.tf-btn');
+  btns.forEach(function(b){b.classList.add('locked');});
+  var correct=TF_DATA[i].ans;
+  if(val===correct){btns[val?0:1].classList.add('correct');tfCorrect++;triggerSuccess(10);completedTotal++;updateBar();}
+  else{btns[val?0:1].classList.add('wrong');btns[correct?0:1].classList.add('correct');triggerWrong();}
+  tfTotal++;
+  document.getElementById('tf-explain-'+i).classList.add('show');
+  document.getElementById('tf-score').textContent=tfCorrect+' / '+TF_DATA.length;
+  document.getElementById('tf-progress').style.width=Math.round(tfTotal/TF_DATA.length*100)+'%';
+  if(tfCorrect===TF_DATA.length)perfectScoreHit=true;
+  if(tfTotal>=TF_DATA.length)markSection(6);
+  saveState();
+}
+function resetTF(){
+  tfAnswered={};tfCorrect=0;tfTotal=0;
+  document.getElementById('tf-score').textContent='0 / '+TF_DATA.length;
+  document.getElementById('tf-progress').style.width='0%';
+  renderTF();
+}
+
+/* ── Speed Challenge tab (60s mixed) ── */
+var scTimer=null,scTimeLeft=60,scScore=0,scBest=0,scStarted=false,scPool=[],scIdx=0,scQStart=0;
+function startSpeedChallenge(){
+  if(scStarted)return; scStarted=true; scScore=0; scTimeLeft=60; scIdx=0;
+  scPool=shuffle(VOCAB.concat(VOCAB)).map(function(v){return makeMCQ(v,VOCAB);});
+  document.getElementById('sc-start').style.display='none';
+  document.getElementById('sc-result').style.display='none';
+  document.getElementById('sc-score').textContent='0';
+  nextSCQ();
+  scTimer=setInterval(function(){
+    scTimeLeft--;
+    var td=document.getElementById('sc-timer'); td.textContent=scTimeLeft; td.classList.toggle('urgent',scTimeLeft<=10);
+    if(scTimeLeft<=0)endSpeedChallenge();
+  },1000);
+}
+function nextSCQ(){
+  if(scIdx>=scPool.length)scIdx=0; scQStart=Date.now();
+  var item=scPool[scIdx];
+  document.getElementById('sc-container').innerHTML='<div class="mcq-block"><div class="mcq-q">What does <em>"'+item.question+'"</em> mean?</div><div class="mcq-options">'+item.options.map(function(o){return '<div class="mcq-opt" onclick="answerSC(this,\''+o.replace(/'/g,"\\'").replace(/"/g,"&quot;")+'\',\''+item.correct.replace(/'/g,"\\'").replace(/"/g,"&quot;")+'\')" style="direction:rtl">'+o+'</div>';}).join('')+'</div></div>';
+}
+function answerSC(el,chosen,correct){
+  if(!scStarted)return;
+  var elapsed=(Date.now()-scQStart)/1000;
+  if(chosen===correct){var bonus=elapsed<2?8:elapsed<4?5:3;scScore+=bonus;xpTotal+=bonus;addCoins(1);updateHUD();playOK();} else{playErr();}
+  document.getElementById('sc-score').textContent=scScore; scIdx++; if(scTimeLeft>0)nextSCQ();
+}
+function endSpeedChallenge(){
+  clearInterval(scTimer);scTimer=null;scStarted=false;
+  document.getElementById('sc-timer').textContent='0';
+  document.getElementById('sc-container').innerHTML='';
+  document.getElementById('sc-start').style.display='inline-flex';
+  document.getElementById('sc-start').textContent='↺ Try Again';
+  if(scScore>scBest)scBest=scScore;
+  document.getElementById('sc-best').textContent=scBest;
+  if(typeof confetti==='function')confetti({particleCount:70,spread:70,origin:{y:.7}});
+  var r=document.getElementById('sc-result'); r.style.display='block'; r.textContent="⚡ Time's up! Final score: "+scScore+' points';
+  completedTotal++; updateBar(); markSection(7); saveState();
+}
+
+/* ── Open Questions tab ── */
+var OQ_DATA=[
+  {q:'Describe someone whose leadership you admire.',model:"I admire my school principal's leadership because she encourages every student and always finds the effort to help the community."},
+  {q:'Talk about a time you helped your community.',model:'Last year I collected litter from the local beach with my colleagues as part of a humanitarian project.'},
+  {q:'Describe an outstanding achievement in your life.',model:'My most outstanding achievement was winning an award in the school league — I felt very proud and hopeful about the future.'},
+  {q:'Have you ever donated to charity? Describe it.',model:'Yes, I made a small donation to a humanitarian organization that helps newborns and infants in need.'},
+  {q:'Describe a colleague or classmate who has a positive attitude.',model:'My colleague always has a hopeful attitude, even when things are difficult, and she always encourages the whole team.'},
+  {q:'What does the phrase "wish you all the best" mean to you?',model:'It means I hope good things happen for someone, especially when they start something new, like a new job abroad.'}
+];
+var oqEvals={};
+function renderOQ(){
+  var c=document.getElementById('oq-container'); if(!c)return;
+  c.innerHTML=OQ_DATA.map(function(item,i){
+    var safeQ=item.q.replace(/'/g,"\\'").replace(/"/g,"&quot;");
+    return '<div class="oq-card">'
+      +'<div class="oq-q">'+(i+1)+'. '+item.q+' <button class="audio-btn" onclick="speak(\''+safeQ+'\')">🔊</button></div>'
+      +'<textarea class="oq-textarea" id="oq-input-'+i+'" placeholder="Write your answer here... / اكتب إجابتك هنا"></textarea>'
+      +'<div class="btn-row" style="margin-top:8px;"><button class="btn btn-primary" onclick="showModelAnswer('+i+')">💡 Model Answer</button></div>'
+      +'<div class="oq-model" id="oq-model-'+i+'">'+item.model+'</div>'
+      +'<div style="font-size:.78rem;color:#888;margin-top:8px;font-weight:700;">Self-evaluation:</div>'
+      +'<div class="oq-eval" id="oq-eval-'+i+'">'
+      +'<button onclick="selfEval('+i+',\'great\',this)">😊 Great</button>'
+      +'<button onclick="selfEval('+i+',\'good\',this)">🙂 Good</button>'
+      +'<button onclick="selfEval('+i+',\'practice\',this)">😕 Needs practice</button>'
+      +'</div></div>';
+  }).join('');
+}
+function showModelAnswer(i){
+  document.getElementById('oq-model-'+i).classList.add('show');
+  var val=document.getElementById('oq-input-'+i).value.trim();
+  if(val&&!oqEvals[i]){triggerSuccess(8);addCoins(2);updateHUD();completedTotal++;updateBar();}
+  if(Object.keys(oqEvals).length+(val?1:0)>=OQ_DATA.length)markSection(8);
+  saveState();
+}
+function selfEval(i,level,btn){
+  oqEvals[i]=level;
+  var row=document.getElementById('oq-eval-'+i);
+  row.querySelectorAll('button').forEach(function(b){b.classList.remove('picked');});
+  btn.classList.add('picked');
+  if(Object.keys(oqEvals).length>=OQ_DATA.length)markSection(8);
+  saveState();
+}
+
+/* ── Boss upgrades: health bar + listening stage + certificate hook ── */
+var bossListenAnswered={},bossListenScore=0,certGenerated=false;
+var BOSS_LISTEN_POOL=shuffle(VOCAB).slice(0,4);
+function renderBossListen(){
+  var c=document.getElementById('boss-listen-container'); if(!c)return;
+  c.innerHTML=BOSS_LISTEN_POOL.map(function(v,i){
+    var mcq=makeMCQ(v,VOCAB);
+    return '<div class="mcq-block"><div class="mcq-q">🔊 <button class="audio-btn" style="width:38px;height:38px;" onclick="speak(\''+v.word.replace(/'/g,"\\'").replace(/"/g,"&quot;")+'\')">🔊</button> Choose the meaning</div><div class="mcq-options">'+mcq.options.map(function(o){return '<div class="mcq-opt" data-bli="'+i+'" data-correct="'+(o===mcq.correct)+'" onclick="pickBossListen(this,'+i+')" style="direction:rtl">'+o+'</div>';}).join('')+'</div></div>';
+  }).join('');
+}
+function pickBossListen(el,i){
+  if(bossListenAnswered[i]!==undefined)return; bossListenAnswered[i]=true;
+  document.querySelectorAll('[data-bli="'+i+'"]').forEach(function(o){o.classList.add('locked');});
+  if(el.dataset.correct==='true'){el.classList.add('correct');bossListenScore++;triggerSuccess(12);}
+  else{el.classList.add('wrong');triggerWrong();document.querySelectorAll('[data-bli="'+i+'"]').forEach(function(o){if(o.dataset.correct==='true')o.classList.add('correct');});}
+  document.getElementById('boss-listen-score').textContent=bossListenScore+' / 4';
+  document.getElementById('bstag-4').classList.add('done');
+  updateBossHealth();
+}
+function updateBossHealth(){
+  var totalCorrect=ftScore+bossListenScore, totalQ=10+4;
+  var pct=Math.max(0,100-Math.round(totalCorrect/totalQ*100));
+  document.getElementById('boss-health-fill').style.width=pct+'%';
+  document.getElementById('boss-health-pct').textContent=pct+'%';
+  if(ftTotal>=1)document.getElementById('bstag-1').classList.add('done');
+  if(ftTotal>=4)document.getElementById('bstag-2').classList.add('done');
+  if(ftTotal>=7)document.getElementById('bstag-3').classList.add('done');
+  if(ftTotal>=10&&Object.keys(bossListenAnswered).length>=4)document.getElementById('bstag-5').classList.add('done');
+}
+/* wrap pickFT to also refresh the health bar every answer */
+var _origPickFT=window.pickFT;
+window.pickFT=function(el){ _origPickFT(el); updateBossHealth(); };
+/* wrap submitFT to mark section + offer certificate */
+var _origSubmitFT=window.submitFT;
+window.submitFT=function(){
+  _origSubmitFT();
+  var p=ftScore/10; if(p===1)perfectScoreHit=true;
+  markSection(9);
+  var row=document.getElementById('cert-btn-row');
+  if(p>=0.7) row.innerHTML='<button class="btn btn-primary" onclick="showTab(10);setTimeout(generateCertificate,300);">📜 Get Your Certificate!</button>';
+  else row.innerHTML='';
+  saveState();
+};
+/* wrap resetFT to also reset the health bar */
+var _origResetFT=window.resetFT;
+window.resetFT=function(){
+  _origResetFT(); bossListenAnswered={}; bossListenScore=0;
+  document.getElementById('boss-listen-score').textContent='0 / 4';
+  document.querySelectorAll('.boss-stage-tag').forEach(function(t){t.classList.remove('done');});
+  renderBossListen(); updateBossHealth();
+};
+
+/* ── Results dashboard ── */
+function renderResultsDashboard(){
+  document.getElementById('res-xp').textContent=xpTotal;
+  document.getElementById('res-coins').textContent=coins;
+  document.getElementById('res-correct').textContent=correctTotal;
+  document.getElementById('res-wrong').textContent=wrongTotal;
+  var totalAns=correctTotal+wrongTotal;
+  document.getElementById('res-accuracy').textContent=totalAns?Math.round(correctTotal/totalAns*100)+'%':'0%';
+  document.getElementById('res-sections').textContent=Object.keys(sectionsDone).length+'/11';
+  var rk=getRank(xpTotal);
+  document.getElementById('res-rank').textContent=rk.icon+' '+rk.name;
+  document.getElementById('res-achievements').textContent=Object.keys(achievementsUnlocked).length+'/'+ACHIEVEMENTS.length;
+  document.getElementById('res-streak').textContent=bestStreak;
+  var totalMs=accumulatedMs+(Date.now()-sessionStart);
+  document.getElementById('res-time').textContent=Math.max(1,Math.round(totalMs/60000))+'m';
+
+  var sections=[
+    {name:'Mission 1 (Match + Table A)',score:mState.A.count,total:6},
+    {name:'Mission 2 (Match + Table B)',score:mState.B.count,total:4},
+    {name:'Mission 3 (Match + Table C)',score:mState.C.count,total:5},
+    {name:'Mission 4 (MCQ)',score:qScore,total:8},
+    {name:'Vocabulary Challenge',score:vcMatchedCount+vcListenScore,total:14},
+    {name:'True / False',score:tfCorrect,total:TF_DATA.length},
+    {name:'Boss Challenge',score:ftScore+bossListenScore,total:14}
+  ];
+  var barsC=document.getElementById('res-bars-container');
+  barsC.innerHTML=sections.map(function(s){
+    var pct=s.total?Math.round(s.score/s.total*100):0;
+    return '<div class="res-bar-row"><div class="res-bar-lbl"><span>'+s.name+'</span><span>'+s.score+'/'+s.total+' ('+pct+'%)</span></div><div class="res-bar-track"><div class="res-bar-fill" style="width:'+pct+'%"></div></div></div>';
+  }).join('');
+  var best=sections[0],weak=sections[0];
+  sections.forEach(function(s){
+    var p=s.total?s.score/s.total:0;
+    if(p>(best.score/best.total||0))best=s;
+    if(p<(weak.score/weak.total||1))weak=s;
+  });
+  document.getElementById('res-best').textContent=best.name;
+  document.getElementById('res-weak').textContent=weak.name;
+  renderAchPanels();
+}
+
+/* ── Certificate generator ── */
+function generateCertificate(){
+  var name=studentName||'Hero';
+  var rk=getRank(xpTotal); var score=ftScore+'/10'; var date=new Date().toLocaleDateString();
+  var canvas=document.createElement('canvas'); canvas.width=1000; canvas.height=700; canvas.id='cert-canvas';
+  var ctx=canvas.getContext('2d');
+  var grad=ctx.createLinearGradient(0,0,1000,700); grad.addColorStop(0,'#1A1A2E'); grad.addColorStop(1,'#4A0E4E');
+  ctx.fillStyle=grad; ctx.fillRect(0,0,1000,700);
+  ctx.strokeStyle='#FFD93D'; ctx.lineWidth=8; ctx.strokeRect(24,24,952,652);
+  ctx.strokeStyle='rgba(255,217,61,0.5)'; ctx.lineWidth=2; ctx.strokeRect(40,40,920,620);
+  ctx.textAlign='center';
+  ctx.fillStyle='#FFD93D'; ctx.font='bold 22px Arial'; ctx.fillText('CERTIFICATE OF COMPLETION',500,130);
+  ctx.fillStyle='#FFFFFF'; ctx.font='bold 40px Georgia'; ctx.fillText('Unit 2 Vocabulary — Life Stories',500,190);
+  ctx.font='20px Arial'; ctx.fillStyle='#E5E7EB'; ctx.fillText('This certificate is proudly presented to',500,260);
+  ctx.font='bold 52px Georgia'; ctx.fillStyle='#FFD93D'; ctx.fillText(name,500,335);
+  ctx.font='20px Arial'; ctx.fillStyle='#E5E7EB';
+  ctx.fillText('for successfully completing the Boss Challenge with a score of '+score,500,390);
+  ctx.font='bold 22px Arial'; ctx.fillStyle='#4ECDC4';
+  ctx.fillText('XP Earned: '+xpTotal+'   |   Rank: '+rk.icon+' '+rk.name,500,440);
+  ctx.font='18px Arial'; ctx.fillStyle='#94a3b8'; ctx.fillText('Date: '+date,500,490);
+  ctx.font='16px Arial'; ctx.fillStyle='#c4b5fd'; ctx.fillText('Teacher Jaber  •  Super Goal',500,600);
+  var container=document.getElementById('cert-container'); container.innerHTML=''; container.appendChild(canvas);
+  var btnRow=document.createElement('div'); btnRow.className='btn-row'; btnRow.style.marginTop='12px';
+  btnRow.innerHTML='<button class="btn btn-primary" onclick="downloadCertificate()">⬇ Download PNG</button><button class="btn btn-reset" onclick="printCertificate()">🖨 Print</button>';
+  container.appendChild(btnRow);
+  certGenerated=true; xpTotal+=25; addCoins(10); updateHUD();
+  if(typeof confetti==='function')confetti({particleCount:120,spread:90,origin:{y:.6}});
+  markSection(10); saveState();
+}
+function downloadCertificate(){
+  var canvas=document.getElementById('cert-canvas'); if(!canvas)return;
+  var link=document.createElement('a'); link.download='U2_Vocabulary_Certificate.png'; link.href=canvas.toDataURL('image/png'); link.click();
+}
+function printCertificate(){
+  var canvas=document.getElementById('cert-canvas'); if(!canvas)return;
+  var dataUrl=canvas.toDataURL('image/png'); var w=window.open('','_blank');
+  w.document.write('<html><head><title>Certificate</title></head><body style="margin:0;display:flex;align-items:center;justify-content:center;"><img src="'+dataUrl+'" style="max-width:100%;" onload="window.print()"></body></html>');
+  w.document.close();
+}
+
+/* ── Init: render dynamic tabs, restore save, run onboarding ── */
+document.querySelectorAll('.ns-overlay').forEach(function(ov){
+  ov.addEventListener('click',function(e){
+    if(e.target===ov&&ov.id==='ach-unlock-overlay')ov.classList.remove('show');
+  });
+});
+function initGamificationV2(){
+  try{
+    renderTF(); renderOQ(); renderVCMatch(); renderVCListen(); renderBossListen();
+    var restored=loadState();
+    var savedName=localStorage.getItem(NAME_KEY);
+    if(savedName&&!studentName)studentName=savedName;
+    if(studentName){var visible=document.getElementById('student-name-vocab'); if(visible)visible.value=studentName;}
+    updateHUD(); updateBar();
+    document.getElementById('easy-toggle-btn').textContent='💡 Easy Mode: '+(easyMode?'ON':'OFF');
+    if(easyMode)document.querySelectorAll('.mcq-block').forEach(function(b){attachEasyHint(b);});
+    if(chosenAvatar)updateAvatarDisplays();
+    renderAchPanels();
+    if(!studentName){document.getElementById('name-overlay').classList.add('show');}
+    else if(!chosenAvatar){document.getElementById('avatar-overlay').classList.add('show');}
+    else if(restored){showTab(currentTabId||0);}
+  }catch(err){console.error('U2 vocabulary gamification init error:',err);}
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initGamificationV2);}
+else{initGamificationV2();}
+</script>
+</body>
+</html>
