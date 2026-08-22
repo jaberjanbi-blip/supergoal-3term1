@@ -4782,32 +4782,33 @@ function loadState(){
 }
 
 /* ---------- 13) RESET PROGRESS ---------- */
-window.confirmResetProgress=function(){
-  let ok=false;
-  try{
-    ok=confirm(
-      'Are you sure you want to reset all progress?\n\n'+
-      '⚠️ This will permanently erase XP, level, rank, achievements, avatar, your name, '+
-      'all quiz answers and scores, streak, difficulty mode, and report statistics. '+
-      'This cannot be undone.\n\n'+
-      'هل أنت متأكد من رغبتك في إعادة تعيين كل التقدم؟ لا يمكن التراجع عن هذا.'
-    );
-  }catch(e){
-    console.error('confirm() unavailable, aborting reset for safety:',e);
-    alert('Could not show the confirmation dialog, so nothing was reset. Please try again.');
-    return;
+window.confirmResetProgress = function() {
+  const modal = document.getElementById('reset-confirm-modal');
+
+  if (modal) {
+    modal.classList.add('show');
   }
-  if(!ok)return;
-  try{
+};
+
+window.closeResetModal = function() {
+  const modal = document.getElementById('reset-confirm-modal');
+
+  if (modal) {
+    modal.classList.remove('show');
+  }
+};
+
+window.executeResetProgress = function() {
+  try {
     localStorage.removeItem(SAVE_KEY);
     localStorage.removeItem(DIFF_KEY);
     localStorage.removeItem(NAME_KEY);
-  }catch(e){
-    console.error('Could not clear localStorage:',e);
+  } catch (e) {
+    console.error('Could not clear localStorage:', e);
   }
+
   location.reload();
 };
-
 /* ---------- 14) MOBILE OPTIMIZATION HELPERS ---------- */
 // Ensure the achievement / report / onboarding overlays close on outside tap on touch devices,
 // and that overlay cards never exceed the viewport height (see .ns-card max-height in CSS).
@@ -4859,6 +4860,46 @@ if(document.readyState==='loading'){
   initGamification();
 }
 </script>
+<!-- RESET CONFIRMATION MODAL -->
+<div class="ns-overlay" id="reset-confirm-modal">
+  <div class="ns-card" style="border-top:4px solid var(--red);">
+
+    <h2 style="color:var(--red);">🗑 Reset Progress</h2>
+
+    <p style="margin:12px 0;line-height:1.6;">
+      Are you sure you want to reset all progress?<br>
+      This will permanently erase XP, level, rank, achievements,
+      avatar, your name, all quiz answers and scores,
+      streak, difficulty mode, and report statistics.
+
+      <br><br>
+
+      <span dir="rtl" style="font-family:'Tajawal',sans-serif;">
+        هل أنت متأكد من رغبتك في إعادة تعيين كل التقدم؟
+        لا يمكن التراجع عن هذا.
+      </span>
+    </p>
+
+    <div class="btn-row" style="justify-content:center;margin-top:16px;">
+
+      <button
+        onclick="executeResetProgress()"
+        class="btn"
+        style="background:var(--red);color:white;">
+        Yes, Reset
+      </button>
+
+      <button
+        onclick="closeResetModal()"
+        class="btn btn-ghost"
+        style="color:#fff;border-color:rgba(255,255,255,0.4);">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+</div>
 
 </body>
 </html>
