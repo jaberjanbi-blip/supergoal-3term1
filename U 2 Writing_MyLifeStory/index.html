@@ -460,6 +460,28 @@ body.dark-mode .analysis-row.warn{color:#FCD34D;}
   background:var(--coral);
   color:white;
 }
+.translate-btn{
+  margin-top:10px;
+  padding:8px 14px;
+  border:none;
+  border-radius:8px;
+  background:#2563EB;
+  color:white;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.translate-box{
+  display:none;
+  margin-top:10px;
+  padding:12px;
+  background:#EFF6FF;
+  border-right:4px solid #2563EB;
+  border-radius:8px;
+  line-height:2;
+  direction:rtl;
+}
+
 </style>
 </head>
 <body>
@@ -613,6 +635,29 @@ body.dark-mode .analysis-row.warn{color:#FCD34D;}
         <button class="rbtn purple" id="hl-toggle-btn" onclick="toggleHighlight()">✨ Highlight Vocabulary</button>
       </div>
       <div class="reading-card" id="reading-card"></div>
+
+<div style="margin-top:12px">
+  <button class="translate-btn"
+          onclick="toggleParagraphTranslation()">
+    🇸🇦 ترجمة الفقرة
+  </button>
+
+  <div id="paragraph-translation"
+       class="translate-box">
+
+    اسمي علي وعمري خمسة عشر عاماً.
+
+وُلدت في القطيف، لكنني انتقلت إلى سيهات عندما كان عمري عشر سنوات.
+
+في سن الثانية عشرة، انضممت إلى فريق كرة القدم وفزت بجائزة أفضل لاعب.
+
+أحب لعب كرة القدم مع أصدقائي كل أسبوع.
+
+والدي هو بطلي، وأريد أن أكون مثله تماماً.
+
+  </div>
+</div>
+
 
       <div class="sub-card" style="margin-top:18px;">
         <h3>Comprehension Questions — answer in one sentence</h3>
@@ -3130,6 +3175,16 @@ else initApp();
   nav.addEventListener('mouseup',()=>{isDown=false;nav.classList.remove('is-dragging');});
   nav.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-nav.offsetLeft;nav.scrollLeft=scrollLeft-(x-startX);});
 })();
+function toggleParagraphTranslation(){
+  const box = document.getElementById('paragraph-translation');
+  if(box.style.display === 'block'){
+    box.style.display = 'none';
+  }else{
+    box.style.display = 'block';
+  }
+
+}
+
 </script>
 </body>
 </html>
