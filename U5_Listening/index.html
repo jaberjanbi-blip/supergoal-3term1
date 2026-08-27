@@ -700,7 +700,7 @@ body.challenge .review-ar{display:none!important}
 /* ═══════════════════════════════════════════
    SENTENCE TIMESTAMPS
    ═══════════════════════════════════════════ */
-const SENT_IDS = ['s0','s1','s2','s3','s4','s5'];
+var SENT_IDS = ['s0','s1','s2','s3','s4','s5'];
 const SENT_TIMES = {s0:0.775, s1:3.403, s2:7.204, s3:25.520, s4:30.273, s5:43.296};
 const SENT_CUE_LIST = SENT_IDS.map(id=>({id,start:SENT_TIMES[id]||0})).sort((a,b)=>a.start-b.start);
 function confirmReset() {
@@ -2351,16 +2351,6 @@ function restoreState(){
    ═══════════════════════════════════════════ */
 (function init(){
   /* Restore manually calibrated timestamps if saved */
-  const _calib=localStorage.getItem('u5_calib');
-  if(_calib){
-    try{
-      const ct=JSON.parse(_calib);
-      Object.assign(SENT_TIMES,ct);
-      SENT_CUE_LIST.length=0;
-      ['s0','s1','s2','s3','s4','s5'].forEach(function(id){SENT_CUE_LIST.push({id,start:SENT_TIMES[id]||0});});
-      SENT_CUE_LIST.sort(function(a,b){return a.start-b.start;});
-    }catch(e){}
-  }
   if(localStorage.getItem('u5_dark')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').classList.add('active');document.getElementById('darkBtn').textContent='☀️ Light Mode';}
   if(localStorage.getItem('u5_challenge')==='1'){challengeMode=true;document.body.classList.add('challenge');const b=document.getElementById('challengeBtn');if(b){b.classList.add('active');b.textContent='✅ Challenge ON';}}
   if(loadState()&&studentName){document.getElementById('onboardOverlay').classList.remove('show');restoreState();}
