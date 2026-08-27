@@ -1868,7 +1868,17 @@ body.challenge .review-ar{display:none!important}
 /* ═══════════════════════════════════════════
    INIT
    ═══════════════════════════════════════════ */
-(function init(){
+function startLesson() {
+    const input = document.getElementById('studentNameInput') || document.querySelector('#onboardOverlay input');
+    const name = input ? input.value.trim() : '';
+    if (name) {
+        if (typeof studentName !== 'undefined') studentName = name;
+        localStorage.setItem('u5_student_name', name);
+    }
+    const overlay = document.getElementById('onboardOverlay');
+    if (overlay) overlay.classList.remove('show');
+}
+  (function init(){
   /* Restore manually calibrated timestamps if saved */
   if(localStorage.getItem('u5_dark')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').classList.add('active');document.getElementById('darkBtn').textContent='☀️ Light Mode';}
   if(localStorage.getItem('u5_challenge')==='1'){challengeMode=true;document.body.classList.add('challenge');var b=document.getElementById('challengeBtn');if(b){b.classList.add('active');b.textContent='✅ Challenge ON';}}
