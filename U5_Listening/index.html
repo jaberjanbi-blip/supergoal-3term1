@@ -1868,9 +1868,9 @@ body.challenge .review-ar{display:none!important}
 /* ═══════════════════════════════════════════
    SENTENCE TIMESTAMPS
    ═══════════════════════════════════════════ */
-const SENT_IDS = ['s0','s1','s2','s3','s4','s5'];
-const SENT_TIMES = {s0:0.775, s1:3.403, s2:7.204, s3:25.520, s4:30.273, s5:43.296};
-const SENT_CUE_LIST = SENT_IDS.map(id=>({id,start:SENT_TIMES[id]||0})).sort((a,b)=>a.start-b.start);
+var SENT_IDS = ['s0','s1','s2','s3','s4','s5'];
+var SENT_TIMES = {s0:0.775, s1:3.403, s2:7.204, s3:25.520, s4:30.273, s5:43.296};
+var SENT_CUE_LIST = SENT_IDS.map(id=>({id,start:SENT_TIMES[id]||0})).sort((a,b)=>a.start-b.start);
 function confirmReset() {
   const modal = document.getElementById('resetModal');
   if (modal) modal.classList.add('active');
