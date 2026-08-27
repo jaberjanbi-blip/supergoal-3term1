@@ -1865,11 +1865,8 @@ body.challenge .review-ar{display:none!important}
 </div>
 
 <script>
-/* ═══════════════════════════════════════════
-   INIT
-   ═══════════════════════════════════════════ */
-function startLesson() {
-    const input = document.getElementById('studentNameInput') || document.querySelector('#onboardOverlay input');
+  function startLesson() {
+    const input = document.querySelector('#onboardOverlay input') || document.getElementById('studentNameInput');
     const name = input ? input.value.trim() : '';
     if (name) {
         if (typeof studentName !== 'undefined') studentName = name;
@@ -1878,6 +1875,9 @@ function startLesson() {
     const overlay = document.getElementById('onboardOverlay');
     if (overlay) overlay.classList.remove('show');
 }
+/* ═══════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════ */
   (function init(){
   /* Restore manually calibrated timestamps if saved */
   if(localStorage.getItem('u5_dark')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').classList.add('active');document.getElementById('darkBtn').textContent='☀️ Light Mode';}
