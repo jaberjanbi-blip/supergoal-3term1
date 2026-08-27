@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Time Quest | Past &amp; Present Tenses | Teacher Jaber</title>
+
+<style>
+  :root {
+    --navy:#1E3A5F;--teal:#0F766E;--coral:#DC2E5D;--gold:#F59E0B;
+    --purple:#7C3AED;--green:#16A34A;--blue:#2563EB;--white:#FFFFFF;
+    --light:#F8FAFC;--gray:#E5E7EB;--ink:#1F2937;--slate:#475569;
+    --yellow:#FEF3C7;--softblue:#EFF6FF;--softgreen:#F0FDF4;
+    --softpurple:#F5F3FF;--softpink:#FFF0F3;
+    --card-bg:#FFFFFF;--input-bg:#FFFFFF;--border-col:#E5E7EB;
+  }
+  body.dark-mode {
+    --light:#0F172A;--navy:#020617;--ink:#F8FAFC;--slate:#94A3B8;
+    --gray:#334155;--softblue:#1E293B;--softgreen:#064E3B;--softpurple:#2E1065;
+    --softpink:#4C0519;--yellow:#451A03;--card-bg:#1E293B;--input-bg:#0F172A;--border-col:#334155;
+    background:#0F172A;color:#F8FAFC;
+  }
+  @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-7px);}40%{transform:translateX(7px);}60%{transform:translateX(-5px);}80%{transform:translateX(5px);}}
+  .shake{animation:shake .4s ease;border-color:#ef4444 !important;box-shadow:0 0 0 3px rgba(239,68,68,.35) !important;}
+  @keyframes streakPulse{0%{transform:scale(1);}50%{transform:scale(1.4);}100%{transform:scale(1);}}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',Calibri,Arial,sans-serif;background:var(--light);color:var(--ink);min-height:100vh;transition:background .3s,color .3s;}
+  .site-header{background:linear-gradient(135deg,#7C3AED,#DC2E5D 55%,#F59E0B);padding:0;position:sticky;top:0;z-index:200;box-shadow:0 3px 20px rgba(0,0,0,.35);}
+  .header-inner{background:rgba(20,10,40,.85);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+  .header-left h1{font-size:1rem;font-weight:800;color:white;line-height:1.2;}
+  .header-left .sub{font-size:.72rem;color:#c4b5fd;margin-top:2px;}
+  .header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .header-badge{background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:800;padding:4px 11px;border-radius:20px;white-space:nowrap;}
+  .dark-toggle{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;cursor:pointer;color:white;font-size:.75rem;font-weight:700;padding:5px 12px;transition:.2s;white-space:nowrap;display:flex;align-items:center;gap:5px;}
+  .dark-toggle:hover{background:rgba(255,255,255,.28);}
+  .hud-bar{background:rgba(20,5,40,.9);padding:5px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .hud-item{display:flex;align-items:center;gap:5px;font-size:.75rem;font-weight:800;color:white;}
+  .xp-badge{background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#1a0a00;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:900;transition:transform .15s;}
+  .streak-badge{background:linear-gradient(135deg,#EA580C,#F97316);color:white;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:900;}
+  .xp-toast{position:fixed;right:20px;top:70px;background:linear-gradient(135deg,#1E3A5F,#2563EB);color:white;border-radius:12px;padding:10px 18px;font-size:.9rem;font-weight:800;z-index:9999;box-shadow:0 8px 30px rgba(0,0,0,.25);opacity:0;transform:translateY(-10px) scale(.9);transition:opacity .25s,transform .25s;pointer-events:none;}
+  .xp-toast.show{opacity:1;transform:translateY(0) scale(1);}
+  .progress-container{height:5px;width:100%;background:rgba(255,255,255,.2);}
+  .progress-bar{height:100%;width:0%;background:var(--gold);transition:width .4s ease;}
+  .tab-nav{display:flex;overflow-x:auto;gap:8px;background:#0f172a;padding:10px 16px;scrollbar-width:thin;align-items:center;}
+  body.dark-mode .tab-nav{background:#020617;}
+  .tab-nav button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);cursor:pointer;color:#94a3b8;font-size:.83rem;font-weight:600;padding:7px 16px;transition:.2s;font-family:inherit;border-radius:20px;white-space:nowrap;}
+  .tab-nav button.active{color:#1E3A5F;background:var(--gold);border-color:var(--gold);font-weight:700;}
+  .tab-nav button:hover:not(.active){color:white;background:rgba(255,255,255,.18);}
+  .container{max-width:920px;margin:0 auto;padding:24px 16px 120px;}
+  .page{display:none;animation:fadeIn .25s ease;}
+  .page.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .audio-btn{background:rgba(0,0,0,.08);border:none;border-radius:50%;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:.8rem;margin-left:6px;vertical-align:middle;transition:.2s;color:var(--navy);}
+  body.dark-mode .audio-btn{background:rgba(255,255,255,.15);color:white;}
+  .audio-btn:hover{background:var(--blue);color:white;transform:scale(1.1);}
+  .grammar-box{background:var(--card-bg);border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.06);overflow:hidden;margin-bottom:22px;border:1px solid var(--border-col);}
+  .grammar-header{padding:16px 22px;display:flex;align-items:center;gap:12px;}
+  .grammar-header .num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:white;flex-shrink:0;}
+  .grammar-header .title-en{font-size:1.1rem;font-weight:700;}
+  .grammar-header .title-ar{font-size:.95rem;opacity:.9;direction:rtl;margin-top:1px;}
+  .grammar-body{padding:20px 22px;}
+  .formula-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--navy);border-radius:10px;padding:12px 18px;margin-bottom:16px;}
+  .formula-label{background:var(--gold);color:var(--navy);font-size:.8rem;font-weight:700;padding:4px 12px;border-radius:6px;flex-shrink:0;}
+  .formula-pill{background:rgba(255,255,255,.15);color:white;font-size:.85rem;padding:5px 12px;border-radius:20px;font-weight:600;}
+  .formula-circle{width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0;}
+  .formula-plus{color:#94a3b8;font-size:1rem;font-weight:700;}
+  .formula-ar{color:var(--gold);font-weight:700;font-size:.9rem;margin-right:auto;direction:rtl;}
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  @media(max-width:580px){.compare-grid{grid-template-columns:1fr;}}
+  .compare-col{border-radius:10px;overflow:hidden;border:1px solid var(--border-col);}
+  .compare-col-header{padding:10px 14px;font-size:.9rem;font-weight:700;color:white;}
+  .compare-col-body{padding:12px 14px;}
+  .compare-example{font-size:.88rem;margin-bottom:6px;}
+  .compare-example .q{color:var(--slate);font-style:italic;font-size:.82rem;margin-top:2px;}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+  @media(max-width:580px){.info-grid{grid-template-columns:1fr;}}
+  .info-card{border-radius:10px;padding:14px;border:1px solid var(--border-col);}
+  .info-card .word{font-size:1.2rem;font-weight:800;margin-bottom:4px;}
+  .info-card .meaning{font-size:.85rem;direction:rtl;margin-bottom:8px;}
+  .info-card .ex{font-size:.85rem;font-style:italic;line-height:1.5;}
+  .ex-card{background:var(--card-bg);border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.06);overflow:hidden;margin-bottom:20px;border:1px solid var(--border-col);}
+  .ex-header{padding:16px 22px 12px;border-bottom:1px solid var(--border-col);display:flex;align-items:flex-start;justify-content:space-between;}
+  .ex-title{font-size:1.1rem;font-weight:700;color:var(--navy);}
+  body.dark-mode .ex-title{color:var(--gold);}
+  .ex-title-ar{font-size:.9rem;color:var(--slate);direction:rtl;margin-top:2px;}
+  .level-badge{font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;margin-top:4px;display:inline-block;}
+  .bg-beg{background:#D1FAE5;color:#065F46;}.bg-int{background:#FEF3C7;color:#92400E;}.bg-adv{background:#FCE7F3;color:#9D174D;}.bg-quiz{background:#EDE9FE;color:#4C1D95;}
+  .ex-inst{padding:10px 22px;background:rgba(0,0,0,.02);border-bottom:1px solid var(--border-col);font-size:.88rem;color:var(--slate);font-style:italic;}
+  .ex-inst-ar{padding:5px 22px 10px;background:rgba(0,0,0,.02);border-bottom:1px solid var(--border-col);font-size:.83rem;color:var(--slate);direction:rtl;text-align:right;}
+  .ex-body{padding:18px 22px;}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+  .reveal-btn{display:inline-flex;align-items:center;gap:7px;border:none;border-radius:8px;cursor:pointer;font-size:.83rem;font-weight:600;padding:9px 18px;transition:.18s;font-family:inherit;color:white;}
+  .reveal-btn:hover{filter:brightness(1.1);transform:translateY(-1px);}
+  .score-line{font-size:.84rem;color:var(--slate);margin-bottom:14px;}
+  .score-line span{font-weight:700;color:var(--navy);font-size:.95rem;}
+  body.dark-mode .score-line span{color:var(--gold);}
+  .item-row{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--border-col);flex-wrap:wrap;}
+  .item-row:last-child{border-bottom:none;}
+  .item-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:white;flex-shrink:0;margin-top:1px;}
+  .item-q{flex:1;font-size:.93rem;line-height:1.55;min-width:200px;}
+  .item-arrow{color:var(--slate);font-size:1rem;padding-top:2px;flex-shrink:0;}
+  .interactive-input{padding:6px 10px;font-size:.88rem;font-weight:600;border:2px solid var(--border-col);border-radius:8px;outline:none;transition:.2s;width:160px;font-family:inherit;margin-top:4px;background:var(--input-bg);color:var(--ink);}
+  .interactive-input.wide{width:280px;max-width:100%;}
+  .interactive-input:focus{border-color:var(--blue);}
+  .interactive-input.is-correct{border-color:var(--green);background:var(--softgreen);}
+  .interactive-input.is-wrong{border-color:var(--coral);background:var(--softpink);}
+  .check-btn{background:var(--navy);color:white;border:none;padding:6px 12px;border-radius:6px;font-size:.78rem;font-weight:700;cursor:pointer;transition:.2s;margin-left:4px;}
+  .check-btn:hover{background:var(--blue);}
+  .hint-btn{background:var(--gold);color:var(--navy);border:none;padding:4px 10px;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;transition:.2s;margin-left:4px;margin-top:4px;}
+  .hint-btn:hover{filter:brightness(1.1);}
+  .hint-box{display:none;margin-top:6px;padding:8px 12px;background:var(--yellow);color:#78350F;border-radius:6px;font-size:.82rem;direction:rtl;text-align:right;}
+  .exp-box{display:none;margin-top:8px;padding:10px 14px;background:rgba(15,118,110,.1);border-left:4px solid var(--teal);border-radius:6px;font-size:.85rem;line-height:1.5;}
+  .exp-box.visible{display:block;}
+  .exp-ar{direction:rtl;text-align:right;margin-top:4px;color:var(--teal);font-weight:600;}
+  .item-ans{flex:1;font-size:.88rem;font-weight:700;color:white;padding:6px 14px;border-radius:8px;text-align:left;opacity:0;transform:translateX(8px);transition:opacity .32s ease,transform .32s ease;min-width:60px;line-height:1.4;display:none;}
+  .item-ans.visible{opacity:1;transform:translateX(0);display:block;}
+  .mcq-item{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border-col);}
+  .mcq-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .mcq-q{font-size:.93rem;font-weight:600;margin-bottom:8px;}
+  .mcq-opts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+  .mcq-opt{padding:7px 16px;border-radius:20px;font-size:.85rem;border:2px solid var(--border-col);color:var(--ink);cursor:pointer;transition:.2s;user-select:none;background:var(--input-bg);}
+  .mcq-opt:hover{border-color:var(--blue);background:var(--softblue);}
+  .mcq-opt.selected-correct{background:var(--green)!important;color:white!important;border-color:var(--green)!important;font-weight:700;}
+  .mcq-opt.selected-wrong{background:var(--coral)!important;color:white!important;border-color:var(--coral)!important;}
+  .mcq-opt[data-ex].visible{color:white;font-weight:700;border-color:transparent;}
+  /* ── DRAG & DROP ── */
+  .dnd-container{margin:10px 0 6px;display:flex;flex-direction:column;gap:8px;}
+  .dnd-dropzone{min-height:46px;border:2.5px dashed var(--blue);border-radius:10px;padding:8px 10px;display:flex;flex-wrap:wrap;gap:6px;background:var(--softblue);transition:.2s;align-items:center;}
+  .dnd-dropzone.drag-over{background:#dbeafe;border-color:#1d4ed8;}
+  .dnd-wordbank{display:flex;flex-wrap:wrap;gap:6px;padding:6px 0;align-items:center;}
+  .dnd-word{background:var(--navy);color:white;border-radius:20px;padding:5px 13px;font-size:.85rem;font-weight:700;cursor:grab;user-select:none;transition:.15s;}
+  .dnd-word:hover{background:var(--blue);transform:scale(1.05);}
+  .dnd-word.dragging{opacity:.4;cursor:grabbing;}
+  .dnd-label{font-size:.72rem;color:var(--slate);font-weight:600;}
+  .scramble-row{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--border-col);flex-wrap:wrap;}
+  .scramble-row:last-child{border-bottom:none;}
+  .scramble-words{background:var(--softblue);border-radius:8px;padding:8px 14px;font-size:.88rem;flex:1;min-width:180px;line-height:1.6;}
+  .note-box{background:var(--yellow);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 14px;margin:14px 0;font-size:.87rem;color:#78350F;}
+  .note-box strong{color:var(--navy);}
+  .ref-table{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:10px;}
+  .ref-table th{background:var(--navy);color:white;padding:9px 12px;text-align:left;font-weight:700;}
+  .ref-table th:last-child{text-align:right;}
+  .ref-table td{padding:8px 12px;border-bottom:1px solid var(--border-col);}
+  .ref-table tr:nth-child(even) td{background:rgba(0,0,0,.02);}
+  .ref-table td:last-child{text-align:right;color:var(--coral);font-weight:600;direction:rtl;}
+  .ref-table .word-en{font-weight:700;color:var(--teal);}
+  /* ── BOSS ── */
+  .boss-overlay{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:800;background:linear-gradient(135deg,rgba(76,29,149,.96),rgba(220,46,93,.96));text-align:center;padding:24px;}
+  .boss-start-btn{background:var(--gold);color:var(--navy);border:none;border-radius:12px;font-size:1.2rem;font-weight:900;padding:14px 32px;cursor:pointer;margin-top:16px;transition:.2s;box-shadow:0 4px 20px rgba(0,0,0,.3);}
+  .boss-start-btn:hover{filter:brightness(1.1);transform:scale(1.04);}
+  /* Fixed boss HUD at bottom */
+  .boss-hud-fixed{display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;background:rgba(20,10,40,.97);padding:12px 20px;gap:14px;align-items:center;border-top:2px solid var(--purple);box-shadow:0 -4px 20px rgba(0,0,0,.4);}
+  .boss-hud-fixed.active{display:flex;}
+  .boss-hp-wrapper{flex:1;}
+  .boss-hp-label{font-size:.72rem;color:#c4b5fd;font-weight:700;margin-bottom:4px;display:flex;justify-content:space-between;}
+  .boss-hp-track{height:14px;background:rgba(255,255,255,.15);border-radius:20px;overflow:hidden;}
+  .boss-hp-bar{height:100%;width:100%;background:linear-gradient(90deg,#DC2E5D,#ef4444);border-radius:20px;transition:width .5s ease;}
+  .my-hp-bar{height:100%;width:100%;background:linear-gradient(90deg,#16A34A,#22c55e);border-radius:20px;transition:width .5s ease;}
+  .boss-timer-fixed{font-size:1.4rem;font-weight:900;color:white;background:rgba(255,255,255,.1);border-radius:10px;padding:6px 16px;min-width:80px;text-align:center;}
+  .boss-timer-fixed.hurry{color:var(--coral);animation:streakPulse .5s infinite;}
+  /* Cert */
+  .cert-modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.7);align-items:center;justify-content:center;}
+  .cert-modal.active{display:flex;}
+  .cert-content{background:white;border-radius:20px;padding:30px;max-width:480px;width:92%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4);border:4px solid var(--gold);}
+  .cert-avatar{font-size:3.5rem;margin-bottom:10px;}
+  .cert-title{font-size:1.3rem;font-weight:900;color:var(--navy);margin-bottom:6px;direction:rtl;}
+  .cert-sub{font-size:.9rem;color:var(--slate);margin-bottom:16px;}
+  .cert-input{border:2px solid var(--border-col);border-radius:8px;padding:8px 14px;font-size:1rem;width:80%;margin-bottom:14px;font-family:inherit;}
+  .cert-btn{background:var(--navy);color:white;border:none;border-radius:10px;padding:10px 24px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:4px;}
+  @media print{.cert-modal{display:flex!important;}body>*:not(.cert-modal){display:none!important;}}
+
+/* ═══ DARK MODE ADDITIONAL FIXES (part2) ═══ */
+.dark-mode .grammar-box,
+.dark-mode .ex-card,
+.dark-mode .info-card,
+.dark-mode .info-grid > div,
+.dark-mode .compare-grid > div { background: var(--card-bg, #1e293b) !important; color: var(--ink) !important; border-color: var(--border-col, #334155) !important; }
+
+.dark-mode .mcq-opts .mcq-opt:not(.selected-correct):not(.selected-wrong) {
+  background: #1e293b !important; color: #e2e8f0 !important; border-color: #334155 !important;
+}
+.dark-mode .interactive-input {
+  background: #0f172a !important; color: #e2e8f0 !important; border-color: #334155 !important;
+}
+.dark-mode .interactive-input::placeholder { color: #64748b !important; }
+.dark-mode .exp-box { background: #1a1000 !important; color: #fde68a !important; border-color: #854d0e !important; }
+.dark-mode .hint-box { background: #1a1000 !important; color: #fde68a !important; border-color: #854d0e !important; }
+.dark-mode th { background: #1e3a5f !important; color: #e2e8f0 !important; }
+.dark-mode td { background: #1e293b !important; border-color: #334155 !important; }
+.dark-mode tr:nth-child(even) td { background: #1a2742 !important; }
+.dark-mode .item-row, .dark-mode .scramble-row { border-color: #334155 !important; }
+.dark-mode .dnd-dropzone { background: #0c1a3d !important; border-color: #2563eb !important; }
+.dark-mode .score-line { color: #94a3b8 !important; }
+.dark-mode small, .dark-mode .caption, .dark-mode .ex-inst, .dark-mode .ex-inst-ar { color: #94a3b8 !important; }
+.dark-mode .note-box { background: #1a1000 !important; color: #fde68a !important; border-color: #854d0e !important; }
+.dark-mode .grammar-body p, .dark-mode .grammar-body span { color: var(--ink) !important; }
+.dark-mode .ref-table th { background: #1e3a5f !important; }
+.dark-mode .ref-table td { background: #1e293b !important; }
+.dark-mode .formula-pill { background: rgba(255,255,255,.1) !important; color: #e2e8f0 !important; }
+.dark-mode .ex-title { color: var(--gold) !important; }
+.dark-mode .score-line span { color: var(--gold) !important; }
+.dark-mode .note-box strong { color: var(--gold) !important; }
+.dark-mode .cert-title { color: var(--ink) !important; }
+
+/* ═══════════════════════════════════════════════════════════
+   PARITY UPGRADE — ported from the reference lesson (Part 1)
+   Level / Achievements / Avatar / Name / Easy Mode / Story Mode /
+   Boss Phases / Speed Bonus / Report / Certificate / Save / Reset
+   ═══════════════════════════════════════════════════════════ */
+.ns-overlay{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;background:rgba(8,6,20,.86);backdrop-filter:blur(6px);padding:16px;}
+.ns-overlay.show{display:flex;}
+.ns-card{background:linear-gradient(160deg,#1e1b4b,#3b1360);border:2px solid rgba(255,255,255,.15);border-radius:20px;max-width:460px;width:100%;max-height:92vh;overflow-y:auto;padding:26px 22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);color:#fff;}
+.ns-card h2{font-size:1.35rem;font-weight:900;margin-bottom:6px;}
+.ns-card p{font-size:.85rem;color:#c4b5fd;line-height:1.6;}
+.avatar-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 6px;}
+.avatar-opt{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:14px;padding:16px 8px;cursor:pointer;transition:.18s;}
+.avatar-opt:hover{background:rgba(255,255,255,.16);transform:translateY(-3px);}
+.avatar-opt.picked{border-color:var(--gold);background:rgba(245,158,11,.18);}
+.avatar-opt .em{font-size:2.4rem;display:block;margin-bottom:6px;}
+.avatar-opt .nm{font-size:.78rem;font-weight:800;}
+.avatar-opt .nm-ar{font-size:.7rem;color:#c4b5fd;direction:rtl;}
+.ns-start-btn{margin-top:16px;background:var(--gold);color:#1a0a00;border:none;border-radius:12px;padding:13px 30px;font-size:1rem;font-weight:900;cursor:pointer;transition:.15s;}
+.ns-start-btn:hover{filter:brightness(1.08);transform:scale(1.03);}
+.ns-start-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.diff-grid{display:flex;flex-direction:column;gap:12px;margin:18px 0 6px;}
+.diff-opt{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 16px;cursor:pointer;transition:.18s;text-align:left;display:flex;align-items:flex-start;gap:12px;}
+.diff-opt:hover{background:rgba(255,255,255,.16);transform:translateY(-2px);}
+.diff-opt .em{font-size:1.8rem;flex-shrink:0;}
+.diff-opt .nm{font-size:.95rem;font-weight:900;display:block;margin-bottom:3px;}
+.diff-opt .ds{font-size:.74rem;color:#c4b5fd;line-height:1.6;}
+.hud-avatar{font-size:1.15rem;background:rgba(255,255,255,.12);border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;}
+.hud-mini-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:16px;font-size:.68rem;font-weight:700;padding:4px 10px;cursor:pointer;transition:.15s;white-space:nowrap;}
+.hud-mini-btn:hover{background:rgba(255,255,255,.25);}
+.levelup-badge{font-size:4rem;margin-bottom:6px;animation:lvlPop .6s ease;}
+@keyframes lvlPop{0%{transform:scale(.2) rotate(-20deg);opacity:0;}60%{transform:scale(1.25) rotate(8deg);opacity:1;}100%{transform:scale(1) rotate(0);}}
+.levelup-name{font-size:1.6rem;font-weight:900;background:linear-gradient(90deg,#F59E0B,#DC2E5D,#7C3AED);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.ach-toast{position:fixed;left:50%;top:14px;transform:translateX(-50%) translateY(-30px);opacity:0;z-index:9999;background:linear-gradient(135deg,#F59E0B,#DC2E5D);color:#fff;border-radius:14px;padding:10px 18px;font-size:.82rem;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:opacity .3s,transform .3s;display:flex;align-items:center;gap:8px;pointer-events:none;max-width:90vw;}
+.ach-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.ach-toast .em{font-size:1.4rem;}
+.ach-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;text-align:left;}
+.ach-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:9px 12px;opacity:.45;}
+.ach-row.unlocked{opacity:1;background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4);}
+.ach-row .em{font-size:1.5rem;}
+.ach-row .tt{font-size:.82rem;font-weight:800;}
+.ach-row .ds{font-size:.68rem;color:#c4b5fd;}
+.ach-progress-track{height:7px;background:rgba(255,255,255,.12);border-radius:10px;overflow:hidden;margin-top:6px;}
+.ach-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#F59E0B,#DC2E5D);transition:width .4s ease;}
+.ach-progress-label{font-size:.66rem;color:#c4b5fd;font-weight:700;margin-top:3px;text-align:right;}
+.speed-toast{position:fixed;right:20px;top:118px;background:linear-gradient(135deg,#16A34A,#22c55e);color:#fff;border-radius:12px;padding:7px 14px;font-size:.78rem;font-weight:800;z-index:9998;opacity:0;transform:translateX(20px);transition:opacity .25s,transform .25s;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+.speed-toast.show{opacity:1;transform:translateX(0);}
+.story-wrap{max-width:560px;margin:0 auto;}
+.story-progress-track{height:8px;background:rgba(0,0,0,.08);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+body.dark-mode .story-progress-track{background:rgba(255,255,255,.1);}
+.story-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#7C3AED,#DC2E5D);transition:width .4s ease;}
+.story-screen{display:none;background:var(--card-bg);border:1px solid var(--border-col);border-radius:16px;padding:18px 20px;box-shadow:0 3px 20px rgba(0,0,0,.08);}
+.story-screen.active{display:block;animation:fadeIn .25s ease;}
+.story-emoji{font-size:2.6rem;text-align:center;margin-bottom:8px;}
+.story-text{font-size:.95rem;line-height:1.65;color:var(--ink);margin-bottom:6px;}
+.story-text-ar{font-size:.86rem;line-height:1.8;color:var(--slate);direction:rtl;text-align:right;margin-bottom:10px;font-family:'Segoe UI',Tahoma,Arial,sans-serif;}
+.story-q{background:var(--softpurple);border:1px solid var(--purple);border-radius:10px;padding:12px;margin-top:10px;}
+body.dark-mode .story-q{background:#160A2E;}
+.story-nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px;}
+.story-nav button{flex:1;background:var(--purple);color:#fff;border:none;border-radius:10px;padding:11px;font-size:.85rem;font-weight:800;cursor:pointer;transition:.15s;}
+.story-nav button:hover{filter:brightness(1.1);}
+.story-nav button:disabled{opacity:.35;cursor:not-allowed;}
+.story-nav button.secondary{background:#6B7280;}
+.story-mcq-opt{padding:7px 16px;border-radius:20px;font-size:.85rem;border:2px solid var(--border-col);color:var(--ink);cursor:pointer;transition:.2s;user-select:none;background:var(--input-bg);display:inline-block;margin:3px;}
+.story-mcq-opt:hover{border-color:var(--blue);background:var(--softblue);}
+.story-mcq-opt.selected-correct{background:var(--green)!important;color:white!important;border-color:var(--green)!important;font-weight:700;}
+.story-mcq-opt.selected-wrong{background:var(--coral)!important;color:white!important;border-color:var(--coral)!important;}
+.phase-banner{margin:0 0 14px;padding:10px 14px;border-radius:12px;color:#fff;font-weight:800;font-size:.85rem;text-align:center;box-shadow:0 3px 14px rgba(0,0,0,.2);}
+.phase-banner.phase-enter{animation:phaseBannerEnter .6s ease;}
+@keyframes phaseBannerEnter{0%{transform:translateY(-14px) scale(.9);opacity:0;}100%{transform:translateY(0) scale(1);opacity:1;}}
+.phase-cleared-toast{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%) scale(.4);opacity:0;z-index:9999;background:linear-gradient(135deg,#F59E0B,#DC2E5D);color:#fff;font-weight:900;font-size:1.4rem;padding:18px 34px;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:phaseClearedPop 1.4s ease forwards;pointer-events:none;text-align:center;}
+@keyframes phaseClearedPop{0%{transform:translate(-50%,-50%) scale(.4);opacity:0;}20%{transform:translate(-50%,-50%) scale(1.1);opacity:1;}80%{transform:translate(-50%,-50%) scale(1);opacity:1;}100%{transform:translate(-50%,-50%) scale(.9);opacity:0;}}
+.mcq-item.already-solved{opacity:.5;}
+.mcq-item.already-solved .mcq-opt{pointer-events:none;}
+.screen-shake{animation:shake .35s ease;}
+.dmg-float{position:fixed;z-index:9999;font-weight:900;font-size:1.4rem;text-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none;}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;text-align:left;}
+.report-stat{background:rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;}
+.report-stat .lbl{font-size:.66rem;color:#c4b5fd;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.report-stat .val{font-size:1.15rem;font-weight:900;}
+.report-grade{font-size:3rem;font-weight:900;margin:8px 0;}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
+.report-actions button{background:var(--gold);color:#1a0a00;border:none;border-radius:10px;padding:11px 18px;font-size:.85rem;font-weight:800;cursor:pointer;}
+.report-actions button.secondary{background:rgba(255,255,255,.12);color:#fff;}
+.hint-btn.easy-letter-btn,.hint-btn.easy-len-btn,.hint-btn.easy-extra-hint-btn{background:transparent;border:1.5px solid var(--green);color:var(--green);}
+.hint-btn.easy-letter-btn:hover,.hint-btn.easy-len-btn:hover,.hint-btn.easy-extra-hint-btn:hover{background:var(--green);color:#fff;}
+.hint-btn:disabled{opacity:.5;cursor:default;}
+.empty-warning{display:none;background:#FEF3C7;border:1px solid var(--coral);border-radius:8px;padding:6px 10px;font-size:.78rem;color:#9D174D;margin-top:6px;line-height:1.5;}
+body.dark-mode .empty-warning{background:#2D0A14;color:#F9A8D4;}
+.empty-warning.visible{display:block;}
+.empty-warning span{display:block;direction:rtl;text-align:right;font-family:'Segoe UI',Tahoma,Arial,sans-serif;margin-top:2px;}
+.empty-warning.easy-retry-note{background:var(--softgreen);border-color:var(--green);color:#065F46;}
+body.dark-mode .empty-warning.easy-retry-note{background:#052E16;color:#86EFAC;}
+.empty-warning.already-done-note{background:var(--softblue);border-color:var(--blue);color:#1E3A5F;}
+body.dark-mode .empty-warning.already-done-note{background:#0C1A3D;color:#93c5fd;}
+#easy-wordbank,.easy-wb-box{background:var(--softgreen);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0 0;font-size:.82rem;}
+body.dark-mode #easy-wordbank,body.dark-mode .easy-wb-box{background:#052E16;}
+.wb-chip{background:var(--softblue);color:var(--blue);padding:4px 12px;border-radius:14px;font-size:.78rem;font-weight:700;display:inline-block;}
+body.dark-mode .wb-chip{background:#0C1A3D;color:#60A5FA;}
+@media(max-width:480px){
+  .avatar-grid{grid-template-columns:1fr 1fr;}
+  .report-grid{grid-template-columns:1fr;}
+  .hud-mini-btn{padding:4px 8px;font-size:.62rem;}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>🎮 Grammar Time Quest | Past &amp; Present Tenses</h1>
+      <div class="sub">Simple Past &nbsp;•&nbsp; Past Progressive &nbsp;•&nbsp; Simple Present &nbsp;•&nbsp; Present Progressive &nbsp;•&nbsp; Teacher Jaber</div>
+    </div>
+    <div class="header-right">
+      <button class="dark-toggle" onclick="toggleDarkMode()" id="dark-toggle">🌙 Dark Mode</button>
+      <span class="header-badge">Super Goal</span>
+    </div>
+  </div>
+  <div class="hud-bar">
+    <div class="hud-item">⚡ XP: <span class="xp-badge" id="xp-val">0</span></div>
+    <div class="hud-item">🔥 Streak: <span class="streak-badge" id="streak-val">0</span></div>
+    <div class="hud-item">🏅 <span class="level-badge" id="level-display" style="margin-top:0;background:var(--purple);color:#fff">🥉 Rookie</span></div>
+    <div class="hud-item"><span class="hud-mini-btn" id="hud-name-chip" style="cursor:default">👤 Student</span><span class="hud-avatar" id="hud-avatar-chip">⚽</span></div>
+    <div class="hud-item"><button class="hud-mini-btn" onclick="openAchPanel()">🏆</button><button class="hud-mini-btn" onclick="openReport()">📊 Report</button><button class="hud-mini-btn" id="ns-mode-badge" onclick="openDifficultyOverlay()">🟡 Normal Mode</button><button class="hud-mini-btn" onclick="confirmResetProgress()" style="background:rgba(220,46,93,.25);border-color:#DC2E5D;">🗑 Reset Progress</button></div>
+    <div style="flex:1;min-width:80px;">
+      <div class="progress-container" style="height:6px;border-radius:3px;">
+        <div id="main-progress" class="progress-bar" style="border-radius:3px;"></div>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="tab-nav">
+  <button class="active" onclick="showTab(0)">📘 Past Grammar</button>
+  <button onclick="showTab(1)">🎯 Past Practice</button>
+  <button onclick="showTab(2)">📘 Present Grammar</button>
+  <button onclick="showTab(3)">🎯 Present Practice</button>
+  <button onclick="showTab(4)">👾 Monster Challenge</button>
+</nav>
+<!-- Reset Progress Confirmation Modal -->
+<div class="ns-overlay" id="reset-confirm-modal">
+  <div class="ns-card" style="border-color: #DC2E5D;">
+    <h2 style="color: #DC2E5D;">🗑 Reset Progress</h2>
+    <p style="margin: 12px 0; line-height: 1.6;">
+      Are you sure you want to reset all progress?<br>
+      This will permanently erase your XP, level, rank, achievements, and statistics. This cannot be undone.<br><br>
+      <span dir="rtl">هل أنت متأكد من رغبتك في إعادة تعيين كل التقدم؟ لا يمكن التراجع عن هذا.</span>
+    </p>
+    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 16px;">
+      <button onclick="executeResetProgress()" style="background: #DC2E5D; color: white; border: none; border-radius: 10px; padding: 11px 20px; font-size: 0.85rem; font-weight: 800; cursor: pointer;">Yes, Reset</button>
+      <button class="secondary" onclick="closeResetModal()" style="background: rgba(255,255,255,0.12); color: #fff; border: none; border-radius: 10px; padding: 11px 20px; font-size: 0.85rem; font-weight: 800; cursor: pointer;">Cancel</button>
+    </div>
+  </div>
+</div>
+<div class="xp-toast" id="xp-toast">+10 XP ⭐</div>
+<!-- Fixed Boss HUD -->
+<div class="boss-hud-fixed" id="boss-hud-fixed">
+  <span style="font-size:1.6rem">👾</span>
+  <div class="boss-hp-wrapper">
+    <div class="boss-hp-label"><span>👾 وحش HP</span><span id="boss-hp-pct">100%</span></div>
+    <div class="boss-hp-track"><div class="boss-hp-bar" id="boss-hp-bar"></div></div>
+  </div>
+  <div class="boss-hp-wrapper">
+    <div class="boss-hp-label"><span>❤️ طاقتك</span><span id="my-hp-pct">100%</span></div>
+    <div class="boss-hp-track"><div class="my-hp-bar" id="my-hp-bar"></div></div>
+  </div>
+  <div class="boss-timer-fixed" id="boss-timer-fixed">⏳ <span id="b-time">60</span>s</div>
+</div>
+<div class="container">
+<!-- TAB 0 – Past Grammar -->
+<div class="page active" id="tab-0">
+  <div class="grammar-box">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#1E3A5F,#2563EB)">
+      <div class="num" style="background:var(--gold);color:var(--navy)">1</div>
+      <div><div class="title-en" style="color:white">Simple Past — الماضي البسيط</div><div class="title-ar" style="color:#93c5fd">أحداث بدأت وانتهت في الماضي</div></div>
+    </div>
+    <div class="grammar-body">
+      <div class="note-box">📌 <strong>الاستخدام:</strong> نستخدم الماضي البسيط للتعبير عن حدث بدأ وانتهى تماماً في وقت محدد في الماضي.<br><em style="color:var(--slate)">Use: A completed action at a specific time in the past.</em></div>
+      <div class="formula-row"><span class="formula-label">Formula</span><div class="formula-circle">1</div><span class="formula-pill">الفاعل</span><span class="formula-plus">+</span><div class="formula-circle">2</div><span class="formula-pill">Verb + ed (أو الفعل الشاذ)</span><span class="formula-plus">+</span><span class="formula-pill">تكملة</span><span class="formula-ar">الصيغة</span></div>
+      <div class="compare-grid">
+        <div class="compare-col"><div class="compare-col-header" style="background:var(--teal)">✅ Regular Verbs — أفعال منتظمة</div><div class="compare-col-body" style="background:var(--softgreen)"><div class="compare-example"><strong>She played tennis yesterday.</strong> <button class="audio-btn" onclick="speak('She played tennis yesterday.')">🔊</button><div class="q">لعبت التنس أمس (نضيف -ed)</div></div><div class="compare-example">We watched a movie last night. <button class="audio-btn" onclick="speak('We watched a movie last night.')">🔊</button><div class="q">شاهدنا فيلماً الليلة الماضية</div></div></div></div>
+        <div class="compare-col"><div class="compare-col-header" style="background:var(--coral)">⭐ Irregular Verbs — أفعال شاذة</div><div class="compare-col-body" style="background:var(--softpink)"><div class="compare-example"><strong>He went to Riyadh last week.</strong> <button class="audio-btn" onclick="speak('He went to Riyadh last week.')">🔊</button><div class="q">go → went (صيغة غير منتظمة)</div></div><div class="compare-example">I saw my friend two days ago. <button class="audio-btn" onclick="speak('I saw my friend two days ago.')">🔊</button><div class="q">see → saw</div></div></div></div>
+      </div>
+      <div class="note-box">💡 <strong>ملاحظة الإثبات/النفي/السؤال:</strong><br>
+        ✅ إثبات: <bdi>Subject + V2</bdi> — <em>She studied hard.</em><br>
+        ❌ نفي: <bdi>Subject + did not (didn't) + V1</bdi> — <em>She didn't study hard.</em> <button class="audio-btn" onclick="speak('She did not study hard.')">🔊</button><br>
+        ❓ سؤال: <bdi>Did + Subject + V1 ?</bdi> — <em>Did she study hard?</em> <button class="audio-btn" onclick="speak('Did she study hard?')">🔊</button>
+      </div>
+      <table class="ref-table">
+        <tr><th>Time Signal Words — الكلمات الدالة</th><th>المعنى</th></tr>
+        <tr><td><span class="word-en">yesterday</span> — I finished my homework yesterday. <button class="audio-btn" onclick="speak('I finished my homework yesterday.')">🔊</button></td><td>أمس</td></tr>
+        <tr><td><span class="word-en">last night / week / year</span> — They traveled last year. <button class="audio-btn" onclick="speak('They traveled last year.')">🔊</button></td><td>الليلة/الأسبوع/العام الماضي</td></tr>
+        <tr><td><span class="word-en">ago</span> — He called me two hours ago. <button class="audio-btn" onclick="speak('He called me two hours ago.')">🔊</button></td><td>منذ (فترة زمنية)</td></tr>
+        <tr><td><span class="word-en">in 2020 / when I was young</span></td><td>في سنة محددة / عندما كنت صغيراً</td></tr>
+      </table><br>
+      <div class="info-grid">
+        <div class="info-card" style="background:var(--softblue);border:2px solid #2563EB"><div class="word" style="color:#2563EB">study → studied</div><div class="meaning" style="color:#1E40AF">y ← ied (بعد ساكن)</div><div class="ex"><em>She studied English last night.</em> <button class="audio-btn" onclick="speak('She studied English last night.')">🔊</button></div></div>
+        <div class="info-card" style="background:var(--softgreen);border:2px solid #16A34A"><div class="word" style="color:#16A34A">stop → stopped</div><div class="meaning" style="color:#065F46">مضاعفة الحرف الأخير</div><div class="ex"><em>The bus stopped suddenly.</em> <button class="audio-btn" onclick="speak('The bus stopped suddenly.')">🔊</button></div></div>
+      </div>
+      <div class="note-box" style="background:var(--softpurple);border-color:var(--purple);color:var(--ink)">⚖️ <strong style="color:var(--purple)">مقارنة سريعة مع المضارع:</strong> المضارع البسيط (Simple Present) يصف عادات وحقائق ثابتة (<em>I play football every week</em>)، بينما الماضي البسيط يصف حدثاً انتهى في وقت محدد ماضٍ (<em>I played football yesterday</em>).</div>
+    </div>
+  </div>
+
+  <div class="grammar-box">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#4C1D95,#7C3AED)">
+      <div class="num" style="background:var(--gold);color:var(--navy)">2</div>
+      <div><div class="title-en" style="color:white">Past Progressive — الماضي المستمر</div><div class="title-ar" style="color:#ddd6fe">حدث كان مستمراً في لحظة معينة بالماضي</div></div>
+    </div>
+    <div class="grammar-body">
+      <div class="note-box">📌 <strong>الاستخدام:</strong> نستخدمه لوصف حدث كان مستمراً (جارياً) في لحظة معينة من الماضي، وغالباً ما يقاطعه حدث آخر أقصر (Simple Past).<br><em style="color:var(--slate)">Use: An action in progress at a specific moment in the past, often interrupted by a shorter action.</em></div>
+      <div class="formula-row" style="background:#3B0764"><span class="formula-label">Formula</span><div class="formula-circle">1</div><span class="formula-pill">الفاعل</span><span class="formula-plus">+</span><div class="formula-circle">2</div><span class="formula-pill">was / were</span><span class="formula-plus">+</span><div class="formula-circle">3</div><span class="formula-pill">Verb + ing</span><span class="formula-ar">الصيغة</span></div>
+      <div class="info-grid">
+        <div class="info-card" style="background:var(--softblue);border:2px solid #2563EB"><div class="word" style="color:#2563EB">was</div><div class="meaning" style="color:#1E40AF">مع I / he / she / it</div><div class="ex"><em>I was studying at 8 p.m.</em> <button class="audio-btn" onclick="speak('I was studying at 8 p.m.')">🔊</button><br><span style="color:var(--slate);font-size:.8rem">كنت أدرس الساعة 8 مساءً</span></div></div>
+        <div class="info-card" style="background:var(--softpink);border:2px solid var(--coral)"><div class="word" style="color:var(--coral)">were</div><div class="meaning" style="color:#9D174D">مع you / we / they</div><div class="ex"><em>They were playing football.</em> <button class="audio-btn" onclick="speak('They were playing football.')">🔊</button><br><span style="color:var(--slate);font-size:.8rem">كانوا يلعبون كرة القدم</span></div></div>
+      </div>
+      <div class="note-box">💡 <strong>حدث طويل + حدث قصير يقاطعه:</strong> نستخدم <bdi>while</bdi> مع الفعل المستمر و<bdi>when</bdi> مع الفعل القصير غالباً.<br>
+      <em>I was watching TV <bdi>when</bdi> the phone rang.</em> <button class="audio-btn" onclick="speak('I was watching TV when the phone rang.')">🔊</button><br><span style="direction:rtl;display:inline-block;margin-top:2px">كنت أشاهد التلفاز عندما رن الهاتف (فعل طويل مستمر + فعل قصير قاطعه)</span></div>
+
+      <div style="font-weight:700;color:var(--ink);margin:16px 0 8px">⚖️ Simple Past vs Past Progressive — جدول مقارنة</div>
+      <table class="ref-table">
+        <tr><th>Simple Past — ماضي بسيط</th><th>Past Progressive — ماضي مستمر</th></tr>
+        <tr><td>حدث بدأ وانتهى تماماً في الماضي<br><em>I ate breakfast at 7 a.m.</em> <button class="audio-btn" onclick="speak('I ate breakfast at 7 a.m.')">🔊</button></td><td>حدث كان مستمراً في لحظة معينة<br><em>I was eating breakfast at 7 a.m.</em> <button class="audio-btn" onclick="speak('I was eating breakfast at 7 a.m.')">🔊</button></td></tr>
+        <tr><td>الصيغة: <bdi>V2</bdi> (فعل + ed / شاذ)</td><td>الصيغة: <bdi>was/were + V-ing</bdi></td></tr>
+        <tr><td>الكلمات الدالة: yesterday, last week, ago</td><td>الكلمات الدالة: while, when, at 8 o'clock, all day</td></tr>
+        <tr><td>غالباً هو الحدث "القصير" الذي يقاطع</td><td>غالباً هو الحدث "الطويل" الذي كان مستمراً</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- TAB 1 – Past Practice -->
+<div class="page" id="tab-1">
+  <div class="ex-card">
+    <div class="ex-header"><div><div class="ex-title">Activity 1: Fill in the Blanks</div><div class="ex-title-ar">أكمل الفراغ بالفعل في الماضي البسيط</div><span class="level-badge bg-beg">BEGINNER</span></div></div>
+    <div class="ex-inst">Complete each sentence with the correct Simple Past form of the verb in brackets.</div>
+    <div class="ex-inst-ar">أكمل كل جملة بالصيغة الصحيحة للفعل في الماضي البسيط.</div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="reveal-btn" style="background:var(--coral)" onclick="revealOne('ex1',this)">▶ Reveal next answer</button><button class="reveal-btn" style="background:#6B7280" onclick="resetEx('ex1')">↺ Reset</button></div>
+      <div class="score-line">Revealed / Checked: <span id="ex1-score">0</span> / 6</div>
+      <div class="item-row"><div class="item-num" style="background:var(--coral)">1</div><div class="item-q">Sara <u>(study)</u> for her exam last night. <button class="audio-btn" onclick="speak('Sara studied for her exam last night.')">🔊</button><br><input type="text" class="interactive-input" data-ans="studied" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">الفعل <bdi>study</bdi> ينتهي بـ y بعد ساكن، فتتحول إلى <bdi>ied</bdi>.</div><div class="exp-box">• English: <bdi>study</bdi> → <bdi>studied</bdi> (y → ied).<br><div class="exp-ar">• العربية: عند انتهاء الفعل بحرف y مسبوق بساكن، نحذف الـ y ونضيف <bdi>ied</bdi>.</div></div></div><div class="item-ans" data-ex="ex1" style="background:var(--coral)">studied</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--blue)">2</div><div class="item-q">We <u>(go)</u> to my grandmother's house last Friday. <button class="audio-btn" onclick="speak('We went to my grandmother\\'s house last Friday.')">🔊</button><br><input type="text" class="interactive-input" data-ans="went" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">الفعل <bdi>go</bdi> فعل شاذ (Irregular) وليس منتظماً.</div><div class="exp-box">• English: <bdi>go</bdi> is irregular → <bdi>went</bdi>.<br><div class="exp-ar">• العربية: <bdi>go</bdi> فعل شاذ يتغير كلياً في الماضي إلى <bdi>went</bdi>.</div></div></div><div class="item-ans" data-ex="ex1" style="background:var(--blue)">went</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--green)">3</div><div class="item-q">The bus <u>(stop)</u> suddenly in the middle of the road. <button class="audio-btn" onclick="speak('The bus stopped suddenly in the middle of the road.')">🔊</button><br><input type="text" class="interactive-input" data-ans="stopped" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">فعل من مقطع واحد ينتهي بساكن-متحرك-ساكن، نضاعف الحرف الأخير.</div><div class="exp-box">• English: <bdi>stop</bdi> → <bdi>stopped</bdi> (double the final consonant).<br><div class="exp-ar">• العربية: نضاعف الحرف الساكن الأخير قبل إضافة <bdi>ed</bdi>.</div></div></div><div class="item-ans" data-ex="ex1" style="background:var(--green)">stopped</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--purple)">4</div><div class="item-q">I <u>(see)</u> an amazing movie two days ago. <button class="audio-btn" onclick="speak('I saw an amazing movie two days ago.')">🔊</button><br><input type="text" class="interactive-input" data-ans="saw" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">فعل شاذ: <bdi>see → saw</bdi>.</div><div class="exp-box">• English: <bdi>see</bdi> is irregular → <bdi>saw</bdi>.<br><div class="exp-ar">• العربية: من أشهر الأفعال الشاذة، احفظه غيباً.</div></div></div><div class="item-ans" data-ex="ex1" style="background:var(--purple)">saw</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--teal)">5</div><div class="item-q">They <u>(not/finish)</u> their project on time. <button class="audio-btn" onclick="speak('They did not finish their project on time.')">🔊</button><br><input type="text" class="interactive-input wide" data-ans="did not finish" placeholder="did not / didn't + verb" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">النفي في الماضي البسيط: <bdi>did not / didn't</bdi> + الفعل في صورته الأساسية.</div><div class="exp-box">• English: Negative = <bdi>did not (didn't) + base verb</bdi>.<br><div class="exp-ar">• العربية: في النفي يعود الفعل لأصله بدون تصريف، والفعل المساعد <bdi>did not</bdi> يحمل الزمن.</div></div></div><div class="item-ans" data-ex="ex1" style="background:var(--teal);min-width:180px">did not finish</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--coral)">6</div><div class="item-q"><u>(Did/you/visit)</u> your uncle last summer? — Yes, I did. <button class="audio-btn" onclick="speak('Did you visit your uncle last summer?')">🔊</button><br><input type="text" class="interactive-input wide" data-ans="Did you visit" placeholder="Did + subject + verb" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">صيغة السؤال: <bdi>Did + الفاعل + الفعل الأساسي</bdi>؟</div><div class="exp-box">• English: Question = <bdi>Did + subject + base verb</bdi>?<br><div class="exp-ar">• العربية: <bdi>Did</bdi> في بداية السؤال يحمل الزمن، والفعل يعود لأصله.</div></div></div><div class="item-ans" data-ex="ex1" style="background:var(--coral);min-width:180px">Did you visit</div></div>
+    </div>
+  </div>
+
+  <div class="ex-card">
+    <div class="ex-header"><div><div class="ex-title">Activity 2: Choose the Correct Option</div><div class="ex-title-ar">اختر: الماضي البسيط أم الماضي المستمر؟</div><span class="level-badge bg-int">INTERMEDIATE</span></div></div>
+    <div class="ex-inst">Choose the correct form to complete each sentence.</div>
+    <div class="ex-inst-ar">اختر الشكل الصحيح لإكمال كل جملة.</div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="reveal-btn" style="background:var(--purple)" onclick="revealOne('ex2',this)">▶ Reveal next answer</button><button class="reveal-btn" style="background:#6B7280" onclick="resetEx('ex2')">↺ Reset</button></div>
+      <div class="score-line">Revealed / Answered: <span id="ex2-score">0</span> / 6</div>
+      <div class="mcq-item"><div class="mcq-q">1. What time <strong>did you wake up</strong> / were you waking up today? <button class="audio-btn" onclick="speak('What time did you wake up today?')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="ex2" onclick="selectMCQ(this,true,'ex2')" style="--c:var(--blue)">did you wake up</div><div class="mcq-opt" data-ex="ex2x" onclick="selectMCQ(this,false,'ex2')">were you waking up</div></div><div class="exp-box">• English: A single completed action → Simple Past.<br><div class="exp-ar">• العربية: الاستيقاظ حدث لحظي منتهٍ = الماضي البسيط.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">2. Did you dream / <strong>Were you dreaming</strong> about anything when you woke up? <button class="audio-btn" onclick="speak('Were you dreaming about anything when you woke up?')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="ex2x" onclick="selectMCQ(this,false,'ex2')">Did you dream</div><div class="mcq-opt correct" data-ex="ex2" onclick="selectMCQ(this,true,'ex2')" style="--c:var(--purple)">Were you dreaming</div></div><div class="exp-box">• English: Action in progress at the moment of waking up → Past Progressive.<br><div class="exp-ar">• العربية: الحلم كان مستمراً في لحظة الاستيقاظ = الماضي المستمر.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">3. What <strong>did you eat</strong> / were you eating for breakfast this morning? <button class="audio-btn" onclick="speak('What did you eat for breakfast this morning?')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="ex2" onclick="selectMCQ(this,true,'ex2')" style="--c:var(--blue)">did you eat</div><div class="mcq-opt" data-ex="ex2x" onclick="selectMCQ(this,false,'ex2')">were you eating</div></div><div class="exp-box">• English: Completed meal → Simple Past.<br><div class="exp-ar">• العربية: تناول الفطور حدث بدأ وانتهى = الماضي البسيط.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">4. Were you hungry before you ate / <strong>were eating</strong> it? <button class="audio-btn" onclick="speak('Were you hungry before you were eating it?')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="ex2x" onclick="selectMCQ(this,false,'ex2')">ate</div><div class="mcq-opt correct" data-ex="ex2" onclick="selectMCQ(this,true,'ex2')" style="--c:var(--purple)">were eating</div></div><div class="exp-box">• English: <bdi>before</bdi> + ongoing action → Past Progressive.<br><div class="exp-ar">• العربية: بعد <bdi>before</bdi> يصف حالة استمرت أثناء الأكل.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">5. What <strong>were you doing</strong> / did you do at 6 p.m. yesterday? <button class="audio-btn" onclick="speak('What were you doing at 6 p.m. yesterday?')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="ex2" onclick="selectMCQ(this,true,'ex2')" style="--c:var(--purple)">were you doing</div><div class="mcq-opt" data-ex="ex2x" onclick="selectMCQ(this,false,'ex2')">did you do</div></div><div class="exp-box">• English: Specific past moment (6 p.m.) → action in progress → Past Progressive.<br><div class="exp-ar">• العربية: تحديد لحظة زمنية دقيقة (الساعة 6) يستدعي الماضي المستمر.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">6. How did you feel while you <strong>did</strong> / were doing it? <button class="audio-btn" onclick="speak('How did you feel while you were doing it?')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="ex2x" onclick="selectMCQ(this,false,'ex2')">did</div><div class="mcq-opt correct" data-ex="ex2" onclick="selectMCQ(this,true,'ex2')" style="--c:var(--purple)">were doing</div></div><div class="exp-box">• English: <bdi>while</bdi> + ongoing action → Past Progressive.<br><div class="exp-ar">• العربية: <bdi>while</bdi> يرافق دائماً الفعل المستمر (was/were + ing).</div></div></div>
+    </div>
+  </div>
+
+  <div class="ex-card">
+    <div class="ex-header"><div><div class="ex-title">Activity 3: Reorder the Sentence 🃏</div><div class="ex-title-ar">اسحب الكلمات لترتيب جملة الماضي المستمر الصحيحة</div><span class="level-badge bg-int">INTERMEDIATE</span></div></div>
+    <div class="ex-inst">Drag the word cards into the drop zone to build the correct Past Progressive sentence.</div>
+    <div class="ex-inst-ar">اسحب البطاقات إلى المنطقة الزرقاء لتكوين جملة صحيحة بالماضي المستمر. على الهاتف: اضغط على الكلمة لإرسالها.</div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="reveal-btn" style="background:var(--purple)" onclick="revealOne('ex3',this)">▶ Reveal next answer</button><button class="reveal-btn" style="background:#6B7280" onclick="resetEx('ex3')">↺ Reset</button></div>
+      <div class="score-line">Revealed / Checked: <span id="ex3-score">0</span> / 5</div>
+
+      <div class="scramble-row"><div class="item-num" style="background:var(--purple)">1</div><div class="scramble-words"><div class="dnd-container" data-ans="I was reading a book at 9 p.m."><div class="dnd-label">📥 Drop zone:</div><div class="dnd-dropzone" ondragover="dragOver(event)" ondrop="dropWord(event)" ondragleave="dragLeave(event)"></div><div class="dnd-label" style="margin-top:4px">🃏 Word bank:</div><div class="dnd-wordbank"><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">reading</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">was</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">I</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">a book</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">at 9 p.m.</span></div></div><button class="check-btn" onclick="checkDND(this)" style="margin-top:6px">Check ✓</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">ابدأ بـ <bdi>I</bdi> ثم <bdi>was</bdi> ثم الفعل + ing.</div><div class="exp-box">• English: Subject + was + V-ing + rest.<br><div class="exp-ar">• العربية: الفاعل المفرد (I) يأخذ <bdi>was</bdi>.</div></div></div><div class="item-ans" data-ex="ex3" style="background:var(--purple);min-width:220px">I was reading a book at 9 p.m. <button class="audio-btn" onclick="speak('I was reading a book at 9 p.m.')">🔊</button></div></div>
+
+      <div class="scramble-row"><div class="item-num" style="background:var(--purple)">2</div><div class="scramble-words"><div class="dnd-container" data-ans="They were playing football when it started to rain."><div class="dnd-label">📥 Drop zone:</div><div class="dnd-dropzone" ondragover="dragOver(event)" ondrop="dropWord(event)" ondragleave="dragLeave(event)"></div><div class="dnd-label" style="margin-top:4px">🃏 Word bank:</div><div class="dnd-wordbank"><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">were</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">playing football</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">They</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">when it started to rain.</span></div></div><button class="check-btn" onclick="checkDND(this)" style="margin-top:6px">Check ✓</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">الفاعل الجمع <bdi>They</bdi> يأخذ <bdi>were</bdi>.</div><div class="exp-box">• English: Plural subject → were + V-ing.<br><div class="exp-ar">• العربية: الفعل الطويل المستمر يأتي أولاً، ثم يقاطعه فعل قصير بالماضي البسيط.</div></div></div><div class="item-ans" data-ex="ex3" style="background:var(--purple);min-width:220px">They were playing football when it started to rain. <button class="audio-btn" onclick="speak('They were playing football when it started to rain.')">🔊</button></div></div>
+
+      <div class="scramble-row"><div class="item-num" style="background:var(--purple)">3</div><div class="scramble-words"><div class="dnd-container" data-ans="She was sleeping while her brother was studying."><div class="dnd-label">📥 Drop zone:</div><div class="dnd-dropzone" ondragover="dragOver(event)" ondrop="dropWord(event)" ondragleave="dragLeave(event)"></div><div class="dnd-label" style="margin-top:4px">🃏 Word bank:</div><div class="dnd-wordbank"><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">was sleeping</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">She</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">while</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">her brother was studying.</span></div></div><button class="check-btn" onclick="checkDND(this)" style="margin-top:6px">Check ✓</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">حدثان طويلان مستمران في نفس الوقت، نربطهما بـ <bdi>while</bdi>.</div><div class="exp-box">• English: Two simultaneous ongoing actions joined by <bdi>while</bdi>.<br><div class="exp-ar">• العربية: <bdi>while</bdi> يربط بين حدثين مستمرين وقعا في نفس الوقت.</div></div></div><div class="item-ans" data-ex="ex3" style="background:var(--purple);min-width:220px">She was sleeping while her brother was studying. <button class="audio-btn" onclick="speak('She was sleeping while her brother was studying.')">🔊</button></div></div>
+
+      <div class="scramble-row"><div class="item-num" style="background:var(--purple)">4</div><div class="scramble-words"><div class="dnd-container" data-ans="We were having dinner at 8 o'clock."><div class="dnd-label">📥 Drop zone:</div><div class="dnd-dropzone" ondragover="dragOver(event)" ondrop="dropWord(event)" ondragleave="dragLeave(event)"></div><div class="dnd-label" style="margin-top:4px">🃏 Word bank:</div><div class="dnd-wordbank"><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">having dinner</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">were</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">We</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">at 8 o'clock.</span></div></div><button class="check-btn" onclick="checkDND(this)" style="margin-top:6px">Check ✓</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">الفاعل <bdi>We</bdi> يأخذ <bdi>were</bdi> + الفعل + ing.</div><div class="exp-box">• English: We + were + V-ing + time.<br><div class="exp-ar">• العربية: تحديد ساعة معينة (8 o'clock) يستدعي الماضي المستمر.</div></div></div><div class="item-ans" data-ex="ex3" style="background:var(--purple);min-width:220px">We were having dinner at 8 o'clock. <button class="audio-btn" onclick="speak('We were having dinner at 8 o\\'clock.')">🔊</button></div></div>
+
+      <div class="scramble-row"><div class="item-num" style="background:var(--purple)">5</div><div class="scramble-words"><div class="dnd-container" data-ans="The children were not listening to the teacher."><div class="dnd-label">📥 Drop zone:</div><div class="dnd-dropzone" ondragover="dragOver(event)" ondrop="dropWord(event)" ondragleave="dragLeave(event)"></div><div class="dnd-label" style="margin-top:4px">🃏 Word bank:</div><div class="dnd-wordbank"><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">were not</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">listening</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">The children</span><span class="dnd-word" draggable="true" ondragstart="dragStart(event)" onclick="tapWord(this)">to the teacher.</span></div></div><button class="check-btn" onclick="checkDND(this)" style="margin-top:6px">Check ✓</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">النفي في الماضي المستمر: <bdi>was/were + not + V-ing</bdi>.</div><div class="exp-box">• English: Negative Past Progressive = were not + V-ing.<br><div class="exp-ar">• العربية: نضع <bdi>not</bdi> مباشرة بعد <bdi>were</bdi>.</div></div></div><div class="item-ans" data-ex="ex3" style="background:var(--purple);min-width:220px">The children were not listening to the teacher. <button class="audio-btn" onclick="speak('The children were not listening to the teacher.')">🔊</button></div></div>
+    </div>
+  </div>
+
+  <div class="ex-card">
+    <div class="ex-header"><div><div class="ex-title">Activity 4: Find the Mistake</div><div class="ex-title-ar">ابحث عن الخطأ وصححه</div><span class="level-badge bg-adv">ADVANCED</span></div></div>
+    <div class="ex-inst">Each sentence has ONE mistake with Simple Past or Past Progressive. Write the correct sentence.</div>
+    <div class="ex-inst-ar">كل جملة فيها خطأ واحد. ابحث عنه وأعد كتابة الجملة صحيحة.</div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="reveal-btn" style="background:var(--coral)" onclick="revealOne('ex4',this)">▶ Reveal next answer</button><button class="reveal-btn" style="background:#6B7280" onclick="resetEx('ex4')">↺ Reset</button></div>
+      <div class="score-line">Revealed / Checked: <span id="ex4-score">0</span> / 5</div>
+      <div class="item-row"><div class="item-num" style="background:var(--coral)">1</div><div class="item-q" style="background:var(--softpink);padding:6px 12px;border-radius:8px">She goed to school yesterday. <button class="audio-btn" onclick="speak('She went to school yesterday.')">🔊</button><br><input type="text" class="interactive-input wide" data-ans="She went to school yesterday." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box"><bdi>go</bdi> فعل شاذ، ماضيه <bdi>went</bdi> وليس <bdi>goed</bdi>.</div><div class="exp-box">• English: <bdi>go</bdi> is irregular → <bdi>went</bdi>, not <bdi>goed</bdi>.<br><div class="exp-ar">• العربية: من أخطاء المبتدئين الشائعة إضافة -ed للأفعال الشاذة.</div></div></div><span class="item-arrow">✎</span><div class="item-ans" data-ex="ex4" style="background:var(--coral);min-width:220px">She <strong>went</strong> to school yesterday.</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--coral)">2</div><div class="item-q" style="background:var(--softpink);padding:6px 12px;border-radius:8px">Did you visited your grandmother last week? <button class="audio-btn" onclick="speak('Did you visit your grandmother last week?')">🔊</button><br><input type="text" class="interactive-input wide" data-ans="Did you visit your grandmother last week?" placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">بعد <bdi>Did</bdi> يعود الفعل لأصله بدون -ed.</div><div class="exp-box">• English: After <bdi>Did</bdi>, use the base verb.<br><div class="exp-ar">• العربية: <bdi>Did</bdi> يحمل الزمن الماضي، فلا نكرره في الفعل.</div></div></div><span class="item-arrow">✎</span><div class="item-ans" data-ex="ex4" style="background:var(--blue);min-width:220px">Did you <strong>visit</strong> your grandmother last week?</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--coral)">3</div><div class="item-q" style="background:var(--softpink);padding:6px 12px;border-radius:8px">I was study when my friend called me. <button class="audio-btn" onclick="speak('I was studying when my friend called me.')">🔊</button><br><input type="text" class="interactive-input wide" data-ans="I was studying when my friend called me." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">بعد <bdi>was/were</bdi> يجب إضافة <bdi>ing</bdi> للفعل.</div><div class="exp-box">• English: was/were + V-ing (not base form).<br><div class="exp-ar">• العربية: نسيان إضافة <bdi>ing</bdi> بعد <bdi>was</bdi> خطأ شائع.</div></div></div><span class="item-arrow">✎</span><div class="item-ans" data-ex="ex4" style="background:var(--purple);min-width:220px">I was <strong>studying</strong> when my friend called me.</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--coral)">4</div><div class="item-q" style="background:var(--softpink);padding:6px 12px;border-radius:8px">They wasn't watching TV at 7 p.m. <button class="audio-btn" onclick="speak('They weren\\'t watching TV at 7 p.m.')">🔊</button><br><input type="text" class="interactive-input wide" data-ans="They weren't watching TV at 7 p.m." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">الفاعل الجمع <bdi>They</bdi> يأخذ <bdi>weren't</bdi> وليس <bdi>wasn't</bdi>.</div><div class="exp-box">• English: Plural subject → weren't, not wasn't.<br><div class="exp-ar">• العربية: <bdi>was</bdi> للمفرد و<bdi>were</bdi> للجمع، والنفي يتبع نفس القاعدة.</div></div></div><span class="item-arrow">✎</span><div class="item-ans" data-ex="ex4" style="background:var(--teal);min-width:220px">They <strong>weren't</strong> watching TV at 7 p.m.</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--coral)">5</div><div class="item-q" style="background:var(--softpink);padding:6px 12px;border-radius:8px">We seen a great show last weekend. <button class="audio-btn" onclick="speak('We saw a great show last weekend.')">🔊</button><br><input type="text" class="interactive-input wide" data-ans="We saw a great show last weekend." placeholder="Type corrected sentence..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box"><bdi>seen</bdi> هي التصريف الثالث، أما الماضي البسيط فهو <bdi>saw</bdi>.</div><div class="exp-box">• English: Simple Past of <bdi>see</bdi> is <bdi>saw</bdi>, not <bdi>seen</bdi>.<br><div class="exp-ar">• العربية: لا نخلط بين التصريف الثاني (Past) والثالث (Past Participle).</div></div></div><span class="item-arrow">✎</span><div class="item-ans" data-ex="ex4" style="background:var(--green);min-width:220px">We <strong>saw</strong> a great show last weekend.</div></div>
+    </div>
+  </div>
+</div>
+<!-- TAB 2 – Present Grammar -->
+<div class="page" id="tab-2">
+  <div class="grammar-box">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#065F46,#16A34A)">
+      <div class="num" style="background:var(--gold);color:var(--navy)">3</div>
+      <div><div class="title-en" style="color:white">Simple Present — المضارع البسيط</div><div class="title-ar" style="color:#bbf7d0">عادات وحقائق ثابتة</div></div>
+    </div>
+    <div class="grammar-body">
+      <div class="note-box">📌 <strong>الاستخدام:</strong> نستخدمه للتعبير عن عادات متكررة، جداول ثابتة، وحقائق عامة لا تتغير.<br><em style="color:var(--slate)">Use: Habits, routines, timetables, and general facts.</em></div>
+      <div class="formula-row"><span class="formula-label">Formula</span><div class="formula-circle">1</div><span class="formula-pill">الفاعل</span><span class="formula-plus">+</span><div class="formula-circle">2</div><span class="formula-pill">Verb (+s/es مع he/she/it)</span><span class="formula-ar">الصيغة</span></div>
+      <div class="compare-grid">
+        <div class="compare-col"><div class="compare-col-header" style="background:var(--teal)">👤 he / she / it</div><div class="compare-col-body" style="background:var(--softgreen)"><div class="compare-example"><strong>Sofia rides her bike to school.</strong> <button class="audio-btn" onclick="speak('Sofia rides her bike to school.')">🔊</button><div class="q">نضيف -s للفعل مع المفرد الغائب</div></div><div class="compare-example">She usually reads a new book. <button class="audio-btn" onclick="speak('She usually reads a new book.')">🔊</button><div class="q">تقرأ عادةً كتاباً جديداً</div></div></div></div>
+        <div class="compare-col"><div class="compare-col-header" style="background:var(--blue)">👥 I / you / we / they</div><div class="compare-col-body" style="background:var(--softblue)"><div class="compare-example"><strong>I ride my bike to school too.</strong> <button class="audio-btn" onclick="speak('I ride my bike to school too.')">🔊</button><div class="q">الفعل بدون إضافة</div></div><div class="compare-example">They study together every day. <button class="audio-btn" onclick="speak('They study together every day.')">🔊</button><div class="q">يذاكرون معاً كل يوم</div></div></div></div>
+      </div>
+      <div class="note-box">💡 <strong>قاعدة الإضافة مع he/she/it:</strong><br>
+        الفعل العادي: <bdi>+ s</bdi> — <em>play → plays</em><br>
+        الفعل المنتهي بـ o, s, sh, ch, x, z: <bdi>+ es</bdi> — <em>watch → watches, do → does</em><br>
+        الفعل المنتهي بـ y بعد ساكن: <bdi>y → ies</bdi> — <em>study → studies</em>
+      </div>
+      <table class="ref-table">
+        <tr><th>Time Signal Words — الكلمات الدالة</th><th>المعنى</th></tr>
+        <tr><td><span class="word-en">always / usually / often / sometimes / never</span> — He always arrives on time. <button class="audio-btn" onclick="speak('He always arrives on time.')">🔊</button></td><td>ظروف التكرار</td></tr>
+        <tr><td><span class="word-en">every day / week / year</span> — We meet every Friday. <button class="audio-btn" onclick="speak('We meet every Friday.')">🔊</button></td><td>كل يوم/أسبوع/عام</td></tr>
+        <tr><td><span class="word-en">on Mondays / at 8 a.m.</span></td><td>أيام محددة / وقت ثابت في الجدول</td></tr>
+      </table>
+      <div class="note-box" style="background:var(--softpink);border-color:var(--coral);color:var(--ink)">⚠️ <strong style="color:var(--coral)">النفي والسؤال:</strong> نستخدم <bdi>do/does</bdi> — <em>She doesn't like coffee.</em> <button class="audio-btn" onclick="speak('She doesn\\'t like coffee.')">🔊</button> — <em>Does he play tennis?</em> <button class="audio-btn" onclick="speak('Does he play tennis?')">🔊</button></div>
+    </div>
+  </div>
+
+  <div class="grammar-box">
+    <div class="grammar-header" style="background:linear-gradient(135deg,#9D174D,#DC2E5D)">
+      <div class="num" style="background:var(--gold);color:var(--navy)">4</div>
+      <div><div class="title-en" style="color:white">Present Progressive — المضارع المستمر</div><div class="title-ar" style="color:#fbcfe8">حدث يحدث الآن أو خلال هذه الفترة</div></div>
+    </div>
+    <div class="grammar-body">
+      <div class="note-box">📌 <strong>الاستخدام:</strong> نستخدمه لحدث يحدث في لحظة الكلام، أو خلال فترة مؤقتة حول الوقت الحاضر (هذا الأسبوع، هذه الأيام).<br><em style="color:var(--slate)">Use: An action happening now, or a temporary situation around the present.</em></div>
+      <div class="formula-row" style="background:#831843"><span class="formula-label">Formula</span><div class="formula-circle">1</div><span class="formula-pill">الفاعل</span><span class="formula-plus">+</span><div class="formula-circle">2</div><span class="formula-pill">am / is / are</span><span class="formula-plus">+</span><div class="formula-circle">3</div><span class="formula-pill">Verb + ing</span><span class="formula-ar">الصيغة</span></div>
+      <div class="info-grid">
+        <div class="info-card" style="background:var(--softblue);border:2px solid #2563EB"><div class="word" style="color:#2563EB">am</div><div class="meaning" style="color:#1E40AF">مع I فقط</div><div class="ex"><em>I am reading now.</em> <button class="audio-btn" onclick="speak('I am reading now.')">🔊</button></div></div>
+        <div class="info-card" style="background:var(--softgreen);border:2px solid #16A34A"><div class="word" style="color:#16A34A">is</div><div class="meaning" style="color:#065F46">مع he / she / it</div><div class="ex"><em>It is raining a lot right now.</em> <button class="audio-btn" onclick="speak('It is raining a lot right now.')">🔊</button></div></div>
+        <div class="info-card" style="background:var(--softpink);border:2px solid var(--coral)"><div class="word" style="color:var(--coral)">are</div><div class="meaning" style="color:#9D174D">مع you / we / they</div><div class="ex"><em>They are reading a different book this week.</em> <button class="audio-btn" onclick="speak('They are reading a different book this week.')">🔊</button></div></div>
+      </div>
+      <div class="note-box">💡 <strong>الكلمات الدالة:</strong> now, right now, at the moment, this week/month, today, Look! / Listen!</div>
+
+      <div style="font-weight:700;color:var(--ink);margin:16px 0 8px">⚖️ Simple Present vs Present Progressive — جدول مقارنة</div>
+      <table class="ref-table">
+        <tr><th>Simple Present — مضارع بسيط</th><th>Present Progressive — مضارع مستمر</th></tr>
+        <tr><td><strong>الاستخدام:</strong> عادة متكررة أو حقيقة ثابتة</td><td><strong>الاستخدام:</strong> حدث يجري الآن أو هذه الفترة المؤقتة</td></tr>
+        <tr><td><strong>الكلمات الدالة:</strong> usually, always, every day</td><td><strong>الكلمات الدالة:</strong> now, at the moment, this week</td></tr>
+        <tr><td><strong>مثال:</strong> Sofia usually rides her bike to school. <button class="audio-btn" onclick="speak('Sofia usually rides her bike to school.')">🔊</button></td><td><strong>مثال:</strong> But this week she is taking the bus. <button class="audio-btn" onclick="speak('But this week she is taking the bus.')">🔊</button></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- TAB 3 – Present Practice -->
+<div class="page" id="tab-3">
+  <div class="ex-card">
+    <div class="ex-header"><div><div class="ex-title">Activity 1: Read and Complete</div><div class="ex-title-ar">اقرأ القصة وأكمل بالصيغة الصحيحة (مضارع بسيط أو مستمر)</div><span class="level-badge bg-beg">BEGINNER</span></div></div>
+    <div class="ex-inst">This is my friend Sofia. Read the story and complete each blank with the correct Simple Present or Present Progressive form.</div>
+    <div class="ex-inst-ar">هذه صديقتي صوفيا. اقرأ القصة وأكمل كل فراغ بالصيغة الصحيحة.</div>
+    <div class="ex-body">
+      <div class="note-box" style="margin-top:0">📖 Sofia usually <strong>rides</strong> her bike to school, but this week the weather changed things...</div>
+      <div class="btn-row"><button class="reveal-btn" style="background:var(--teal)" onclick="revealOne('ex5',this)">▶ Reveal next answer</button><button class="reveal-btn" style="background:#6B7280" onclick="resetEx('ex5')">↺ Reset</button></div>
+      <div class="score-line">Revealed / Checked: <span id="ex5-score">0</span> / 8</div>
+      <div class="item-row"><div class="item-num" style="background:var(--teal)">1</div><div class="item-q">...but this week she <u>(take)</u> the bus because of the weather. <button class="audio-btn" onclick="speak('This week she is taking the bus because of the weather.')">🔊</button><br><input type="text" class="interactive-input" data-ans="is taking" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">"this week" تشير إلى وضع مؤقت الآن، فنستخدم المضارع المستمر.</div><div class="exp-box">• English: <bdi>this week</bdi> signals a temporary present situation → Present Progressive.<br><div class="exp-ar">• العربية: كلمة <bdi>this week</bdi> تدل على المضارع المستمر لا المعتاد.</div></div></div><div class="item-ans" data-ex="ex5" style="background:var(--teal)">is taking</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--coral)">2</div><div class="item-q">It <u>(rain)</u> a lot at the moment! <button class="audio-btn" onclick="speak('It is raining a lot at the moment.')">🔊</button><br><input type="text" class="interactive-input" data-ans="is raining" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">"at the moment" = الآن، دليل على المضارع المستمر.</div><div class="exp-box">• English: <bdi>at the moment</bdi> → Present Progressive.<br><div class="exp-ar">• العربية: عبارات مثل <bdi>at the moment</bdi> و<bdi>right now</bdi> تدل على المستمر.</div></div></div><div class="item-ans" data-ex="ex5" style="background:var(--coral)">is raining</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--blue)">3</div><div class="item-q">We usually <u>(not/sit)</u> together in math class because she studies in a different group. <button class="audio-btn" onclick="speak('We usually do not sit together in math class.')">🔊</button><br><input type="text" class="interactive-input wide" data-ans="do not sit" placeholder="do not / don't + verb" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">"usually" عادة متكررة، والفاعل جمع (We) → النفي بـ <bdi>don't</bdi>.</div><div class="exp-box">• English: <bdi>usually</bdi> + plural subject → don't/do not + base verb.<br><div class="exp-ar">• العربية: <bdi>We</bdi> لا يأخذ -s، والنفي يكون بـ <bdi>don't</bdi>.</div></div></div><div class="item-ans" data-ex="ex5" style="background:var(--blue);min-width:150px">do not sit</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--green)">4</div><div class="item-q">...because she <u>(study)</u> in a different group. <button class="audio-btn" onclick="speak('She studies in a different group.')">🔊</button><br><input type="text" class="interactive-input" data-ans="studies" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">فاعل مفرد غائب (she) والفعل ينتهي بـ y بعد ساكن → <bdi>ies</bdi>.</div><div class="exp-box">• English: <bdi>study</bdi> + she → <bdi>studies</bdi>.<br><div class="exp-ar">• العربية: نحذف y ونضيف <bdi>ies</bdi> مع he/she/it.</div></div></div><div class="item-ans" data-ex="ex5" style="background:var(--green)">studies</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--purple)">5</div><div class="item-q">But this week the teachers <u>(put)</u> the groups together. <button class="audio-btn" onclick="speak('This week the teachers are putting the groups together.')">🔊</button><br><input type="text" class="interactive-input" data-ans="are putting" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">"this week" + فاعل جمع (teachers) → <bdi>are + V-ing</bdi>.</div><div class="exp-box">• English: Plural subject + temporary change → are + V-ing.<br><div class="exp-ar">• العربية: تغيير مؤقت هذا الأسبوع = مضارع مستمر بصيغة الجمع.</div></div></div><div class="item-ans" data-ex="ex5" style="background:var(--purple)">are putting</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--teal)">6</div><div class="item-q">So today I <u>(sit)</u> next to her! <button class="audio-btn" onclick="speak('So today I am sitting next to her.')">🔊</button><br><input type="text" class="interactive-input" data-ans="am sitting" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">فاعل <bdi>I</bdi> يأخذ <bdi>am</bdi>، و"today" تدل على المستمر هنا.</div><div class="exp-box">• English: I + am + V-ing.<br><div class="exp-ar">• العربية: <bdi>am</bdi> تُستخدم حصرياً مع I.</div></div></div><div class="item-ans" data-ex="ex5" style="background:var(--teal)">am sitting</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--coral)">7</div><div class="item-q">In this photo, Sofia <u>(read)</u> her favorite book. <button class="audio-btn" onclick="speak('In this photo, Sofia is reading her favorite book.')">🔊</button><br><input type="text" class="interactive-input" data-ans="is reading" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">"in this photo" = لحظة محددة نشاهدها الآن → مستمر.</div><div class="exp-box">• English: A snapshot moment → Present Progressive.<br><div class="exp-ar">• العربية: وصف صورة أو مشهد نراه الآن يستخدم المستمر.</div></div></div><div class="item-ans" data-ex="ex5" style="background:var(--coral)">is reading</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--blue)">8</div><div class="item-q">She usually <u>(read)</u> a different book every week. <button class="audio-btn" onclick="speak('She usually reads a different book every week.')">🔊</button><br><input type="text" class="interactive-input" data-ans="reads" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">"usually" + "every week" = عادة متكررة → مضارع بسيط.</div><div class="exp-box">• English: <bdi>usually...every week</bdi> → Simple Present, add -s.<br><div class="exp-ar">• العربية: عادة أسبوعية متكررة = مضارع بسيط + s.</div></div></div><div class="item-ans" data-ex="ex5" style="background:var(--blue)">reads</div></div>
+    </div>
+  </div>
+
+  <div class="ex-card">
+    <div class="ex-header"><div><div class="ex-title">Activity 2: Complete about Yourself</div><div class="ex-title-ar">أكمل الجمل عن نفسك بالمضارع البسيط</div><span class="level-badge bg-int">INTERMEDIATE</span></div></div>
+    <div class="ex-inst">Complete each model sentence with the correct Simple Present verb form, then practise asking a partner the same question.</div>
+    <div class="ex-inst-ar">أكمل كل جملة نموذجية بصيغة الفعل الصحيحة، ثم تدرّب على سؤال زميلك نفس السؤال.</div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="reveal-btn" style="background:var(--gold);color:var(--navy)" onclick="revealOne('ex6',this)">▶ Reveal next answer</button><button class="reveal-btn" style="background:#6B7280" onclick="resetEx('ex6')">↺ Reset</button></div>
+      <div class="score-line">Revealed / Checked: <span id="ex6-score">0</span> / 5</div>
+      <div class="item-row"><div class="item-num" style="background:var(--gold);color:var(--navy)">1</div><div class="item-q"><strong>How do you usually get to school?</strong> — I usually <u>(get)</u> to school by bus. <button class="audio-btn" onclick="speak('How do you usually get to school? I usually get to school by bus.')">🔊</button><br><input type="text" class="interactive-input" data-ans="get" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">الفاعل <bdi>I</bdi> لا يأخذ -s في المضارع البسيط.</div><div class="exp-box">• English: I + base verb (no -s).<br><div class="exp-ar">• العربية: مع <bdi>I</bdi> يبقى الفعل في صورته الأساسية.</div></div></div><div class="item-ans" data-ex="ex6" style="background:var(--gold);color:var(--navy)">get</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--gold);color:var(--navy)">2</div><div class="item-q"><strong>What book(s) do you usually read?</strong> — I usually <u>(read)</u> adventure books. <button class="audio-btn" onclick="speak('What books do you usually read? I usually read adventure books.')">🔊</button><br><input type="text" class="interactive-input" data-ans="read" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">فعل <bdi>read</bdi> لا يتغير شكله كتابياً مع I.</div><div class="exp-box">• English: I + read (no change).<br><div class="exp-ar">• العربية: الفعل يبقى كما هو مع الفاعل I.</div></div></div><div class="item-ans" data-ex="ex6" style="background:var(--gold);color:var(--navy)">read</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--gold);color:var(--navy)">3</div><div class="item-q"><strong>Who do you usually eat lunch with?</strong> — I usually <u>(eat)</u> lunch with my friends. <button class="audio-btn" onclick="speak('Who do you usually eat lunch with? I usually eat lunch with my friends.')">🔊</button><br><input type="text" class="interactive-input" data-ans="eat" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">فاعل <bdi>I</bdi> + الفعل الأساسي بدون تغيير.</div><div class="exp-box">• English: I + eat.<br><div class="exp-ar">• العربية: لا نضيف شيئاً للفعل مع I.</div></div></div><div class="item-ans" data-ex="ex6" style="background:var(--gold);color:var(--navy)">eat</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--gold);color:var(--navy)">4</div><div class="item-q"><strong>What do you usually eat for lunch?</strong> — I usually <u>(have)</u> rice and chicken. <button class="audio-btn" onclick="speak('What do you usually eat for lunch? I usually have rice and chicken.')">🔊</button><br><input type="text" class="interactive-input" data-ans="have" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">فعل <bdi>have</bdi> يبقى بدون تغيير مع I.</div><div class="exp-box">• English: I + have.<br><div class="exp-ar">• العربية: الشكل الأساسي للفعل يبقى مع I.</div></div></div><div class="item-ans" data-ex="ex6" style="background:var(--gold);color:var(--navy)">have</div></div>
+      <div class="item-row"><div class="item-num" style="background:var(--gold);color:var(--navy)">5</div><div class="item-q"><strong>Which subject do you like best?</strong> — I <u>(like)</u> Science best. <button class="audio-btn" onclick="speak('Which subject do you like best? I like Science best.')">🔊</button><br><input type="text" class="interactive-input" data-ans="like" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="check-btn" onclick="checkInput(this)">Check</button><button class="hint-btn" onclick="toggleHint(this)">💡 تلميح</button><div class="hint-box">فعل <bdi>like</bdi> يبقى بدون تغيير مع I.</div><div class="exp-box">• English: I + like.<br><div class="exp-ar">• العربية: التفضيل الثابت = مضارع بسيط بدون تغيير مع I.</div></div></div><div class="item-ans" data-ex="ex6" style="background:var(--gold);color:var(--navy)">like</div></div>
+    </div>
+  </div>
+
+  <div class="ex-card">
+    <div class="ex-header"><div><div class="ex-title">Activity 3: Choose the Correct Option</div><div class="ex-title-ar">اختر: المضارع البسيط أم المستمر؟</div><span class="level-badge bg-int">INTERMEDIATE</span></div></div>
+    <div class="ex-inst">Choose the correct form to complete each sentence.</div>
+    <div class="ex-inst-ar">اختر الشكل الصحيح لإكمال كل جملة.</div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="reveal-btn" style="background:var(--navy)" onclick="revealOne('ex7',this)">▶ Reveal next answer</button><button class="reveal-btn" style="background:#6B7280" onclick="resetEx('ex7')">↺ Reset</button></div>
+      <div class="score-line">Revealed / Answered: <span id="ex7-score">0</span> / 6</div>
+      <div class="mcq-item"><div class="mcq-q">1. Look! The baby ________ peacefully. <button class="audio-btn" onclick="speak('Look! The baby is sleeping peacefully.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="ex7x" onclick="selectMCQ(this,false,'ex7')">sleeps</div><div class="mcq-opt correct" data-ex="ex7" onclick="selectMCQ(this,true,'ex7')" style="--c:var(--coral)">is sleeping</div></div><div class="exp-box">• English: <bdi>Look!</bdi> points to now → Present Progressive.<br><div class="exp-ar">• العربية: كلمة <bdi>Look!</bdi> تشير للحظة الحاضرة = مضارع مستمر.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">2. My father ________ as an engineer. <button class="audio-btn" onclick="speak('My father works as an engineer.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="ex7" onclick="selectMCQ(this,true,'ex7')" style="--c:var(--blue)">works</div><div class="mcq-opt" data-ex="ex7x" onclick="selectMCQ(this,false,'ex7')">is working</div></div><div class="exp-box">• English: A permanent job/fact → Simple Present.<br><div class="exp-ar">• العربية: المهنة حقيقة ثابتة = مضارع بسيط.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">3. Please be quiet. I ________ for my exam. <button class="audio-btn" onclick="speak('Please be quiet. I am studying for my exam.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="ex7x" onclick="selectMCQ(this,false,'ex7')">study</div><div class="mcq-opt correct" data-ex="ex7" onclick="selectMCQ(this,true,'ex7')" style="--c:var(--coral)">am studying</div></div><div class="exp-box">• English: Happening right now → Present Progressive.<br><div class="exp-ar">• العربية: طلب الهدوء الآن يدل على أن الفعل يحدث حالياً.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">4. Water ________ at 100 degrees Celsius. <button class="audio-btn" onclick="speak('Water boils at 100 degrees Celsius.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="ex7" onclick="selectMCQ(this,true,'ex7')" style="--c:var(--blue)">boils</div><div class="mcq-opt" data-ex="ex7x" onclick="selectMCQ(this,false,'ex7')">is boiling</div></div><div class="exp-box">• English: A scientific fact → Simple Present.<br><div class="exp-ar">• العربية: الحقائق العلمية الثابتة تستخدم المضارع البسيط دائماً.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">5. She can't come to the phone right now because she ________ a shower. <button class="audio-btn" onclick="speak('She can\\'t come to the phone right now because she is taking a shower.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="ex7x" onclick="selectMCQ(this,false,'ex7')">takes</div><div class="mcq-opt correct" data-ex="ex7" onclick="selectMCQ(this,true,'ex7')" style="--c:var(--coral)">is taking</div></div><div class="exp-box">• English: <bdi>right now</bdi> → Present Progressive.<br><div class="exp-ar">• العربية: <bdi>right now</bdi> دليل قوي على المضارع المستمر.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">6. We ________ our summer holiday in Abha every year. <button class="audio-btn" onclick="speak('We usually spend our summer holiday in Abha every year.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="ex7" onclick="selectMCQ(this,true,'ex7')" style="--c:var(--blue)">usually spend</div><div class="mcq-opt" data-ex="ex7x" onclick="selectMCQ(this,false,'ex7')">are usually spending</div></div><div class="exp-box">• English: <bdi>usually...every year</bdi> → Simple Present.<br><div class="exp-ar">• العربية: عادة سنوية متكررة تستخدم المضارع البسيط.</div></div></div>
+    </div>
+  </div>
+</div>
+<!-- TAB 4 – MONSTER CHALLENGE -->
+<div class="page" id="tab-4">
+  <div class="ex-card">
+    <div class="ex-header" style="position:relative;min-height:280px;padding-bottom:0;">
+      <div id="boss-start-overlay" class="boss-overlay" style="position:fixed;inset:0;z-index:800;">
+        <span style="font-size:3.5rem;animation:streakPulse 1s infinite">👾</span>
+        <h2 style="color:white;margin:10px 0;font-size:1.8rem">TIME MONSTER CHALLENGE</h2>
+        <p style="color:#CBD5E1;font-size:.95rem;direction:rtl;max-width:480px;line-height:1.7">
+          ⏳ استيقظ وحش الأزمنة من كهفه وخلط الماضي بالمضارع في جميع أنحاء مملكة القواعد!<br>
+          عليك أن تهزمه عبر أربع مراحل: <strong>الماضي البسيط</strong> ← <strong>الماضي المستمر</strong> ← <strong>المضارع البسيط</strong> ← <strong>المضارع المستمر</strong>، ثم مواجهته الأخيرة المختلطة!<br><br>
+          ✅ كل إجابة صحيحة تسلب طاقة الوحش 💥<br>
+          ❌ كل خطأ يسلب 10 ثوانٍ من وقتك ⚠️<br>
+          شريط الطاقة يُثبَّت أسفل الشاشة عند البدء!
+        </p>
+        <button class="boss-start-btn" onclick="startBossBattle()">▶ ابدأ المعركة الآن!</button>
+        <button onclick="closeBossOverlay()" style="margin-top:12px;background:rgba(255,255,255,.15);color:white;border:2px solid rgba(255,255,255,.35);border-radius:12px;font-size:.9rem;font-weight:700;padding:9px 22px;cursor:pointer;">⬅️ رجوع إلى الدروس</button>
+      </div>
+      <div style="width:100%"><div class="ex-title">👾 Monster Challenge — تحدي وحش الأزمنة</div><div class="ex-title-ar">اختبار نهائي مقسّم إلى 5 مراحل — تدريب شامل ومختلط</div><span class="level-badge bg-quiz">FINAL BOSS</span></div>
+    </div>
+    <div class="ex-inst">Choose the correct answer for each question to defeat the monster, phase by phase.</div>
+    <div class="ex-inst-ar">اختر الإجابة الصحيحة لكل سؤال لهزيمة الوحش مرحلة تلو الأخرى.</div>
+    <div class="ex-body">
+      <div class="btn-row"><button class="reveal-btn" style="background:var(--navy)" onclick="revealOne('quiz',this)">▶ Reveal next answer</button><button class="reveal-btn" style="background:#6B7280" onclick="resetEx('quiz')">↺ Reset</button></div>
+      <div class="score-line">Revealed / Answered: <span id="quiz-score">0</span> / 20</div>
+
+      <!-- Phase 1: Simple Past -->
+      <div class="mcq-item"><div class="mcq-q">Q1. Sara ________ for her exam last night. <button class="audio-btn" onclick="speak('Sara studied for her exam last night.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--teal)">studied</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">studies</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">is studying</div></div><div class="exp-box">• English: <bdi>last night</bdi> → Simple Past.<br><div class="exp-ar">• العربية: <bdi>last night</bdi> حدث منتهٍ في الماضي.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q2. We ________ to the museum two days ago. <button class="audio-btn" onclick="speak('We went to the museum two days ago.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">go</div><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--teal)">went</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">goes</div></div><div class="exp-box">• English: <bdi>go</bdi> is irregular → <bdi>went</bdi>.<br><div class="exp-ar">• العربية: فعل شاذ يجب حفظه.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q3. ________ you finish your homework yesterday? <button class="audio-btn" onclick="speak('Did you finish your homework yesterday?')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--teal)">Did</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">Do</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">Does</div></div><div class="exp-box">• English: Past question → <bdi>Did</bdi> + subject + base verb.<br><div class="exp-ar">• العربية: السؤال بالماضي يبدأ بـ <bdi>Did</bdi> دائماً.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q4. He ________ his phone at home this morning — he was very upset! <button class="audio-btn" onclick="speak('He forgot his phone at home this morning.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">forgets</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">is forgetting</div><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--teal)">forgot</div></div><div class="exp-box">• English: <bdi>forget</bdi> is irregular → <bdi>forgot</bdi>.<br><div class="exp-ar">• العربية: فعل شاذ آخر يجب حفظه غيباً.</div></div></div>
+
+      <!-- Phase 2: Past Progressive -->
+      <div class="mcq-item"><div class="mcq-q">Q5. I ________ dinner when the doorbell rang. <button class="audio-btn" onclick="speak('I was cooking dinner when the doorbell rang.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--blue)">was cooking</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">cooked</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">cook</div></div><div class="exp-box">• English: Long ongoing action interrupted by a short one → Past Progressive.<br><div class="exp-ar">• العربية: الفعل الطويل المستمر قاطعه فعل قصير (rang).</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q6. They ________ football at 5 p.m. yesterday. <button class="audio-btn" onclick="speak('They were playing football at 5 p.m. yesterday.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">played</div><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--blue)">were playing</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">play</div></div><div class="exp-box">• English: Specific past moment (5 p.m.) → Past Progressive.<br><div class="exp-ar">• العربية: تحديد ساعة دقيقة بالماضي يستدعي الماضي المستمر.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q7. While she ________ TV, her brother was doing his homework. <button class="audio-btn" onclick="speak('While she was watching TV, her brother was doing his homework.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">watches</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">watched</div><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--blue)">was watching</div></div><div class="exp-box">• English: <bdi>while</bdi> + ongoing action → Past Progressive.<br><div class="exp-ar">• العربية: <bdi>while</bdi> يرافق دائماً الفعل المستمر.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q8. The students ________ not listening when the teacher explained the rule. <button class="audio-btn" onclick="speak('The students were not listening when the teacher explained the rule.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--blue)">were</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">was</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">did</div></div><div class="exp-box">• English: Plural subject → <bdi>were</bdi> + not + V-ing.<br><div class="exp-ar">• العربية: <bdi>students</bdi> فاعل جمع، فيأخذ <bdi>were</bdi>.</div></div></div>
+
+      <!-- Phase 3: Simple Present -->
+      <div class="mcq-item"><div class="mcq-q">Q9. Sofia usually ________ her bike to school. <button class="audio-btn" onclick="speak('Sofia usually rides her bike to school.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--purple)">rides</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">is riding</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">rode</div></div><div class="exp-box">• English: <bdi>usually</bdi> + he/she/it → add -s.<br><div class="exp-ar">• العربية: عادة متكررة مع فاعل مفرد غائب = مضارع بسيط + s.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q10. ________ your father work as a doctor? <button class="audio-btn" onclick="speak('Does your father work as a doctor?')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">Do</div><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--purple)">Does</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">Is</div></div><div class="exp-box">• English: he/she/it question → <bdi>Does</bdi>.<br><div class="exp-ar">• العربية: مع الفاعل المفرد الغائب نستخدم <bdi>Does</bdi> في السؤال.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q11. The sun ________ in the east. <button class="audio-btn" onclick="speak('The sun rises in the east.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--purple)">rises</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">is rising</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">rose</div></div><div class="exp-box">• English: A permanent fact of nature → Simple Present.<br><div class="exp-ar">• العربية: حقيقة علمية ثابتة = مضارع بسيط دائماً.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q12. My sisters ________ like spicy food at all. <button class="audio-btn" onclick="speak('My sisters do not like spicy food at all.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--purple)">don't</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">doesn't</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">aren't</div></div><div class="exp-box">• English: Plural subject → <bdi>don't</bdi>.<br><div class="exp-ar">• العربية: <bdi>sisters</bdi> جمع، فالنفي يكون بـ <bdi>don't</bdi>.</div></div></div>
+
+      <!-- Phase 4: Present Progressive -->
+      <div class="mcq-item"><div class="mcq-q">Q13. Listen! Someone ________ the piano next door. <button class="audio-btn" onclick="speak('Listen! Someone is playing the piano next door.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">plays</div><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--coral)">is playing</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">played</div></div><div class="exp-box">• English: <bdi>Listen!</bdi> points to now → Present Progressive.<br><div class="exp-ar">• العربية: <bdi>Listen!</bdi> إشارة قوية للحظة الحاضرة.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q14. This month, we ________ for our final exams. <button class="audio-btn" onclick="speak('This month, we are preparing for our final exams.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--coral)">are preparing</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">prepare</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">prepared</div></div><div class="exp-box">• English: <bdi>this month</bdi> = temporary period → Present Progressive.<br><div class="exp-ar">• العربية: فترة مؤقتة حول الحاضر تستدعي المضارع المستمر.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q15. I ________ this book right now — it's really exciting! <button class="audio-btn" onclick="speak('I am reading this book right now.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">read</div><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--coral)">am reading</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">reads</div></div><div class="exp-box">• English: <bdi>right now</bdi> → Present Progressive.<br><div class="exp-ar">• العربية: <bdi>right now</bdi> دليل واضح على المضارع المستمر.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q16. ________ it raining outside now? <button class="audio-btn" onclick="speak('Is it raining outside now?')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--coral)">Is</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">Does</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">Do</div></div><div class="exp-box">• English: <bdi>it</bdi> + progressive question → <bdi>Is</bdi> + subject + V-ing.<br><div class="exp-ar">• العربية: السؤال في المضارع المستمر يبدأ بـ am/is/are.</div></div></div>
+
+      <!-- Phase 5: Mixed Final Battle -->
+      <div class="mcq-item"><div class="mcq-q">Q17. Yesterday, while I ________ my homework, the lights suddenly went out. <button class="audio-btn" onclick="speak('Yesterday, while I was doing my homework, the lights suddenly went out.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">do</div><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--gold);color:var(--navy)">was doing</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">did</div></div><div class="exp-box">• English: <bdi>while</bdi> + ongoing past action, interrupted by <bdi>went out</bdi>.<br><div class="exp-ar">• العربية: مزيج بين ماضي مستمر (فعل طويل) وماضي بسيط (فعل قصير قاطعه).</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q18. My father ________ as a teacher, but this year he ________ a new curriculum. <button class="audio-btn" onclick="speak('My father works as a teacher, but this year he is teaching a new curriculum.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--gold);color:var(--navy)">works / is teaching</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">is working / teaches</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">worked / taught</div></div><div class="exp-box">• English: Permanent job (Simple Present) + temporary change this year (Present Progressive).<br><div class="exp-ar">• العربية: حقيقة ثابتة (مضارع بسيط) + وضع مؤقت هذا العام (مضارع مستمر).</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q19. Last summer, we ________ to Jeddah, and we ________ a wonderful time there. <button class="audio-btn" onclick="speak('Last summer, we traveled to Jeddah, and we had a wonderful time there.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">travel / have</div><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--gold);color:var(--navy)">traveled / had</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">were traveling / were having</div></div><div class="exp-box">• English: <bdi>Last summer</bdi> = two completed past actions → Simple Past.<br><div class="exp-ar">• العربية: حدثان منتهيان تماماً في الماضي = ماضي بسيط لكليهما.</div></div></div>
+      <div class="mcq-item"><div class="mcq-q">Q20. Normally I ________ breakfast at 7 a.m., but today I ________ breakfast right now at 9 a.m.! <button class="audio-btn" onclick="speak('Normally I have breakfast at 7 a.m., but today I am having breakfast right now at 9 a.m.')">🔊</button></div><div class="mcq-opts"><div class="mcq-opt correct" data-ex="quiz" onclick="selectMCQ(this,true,'quiz')" style="--c:var(--gold);color:var(--navy)">have / am having</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">am having / have</div><div class="mcq-opt" data-ex="quizx" onclick="selectMCQ(this,false,'quiz')">had / have</div></div><div class="exp-box">• English: <bdi>Normally</bdi> → Simple Present; <bdi>right now</bdi> → Present Progressive.<br><div class="exp-ar">• العربية: مقارنة مباشرة بين العادة (normally) والحدث الآن (right now) في نفس الجملة.</div></div></div>
+    </div>
+  </div>
+</div>
+</div><!-- /container -->
+<!-- CERTIFICATE -->
+<div class="cert-modal" id="cert-modal">
+  <div class="cert-content">
+    <div class="cert-avatar">👨🏽‍🏫</div>
+    <div class="cert-title">وسام إتقان أزمنة الماضي والمضارع</div>
+    <div class="cert-sub" style="direction:ltr">Grammar Time Quest — Past &amp; Present Tenses Mastery</div>
+    <p style="font-size:1.1rem;line-height:1.5;font-weight:bold;color:var(--ink);direction:rtl;margin-bottom:10px;">تهانينا! لقد هزمت وحش الأزمنة وأكملت جميع المهام بنجاح 🎉</p>
+    <input type="text" class="cert-input" placeholder="اكتب اسمك هنا..." id="student-name" style="direction:rtl">
+    <br><button class="cert-btn" onclick="window.print()">🖨️ طباعة الشهادة</button><br>
+    <button class="reveal-btn" style="background:var(--slate);margin-top:15px;padding:6px 15px;" onclick="document.getElementById('cert-modal').classList.remove('active')">إغلاق</button>
+  </div>
+</div>
+<footer style="background:var(--navy);color:#94a3b8;text-align:center;padding:16px;padding-bottom:90px;font-size:.8rem">
+  Prepared by Teacher Jaber &nbsp;•&nbsp; Grammar Time Quest &nbsp;•&nbsp; Past &amp; Present Tenses &nbsp;•&nbsp; Super Goal
+</footer>
+<script>
+// ── AUDIO ──
+const AudioCtx=window.AudioContext||window.webkitAudioContext;let audioCtx=null;
+function initAudio(){if(!audioCtx)audioCtx=new AudioCtx();if(audioCtx.state==='suspended')audioCtx.resume();}
+function playSound(type){try{initAudio();if(!audioCtx)return;const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);const now=audioCtx.currentTime;if(type==='correct'){o.type='sine';o.frequency.setValueAtTime(523,now);o.frequency.exponentialRampToValueAtTime(659,now+.08);o.frequency.exponentialRampToValueAtTime(784,now+.16);g.gain.setValueAtTime(.2,now);g.gain.exponentialRampToValueAtTime(.01,now+.3);o.start(now);o.stop(now+.3);}else if(type==='wrong'){o.type='sawtooth';o.frequency.setValueAtTime(180,now);o.frequency.linearRampToValueAtTime(110,now+.25);g.gain.setValueAtTime(.2,now);g.gain.exponentialRampToValueAtTime(.01,now+.25);o.start(now);o.stop(now+.25);}else if(type==='boss'){o.type='triangle';[0,.12,.24,.36].forEach((t,i)=>{o.frequency.setValueAtTime([440,554,659,880][i],now+t);});g.gain.setValueAtTime(.3,now);g.gain.exponentialRampToValueAtTime(.01,now+.5);o.start(now);o.stop(now+.5);}else if(type==='tick'){o.type='square';o.frequency.setValueAtTime(bossTimeLeft<=10?880:440,now);g.gain.setValueAtTime(.05,now);g.gain.exponentialRampToValueAtTime(.001,now+.08);o.start(now);o.stop(now+.08);}}catch(e){}}
+// ── GAMIFICATION ──
+let userXP=0,userStreak=0,certShown=false,completedTotal=0;
+const totalInteractiveItems=61;
+function addXP(pts){userXP=Math.max(0,userXP+pts);document.getElementById('xp-val').textContent=userXP;showXPToast((pts>0?'+':'')+pts+(pts>0?' XP ⭐':' XP 💡'));}
+function showXPToast(msg){const t=document.getElementById('xp-toast');if(t){t.textContent=msg;t.classList.remove('show');void t.offsetWidth;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1400);}}
+function incStreak(){userStreak++;document.getElementById('streak-val').textContent=userStreak;}
+function resetStreak(){userStreak=0;document.getElementById('streak-val').textContent=0;}
+function toggleDarkMode(){document.body.classList.toggle('dark-mode');document.getElementById('dark-toggle').textContent=document.body.classList.contains('dark-mode')?'☀️ Light Mode':'🌙 Dark Mode';}
+function showTab(n){document.querySelectorAll('.page').forEach((p,i)=>p.classList.toggle('active',i===n));document.querySelectorAll('.tab-nav button').forEach((b,i)=>b.classList.toggle('active',i===n));window.scrollTo({top:0,behavior:'smooth'});if(n===4)playSound('boss');}
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.82;
+  u.pitch = 1.0;
+  u.volume = 1.0;
+
+  function pickVoice(){
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = [
+      'Samantha','Karen','Daniel','Google US English',
+      'Google UK English Female','Microsoft Zira','Microsoft David',
+      'Alex','Victoria','Moira','Fiona','Tessa'
+    ];
+    for(const name of preferred){
+      const v = voices.find(v => v.name === name);
+      if(v){ u.voice = v; break; }
+    }
+    if(!u.voice){
+      u.voice = voices.find(v => v.lang === 'en-US') ||
+                voices.find(v => v.lang.startsWith('en')) ||
+                null;
+    }
+    window.speechSynthesis.speak(u);
+  }
+
+  const voices = window.speechSynthesis.getVoices();
+  if(voices.length > 0){ pickVoice(); }
+  else { window.speechSynthesis.onvoiceschanged = pickVoice; }
+}
+function triggerConfetti(){
+  // Simple built-in confetti - no external CDN needed
+  const colors=['#FFD700','#7C3AED','#DC2E5D','#10B981','#3B82F6','#F59E0B'];
+  for(let i=0;i<40;i++){
+    const el=document.createElement('div');
+    el.style.cssText='position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:9999;';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.left=Math.random()*100+'vw';
+    el.style.top='-10px';
+    document.body.appendChild(el);
+    const tx=(Math.random()-.5)*200;
+    el.animate([
+      {transform:'translate(0,0) rotate(0deg)',opacity:1},
+      {transform:`translate(${tx}px,${window.innerHeight*.8}px) rotate(${Math.random()*720}deg)`,opacity:0}
+    ],{duration:1200+Math.random()*800,easing:'cubic-bezier(.25,.46,.45,.94)',delay:Math.random()*300}).onfinish=()=>el.remove();
+  }
+}
+function toggleHint(btn){const box=btn.parentElement.querySelector('.hint-box');if(box){box.style.display=box.style.display==='block'?'none':'block';if(box.style.display==='block')addXP(-2);}}
+function updateProgressBar(){const bar=document.getElementById('main-progress');if(bar){const pct=Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100));bar.style.width=pct+'%';if(pct===100&&!certShown){certShown=true;setTimeout(()=>{document.getElementById('cert-modal').classList.add('active');triggerConfetti();},1000);}}}
+function checkInput(btn){const parent=btn.closest('.item-q,.scramble-words');const input=parent.querySelector('.interactive-input');const exp=parent.querySelector('.exp-box');if(!input)return;const expected=input.getAttribute('data-ans').trim().toLowerCase().replace(/[.!?—]/g,'');const userAns=input.value.trim().toLowerCase().replace(/[.!?—]/g,'');if(userAns===expected){if(!input.classList.contains('is-correct')){input.classList.remove('is-wrong');input.classList.add('is-correct');playSound('correct');triggerConfetti();addXP(10);incStreak();completedTotal++;updateProgressBar();}if(exp)exp.classList.add('visible');btn.style.display='none';}else{input.classList.remove('is-correct');input.classList.add('is-wrong');input.classList.add('shake');setTimeout(()=>input.classList.remove('shake'),400);playSound('wrong');resetStreak();if(exp)exp.classList.add('visible');}}
+document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.interactive-input').forEach(inp=>{inp.addEventListener('keyup',e=>{if(e.key==='Enter'){const b=inp.parentElement.querySelector('.check-btn');if(b)b.click();}});});});
+const state={};
+function selectMCQ(el,isCorrect,exId){const container=el.closest('.mcq-item');if(el.classList.contains('selected-correct'))return;const opts=container.querySelectorAll('.mcq-opt');const exp=container.querySelector('.exp-box');opts.forEach(o=>o.classList.remove('selected-correct','selected-wrong'));if(isCorrect){el.classList.add('selected-correct');playSound('correct');triggerConfetti();addXP(10);incStreak();completedTotal++;updateProgressBar();if(state[exId]===undefined)state[exId]=0;state[exId]++;const sc=document.getElementById(exId+'-score');if(sc)sc.textContent=state[exId];if(exId==='quiz'&&bossStarted){bossHP--;const pct=(bossHP/10)*100;document.getElementById('boss-hp-bar').style.width=pct+'%';document.getElementById('boss-hp-pct').textContent=Math.round(pct)+'%';if(bossHP<=0){clearInterval(bossTimerInterval);setTimeout(()=>{alert('🎉 مبروك! لقد هزمت الوحش النهائي بنجاح!');triggerConfetti();},300);}}}else{el.classList.add('selected-wrong');el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),400);playSound('wrong');resetStreak();if(exId==='quiz'&&bossStarted){
+    bossTimeLeft=Math.max(0,bossTimeLeft-10);updateTimerDisplay();
+    if(typeof myHP==='undefined')myHP=100;
+    myHP=Math.max(0,myHP-10);
+    const _mb=document.getElementById('my-hp-bar');if(_mb)_mb.style.width=myHP+'%';
+  }}if(exp)exp.classList.add('visible');}
+function revealOne(exId,btn){if(state[exId]===undefined)state[exId]=0;let targets=Array.from(document.querySelectorAll('[data-ex="'+exId+'"]'));const i=state[exId];if(i<targets.length){const t=targets[i];t.classList.add('visible');const p=t.closest('.item-row,.mcq-item,.scramble-row');if(p){const e=p.querySelector('.exp-box');if(e)e.classList.add('visible');}if(t.classList.contains('mcq-opt')){const col=getComputedStyle(t).getPropertyValue('--c').trim()||'#0F766E';t.style.background=col;t.style.borderColor=col;t.style.color='white';}state[exId]++;completedTotal++;updateProgressBar();const sc=document.getElementById(exId+'-score');if(sc)sc.textContent=state[exId];}if(state[exId]>=targets.length){btn.innerHTML='✓ All revealed';btn.style.opacity='.55';btn.style.cursor='default';triggerConfetti();}}
+function resetEx(exId){state[exId]=0;document.querySelectorAll('[data-ex="'+exId+'"]').forEach(el=>{el.classList.remove('visible');if(el.classList.contains('mcq-opt')){el.style.background='';el.style.borderColor='';el.style.color='';el.classList.remove('selected-correct','selected-wrong');}});const ct=document.querySelector('.page.active');if(ct){ct.querySelectorAll('.exp-box').forEach(b=>b.classList.remove('visible'));ct.querySelectorAll('.hint-box').forEach(b=>b.style.display='none');ct.querySelectorAll('.interactive-input').forEach(i=>{i.value='';i.classList.remove('is-correct','is-wrong');});ct.querySelectorAll('.dnd-dropzone').forEach(dz=>{const wb=dz.closest('.dnd-container').querySelector('.dnd-wordbank');Array.from(dz.children).forEach(w=>wb.appendChild(w));dz.style.borderColor='';dz.style.background='';});}const sc=document.getElementById(exId+'-score');if(sc)sc.textContent=0;const b=document.querySelector('button[onclick="revealOne(\''+exId+'\',this)"]');if(b){b.innerHTML='▶ Reveal next answer';b.style.opacity='1';b.style.cursor='pointer';}}
+// ── DRAG & DROP ──
+let draggedWord=null;
+function dragStart(e){draggedWord=e.target;draggedWord.classList.add('dragging');e.dataTransfer.effectAllowed='move';}
+function dragOver(e){e.preventDefault();e.currentTarget.classList.add('drag-over');e.dataTransfer.dropEffect='move';}
+function dragLeave(e){e.currentTarget.classList.remove('drag-over');}
+function dropWord(e){e.preventDefault();const dz=e.currentTarget;dz.classList.remove('drag-over');if(draggedWord){dz.appendChild(draggedWord);draggedWord.classList.remove('dragging');draggedWord=null;}}
+function tapWord(wordEl){const c=wordEl.closest('.dnd-container');const dz=c.querySelector('.dnd-dropzone');const wb=c.querySelector('.dnd-wordbank');if(wordEl.parentElement===wb){dz.appendChild(wordEl);}else{wb.appendChild(wordEl);}}
+document.addEventListener('dragend',e=>{if(draggedWord){draggedWord.classList.remove('dragging');draggedWord=null;}});
+function checkDND(btn){const sw=btn.closest('.scramble-words');const c=sw.querySelector('.dnd-container');const dz=c.querySelector('.dnd-dropzone');const expected=c.getAttribute('data-ans').trim().toLowerCase();const words=Array.from(dz.querySelectorAll('.dnd-word')).map(w=>w.textContent.trim()).join(' ').toLowerCase();const cln=s=>s.replace(/[.!?]/g,'').trim();const exp=sw.querySelector('.exp-box');if(cln(words)===cln(expected)){dz.style.borderColor='var(--green)';dz.style.background='var(--softgreen)';playSound('correct');triggerConfetti();addXP(10);incStreak();completedTotal++;updateProgressBar();if(exp)exp.classList.add('visible');btn.style.display='none';Array.from(dz.querySelectorAll('.dnd-word')).forEach(w=>{w.onclick=null;w.setAttribute('draggable','false');});}else{dz.classList.add('shake');setTimeout(()=>dz.classList.remove('shake'),400);playSound('wrong');resetStreak();if(exp)exp.classList.add('visible');}}
+// ── BOSS BATTLE ──
+let bossTimerInterval,bossTimeLeft=60,bossStarted=false,bossHP=10;
+function updateTimerDisplay(){const t=document.getElementById('b-time');if(t)t.textContent=bossTimeLeft;const el=document.getElementById('boss-timer-fixed');if(el)el.classList.toggle('hurry',bossTimeLeft<=10);}
+function startBossBattle(){if(bossStarted)return;bossStarted=true;document.getElementById('boss-start-overlay').style.display='none';document.getElementById('boss-hud-fixed').classList.add('active');updateTimerDisplay();bossTimerInterval=setInterval(()=>{bossTimeLeft--;updateTimerDisplay();playSound('tick');if(bossTimeLeft<=0){clearInterval(bossTimerInterval);setTimeout(showGameOver,200);}},1000);}
+function showGameOver(){
+  const m=document.getElementById('gameover-modal');
+  if(m){m.style.display='flex';}
+}
+function retryBoss(){
+  document.getElementById('gameover-modal').style.display='none';
+  // Reset boss variables
+  bossStarted=false; bossTimeLeft=60; bossHP=10;
+  // Hide fixed HUD
+  document.getElementById('boss-hud-fixed').classList.remove('active');
+  // Reset HP bars
+  document.getElementById('boss-hp-bar').style.width='100%';
+  document.getElementById('boss-hp-pct').textContent='100%';
+  // Show the start overlay again
+  const ov=document.getElementById('boss-start-overlay');
+  if(ov)ov.style.display='flex';
+  // Clear any running interval
+  clearInterval(bossTimerInterval);
+  updateTimerDisplay();
+}
+function closeGameOver(){
+  clearInterval(bossTimerInterval);
+  const hud=document.getElementById('boss-hud-fixed');
+  if(hud)hud.classList.remove('active');
+  document.getElementById('gameover-modal').style.display='none';
+  showTab(0);
+}
+
+
+function closeBossOverlay(){
+  const ov=document.getElementById('boss-overlay')||document.getElementById('boss-overlay-adv')||document.getElementById('boss-start-overlay');
+  if(ov)ov.style.display='none';
+  showTab(0);
+}
+</script>
+
+<!-- ═══ NEW: STUDENT NAME OVERLAY ═══ -->
+<div class="ns-overlay" id="name-overlay">
+  <div class="ns-card">
+    <h2>📝 Enter Your Name</h2>
+    <p>يرجى إدخال اسمك قبل بدء الدرس</p>
+    <input type="text" id="student-name-input" class="interactive-input wide" placeholder="Your name... / اسمك..." style="margin-top:16px;width:100%;max-width:280px;text-align:center;font-size:1rem;">
+    <div><button class="ns-start-btn" onclick="confirmStudentName()">▶ Continue</button></div>
+  </div>
+</div>
+
+<!-- ═══ NEW: DIFFICULTY SELECTOR OVERLAY ═══ -->
+<div class="ns-overlay" id="difficulty-overlay">
+  <div class="ns-card">
+    <h2>🎮 Choose Your Difficulty</h2>
+    <p>اختر مستوى الصعوبة قبل بدء الدرس</p>
+    <div class="diff-grid">
+      <div class="diff-opt" onclick="chooseDifficulty('easy')">
+        <span class="em">🟢</span>
+        <span><span class="nm">Easy Mode</span><span class="ds">More guidance • Less typing • More hints • Beginner friendly<br><span dir="rtl">مزيد من المساعدة • كتابة أقل • تلميحات أكثر</span></span></span>
+      </div>
+      <div class="diff-opt" onclick="chooseDifficulty('normal')">
+        <span class="em">🟡</span>
+        <span><span class="nm">Normal Mode</span><span class="ds">Current experience • No changes<br><span dir="rtl">التجربة الحالية • بدون تغييرات</span></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NEW: AVATAR SELECTION OVERLAY ═══ -->
+<div class="ns-overlay" id="avatar-overlay">
+  <div class="ns-card">
+    <h2>🎮 Choose Your Avatar</h2>
+    <p>اختر شخصيتك قبل بدء المغامرة!</p>
+    <div class="avatar-grid" id="avatar-grid">
+      <div class="avatar-opt" data-av="⚽" onclick="pickAvatar(this,'⚽')"><span class="em">⚽</span><span class="nm">Football Hero</span><span class="nm-ar">بطل كرة القدم</span></div>
+      <div class="avatar-opt" data-av="🎮" onclick="pickAvatar(this,'🎮')"><span class="em">🎮</span><span class="nm">Gamer</span><span class="nm-ar">لاعب محترف</span></div>
+      <div class="avatar-opt" data-av="🚀" onclick="pickAvatar(this,'🚀')"><span class="em">🚀</span><span class="nm">Space Explorer</span><span class="nm-ar">مستكشف الفضاء</span></div>
+      <div class="avatar-opt" data-av="🤖" onclick="pickAvatar(this,'🤖')"><span class="em">🤖</span><span class="nm">Robot Warrior</span><span class="nm-ar">محارب آلي</span></div>
+    </div>
+    <button class="ns-start-btn" id="avatar-start-btn" disabled onclick="confirmAvatar()">▶ Start Lesson</button>
+  </div>
+</div>
+
+<!-- ═══ NEW: BOSS MODE SELECTOR OVERLAY ═══ -->
+<div class="ns-overlay" id="boss-mode-overlay">
+  <div class="ns-card">
+    <h2>⏱️ Choose Boss Mode</h2>
+    <p>اختر نمط تحدي الوحش</p>
+    <div class="diff-grid">
+      <div class="diff-opt" onclick="startBossWithMode('timed')">
+        <span class="em">⚡</span>
+        <span><span class="nm">Timed Challenge</span><span class="ds">60-second countdown • wrong answers cost time<br><span dir="rtl">تحدي بالوقت — الأخطاء تخصم وقتاً</span></span></span>
+      </div>
+      <div class="diff-opt" onclick="startBossWithMode('practice')">
+        <span class="em">🎯</span>
+        <span><span class="nm">Practice Mode</span><span class="ds">No timer • same HP, phases, XP & rewards<br><span dir="rtl">بدون وقت — نفس نظام الطاقة والمراحل</span></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NEW: LEVEL UP POPUP ═══ -->
+<div class="ns-overlay" id="levelup-overlay">
+  <div class="ns-card">
+    <div class="levelup-badge" id="levelup-emoji">🥈</div>
+    <div style="font-size:.8rem;color:#c4b5fd;font-weight:700;">LEVEL UP! 🎉</div>
+    <div class="levelup-name" id="levelup-name">Pro Gamer</div>
+    <p style="margin-top:8px">لقد ارتقيت لمستوى جديد! استمر بالتقدم 💪</p>
+    <button class="ns-start-btn" onclick="closeLevelUp()">Continue ▶</button>
+  </div>
+</div>
+
+<!-- ═══ NEW: ACHIEVEMENT / SPEED / REWARD TOASTS ═══ -->
+<div class="ach-toast" id="ach-toast"><span class="em">🏆</span><span id="ach-toast-text">Achievement Unlocked!</span></div>
+<div class="speed-toast" id="speed-toast">⚡ Fast Answer +15 XP</div>
+<div class="ach-toast" id="reward-toast" style="top:60px">🎁 Reward!</div>
+
+<!-- ═══ NEW: ACHIEVEMENT PANEL ═══ -->
+<div class="ns-overlay" id="ach-panel-overlay">
+  <div class="ns-card">
+    <h2>🏆 Achievements</h2>
+    <p>إنجازاتك في هذا الدرس</p>
+    <div class="ach-list" id="ach-list"></div>
+    <button class="ns-start-btn" onclick="closeAchPanel()">Close</button>
+  </div>
+</div>
+
+<!-- ═══ NEW: END OF LESSON REPORT ═══ -->
+<div class="ns-overlay" id="report-overlay">
+  <div class="ns-card" style="max-width:480px">
+    <h2>📊 Lesson Report</h2>
+    <div class="report-grade" id="report-grade-emoji">A</div>
+    <div class="report-grid" id="report-grid"></div>
+    <div class="report-actions">
+      <button onclick="downloadCertificatePng()">📜 Download Certificate</button>
+      <button class="secondary" onclick="closeReport()">Close</button>
+    </div>
+  </div>
+</div>
+<canvas id="cert-canvas" width="1000" height="700" style="display:none"></canvas>
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   PARITY UPGRADE SCRIPT — ported from the reference lesson.
+   Everything below only ADDS features and hooks into the existing
+   functions via safe wrapping. No original function body is edited
+   except where explicitly noted (targeted, minimal patches only).
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+
+/* ---------- 0) DATE FORMATTING (locale-independent, canvas-safe) ---------- */
+function formatDate(d){
+  d=d||new Date();
+  const yyyy=d.getFullYear();
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const dd=String(d.getDate()).padStart(2,'0');
+  return yyyy+'/'+mm+'/'+dd;
+}
+
+/* ---------- 1) LEVEL SYSTEM ---------- */
+const LEVELS=[
+  {min:0,   emoji:'🥉',name:'Rookie',      nameAr:'مبتدئ'},
+  {min:100, emoji:'🥈',name:'Pro Gamer',   nameAr:'لاعب محترف'},
+  {min:250, emoji:'🥇',name:'Champion',    nameAr:'بطل'},
+  {min:500, emoji:'💎',name:'Legend',      nameAr:'أسطورة'},
+  {min:800, emoji:'👑',name:'Grammar King',nameAr:'ملك القواعد'}
+];
+let currentLevelIdx=0;
+function levelForXP(x){let idx=0;for(let i=0;i<LEVELS.length;i++){if(x>=LEVELS[i].min)idx=i;}return idx;}
+function updateLevelBadge(){
+  const badge=document.getElementById('level-display');
+  const lv=LEVELS[currentLevelIdx];
+  if(badge)badge.textContent=lv.emoji+' '+lv.name;
+}
+function checkLevelUp(){
+  const newIdx=levelForXP(userXP);
+  if(newIdx>currentLevelIdx){
+    currentLevelIdx=newIdx;
+    updateLevelBadge();
+    showLevelUp(LEVELS[currentLevelIdx]);
+    if(currentLevelIdx>=3)unlockAchievement('legend');
+    saveState();
+  }
+}
+function showLevelUp(lv){
+  document.getElementById('levelup-emoji').textContent=lv.emoji;
+  document.getElementById('levelup-name').textContent=lv.name+' — '+lv.nameAr;
+  document.getElementById('levelup-overlay').classList.add('show');
+  triggerConfetti();
+}
+window.closeLevelUp=function(){document.getElementById('levelup-overlay').classList.remove('show');};
+
+/* ---------- 2) ACHIEVEMENT SYSTEM ---------- */
+const ACHIEVEMENTS=[
+  {id:'first-correct', em:'🏆', tt:'First Correct Answer', ds:'أول إجابة صحيحة'},
+  {id:'streak5',        em:'🔥', tt:'5 Correct in a Row',  ds:'٥ إجابات صحيحة متتالية'},
+  {id:'xp100',          em:'⚡', tt:'Earn 100 XP',          ds:'اجمع ١٠٠ نقطة خبرة'},
+  {id:'mission1',       em:'🎯', tt:'Complete First Mission', ds:'أكمل أول مهمة'},
+  {id:'all-grammar',    em:'📘', tt:'Finish All Grammar Tabs', ds:'أنهِ جميع دروس القواعد'},
+  {id:'boss-defeat',    em:'👾', tt:'Defeat Final Boss',    ds:'اهزم الوحش النهائي'},
+  {id:'legend',         em:'💎', tt:'Reach Legend Rank',    ds:'وصلت لرتبة الأسطورة'}
+];
+let unlocked={};
+function unlockAchievement(id){
+  if(unlocked[id])return;
+  unlocked[id]=true;
+  const a=ACHIEVEMENTS.find(x=>x.id===id);
+  if(a)showAchToast(a);
+  renderAchPanel();
+  saveState();
+}
+function showAchToast(a){
+  const t=document.getElementById('ach-toast');
+  document.getElementById('ach-toast-text').textContent=a.tt+' 🎉';
+  t.classList.add('show');
+  playSound('correct');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+function getAchievementProgress(id){
+  switch(id){
+    case 'first-correct': return {cur:Math.min(1,totalCorrectAttempts),max:1};
+    case 'streak5':       return {cur:Math.min(5,maxStreak),max:5};
+    case 'xp100':         return {cur:Math.min(100,userXP),max:100};
+    case 'mission1':      return {cur:unlocked['mission1']?1:0,max:1};
+    case 'all-grammar':   return {cur:(grammarSeen[0]?1:0)+(grammarSeen[2]?1:0),max:2};
+    case 'boss-defeat':   return {cur:Math.min(BOSS_PHASES.length,bossPhaseIdx),max:BOSS_PHASES.length};
+    case 'legend':        return {cur:Math.min(4,currentLevelIdx+1),max:4};
+    default:               return {cur:unlocked[id]?1:0,max:1};
+  }
+}
+function renderAchPanel(){
+  const list=document.getElementById('ach-list');
+  if(!list)return;
+  list.innerHTML=ACHIEVEMENTS.map(a=>{
+    const u=!!unlocked[a.id];
+    const p=getAchievementProgress(a.id);
+    const pct=p.max?Math.min(100,Math.round((p.cur/p.max)*100)):0;
+    return '<div class="ach-row'+(u?' unlocked':'')+'"><span class="em">'+a.em+'</span>'
+      +'<div style="flex:1"><div class="tt">'+a.tt+'</div><div class="ds">'+a.ds+(u?' ✅':'')+'</div>'
+      +'<div class="ach-progress-track"><div class="ach-progress-fill" style="width:'+pct+'%"></div></div>'
+      +'<div class="ach-progress-label">'+p.cur+' / '+p.max+'</div></div></div>';
+  }).join('');
+}
+window.openAchPanel=function(){renderAchPanel();document.getElementById('ach-panel-overlay').classList.add('show');};
+window.closeAchPanel=function(){document.getElementById('ach-panel-overlay').classList.remove('show');};
+
+/* ---------- 3) AVATAR SYSTEM ---------- */
+let chosenAvatar=null;
+window.pickAvatar=function(el,em){
+  document.querySelectorAll('.avatar-opt').forEach(o=>o.classList.remove('picked'));
+  el.classList.add('picked');
+  chosenAvatar=em;
+  document.getElementById('avatar-start-btn').disabled=false;
+};
+window.confirmAvatar=function(){
+  if(!chosenAvatar)return;
+  document.getElementById('avatar-overlay').classList.remove('show');
+  updateAvatarChip();
+  saveState();
+};
+function updateAvatarChip(){
+  const chip=document.getElementById('hud-avatar-chip');
+  if(chip&&chosenAvatar)chip.textContent=chosenAvatar;
+}
+
+/* ---------- 3b) STUDENT NAME SYSTEM ---------- */
+const NAME_KEY='tensequest_student_name';
+let studentName=localStorage.getItem(NAME_KEY)||'';
+function updateNameDisplays(){
+  const chip=document.getElementById('hud-name-chip');
+  if(chip)chip.textContent=studentName?('👤 '+studentName):'👤 Student';
+  const certInput=document.getElementById('student-name');
+  if(certInput&&studentName&&!certInput.value)certInput.value=studentName;
+}
+window.confirmStudentName=function(){
+  const inp=document.getElementById('student-name-input');
+  const val=(inp?inp.value:'').trim();
+  if(!val){
+    if(inp){inp.classList.add('shake');setTimeout(()=>inp.classList.remove('shake'),400);}
+    return;
+  }
+  studentName=val;
+  localStorage.setItem(NAME_KEY,val);
+  document.getElementById('name-overlay').classList.remove('show');
+  updateNameDisplays();
+  if(!difficultyMode)document.getElementById('difficulty-overlay').classList.add('show');
+  else if(!chosenAvatar)document.getElementById('avatar-overlay').classList.add('show');
+};
+
+/* ---------- 4) SPEED BONUS SYSTEM ---------- */
+let questionStartTime=Date.now();
+function resetQuestionTimer(){questionStartTime=Date.now();}
+function awardSpeedBonus(){
+  const secs=(Date.now()-questionStartTime)/1000;
+  resetQuestionTimer();
+  let bonus=5,label='🚀 Speed Master +5 XP';
+  if(secs<5){bonus=15;label='⚡ Fast Answer +15 XP';}
+  else if(secs<=10){bonus=10;label='🔥 Lightning Bonus +10 XP';}
+  addXP(bonus);
+  const t=document.getElementById('speed-toast');
+  if(t){t.textContent=label;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1400);}
+}
+
+/* ---------- 5) STAT TRACKING for report ---------- */
+let totalAttempts=0,totalCorrectAttempts=0,totalWrongAttempts=0,maxStreak=0,lessonStartTime=Date.now(),bossResult='Not Attempted';
+
+/* ---------- 5a) ONE-TIME LESSON COMPLETION REWARDS ---------- */
+let rewardsGranted={};
+function grantOneTimeReward(key,amount,label){
+  if(rewardsGranted[key])return;
+  rewardsGranted[key]=true;
+  addXP(amount);
+  showRewardToast(label);
+  saveState();
+}
+function showRewardToast(label){
+  const t=document.getElementById('reward-toast');
+  if(!t)return;
+  t.textContent=label;
+  t.classList.add('show');
+  triggerConfetti();
+  setTimeout(()=>t.classList.remove('show'),2600);
+}
+function checkFirstMissionComplete(input){
+  const tab=input.closest('.page');
+  if(!tab||tab.id!=='tab-1')return;
+  const all=tab.querySelectorAll('.interactive-input[data-ans]');
+  if(!all.length)return;
+  const allDone=Array.from(all).every(i=>i.dataset.qid&&isQuestionCompleted(i.dataset.qid));
+  if(allDone)grantOneTimeReward('mission1complete',25,'🎯 First Mission Complete! +25 XP');
+}
+
+/* ---------- 5b) EASY MODE SYSTEM ---------- */
+const DIFF_KEY='tensequest_difficulty_mode';
+let difficultyMode=localStorage.getItem(DIFF_KEY);
+function easyModeActive(){ return difficultyMode==='easy'; }
+function updateModeBadge(){
+  const b=document.getElementById('ns-mode-badge');
+  if(!b)return;
+  b.textContent=difficultyMode==='easy' ? '🟢 Easy Mode' : '🟡 Normal Mode';
+}
+window.openDifficultyOverlay=function(){document.getElementById('difficulty-overlay').classList.add('show');};
+window.chooseDifficulty=function(mode){
+  difficultyMode=mode;
+  localStorage.setItem(DIFF_KEY,mode);
+  document.getElementById('difficulty-overlay').classList.remove('show');
+  updateModeBadge();
+  if(mode==='easy'){ applyEasyModeToInputs(); insertWordBanksForFreeText(); }
+  else { removeEasyModeFromInputs(); removeWordBanksForFreeText(); }
+  if(!chosenAvatar) document.getElementById('avatar-overlay').classList.add('show');
+  saveState();
+};
+function buildMaskedAnswer(ans){
+  let revealed=false;
+  return ans.split('').map(ch=>{
+    if(/[A-Za-z]/.test(ch)){ if(!revealed){revealed=true;return ch;} return '_'; }
+    return ch;
+  }).join('');
+}
+function applyEasyModeToInputs(){
+  document.querySelectorAll('.interactive-input[data-ans]').forEach(input=>{
+    if(input.dataset.easyInit)return;
+    input.dataset.easyInit='1';
+    if(input.dataset.origPlaceholder===undefined) input.dataset.origPlaceholder=input.getAttribute('placeholder')||'';
+    const ans=input.getAttribute('data-ans')||'';
+    const masked=buildMaskedAnswer(ans);
+    const row=input.closest('.item-q')||input.parentElement;
+    const hintBtn=row?row.querySelector('.hint-btn'):null;
+    if(!row||!hintBtn||row.querySelector('.easy-letter-btn'))return;
+
+    const letterBtn=document.createElement('button');
+    letterBtn.type='button';letterBtn.className='hint-btn easy-letter-btn';
+    letterBtn.textContent='🔎 First Letter';
+    letterBtn.onclick=function(){input.setAttribute('placeholder',masked);this.disabled=true;};
+
+    const lenBtn=document.createElement('button');
+    lenBtn.type='button';lenBtn.className='hint-btn easy-len-btn';
+    lenBtn.textContent='📏 Word Length';
+    lenBtn.onclick=function(){
+      const letters=ans.replace(/[^A-Za-z]/g,'').length;
+      const box=row.querySelector('.hint-box');
+      if(box){box.style.display='block';box.textContent='📏 '+letters+' letters ('+letters+' حرف)';}
+      this.disabled=true;
+    };
+
+    const extraHintBtn=document.createElement('button');
+    extraHintBtn.type='button';extraHintBtn.className='hint-btn easy-extra-hint-btn';
+    extraHintBtn.textContent='🟢 Easy Hint';
+    extraHintBtn.onclick=function(){toggleHint(hintBtn);this.disabled=true;};
+
+    hintBtn.insertAdjacentElement('afterend',letterBtn);
+    letterBtn.insertAdjacentElement('afterend',lenBtn);
+    lenBtn.insertAdjacentElement('afterend',extraHintBtn);
+  });
+}
+function removeEasyModeFromInputs(){
+  document.querySelectorAll('.easy-letter-btn,.easy-len-btn,.easy-extra-hint-btn').forEach(b=>b.remove());
+  document.querySelectorAll('.interactive-input[data-easy-init]').forEach(input=>{
+    input.removeAttribute('data-easy-init');
+    input.setAttribute('placeholder',input.dataset.origPlaceholder||'');
+  });
+}
+function showEasyRetry(container,attemptsLeft){
+  if(!container)return;
+  let warn=container.querySelector(':scope > .easy-retry-note');
+  if(!warn){
+    warn=document.createElement('div');
+    warn.className='empty-warning easy-retry-note';
+    container.appendChild(warn);
+  }
+  const msgs=[
+    {en:"🟢 Great try! Give it another go — you've got this!",ar:"🟢 محاولة رائعة! جرّب مرة أخرى!"},
+    {en:"🟢 So close! One more try before the answer is revealed.",ar:"🟢 قريب جداً! محاولة أخيرة!"}
+  ];
+  const m=msgs[Math.max(0,Math.min(msgs.length-1,msgs.length-attemptsLeft))]||msgs[0];
+  warn.innerHTML=m.en+'<span>'+m.ar+'</span>';
+  warn.classList.add('visible');
+  clearTimeout(warn._hideTimer);
+  warn._hideTimer=setTimeout(()=>warn.classList.remove('visible'),3000);
+}
+function shuffleArr(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+// Word Bank helper — for free-text "full sentence" missions (Mission 1 & Mission 6), Easy Mode only.
+// Generated PER QUESTION from that question's own expected answer, shuffled.
+function insertWordBanksForFreeText(){
+  document.querySelectorAll('#tab-1 .interactive-input.wide[data-ans], #tab-3 .interactive-input.wide[data-ans]').forEach(input=>{
+    const row=input.closest('.item-q');
+    if(!row||row.querySelector('.easy-wb-box'))return;
+    const ans=input.getAttribute('data-ans')||'';
+    const words=shuffleArr(ans.replace(/[.,!?]/g,'').split(/\s+/).filter(Boolean));
+    const box=document.createElement('div');
+    box.className='easy-wb-box';
+    box.innerHTML='<strong>🟢 Word Bank / بنك الكلمات</strong>'
+      +'<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px">'
+      +words.map(w=>'<span class="wb-chip">'+w+'</span>').join('')
+      +'</div>';
+    row.appendChild(box);
+  });
+}
+function removeWordBanksForFreeText(){
+  document.querySelectorAll('.easy-wb-box').forEach(b=>b.remove());
+}
+
+/* ---------- 5c) PER-QUESTION COMPLETION LOCK (anti-XP-exploit) ---------- */
+let completedQuestions={};
+function isQuestionCompleted(qid){return !!(qid&&completedQuestions[qid]);}
+function markQuestionCompleted(qid){if(!qid)return;completedQuestions[qid]=true;saveState();}
+function clearQuestionCompleted(qid){if(qid)delete completedQuestions[qid];}
+function assignQIDs(){
+  document.querySelectorAll('.interactive-input[data-ans]').forEach((el,i)=>{if(!el.dataset.qid)el.dataset.qid='inp'+i;});
+  document.querySelectorAll('.mcq-item').forEach((el,i)=>{if(!el.dataset.qid)el.dataset.qid='mcq'+i;});
+  document.querySelectorAll('.dnd-container').forEach((el,i)=>{if(!el.dataset.qid)el.dataset.qid='dnd'+i;});
+}
+function showAlreadyCompleted(container){
+  if(!container)return;
+  let msg=container.querySelector(':scope > .already-done-note');
+  if(!msg){
+    msg=document.createElement('div');
+    msg.className='empty-warning already-done-note';
+    msg.innerHTML='✅ Already completed.<span dir="rtl">✅ تم إكمال هذا السؤال مسبقاً.</span>';
+    container.appendChild(msg);
+  }
+  msg.classList.add('visible');
+  clearTimeout(msg._hideTimer);
+  msg._hideTimer=setTimeout(()=>msg.classList.remove('visible'),2200);
+}
+function dndIsCorrect(container){
+  const dz=container.querySelector('.dnd-dropzone');
+  if(!dz)return false;
+  const expected=container.getAttribute('data-ans')||'';
+  const words=Array.from(dz.querySelectorAll('.dnd-word')).map(w=>w.textContent.trim()).join(' ');
+  return normalizeAnswer(words)===normalizeAnswer(expected);
+}
+
+/* ---------- 5d) SKILL CATEGORY TRACKING for Smart Report Insights ---------- */
+const SKILL_MAP={
+  ex1:'Simple Past (Fill in the Blanks)',
+  ex2:'Simple Past vs Past Progressive (Choice)',
+  ex3:'Past Progressive (Reorder Sentences)',
+  ex4:'Past Tenses (Error Correction)',
+  ex5:'Present Tenses (Read & Complete)',
+  ex6:'Simple Present (Complete about Yourself)',
+  ex7:'Simple Present vs Present Progressive (Choice)',
+  quiz:'Monster Challenge (Mixed Tenses)'
+};
+let categoryStats={};
+function getExIdFromRow(el){
+  const row=el.closest('.item-row')||el.closest('.scramble-row');
+  if(!row)return null;
+  const ans=row.querySelector('.item-ans[data-ex]');
+  return ans?ans.getAttribute('data-ex'):null;
+}
+function recordCategoryAttempt(exId,correct){
+  if(!exId)return;
+  const skill=SKILL_MAP[exId]||exId;
+  if(!categoryStats[skill])categoryStats[skill]={correct:0,attempts:0};
+  categoryStats[skill].attempts++;
+  if(correct)categoryStats[skill].correct++;
+}
+
+/* ---------- 6) FLEXIBLE ANSWER MATCHING ---------- */
+function normalizeAnswer(s){
+  return String(s||'')
+    .toLowerCase()
+    .replace(/[.,!?—]/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+function isEmptyAnswer(v){ return !v || String(v).replace(/[\s\t\n\r]+/g,'').length===0; }
+function showEmptyWarning(container){
+  if(!container)return;
+  let warn=container.querySelector(':scope > .empty-warning');
+  if(!warn){
+    warn=document.createElement('div');
+    warn.className='empty-warning';
+    warn.innerHTML='⚠️ Please write an answer first.<span>⚠️ اكتب إجابة أولاً قبل التحقق.</span>';
+    container.appendChild(warn);
+  }
+  warn.classList.add('visible');
+  clearTimeout(warn._hideTimer);
+  warn._hideTimer=setTimeout(()=>warn.classList.remove('visible'),3000);
+}
+
+/* ---------- WRAP EXISTING FUNCTIONS (no original bodies changed) ---------- */
+let suppressRewards=false;
+const _addXP=window.addXP;
+window.addXP=function(pts){
+  if(suppressRewards)return;
+  _addXP(pts);
+  if(pts>0){
+    checkLevelUp();
+    if(userXP>=100)unlockAchievement('xp100');
+  }
+  saveState();
+};
+
+const _incStreak=window.incStreak;
+window.incStreak=function(){
+  _incStreak();
+  totalAttempts++;totalCorrectAttempts++;
+  if(userStreak>maxStreak)maxStreak=userStreak;
+  unlockAchievement('first-correct');
+  if(userStreak>=5)unlockAchievement('streak5');
+  awardSpeedBonus();
+  saveState();
+};
+
+const _resetStreak=window.resetStreak;
+window.resetStreak=function(){
+  _resetStreak();
+  totalAttempts++;totalWrongAttempts++;
+  resetQuestionTimer();
+  saveState();
+};
+
+const _checkInput=window.checkInput;
+window.checkInput=function(btn){
+  const parent=btn.closest('.item-q,.scramble-words');
+  const input=parent?parent.querySelector('.interactive-input'):null;
+  const qid=input?input.dataset.qid:null;
+  if(qid&&isQuestionCompleted(qid)){ showAlreadyCompleted(parent); return; }
+  if(input&&isEmptyAnswer(input.value)){ showEmptyWarning(parent); return; }
+  if(easyModeActive()&&input){
+    const expected=normalizeAnswer(input.getAttribute('data-ans'));
+    const userAns=normalizeAnswer(input.value);
+    const attempts=parseInt(input.dataset.easyAttempts||'0',10);
+    if(userAns!==expected&&attempts<2){
+      input.dataset.easyAttempts=String(attempts+1);
+      showEasyRetry(parent,2-attempts);
+      return;
+    }
+  }
+  _checkInput(btn);
+  if(input)input.dataset.easyAttempts='0';
+  if(input){
+    const wasCorrect=input.classList.contains('is-correct');
+    const wasWrong=input.classList.contains('is-wrong');
+    if(wasCorrect||wasWrong)recordCategoryAttempt(getExIdFromRow(input),wasCorrect);
+    if(wasCorrect&&qid){ markQuestionCompleted(qid); checkFirstMissionComplete(input); }
+  }
+};
+
+const _selectMCQ=window.selectMCQ;
+window.selectMCQ=function(el,isCorrect,exId){
+  const block=el.closest('.mcq-item');
+  const qid=block?block.dataset.qid:null;
+  if(qid&&isQuestionCompleted(qid)){ showAlreadyCompleted(block); return; }
+  const prevBossTime=(exId==='quiz'&&typeof bossTimeLeft!=='undefined')?bossTimeLeft:null;
+  const prevMyHP=(exId==='quiz'&&typeof myHP!=='undefined')?myHP:null;
+  _selectMCQ(el,isCorrect,exId);
+  if(exId==='quiz'&&bossPracticeMode&&!isCorrect){
+    if(prevBossTime!==null){ bossTimeLeft=prevBossTime; const bt=document.getElementById('b-time');if(bt)bt.textContent='∞'; }
+    if(prevMyHP!==null){
+      myHP=prevMyHP;
+      const mb=document.getElementById('my-hp-bar');if(mb)mb.style.width=myHP+'%';
+      const mp=document.getElementById('my-hp-pct');if(mp)mp.textContent=myHP+'%';
+    }
+  }
+  if(isCorrect&&qid)markQuestionCompleted(qid);
+  recordCategoryAttempt(exId,isCorrect);
+  if(exId==='quiz'){
+    const wrap=el.closest('.ex-card')||document.body;
+    wrap.classList.add('screen-shake');setTimeout(()=>wrap.classList.remove('screen-shake'),350);
+    showDamageFloat(isCorrect);
+    if(isCorrect)checkBossPhaseProgress();
+    if(typeof bossHP!=='undefined'&&bossHP<=0){
+      bossResult='Victory 🏆';
+      unlockAchievement('boss-defeat');
+      grantOneTimeReward('bossVictory',100,'👾 Final Boss Defeated! +100 XP');
+      saveState();
+    }
+  }
+};
+
+const _checkDND=window.checkDND;
+window.checkDND=function(btn){
+  const sw=btn.closest('.scramble-words');
+  const c=sw?sw.querySelector('.dnd-container'):null;
+  const qid=c?c.dataset.qid:null;
+  if(qid&&isQuestionCompleted(qid)){ showAlreadyCompleted(sw); return; }
+  const dzWords=c?Array.from(c.querySelectorAll('.dnd-word')).map(w=>w.textContent.trim()).join(' '):'';
+  if(isEmptyAnswer(dzWords)){ showEmptyWarning(sw); return; }
+  _checkDND(btn);
+  const wasCorrect=c?dndIsCorrect(c):false;
+  if(c)recordCategoryAttempt(getExIdFromRow(c),wasCorrect);
+  if(qid&&wasCorrect)markQuestionCompleted(qid);
+  saveState();
+};
+
+const _revealOne=window.revealOne;
+window.revealOne=function(exId,btn){
+  const prevCompletedTotal=completedTotal;
+  suppressRewards=true;
+  try{ _revealOne(exId,btn); } finally { suppressRewards=false; }
+  if(completedTotal!==prevCompletedTotal){
+    completedTotal=prevCompletedTotal;
+    updateProgressBar();
+  }
+  saveState();
+};
+
+const _resetEx=window.resetEx;
+window.resetEx=function(exId){
+  _resetEx(exId);
+  document.querySelectorAll('.interactive-input').forEach(inp=>{inp.dataset.easyAttempts='0';});
+  document.querySelectorAll('.easy-letter-btn,.easy-len-btn,.easy-extra-hint-btn').forEach(b=>{b.disabled=false;});
+  document.querySelectorAll('[data-ex="'+exId+'"]').forEach(marker=>{
+    const row=marker.closest('.item-row')||marker.closest('.scramble-row');
+    const block=marker.closest('.mcq-item');
+    const targets=[];
+    if(block)targets.push(block);
+    if(row)row.querySelectorAll('.dnd-container').forEach(t=>targets.push(t));
+    if(row){ const inp=row.querySelector('.interactive-input'); if(inp)targets.push(inp); }
+    targets.forEach(t=>{
+      const qidHolder=t.dataset&&t.dataset.qid?t:null;
+      const qid=qidHolder?qidHolder.dataset.qid:null;
+      if(qid&&isQuestionCompleted(qid))showAlreadyCompleted(t.closest('.item-row')||t.closest('.scramble-row')||t);
+    });
+  });
+  saveState();
+};
+
+const _showTab=window.showTab;
+window.showTab=function(n){
+  _showTab(n);
+  const bossHud=document.getElementById('boss-hud-fixed');
+  if(bossHud){
+    if(n===4&&typeof bossStarted!=='undefined'&&bossStarted){ bossHud.classList.add('active'); }
+    else{ bossHud.classList.remove('active'); }
+  }
+  resetQuestionTimer();
+  checkAllGrammarSeen(n);
+  lastTab=n;
+  saveState();
+};
+
+/* Grammar tabs = index 0, 3, 6 (Grammar 1/2/3) */
+let grammarSeen={0:false,2:false};
+function checkAllGrammarSeen(n){
+  if(n===0||n===2)grammarSeen[n]=true;
+  if(grammarSeen[0]&&grammarSeen[2]){
+    unlockAchievement('all-grammar');
+    grantOneTimeReward('grammarComplete',50,'📘 Grammar Completion! +50 XP');
+  }
+  if(n===1)unlockAchievement('mission1');
+}
+
+function showDamageFloat(isCorrect){
+  const el=document.createElement('div');
+  el.className='dmg-float';
+  el.textContent=isCorrect?'-1 HP 💥':'-10s ⏱️';
+  el.style.color=isCorrect?'#22c55e':'#ef4444';
+  el.style.left=(40+Math.random()*40)+'vw';
+  el.style.top=(30+Math.random()*10)+'vh';
+  document.body.appendChild(el);
+  if(el.animate){
+    el.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(-50px)',opacity:0}],{duration:800,easing:'ease-out'}).onfinish=()=>el.remove();
+  }else{ setTimeout(()=>el.remove(),800); }
+}
+
+/* ---------- 7) TRUE MULTI-PHASE BOSS + OPTIONAL TIMER ---------- */
+const BOSS_PHASES=[
+  {name:'Simple Past',                   nameAr:'الماضي البسيط',       color:'linear-gradient(90deg,#0F766E,#16A34A)'},
+  {name:'Past Progressive',              nameAr:'الماضي المستمر',      color:'linear-gradient(90deg,#2563EB,#7C3AED)'},
+  {name:'Simple Present',                nameAr:'المضارع البسيط',      color:'linear-gradient(90deg,#7C3AED,#DC2E5D)'},
+  {name:'Present Progressive',           nameAr:'المضارع المستمر',     color:'linear-gradient(90deg,#DC2E5D,#F59E0B)'},
+  {name:'Mixed Final Battle',            nameAr:'المعركة الأخيرة المختلطة', color:'linear-gradient(90deg,#F59E0B,#EF4444)'}
+];
+const BOSS_PHASE_OF_INDEX=[0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4];
+let bossPhaseIdx=0;
+let bossPhaseBlocks=[];
+let bossPracticeMode=false;
+
+window.openBossModeSelector=function(){document.getElementById('boss-mode-overlay').classList.add('show');};
+window.startBossWithMode=function(mode){
+  bossPracticeMode=(mode==='practice');
+  document.getElementById('boss-mode-overlay').classList.remove('show');
+  if(bossPracticeMode){ startBossPractice(); } else { startBossBattle(); }
+};
+function startBossPractice(){
+  if(bossStarted)return;
+  bossStarted=true;
+  document.getElementById('boss-start-overlay').style.display='none';
+  document.getElementById('boss-hud-fixed').classList.add('active');
+  const timeEl=document.getElementById('b-time');
+  if(timeEl)timeEl.textContent='∞';
+  const timerWrap=document.getElementById('boss-timer-fixed');
+  if(timerWrap){timerWrap.innerHTML='🎯 Practice Mode';timerWrap.classList.remove('hurry');}
+}
+function setupBossPhases(){
+  const body=document.querySelector('#tab-4 .ex-body');
+  if(!body||body.dataset.phasesInit)return;
+  body.dataset.phasesInit='1';
+  const blocks=Array.from(body.querySelectorAll('.mcq-item'));
+  bossPhaseBlocks=BOSS_PHASES.map(()=>[]);
+  blocks.forEach((block,i)=>{
+    const p=BOSS_PHASE_OF_INDEX[i]!==undefined?BOSS_PHASE_OF_INDEX[i]:0;
+    bossPhaseBlocks[p].push(block);
+  });
+  bossPhaseBlocks.forEach((group,p)=>{
+    if(!group.length)return;
+    const banner=document.createElement('div');
+    banner.className='phase-banner phase-banner-'+p;
+    banner.style.background=BOSS_PHASES[p].color;
+    banner.textContent='⚔️ Phase '+(p+1)+' / '+BOSS_PHASES.length+' — '+BOSS_PHASES[p].name+' ('+BOSS_PHASES[p].nameAr+')';
+    banner.style.display=p===0?'':'none';
+    group[0].parentNode.insertBefore(banner,group[0]);
+    group.forEach(b=>{ b.style.display=p===0?'':'none'; });
+  });
+  updateBossHPColor(0);
+}
+function updateBossHPColor(p){
+  const bar=document.getElementById('boss-hp-bar');
+  if(bar&&BOSS_PHASES[p])bar.style.background=BOSS_PHASES[p].color;
+}
+function checkBossPhaseProgress(){
+  const group=bossPhaseBlocks[bossPhaseIdx];
+  if(!group||!group.length)return;
+  const allDone=group.every(b=>b.dataset.qid&&isQuestionCompleted(b.dataset.qid));
+  if(allDone)advanceBossPhase();
+}
+function advanceBossPhase(){
+  const finishedIdx=bossPhaseIdx;
+  showPhaseClearedBanner(finishedIdx);
+  bossPhaseIdx++;
+  saveState();
+  if(bossPhaseIdx>=BOSS_PHASES.length)return;
+  setTimeout(()=>{
+    bossPhaseBlocks[finishedIdx].forEach(b=>b.style.display='none');
+    const oldBanner=document.querySelector('.phase-banner-'+finishedIdx);
+    if(oldBanner)oldBanner.style.display='none';
+    const nextGroup=bossPhaseBlocks[bossPhaseIdx];
+    if(nextGroup&&nextGroup.length){
+      nextGroup.forEach(b=>b.style.display='');
+      const nb=document.querySelector('.phase-banner-'+bossPhaseIdx);
+      if(nb){nb.style.display='';nb.classList.add('phase-enter');setTimeout(()=>nb.classList.remove('phase-enter'),700);}
+    }
+    updateBossHPColor(bossPhaseIdx);
+  },1200);
+}
+function showPhaseClearedBanner(idx){
+  const toast=document.createElement('div');
+  toast.className='phase-cleared-toast';
+  toast.textContent='⚔️ Phase '+(idx+1)+' Cleared!';
+  document.body.appendChild(toast);
+  triggerConfetti();
+  playSound('correct');
+  setTimeout(()=>toast.remove(),1400);
+}
+function restoreBossPhaseVisibility(){
+  if(!bossPhaseBlocks.length)return;
+  bossPhaseBlocks.forEach((group,p)=>{
+    const banner=document.querySelector('.phase-banner-'+p);
+    const visible=p===bossPhaseIdx;
+    group.forEach(b=>{b.style.display=visible?'':'none';});
+    if(banner)banner.style.display=visible?'':'none';
+  });
+  updateBossHPColor(bossPhaseIdx);
+}
+function recomputeBossStateFromCompletion(){
+  if(!bossPhaseBlocks.length)return;
+  let doneCount=0;
+  bossPhaseIdx=0;
+  bossPhaseBlocks.forEach((group,p)=>{
+    const allDone=group.length>0&&group.every(b=>b.dataset.qid&&isQuestionCompleted(b.dataset.qid));
+    group.forEach(b=>{ if(b.dataset.qid&&isQuestionCompleted(b.dataset.qid))doneCount++; });
+    if(allDone)bossPhaseIdx=p+1;
+  });
+  bossPhaseIdx=Math.min(BOSS_PHASES.length-1,bossPhaseIdx);
+  if(typeof bossHP!=='undefined'){
+    bossHP=Math.max(0,10-doneCount);
+    const bar=document.getElementById('boss-hp-bar');
+    const pctEl=document.getElementById('boss-hp-pct');
+    const pct=Math.max(0,(bossHP/10)*100);
+    if(bar)bar.style.width=pct+'%';
+    if(pctEl)pctEl.textContent=Math.round(pct)+'%';
+  }
+}
+function paintCompletedBossBlocks(){
+  document.querySelectorAll('#tab-4 .mcq-item').forEach(b=>{
+    if(b.dataset.qid&&isQuestionCompleted(b.dataset.qid))b.classList.add('already-solved');
+  });
+}
+const _retryBoss=window.retryBoss;
+window.retryBoss=function(){
+  _retryBoss();
+  bossResult='Retrying';
+  recomputeBossStateFromCompletion();
+  paintCompletedBossBlocks();
+  restoreBossPhaseVisibility();
+  saveState();
+};
+
+let lastTab=0;
+
+/* ---------- 9) END-OF-LESSON REPORT + SMART INSIGHTS ---------- */
+function computeSkillInsights(){
+  const entries=Object.entries(categoryStats)
+    .filter(([,v])=>v&&v.attempts>=2)
+    .map(([name,v])=>({name,acc:v.correct/v.attempts}));
+  if(!entries.length)return {strongest:'Not enough data yet',weakest:'Not enough data yet'};
+  entries.sort((a,b)=>b.acc-a.acc);
+  const strongest=entries[0],weakest=entries[entries.length-1];
+  const fmt=e=>e.name+' ('+Math.round(e.acc*100)+'%)';
+  return {
+    strongest:fmt(strongest),
+    weakest:(entries.length>1&&weakest.acc<strongest.acc)?fmt(weakest):'Keep practicing more categories to see this!'
+  };
+}
+window.openReport=function(){
+  const accuracy=totalAttempts?Math.round((totalCorrectAttempts/totalAttempts)*100):0;
+  const mins=Math.floor((Date.now()-lessonStartTime)/60000);
+  const secs=Math.floor(((Date.now()-lessonStartTime)%60000)/1000);
+  let grade='C',emoji='🙂';
+  if(accuracy>=95){grade='A+';emoji='🌟';}
+  else if(accuracy>=85){grade='A';emoji='🎉';}
+  else if(accuracy>=70){grade='B';emoji='👍';}
+  document.getElementById('report-grade-emoji').textContent=emoji+' '+grade;
+  const achCount=Object.keys(unlocked).length;
+  const bossPhasesDone=Math.min(BOSS_PHASES.length,bossPhaseIdx);
+  const completionPct=typeof totalInteractiveItems!=='undefined'&&totalInteractiveItems
+    ?Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100)):0;
+  const insights=computeSkillInsights();
+  document.getElementById('report-grid').innerHTML=[
+    ['Student',studentName||'—'],
+    ['Avatar',chosenAvatar||'—'],
+    ['Total XP',userXP],
+    ['Rank',LEVELS[currentLevelIdx].name],
+    ['Level',(currentLevelIdx+1)],
+    ['Accuracy',accuracy+'%'],
+    ['Correct Answers',totalCorrectAttempts],
+    ['Wrong Answers',totalWrongAttempts],
+    ['Total Attempts',totalAttempts],
+    ['Achievements',achCount+' / '+ACHIEVEMENTS.length],
+    ['Boss Completion',bossPhasesDone+' / '+BOSS_PHASES.length+' phases'],
+    ['Best Streak',maxStreak],
+    ['Time Spent',mins+'m '+secs+'s'],
+    ['Date',formatDate()],
+    ['Completion',completionPct+'%'],
+    ['✅ Strongest Skill',insights.strongest],
+    ['⚠ Needs More Practice',insights.weakest],
+    ['Grade',grade]
+  ].map(([l,v])=>'<div class="report-stat"><div class="lbl">'+l+'</div><div class="val">'+v+'</div></div>').join('');
+  document.getElementById('report-overlay').classList.add('show');
+};
+window.closeReport=function(){document.getElementById('report-overlay').classList.remove('show');};
+
+/* ---------- 10) CERTIFICATE GENERATOR (Canvas → PNG) — adds to, does not replace, the existing print certificate ---------- */
+window.downloadCertificatePng=function(){
+  try{
+    const c=document.getElementById('cert-canvas');
+    if(!c){ alert('Certificate canvas not found — please reload the page and try again.'); return; }
+    const ctx=c.getContext('2d');
+    if(!ctx){ alert('Your browser blocked canvas rendering. Please try a different browser, then try again.'); return; }
+    const grad=ctx.createLinearGradient(0,0,1000,700);
+    grad.addColorStop(0,'#1e1b4b');grad.addColorStop(1,'#4c1d95');
+    ctx.fillStyle=grad;ctx.fillRect(0,0,1000,700);
+    ctx.strokeStyle='#F59E0B';ctx.lineWidth=8;ctx.strokeRect(20,20,960,660);
+    ctx.strokeStyle='rgba(255,255,255,.4)';ctx.lineWidth=2;ctx.strokeRect(36,36,928,628);
+    ctx.textAlign='center';
+    ctx.font='90px sans-serif';ctx.fillStyle='#fff';ctx.fillText(chosenAvatar||'🎮',500,170);
+    ctx.font='900 40px Georgia, serif';ctx.fillStyle='#F59E0B';ctx.fillText('CERTIFICATE OF ACHIEVEMENT',500,235);
+    ctx.font='22px sans-serif';ctx.fillStyle='#c4b5fd';ctx.fillText('Grammar Time Quest — Past & Present Tenses',500,270);
+    ctx.font='800 36px sans-serif';ctx.fillStyle='#fff';
+    const certNameInput=document.getElementById('student-name');
+    ctx.fillText((certNameInput&&certNameInput.value.trim())||studentName||'Student',500,335);
+    ctx.font='800 26px sans-serif';ctx.fillStyle='#e2e8f0';
+    const accuracy=totalAttempts?Math.round((totalCorrectAttempts/totalAttempts)*100):0;
+    const completionPct=(typeof totalInteractiveItems!=='undefined'&&totalInteractiveItems)?Math.min(100,Math.round((completedTotal/totalInteractiveItems)*100)):0;
+    ctx.fillText('Score: '+userXP+' XP   |   Level '+(currentLevelIdx+1)+' — '+LEVELS[currentLevelIdx].name,500,390);
+    ctx.fillText('Accuracy: '+accuracy+'%   |   Completion: '+completionPct+'%',500,430);
+    ctx.font='22px sans-serif';ctx.fillStyle='#c4b5fd';
+    ctx.fillText('Awarded on '+formatDate(),500,500);
+    ctx.font='700 26px sans-serif';ctx.fillStyle='#F59E0B';
+    ctx.fillText('— Teacher Jaber —',500,600);
+    const dataUrl=c.toDataURL('image/png');
+    if(!dataUrl||dataUrl==='data:,'){ alert('Could not generate the certificate image. Please try again.'); return; }
+    const link=document.createElement('a');
+    link.download='Grammar-Time-Quest-Certificate.png';
+    link.href=dataUrl;
+    link.style.display='none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }catch(err){
+    console.error('Certificate generation failed:',err);
+    alert('Something went wrong generating the certificate: '+err.message);
+  }
+};
+
+/* ---------- 11) SAVE SYSTEM (localStorage, hardened) ---------- */
+const SAVE_KEY='tensequest_save_v1';
+function safePlainObject(v){ return (v&&typeof v==='object'&&!Array.isArray(v))?v:{}; }
+function safeNumber(v,fallback){ return (typeof v==='number'&&isFinite(v))?v:fallback; }
+function saveState(){
+  try{
+    localStorage.setItem(SAVE_KEY,JSON.stringify({
+      userXP,userStreak,completedTotal,currentLevelIdx,unlocked,chosenAvatar,
+      totalAttempts,totalCorrectAttempts,totalWrongAttempts,maxStreak,bossResult,state,grammarSeen,
+      completedQuestions,bossPhaseIdx,rewardsGranted,lastTab,categoryStats
+    }));
+  }catch(e){ console.warn('Could not save progress:',e); }
+}
+function loadState(){
+  try{
+    const raw=localStorage.getItem(SAVE_KEY);
+    if(!raw)return false;
+    let d;
+    try{ d=JSON.parse(raw); }
+    catch(parseErr){ console.warn('Saved progress was corrupted — starting fresh.',parseErr); return false; }
+    if(!d||typeof d!=='object'){ console.warn('Saved progress had an unexpected shape — starting fresh.'); return false; }
+    userXP=safeNumber(d.userXP,0);userStreak=safeNumber(d.userStreak,0);completedTotal=safeNumber(d.completedTotal,0);
+    currentLevelIdx=safeNumber(d.currentLevelIdx,0);unlocked=safePlainObject(d.unlocked);chosenAvatar=(typeof d.chosenAvatar==='string')?d.chosenAvatar:null;
+    totalAttempts=safeNumber(d.totalAttempts,0);totalCorrectAttempts=safeNumber(d.totalCorrectAttempts,0);totalWrongAttempts=safeNumber(d.totalWrongAttempts,0);maxStreak=safeNumber(d.maxStreak,0);
+    bossResult=(typeof d.bossResult==='string')?d.bossResult:'Not Attempted';
+    Object.assign(state,safePlainObject(d.state));
+    grammarSeen=Object.assign({0:false,2:false},safePlainObject(d.grammarSeen));
+    completedQuestions=safePlainObject(d.completedQuestions);
+    rewardsGranted=safePlainObject(d.rewardsGranted);
+    categoryStats=safePlainObject(d.categoryStats);
+    lastTab=Math.min(4,Math.max(0,Math.round(safeNumber(d.lastTab,0))));
+    bossPhaseIdx=Math.min(BOSS_PHASES.length-1,Math.max(0,Math.round(safeNumber(d.bossPhaseIdx,0))));
+    document.getElementById('xp-val').textContent=userXP;
+    document.getElementById('streak-val').textContent=userStreak;
+    updateProgressBar();
+    updateLevelBadge();
+    return true;
+  }catch(e){ console.warn('Could not restore saved progress:',e); return false; }
+}
+
+/* ---------- 12) RESET PROGRESS ---------- */
+window.confirmResetProgress = function() {
+  const modal = document.getElementById('reset-confirm-modal');
+  if (modal) {
+    modal.classList.add('show');
+  } else {
+    // Fallback if modal is missing
+    executeResetProgress();
+  }
+};
+
+window.closeResetModal = function() {
+  const modal = document.getElementById('reset-confirm-modal');
+  if (modal) {
+    modal.classList.remove('show');
+  }
+};
+
+window.executeResetProgress = function() {
+  try {
+    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(DIFF_KEY);
+    localStorage.removeItem(NAME_KEY);
+  } catch (e) {
+    console.error('Could not clear localStorage:', e);
+  }
+  location.reload();
+};
+/* ---------- 13) DEFENSIVE MCQ/BOSS AUDIT ---------- */
+function auditAllQuestions(){
+  document.querySelectorAll('.mcq-opt,.story-mcq-opt').forEach(opt=>{
+    if(!opt.textContent.trim()){
+      console.warn('MCQ option with blank text detected and repaired:',opt);
+      opt.textContent='(missing option)';
+      opt.style.opacity='.5';
+      opt.onclick=null;
+    }
+  });
+}
+
+/* ---------- INIT ---------- */
+function initApp(){
+  try{
+    assignQIDs();
+    const restored=loadState();
+    const restoredLastTab=lastTab;
+    renderAchPanel();
+    setupBossPhases();
+    auditAllQuestions();
+    recomputeBossStateFromCompletion();
+    paintCompletedBossBlocks();
+    restoreBossPhaseVisibility();
+    updateModeBadge();
+    updateNameDisplays();
+    if(easyModeActive()){applyEasyModeToInputs();insertWordBanksForFreeText();}
+    if(chosenAvatar){
+      document.querySelectorAll('.avatar-opt').forEach(o=>{if(o.getAttribute('data-av')===chosenAvatar)o.classList.add('picked');});
+      updateAvatarChip();
+    }
+    if(!studentName){
+      document.getElementById('name-overlay').classList.add('show');
+    } else if(!difficultyMode){
+      document.getElementById('difficulty-overlay').classList.add('show');
+    } else if(!chosenAvatar){
+      document.getElementById('avatar-overlay').classList.add('show');
+    } else if(restored){
+      showTab(restoredLastTab);
+    }
+    updateLevelBadge();
+    resetQuestionTimer();
+    // Route the boss start button through the mode selector (Timed/Practice) instead of
+    // starting the timer directly — small, targeted patch to the existing button only.
+    const startBtn=document.querySelector('#boss-start-overlay .boss-start-btn');
+    if(startBtn)startBtn.setAttribute('onclick','openBossModeSelector()');
+  }catch(err){
+    console.error('Lesson initialization error:',err);
+  }
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initApp);
+}else{
+  initApp();
+}
+
+})();
+</script>
+<div id="gameover-modal" style="display:none;position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.75);align-items:center;justify-content:center;backdrop-filter:blur(4px);">
+  <div style="background:linear-gradient(135deg,#1e1b4b,#4c1d95);border:3px solid #DC2E5D;border-radius:20px;padding:36px 32px;max-width:420px;width:90%;text-align:center;box-shadow:0 0 60px rgba(220,46,93,.5);animation:shake .4s ease;">
+    <div style="font-size:4rem;margin-bottom:8px;">💀</div>
+    <h2 style="color:#ef4444;font-size:1.8rem;margin:0 0 6px;font-family:'Segoe UI',sans-serif;letter-spacing:1px;">GAME OVER</h2>
+    <p style="color:#fde68a;font-size:1.1rem;margin:0 0 6px;font-weight:700;">الوحش انتصر هذه المرة!</p>
+    <p style="color:#c4b5fd;font-size:.95rem;margin:0 0 24px;line-height:1.6;">نفد الوقت قبل إكمال التحدي.<br>راجع القواعد وأعد المحاولة — أنت أقوى من الوحش! 💪</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button onclick="retryBoss()" style="background:linear-gradient(135deg,#DC2E5D,#7C3AED);color:white;border:none;border-radius:12px;padding:12px 28px;font-size:1rem;font-weight:900;cursor:pointer;box-shadow:0 4px 15px rgba(220,46,93,.4);transition:.2s;" onmouseover="this.style.filter='brightness(1.15)'" onmouseout="this.style.filter=''">🔄 أعد المحاولة</button>
+      <button onclick="closeGameOver()" style="background:rgba(255,255,255,.1);color:#e2e8f0;border:2px solid rgba(255,255,255,.2);border-radius:12px;padding:12px 24px;font-size:1rem;font-weight:700;cursor:pointer;transition:.2s;" onmouseover="this.style.background='rgba(255,255,255,.2)'" onmouseout="this.style.background='rgba(255,255,255,.1)'">📖 مراجعة الدروس</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
