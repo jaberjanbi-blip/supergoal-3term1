@@ -3508,13 +3508,27 @@ window.executeResetSpeakingProgress = function(){
     }
   }
 
-  function updateHighlight(){
-    if(!boundaries) return;
-    const t = mainAudioEl.currentTime;
-    let idx = boundaries.findIndex(b => t >= b.start && t < b.end);
-    if(idx === -1 && t >= mainAudioEl.duration - 0.05) idx = boundaries.length - 1;
-    highlightIndex(idx);
+ let animFrameId = null;
+
+function updateHighlight(){
+  if(!boundaries || !mainAudioEl) return;
+  const t = mainAudioEl.currentTime;
+  let idx = boundaries.findIndex(b => t >= b.start && t < b.end);
+  if(idx === -1 && t >= mainAudioEl.duration - 0.05) idx = boundaries.length - 1;
+  highlightIndex(idx);
+
+  // تحديث مستمر فائق السرعة طالما الصوت يعمل
+  if (!mainAudioEl.paused && !mainAudioEl.ended) {
+    animFrameId = requestAnimationFrame(updateHighlight);
   }
+}
+
+// تشغيل الفحص اللحظي عند بدء الصوت وإيقافه عند الإيقاف المؤقت
+mainAudioEl.addEventListener('play', () => {
+  cancelAnimationFrame(animFrameId);
+  updateHighlight();
+});
+mainAudioEl.addEventListener('pause', () => cancelAnimationFrame(animFrameId));
 
   mainAudioEl.addEventListener('loadedmetadata', rebuildBoundaries);
   if(mainAudioEl.readyState >= 1 && mainAudioEl.duration && isFinite(mainAudioEl.duration)) rebuildBoundaries();
