@@ -3508,7 +3508,7 @@ window.executeResetSpeakingProgress = function(){
 
   function updateHighlight(){
     if(!boundaries) return;
-    const t = mainAudioEl.currentTime;
+    const t = mainAudioEl.currentTime + 0.35;
     let idx = boundaries.findIndex(b => t >= b.start && t < b.end);
     if(idx === -1 && t >= mainAudioEl.duration - 0.05) idx = boundaries.length - 1;
     highlightIndex(idx);
