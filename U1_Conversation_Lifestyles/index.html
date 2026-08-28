@@ -3453,35 +3453,15 @@ window.executeResetSpeakingProgress = function(){
   const sentenceEls = Array.from(document.querySelectorAll('.conv-body .sentence, .ending-body .readalong-line'));
   if(!mainAudioEl || !sentenceEls.length) return;
 
-  const SYNC_KEY = 'readAlongSync_u1'; // must match the key used during calibration
+  // ── HARD-CODED TIMESTAMPS ──────────────────────────────────────────────────
+  // These were extracted directly from the audio file (audio11.mp3, 57.25s)
+  // using speech-segment detection. They are baked in so the sync works on
+  // every browser, device, and GitHub Pages — no localStorage needed.
+  const manualStarts = [0,2.960767,6.196758,8.849529,11.122868,13.765761,15.741571,18.287457,19.507647,22.614777,26.833698,30.865681,43.216276,50.820141];
+  // ──────────────────────────────────────────────────────────────────────────
 
-  // Word count per sentence -> proportional time window fallback (only used
-  // if no saved calibration is found for this browser/device).
-  const wordCounts = sentenceEls.map(el => (el.textContent.trim().split(/\s+/).filter(Boolean).length) || 1);
-  const totalWords = wordCounts.reduce((a,b)=>a+b, 0) || 1;
   let boundaries = null; // [{start,end}] in seconds, built once duration is known
   let currentHighlighted = null;
-  const manualStarts = loadManualSync(); // real tapped start times, or null
-
-  function loadManualSync(){
-    try{
-      const raw = localStorage.getItem(SYNC_KEY);
-      if(!raw) return null;
-      const arr = JSON.parse(raw);
-      if(Array.isArray(arr) && arr.length === sentenceEls.length) return arr;
-    }catch(e){}
-    return null;
-  }
-
-  function buildProportionalBoundaries(duration){
-    let cumWords = 0;
-    return wordCounts.map(wc => {
-      const start = (cumWords/totalWords) * duration;
-      cumWords += wc;
-      const end = (cumWords/totalWords) * duration;
-      return { start, end };
-    });
-  }
 
   function buildBoundariesFromStarts(starts, duration){
     return starts.map((s, i) => ({ start: s, end: i < starts.length-1 ? starts[i+1] : duration }));
@@ -3490,9 +3470,7 @@ window.executeResetSpeakingProgress = function(){
   function rebuildBoundaries(){
     const duration = mainAudioEl.duration;
     if(!duration || !isFinite(duration)) return;
-    boundaries = manualStarts
-      ? buildBoundariesFromStarts(manualStarts, duration)
-      : buildProportionalBoundaries(duration);
+    boundaries = buildBoundariesFromStarts(manualStarts, duration);
   }
 
   function clearHighlight(){
@@ -3508,27 +3486,13 @@ window.executeResetSpeakingProgress = function(){
     }
   }
 
- let animFrameId = null;
-
-function updateHighlight(){
-  if(!boundaries || !mainAudioEl) return;
-  const t = mainAudioEl.currentTime;
-  let idx = boundaries.findIndex(b => t >= b.start && t < b.end);
-  if(idx === -1 && t >= mainAudioEl.duration - 0.05) idx = boundaries.length - 1;
-  highlightIndex(idx);
-
-  // تحديث مستمر فائق السرعة طالما الصوت يعمل
-  if (!mainAudioEl.paused && !mainAudioEl.ended) {
-    animFrameId = requestAnimationFrame(updateHighlight);
+  function updateHighlight(){
+    if(!boundaries) return;
+    const t = mainAudioEl.currentTime;
+    let idx = boundaries.findIndex(b => t >= b.start && t < b.end);
+    if(idx === -1 && t >= mainAudioEl.duration - 0.05) idx = boundaries.length - 1;
+    highlightIndex(idx);
   }
-}
-
-// تشغيل الفحص اللحظي عند بدء الصوت وإيقافه عند الإيقاف المؤقت
-mainAudioEl.addEventListener('play', () => {
-  cancelAnimationFrame(animFrameId);
-  updateHighlight();
-});
-mainAudioEl.addEventListener('pause', () => cancelAnimationFrame(animFrameId));
 
   mainAudioEl.addEventListener('loadedmetadata', rebuildBoundaries);
   if(mainAudioEl.readyState >= 1 && mainAudioEl.duration && isFinite(mainAudioEl.duration)) rebuildBoundaries();
