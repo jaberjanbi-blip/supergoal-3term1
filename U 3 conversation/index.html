@@ -2981,8 +2981,21 @@ window.executeResetSpeakingProgress = function(){
     }
 
     function buildBoundariesFromStarts(starts, duration){
+      /* Use the gap between the last two sentences as a natural
+         estimate for the final sentence's length — this avoids
+         relying on the server-reported duration, which can differ
+         from the local value and push the last few highlights out
+         of sync on GitHub Pages or any HTTP server. */
+      var lastSentenceEstimate = starts.length >= 2
+        ? (starts[starts.length-1] - starts[starts.length-2])
+        : 4;
+      /* Never let the last boundary exceed the real duration */
+      var lastEnd = Math.min(
+        starts[starts.length-1] + lastSentenceEstimate,
+        duration
+      );
       return starts.map(function(s, i){
-        return { start: s, end: i < starts.length-1 ? starts[i+1] : duration };
+        return { start: s, end: i < starts.length-1 ? starts[i+1] : lastEnd };
       });
     }
 
