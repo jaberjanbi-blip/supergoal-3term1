@@ -390,6 +390,20 @@ body.dark-mode .teacher-stat-row .v { color:var(--gold); }
 .role-end-box { text-align:center; }
 .role-end-box .big-score { font-size:2rem; font-weight:800; color:var(--purple); margin:6px 0; }
 
+/* ── FIX SYNC TOOL ── */
+#fixSyncPanel{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(15,5,35,.97);border-top:3px solid #7C3AED;padding:12px 16px;font-family:'Segoe UI',sans-serif;}
+#fixSyncPanel.open{display:block;}
+.fsync-title{font-size:.82rem;font-weight:800;color:#c4b5fd;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
+.fsync-title span{font-size:.7rem;color:#9CA3AF;direction:rtl;}
+.fsync-progress{font-size:.78rem;color:#e2e8f0;margin-bottom:8px;min-height:2.2em;line-height:1.5;}
+.fsync-progress strong{color:#F59E0B;}
+.fsync-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.fsync-tap{background:linear-gradient(135deg,#7C3AED,#DC2E5D);color:#fff;border:none;border-radius:22px;padding:9px 22px;font-size:.85rem;font-weight:800;cursor:pointer;font-family:inherit;}
+.fsync-tap:active{opacity:.8;}
+.fsync-cancel{background:rgba(255,255,255,.1);color:#e2e8f0;border:1.5px solid rgba(255,255,255,.2);border-radius:22px;padding:9px 16px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.fsync-save{background:linear-gradient(135deg,#16A34A,#0F766E);color:#fff;border:none;border-radius:22px;padding:9px 22px;font-size:.85rem;font-weight:800;cursor:pointer;font-family:inherit;display:none;}
+#fixSyncBtn{background:#F5F3FF;border:1.5px solid #7C3AED;color:#7C3AED;border-radius:20px;padding:5px 13px;font-family:inherit;font-size:.73rem;font-weight:700;cursor:pointer;}
+#fixSyncBtn:hover{background:#7C3AED;color:#fff;}
 /* ── READ-ALONG HIGHLIGHT (syncs to the conversation audio player) ── */
 .readalong-line { border-radius:4px; padding:1px 3px; transition:background .18s; }
 .sentence.reading-highlight, .readalong-line.reading-highlight {
@@ -505,6 +519,7 @@ body.dark-mode .speak-profile-name{color:var(--gold);}
       <button class="ctrl-btn" id="spd75" onclick="setSpeed(0.75)">&#x1F422; 0.75&times;</button>
       <button class="ctrl-btn spd-active" id="spd100" onclick="setSpeed(1)">&#x1F50A; 1&times;</button>
       <button class="ctrl-btn" id="spd125" onclick="setSpeed(1.25)">&#x1F680; 1.25&times;</button>
+      <button id="fixSyncBtn" onclick="fixSyncOpen()">&#x1F3AF; Fix Sync</button>
     </div>
     <div class="audio-status" id="audioStatus">&#x23F3; Loading audio&hellip;</div>
     <div class="audio-error" id="audioError">&#x26A0;&#xFE0F; Could not play audio. Try refreshing.</div>
@@ -2984,14 +2999,13 @@ window.executeResetSpeakingProgress = function(){
     var sentenceEls = Array.from(document.querySelectorAll('.conv-body .sentence, .ending-body .readalong-line'));
     if(!mainAudioEl || !sentenceEls.length) return;
 
-    var manualStarts = null;
-    try{
-      var raw = localStorage.getItem(SYNC_KEY);
-      if(raw){
-        var arr = JSON.parse(raw);
-        if(Array.isArray(arr) && arr.length === sentenceEls.length) manualStarts = arr;
-      }
-    }catch(e){}
+    /* Hard-coded calibration timestamps — captured locally and baked in
+       so the highlight works identically on GitHub Pages and every other
+       host with no localStorage dependency.
+       The last 3 entries are the "Your Ending" answer options which are
+       not spoken in the lesson audio; they are spaced 2 s apart after
+       the final real sentence so they highlight gracefully if reached. */
+    var manualStarts = [0,3.333641,7.677895,9.526257,14.236871,19.704897,28.202859,30.877501,33.913718,35.302733,38.214672,40.893871,44.932367,46.785843,49.691224,53.284338,54.819951,57.993805,62.414285,67.395901,69.596895,74.108485,76.108485,78.108485,80.108485];
 
     var wordCounts = sentenceEls.map(function(el){
       return (el.textContent.trim().split(/\s+/).filter(Boolean).length) || 1;
@@ -3047,6 +3061,13 @@ window.executeResetSpeakingProgress = function(){
     mainAudioEl.addEventListener('ended', clearHighlight);
     mainAudioEl.addEventListener('pause', clearHighlight);
     if(mainAudioEl.readyState >= 1 && mainAudioEl.duration && isFinite(mainAudioEl.duration)) rebuildBoundaries();
+
+    /* Live-apply hook for Fix Sync tool — updates without reload */
+    window._fixSyncApply = function(newStarts){
+      manualStarts = newStarts;
+      boundaries = null;
+      rebuildBoundaries();
+    };
   }
 
   if(document.readyState === 'loading'){
@@ -3056,128 +3077,124 @@ window.executeResetSpeakingProgress = function(){
   }
 })();
 
-/* ═══════════════════════════════════════════════════════════════════
-   U4 CONVERSATION — MP3 LINE HIGHLIGHTER + FIX SYNC TOOL
-   Uses index-based sync on .conv-body .line elements.
-   reading-highlight class already defined in CSS.
-   Self-contained IIFE — no XP/game/TTS touched.
-═══════════════════════════════════════════════════════════════════ */
+
+</script>
+<!-- FIX SYNC PANEL -->
+<div id="fixSyncPanel">
+  <div class="fsync-title">
+    🎯 Fix Sync — tap the button when each sentence starts
+    <span>اضغط عند بداية كل جملة</span>
+  </div>
+  <div class="fsync-progress" id="fsyncProgress">Press <strong>Start</strong> to begin. Audio will play from the beginning.</div>
+  <div class="fsync-btns">
+    <button class="fsync-tap" id="fsyncTapBtn" onclick="fixSyncTap()">▶ Start</button>
+    <button class="fsync-save" id="fsyncSaveBtn" onclick="fixSyncSave()">💾 Save &amp; Apply</button>
+    <button class="fsync-cancel" onclick="fixSyncClose()">✕ Cancel</button>
+  </div>
+</div>
+
+<script>
 (function(){
   'use strict';
 
-  var LS_KEY = 'mp3sync_u4_conv';
+  var sentenceEls, timestamps, idx, started;
+  var SYNC_KEY = 'readAlongSync_u4conv';
 
-  /* ── Default sync: 16 conversation turns (approximate) ─────── */
-  var SYNC_DATA = [
-    { label:'Father 1',  time:0.0  },
-    { label:'Mother 1',  time:3.0  },
-    { label:'Father 2',  time:31.0 },
-    { label:'Father 3',  time:34.0 },
-    { label:'Daughter 1',time:35.4 },
-    { label:'Mother 2',  time:42.3 },
-    { label:'Father 4',  time:45.1 },
-    { label:'Daughter 2',time:46.9 },
-    { label:'Mother 3',  time:49.8 },
-    { label:'Father 5',  time:53.6 },
-    { label:'Mother 4',  time:55.0 },
-    { label:'Father 6',  time:58.3 },
-    { label:'Daughter 3',time:62.6 },
-    { label:'Father 8',  time:65.0 },
-    { label:'Father 7',  time:67.6 },
-    { label:'Daughter 4',time:69.6 },
-    { label:'Mother 5',  time:74.1 }
-  ];
-
-
-
-  /* ── State ──────────────────────────────────────────────────── */
-  var _lineEls  = [];
-  var _audio    = null;
-  var _rafId    = null;
-  var _lastIdx  = -1;
-  var _selIdx   = -1;
-  var _timerRaf = null;
-
-  function toEn(s){
-    return String(s).replace(/[\u0660-\u0669]/g,function(d){return d.charCodeAt(0)-0x0660;});
+  function getSentences(){
+    return Array.from(document.querySelectorAll('.conv-body .sentence'));
   }
 
-  function getLineEls(){
-    if(_lineEls.length) return _lineEls;
-    _lineEls = Array.from(document.querySelectorAll('.conv-body .line'));
-    return _lineEls;
-  }
+  window.fixSyncOpen = function(){
+    sentenceEls = getSentences();
+    timestamps  = [];
+    idx         = 0;
+    started     = false;
+    var audio = document.getElementById('mainAudio');
+    if(audio){ audio.pause(); audio.currentTime = 0; }
+    document.getElementById('fsyncSaveBtn').style.display = 'none';
+    document.getElementById('fsyncTapBtn').textContent = '▶ Start';
+    showProgress();
+    document.getElementById('fixSyncPanel').classList.add('open');
+  };
 
-  function getAudio(){
-    if(_audio) return _audio;
-    _audio = document.getElementById('mainAudio');
-    if(!_audio) return null;
-    _audio.addEventListener('play',  startTick);
-    _audio.addEventListener('pause', function(){ stopTick(); clearHL(); });
-    _audio.addEventListener('ended', function(){ stopTick(); clearHL(); });
-    _audio.addEventListener('seeked',function(){ if(!_audio.paused) hlAt(_audio.currentTime); });
-    return _audio;
-  }
+  window.fixSyncClose = function(){
+    document.getElementById('fixSyncPanel').classList.remove('open');
+    var audio = document.getElementById('mainAudio');
+    if(audio) audio.pause();
+  };
 
-  var _currentLineEl = null;
+  window.fixSyncTap = function(){
+    var audio = document.getElementById('mainAudio');
+    if(!audio) return;
 
-  function clearHL(){
-    /* Remove only from the previously highlighted line — avoids touching
-       anything else and prevents the multi-highlight accumulation bug */
-    if(_currentLineEl){
-      _currentLineEl.querySelectorAll('.sentence').forEach(function(s){
-        s.classList.remove('reading-highlight');
-      });
-      _currentLineEl = null;
+    if(!started){
+      /* First tap — start audio */
+      started = true;
+      audio.currentTime = 0;
+      audio.play();
+      document.getElementById('fsyncTapBtn').textContent = '👆 TAP for next sentence';
+      /* Record first sentence at t=0 */
+      timestamps.push(0);
+      idx = 1;
+      showProgress();
+      return;
     }
-    _lastIdx = -1;
-  }
 
-  function idxAt(t){
-    var idx = -1;
-    for(var i=0; i<SYNC_DATA.length; i++){
-      if(SYNC_DATA[i].time <= t) idx=i; else break;
+    if(idx < sentenceEls.length){
+      timestamps.push(parseFloat(audio.currentTime.toFixed(6)));
+      idx++;
+      showProgress();
     }
-    return idx;
-  }
 
-  function hlAt(t){
-    var idx = idxAt(t);
-    if(idx === _lastIdx) return;
-    clearHL();
-    if(idx < 0) return;
-    var lines = getLineEls();
-    if(idx < lines.length){
-      _currentLineEl = lines[idx];
-      _currentLineEl.querySelectorAll('.sentence').forEach(function(s){
-        s.classList.add('reading-highlight');
-      });
-      /* No auto-scroll — user scrolls freely */
+    if(idx >= sentenceEls.length){
+      /* All done */
+      audio.pause();
+      document.getElementById('fsyncTapBtn').style.display = 'none';
+      document.getElementById('fsyncSaveBtn').style.display = 'inline-block';
+      document.getElementById('fsyncProgress').innerHTML =
+        '✅ All <strong>22</strong> conversation sentences timed! Press <strong>Save &amp; Apply</strong>.';
     }
-    _lastIdx = idx;
+  };
+
+  function showProgress(){
+    var el = document.getElementById('fsyncProgress');
+    if(!started){
+      el.innerHTML = 'Press <strong>Start</strong> to begin. Audio will play from the beginning.';
+      return;
+    }
+    if(idx < sentenceEls.length){
+      var preview = sentenceEls[idx] ? sentenceEls[idx].textContent.trim().slice(0,55) : '';
+      el.innerHTML = 'Sentence <strong>' + (idx+1) + ' / ' + sentenceEls.length + '</strong>: &ldquo;' + preview + '&hellip;&rdquo;';
+    }
   }
 
-  function tick(){
-    var a = getAudio();
-    if(!a || a.paused || a.ended){ stopTick(); return; }
-    hlAt(a.currentTime);
-    _rafId = requestAnimationFrame(tick);
-  }
-  function startTick(){ if(!_rafId) _rafId = requestAnimationFrame(tick); }
-  function stopTick(){ if(_rafId){ cancelAnimationFrame(_rafId); _rafId=null; } }
+  window.fixSyncSave = function(){
+    if(!timestamps.length) return;
 
-  function init(){
-    getLineEls();  /* cache early */
-    getAudio();
-  }
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', function(){ setTimeout(init, 50); });
-  } else {
-    setTimeout(init, 50);
-  }
+    /* Pad the 3 "Your Ending" readalong-lines (not spoken in audio)
+       with 2-second gaps after the last real sentence */
+    var full = timestamps.slice();
+    var last = full[full.length - 1];
+    while(full.length < 25){ last += 2; full.push(parseFloat(last.toFixed(6))); }
 
-})(); /* end U4 Conversation MP3 Highlighter IIFE */
+    /* 1 — Save to localStorage so local browser keeps it */
+    try{ localStorage.setItem(SYNC_KEY, JSON.stringify(full)); }catch(e){}
 
+    /* 2 — Print to console so you can copy & paste into the HTML */
+    console.log('=== COPY THIS INTO YOUR HTML (manualStarts) ===');
+    console.log(JSON.stringify(full));
+    timestamps = full;
+
+    /* 3 — Apply live without reload */
+    if(window._fixSyncApply){
+      window._fixSyncApply(full);
+    }
+
+    alert('✅ Sync saved!\n\nOpen the console (F12) and copy the array printed there.\nPaste it to Teacher Jaber AI to bake it into the HTML permanently.');
+    fixSyncClose();
+  };
+
+})();
 </script>
 </body>
 </html>
