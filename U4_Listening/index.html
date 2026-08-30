@@ -611,7 +611,10 @@ body.challenge .chip-ar{display:none!important}
    SENTENCE DATA
    ═══════════════════════════════════════════ */
 const SENT_IDS = ['s0','s1','s2','s3','s4','s5','s6','s7','s8'];
-let SENT_TIMES = {s0:0.815,s1:2.402,s2:21.230,s3:25.849,s4:44.559,s5:48.282,s6:53.227,s7:68.476,s8:71.316};
+/* Hard-coded calibration timestamps — captured locally and baked in
+   so the highlight works identically on GitHub Pages and every other
+   host with no localStorage dependency. */
+let SENT_TIMES = {s0:0.632891,s1:5.70383,s2:14.422503,s3:17.571265,s4:39.594141,s5:52.992716,s6:56.513266,s7:63.23009,s8:70.85056};
 let SENT_CUE_LIST = [];
 function buildCueList(){
   SENT_CUE_LIST = SENT_IDS.map(id=>({id,start:SENT_TIMES[id]||0})).sort((a,b)=>a.start-b.start);
@@ -1108,15 +1111,8 @@ function restoreAnswers(){
 (function init(){
   if(localStorage.getItem('u4_dark')==='1'){document.body.classList.add('dark');document.getElementById('darkBtn').classList.add('active');document.getElementById('darkBtn').textContent='☀️ Light Mode';}
   if(localStorage.getItem('u4_challenge')==='1'){challengeMode=true;document.body.classList.add('challenge');const b=document.getElementById('challengeBtn');if(b){b.classList.add('active');b.textContent='✅ Challenge ON';}}
-  /* Apply any previously-saved highlight-sync timings (from the sync tool, now removed) */
-  const savedCalib=localStorage.getItem('u4_calib_times');
-  if(savedCalib){
-    try{
-      const ct=JSON.parse(savedCalib);
-      Object.assign(SENT_TIMES,ct);
-      buildCueList();
-    }catch(e){}
-  }
+  /* Calibration timestamps are now hard-coded in SENT_TIMES above —
+     no localStorage override needed. */
   if(loadState()&&studentName){document.getElementById('onboardOverlay').classList.remove('show');updateHUD();restoreAnswers();}
 })();
 
