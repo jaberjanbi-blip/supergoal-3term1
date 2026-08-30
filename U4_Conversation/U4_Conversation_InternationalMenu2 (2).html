@@ -1,0 +1,3183 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U4 Conversation – An International Menu | Teacher Jaber</title>
+<style>
+:root{--navy:#1E3A5F;--teal:#0F766E;--coral:#DC2E5D;--gold:#F59E0B;--purple:#7C3AED;--green:#16A34A;--blue:#2563EB;--orange:#EA580C;--light:#F8FAFC;--gray:#E5E7EB;--ink:#1F2937;--slate:#475569;--yellow:#FEF3C7;--softblue:#EFF6FF;--softgreen:#F0FDF4;--softpurple:#F5F3FF;--softpink:#FFF0F3;--softorange:#FFF7ED;--card-bg:#FFFFFF;--input-bg:#FFFFFF;--border-col:#E5E7EB;}
+body.dark-mode{--light:#0F172A;--navy:#020617;--ink:#F8FAFC;--slate:#94A3B8;--gray:#334155;--softblue:#1E293B;--softgreen:#064E3B;--softpurple:#2E1065;--softpink:#4C0519;--yellow:#451A03;--softorange:#431407;--card-bg:#1E293B;--input-bg:#0F172A;--border-col:#334155;background:#0F172A;color:#F8FAFC;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.shake{animation:shake .4s ease;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Calibri,Arial,sans-serif;background:var(--light);color:var(--ink);min-height:100vh;transition:background .3s,color .3s;}
+/* HEADER */
+.site-header{background:linear-gradient(135deg,#7C3AED,#DC2E5D 55%,#F59E0B);position:sticky;top:0;z-index:200;box-shadow:0 3px 20px rgba(0,0,0,.35);}
+.header-inner{background:rgba(20,10,40,.85);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.header-left h1{font-size:1rem;font-weight:800;color:white;line-height:1.2;}
+.header-left .sub{font-size:.72rem;color:#c4b5fd;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:8px;}
+.header-badge{background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:800;padding:4px 11px;border-radius:20px;}
+.dark-toggle{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;cursor:pointer;color:white;font-size:.75rem;font-weight:700;padding:5px 12px;transition:.2s;}
+.dark-toggle:hover{background:rgba(255,255,255,.28);}
+.challenge-bar{background:rgba(20,5,40,.9);padding:7px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.challenge-label{font-size:.78rem;font-weight:700;color:#c4b5fd;flex:1;}
+.challenge-label span{display:block;font-size:.68rem;color:#9CA3AF;direction:rtl;}
+#challengeBtn{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.25);color:#e2e8f0;border-radius:30px;padding:6px 16px;font-family:inherit;font-size:.75rem;font-weight:800;cursor:pointer;transition:all .25s;}
+#challengeBtn.active{background:linear-gradient(135deg,#7C3AED,#DC2E5D);border-color:transparent;color:#fff;}
+.toggle-track{width:32px;height:17px;background:rgba(255,255,255,.25);border-radius:9px;position:relative;}
+.toggle-track::after{content:'';position:absolute;left:2px;top:2px;width:13px;height:13px;background:#fff;border-radius:50%;transition:left .25s;}
+#challengeBtn.active .toggle-track::after{left:17px;}
+/* LAYOUT */
+.container{max-width:860px;margin:0 auto;padding:22px 16px 60px;}
+/* CARDS */
+.card{background:var(--card-bg);border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.07);overflow:hidden;margin-bottom:22px;border:1px solid var(--border-col);animation:fadeIn .3s ease;}
+.card-header{padding:14px 20px;display:flex;align-items:center;gap:12px;}
+.card-header .num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;color:white;flex-shrink:0;}
+.card-header .title-en{font-size:1.05rem;font-weight:700;color:white;line-height:1.2;}
+.card-header .title-ar{font-size:.87rem;direction:rtl;margin-top:2px;color:rgba(255,255,255,.75);}
+.card-body{padding:18px 20px;}
+.inst-en{padding:9px 20px;background:rgba(0,0,0,.03);border-bottom:1px solid var(--border-col);font-size:.87rem;color:var(--slate);font-style:italic;}
+.inst-ar{padding:4px 20px 9px;background:rgba(0,0,0,.03);border-bottom:1px solid var(--border-col);font-size:.82rem;color:var(--slate);direction:rtl;text-align:right;}
+body.dark-mode .inst-en,body.dark-mode .inst-ar{color:#94A3B8;background:rgba(255,255,255,.03);}
+/* PLAYER */
+.player-wrap{padding:18px 20px 14px;}
+.player-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.play-btn{width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--blue),#1d4ed8);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,99,235,.45);transition:.2s;flex-shrink:0;}
+.play-btn:hover{transform:scale(1.08);}
+.play-btn:active{transform:scale(.95);}
+.play-btn svg{width:22px;height:22px;fill:#fff;pointer-events:none;}
+.p-title{font-size:.95rem;font-weight:800;color:var(--navy);}
+body.dark-mode .p-title{color:var(--gold);}
+.p-sub{font-size:.75rem;color:var(--slate);margin-top:2px;}
+.time-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.time-lbl{font-size:.78rem;font-weight:700;color:var(--slate);font-variant-numeric:tabular-nums;white-space:nowrap;min-width:34px;}
+.progress-wrap{flex:1;height:10px;background:var(--gray);border-radius:5px;cursor:pointer;position:relative;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--purple));border-radius:5px;width:0%;pointer-events:none;}
+.progress-thumb{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:18px;height:18px;background:var(--blue);border-radius:50%;border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.3);pointer-events:none;}
+.ctrl-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
+.ctrl-btn{background:var(--softblue);border:1.5px solid var(--blue);color:var(--blue);border-radius:20px;padding:6px 14px;font-family:inherit;font-size:.78rem;font-weight:700;cursor:pointer;transition:.18s;}
+.ctrl-btn:hover,.ctrl-btn:active{background:var(--blue);color:#fff;}
+.ctrl-btn.spd-active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.audio-status{font-size:.75rem;color:var(--slate);margin-top:8px;text-align:center;}
+.audio-error{margin-top:10px;padding:9px 14px;background:#FEF3C7;border:1px solid #F59E0B;border-radius:8px;font-size:.8rem;color:#78350F;display:none;}
+.audio-error.show{display:block;}
+/* CONVERSATION */
+.conv-body{padding:16px 20px;}
+.line{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start;}
+.speaker-badge{flex-shrink:0;min-width:80px;font-size:.78rem;font-weight:800;padding-top:4px;}
+.line.father .speaker-badge{color:var(--blue);}
+.line.mother .speaker-badge{color:var(--coral);}
+.line.daughter .speaker-badge{color:var(--green);}
+.sentence-wrap{flex:1;}
+.sentence-block{margin-bottom:7px;}
+.sentence{display:inline;font-size:.93rem;font-weight:600;line-height:1.7;border-radius:6px;padding:2px 5px;cursor:pointer;transition:background .18s;-webkit-tap-highlight-color:transparent;user-select:none;}
+.line.father .sentence:hover{background:var(--softblue);}
+.line.mother .sentence:hover{background:var(--softpink);}
+.line.daughter .sentence:hover{background:var(--softgreen);}
+.translation{display:none;font-family:'Segoe UI',Tahoma,Arial,sans-serif;font-size:.83rem;font-weight:500;color:var(--teal);direction:rtl;text-align:right;padding:5px 10px 3px;border-right:3px solid #b7e3de;margin-top:3px;line-height:1.75;background:rgba(15,118,110,.06);border-radius:0 6px 6px 0;}
+.sentence-block.show-trans .translation{display:block;}
+body.challenge-on .sentence{cursor:default!important;}
+body.challenge-on .sentence:hover{background:transparent!important;}
+body.challenge-on .sentence-block.show-trans .translation{display:none!important;}
+/* DIVIDER dots */
+.conv-divider{text-align:center;font-size:1.2rem;color:var(--slate);letter-spacing:6px;padding:6px 0 10px;}
+/* FYI BOX */
+.fyi-box{background:var(--softorange);border:1px solid #FED7AA;border-left:4px solid var(--orange);border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:14px;}
+body.dark-mode .fyi-box{background:var(--softorange);border-color:var(--orange);}
+.fyi-tag{display:inline-block;background:var(--orange);color:#fff;font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:6px;margin-bottom:8px;letter-spacing:1px;}
+.fyi-row{font-size:.87rem;margin-bottom:6px;line-height:1.5;}
+.fyi-term{font-weight:800;color:var(--navy);}
+body.dark-mode .fyi-term{color:var(--gold);}
+.fyi-ar{font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:rtl;font-size:.79rem;color:var(--slate);display:block;margin-top:2px;padding-right:4px;}
+/* REAL TALK */
+.real-talk-box{background:var(--softpurple);border:1px solid #DDD6FE;border-left:4px solid var(--purple);border-radius:0 10px 10px 0;padding:14px 16px;}
+body.dark-mode .real-talk-box{background:rgba(124,58,237,.12);border-color:#7C3AED;}
+.rt-title{font-size:.72rem;font-weight:800;color:var(--purple);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.rt-row{font-size:.88rem;margin-bottom:8px;line-height:1.5;}
+.rt-term{font-weight:800;color:var(--navy);}
+body.dark-mode .rt-term{color:var(--gold);}
+.rt-ar{font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:rtl;font-size:.8rem;color:var(--slate);display:block;margin-top:1px;}
+/* YOUR ENDING */
+.ending-body{padding:16px 20px;}
+.section-prompt{font-size:.93rem;font-weight:700;color:var(--ink);margin-bottom:14px;line-height:1.5;}
+.section-prompt .ar{font-family:'Segoe UI',Tahoma,Arial,sans-serif;font-size:.82rem;color:var(--slate);direction:rtl;display:block;margin-top:3px;}
+.mcq-opts{display:flex;flex-direction:column;gap:9px;margin-bottom:14px;}
+.mcq-opt{padding:11px 16px;border-radius:10px;font-size:.88rem;border:2px solid var(--border-col);color:var(--ink);cursor:pointer;transition:.2s;background:var(--input-bg);text-align:left;display:flex;align-items:flex-start;gap:10px;font-family:inherit;font-weight:600;width:100%;}
+.mcq-opt:hover,.mcq-opt:active{border-color:var(--blue);background:var(--softblue);}
+.mcq-opt .opt-num{width:24px;height:24px;border-radius:50%;background:var(--gray);color:var(--slate);font-size:.75rem;font-weight:800;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s;}
+.mcq-opt.sel-ok{background:var(--softgreen)!important;border-color:var(--green)!important;}
+.mcq-opt.sel-ok .opt-num{background:var(--green);color:#fff;}
+.opt-ar{font-family:'Segoe UI',Tahoma,Arial,sans-serif;font-size:.76rem;color:var(--slate);direction:rtl;display:block;margin-top:2px;}
+.feedback-msg{font-size:.84rem;font-weight:700;padding:9px 14px;border-radius:8px;margin-top:2px;display:none;line-height:1.5;}
+.feedback-msg.show{display:block;}
+.correct-fb{background:var(--softgreen);color:var(--green);border:1px solid #BBF7D0;}
+.fb-ar{font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:rtl;display:block;font-size:.78rem;opacity:.85;margin-top:2px;}
+.write-section{margin-top:16px;padding-top:16px;border-top:1.5px dashed var(--border-col);}
+.write-label{font-size:.82rem;font-weight:700;color:var(--navy);margin-bottom:8px;}
+body.dark-mode .write-label{color:var(--gold);}
+.write-label .ar{direction:rtl;color:var(--slate);font-weight:500;font-size:.78rem;display:block;margin-top:2px;}
+.open-input{width:100%;padding:10px 14px;font-size:.88rem;font-weight:600;border:2px solid var(--border-col);border-radius:10px;outline:none;transition:.2s;font-family:inherit;background:var(--input-bg);color:var(--ink);resize:vertical;min-height:72px;}
+.open-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.12);}
+/* COMPREHENSION */
+.comp-body{padding:16px 20px;}
+.comp-q{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border-col);}
+.comp-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.comp-q-text{font-size:.92rem;font-weight:600;line-height:1.5;margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;}
+.q-num{background:var(--navy);color:#fff;border-radius:6px;padding:2px 8px;font-size:.72rem;font-weight:800;flex-shrink:0;margin-top:2px;}
+.q-ar{font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:rtl;font-size:.8rem;color:var(--slate);display:block;margin-top:2px;}
+.answer-input{width:100%;padding:9px 12px;font-size:.88rem;font-weight:600;border:2px solid var(--border-col);border-radius:8px;outline:none;transition:.2s;font-family:inherit;background:var(--input-bg);color:var(--ink);}
+.answer-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1);}
+.answer-input.is-correct{border-color:var(--green);background:var(--softgreen);}
+.answer-input.is-wrong{border-color:var(--coral);background:var(--softpink);}
+.btn-row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
+.check-btn{background:var(--navy);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:.8rem;font-weight:700;cursor:pointer;transition:.18s;font-family:inherit;}
+.check-btn:hover,.check-btn:active{background:var(--blue);}
+.reveal-btn{background:var(--softblue);border:1.5px solid var(--blue);color:var(--blue);padding:7px 14px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;transition:.18s;font-family:inherit;}
+.reveal-btn:hover,.reveal-btn:active{background:var(--blue);color:#fff;}
+.hint-btn{background:var(--yellow);border:none;color:#78350F;padding:7px 12px;border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.hint-btn:hover,.hint-btn:active{filter:brightness(1.08);}
+.comp-feedback{margin-top:6px;font-size:.83rem;font-weight:700;padding:9px 12px;border-radius:8px;display:none;line-height:1.5;}
+.comp-feedback.show{display:block;}
+.cf-ok{background:var(--softgreen);color:var(--green);border:1px solid #BBF7D0;}
+.cf-err{background:var(--softpink);color:var(--coral);border:1px solid #FECDD3;}
+.cf-ans{background:var(--softblue);color:var(--navy);border:1px solid #BFDBFE;}
+body.dark-mode .cf-ans{color:var(--gold);}
+.cf-ar{font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:rtl;font-size:.78rem;display:block;margin-top:3px;opacity:.85;}
+.hint-box{display:none;margin-top:6px;padding:9px 12px;background:var(--yellow);color:#78350F;border-radius:6px;font-size:.8rem;direction:rtl;text-align:right;font-family:'Segoe UI',Tahoma,Arial,sans-serif;}
+.hint-box.show{display:block;}
+body.dark-mode .hint-box{background:#1a1000;color:#fde68a;}
+body.dark-mode .card{background:var(--card-bg);border-color:var(--border-col);}
+body.dark-mode .mcq-opt:not(.sel-ok){background:#1e293b;color:#e2e8f0;border-color:#334155;}
+body.dark-mode .answer-input,body.dark-mode .open-input{background:#0f172a;color:#e2e8f0;border-color:#334155;}
+body.dark-mode .answer-input::placeholder,body.dark-mode .open-input::placeholder{color:#64748b;}
+body.dark-mode .rt-row,.dark-mode .fyi-row{color:#e2e8f0;}
+body.dark-mode .comp-q-text{color:#e2e8f0;}
+@media(max-width:480px){.card-header{padding:12px 14px;}.card-body,.conv-body,.comp-body,.ending-body{padding:12px 14px;}.container{padding:14px 10px 50px;}}
+/* ══════════════════════════════════════════════════════════
+   SPEAKING PRACTICE TAB — NEW SECTION
+   (All new styles below reuse existing design tokens/vars
+   so the look matches the rest of the site exactly.)
+══════════════════════════════════════════════════════════ */
+
+/* ── MAIN TAB BAR (Learning / Speaking Practice) ── */
+.main-tabs {
+  max-width:860px; margin:0 auto; padding:14px 16px 0;
+  display:flex; gap:10px; flex-wrap:wrap;
+}
+.main-tab-btn {
+  flex:1; min-width:150px;
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  background:var(--card-bg); color:var(--slate);
+  border:2px solid var(--border-col); border-radius:12px 12px 0 0;
+  padding:11px 14px; font-family:inherit; font-size:.88rem; font-weight:800;
+  cursor:pointer; transition:.2s; text-align:center;
+}
+.main-tab-btn .ar { font-size:.72rem; font-weight:600; opacity:.75; direction:rtl; }
+.main-tab-btn:hover { background:var(--softpurple); color:var(--purple); }
+.main-tab-btn.active {
+  background:linear-gradient(135deg,var(--purple),var(--coral));
+  color:#fff; border-color:transparent;
+  box-shadow:0 -2px 14px rgba(124,58,237,.35);
+}
+.main-tab-btn.active .ar { color:rgba(255,255,255,.85); opacity:1; }
+@media(max-width:480px){ .main-tabs{ padding:10px 10px 0; gap:6px; } .main-tab-btn{ min-width:0; padding:9px 6px; font-size:.78rem; } }
+
+/* ── SPEAKING PRACTICE: mode picker chips ── */
+.speak-mode-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+.speak-mode-btn {
+  flex:1; min-width:130px;
+  background:var(--softblue); border:2px solid var(--blue); color:var(--blue);
+  border-radius:12px; padding:10px 12px; font-family:inherit;
+  font-size:.82rem; font-weight:800; cursor:pointer; transition:.2s; text-align:center;
+}
+.speak-mode-btn .ar { display:block; font-size:.7rem; font-weight:600; direction:rtl; margin-top:2px; opacity:.8; }
+.speak-mode-btn:hover { background:var(--blue); color:#fff; }
+.speak-mode-btn.active { background:linear-gradient(135deg,var(--navy),var(--blue)); color:#fff; border-color:transparent; }
+
+/* ── RECORDER WIDGET ── */
+.recorder-box {
+  background:var(--softpurple); border:1.5px dashed var(--purple);
+  border-radius:14px; padding:18px; text-align:center; margin-bottom:14px;
+}
+body.dark-mode .recorder-box { background:rgba(124,58,237,.1); }
+.rec-status { font-size:.85rem; font-weight:700; color:var(--purple); margin-bottom:10px; min-height:1.3em; }
+.rec-status .ar { display:block; font-size:.76rem; font-weight:600; direction:rtl; color:var(--slate); margin-top:2px; }
+.rec-timer {
+  font-size:1.6rem; font-weight:800; color:var(--navy); font-variant-numeric:tabular-nums;
+  margin-bottom:12px;
+}
+body.dark-mode .rec-timer { color:var(--gold); }
+.rec-btn-row { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.rec-btn {
+  display:flex; align-items:center; gap:6px;
+  border:none; border-radius:24px; padding:10px 18px;
+  font-family:inherit; font-size:.82rem; font-weight:800; cursor:pointer; transition:.2s;
+}
+.rec-btn:disabled { opacity:.4; cursor:not-allowed; }
+.rec-btn.start  { background:linear-gradient(135deg,var(--coral),#B91C4C); color:#fff; }
+.rec-btn.stop   { background:linear-gradient(135deg,var(--navy),#0F172A); color:#fff; }
+.rec-btn.play   { background:linear-gradient(135deg,var(--green),#15803D); color:#fff; }
+.rec-btn.redo   { background:var(--softblue); border:1.5px solid var(--blue); color:var(--blue); }
+.rec-btn:hover:not(:disabled) { filter:brightness(1.08); transform:translateY(-1px); }
+.rec-dot { width:9px; height:9px; border-radius:50%; background:#fff; animation:pulseDot 1s infinite; }
+@keyframes pulseDot { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+/* ── SCORE BARS ── */
+.score-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:6px; }
+@media(max-width:480px){ .score-grid{ grid-template-columns:1fr; } }
+.score-card { background:var(--light); border:1px solid var(--border-col); border-radius:10px; padding:12px 14px; }
+.score-card-title { font-size:.8rem; font-weight:800; color:var(--navy); margin-bottom:6px; display:flex; justify-content:space-between; }
+body.dark-mode .score-card-title { color:var(--gold); }
+.score-card-title .val { font-weight:800; }
+.score-bar-track { height:10px; background:var(--gray); border-radius:6px; overflow:hidden; }
+.score-bar-fill { height:100%; border-radius:6px; width:0%; transition:width .6s ease; }
+.score-bar-fill.excellent { background:linear-gradient(90deg,#16A34A,#22C55E); }
+.score-bar-fill.good      { background:linear-gradient(90deg,#F59E0B,#FBBF24); }
+.score-bar-fill.poor      { background:linear-gradient(90deg,#DC2E5D,#EF4444); }
+.overall-score-ring {
+  display:flex; align-items:center; gap:16px; margin-bottom:16px;
+  background:linear-gradient(135deg,var(--navy),var(--purple)); color:#fff;
+  border-radius:14px; padding:16px 20px;
+}
+.overall-score-num { font-size:2.4rem; font-weight:800; line-height:1; }
+.overall-score-lbl { font-size:.82rem; font-weight:700; opacity:.9; }
+.overall-score-lbl .ar { display:block; font-size:.76rem; direction:rtl; opacity:.8; margin-top:2px; }
+.perf-summary {
+  margin-top:10px; padding:10px 14px; border-radius:8px; direction:rtl; text-align:right;
+  font-size:.85rem; line-height:1.7; background:var(--softgreen); color:#14532D; border:1px solid #BBF7D0;
+}
+body.dark-mode .perf-summary { background:rgba(22,163,74,.12); color:#86EFAC; border-color:#166534; }
+
+/* ── SENTENCE COMPARISON ── */
+.compare-box { background:var(--light); border:1px solid var(--border-col); border-radius:10px; padding:12px 14px; margin-bottom:10px; }
+.compare-label { font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; color:var(--slate); margin-bottom:6px; }
+.compare-text { font-size:.92rem; line-height:1.9; }
+.word-ok      { color:#15803D; background:#DCFCE7; border-radius:4px; padding:1px 3px; font-weight:700; }
+.word-missing { color:#B91C1C; background:#FEE2E2; border-radius:4px; padding:1px 3px; font-weight:700; text-decoration:line-through; }
+.word-wrong   { color:#B45309; background:#FEF3C7; border-radius:4px; padding:1px 3px; font-weight:700; }
+body.dark-mode .word-ok { background:rgba(22,163,74,.25); color:#86EFAC; }
+body.dark-mode .word-missing { background:rgba(220,38,38,.25); color:#FCA5A5; }
+body.dark-mode .word-wrong { background:rgba(245,158,11,.25); color:#FDE68A; }
+.mistake-note { margin-top:8px; direction:rtl; text-align:right; font-size:.82rem; color:var(--slate); line-height:1.7; }
+
+/* ── DIFFICULT SENTENCES / WORDS ── */
+.diff-item {
+  display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+  padding:10px 12px; border:1px solid var(--border-col); border-radius:10px; margin-bottom:8px; background:var(--light);
+}
+.diff-item .txt { flex:1; min-width:160px; font-size:.86rem; font-weight:600; }
+.diff-item .txt .ar { display:block; font-size:.74rem; color:var(--slate); direction:rtl; margin-top:2px; }
+.diff-item .score-chip { font-size:.72rem; font-weight:800; padding:3px 9px; border-radius:12px; }
+.chip-poor { background:#FEE2E2; color:#B91C1C; }
+.chip-good { background:#FEF3C7; color:#92400E; }
+body.dark-mode .chip-poor { background:rgba(220,38,38,.25); color:#FCA5A5; }
+body.dark-mode .chip-good { background:rgba(245,158,11,.25); color:#FDE68A; }
+.diff-actions { display:flex; gap:6px; flex-wrap:wrap; }
+.mini-btn {
+  background:var(--softblue); border:1.5px solid var(--blue); color:var(--blue);
+  border-radius:16px; padding:4px 11px; font-size:.74rem; font-weight:700; font-family:inherit; cursor:pointer;
+}
+.mini-btn:hover { background:var(--blue); color:#fff; }
+.word-chip-row { display:flex; flex-wrap:wrap; gap:8px; }
+.word-chip {
+  display:flex; align-items:center; gap:6px; background:var(--softpink); border:1.5px solid var(--coral);
+  border-radius:20px; padding:6px 12px; font-size:.8rem; font-weight:700; color:var(--coral);
+}
+
+/* ── READING SPEED ── */
+.speed-box { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+.speed-num { text-align:center; }
+.speed-num .n { font-size:1.7rem; font-weight:800; color:var(--navy); }
+body.dark-mode .speed-num .n { color:var(--gold); }
+.speed-num .l { font-size:.72rem; color:var(--slate); font-weight:700; }
+
+/* ── ATTEMPT HISTORY ── */
+.history-row { display:flex; align-items:center; justify-content:space-between; padding:8px 4px; border-bottom:1px solid var(--border-col); font-size:.85rem; }
+.history-row:last-child { border-bottom:none; }
+.history-row .n { font-weight:700; color:var(--slate); }
+.history-row .s { font-weight:800; }
+
+/* ── ACHIEVEMENTS ── */
+.badge-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:10px; }
+.badge-card {
+  text-align:center; padding:14px 8px; border-radius:12px; border:2px solid var(--border-col);
+  background:var(--light); transition:.2s;
+}
+.badge-card.unlocked { background:linear-gradient(135deg,#FEF3C7,#FDE68A); border-color:var(--gold); }
+body.dark-mode .badge-card.unlocked { background:linear-gradient(135deg,#78350F,#92400E); }
+body.dark-mode .badge-card.unlocked .name { color:#FDE68A; }
+.badge-card .ic { font-size:1.8rem; margin-bottom:4px; filter:grayscale(1); opacity:.35; }
+.badge-card.unlocked .ic { filter:none; opacity:1; }
+.badge-card .name { font-size:.72rem; font-weight:800; color:var(--ink); }
+.badge-card .ar { font-size:.66rem; color:var(--slate); direction:rtl; display:block; margin-top:2px; }
+
+/* ── FINAL DASHBOARD ── */
+.dash-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; }
+.dash-card { background:var(--light); border:1px solid var(--border-col); border-radius:12px; padding:12px 14px; text-align:center; }
+.dash-card .n { font-size:1.35rem; font-weight:800; color:var(--purple); }
+.dash-card .l { font-size:.72rem; font-weight:700; color:var(--slate); margin-top:2px; }
+.dash-card .l .ar { display:block; direction:rtl; font-size:.68rem; margin-top:1px; }
+
+/* ── ROLE PLAY / SHADOWING LINE VIEW ── */
+.walk-line-box { background:var(--light); border:1.5px solid var(--border-col); border-radius:12px; padding:16px; margin-bottom:12px; }
+.walk-speaker { font-size:.78rem; font-weight:800; color:var(--blue); margin-bottom:6px; }
+.walk-sentence { font-size:1rem; font-weight:700; margin-bottom:4px; }
+.walk-sentence-ar { font-size:.85rem; color:var(--slate); direction:rtl; text-align:right; margin-bottom:10px; }
+.walk-auto-tag { display:inline-block; background:var(--softblue); color:var(--blue); font-size:.72rem; font-weight:800; padding:3px 10px; border-radius:12px; margin-bottom:8px; }
+.walk-progress { font-size:.75rem; color:var(--slate); font-weight:700; margin-bottom:10px; }
+.feedback-note { margin-top:8px; padding:8px 12px; border-radius:8px; font-size:.83rem; direction:rtl; text-align:right; line-height:1.6; }
+.feedback-note.ok  { background:var(--softgreen); color:#14532D; border:1px solid #BBF7D0; }
+.feedback-note.mid { background:var(--yellow); color:#78350F; }
+.feedback-note.bad { background:var(--softpink); color:#9F1239; border:1px solid #FECDD3; }
+body.dark-mode .feedback-note.ok  { background:rgba(22,163,74,.15); color:#86EFAC; border-color:#166534; }
+body.dark-mode .feedback-note.mid { background:#1a1000; color:#fde68a; }
+body.dark-mode .feedback-note.bad { background:rgba(220,38,38,.15); color:#FCA5A5; border-color:#7F1D1D; }
+.unsupported-note {
+  background:var(--yellow); border-left:4px solid var(--gold); border-radius:0 8px 8px 0;
+  padding:10px 14px; font-size:.83rem; color:#78350F; margin-bottom:14px; direction:rtl; text-align:right;
+}
+body.dark-mode .unsupported-note { background:#1a1000; color:#fde68a; }
+
+/* ── "WHAT THE SYSTEM HEARD" TRANSCRIPT BOX ── */
+.transcript-box {
+  background:var(--light); border:1.5px solid var(--blue); border-radius:10px;
+  padding:12px 14px; margin-bottom:10px;
+}
+.transcript-box .lbl { font-size:.75rem; font-weight:800; color:var(--blue); margin-bottom:6px; direction:rtl; text-align:right; }
+.transcript-box .txt { font-size:.92rem; font-weight:600; line-height:1.7; color:var(--ink); }
+body.dark-mode .transcript-box .txt { color:#e2e8f0; }
+.analysis-error {
+  background:var(--softpink); border:1.5px solid var(--coral); border-radius:10px;
+  padding:14px; margin-bottom:10px; direction:rtl; text-align:right; color:#9F1239; font-weight:700; font-size:.88rem;
+}
+body.dark-mode .analysis-error { background:rgba(220,38,38,.15); color:#FCA5A5; }
+
+/* ── GAMIFICATION: XP / LEVEL / STREAK ── */
+.gami-row { display:flex; gap:14px; flex-wrap:wrap; align-items:center; margin-bottom:14px; }
+.gami-level-badge {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,var(--gold),#F97316); color:#fff; border-radius:14px;
+  padding:12px 18px; min-width:120px; text-align:center; box-shadow:0 4px 14px rgba(245,158,11,.4);
+}
+.gami-level-badge .lv-num { font-size:1.5rem; font-weight:800; line-height:1; }
+.gami-level-badge .lv-name { font-size:.72rem; font-weight:700; margin-top:2px; }
+.gami-level-badge .lv-name-ar { font-size:.68rem; direction:rtl; opacity:.9; }
+.gami-xp-wrap { flex:1; min-width:180px; }
+.gami-xp-label { font-size:.78rem; font-weight:700; color:var(--navy); margin-bottom:4px; display:flex; justify-content:space-between; }
+body.dark-mode .gami-xp-label { color:var(--gold); }
+.gami-xp-track { height:12px; background:var(--gray); border-radius:8px; overflow:hidden; }
+.gami-xp-fill { height:100%; background:linear-gradient(90deg,var(--purple),var(--coral)); border-radius:8px; width:0%; transition:width .5s ease; }
+.gami-streak-badge {
+  display:flex; align-items:center; gap:6px; background:var(--softpink); border:1.5px solid var(--coral);
+  color:var(--coral); border-radius:20px; padding:8px 16px; font-weight:800; font-size:.88rem; white-space:nowrap;
+}
+
+/* ── FUN FEEDBACK CHIP ── */
+.fun-chip { font-size:.95rem; font-weight:800; margin-bottom:4px; }
+
+/* ── TEACHER MODE ── */
+.teacher-toggle-row { display:flex; justify-content:flex-end; }
+.teacher-panel { margin-top:12px; padding-top:12px; border-top:1.5px dashed var(--border-col); }
+.teacher-stat-row { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--border-col); font-size:.85rem; }
+.teacher-stat-row:last-child { border-bottom:none; }
+.teacher-stat-row .k { font-weight:700; color:var(--slate); }
+.teacher-stat-row .v { font-weight:800; color:var(--navy); direction:rtl; text-align:left; }
+body.dark-mode .teacher-stat-row .v { color:var(--gold); }
+
+/* ── ROLE PLAY: retry + end summary ── */
+.role-end-box { text-align:center; }
+.role-end-box .big-score { font-size:2rem; font-weight:800; color:var(--purple); margin:6px 0; }
+
+/* ── READ-ALONG HIGHLIGHT (syncs to the conversation audio player) ── */
+.readalong-line { border-radius:4px; padding:1px 3px; transition:background .18s; }
+.sentence.reading-highlight, .readalong-line.reading-highlight {
+  background:var(--yellow);
+  box-shadow:0 0 0 2px var(--gold) inset;
+}
+body.dark-mode .sentence.reading-highlight, body.dark-mode .readalong-line.reading-highlight {
+  background:#78350F;
+  color:#FDE68A;
+  box-shadow:0 0 0 2px var(--gold) inset;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ONBOARDING + AVATAR + CERTIFICATE + RESET SYSTEM
+   (ported verbatim from U1_Grammar_Part2_GAMIFIED.html so the
+   Speaking Practice tab reuses the exact same UX patterns —
+   same overlay look, same avatar grid, same certificate style)
+══════════════════════════════════════════════════════════ */
+.ns-overlay{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;background:rgba(8,6,20,.86);backdrop-filter:blur(6px);padding:16px;}
+.ns-overlay.show{display:flex;}
+.ns-card{background:linear-gradient(160deg,#1e1b4b,#3b1360);border:2px solid rgba(255,255,255,.15);border-radius:20px;max-width:460px;width:100%;max-height:92vh;overflow-y:auto;padding:26px 22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);color:#fff;}
+.ns-card h2{font-size:1.35rem;font-weight:900;margin-bottom:6px;}
+.ns-card p{font-size:.85rem;color:#c4b5fd;line-height:1.6;}
+.avatar-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 6px;}
+.avatar-opt{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:14px;padding:16px 8px;cursor:pointer;transition:.18s;}
+.avatar-opt:hover{background:rgba(255,255,255,.16);transform:translateY(-3px);}
+.avatar-opt.picked{border-color:var(--gold);background:rgba(245,158,11,.18);}
+.avatar-opt .em{font-size:2.4rem;display:block;margin-bottom:6px;}
+.avatar-opt .nm{font-size:.78rem;font-weight:800;}
+.avatar-opt .nm-ar{font-size:.7rem;color:#c4b5fd;direction:rtl;}
+.ns-start-btn{margin-top:16px;background:var(--gold);color:#1a0a00;border:none;border-radius:12px;padding:13px 30px;font-size:1rem;font-weight:900;cursor:pointer;transition:.15s;}
+.ns-start-btn:hover{filter:brightness(1.08);transform:scale(1.03);}
+.ns-start-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+
+/* Profile chip — shows the student's name + avatar inside the Speaking tab */
+.speak-profile-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;background:var(--softpurple);border:1.5px solid var(--purple);border-radius:12px;padding:10px 14px;}
+body.dark-mode .speak-profile-row{background:rgba(124,58,237,.12);}
+.speak-profile-avatar{font-size:1.6rem;background:rgba(124,58,237,.15);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.speak-profile-name{font-weight:800;color:var(--navy);font-size:.9rem;}
+body.dark-mode .speak-profile-name{color:var(--gold);}
+.speak-profile-edit{margin-left:auto;background:transparent;border:1.5px solid var(--purple);color:var(--purple);border-radius:14px;padding:4px 10px;font-size:.72rem;font-weight:700;cursor:pointer;}
+
+/* Certificate (print) — same structure/approach as the reference file */
+.cert-modal{display:none;position:fixed;inset:0;z-index:2100;background:rgba(0,0,0,.7);align-items:center;justify-content:center;}
+.cert-modal.active{display:flex;}
+.cert-content{background:white;border-radius:20px;padding:30px;max-width:480px;width:92%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4);border:4px solid var(--gold);}
+.cert-avatar{font-size:3.5rem;margin-bottom:10px;}
+.cert-title{font-size:1.3rem;font-weight:900;color:var(--navy);margin-bottom:6px;direction:rtl;}
+.cert-sub{font-size:.9rem;color:var(--slate);margin-bottom:16px;}
+.cert-stats{font-size:.85rem;color:var(--ink);line-height:1.9;margin-bottom:14px;}
+.cert-input{border:2px solid var(--border-col);border-radius:8px;padding:8px 14px;font-size:1rem;width:80%;margin-bottom:14px;font-family:inherit;}
+.cert-btn{background:var(--navy);color:white;border:none;border-radius:10px;padding:10px 24px;font-size:1rem;font-weight:700;cursor:pointer;margin:4px 4px 0;}
+@media print{.cert-modal{display:flex!important;}body>*:not(.cert-modal){display:none!important;}}
+.cert-actions-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+@media(max-width:480px){ .avatar-grid{grid-template-columns:1fr 1fr;} }
+
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>&#x1F4AC; U4 Conversation &#x2013; An International Menu</h1>
+      <div class="sub">Father, Mother &amp; Daughter &nbsp;&bull;&nbsp; Touch to Translate &nbsp;&bull;&nbsp; Teacher Jaber</div>
+    </div>
+    <div class="header-right">
+      <button class="dark-toggle" onclick="toggleDark()" id="dark-toggle">&#x1F319; Dark Mode</button>
+      <span class="header-badge">Super Goal 3</span>
+    </div>
+  </div>
+  <div class="challenge-bar">
+    <div class="challenge-label">Touch-to-Translate <span>&#x627;&#x636;&#x63A;&#x637; &#x639;&#x644;&#x649; &#x623;&#x64A; &#x62C;&#x645;&#x644;&#x629; &#x644;&#x62A;&#x631;&#x62C;&#x645;&#x62A;&#x647;&#x627;</span></div>
+    <button id="challengeBtn" onclick="toggleChallenge()">&#x1F9E0; <span id="challengeText">Challenge Mode: OFF</span><div class="toggle-track"></div></button>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════
+     MAIN NAVIGATION TABS
+     (Learning tab = all existing content, unchanged.
+      Speaking Practice tab = new feature added below.)
+═══════════════════════════════ -->
+<div class="main-tabs">
+  <button class="main-tab-btn active" id="mainTabLearnBtn" onclick="switchMainTab('learn')">
+    📖 Learning <span class="ar">التعلم</span>
+  </button>
+  <button class="main-tab-btn" id="mainTabSpeakBtn" onclick="switchMainTab('speak')">
+    🎤 Speaking Practice <span class="ar">تدريب المحادثة</span>
+  </button>
+</div>
+
+<div class="container" id="tabPanelLearn">
+
+<!-- AUDIO -->
+<div class="card">
+  <div class="card-header" style="background:linear-gradient(135deg,#1E3A5F,#2563EB)">
+    <div class="num" style="background:var(--gold);color:var(--navy)">&#x1F3A7;</div>
+    <div><div class="title-en">Audio Player &mdash; &#x645;&#x634;&#x63A;&#x651;&#x644; &#x627;&#x644;&#x635;&#x648;&#x62A;</div><div class="title-ar">&#x627;&#x633;&#x62A;&#x645;&#x639; &#x644;&#x644;&#x645;&#x62D;&#x627;&#x62F;&#x62B;&#x629; &#x642;&#x628;&#x644; &#x627;&#x644;&#x642;&#x631;&#x627;&#x621;&#x629;</div></div>
+  </div>
+  <div class="player-wrap">
+    <div id="playerTarget"></div>
+    <div class="player-row">
+      <button class="play-btn" id="playBtn" onclick="togglePlay()"><svg viewBox="0 0 24 24"><path id="playPath" d="M8 5v14l11-7z"/></svg></button>
+      <div><div class="p-title">Unit 4 &ndash; Conversation: An International Menu</div><div class="p-sub">Father, Mother &amp; Daughter &middot; Super Goal 3</div></div>
+    </div>
+    <div class="time-row">
+      <span class="time-lbl" id="curTime">0:00</span>
+      <div class="progress-wrap" id="progressWrap"><div class="progress-fill" id="progressFill"></div><div class="progress-thumb" id="progressThumb"></div></div>
+      <span class="time-lbl" id="durTime">0:00</span>
+    </div>
+    <div class="ctrl-row">
+      <button class="ctrl-btn" onclick="skipAudio(-5)">&#x23EA; &minus;5s</button>
+      <button class="ctrl-btn" onclick="skipAudio(5)">+5s &#x23E9;</button>
+      <button class="ctrl-btn" id="spd75" onclick="setSpeed(0.75)">&#x1F422; 0.75&times;</button>
+      <button class="ctrl-btn spd-active" id="spd100" onclick="setSpeed(1)">&#x1F50A; 1&times;</button>
+      <button class="ctrl-btn" id="spd125" onclick="setSpeed(1.25)">&#x1F680; 1.25&times;</button>
+    </div>
+    <div class="audio-status" id="audioStatus">&#x23F3; Loading audio&hellip;</div>
+    <div class="audio-error" id="audioError">&#x26A0;&#xFE0F; Could not play audio. Try refreshing.</div>
+  </div>
+</div>
+
+<!-- CONVERSATION -->
+<div class="card">
+  <div class="card-header" style="background:linear-gradient(135deg,#7C3AED,#DC2E5D)">
+    <div class="num" style="background:var(--gold);color:var(--navy)">&#x1F5E3;&#xFE0F;</div>
+    <div><div class="title-en">Conversation &mdash; &#x627;&#x644;&#x645;&#x62D;&#x627;&#x62F;&#x62B;&#x629;</div><div class="title-ar">&#x627;&#x636;&#x63A;&#x637; &#x639;&#x644;&#x649; &#x623;&#x64A; &#x62C;&#x645;&#x644;&#x629; &#x644;&#x639;&#x631;&#x636; &#x62A;&#x631;&#x62C;&#x645;&#x62A;&#x647;&#x627;</div></div>
+  </div>
+  <div class="inst-en">&#x1F4A1; Tap any sentence to reveal its Arabic translation. Hidden in Challenge Mode.</div>
+  <div class="inst-ar">&#x627;&#x636;&#x63A;&#x637; &#x639;&#x644;&#x649; &#x623;&#x64A; &#x62C;&#x645;&#x644;&#x629; &#x644;&#x639;&#x631;&#x636; &#x62A;&#x631;&#x62C;&#x645;&#x62A;&#x647;&#x627;. &#x645;&#x62E;&#x641;&#x64A;&#x629; &#x641;&#x64A; &#x648;&#x636;&#x639; &#x627;&#x644;&#x62A;&#x62D;&#x62F;&#x64A;.</div>
+  <div class="conv-body">
+
+    <div class="line father">
+      <div class="speaker-badge">Father:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">Mmm! Smells good.</span><div class="translation">&#x645;&#x645;! &#x631;&#x627;&#x626;&#x62D;&#x629; &#x637;&#x64A;&#x628;&#x629;.</div></div>
+      </div>
+    </div>
+
+    <div class="line mother">
+      <div class="speaker-badge">Mother:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">Well, I have a real international menu today.</span><div class="translation">&#x62D;&#x633;&#x646;&#x627;&#x64B;&#x60C; &#x644;&#x62F;&#x64A; &#x642;&#x627;&#x626;&#x645;&#x629; &#x637;&#x639;&#x627;&#x645; &#x62F;&#x648;&#x644;&#x64A;&#x629; &#x62D;&#x642;&#x64A;&#x642;&#x64A;&#x629; &#x627;&#x644;&#x64A;&#x648;&#x645;.</div></div>
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">I hope you guys like it.</span><div class="translation">&#x622;&#x645;&#x644; &#x623;&#x646; &#x64A;&#x639;&#x62C;&#x628;&#x643;&#x645; &#x630;&#x644;&#x643;.</div></div>
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">First, I have a Mexican dip — tortilla chips and guacamole.</span><div class="translation">&#x623;&#x648;&#x644;&#x627;&#x64B;&#x60C; &#x644;&#x62F;&#x64A; &#x635;&#x644;&#x635;&#x629; &#x645;&#x643;&#x633;&#x64A;&#x643;&#x64A;&#x629; &#x2014; &#x631;&#x642;&#x627;&#x626;&#x642; &#x627;&#x644;&#x62A;&#x648;&#x631;&#x62A;&#x64A;&#x644;&#x627; &#x648;&#x627;&#x644;&#x62C;&#x648;&#x627;&#x643;&#x627;&#x645;&#x648;&#x644;&#x64A;.</div></div>
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">Then for the appetizer I have a shrimp cocktail, New Orleans style.</span><div class="translation">&#x62B;&#x645; &#x643;&#x645;&#x642;&#x628;&#x644;&#x627;&#x62A; &#x644;&#x62F;&#x64A; &#x643;&#x648;&#x643;&#x62A;&#x64A;&#x644; &#x627;&#x644;&#x631;&#x648;&#x628;&#x64A;&#x627;&#x646; &#x639;&#x644;&#x649; &#x637;&#x631;&#x627;&#x632; &#x646;&#x64A;&#x648; &#x623;&#x648;&#x631;&#x644;&#x64A;&#x627;&#x646;&#x632;.</div></div>
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">After that, we'll have Moroccan style chicken tagine and couscous, with Brazilian passion fruit mousse for dessert.</span><div class="translation">&#x628;&#x639;&#x62F; &#x630;&#x644;&#x643;&#x60C; &#x633;&#x64A;&#x643;&#x648;&#x646; &#x644;&#x62F;&#x64A;&#x646;&#x627; &#x637;&#x627;&#x62C;&#x646; &#x62F;&#x62C;&#x627;&#x62C; &#x645;&#x63A;&#x631;&#x628;&#x64A; &#x648;&#x643;&#x633;&#x643;&#x633;&#x60C; &#x645;&#x639; &#x645;&#x648;&#x633; &#x641;&#x627;&#x643;&#x647;&#x629; &#x627;&#x644;&#x641;&#x631;&#x643;&#x629; &#x627;&#x644;&#x628;&#x631;&#x627;&#x632;&#x64A;&#x644;&#x64A; &#x643;&#x62D;&#x644;&#x648;&#x649;.</div></div>
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">And finally, Colombian coffee.</span><div class="translation">&#x648;&#x623;&#x62E;&#x64A;&#x631;&#x627;&#x64B;&#x60C; &#x642;&#x647;&#x648;&#x629; &#x643;&#x648;&#x644;&#x648;&#x645;&#x628;&#x64A;&#x629;.</div></div>
+      </div>
+    </div>
+
+    <div class="line father">
+      <div class="speaker-badge">Father:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">Sounds great. I can't wait.</span><div class="translation">&#x64A;&#x628;&#x62F;&#x648; &#x631;&#x627;&#x626;&#x639;&#x627;&#x64B;. &#x644;&#x627; &#x623;&#x633;&#x62A;&#x637;&#x64A;&#x639; &#x627;&#x644;&#x627;&#x646;&#x62A;&#x638;&#x627;&#x631;.</div></div>
+      </div>
+    </div>
+
+    <div class="line daughter">
+      <div class="speaker-badge">Daughter:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">Do you need any help?</span><div class="translation">&#x647;&#x644; &#x62A;&#x62D;&#x62A;&#x627;&#x62C;&#x64A;&#x646; &#x623;&#x64A; &#x645;&#x633;&#x627;&#x639;&#x62F;&#x629;&#x61F;</div></div>
+      </div>
+    </div>
+
+    <div class="line mother">
+      <div class="speaker-badge">Mother:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">No, thanks. Everything's under control.</span><div class="translation">&#x644;&#x627;&#x60C; &#x634;&#x643;&#x631;&#x627;&#x64B;. &#x643;&#x644; &#x634;&#x64A;&#x621; &#x62A;&#x62D;&#x62A; &#x627;&#x644;&#x633;&#x64A;&#x637;&#x631;&#x629;.</div></div>
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">Let's sit down and have some guacamole.</span><div class="translation">&#x644;&#x646;&#x62C;&#x644;&#x633; &#x648;&#x646;&#x62A;&#x646;&#x627;&#x648;&#x644; &#x628;&#x639;&#x636; &#x627;&#x644;&#x62C;&#x648;&#x627;&#x643;&#x627;&#x645;&#x648;&#x644;&#x64A;.</div></div>
+      </div>
+    </div>
+
+    <div class="conv-divider">&bull; &bull; &bull;</div>
+
+    <div class="line father">
+      <div class="speaker-badge">Father:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">The guacamole was great!</span><div class="translation">&#x643;&#x627;&#x646; &#x627;&#x644;&#x62C;&#x648;&#x627;&#x643;&#x627;&#x645;&#x648;&#x644;&#x64A; &#x631;&#x627;&#x626;&#x639;&#x627;&#x64B;!</div></div>
+      </div>
+    </div>
+
+    <div class="line daughter">
+      <div class="speaker-badge">Daughter:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">How do you make it?</span><div class="translation">&#x643;&#x64A;&#x641; &#x62A;&#x635;&#x646;&#x639;&#x64A;&#x646;&#x647;&#x61F;</div></div>
+      </div>
+    </div>
+
+    <div class="line mother">
+      <div class="speaker-badge">Mother:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">It's easy. You just follow the recipe.</span><div class="translation">&#x625;&#x646;&#x647; &#x633;&#x647;&#x644;. &#x641;&#x642;&#x637; &#x627;&#x62A;&#x628;&#x639;&#x64A; &#x627;&#x644;&#x648;&#x635;&#x641;&#x629;.</div></div>
+      </div>
+    </div>
+
+    <div class="line father">
+      <div class="speaker-badge">Father:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">This chicken is absolutely delicious, too!</span><div class="translation">&#x647;&#x630;&#x627; &#x627;&#x644;&#x62F;&#x62C;&#x627;&#x62C; &#x644;&#x630;&#x64A;&#x630; &#x644;&#x644;&#x63A;&#x627;&#x64A;&#x629; &#x623;&#x64A;&#x636;&#x627;&#x64B;!</div></div>
+      </div>
+    </div>
+
+    <div class="line mother">
+      <div class="speaker-badge">Mother:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">Would you like some more?</span><div class="translation">&#x647;&#x644; &#x62A;&#x631;&#x64A;&#x62F; &#x627;&#x644;&#x645;&#x632;&#x64A;&#x62F;&#x61F;</div></div>
+      </div>
+    </div>
+
+    <div class="line father">
+      <div class="speaker-badge">Father:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">No, thank you. I've had more than enough.</span><div class="translation">&#x644;&#x627;&#x60C; &#x634;&#x643;&#x631;&#x627;&#x64B;. &#x644;&#x642;&#x62F; &#x627;&#x643;&#x62A;&#x641;&#x64A;&#x62A; &#x62A;&#x645;&#x627;&#x645;&#x627;&#x64B;.</div></div>
+      </div>
+    </div>
+
+    <div class="line daughter">
+      <div class="speaker-badge">Daughter:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">You should start your own restaurant. You're an excellent cook.</span><div class="translation">&#x64A;&#x646;&#x628;&#x63A;&#x64A; &#x623;&#x646; &#x62A;&#x641;&#x62A;&#x62D;&#x64A; &#x645;&#x637;&#x639;&#x645;&#x643; &#x627;&#x644;&#x62E;&#x627;&#x635;. &#x623;&#x646;&#x62A; &#x637;&#x627;&#x647;&#x64A;&#x629; &#x645;&#x645;&#x62A;&#x627;&#x632;&#x629;.</div></div>
+      </div>
+    </div>
+
+    <div class="line father">
+      <div class="speaker-badge">Father:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">Yeah. I totally agree, but let's keep Mom's cooking for us.</span><div class="translation">&#x646;&#x639;&#x645;. &#x623;&#x648;&#x627;&#x641;&#x642; &#x62A;&#x645;&#x627;&#x645;&#x627;&#x64B;&#x60C; &#x644;&#x643;&#x646; &#x644;&#x646;&#x62A;&#x631;&#x643; &#x637;&#x628;&#x62E; &#x623;&#x645;&#x640; &#x644;&#x646;&#x627; &#x648;&#x62D;&#x62F;&#x646;&#x627;.</div></div>
+      </div>
+    </div>
+
+    <div class="line daughter">
+      <div class="speaker-badge">Daughter:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">I have to learn how to cook.</span><div class="translation">&#x64A;&#x62C;&#x628; &#x623;&#x646; &#x623;&#x62A;&#x639;&#x644;&#x645; &#x627;&#x644;&#x637;&#x628;&#x62E;.</div></div>
+      </div>
+    </div>
+
+    <div class="line mother">
+      <div class="speaker-badge">Mother:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">I can teach you. It's lots of fun, and it's relaxing.</span><div class="translation">&#x623;&#x633;&#x62A;&#x637;&#x64A;&#x639; &#x62A;&#x639;&#x644;&#x64A;&#x645;&#x643;. &#x625;&#x646;&#x647; &#x645;&#x645;&#x62A;&#x639; &#x648;&#x645;&#x631;&#x64A;&#x62D;.</div></div>
+      </div>
+    </div>
+
+    <div class="line father">
+      <div class="speaker-badge">Father:</div>
+      <div class="sentence-wrap">
+        <div class="sentence-block"><span class="sentence" onclick="toggleTrans(this)">And it's much cheaper and healthier than eating out.</span><div class="translation">&#x648;&#x647;&#x648; &#x623;&#x631;&#x62E;&#x635; &#x648;&#x623;&#x635;&#x62D; &#x628;&#x643;&#x62B;&#x64A;&#x631; &#x645;&#x646; &#x627;&#x644;&#x623;&#x643;&#x644; &#x641;&#x64A; &#x627;&#x644;&#x645;&#x637;&#x627;&#x639;&#x645;.</div></div>
+      </div>
+    </div>
+
+    <!-- FYI Box -->
+    <div class="fyi-box">
+      <div class="fyi-tag">FYI</div>
+      <div class="fyi-row">
+        <span class="fyi-term">guacamole:</span> an avocado dip &mdash; see page 39 for a recipe
+        <span class="fyi-ar">&#x635;&#x644;&#x635;&#x629; &#x627;&#x644;&#x623;&#x641;&#x648;&#x643;&#x627;&#x62F;&#x648; &#x2014; &#x631;&#x627;&#x62C;&#x639; &#x635;&#x641;&#x62D;&#x629; 39 &#x644;&#x644;&#x648;&#x635;&#x641;&#x629;</span>
+      </div>
+      <div class="fyi-row">
+        <span class="fyi-term">chicken tagine:</span> a spicy chicken stew, often with olives and apricots
+        <span class="fyi-ar">&#x637;&#x627;&#x62C;&#x646; &#x627;&#x644;&#x62F;&#x62C;&#x627;&#x62C;: &#x64A;&#x62E;&#x646; &#x62F;&#x62C;&#x627;&#x62C; &#x645;&#x62A;&#x628;&#x651;&#x644; &#x628;&#x627;&#x644;&#x62A;&#x648;&#x627;&#x628;&#x644;&#x60C; &#x63A;&#x627;&#x644;&#x628;&#x627;&#x64B; &#x645;&#x639; &#x632;&#x64A;&#x62A;&#x648;&#x646; &#x648;&#x645;&#x634;&#x645;&#x634;</span>
+      </div>
+      <div class="fyi-row">
+        <span class="fyi-term">couscous:</span> grains of wheat dough that resemble rice
+        <span class="fyi-ar">&#x643;&#x633;&#x643;&#x633;: &#x62D;&#x628;&#x64A;&#x628;&#x627;&#x62A; &#x639;&#x62C;&#x64A;&#x646; &#x627;&#x644;&#x642;&#x645;&#x62D; &#x627;&#x644;&#x62A;&#x64A; &#x62A;&#x634;&#x628;&#x647; &#x627;&#x644;&#x623;&#x631;&#x632;</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- YOUR ENDING -->
+<div class="card">
+  <div class="card-header" style="background:linear-gradient(135deg,#F59E0B,#DC2E5D)">
+    <div class="num" style="background:rgba(255,255,255,.25);color:#fff">&#x1F3AF;</div>
+    <div><div class="title-en">Your Ending &mdash; &#x646;&#x647;&#x627;&#x64A;&#x62A;&#x643;</div><div class="title-ar">&#x643;&#x644; &#x627;&#x644;&#x625;&#x62C;&#x627;&#x628;&#x627;&#x62A; &#x635;&#x62D;&#x64A;&#x62D;&#x629; &mdash; &#x634;&#x627;&#x631;&#x643; &#x623;&#x641;&#x643;&#x627;&#x631;&#x643;</div></div>
+  </div>
+  <div class="inst-en">How do you think the Daughter responds to the Mother's offer to teach her cooking? All answers are valid!</div>
+  <div class="inst-ar">&#x643;&#x64A;&#x641; &#x62A;&#x639;&#x62A;&#x642;&#x62F; &#x623;&#x646; &#x627;&#x644;&#x627;&#x628;&#x646;&#x629; &#x633;&#x62A;&#x631;&#x62F; &#x639;&#x644;&#x649; &#x639;&#x631;&#x636; &#x627;&#x644;&#x623;&#x645; &#x62A;&#x639;&#x644;&#x645;&#x647;&#x627; &#x627;&#x644;&#x637;&#x628;&#x62E;&#x61F;</div>
+  <div class="ending-body">
+    <div class="section-prompt">How do you think the Daughter responds?<span class="ar">&#x643;&#x64A;&#x641; &#x62A;&#x639;&#x62A;&#x642;&#x62F; &#x623;&#x646; &#x627;&#x644;&#x627;&#x628;&#x646;&#x629; &#x633;&#x62A;&#x631;&#x62F;&#x61F;</span></div>
+    <div class="mcq-opts" id="endingOpts">
+      <button class="mcq-opt" data-ok="true" data-fb="Great choice! Enthusiasm is the first step to learning anything." data-fb-ar="&#x62E;&#x64A;&#x627;&#x631; &#x631;&#x627;&#x626;&#x639;! &#x627;&#x644;&#x62D;&#x645;&#x627;&#x633; &#x647;&#x648; &#x627;&#x644;&#x62E;&#x637;&#x648;&#x629; &#x627;&#x644;&#x623;&#x648;&#x644;&#x649; &#x644;&#x62A;&#x639;&#x644;&#x645; &#x623;&#x64A; &#x634;&#x64A;&#x621;." onclick="selectEnding(this)"><div class="opt-num">1</div><div><span class="readalong-line">Really? I'd love that! When do we start?</span> <span class="opt-ar">&#x62D;&#x642;&#x627;&#x64B;&#x61F; &#x623;&#x62D;&#x628; &#x630;&#x644;&#x643;! &#x645;&#x62A;&#x649; &#x646;&#x628;&#x62F;&#x623;&#x61F;</span></div></button>
+      <button class="mcq-opt" data-ok="true" data-fb="Perfect! Starting with guacamole is a great idea — it's simple and delicious." data-fb-ar="&#x645;&#x645;&#x62A;&#x627;&#x632;! &#x627;&#x644;&#x628;&#x62F;&#x621; &#x628;&#x627;&#x644;&#x62C;&#x648;&#x627;&#x643;&#x627;&#x645;&#x648;&#x644;&#x64A; &#x641;&#x643;&#x631;&#x629; &#x631;&#x627;&#x626;&#x639;&#x629;." onclick="selectEnding(this)"><div class="opt-num">2</div><div><span class="readalong-line">Can you teach me to make guacamole first?</span> <span class="opt-ar">&#x647;&#x644; &#x62A;&#x639;&#x644;&#x645;&#x64A;&#x646;&#x646;&#x64A; &#x623;&#x648;&#x644;&#x627;&#x64B; &#x643;&#x64A;&#x641; &#x623;&#x635;&#x646;&#x639; &#x627;&#x644;&#x62C;&#x648;&#x627;&#x643;&#x627;&#x645;&#x648;&#x644;&#x64A;&#x61F;</span></div></button>
+      <button class="mcq-opt" data-ok="true" data-fb="Nice! Cooking together is a wonderful way to bond with family." data-fb-ar="&#x631;&#x627;&#x626;&#x639;! &#x627;&#x644;&#x637;&#x628;&#x62E; &#x645;&#x639;&#x627;&#x64B; &#x637;&#x631;&#x64A;&#x642;&#x629; &#x631;&#x627;&#x626;&#x639;&#x629; &#x644;&#x644;&#x62A;&#x648;&#x627;&#x635;&#x644; &#x645;&#x639; &#x627;&#x644;&#x639;&#x627;&#x626;&#x644;&#x629;." onclick="selectEnding(this)"><div class="opt-num">3</div><div><span class="readalong-line">That would be amazing. I'll help you next time!</span> <span class="opt-ar">&#x633;&#x64A;&#x643;&#x648;&#x646; &#x630;&#x644;&#x643; &#x631;&#x627;&#x626;&#x639;&#x627;&#x64B;. &#x633;&#x623;&#x633;&#x627;&#x639;&#x62F;&#x643; &#x641;&#x64A; &#x627;&#x644;&#x645;&#x631;&#x629; &#x627;&#x644;&#x642;&#x627;&#x62F;&#x645;&#x629;!</span></div></button>
+    </div>
+    <div class="feedback-msg correct-fb" id="fb-correct">&#x2705; Good answer! <span class="fb-ar"></span></div>
+    <div class="write-section">
+      <div class="write-label">&#x270F;&#xFE0F; Write your own ending:<span class="ar">&#x627;&#x643;&#x62A;&#x628; &#x646;&#x647;&#x627;&#x64A;&#x62A;&#x643; &#x627;&#x644;&#x62E;&#x627;&#x635;&#x629;</span></div>
+      <textarea class="open-input" id="openEnding" placeholder="e.g. Thank you Mom! I will try my best..."></textarea>
+      <div class="btn-row">
+        <button class="check-btn" onclick="checkOpenEnding()">&#x2714; Submit</button>
+        <button class="reveal-btn" onclick="clearOpenEnding()">&#x1F5D1; Clear</button>
+      </div>
+      <div class="comp-feedback" id="openFb"></div>
+    </div>
+  </div>
+</div>
+
+<!-- REAL TALK -->
+<div class="card">
+  <div class="card-header" style="background:linear-gradient(135deg,#7C3AED,#4F46E5)">
+    <div class="num" style="background:var(--gold);color:var(--navy)">&#x1F4CC;</div>
+    <div><div class="title-en">Real Talk &mdash; &#x627;&#x644;&#x643;&#x644;&#x645;&#x627;&#x62A; &#x627;&#x644;&#x62D;&#x642;&#x64A;&#x642;&#x64A;&#x629;</div><div class="title-ar">&#x62A;&#x639;&#x627;&#x628;&#x64A;&#x631; &#x645;&#x647;&#x645;&#x629; &#x645;&#x646; &#x627;&#x644;&#x645;&#x62D;&#x627;&#x62F;&#x62B;&#x629;</div></div>
+  </div>
+  <div class="card-body">
+    <div class="real-talk-box">
+      <div class="rt-title">&#x1F4CC; Real Talk</div>
+      <div class="rt-row"><span class="rt-term">you guys</span> = an informal way to address two or more people<span class="rt-ar">&#x623;&#x633;&#x644;&#x648;&#x628; &#x63A;&#x64A;&#x631; &#x631;&#x633;&#x645;&#x64A; &#x644;&#x645;&#x62E;&#x627;&#x637;&#x628;&#x629; &#x634;&#x62E;&#x635;&#x64A;&#x646; &#x623;&#x648; &#x623;&#x643;&#x62B;&#x631;</span></div>
+      <div class="rt-row"><span class="rt-term">I can't wait</span> = I am very eager for something<span class="rt-ar">&#x623;&#x646;&#x627; &#x645;&#x62A;&#x634;&#x648;&#x642; &#x62C;&#x62F;&#x627;&#x64B; / &#x644;&#x627; &#x623;&#x633;&#x62A;&#x637;&#x64A;&#x639; &#x627;&#x644;&#x627;&#x646;&#x62A;&#x638;&#x627;&#x631;</span></div>
+      <div class="rt-row"><span class="rt-term">Everything's under control</span> = Everything is organized<span class="rt-ar">&#x643;&#x644; &#x634;&#x64A;&#x621; &#x62A;&#x62D;&#x62A; &#x627;&#x644;&#x633;&#x64A;&#x637;&#x631;&#x629; / &#x643;&#x644; &#x634;&#x64A;&#x621; &#x645;&#x646;&#x638;&#x645;</span></div>
+      <div class="rt-row"><span class="rt-term">I've had more than enough</span> = I can't eat any more<span class="rt-ar">&#x644;&#x642;&#x62F; &#x627;&#x643;&#x62A;&#x641;&#x64A;&#x62A; &#x62A;&#x645;&#x627;&#x645;&#x627;&#x64B; / &#x644;&#x627; &#x623;&#x633;&#x62A;&#x637;&#x64A;&#x639; &#x627;&#x644;&#x623;&#x643;&#x644; &#x623;&#x643;&#x62B;&#x631;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPREHENSION -->
+<div class="card">
+  <div class="card-header" style="background:linear-gradient(135deg,#16A34A,#0F766E)">
+    <div class="num" style="background:var(--gold);color:var(--navy)">&#x2753;</div>
+    <div><div class="title-en">About the Conversation &mdash; &#x623;&#x633;&#x626;&#x644;&#x629; &#x627;&#x644;&#x641;&#x647;&#x645;</div><div class="title-ar">&#x627;&#x642;&#x631;&#x623; &#x62B;&#x645; &#x627;&#x643;&#x62A;&#x628; &#x625;&#x62C;&#x627;&#x628;&#x627;&#x62A;&#x643;</div></div>
+  </div>
+  <div class="inst-en">Read the questions and write your full answers.</div>
+  <div class="inst-ar">&#x627;&#x642;&#x631;&#x623; &#x627;&#x644;&#x623;&#x633;&#x626;&#x644;&#x629; &#x648;&#x627;&#x643;&#x62A;&#x628; &#x625;&#x62C;&#x627;&#x628;&#x627;&#x62A;&#x643; &#x628;&#x627;&#x644;&#x643;&#x627;&#x645;&#x644;.</div>
+  <div class="comp-body">
+
+    <div class="comp-q">
+      <div class="comp-q-text"><span class="q-num">1</span><div>What kind of meal did the mother prepare?<span class="q-ar">&#x645;&#x627; &#x646;&#x648;&#x639; &#x627;&#x644;&#x648;&#x62C;&#x628;&#x629; &#x627;&#x644;&#x62A;&#x64A; &#x623;&#x639;&#x62F;&#x62A;&#x647;&#x627; &#x627;&#x644;&#x623;&#x645;&#x61F;</span></div></div>
+      <input class="answer-input" id="ans1" placeholder="Write your full answer here..." autocomplete="off">
+      <div class="btn-row"><button class="check-btn" onclick="checkComp(1)">&#x2714; Check</button><button class="hint-btn" onclick="toggleHint(1)">&#x1F4A1; Hint</button><button class="reveal-btn" onclick="revealComp(1)">&#x1F441; Show Answer</button></div>
+      <div class="hint-box" id="hint1">&#x62A;&#x644;&#x645;&#x64A;&#x62D;: &#x645;&#x643;&#x633;&#x64A;&#x643;&#x64A;&#x629; &#x648;&#x645;&#x63A;&#x631;&#x628;&#x64A;&#x629; &#x648;&#x628;&#x631;&#x627;&#x632;&#x64A;&#x644;&#x64A;&#x629; &#x648;&#x643;&#x648;&#x644;&#x648;&#x645;&#x628;&#x64A;&#x629;</div>
+      <div class="comp-feedback" id="fb1"></div>
+    </div>
+
+    <div class="comp-q">
+      <div class="comp-q-text"><span class="q-num">2</span><div>Does she need any help in the kitchen?<span class="q-ar">&#x647;&#x644; &#x62A;&#x62D;&#x62A;&#x627;&#x62C; &#x625;&#x644;&#x649; &#x645;&#x633;&#x627;&#x639;&#x62F;&#x629; &#x641;&#x64A; &#x627;&#x644;&#x645;&#x637;&#x628;&#x62E;&#x61F;</span></div></div>
+      <input class="answer-input" id="ans2" placeholder="Write your full answer here..." autocomplete="off">
+      <div class="btn-row"><button class="check-btn" onclick="checkComp(2)">&#x2714; Check</button><button class="hint-btn" onclick="toggleHint(2)">&#x1F4A1; Hint</button><button class="reveal-btn" onclick="revealComp(2)">&#x1F441; Show Answer</button></div>
+      <div class="hint-box" id="hint2">&#x62A;&#x644;&#x645;&#x64A;&#x62D;: &#x645;&#x627;&#x630;&#x627; &#x642;&#x627;&#x644;&#x62A; &#x627;&#x644;&#x623;&#x645; &#x644;&#x644;&#x627;&#x628;&#x646;&#x629; &#x639;&#x646;&#x62F;&#x645;&#x627; &#x639;&#x631;&#x636;&#x62A; &#x627;&#x644;&#x645;&#x633;&#x627;&#x639;&#x62F;&#x629;&#x61F;</div>
+      <div class="comp-feedback" id="fb2"></div>
+    </div>
+
+    <div class="comp-q">
+      <div class="comp-q-text"><span class="q-num">3</span><div>What suggestion does the daughter make over dinner?<span class="q-ar">&#x645;&#x627; &#x627;&#x644;&#x627;&#x642;&#x62A;&#x631;&#x627;&#x62D; &#x627;&#x644;&#x630;&#x64A; &#x642;&#x62F;&#x645;&#x62A;&#x647; &#x627;&#x644;&#x627;&#x628;&#x646;&#x629; &#x623;&#x62B;&#x646;&#x627;&#x621; &#x627;&#x644;&#x639;&#x634;&#x627;&#x621;&#x61F;</span></div></div>
+      <input class="answer-input" id="ans3" placeholder="Write your full answer here..." autocomplete="off">
+      <div class="btn-row"><button class="check-btn" onclick="checkComp(3)">&#x2714; Check</button><button class="hint-btn" onclick="toggleHint(3)">&#x1F4A1; Hint</button><button class="reveal-btn" onclick="revealComp(3)">&#x1F441; Show Answer</button></div>
+      <div class="hint-box" id="hint3">&#x62A;&#x644;&#x645;&#x64A;&#x62D;: &#x645;&#x627;&#x630;&#x627; &#x642;&#x627;&#x644;&#x62A; &#x627;&#x644;&#x627;&#x628;&#x646;&#x629; &#x639;&#x646; &#x637;&#x628;&#x62E; &#x627;&#x644;&#x623;&#x645;&#x61F;</div>
+      <div class="comp-feedback" id="fb3"></div>
+    </div>
+
+    <div class="comp-q">
+      <div class="comp-q-text"><span class="q-num">4</span><div>What does the mother suggest to her daughter?<span class="q-ar">&#x645;&#x627;&#x630;&#x627; &#x627;&#x642;&#x62A;&#x631;&#x62D;&#x62A; &#x627;&#x644;&#x623;&#x645; &#x644;&#x627;&#x628;&#x646;&#x62A;&#x647;&#x627;&#x61F;</span></div></div>
+      <input class="answer-input" id="ans4" placeholder="Write your full answer here..." autocomplete="off">
+      <div class="btn-row"><button class="check-btn" onclick="checkComp(4)">&#x2714; Check</button><button class="hint-btn" onclick="toggleHint(4)">&#x1F4A1; Hint</button><button class="reveal-btn" onclick="revealComp(4)">&#x1F441; Show Answer</button></div>
+      <div class="hint-box" id="hint4">&#x62A;&#x644;&#x645;&#x64A;&#x62D;: &#x645;&#x627;&#x630;&#x627; &#x639;&#x631;&#x636;&#x62A; &#x627;&#x644;&#x623;&#x645; &#x623;&#x646; &#x62A;&#x639;&#x644;&#x645; &#x627;&#x644;&#x627;&#x628;&#x646;&#x629;&#x61F;</span></div>
+      <div class="comp-feedback" id="fb4"></div>
+    </div>
+
+    <div class="comp-q">
+      <div class="comp-q-text"><span class="q-num">5</span><div>What does the father say about eating at home?<span class="q-ar">&#x645;&#x627;&#x630;&#x627; &#x642;&#x627;&#x644; &#x627;&#x644;&#x623;&#x628; &#x639;&#x646; &#x627;&#x644;&#x623;&#x643;&#x644; &#x641;&#x64A; &#x627;&#x644;&#x645;&#x646;&#x632;&#x644;&#x61F;</span></div></div>
+      <input class="answer-input" id="ans5" placeholder="Write your full answer here..." autocomplete="off">
+      <div class="btn-row"><button class="check-btn" onclick="checkComp(5)">&#x2714; Check</button><button class="hint-btn" onclick="toggleHint(5)">&#x1F4A1; Hint</button><button class="reveal-btn" onclick="revealComp(5)">&#x1F441; Show Answer</button></div>
+      <div class="hint-box" id="hint5">&#x62A;&#x644;&#x645;&#x64A;&#x62D;: &#x645;&#x627;&#x630;&#x627; &#x630;&#x643;&#x631; &#x627;&#x644;&#x623;&#x628; &#x639;&#x646; &#x627;&#x644;&#x633;&#x639;&#x631; &#x648;&#x627;&#x644;&#x635;&#x62D;&#x629;&#x61F;</div>
+      <div class="comp-feedback" id="fb5"></div>
+    </div>
+
+    <div class="comp-q">
+      <div class="comp-q-text"><span class="q-num">6</span><div>Do you enjoy cooking? What is your favourite dish to make or eat?<span class="q-ar">&#x647;&#x644; &#x62A;&#x633;&#x62A;&#x645;&#x62A;&#x639; &#x628;&#x627;&#x644;&#x637;&#x628;&#x62E;&#x61F; &#x645;&#x627; &#x637;&#x628;&#x642;&#x643; &#x627;&#x644;&#x645;&#x641;&#x636;&#x644;&#x61F;</span></div></div>
+      <textarea class="open-input" id="ans6" placeholder="I enjoy / don't enjoy cooking because..." style="min-height:80px;"></textarea>
+      <div class="btn-row"><button class="check-btn" onclick="checkPersonal()">&#x2714; Submit</button><button class="reveal-btn" onclick="clearPersonal()">&#x1F5D1; Clear</button></div>
+      <div class="comp-feedback" id="fb6"></div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div class="container" id="tabPanelSpeak" style="display:none">
+
+  <!-- INTRO CARD -->
+  <div class="card">
+    <div class="card-header" style="background:linear-gradient(135deg,#7C3AED,#DC2E5D)">
+      <div class="num" style="background:var(--gold);color:var(--navy)">🎤</div>
+      <div>
+        <div class="title-en">Speaking Practice — تدريب المحادثة</div>
+        <div class="title-ar">سجّل صوتك، احصل على تقييم فوري، وحسّن نطقك</div>
+      </div>
+    </div>
+    <div class="inst-en">Practice speaking the conversation above out loud. Record yourself, get instant feedback, and track your progress over time.</div>
+    <div class="inst-ar">تدرّب على نطق المحادثة أعلاه بصوت عالٍ. سجّل صوتك واحصل على تقييم فوري، وتابع تقدمك مع الوقت.</div>
+    <div class="card-body" id="speakUnsupportedWrap" style="display:none;padding-top:0;">
+      <div class="unsupported-note" id="speakUnsupportedNote"></div>
+    </div>
+  </div>
+
+  <!-- ═══ STUDENT NAME OVERLAY (Step 1 — reused from reference file) ═══ -->
+  <div class="ns-overlay" id="speakNameOverlay">
+    <div class="ns-card">
+      <h2>📝 Enter Your Name</h2>
+      <p>يرجى إدخال اسمك قبل بدء تدريب المحادثة</p>
+      <input type="text" id="speakNameInput" class="open-input wide" placeholder="Your name... / اسمك..." style="margin-top:16px;width:100%;max-width:280px;text-align:center;font-size:1rem;">
+      <div><button class="ns-start-btn" onclick="confirmSpeakingName()">▶ Continue</button></div>
+    </div>
+  </div>
+
+  <!-- ═══ AVATAR SELECTION OVERLAY (Step 2 — same avatar system as reference file) ═══ -->
+  <div class="ns-overlay" id="speakAvatarOverlay">
+    <div class="ns-card">
+      <h2>🎮 Choose Your Avatar</h2>
+      <p>اختر شخصيتك قبل بدء التدريب!</p>
+      <div class="avatar-grid" id="speakAvatarGrid">
+        <div class="avatar-opt" data-av="⚽" onclick="pickSpeakingAvatar(this,'⚽')"><span class="em">⚽</span><span class="nm">Football Hero</span><span class="nm-ar">بطل كرة القدم</span></div>
+        <div class="avatar-opt" data-av="🎮" onclick="pickSpeakingAvatar(this,'🎮')"><span class="em">🎮</span><span class="nm">Gamer</span><span class="nm-ar">لاعب محترف</span></div>
+        <div class="avatar-opt" data-av="🚀" onclick="pickSpeakingAvatar(this,'🚀')"><span class="em">🚀</span><span class="nm">Space Explorer</span><span class="nm-ar">مستكشف الفضاء</span></div>
+        <div class="avatar-opt" data-av="🤖" onclick="pickSpeakingAvatar(this,'🤖')"><span class="em">🤖</span><span class="nm">Robot Warrior</span><span class="nm-ar">محارب آلي</span></div>
+      </div>
+      <button class="ns-start-btn" id="speakAvatarStartBtn" disabled onclick="confirmSpeakingAvatar()">▶ Start Speaking Practice</button>
+    </div>
+  </div>
+
+  <!-- ═══ RESET PROGRESS CONFIRMATION MODAL (same workflow as reference file) ═══ -->
+  <div class="ns-overlay" id="speakResetConfirmModal">
+    <div class="ns-card" style="border-color:#DC2E5D;">
+      <h2 style="color:#DC2E5D;">🗑 Reset Progress</h2>
+      <p style="margin:12px 0;line-height:1.6;">
+        Are you sure you want to reset all Speaking Practice progress?<br>
+        This will permanently erase your XP, level, streak, badges, attempt history, and student profile. This cannot be undone.<br><br>
+        <span dir="rtl">هل أنت متأكد من رغبتك في إعادة تعيين كل تقدمك في تدريب المحادثة؟ لا يمكن التراجع عن هذا.</span>
+      </p>
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:16px;">
+        <button onclick="executeResetSpeakingProgress()" style="background:#DC2E5D;color:white;border:none;border-radius:10px;padding:11px 20px;font-size:.85rem;font-weight:800;cursor:pointer;">Yes, Reset</button>
+        <button style="background:rgba(255,255,255,.12);color:#fff;border:none;border-radius:10px;padding:11px 20px;font-size:.85rem;font-weight:800;cursor:pointer;" onclick="closeSpeakResetModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PRINT CERTIFICATE MODAL (same approach as reference file) ═══ -->
+  <div class="cert-modal" id="speakCertModal">
+    <div class="cert-content">
+      <div class="cert-avatar" id="certAvatarDisplay">🎤</div>
+      <div class="cert-title">شهادة التميز في تدريب المحادثة</div>
+      <div class="cert-sub" style="direction:ltr">U4 Conversation — An International Menu: Speaking Achievement</div>
+      <input type="text" class="cert-input" placeholder="اكتب اسمك هنا..." id="speakCertNameInput" style="direction:rtl">
+      <div class="cert-stats" id="certStatsDisplay"></div>
+      <div class="cert-actions-row">
+        <button class="cert-btn" onclick="window.print()">🖨 Print Certificate / طباعة الشهادة</button>
+        <button class="cert-btn" style="background:var(--purple)" onclick="downloadSpeakingCertificatePng()">📥 Download Certificate / تحميل الشهادة</button>
+      </div>
+      <button class="reveal-btn" style="background:var(--slate);margin-top:15px;padding:6px 15px;" onclick="document.getElementById('speakCertModal').classList.remove('active')">إغلاق</button>
+    </div>
+  </div>
+  <canvas id="speakCertCanvas" width="1000" height="700" style="display:none"></canvas>
+
+  <!-- GAMIFICATION: XP / LEVEL / STREAK -->
+  <div class="card">
+    <div class="card-header" style="background:linear-gradient(135deg,#F59E0B,#7C3AED)">
+      <div class="num" style="background:rgba(255,255,255,.25);color:#fff">⭐</div>
+      <div>
+        <div class="title-en">Your Progress — تقدّمك</div>
+        <div class="title-ar">نقاطك، مستواك، وأيام التدريب المتتالية</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="speak-profile-row" id="speakProfileRow">
+        <div class="speak-profile-avatar" id="speakProfileAvatar">👤</div>
+        <div class="speak-profile-name" id="speakProfileName">Student</div>
+        <button class="speak-profile-edit" onclick="reopenSpeakingOnboarding()">✏️ تعديل</button>
+      </div>
+      <div class="gami-row">
+        <div class="gami-level-badge">
+          <div class="lv-num" id="gamiLevelNum">1</div>
+          <div class="lv-name" id="gamiLevelName">Beginner Speaker</div>
+          <div class="lv-name-ar" id="gamiLevelNameAr">متحدث مبتدئ</div>
+        </div>
+        <div class="gami-xp-wrap">
+          <div class="gami-xp-label"><span id="gamiXpText">0 XP</span><span id="gamiXpNext" style="direction:rtl">للمستوى التالي: 50 نقطة</span></div>
+          <div class="gami-xp-track"><div class="gami-xp-fill" id="gamiXpFill"></div></div>
+        </div>
+        <div class="gami-streak-badge" id="gamiStreakBadge">🔥 0 Day Streak</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODE PICKER -->
+  <div class="card">
+    <div class="card-header" style="background:linear-gradient(135deg,#1E3A5F,#2563EB)">
+      <div class="num" style="background:var(--gold);color:var(--navy)">🧭</div>
+      <div>
+        <div class="title-en">Choose a Practice Mode — اختر وضع التدريب</div>
+        <div class="title-ar">اختر طريقة التدريب التي تناسبك</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="speak-mode-row">
+        <button class="speak-mode-btn active" id="modeBtnFull" onclick="selectSpeakMode('full')">
+          📄 Full Reading<span class="ar">قراءة كاملة وتقييم</span>
+        </button>
+        <button class="speak-mode-btn" id="modeBtnRole" onclick="selectSpeakMode('role')">
+          🎭 Role Play<span class="ar">تمثيل الأدوار</span>
+        </button>
+        <button class="speak-mode-btn" id="modeBtnShadow" onclick="selectSpeakMode('shadow')">
+          🌓 Shadowing<span class="ar">التظليل الصوتي</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════ FULL READING ASSESSMENT MODE ═════════════ -->
+  <div id="modePanelFull">
+
+    <!-- VOICE RECORDING -->
+    <div class="card">
+      <div class="card-header" style="background:linear-gradient(135deg,#DC2E5D,#7C3AED)">
+        <div class="num" style="background:var(--gold);color:var(--navy)">🎙️</div>
+        <div>
+          <div class="title-en">Voice Recording — تسجيل الصوت</div>
+          <div class="title-ar">اقرأ المحادثة كاملة بصوت عالٍ ثم سجّلها</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="inst-en" style="padding:0 0 10px;border:none;">💡 Read the whole conversation above out loud, from the first line to the last line, then press Stop.</div>
+        <div class="recorder-box">
+          <div class="rec-status" id="fullRecStatus">Press Start and read the conversation aloud<span class="ar">اضغط "ابدأ" واقرأ المحادثة بصوت عالٍ</span></div>
+          <div class="rec-timer" id="fullRecTimer">0:00</div>
+          <div class="rec-btn-row">
+            <button class="rec-btn start" id="fullStartBtn" onclick="startRecording('full')">🔴 Start Recording</button>
+            <button class="rec-btn stop" id="fullStopBtn" onclick="stopRecording('full')" disabled>⏹ Stop Recording</button>
+            <button class="rec-btn play" id="fullPlayBtn" onclick="playRecording('full')" disabled>▶ Play Recording</button>
+            <button class="rec-btn redo" id="fullRedoBtn" onclick="resetRecording('full')" disabled>🔄 Record Again</button>
+          </div>
+        </div>
+        <audio id="fullPlaybackAudio" style="display:none;"></audio>
+        <button class="check-btn" id="fullEvalBtn" onclick="evaluateFullReading()" disabled style="width:100%;">📊 Evaluate My Reading / قيّم قراءتي</button>
+      </div>
+    </div>
+
+    <!-- WHAT THE SYSTEM HEARD (always shown BEFORE any scores) -->
+    <div class="card" id="fullTranscriptCard" style="display:none;">
+      <div class="card-header" style="background:linear-gradient(135deg,#2563EB,#7C3AED)">
+        <div class="num" style="background:var(--gold);color:var(--navy)">👂</div>
+        <div>
+          <div class="title-en">What the System Heard — ماذا سمع النظام</div>
+          <div class="title-ar">هذا ما تم التعرف عليه من صوتك</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="analysis-error" id="fullAnalysisError" style="display:none;"></div>
+        <div class="transcript-box" id="fullTranscriptBox" style="display:none;">
+          <div class="lbl">النص الذي تم التعرف عليه:</div>
+          <div class="txt" id="fullTranscriptText"></div>
+          <div class="lbl" style="margin-top:8px;" id="fullCompletenessText"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS DASHBOARD -->
+    <div class="card" id="fullResultsCard" style="display:none;">
+      <div class="card-header" style="background:linear-gradient(135deg,#16A34A,#0F766E)">
+        <div class="num" style="background:var(--gold);color:var(--navy)">📊</div>
+        <div>
+          <div class="title-en">Pronunciation Assessment — تقييم النطق</div>
+          <div class="title-ar">نتيجتك التفصيلية بعد التسجيل</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="overall-score-ring">
+          <div class="overall-score-num" id="fullOverallNum">0</div>
+          <div class="overall-score-lbl">Overall Score / 100<span class="ar">النتيجة الإجمالية</span></div>
+        </div>
+        <div class="score-grid">
+          <div class="score-card">
+            <div class="score-card-title"><span>Pronunciation<br><span style="direction:rtl;font-size:.7rem;font-weight:600;">النطق</span></span><span class="val" id="fullPronVal">0%</span></div>
+            <div class="score-bar-track"><div class="score-bar-fill" id="fullPronBar"></div></div>
+          </div>
+          <div class="score-card">
+            <div class="score-card-title"><span>Fluency<br><span style="direction:rtl;font-size:.7rem;font-weight:600;">الطلاقة</span></span><span class="val" id="fullFluVal">0%</span></div>
+            <div class="score-bar-track"><div class="score-bar-fill" id="fullFluBar"></div></div>
+          </div>
+          <div class="score-card">
+            <div class="score-card-title"><span>Accuracy<br><span style="direction:rtl;font-size:.7rem;font-weight:600;">الدقة</span></span><span class="val" id="fullAccVal">0%</span></div>
+            <div class="score-bar-track"><div class="score-bar-fill" id="fullAccBar"></div></div>
+          </div>
+          <div class="score-card">
+            <div class="score-card-title"><span>Intonation<br><span style="direction:rtl;font-size:.7rem;font-weight:600;">التنغيم</span></span><span class="val" id="fullIntVal">0%</span></div>
+            <div class="score-bar-track"><div class="score-bar-fill" id="fullIntBar"></div></div>
+          </div>
+        </div>
+        <div class="perf-summary" id="fullSummary"></div>
+      </div>
+    </div>
+
+    <!-- SENTENCE COMPARISON -->
+    <div class="card" id="fullCompareCard" style="display:none;">
+      <div class="card-header" style="background:linear-gradient(135deg,#F59E0B,#DC2E5D)">
+        <div class="num" style="background:rgba(255,255,255,.25);color:#fff">🔍</div>
+        <div>
+          <div class="title-en">Sentence Comparison — مقارنة الجمل</div>
+          <div class="title-ar">قارن بين النص الأصلي وما تم التعرف عليه من صوتك</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="compare-box">
+          <div class="compare-label">Original Conversation Text</div>
+          <div class="compare-text" id="compareOriginal"></div>
+        </div>
+        <div class="compare-box">
+          <div class="compare-label">What You Actually Said (recognized speech)</div>
+          <div class="compare-text" id="compareRecognized"></div>
+        </div>
+        <div class="mistake-note" id="compareArabicNote"></div>
+      </div>
+    </div>
+
+    <!-- READING SPEED -->
+    <div class="card" id="fullSpeedCard" style="display:none;">
+      <div class="card-header" style="background:linear-gradient(135deg,#2563EB,#1E3A5F)">
+        <div class="num" style="background:var(--gold);color:var(--navy)">⏱️</div>
+        <div>
+          <div class="title-en">Reading Speed — سرعة القراءة</div>
+          <div class="title-ar">عدد الكلمات في الدقيقة مقارنة بالمعدل المستهدف</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="speed-box">
+          <div class="speed-num"><div class="n" id="speedWpm">0</div><div class="l">Your Speed (WPM)<br><span style="direction:rtl">سرعتك</span></div></div>
+          <div class="speed-num"><div class="n">100–130</div><div class="l">Target Range<br><span style="direction:rtl">المدى المستهدف</span></div></div>
+          <div class="speed-num"><div class="n" id="speedTime">0:00</div><div class="l">Reading Time<br><span style="direction:rtl">زمن القراءة</span></div></div>
+        </div>
+        <div class="perf-summary" id="speedComment" style="margin-top:12px;"></div>
+      </div>
+    </div>
+
+    <!-- DIFFICULT SENTENCES -->
+    <div class="card" id="fullDiffSentCard" style="display:none;">
+      <div class="card-header" style="background:linear-gradient(135deg,#DC2E5D,#7C3AED)">
+        <div class="num" style="background:rgba(255,255,255,.25);color:#fff">🧩</div>
+        <div>
+          <div class="title-en">Practice Difficult Sentences — تدرّب على الجمل الصعبة</div>
+          <div class="title-ar">أضعف الجمل في محاولتك الأخيرة</div>
+        </div>
+      </div>
+      <div class="card-body" id="fullDiffSentBody"></div>
+      <div class="card-body" style="padding-top:0;">
+        <div id="sentencePracticePanel" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- WORDS TO PRACTICE -->
+    <div class="card" id="fullWordsCard" style="display:none;">
+      <div class="card-header" style="background:linear-gradient(135deg,#7C3AED,#4F46E5)">
+        <div class="num" style="background:var(--gold);color:var(--navy)">🔤</div>
+        <div>
+          <div class="title-en">Words to Practice — كلمات للتدرّب عليها</div>
+          <div class="title-ar">الكلمات التي تحتاج نطقاً أوضح</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="word-chip-row" id="fullWordsBody"></div>
+        <div class="mistake-note" id="fullWordsNote"></div>
+        <div id="wordPracticePanel" style="display:none;margin-top:10px;"></div>
+      </div>
+    </div>
+
+  </div><!-- /modePanelFull -->
+
+  <!-- ═════════════ ROLE PLAY MODE ═════════════ -->
+  <div id="modePanelRole" style="display:none;">
+    <div class="card">
+      <div class="card-header" style="background:linear-gradient(135deg,#7C3AED,#DC2E5D)">
+        <div class="num" style="background:var(--gold);color:var(--navy)">🎭</div>
+        <div>
+          <div class="title-en">Role Play — تمثيل الأدوار</div>
+          <div class="title-ar">اختر الدور الذي تريد قراءته</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="speak-mode-row" id="roleModePickerRow"></div>
+        <div id="roleWalkArea"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════ SHADOWING MODE ═════════════ -->
+  <div id="modePanelShadow" style="display:none;">
+    <div class="card">
+      <div class="card-header" style="background:linear-gradient(135deg,#0F766E,#16A34A)">
+        <div class="num" style="background:var(--gold);color:var(--navy)">🌓</div>
+        <div>
+          <div class="title-en">Shadowing Practice — التظليل الصوتي</div>
+          <div class="title-ar">استمع لكل جملة، ثم كررها فوراً بصوتك</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="inst-en" style="padding:0 0 10px;border:none;">💡 Each sentence plays automatically, then pauses for you to record your version.</div>
+        <button class="check-btn" id="shadowSessionBtn" onclick="startShadowing()" style="width:100%;margin-bottom:10px;">▶ Start Shadowing / ابدأ التظليل</button>
+        <div id="shadowWalkArea"></div>
+        <div class="perf-summary" id="shadowFinalScore" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTEMPT HISTORY -->
+  <div class="card">
+    <div class="card-header" style="background:linear-gradient(135deg,#1E3A5F,#2563EB)">
+      <div class="num" style="background:var(--gold);color:var(--navy)">📈</div>
+      <div>
+        <div class="title-en">Attempt History — سجل المحاولات</div>
+        <div class="title-ar">تتبّع تقدمك عبر المحاولات السابقة</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div id="historyBody"><div class="mistake-note" id="historyEmptyNote" style="text-align:right;">لا توجد محاولات بعد. جرّب أحد أوضاع التدريب وستظهر نتيجتك هنا. 🌟</div></div>
+      <button class="reveal-btn" onclick="confirmResetSpeakingProgress()" style="margin-top:10px;background:rgba(220,46,93,.12);border-color:#DC2E5D;color:#DC2E5D;">🗑 Reset Progress / إعادة تعيين التقدم</button>
+    </div>
+  </div>
+
+  <!-- ACHIEVEMENTS -->
+  <div class="card">
+    <div class="card-header" style="background:linear-gradient(135deg,#F59E0B,#DC2E5D)">
+      <div class="num" style="background:rgba(255,255,255,.25);color:#fff">🏆</div>
+      <div>
+        <div class="title-en">Achievements — الإنجازات</div>
+        <div class="title-ar">شارات يتم فتحها تلقائياً حسب أدائك</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="badge-grid" id="badgeGrid"></div>
+    </div>
+  </div>
+
+  <!-- TEACHER MODE (hidden by default) -->
+  <div class="card">
+    <div class="card-header" style="background:linear-gradient(135deg,#475569,#1E3A5F)">
+      <div class="num" style="background:var(--gold);color:var(--navy)">🧑‍🏫</div>
+      <div>
+        <div class="title-en">Teacher Summary — ملخص للمعلم</div>
+        <div class="title-ar">تقرير تفصيلي اختياري لمتابعة أداء الطالب</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="teacher-toggle-row">
+        <button class="reveal-btn" id="teacherToggleBtn" onclick="toggleTeacherMode()">🔓 Show Teacher Summary / إظهار ملخص المعلم</button>
+      </div>
+      <div class="teacher-panel" id="teacherPanel" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- FINAL PERFORMANCE DASHBOARD -->
+  <div class="card">
+    <div class="card-header" style="background:linear-gradient(135deg,#7C3AED,#1E3A5F)">
+      <div class="num" style="background:var(--gold);color:var(--navy)">📋</div>
+      <div>
+        <div class="title-en">Final Performance Dashboard — لوحة الأداء</div>
+        <div class="title-ar">ملخص شامل لأدائك في التحدث</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="dash-grid" id="finalDashGrid"></div>
+      <div class="cert-actions-row" style="margin-top:14px;">
+        <button class="check-btn" onclick="openSpeakingCertificate()">🖨 Print Certificate / طباعة الشهادة</button>
+        <button class="check-btn" style="background:var(--purple)" onclick="openSpeakingCertificateAndDownload()">📥 Download Certificate / تحميل الشهادة</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container (Speaking Practice tab) -->
+
+
+<script>
+
+(function(){
+  /* INJECT AUDIO */
+  var au = document.createElement('audio');
+  au.id = 'mainAudio'; au.preload = 'auto';
+  au.src = "audio24.mp3";
+
+  /* ANSWER KEY */
+  var ANSWERS = {
+    1:{kw:['international','mexican','moroccan','couscous','tagine','colombian','shrimp','guacamole','tortilla','brazilian'],
+       model:'She prepared an international menu: Mexican dip, shrimp cocktail New Orleans style, Moroccan chicken tagine with couscous, Brazilian passion fruit mousse, and Colombian coffee.',
+       ar:'\u0623\u0639\u062f\u062a \u0642\u0627\u0626\u0645\u0629 \u062f\u0648\u0644\u064a\u0629: \u0635\u0644\u0635\u0629 \u0645\u0643\u0633\u064a\u0643\u064a\u0629\u060c \u0643\u0648\u0643\u062a\u064a\u0644 \u0631\u0648\u0628\u064a\u0627\u0646\u060c \u0637\u0627\u062c\u0646 \u062f\u062c\u0627\u062c \u0645\u063a\u0631\u0628\u064a \u0645\u0639 \u0643\u0633\u0643\u0633\u060c \u0645\u0648\u0633 \u0628\u0631\u0627\u0632\u064a\u0644\u064a\u060c \u0648\u0642\u0647\u0648\u0629 \u0643\u0648\u0644\u0648\u0645\u0628\u064a\u0629.'},
+    2:{kw:['no','not','under control','thanks','everything'],
+       model:"No. She said everything's under control and told them to sit down.",
+       ar:'\u0644\u0627. \u0642\u0627\u0644\u062a \u0625\u0646 \u0643\u0644 \u0634\u064a\u0621 \u062a\u062d\u062a \u0627\u0644\u0633\u064a\u0637\u0631\u0629 \u0648\u0637\u0644\u0628\u062a \u0645\u0646\u0647\u0645 \u0627\u0644\u062c\u0644\u0648\u0633.'},
+    3:{kw:['restaurant','own restaurant','start','excellent cook','cook'],
+       model:'She suggested that the mother should start her own restaurant because she is an excellent cook.',
+       ar:'\u0627\u0642\u062a\u0631\u062d\u062a \u0623\u0646 \u062a\u0641\u062a\u062d \u0627\u0644\u0623\u0645 \u0645\u0637\u0639\u0645\u0647\u0627 \u0627\u0644\u062e\u0627\u0635 \u0644\u0623\u0646\u0647\u0627 \u0637\u0627\u0647\u064a\u0629 \u0645\u0645\u062a\u0627\u0632\u0629.'},
+    4:{kw:['teach','learn','cooking','teach you'],
+       model:'She offered to teach her daughter how to cook, saying it is lots of fun and relaxing.',
+       ar:'\u0639\u0631\u0636\u062a \u062a\u0639\u0644\u064a\u0645 \u0627\u0628\u0646\u062a\u0647\u0627 \u0627\u0644\u0637\u0628\u062e\u060c \u0642\u0627\u0626\u0644\u0629 \u0625\u0646\u0647 \u0645\u0645\u062a\u0639 \u0648\u0645\u0631\u064a\u062d.'},
+    5:{kw:['cheaper','healthier','eating out','cheap','health'],
+       model:'He said eating at home is much cheaper and healthier than eating out.',
+       ar:'\u0642\u0627\u0644 \u0625\u0646 \u0627\u0644\u0623\u0643\u0644 \u0641\u064a \u0627\u0644\u0645\u0646\u0632\u0644 \u0623\u0631\u062e\u0635 \u0648\u0623\u0635\u062d \u0628\u0643\u062b\u064a\u0631 \u0645\u0646 \u0627\u0644\u0623\u0643\u0644 \u0641\u064a \u0627\u0644\u0645\u0637\u0627\u0639\u0645.'}
+  };
+
+  var audio;
+  var PLAY_D='M8 5v14l11-7z', PAUSE_D='M6 19h4V5H6v14zm8-14v14h4V5h-4z';
+  function setIcon(p){var el=document.getElementById('playPath');if(el)el.setAttribute('d',p?PLAY_D:PAUSE_D);}
+  function fmt(s){if(!s||isNaN(s))return'0:00';return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');}
+  function g(id){return document.getElementById(id);}
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var pt=g('playerTarget');
+    if(pt){ au.style.display='none'; pt.appendChild(au); }
+    else { document.body.appendChild(au); }
+    audio=g('mainAudio');
+    audio.addEventListener('canplay',function(){var s=g('audioStatus');if(s)s.textContent='Audio ready - press play!';});
+    audio.addEventListener('loadedmetadata',function(){if(g('durTime'))g('durTime').textContent=fmt(audio.duration);});
+    audio.addEventListener('play',function(){setIcon(false);});
+    audio.addEventListener('pause',function(){setIcon(true);});
+    audio.addEventListener('ended',function(){setIcon(true);});
+    audio.addEventListener('error',function(){var e=g('audioError');if(e)e.classList.add('show');setIcon(true);});
+    audio.addEventListener('timeupdate',function(){
+      var p=audio.duration?(audio.currentTime/audio.duration)*100:0;
+      if(g('progressFill'))g('progressFill').style.width=p+'%';
+      if(g('progressThumb'))g('progressThumb').style.left=p+'%';
+      if(g('curTime'))g('curTime').textContent=fmt(audio.currentTime);
+    });
+    var pw=g('progressWrap');
+    if(pw){
+      function doSeek(x){var r=pw.getBoundingClientRect();var p=Math.max(0,Math.min(1,(x-r.left)/r.width));if(audio&&audio.duration)audio.currentTime=p*audio.duration;}
+      pw.addEventListener('click',function(e){doSeek(e.clientX);});
+      pw.addEventListener('touchstart',function(e){doSeek(e.touches[0].clientX);},{passive:true});
+    }
+  });
+
+  window.togglePlay=function(){if(!audio)return;if(audio.paused||audio.ended){var p=audio.play();if(p&&p.catch)p.catch(function(){var e=g('audioError');if(e)e.classList.add('show');});}else{audio.pause();}};
+  window.skipAudio=function(s){if(audio)audio.currentTime=Math.max(0,audio.currentTime+s);};
+  window.setSpeed=function(r){if(audio)audio.playbackRate=r;['spd75','spd100','spd125'].forEach(function(id){var b=g(id);if(b)b.classList.remove('spd-active');});var map={0.75:'spd75',1:'spd100',1.25:'spd125'};if(map[r])g(map[r]).classList.add('spd-active');};
+  window.toggleTrans=function(span){if(document.body.classList.contains('challenge-on'))return;span.parentElement.classList.toggle('show-trans');};
+  window.toggleChallenge=function(){var btn=g('challengeBtn');var on=btn.classList.toggle('active');document.body.classList.toggle('challenge-on',on);g('challengeText').textContent=on?'Challenge Mode: ON':'Challenge Mode: OFF';};
+  window.toggleDark=function(){document.body.classList.toggle('dark-mode');g('dark-toggle').textContent=document.body.classList.contains('dark-mode')?'Light Mode':'Dark Mode';};
+
+  /* YOUR ENDING — all correct, per-option feedback */
+  window.selectEnding=function(btn){
+    document.querySelectorAll('#endingOpts .mcq-opt').forEach(function(b){b.classList.remove('sel-ok');});
+    btn.classList.add('sel-ok');
+    var fb=g('fb-correct');
+    var en=btn.dataset.fb||'Good answer!';
+    var ar=btn.dataset.fbAr||'';
+    fb.innerHTML='&#x2705; '+en+(ar?' <span class="fb-ar">'+ar+'</span>':'');
+    fb.classList.add('show');
+  };
+  window.checkOpenEnding=function(){var v=g('openEnding').value.trim();var fb=g('openFb');if(v.length<5){fb.className='comp-feedback cf-err show';fb.innerHTML='Write a few words first.';return;}fb.className='comp-feedback cf-ok show';fb.innerHTML='Great! Your creative ending is noted.';};
+  window.clearOpenEnding=function(){g('openEnding').value='';var fb=g('openFb');fb.className='comp-feedback';fb.innerHTML='';};
+
+  /* COMPREHENSION */
+  window.checkComp=function(n){
+    var inp=g('ans'+n), fb=g('fb'+n);
+    var val=inp.value.trim().toLowerCase();
+    if(!val){inp.classList.add('shake');setTimeout(function(){inp.classList.remove('shake');},420);fb.className='comp-feedback cf-err show';fb.innerHTML='Write your answer first.';return;}
+    var d=ANSWERS[n];
+    var hit=d.kw.some(function(k){return val.indexOf(k)!==-1;});
+    inp.classList.remove('is-correct','is-wrong');
+    if(hit){inp.classList.add('is-correct');fb.className='comp-feedback cf-ok show';fb.innerHTML='Great answer!';}
+    else{inp.classList.add('is-wrong');fb.className='comp-feedback cf-err show';fb.innerHTML='Try again - check the conversation.';}
+  };
+  window.revealComp=function(n){
+    var inp=g('ans'+n),fb=g('fb'+n),d=ANSWERS[n];
+    inp.classList.remove('is-correct','is-wrong');
+    inp.value=d.model; inp.classList.add('is-correct');
+    fb.className='comp-feedback cf-ans show';
+    fb.innerHTML='Model answer shown. <span class="cf-ar">'+d.ar+'</span>';
+  };
+  window.toggleHint=function(n){g('hint'+n).classList.toggle('show');};
+  window.checkPersonal=function(){var v=g('ans6').value.trim();var fb=g('fb6');if(v.length<10){fb.className='comp-feedback cf-err show';fb.innerHTML='Write at least 2 sentences.';return;}fb.className='comp-feedback cf-ok show';fb.innerHTML='Excellent! Great personal reflection.';};
+  window.clearPersonal=function(){g('ans6').value='';var fb=g('fb6');fb.className='comp-feedback';fb.innerHTML='';};
+})();
+/* ═══════════════════════════════════════════════════════════════
+   ███████████████████████████████████████████████████████████████
+   🎤  SPEAKING PRACTICE TAB — ALL NEW LOGIC LIVES BELOW THIS LINE
+   Nothing above this comment was changed.
+
+   DESIGNED FOR MIDDLE SCHOOL STUDENTS (ages 12–15):
+   - All feedback is simple, positive Arabic — focused on progress,
+     never on failure.
+   - No scores are ever random, estimated, or hardcoded. Every
+     number comes from real speech data (recognized words, timing,
+     recognition confidence, real audio energy). If we don't have
+     enough real data to compute something, we say so honestly
+     instead of making a number up.
+   ███████████████████████████████████████████████████████████████
+═══════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────
+   A. MAIN TAB SWITCHING (Learning ↔ Speaking Practice)
+─────────────────────────────────────────────────────────────── */
+function switchMainTab(tab){
+  const learnPanel = document.getElementById('tabPanelLearn');
+  const speakPanel = document.getElementById('tabPanelSpeak');
+  const learnBtn   = document.getElementById('mainTabLearnBtn');
+  const speakBtn   = document.getElementById('mainTabSpeakBtn');
+  if(tab === 'speak'){
+    learnPanel.style.display = 'none';
+    speakPanel.style.display = '';
+    learnBtn.classList.remove('active');
+    speakBtn.classList.add('active');
+    initSpeakingTab(); // lazy-init the first time the tab is opened
+  } else {
+    speakPanel.style.display = 'none';
+    learnPanel.style.display = '';
+    speakBtn.classList.remove('active');
+    learnBtn.classList.add('active');
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   B. READ THE EXISTING CONVERSATION AUTOMATICALLY FROM THE DOM
+   The Speaking Practice tab always mirrors whatever conversation is
+   written in the Learning tab above — nothing is duplicated here.
+─────────────────────────────────────────────────────────────── */
+let CONVO_LINES = [];      // [{speaker, en, ar}]
+let CONVO_FULL_TEXT = '';  // whole conversation joined, for "Full Reading" mode
+let CONVO_SPEAKERS = [];   // unique speaker names, in first-appearance order (2, 3, or more)
+
+function buildConvoData(){
+  if(CONVO_LINES.length) return; // already built
+  // Generic selector: works for any multi-speaker conversation lesson,
+  // reading the speaker name straight from .speaker-badge instead of
+  // hardcoding names, so this same code works across different units,
+  // regardless of how many characters are in the conversation.
+  const lineEls = document.querySelectorAll('.conv-body .line');
+  lineEls.forEach(lineEl => {
+    const badgeEl = lineEl.querySelector('.speaker-badge');
+    const speaker = badgeEl ? badgeEl.textContent.replace(':','').trim() : 'Speaker';
+    const sentences = lineEl.querySelectorAll('.sentence');
+    sentences.forEach(sEl => {
+      const en = sEl.textContent.trim();
+      const arEl = sEl.nextElementSibling; // .translation
+      const ar = arEl && arEl.classList.contains('translation') ? arEl.textContent.trim() : '';
+      if(en) CONVO_LINES.push({ speaker, en, ar });
+    });
+    if(speaker && !CONVO_SPEAKERS.includes(speaker)) CONVO_SPEAKERS.push(speaker);
+  });
+  CONVO_FULL_TEXT = CONVO_LINES.map(l => l.en).join(' ');
+}
+
+/* ───────────────────────────────────────────────────────────────
+   C. BROWSER CAPABILITY DETECTION
+   - Recording (MediaRecorder + microphone) works fully offline.
+   - Text-to-speech (speechSynthesis) works offline on most browsers.
+   - Speech-to-text (SpeechRecognition) is what makes real scoring
+     possible; in Chrome/Edge this sends audio to a server to build
+     a transcript, so — unlike everything else here — it needs an
+     internet connection. Without it we still let students record,
+     play back, and listen, but we do NOT invent a score.
+─────────────────────────────────────────────────────────────── */
+const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+const canRecord    = !!(navigator.mediaDevices && window.MediaRecorder);
+const canRecognize = !!SpeechRecognitionAPI;
+const canSpeak     = !!window.speechSynthesis;
+
+let speakTabInitialized = false;
+function initSpeakingTab(){
+  if(speakTabInitialized) return;
+  speakTabInitialized = true;
+  buildConvoData();
+  renderRolePlayModePicker();
+  if(!canRecord || !canRecognize){
+    const wrap = document.getElementById('speakUnsupportedWrap');
+    const note = document.getElementById('speakUnsupportedNote');
+    let msg = '';
+    if(!canRecord)    msg += 'متصفحك لا يدعم تسجيل الصوت، جرّب متصفح Chrome أو Edge الحديث. ';
+    if(!canRecognize) msg += 'متصفحك لا يدعم التعرف التلقائي على الكلام، لذلك يمكنك التسجيل والاستماع فقط بدون تقييم تلقائي (هذه الميزة تحتاج اتصالاً بالإنترنت في متصفح Chrome).';
+    note.textContent = '⚠️ ' + msg;
+    wrap.style.display = 'block';
+  }
+  renderGamification();
+  renderBadges();
+  renderHistory();
+  renderFinalDashboard();
+  updateSpeakingProfileDisplays();
+  maybeShowSpeakingOnboarding();
+}
+
+/* ───────────────────────────────────────────────────────────────
+   C2. STUDENT NAME + AVATAR SELECTION
+   Reused verbatim from the reference file's onboarding pattern:
+   Step 1 (name) → Step 2 (avatar), both stored in localStorage and
+   shown before the student begins Speaking Practice.
+─────────────────────────────────────────────────────────────── */
+const SPEAK_NAME_KEY = 'speakingStudentName_u4conv';
+const SPEAK_AVATAR_KEY = 'speakingAvatar_u4conv';
+let speakingStudentName = localStorage.getItem(SPEAK_NAME_KEY) || '';
+let speakingChosenAvatar = localStorage.getItem(SPEAK_AVATAR_KEY) || null;
+
+function maybeShowSpeakingOnboarding(){
+  if(!speakingStudentName){
+    document.getElementById('speakNameOverlay').classList.add('show');
+  } else if(!speakingChosenAvatar){
+    document.getElementById('speakAvatarOverlay').classList.add('show');
+  }
+}
+
+// Lets the student reopen onboarding later (e.g. to change name/avatar)
+// via the "✏️ تعديل" button on the profile chip.
+function reopenSpeakingOnboarding(){
+  document.getElementById('speakNameOverlay').classList.add('show');
+  const inp = document.getElementById('speakNameInput');
+  if(inp) inp.value = speakingStudentName;
+}
+
+window.confirmSpeakingName = function(){
+  const inp = document.getElementById('speakNameInput');
+  const val = (inp ? inp.value : '').trim();
+  if(!val){
+    if(inp){ inp.classList.add('shake'); setTimeout(()=>inp.classList.remove('shake'),400); }
+    return;
+  }
+  speakingStudentName = val;
+  localStorage.setItem(SPEAK_NAME_KEY, val);
+  document.getElementById('speakNameOverlay').classList.remove('show');
+  updateSpeakingProfileDisplays();
+  if(!speakingChosenAvatar){
+    document.getElementById('speakAvatarOverlay').classList.add('show');
+  }
+};
+
+window.pickSpeakingAvatar = function(el, em){
+  document.querySelectorAll('#speakAvatarGrid .avatar-opt').forEach(o=>o.classList.remove('picked'));
+  el.classList.add('picked');
+  speakingChosenAvatar = em;
+  document.getElementById('speakAvatarStartBtn').disabled = false;
+};
+
+window.confirmSpeakingAvatar = function(){
+  if(!speakingChosenAvatar) return;
+  localStorage.setItem(SPEAK_AVATAR_KEY, speakingChosenAvatar);
+  document.getElementById('speakAvatarOverlay').classList.remove('show');
+  updateSpeakingProfileDisplays();
+};
+
+// Updates the profile chip, certificate name input, and pre-selects the
+// avatar grid — called on init and whenever name/avatar change.
+function updateSpeakingProfileDisplays(){
+  const nameEl = document.getElementById('speakProfileName');
+  const avatarEl = document.getElementById('speakProfileAvatar');
+  if(nameEl) nameEl.textContent = speakingStudentName || 'Student';
+  if(avatarEl) avatarEl.textContent = speakingChosenAvatar || '👤';
+  const certNameInput = document.getElementById('speakCertNameInput');
+  if(certNameInput && speakingStudentName && !certNameInput.value) certNameInput.value = speakingStudentName;
+  const certAvatar = document.getElementById('certAvatarDisplay');
+  if(certAvatar) certAvatar.textContent = speakingChosenAvatar || '🎤';
+  if(speakingChosenAvatar){
+    document.querySelectorAll('#speakAvatarGrid .avatar-opt').forEach(o=>{
+      o.classList.toggle('picked', o.getAttribute('data-av')===speakingChosenAvatar);
+    });
+    const startBtn = document.getElementById('speakAvatarStartBtn');
+    if(startBtn) startBtn.disabled = false;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   D. GENERIC WORD-LEVEL SCORING ENGINE  (100% real-data based)
+─────────────────────────────────────────────────────────────── */
+function normWord(w){ return w.toLowerCase().replace(/[^a-z']/g,''); }
+function tokenize(text){ return text.split(/\s+/).map(normWord).filter(Boolean); }
+
+// Longest Common Subsequence length between two word arrays
+function lcsLength(a, b){
+  const dp = Array.from({length:a.length+1}, () => new Array(b.length+1).fill(0));
+  for(let i=1;i<=a.length;i++){
+    for(let j=1;j<=b.length;j++){
+      dp[i][j] = a[i-1]===b[j-1] ? dp[i-1][j-1]+1 : Math.max(dp[i-1][j], dp[i][j-1]);
+    }
+  }
+  return dp[a.length][b.length];
+}
+
+// Full word-level diff of the ORIGINAL text against the recognized transcript.
+// status: 'ok' (matched/correct) or 'missing' (not recognized).
+// extraWords: words the recognizer heard that aren't part of the original text
+// (used to flag likely incorrect/substituted words).
+function diffWords(originalWords, recognizedWords){
+  const dp = Array.from({length:originalWords.length+1}, () => new Array(recognizedWords.length+1).fill(0));
+  for(let i=1;i<=originalWords.length;i++){
+    for(let j=1;j<=recognizedWords.length;j++){
+      dp[i][j] = originalWords[i-1]===recognizedWords[j-1] ? dp[i-1][j-1]+1 : Math.max(dp[i-1][j], dp[i][j-1]);
+    }
+  }
+  let i = originalWords.length, j = recognizedWords.length;
+  const origTags = new Array(originalWords.length).fill('missing');
+  const usedRecog = new Array(recognizedWords.length).fill(false);
+  while(i>0 && j>0){
+    if(originalWords[i-1]===recognizedWords[j-1]){
+      origTags[i-1]='ok'; usedRecog[j-1]=true; i--; j--;
+    } else if(dp[i-1][j] >= dp[i][j-1]){ i--; } else { j--; }
+  }
+  const extraWords = recognizedWords.filter((w,idx)=>!usedRecog[idx]);
+  return { origTags, extraWords, matchedCount: origTags.filter(t=>t==='ok').length };
+}
+
+// Finds the best-matching window inside a longer transcript for one sentence
+// (used to score individual sentences out of one continuous recording).
+function bestWindowMatch(sentenceWords, transcriptWords){
+  let best = { ratio:0, words:[] };
+  if(transcriptWords.length===0) return best;
+  const minLen = Math.max(1, sentenceWords.length-3);
+  const maxLen = sentenceWords.length+3;
+  for(let start=0; start<transcriptWords.length; start++){
+    for(let len=minLen; len<=maxLen && start+len<=transcriptWords.length; len++){
+      const win = transcriptWords.slice(start, start+len);
+      const matched = lcsLength(sentenceWords, win);
+      const ratio = matched / sentenceWords.length;
+      if(ratio > best.ratio) best = { ratio, words: win };
+    }
+  }
+  return best;
+}
+
+// Shared, honest "why did analysis fail" message builder — used by every
+// evaluate function (Full Reading, Shadowing, Role Play, word/sentence mic)
+// so a browser/network/permission problem always gets the SAME specific,
+// accurate Arabic explanation instead of a vague generic one.
+function speechFailureMessage(rec){
+  if(!canRecognize){
+    return 'متصفحك لا يدعم التعرف التلقائي على الصوت، لذلك لا يمكن تقييم النطق هنا. يمكنك الاستماع والتسجيل، لكن جرّب متصفح Chrome أو Edge للتقييم.';
+  }
+  const errType = rec ? rec.recognitionError : null;
+  if(errType === 'not-allowed' || errType === 'service-not-allowed'){
+    return 'لم يُسمح باستخدام الميكروفون للتعرف على الصوت. تحقق من أذونات المتصفح وحاول مرة أخرى.';
+  } else if(errType === 'network'){
+    return 'تعذر الاتصال بخدمة التعرف على الصوت. تحقق من اتصال الإنترنت وحاول مرة أخرى.';
+  } else if(errType === 'no-speech'){
+    return 'لم يتم سماع أي كلام واضح. حاول التحدث بصوت أعلى وأقرب إلى الميكروفون.';
+  } else if(errType === 'start-failed'){
+    return 'كان هناك تسجيل آخر لا يزال قيد الإغلاق. حاول الضغط على "ابدأ" مرة أخرى بعد لحظة.';
+  } else if(errType === 'no-result'){
+    return 'لم تصل أي نتيجة من خدمة التعرف على الصوت (تحتاج هذه الخدمة اتصالاً مستقراً بالإنترنت). تحقق من اتصالك بالإنترنت وحاول مرة أخرى.';
+  }
+  return 'تعذر تحليل التسجيل. تأكد من اتصالك بالإنترنت (تحتاجه خدمة التعرف على الصوت)، وتحدث بوضوح وبصوت أعلى بالقرب من الميكروفون، ثم أعد المحاولة.';
+}
+
+/* ───────────────────────────────────────────────────────────────
+   E. ARABIC FEEDBACK — simple, positive, age-appropriate (12–15)
+   Every generated message is Arabic-only, focuses on improvement,
+   and never uses harsh or discouraging wording.
+─────────────────────────────────────────────────────────────── */
+function scoreLabel(score){
+  if(score>=85) return 'excellent';
+  if(score>=60) return 'good';
+  return 'poor';
+}
+const FUN_PHRASES = ['🎉 رائع!','🌟 ممتاز!','🚀 تقدم رائع!','🏆 أحسنت!','🎯 استمر!','⭐ أداء مميز!'];
+function funPhrase(score){ return FUN_PHRASES[score % FUN_PHRASES.length]; }
+
+// Builds the overall Arabic summary from real scores. `into` may be null
+// when intonation could not be measured (no fake fallback number is used).
+function buildOverallArabicSummary(pron, flu, acc, into){
+  const known = [pron, flu, acc, into].filter(v => typeof v === 'number');
+  const weakest = Math.min(...known);
+  const tips = [];
+
+  if(acc<85) tips.push('راجع الكلمات باللون الأحمر أدناه وحاول نطقها مرة أخرى ببطء ووضوح.');
+  if(flu<85) tips.push('حاول القراءة بإيقاع متصل دون توقفات طويلة بين الكلمات.');
+  if(pron<85) tips.push('استمع للنموذج الصوتي ثم كرر الجملة بنفس النطق.');
+  if(typeof into === 'number' && into<85) tips.push('حاول تنويع نبرة صوتك قليلاً بدلاً من القراءة بنبرة واحدة.');
+
+  const opener = weakest>=85
+    ? funPhrase(weakest) + ' أداؤك ممتاز في هذه المحاولة!'
+    : weakest>=60
+      ? funPhrase(weakest) + ' أنت تتقدم بشكل جيد جداً!'
+      : '🌱 عمل جيد! كل محاولة تجعلك أفضل، استمر في التدريب.';
+
+  const tipsText = tips.length ? ' ' + tips.slice(0,2).join(' ') : ' استمر بهذا المستوى الرائع!';
+  return opener + tipsText;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   F. RECORDING ENGINE (MediaRecorder + simultaneous SpeechRecognition)
+   Generic recorder used by: Full Reading, Shadowing, Role Play.
+   Includes the debug logs and playback fixes requested:
+   - Record Again fully clears the previous recording (URL revoked).
+   - Playback can be repeated any number of times.
+   - Any playback failure shows an Arabic message instead of failing
+     silently.
+─────────────────────────────────────────────────────────────── */
+const recorders = {}; // recId -> { mediaRecorder, chunks, stream, recognition, transcript, confidences, startTime, durationSec, timerInt, audioBlob, audioURL }
+
+/* BUG FIX: the browser's Web Speech API only allows ONE active
+   SpeechRecognition session per page at a time — even across separate
+   `new SpeechRecognitionAPI()` instances, and even across different
+   recId's (full/shadow/role/word/sentence). Its stop() is also
+   asynchronous, so starting a new recognition instance immediately
+   after stopping a previous one can throw "InvalidStateError", which
+   was previously being silently swallowed — leaving that recording's
+   transcript empty forever (audio recording still worked fine, which
+   is why "Recording complete" showed while analysis still failed).
+   This tracks the one globally active instance and forces it closed
+   before starting a new one, with a short retry to cover the async
+   release window. */
+let activeRecognitionInstance = null;
+
+function getRecEls(recId){
+  return {
+    status:   document.getElementById(recId+'RecStatus'),
+    timer:    document.getElementById(recId+'RecTimer'),
+    startBtn: document.getElementById(recId+'StartBtn'),
+    stopBtn:  document.getElementById(recId+'StopBtn'),
+    playBtn:  document.getElementById(recId+'PlayBtn'),
+    redoBtn:  document.getElementById(recId+'RedoBtn'),
+    evalBtn:  document.getElementById(recId+'EvalBtn'),
+    audioEl:  document.getElementById(recId+'PlaybackAudio')
+  };
+}
+
+async function startRecording(recId){
+  if(!canRecord){ alert('عذراً، متصفحك لا يدعم تسجيل الصوت.'); return; }
+  const els = getRecEls(recId);
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({ audio:true });
+
+    // BUG FIX: previously we hardcoded the playback Blob's type as
+    // 'audio/webm' no matter what the browser actually recorded in.
+    // On browsers that don't record webm (e.g. Safari uses audio/mp4),
+    // that mismatch made the audio player element silently fail to decode
+    // the file, so "Play Recording" looked like it did nothing.
+    // Fix: ask the browser what it supports, use that for both the
+    // recorder AND the Blob, so they always match.
+    const preferredTypes = [
+      'audio/webm;codecs=opus',
+      'audio/webm',
+      'audio/mp4',
+      'audio/ogg;codecs=opus',
+      'audio/ogg'
+    ];
+    let chosenMimeType = '';
+    if(window.MediaRecorder && typeof MediaRecorder.isTypeSupported === 'function'){
+      chosenMimeType = preferredTypes.find(t => MediaRecorder.isTypeSupported(t)) || '';
+    }
+    const mediaRecorder = chosenMimeType
+      ? new MediaRecorder(stream, { mimeType: chosenMimeType })
+      : new MediaRecorder(stream); // let the browser pick its own default
+    // mediaRecorder.mimeType reflects what the browser will ACTUALLY encode,
+    // which may differ slightly from what we asked for — always trust this
+    // value (not our own guess) when building the Blob below.
+    const actualMimeType = mediaRecorder.mimeType || chosenMimeType || 'audio/webm';
+    console.log('Recording will use MIME type:', actualMimeType);
+    const chunks = [];
+
+    // Recorder record is created FIRST so the recognition callback below can
+    // write its live transcript straight onto it (avoids closure/timing bugs).
+    recorders[recId] = {
+      mediaRecorder, chunks, stream, recognition:null,
+      transcript:'', interimTranscript:'', confidences:[], startTime: Date.now(), durationSec:0,
+      timerInt:null, audioBlob:null, audioURL:null
+    };
+
+    console.log('Recording started', recId);
+
+    mediaRecorder.ondataavailable = e => {
+      if(e.data.size>0){ chunks.push(e.data); console.log('Audio collected', e.data.size, 'bytes'); }
+    };
+    mediaRecorder.onstop = () => {
+      console.log('Recording stopped', recId);
+      // Use the SAME mime type the recorder actually encoded with —
+      // this is the core of the fix (see note above).
+      const blob = new Blob(chunks, { type: actualMimeType });
+      console.log('Audio blob created', blob.size, 'bytes', 'type:', blob.type);
+      // Fully replace any previous recording — revoke the old URL first
+      // so "Record Again" never leaves stale audio behind.
+      if(recorders[recId] && recorders[recId].audioURL){
+        URL.revokeObjectURL(recorders[recId].audioURL);
+      }
+      const url = URL.createObjectURL(blob);
+      console.log('Audio URL created', url);
+      recorders[recId].audioBlob = blob;
+      recorders[recId].audioURL  = url;
+      if(els.audioEl){
+        els.audioEl.src = url;
+        els.audioEl.load();
+      }
+    };
+
+    if(canRecognize){
+      const recognition = new SpeechRecognitionAPI();
+      recognition.lang = 'en-US';
+      // Single practice words get non-continuous recognition: Chrome's
+      // speech engine auto-detects "utterance finished" and finalizes a
+      // result on its own shortly after the word is spoken — which is
+      // far more reliable for one short word than continuous mode, where
+      // it has to keep waiting for our manual Stop button and often never
+      // commits to a final result for such a short sound at all.
+      recognition.continuous = (recId !== 'word');
+      // Interim (non-final) results are turned on so we have a real,
+      // data-derived fallback: Chrome sometimes never fires a "final"
+      // result for a single short isolated word/sentence before the
+      // session ends, even though it clearly heard something. We still
+      // prefer the final transcript when one arrives (see below).
+      recognition.interimResults = true;
+      recognition.onresult = (e) => {
+        for(let i=e.resultIndex; i<e.results.length; i++){
+          if(e.results[i].isFinal){
+            recorders[recId].transcript += ' ' + e.results[i][0].transcript;
+            if(typeof e.results[i][0].confidence === 'number'){
+              recorders[recId].confidences.push(e.results[i][0].confidence);
+            }
+          } else {
+            recorders[recId].interimTranscript = e.results[i][0].transcript;
+          }
+        }
+      };
+      recognition.onerror = (e) => {
+        console.log('Speech recognition error', e.error);
+        recorders[recId].recognitionError = e.error; // used later for a more specific Arabic message
+      };
+      recognition.onend = () => {
+        console.log('Speech recognition ended', recId);
+        if(activeRecognitionInstance === recognition) activeRecognitionInstance = null;
+        const rec2 = recorders[recId];
+        if(rec2 && (!rec2.transcript || !rec2.transcript.trim())){
+          if(rec2.interimTranscript && rec2.interimTranscript.trim()){
+            // No "final" result ever arrived (common for a single short
+            // word/sentence), but the recognizer clearly heard something —
+            // use that real interim result rather than declaring failure.
+            console.log('Using interim transcript as fallback:', rec2.interimTranscript);
+            rec2.transcript = rec2.interimTranscript;
+          } else if(!rec2.recognitionError){
+            // Truly nothing was heard and no error was reported — record
+            // that honestly so the Arabic message can point at the real
+            // likely cause (network) instead of a generic "try again".
+            rec2.recognitionError = 'no-result';
+          }
+        }
+      };
+
+      // Only one recognition session can be active tab-wide. If a previous
+      // one (from this or any other recording) hasn't fully released yet,
+      // force it closed first, then start ours with a short retry to cover
+      // the browser's async stop→release window.
+      const startThisRecognition = () => {
+        try{
+          recognition.start();
+          activeRecognitionInstance = recognition;
+        }catch(err){
+          console.log('Speech recognition start failed, retrying', err);
+          setTimeout(() => {
+            try{
+              recognition.start();
+              activeRecognitionInstance = recognition;
+            }catch(err2){
+              console.log('Speech recognition start failed again — giving up for this recording', err2);
+              recorders[recId].recognitionError = 'start-failed';
+            }
+          }, 300);
+        }
+      };
+      if(activeRecognitionInstance){
+        try{ activeRecognitionInstance.stop(); }catch(e){}
+        activeRecognitionInstance = null;
+        setTimeout(startThisRecognition, 250);
+      } else {
+        startThisRecognition();
+      }
+      recorders[recId].recognition = recognition;
+    }
+
+    mediaRecorder.start();
+
+    els.status.innerHTML = '🔴 Recording... speak now<span class="ar">جارٍ التسجيل... تحدث الآن</span>';
+    els.startBtn.disabled = true;
+    els.stopBtn.disabled  = false;
+    if(els.playBtn) els.playBtn.disabled = true;
+    if(els.redoBtn) els.redoBtn.disabled = true;
+    if(els.evalBtn) els.evalBtn.disabled = true;
+
+    recorders[recId].timerInt = setInterval(() => {
+      const secs = Math.floor((Date.now()-recorders[recId].startTime)/1000);
+      els.timer.textContent = Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0');
+    }, 200);
+
+  }catch(err){
+    console.log('Recording start failed', err);
+    els.status.innerHTML = '⚠️ Could not access microphone<span class="ar">تعذّر الوصول إلى الميكروفون. تحقق من الأذونات في المتصفح.</span>';
+  }
+}
+
+function stopRecording(recId){
+  const rec = recorders[recId];
+  if(!rec) return;
+  const els = getRecEls(recId);
+  clearInterval(rec.timerInt);
+  rec.mediaRecorder.stop();
+  rec.stream.getTracks().forEach(t=>t.stop());
+  rec.durationSec = (Date.now()-rec.startTime)/1000;
+  if(rec.recognition){
+    try{ rec.recognition.stop(); }catch(e){}
+    if(activeRecognitionInstance === rec.recognition) activeRecognitionInstance = null;
+  }
+  // Give the recognizer a brief moment to fire its last onresult event
+  // (it writes straight onto recorders[recId].transcript — see startRecording).
+  setTimeout(()=>{
+    els.status.innerHTML = '✅ Recording complete<span class="ar">تم التسجيل بنجاح</span>';
+    els.startBtn.disabled = true;
+    els.stopBtn.disabled  = true;
+    if(els.playBtn) els.playBtn.disabled = false;
+    if(els.redoBtn) els.redoBtn.disabled = false;
+    if(els.evalBtn) els.evalBtn.disabled = !canRecognize;
+  }, 800);
+}
+
+/* ───────────────────────────────────────────────────────────────
+   PLAY RECORDING — STRICTLY PLAYBACK ONLY.
+   This function must NEVER call evaluateFullReading(), any speech
+   recognition, or any scoring/analysis logic. Its only job is to
+   play back the audio Blob that was already recorded. Analysis
+   only ever starts from the "Evaluate My Reading" button, which
+   calls evaluateFullReading() directly and independently below.
+─────────────────────────────────────────────────────────────── */
+function playRecording(recId){
+  console.log('Play Recording clicked', recId);
+  const rec = recorders[recId];
+  const els = getRecEls(recId);
+  if(!rec || !rec.audioURL || !els.audioEl){
+    console.log('Playback failed: no recording available');
+    return;
+  }
+  // Detach any previous one-off listeners before attaching fresh ones,
+  // so repeated clicks never stack duplicate handlers.
+  els.audioEl.onended = null;
+  els.audioEl.onerror = null;
+
+  els.audioEl.onended = () => { console.log('Audio ended'); };
+  els.audioEl.onerror = () => {
+    console.log('Playback failed: audio element error');
+    showPlaybackError(recId);
+  };
+
+  els.audioEl.currentTime = 0;
+  console.log('Playing audio', recId);
+  const playPromise = els.audioEl.play();
+  if(playPromise && playPromise.catch){
+    playPromise.catch(err => {
+      console.log('Playback failed', err);
+      showPlaybackError(recId);
+    });
+  }
+  // NOTE: nothing below this line — playRecording() ends here.
+  // It does not call evaluateFullReading(), startRecognition(),
+  // analyzeSpeech(), or any other assessment-related function.
+}
+
+function showPlaybackError(recId){
+  const els = getRecEls(recId);
+  const prevHTML = els.status.innerHTML;
+  els.status.innerHTML = '⚠️ Playback failed<span class="ar">تعذّر تشغيل التسجيل، حاول التسجيل مرة أخرى.</span>';
+  setTimeout(()=>{ if(els.status) els.status.innerHTML = prevHTML; }, 3000);
+}
+
+function resetRecording(recId){
+  const els = getRecEls(recId);
+  const rec = recorders[recId];
+  if(rec && rec.audioURL) URL.revokeObjectURL(rec.audioURL); // fully replace old recording
+  if(els.audioEl){ els.audioEl.pause(); els.audioEl.removeAttribute('src'); els.audioEl.load(); }
+  delete recorders[recId];
+  els.status.innerHTML = 'Press Start and read the conversation aloud<span class="ar">اضغط "ابدأ" واقرأ المحادثة بصوت عالٍ</span>';
+  els.timer.textContent = '0:00';
+  els.startBtn.disabled = false;
+  els.stopBtn.disabled  = true;
+  if(els.playBtn) els.playBtn.disabled = true;
+  if(els.redoBtn) els.redoBtn.disabled = true;
+  if(els.evalBtn) els.evalBtn.disabled = true;
+  const resultsCard = document.getElementById(recId+'ResultsCard');
+  if(resultsCard) resultsCard.style.display = 'none';
+  const transcriptCard = document.getElementById(recId+'TranscriptCard');
+  if(transcriptCard) transcriptCard.style.display = 'none';
+}
+
+/* ───────────────────────────────────────────────────────────────
+   G. REAL AUDIO ANALYSIS — pauses (for fluency) + energy variation
+   (for intonation), both computed from the actual recorded audio
+   via the Web Audio API. If decoding fails there simply isn't
+   enough real data, so we return null rather than guessing.
+─────────────────────────────────────────────────────────────── */
+async function analyzeAudioEnergy(blob){
+  try{
+    const arrayBuf = await blob.arrayBuffer();
+    const audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+    const audioBuf = await audioCtx.decodeAudioData(arrayBuf);
+    const data = audioBuf.getChannelData(0);
+    const sampleRate = audioBuf.sampleRate;
+    const frameSize = Math.floor(sampleRate * 0.05); // 50ms frames
+    const rms = [];
+    for(let i=0;i<data.length;i+=frameSize){
+      let sum=0, count=0;
+      for(let j=i;j<Math.min(i+frameSize,data.length);j++){ sum += data[j]*data[j]; count++; }
+      if(count>0) rms.push(Math.sqrt(sum/count));
+    }
+    audioCtx.close();
+    if(rms.length<4) return null; // not enough real data to analyze
+
+    const maxRms = Math.max(...rms);
+    const silenceThreshold = Math.max(0.008, maxRms * 0.12);
+
+    // Count real pauses: consecutive silent frames lasting 400ms+ (excluding
+    // the very start/end of the recording, which is normal lead-in/out).
+    let pauseCount = 0, silentRun = 0;
+    for(let i=1;i<rms.length-1;i++){
+      if(rms[i] < silenceThreshold){
+        silentRun++;
+      } else {
+        if(silentRun*0.05 >= 0.4) pauseCount++;
+        silentRun = 0;
+      }
+    }
+    if(silentRun*0.05 >= 0.4) pauseCount++;
+
+    // Energy variation (coefficient of variation) as an intonation proxy —
+    // real speech has natural pitch/volume variety; a flat monotone reading
+    // has low variance.
+    const voiced = rms.filter(v => v >= silenceThreshold);
+    let intonationScore = null;
+    if(voiced.length>=4){
+      const mean = voiced.reduce((a,b)=>a+b,0)/voiced.length;
+      const variance = voiced.reduce((a,b)=>a+(b-mean)*(b-mean),0)/voiced.length;
+      const cov = mean>0 ? Math.sqrt(variance)/mean : 0;
+      intonationScore = Math.round(Math.max(30, Math.min(100, 40 + Math.min(1, cov/0.9)*60)));
+    }
+    return { pauseCount, intonationScore };
+  }catch(e){
+    console.log('Audio analysis failed', e);
+    return null; // honestly report "not available" rather than faking a number
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   H. MODE PICKER (Full Reading / Role Play / Shadowing)
+─────────────────────────────────────────────────────────────── */
+function selectSpeakMode(mode){
+  ['Full','Role','Shadow'].forEach(m => {
+    document.getElementById('modePanel'+m).style.display = (m.toLowerCase()===mode) ? '' : 'none';
+    document.getElementById('modeBtn'+m).classList.toggle('active', m.toLowerCase()===mode);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   I. FULL READING ASSESSMENT — main evaluate function
+   Every score below is computed from real recognized speech,
+   real timing, and real audio energy. If there isn't enough real
+   data (e.g. nothing was recognized), we show an honest Arabic
+   error instead of producing any score.
+═══════════════════════════════════════════════════════════════ */
+async function evaluateFullReading(){
+  const rec = recorders['full'];
+  if(!rec) return;
+  incrementSessions();
+
+  const evalBtn = document.getElementById('fullEvalBtn');
+  evalBtn.disabled = true;
+  evalBtn.textContent = '⏳ Evaluating... / جارٍ التحليل...';
+
+  // Always show the transcript card first — "what the system heard" —
+  // before any scoring happens.
+  const transcriptCard = document.getElementById('fullTranscriptCard');
+  const errorBox   = document.getElementById('fullAnalysisError');
+  const transcriptBox = document.getElementById('fullTranscriptBox');
+  transcriptCard.style.display = '';
+  errorBox.style.display = 'none';
+  transcriptBox.style.display = 'none';
+  [ 'fullResultsCard','fullCompareCard','fullSpeedCard','fullDiffSentCard','fullWordsCard' ]
+    .forEach(id => document.getElementById(id).style.display = 'none');
+
+  const transcript = (rec.transcript || '').trim();
+  const recognizedWords = tokenize(transcript);
+  const originalWords   = tokenize(CONVO_FULL_TEXT);
+
+  if(!canRecognize || recognizedWords.length === 0){
+    // Fix #1 requirement: never generate scores with no valid transcript.
+    // Give a specific, honest reason when we know one, instead of always
+    // showing the same generic message.
+    errorBox.style.display = '';
+    errorBox.textContent = '⚠️ ' + speechFailureMessage(rec);
+    evalBtn.disabled = false;
+    evalBtn.textContent = '📊 Evaluate My Reading / قيّم قراءتي';
+    return;
+  }
+
+  // ── Show exactly what the system heard, before any score ──
+  transcriptBox.style.display = '';
+  document.getElementById('fullTranscriptText').textContent = transcript;
+  const completeness = originalWords.length ? Math.min(100, Math.round((recognizedWords.length/originalWords.length)*100)) : 0;
+  document.getElementById('fullCompletenessText').textContent = 'نسبة اكتمال القراءة: ' + completeness + '%';
+
+  // ── ACCURACY = (correctWords / expectedWords) * 100  (real word matching) ──
+  const diff = diffWords(originalWords, recognizedWords);
+  const accuracyScore = originalWords.length ? Math.round((diff.matchedCount/originalWords.length)*100) : 0;
+
+  // ── PRONUNCIATION = confidence + matching quality (both real) ──
+  let pronunciationScore;
+  if(rec.confidences && rec.confidences.length){
+    const avgConf = rec.confidences.reduce((a,b)=>a+b,0)/rec.confidences.length;
+    // Some browsers report confidence as 0 for continuous recognition —
+    // in that case fall back to accuracy alone (still real data, not a guess).
+    pronunciationScore = avgConf > 0 ? Math.round(avgConf*100*0.6 + accuracyScore*0.4) : accuracyScore;
+  } else {
+    pronunciationScore = accuracyScore;
+  }
+
+  // ── Real audio analysis: pauses (fluency) + energy variation (intonation) ──
+  const audioAnalysis = rec.audioBlob ? await analyzeAudioEnergy(rec.audioBlob) : null;
+
+  // ── FLUENCY = speed (WPM) + real pause count ──
+  const durationMin = Math.max(0.05, rec.durationSec/60);
+  const wpm = Math.round(recognizedWords.length / durationMin);
+  let speedScore;
+  if(wpm>=100 && wpm<=130) speedScore = 95;
+  else {
+    const distance = wpm<100 ? (100-wpm) : (wpm-130);
+    speedScore = Math.max(30, 95 - distance*1.5);
+  }
+  let fluencyScore;
+  if(audioAnalysis){
+    const pausePenalty = Math.min(50, audioAnalysis.pauseCount * 8);
+    const pauseScore = Math.max(30, 100 - pausePenalty);
+    fluencyScore = Math.round((speedScore + pauseScore)/2);
+  } else {
+    fluencyScore = Math.round(speedScore); // real WPM data only, pauses unavailable
+  }
+
+  // ── INTONATION = real energy-variation proxy from the recording (or N/A) ──
+  const intonationScore = audioAnalysis ? audioAnalysis.intonationScore : null;
+
+  // ── OVERALL = weighted average of whatever we could actually measure ──
+  const measured = [pronunciationScore, fluencyScore, accuracyScore, intonationScore].filter(v => typeof v === 'number');
+  const overall = Math.round(measured.reduce((a,b)=>a+b,0)/measured.length);
+
+  // ── Render score dashboard ──
+  document.getElementById('fullResultsCard').style.display = '';
+  document.getElementById('fullOverallNum').textContent = overall;
+  setScoreBar('fullPron', pronunciationScore);
+  setScoreBar('fullFlu', fluencyScore);
+  setScoreBar('fullAcc', accuracyScore);
+  if(typeof intonationScore === 'number'){
+    setScoreBar('fullInt', intonationScore);
+  } else {
+    document.getElementById('fullIntVal').textContent = 'غير متاح';
+    document.getElementById('fullIntBar').style.width = '0%';
+  }
+  document.getElementById('fullSummary').textContent = buildOverallArabicSummary(pronunciationScore, fluencyScore, accuracyScore, intonationScore);
+
+  // ── Render sentence comparison ──
+  document.getElementById('fullCompareCard').style.display = '';
+  const originalDisplayWords = CONVO_FULL_TEXT.split(/\s+/);
+  document.getElementById('compareOriginal').innerHTML = originalWords.map((w,idx)=>{
+    const orig = originalDisplayWords[idx] || w;
+    return `<span class="${diff.origTags[idx]==='ok'?'word-ok':'word-missing'}">${orig}</span>`;
+  }).join(' ');
+  document.getElementById('compareRecognized').innerHTML = transcript.split(/\s+/).map(w => {
+    const norm = normWord(w);
+    const isExtra = diff.extraWords.includes(norm);
+    return `<span class="${isExtra?'word-wrong':'word-ok'}">${w}</span>`;
+  }).join(' ');
+  const missingWords = originalWords.filter((w,idx)=>diff.origTags[idx]==='missing');
+  document.getElementById('compareArabicNote').innerHTML = missingWords.length
+    ? `🟠 هذه الكلمات تحتاج تدريباً إضافياً: <strong>${[...new Set(missingWords)].join('، ')}</strong>. استمع لها في قسم "كلمات للتدرّب عليها" أدناه.`
+    : '✅ رائع! تم التعرف على كل الكلمات تقريباً.';
+
+  // ── Reading speed ──
+  document.getElementById('fullSpeedCard').style.display = '';
+  document.getElementById('speedWpm').textContent = wpm;
+  document.getElementById('speedTime').textContent = Math.floor(rec.durationSec/60)+':'+String(Math.floor(rec.durationSec%60)).padStart(2,'0');
+  document.getElementById('speedComment').textContent =
+    wpm>=100 && wpm<=130 ? '✅ سرعة قراءة ممتازة! أنت بالضبط ضمن المعدل الطبيعي. ' + funPhrase(wpm) :
+    wpm<100 ? '🐢 سرعتك أهدأ قليلاً من المعدل المستهدف، لا بأس! حاول القراءة بثقة أكبر مرة قادمة.' :
+              '🚀 سرعتك أسرع قليلاً من المعدل المستهدف، حاول التمهّل قليلاً لتحسين الوضوح.';
+
+  // ── Per-sentence breakdown for "Difficult Sentences" + "Words to Practice" ──
+  const sentenceScores = CONVO_LINES.map(line => {
+    const sw = tokenize(line.en);
+    const match = bestWindowMatch(sw, recognizedWords);
+    return { ...line, score: Math.round(match.ratio*100) };
+  });
+  const weakSentences = renderDifficultSentences(sentenceScores);
+  const weakWordsList = renderWordsToPractice(diff, originalWords);
+
+  // ── Save attempt + gamification + achievements ──
+  const attempt = {
+    mode:'full', date:new Date().toLocaleDateString('ar-EG'), overall,
+    pronunciationScore, fluencyScore, accuracyScore, intonationScore, wpm,
+    weakWords: weakWordsList, weakSentences: weakSentences.map(s=>s.en)
+  };
+  const prevFull = [...getHistory()].reverse().find(h=>h.mode==='full');
+  saveAttempt(attempt);
+
+  let xp = 20;
+  if(prevFull && overall > prevFull.overall) xp += 10; // real improvement bonus
+  awardXP(xp);
+  bumpStreak();
+  checkAchievements({ overall, pronunciationScore, fluencyScore });
+  renderHistory();
+  renderFinalDashboard();
+  renderGamification();
+
+  evalBtn.disabled = false;
+  evalBtn.textContent = '📊 Evaluate My Reading / قيّم قراءتي';
+}
+
+function setScoreBar(prefix, score){
+  document.getElementById(prefix+'Val').textContent = score+'%';
+  const bar = document.getElementById(prefix+'Bar');
+  bar.style.width = score+'%';
+  bar.className = 'score-bar-fill ' + scoreLabel(score);
+}
+
+function renderDifficultSentences(sentenceScores){
+  const card = document.getElementById('fullDiffSentCard');
+  const body = document.getElementById('fullDiffSentBody');
+  const weakest = [...sentenceScores].sort((a,b)=>a.score-b.score).slice(0,3).filter(s=>s.score<85);
+  if(!weakest.length){ card.style.display='none'; return []; }
+  card.style.display = '';
+  body.innerHTML = weakest.map(s => `
+    <div class="diff-item">
+      <div class="txt">${s.en}<span class="ar">${s.ar}</span></div>
+      <span class="score-chip ${s.score<60?'chip-poor':'chip-good'}">${s.score}%</span>
+      <div class="diff-actions">
+        <button class="mini-btn" onclick="speakText('${escapeJs(s.en)}')">▶ Listen Again</button>
+        <button class="mini-btn" onclick="practiceSingleSentence('${escapeJs(s.en)}')">🎤 Practice Again</button>
+      </div>
+    </div>
+  `).join('');
+  return weakest;
+}
+
+function renderWordsToPractice(fullDiff, originalWords){
+  const card = document.getElementById('fullWordsCard');
+  const body = document.getElementById('fullWordsBody');
+  const words = new Set();
+  originalWords.forEach((w,idx) => { if(fullDiff.origTags[idx]==='missing' && w.length>2) words.add(w); });
+  if(!words.size){ card.style.display='none'; return []; }
+  card.style.display = '';
+  const list = [...words].slice(0,8);
+  body.innerHTML = list.map(w => `
+    <div class="word-chip">
+      ${w}
+      <button class="mini-btn" style="padding:2px 8px;" onclick="speakText('${escapeJs(w)}')">🔊</button>
+      <button class="mini-btn" style="padding:2px 8px;" onclick="practiceSingleWord('${escapeJs(w)}')">🎤</button>
+    </div>
+  `).join('');
+  document.getElementById('fullWordsNote').innerHTML = 'ℹ️ هذه الكلمات لم يتم التعرف عليها بوضوح، استمع إليها ثم حاول تكرارها بنفسك. أنت تتحسن مع كل محاولة! 🌱';
+  return list;
+}
+
+function escapeJs(s){ return String(s).replace(/'/g,"\\'"); }
+
+/* ───────────────────────────────────────────────────────────────
+   MICROPHONE BUG FIX — "Words to Practice" and "Practice Again"
+   ─────────────────────────────────────────────────────────────
+   Previously the 🎤 button on a practice word called speakText(),
+   which is exactly what the 🔊 (Listen) button does — so clicking
+   the microphone just played the model audio instead of recording
+   the student. That binding is removed entirely below.
+
+   Correct behavior now:
+     🔊 Listen  → speakText() only (model pronunciation). Never records.
+     🎤 Practice → starts the microphone, records the student, then
+                   runs real pronunciation evaluation and shows
+                   feedback. Never plays the model audio.
+─────────────────────────────────────────────────────────────── */
+const inlineMicTargets = {}; // recId -> { text, isWord }
+
+// Renders a small self-contained recorder (Stop & Check only — the mic
+// button itself already started recording, see practiceSingleWord/
+// practiceSingleSentence below) reusing the SAME recording engine
+// (startRecording/stopRecording) as Full Reading, Shadowing, and Role Play.
+function renderInlineMicPanel(panelId, recId, promptHtml){
+  const panel = document.getElementById(panelId);
+  panel.style.display = '';
+  panel.innerHTML = `
+    <div class="walk-speaker">${promptHtml}</div>
+    <button id="${recId}StartBtn" style="display:none;"></button>
+    <div class="recorder-box" style="margin-top:8px;">
+      <div class="rec-status" id="${recId}RecStatus">🎙️ Starting microphone...<span class="ar">جارٍ تشغيل الميكروفون...</span></div>
+      <div class="rec-timer" id="${recId}RecTimer">0:00</div>
+      <div class="rec-btn-row">
+        <button class="rec-btn stop" id="${recId}StopBtn" onclick="stopInlineMicRecording('${recId}')">⏹ Stop & Check / إيقاف وتحقق</button>
+      </div>
+    </div>
+    <audio id="${recId}PlaybackAudio" style="display:none;"></audio>
+    <div class="transcript-box" id="${recId}TranscriptBox" style="display:none;">
+      <div class="lbl">سمعنا:</div>
+      <div class="txt" id="${recId}TranscriptText"></div>
+    </div>
+    <div class="feedback-note" id="${recId}Feedback" style="display:none;"></div>
+  `;
+}
+
+// Stops any previous in-progress recording under this recId so switching
+// to a different word/sentence never leaves an old mic stream running.
+function cleanupInlineRecorder(recId){
+  const prev = recorders[recId];
+  if(prev && prev.mediaRecorder && prev.mediaRecorder.state === 'recording'){
+    try{ prev.mediaRecorder.stop(); }catch(e){}
+    try{ prev.stream.getTracks().forEach(t=>t.stop()); }catch(e){}
+    try{ if(prev.recognition) prev.recognition.stop(); }catch(e){}
+    if(prev.recognition && activeRecognitionInstance === prev.recognition) activeRecognitionInstance = null;
+    clearInterval(prev.timerInt);
+  }
+}
+
+// 🎤 button on a "Words to Practice" chip — records ONLY, never plays audio.
+function practiceSingleWord(word){
+  if(window.speechSynthesis) window.speechSynthesis.cancel(); // full isolation from the 🔊 button
+  cleanupInlineRecorder('word');
+  inlineMicTargets['word'] = { text: word, isWord: true };
+  renderInlineMicPanel('wordPracticePanel', 'word', `🎤 نطق الكلمة: <strong>${word}</strong>`);
+  startRecording('word'); // clicking the mic starts recording immediately
+}
+
+// 🎤 "Practice Again" on a difficult sentence — same fix applied for
+// consistency: records only, never plays the model audio.
+function practiceSingleSentence(sentence){
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  cleanupInlineRecorder('sentence');
+  inlineMicTargets['sentence'] = { text: sentence, isWord: false };
+  renderInlineMicPanel('sentencePracticePanel', 'sentence', `🎤 كرر الجملة: <strong>${sentence}</strong>`);
+  startRecording('sentence');
+}
+
+function stopInlineMicRecording(recId){
+  stopRecording(recId);
+  // Give the recognizer its usual settle time (matches Full Reading's timing)
+  // before reading the final transcript.
+  setTimeout(()=>evaluateInlineMicRecording(recId), 1800);
+}
+
+function evaluateInlineMicRecording(recId){
+  const rec = recorders[recId];
+  const target = inlineMicTargets[recId];
+  const fb = document.getElementById(recId+'Feedback');
+  const tBox = document.getElementById(recId+'TranscriptBox');
+  const tText = document.getElementById(recId+'TranscriptText');
+  const transcript = rec ? (rec.transcript||'').trim() : '';
+
+  if(!rec || !canRecognize || !transcript || !target){
+    if(tBox) tBox.style.display = 'none';
+    fb.style.display=''; fb.className='feedback-note mid';
+    fb.innerHTML = '⚠️ ' + speechFailureMessage(rec);
+    return;
+  }
+
+  tBox.style.display=''; tText.textContent = transcript;
+  const recognizedWords = tokenize(transcript);
+
+  // Real-data scoring only (same principle as Full Reading): exact word
+  // match for single words, best-window word overlap for sentences.
+  let score;
+  if(target.isWord){
+    const targetNorm = normWord(target.text);
+    if(recognizedWords.includes(targetNorm)){
+      score = 100;
+    } else {
+      score = 0;
+      recognizedWords.forEach(rw => {
+        const overlap = lcsLength(targetNorm.split(''), rw.split(''));
+        const ratio = Math.round((overlap/targetNorm.length)*100);
+        if(ratio > score) score = ratio;
+      });
+    }
+  } else {
+    const sentenceWords = tokenize(target.text);
+    const match = bestWindowMatch(sentenceWords, recognizedWords);
+    score = Math.round(match.ratio*100);
+  }
+
+  fb.style.display='';
+  fb.className = 'feedback-note ' + (score>=85?'ok':score>=60?'mid':'bad');
+  fb.innerHTML = `<span class="fun-chip">${funPhrase(score)}</span><br>النتيجة: <strong>${score}%</strong> — ` + (
+    score>=85 ? 'نطق ممتاز! 🌟' :
+    score>=60 ? 'جيد جداً! استمر في التدريب.' :
+                'عمل جيد! استمع مرة أخرى وحاول التكرار.'
+  );
+}
+
+/* ───────────────────────────────────────────────────────────────
+   J. TEXT-TO-SPEECH HELPER (Listen buttons, Role Play, Shadowing,
+   Words to Practice)
+   PREMIUM VOICE SYSTEM — ported verbatim from the reference file
+   (U1_Grammar_Part2_GAMIFIED.html's speak() function): same
+   preferred-voice order, same rate/pitch/volume, same fallback
+   logic. Reused everywhere audio is played so every spoken word
+   and sentence in this tab uses the best available English voice.
+─────────────────────────────────────────────────────────────── */
+function speakText(text, onEnd){
+  if(!canSpeak){ if(onEnd) onEnd(); return; }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'en-US';
+  utter.rate = 0.82;   // same pacing as the reference lesson's premium voice
+  utter.pitch = 1.0;
+  utter.volume = 1.0;
+  if(onEnd) utter.onend = onEnd;
+
+  function pickVoice(){
+    const voices = window.speechSynthesis.getVoices();
+    // Exact same preferred-voice order as the reference file, so the
+    // Speaking Practice tab always picks the same best-quality voice.
+    const preferred = [
+      'Samantha','Karen','Daniel','Google US English',
+      'Google UK English Female','Microsoft Zira','Microsoft David',
+      'Alex','Victoria','Moira','Fiona','Tessa'
+    ];
+    for(const name of preferred){
+      const v = voices.find(v => v.name === name);
+      if(v){ utter.voice = v; break; }
+    }
+    if(!utter.voice){
+      utter.voice = voices.find(v => v.lang === 'en-US') ||
+                    voices.find(v => v.lang.startsWith('en')) ||
+                    null;
+    }
+    window.speechSynthesis.speak(utter);
+  }
+
+  const voices = window.speechSynthesis.getVoices();
+  if(voices.length > 0){ pickVoice(); }
+  else { window.speechSynthesis.onvoiceschanged = pickVoice; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   K. SHADOWING MODE
+═══════════════════════════════════════════════════════════════ */
+let shadowState = { index:0, scores:[] };
+
+function startShadowing(){
+  buildConvoData();
+  shadowState = { index:0, scores:[] };
+  document.getElementById('shadowFinalScore').style.display = 'none';
+  document.getElementById('shadowSessionBtn').style.display = 'none';
+  renderShadowStep();
+}
+
+function renderShadowStep(){
+  const area = document.getElementById('shadowWalkArea');
+  if(shadowState.index >= CONVO_LINES.length){
+    incrementSessions();
+    const validScores = shadowState.scores.filter(s => s !== null);
+    area.innerHTML = '';
+    const finalEl = document.getElementById('shadowFinalScore');
+    finalEl.style.display = '';
+    if(!validScores.length){
+      finalEl.innerHTML = '🌱 لم نتمكن من تقييم أي جملة هذه المرة، حاول التسجيل مرة أخرى بصوت أوضح. أنت تستطيع ذلك!';
+    } else {
+      const avg = Math.round(validScores.reduce((a,b)=>a+b,0)/validScores.length);
+      finalEl.innerHTML = `🏁 <strong>Shadowing Final Score: ${avg}%</strong><br>النتيجة النهائية للتظليل الصوتي: ${avg}% — ${funPhrase(avg)} ${avg>=85?'أداء رائع جداً!':avg>=60?'أداء جيد، واصل التدريب!':'كل تدريب يقربك أكثر من الإتقان، استمر!'}`;
+      saveAttempt({ mode:'shadow', date:new Date().toLocaleDateString('ar-EG'), overall:avg });
+      awardXP(25);
+      bumpStreak();
+      checkAchievements({ shadowAvg: avg });
+      renderHistory();
+    }
+    document.getElementById('shadowSessionBtn').style.display = '';
+    document.getElementById('shadowSessionBtn').textContent = '🔄 Practice Again / تدرّب مجدداً';
+    renderFinalDashboard();
+    renderGamification();
+    return;
+  }
+  const line = CONVO_LINES[shadowState.index];
+  area.innerHTML = `
+    <div class="walk-line-box">
+      <div class="walk-progress">Sentence ${shadowState.index+1} / ${CONVO_LINES.length}</div>
+      <div class="walk-speaker">${line.speaker}:</div>
+      <div class="walk-sentence">${line.en}</div>
+      <div class="walk-sentence-ar">${line.ar}</div>
+      <button class="mini-btn" onclick="speakText('${escapeJs(line.en)}')">🔊 Play Sentence / استمع</button>
+      <div class="recorder-box" style="margin-top:12px;">
+        <div class="rec-status" id="shadowRecStatus">Press Start and repeat the sentence<span class="ar">اضغط "ابدأ" وكرر الجملة</span></div>
+        <div class="rec-timer" id="shadowRecTimer">0:00</div>
+        <div class="rec-btn-row">
+          <button class="rec-btn start" id="shadowStartBtn" onclick="startRecording('shadow')">🔴 Start Recording</button>
+          <button class="rec-btn stop" id="shadowStopBtn" onclick="stopRecording('shadow')" disabled>⏹ Stop</button>
+          <button class="rec-btn play" id="shadowPlayBtn" onclick="playRecording('shadow')" disabled>▶ Play</button>
+        </div>
+      </div>
+      <audio id="shadowPlaybackAudio" style="display:none;"></audio>
+      <div class="rec-btn-row" style="margin-top:10px;">
+        <button class="check-btn" onclick="evaluateShadowSentence()">✔ Evaluate Sentence / قيّم الجملة</button>
+      </div>
+      <div class="transcript-box" id="shadowTranscriptBox" style="display:none;">
+        <div class="lbl">سمعنا:</div>
+        <div class="txt" id="shadowTranscriptText"></div>
+      </div>
+      <div class="feedback-note" id="shadowFeedback" style="display:none;"></div>
+      <div class="rec-btn-row" style="margin-top:10px;display:none;" id="shadowNextRow">
+        <button class="rec-btn redo" onclick="retryShadowSentence()">🔄 Retry / أعد المحاولة</button>
+        <button class="check-btn" onclick="nextShadowSentence()">التالي ⏭</button>
+      </div>
+    </div>
+  `;
+  // auto-play the target sentence once the step renders (spec: play, then pause)
+  speakText(line.en);
+}
+
+function evaluateShadowSentence(){
+  const rec = recorders['shadow'];
+  const fb = document.getElementById('shadowFeedback');
+  const tBox = document.getElementById('shadowTranscriptBox');
+  const tText = document.getElementById('shadowTranscriptText');
+
+  const transcript = rec ? (rec.transcript||'').trim() : '';
+  if(!rec || !canRecognize || !transcript){
+    tBox.style.display = 'none';
+    fb.style.display=''; fb.className='feedback-note mid';
+    fb.innerHTML = '⚠️ ' + speechFailureMessage(rec);
+    document.getElementById('shadowNextRow').style.display='flex';
+    shadowState.scores.push(null); // no fake score — mark as "not measured"
+    return;
+  }
+
+  tBox.style.display = '';
+  tText.textContent = transcript;
+
+  const line = CONVO_LINES[shadowState.index];
+  const sentenceWords = tokenize(line.en);
+  const recognizedWords = tokenize(transcript);
+  const match = bestWindowMatch(sentenceWords, recognizedWords);
+  const score = Math.round(match.ratio*100);
+  shadowState.scores.push(score);
+  fb.style.display='';
+  fb.className = 'feedback-note ' + (score>=85?'ok':score>=60?'mid':'bad');
+  fb.innerHTML = `<span class="fun-chip">${funPhrase(score)}</span><br>النتيجة: <strong>${score}%</strong> — ` + (
+    score>=85 ? 'نطق واضح ودقيق جداً!' :
+    score>=60 ? 'جيد جداً، وبعض الكلمات تحتاج نطقاً أوضح.' :
+                'عمل جيد! جرّب التكرار مرة أخرى وستتحسن أكثر.'
+  );
+  document.getElementById('shadowNextRow').style.display='flex';
+}
+
+function retryShadowSentence(){
+  delete recorders['shadow'];
+  renderShadowStep();
+}
+function nextShadowSentence(){
+  delete recorders['shadow'];
+  shadowState.index++;
+  renderShadowStep();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   L. ROLE PLAY MODE
+   (The original Role Play UI/flow is unchanged — this only adds
+   line-by-line scoring, retry, weak-line tracking, a progress
+   indicator, and an end summary saved to localStorage.)
+═══════════════════════════════════════════════════════════════ */
+let roleState = { mode:'both', index:0, lineScores:[] };
+
+// The Role Play mode picker is built dynamically from whatever speakers
+// were actually found in the conversation (2, 3, or more) — no hardcoded
+// speaker names or button count, so this works for any conversation lesson.
+function renderRolePlayModePicker(){
+  const row = document.getElementById('roleModePickerRow');
+  if(!row || row.dataset.built) return;
+  row.dataset.built = '1';
+  const buttons = [`<button class="speak-mode-btn active" data-mode="both" onclick="startRolePlay('both')">👥 Both Roles<span class="ar">كل الأدوار</span></button>`];
+  CONVO_SPEAKERS.forEach(sp => {
+    buttons.push(`<button class="speak-mode-btn" data-mode="${escapeJs(sp)}" onclick="startRolePlay('${escapeJs(sp)}')">🎭 ${sp} Only<span class="ar">دور ${sp} فقط</span></button>`);
+  });
+  row.innerHTML = buttons.join('');
+}
+
+function startRolePlay(mode){
+  buildConvoData();
+  document.querySelectorAll('#roleModePickerRow .speak-mode-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.getAttribute('data-mode')===mode);
+  });
+  roleState = { mode, index:0, lineScores:[] };
+  renderRoleStep();
+}
+
+function isStudentTurn(line, mode){
+  if(mode==='both') return true;
+  return line.speaker === mode;
+}
+
+function renderRoleStep(){
+  const area = document.getElementById('roleWalkArea');
+  if(roleState.index >= CONVO_LINES.length){
+    incrementSessions();
+    const validScores = roleState.lineScores.filter(s => s !== null);
+    const weakLines = roleState.lineScores
+      .map((s,idx)=>({ s, line:CONVO_LINES[idx] }))
+      .filter(x => x.s !== null && x.s < 70);
+    const avg = validScores.length ? Math.round(validScores.reduce((a,b)=>a+b,0)/validScores.length) : null;
+
+    area.innerHTML = `
+      <div class="walk-line-box role-end-box">
+        <div>🏁 <strong>انتهى تمثيل الأدوار!</strong></div>
+        ${avg!==null ? `<div class="big-score">${avg}%</div><div>${funPhrase(avg)} ${avg>=85?'أداء رائع جداً!':avg>=60?'أداء جيد، واصل التدريب!':'أحسنت على المحاولة، استمر بالتدريب!'}</div>`
+                     : '<div style="margin-top:8px;">أحسنت على إكمال التمرين! 🌟</div>'}
+        ${weakLines.length ? `
+          <div class="mistake-note" style="text-align:right;margin-top:10px;">
+            🧩 جمل يمكنك التدرّب عليها أكثر:
+            ${weakLines.map(x=>`<br>• ${x.line.en} (${x.s}%)`).join('')}
+          </div>` : ''}
+      </div>
+    `;
+    if(avg!==null){
+      saveAttempt({ mode:'roleplay', date:new Date().toLocaleDateString('ar-EG'), overall:avg,
+        weakSentences: weakLines.map(x=>x.line.en) });
+      awardXP(20);
+      checkAchievements({ overall: roleState.mode==='both' ? avg : undefined });
+    }
+    bumpStreak();
+    renderHistory();
+    renderFinalDashboard();
+    renderGamification();
+    return;
+  }
+  const line = CONVO_LINES[roleState.index];
+  const studentTurn = isStudentTurn(line, roleState.mode);
+
+  if(!studentTurn){
+    // system auto-plays this line, then auto-advances (unchanged behavior)
+    area.innerHTML = `
+      <div class="walk-line-box">
+        <div class="walk-progress">Line ${roleState.index+1} / ${CONVO_LINES.length}</div>
+        <span class="walk-auto-tag">🔊 System is reading — النظام يقرأ</span>
+        <div class="walk-speaker">${line.speaker}:</div>
+        <div class="walk-sentence">${line.en}</div>
+        <div class="walk-sentence-ar">${line.ar}</div>
+      </div>
+    `;
+    roleState.lineScores.push(null);
+    speakText(line.en, () => { setTimeout(()=>{ roleState.index++; renderRoleStep(); }, 500); });
+    return;
+  }
+
+  // student's turn to read this line
+  area.innerHTML = `
+    <div class="walk-line-box">
+      <div class="walk-progress">Line ${roleState.index+1} / ${CONVO_LINES.length}</div>
+      <div class="walk-speaker">${line.speaker}: <span style="color:var(--coral)">(دورك)</span></div>
+      <div class="walk-sentence">${line.en}</div>
+      <div class="walk-sentence-ar">${line.ar}</div>
+      <button class="mini-btn" onclick="speakText('${escapeJs(line.en)}')">🔊 Hear Model Pronunciation / استمع للنموذج</button>
+      <div class="recorder-box" style="margin-top:12px;">
+        <div class="rec-status" id="roleRecStatus">Press Start and read your line<span class="ar">اضغط "ابدأ" واقرأ سطرك</span></div>
+        <div class="rec-timer" id="roleRecTimer">0:00</div>
+        <div class="rec-btn-row">
+          <button class="rec-btn start" id="roleStartBtn" onclick="startRecording('role')">🔴 Start Recording</button>
+          <button class="rec-btn stop" id="roleStopBtn" onclick="stopRecording('role')" disabled>⏹ Stop</button>
+          <button class="rec-btn play" id="rolePlayBtn" onclick="playRecording('role')" disabled>▶ Play</button>
+        </div>
+      </div>
+      <audio id="rolePlaybackAudio" style="display:none;"></audio>
+      <div class="transcript-box" id="roleTranscriptBox" style="display:none;">
+        <div class="lbl">سمعنا:</div>
+        <div class="txt" id="roleTranscriptText"></div>
+      </div>
+      <div class="feedback-note" id="roleFeedback" style="display:none;"></div>
+      <div class="rec-btn-row" style="margin-top:10px;">
+        <button class="mini-btn" onclick="evaluateRoleLine()">✔ Evaluate / قيّم</button>
+        <button class="rec-btn redo" onclick="retryRoleLine()">🔄 Retry This Line / أعد هذا السطر</button>
+        <button class="check-btn" onclick="nextRoleLine()">التالي ⏭</button>
+      </div>
+    </div>
+  `;
+}
+
+function evaluateRoleLine(){
+  const rec = recorders['role'];
+  const fb = document.getElementById('roleFeedback');
+  const tBox = document.getElementById('roleTranscriptBox');
+  const tText = document.getElementById('roleTranscriptText');
+  const line = CONVO_LINES[roleState.index];
+
+  const transcript = rec ? (rec.transcript||'').trim() : '';
+  if(!rec || !canRecognize || !transcript){
+    tBox.style.display = 'none';
+    fb.style.display=''; fb.className='feedback-note mid';
+    fb.innerHTML='⚠️ ' + speechFailureMessage(rec);
+    return;
+  }
+  tBox.style.display = '';
+  tText.textContent = transcript;
+
+  const sentenceWords = tokenize(line.en);
+  const recognizedWords = tokenize(transcript);
+  const match = bestWindowMatch(sentenceWords, recognizedWords);
+  const score = Math.round(match.ratio*100);
+  // Replace this line's score if re-evaluated, otherwise record it.
+  roleState.lineScores[roleState.index] = score;
+  fb.style.display='';
+  fb.className = 'feedback-note ' + (score>=85?'ok':score>=60?'mid':'bad');
+  fb.innerHTML = `<span class="fun-chip">${funPhrase(score)}</span><br>النتيجة: <strong>${score}%</strong> — ` + (
+    score>=85 ? 'استمر بهذا المستوى الرائع!' :
+    score>=60 ? 'جيد جداً، حاول توضيح بعض الكلمات أكثر.' :
+                'عمل جيد! جرّب مرة أخرى بنطق أوضح وأبطأ.'
+  );
+}
+
+function retryRoleLine(){
+  delete recorders['role'];
+  renderRoleStep();
+}
+function nextRoleLine(){
+  // if the student never pressed Evaluate, still record a "not measured" slot
+  if(roleState.lineScores.length <= roleState.index) roleState.lineScores.push(null);
+  delete recorders['role'];
+  roleState.index++;
+  renderRoleStep();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   M. ATTEMPT HISTORY (localStorage) — covers all 3 modes
+═══════════════════════════════════════════════════════════════ */
+const HISTORY_KEY = 'speakingHistory_u4conv';
+const MODE_ICON = { full:'📄', shadow:'🌓', roleplay:'🎭' };
+const MODE_LABEL_AR = { full:'قراءة كاملة', shadow:'تظليل صوتي', roleplay:'تمثيل أدوار' };
+
+function getHistory(){
+  try{ return JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; }catch(e){ return []; }
+}
+function saveAttempt(attempt){
+  const hist = getHistory();
+  hist.push(attempt);
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(hist));
+}
+function renderHistory(){
+  const hist = getHistory();
+  const body = document.getElementById('historyBody');
+  if(!hist.length){
+    body.innerHTML = '<div class="mistake-note" style="text-align:right;">لا توجد محاولات بعد. جرّب أحد أوضاع التدريب وستظهر نتيجتك هنا. 🌟</div>';
+    return;
+  }
+  body.innerHTML = hist.map((h,idx) => `
+    <div class="history-row">
+      <span class="n">${MODE_ICON[h.mode]||'📝'} Attempt ${idx+1} — ${h.date} <span style="direction:rtl">(${MODE_LABEL_AR[h.mode]||''})</span></span>
+      <span class="s" style="color:${h.overall>=85?'var(--green)':h.overall>=60?'#B45309':'var(--coral)'}">${h.overall}%</span>
+    </div>
+  `).join('');
+}
+function clearSpeakingHistory(){
+  if(!confirm('هل أنت متأكد من مسح سجل المحاولات بالكامل؟')) return;
+  localStorage.removeItem(HISTORY_KEY);
+  renderHistory();
+  renderFinalDashboard();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   N. ACHIEVEMENT SYSTEM (localStorage)
+═══════════════════════════════════════════════════════════════ */
+const BADGES_KEY = 'speakingBadges_u4conv';
+const BADGE_DEFS = [
+  { key:'conversationMaster', icon:'🏆', name:'Conversation Master', ar:'بطل المحادثة' },
+  { key:'pronunciationExpert', icon:'🏆', name:'Pronunciation Expert', ar:'خبير النطق' },
+  { key:'fluencyChampion', icon:'🏆', name:'Fluency Champion', ar:'بطل الطلاقة' },
+  { key:'shadowingMaster', icon:'🏆', name:'Shadowing Master', ar:'أستاذ التظليل الصوتي' }
+];
+function getBadges(){
+  try{ return JSON.parse(localStorage.getItem(BADGES_KEY)) || {}; }catch(e){ return {}; }
+}
+function saveBadges(b){ localStorage.setItem(BADGES_KEY, JSON.stringify(b)); }
+
+function checkAchievements({ overall, pronunciationScore, fluencyScore, shadowAvg }){
+  const badges = getBadges();
+  if(typeof overall === 'number' && overall>=90) badges.conversationMaster = true;
+  if(typeof pronunciationScore === 'number' && pronunciationScore>=90) badges.pronunciationExpert = true;
+  if(typeof fluencyScore === 'number' && fluencyScore>=90) badges.fluencyChampion = true;
+  if(typeof shadowAvg === 'number' && shadowAvg>=85) badges.shadowingMaster = true;
+  saveBadges(badges);
+  renderBadges();
+}
+function renderBadges(){
+  const badges = getBadges();
+  const grid = document.getElementById('badgeGrid');
+  grid.innerHTML = BADGE_DEFS.map(b => `
+    <div class="badge-card ${badges[b.key]?'unlocked':''}">
+      <div class="ic">${b.icon}</div>
+      <div class="name">${b.name}</div>
+      <span class="ar">${b.ar}</span>
+    </div>
+  `).join('');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   O. GAMIFICATION — XP, Levels, Streak, Sessions counter
+═══════════════════════════════════════════════════════════════ */
+const XP_KEY = 'speakingXP_u4conv';
+const STREAK_KEY = 'speakingStreak_u4conv';
+const SESSIONS_KEY = 'speakingSessions_u4conv';
+
+const LEVELS = [
+  { min:0,   name:'Beginner Speaker',    ar:'متحدث مبتدئ' },
+  { min:50,  name:'Emerging Speaker',    ar:'متحدث ناشئ' },
+  { min:150, name:'Confident Speaker',   ar:'متحدث واثق' },
+  { min:300, name:'Conversation Star',   ar:'نجم المحادثة' },
+  { min:500, name:'Speaking Champion',   ar:'بطل التحدث' }
+];
+
+function getXP(){ return parseInt(localStorage.getItem(XP_KEY)||'0', 10) || 0; }
+function awardXP(amount){
+  const xp = getXP() + amount;
+  localStorage.setItem(XP_KEY, String(xp));
+}
+function computeLevel(xp){
+  let idx = 0;
+  for(let i=0;i<LEVELS.length;i++){ if(xp>=LEVELS[i].min) idx=i; }
+  return idx;
+}
+
+function getStreak(){
+  try{ return JSON.parse(localStorage.getItem(STREAK_KEY)) || { lastDate:null, count:0 }; }catch(e){ return { lastDate:null, count:0 }; }
+}
+function bumpStreak(){
+  const today = new Date().toDateString();
+  const streak = getStreak();
+  if(streak.lastDate === today){
+    return; // already counted today
+  }
+  const yesterday = new Date(Date.now() - 86400000).toDateString();
+  if(streak.lastDate === yesterday){
+    streak.count += 1;
+  } else {
+    streak.count = 1; // streak reset, today is day 1
+  }
+  streak.lastDate = today;
+  localStorage.setItem(STREAK_KEY, JSON.stringify(streak));
+  awardXP(15); // daily practice bonus, once per real calendar day
+}
+
+function incrementSessions(){
+  const n = parseInt(localStorage.getItem(SESSIONS_KEY)||'0', 10) + 1;
+  localStorage.setItem(SESSIONS_KEY, String(n));
+}
+function getSessions(){ return parseInt(localStorage.getItem(SESSIONS_KEY)||'0', 10) || 0; }
+
+function renderGamification(){
+  const xp = getXP();
+  const levelIdx = computeLevel(xp);
+  const level = LEVELS[levelIdx];
+  const next = LEVELS[levelIdx+1];
+
+  document.getElementById('gamiLevelNum').textContent = levelIdx+1;
+  document.getElementById('gamiLevelName').textContent = level.name;
+  document.getElementById('gamiLevelNameAr').textContent = level.ar;
+  document.getElementById('gamiXpText').textContent = xp + ' XP';
+
+  if(next){
+    const span = next.min - level.min;
+    const progress = Math.min(100, Math.round(((xp-level.min)/span)*100));
+    document.getElementById('gamiXpFill').style.width = progress + '%';
+    document.getElementById('gamiXpNext').textContent = 'للمستوى التالي: ' + (next.min - xp) + ' نقطة';
+  } else {
+    document.getElementById('gamiXpFill').style.width = '100%';
+    document.getElementById('gamiXpNext').textContent = 'أعلى مستوى! 🎉';
+  }
+
+  const streak = getStreak();
+  document.getElementById('gamiStreakBadge').innerHTML = `🔥 ${streak.count} Day Streak`;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   P. TEACHER MODE — hidden by default, shown manually
+═══════════════════════════════════════════════════════════════ */
+let teacherModeVisible = false;
+function toggleTeacherMode(){
+  teacherModeVisible = !teacherModeVisible;
+  const panel = document.getElementById('teacherPanel');
+  const btn = document.getElementById('teacherToggleBtn');
+  panel.style.display = teacherModeVisible ? '' : 'none';
+  btn.textContent = teacherModeVisible ? '🔒 Hide Teacher Summary / إخفاء ملخص المعلم' : '🔓 Show Teacher Summary / إظهار ملخص المعلم';
+  if(teacherModeVisible) renderTeacherPanel();
+}
+function renderTeacherPanel(){
+  const hist = getHistory();
+  const panel = document.getElementById('teacherPanel');
+  if(!hist.length){
+    panel.innerHTML = '<div class="mistake-note" style="text-align:right;">لا توجد محاولات مسجلة بعد لهذا الطالب.</div>';
+    return;
+  }
+  const totalAttempts = hist.length;
+  const avgScore = Math.round(hist.reduce((a,h)=>a+h.overall,0)/hist.length);
+
+  const wordFreq = {};
+  hist.forEach(h => (h.weakWords||[]).forEach(w => { wordFreq[w]=(wordFreq[w]||0)+1; }));
+  const topWords = Object.entries(wordFreq).sort((a,b)=>b[1]-a[1]).slice(0,5).map(e=>e[0]);
+
+  const sentFreq = {};
+  hist.forEach(h => (h.weakSentences||[]).forEach(s => { sentFreq[s]=(sentFreq[s]||0)+1; }));
+  const topSentences = Object.entries(sentFreq).sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>e[0]);
+
+  let trend = 'لا توجد بيانات كافية بعد';
+  if(hist.length>=2){
+    const half = Math.max(1, Math.floor(hist.length/2));
+    const firstAvg = Math.round(hist.slice(0,half).reduce((a,h)=>a+h.overall,0)/half);
+    const secondAvg = Math.round(hist.slice(-half).reduce((a,h)=>a+h.overall,0)/half);
+    if(secondAvg > firstAvg+3) trend = `📈 في تحسّن مستمر (من ${firstAvg}% إلى ${secondAvg}%)`;
+    else if(secondAvg < firstAvg-3) trend = `📉 بحاجة لمزيد من التشجيع (من ${firstAvg}% إلى ${secondAvg}%)`;
+    else trend = `➡️ أداء مستقر حول ${secondAvg}%`;
+  }
+
+  panel.innerHTML = `
+    <div class="teacher-stat-row"><span class="k">Total Attempts</span><span class="v">${totalAttempts}</span></div>
+    <div class="teacher-stat-row"><span class="k">Average Score</span><span class="v">${avgScore}%</span></div>
+    <div class="teacher-stat-row"><span class="k">Difficult Words</span><span class="v">${topWords.length?topWords.join('، '):'لا يوجد'}</span></div>
+    <div class="teacher-stat-row"><span class="k">Difficult Sentences</span><span class="v">${topSentences.length?topSentences.join(' | '):'لا يوجد'}</span></div>
+    <div class="teacher-stat-row"><span class="k">Improvement Trend</span><span class="v">${trend}</span></div>
+  `;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Q. FINAL PERFORMANCE DASHBOARD
+═══════════════════════════════════════════════════════════════ */
+function renderFinalDashboard(){
+  const hist = getHistory();
+  const badges = getBadges();
+  const latestFull = [...hist].reverse().find(h=>h.mode==='full');
+  const unlockedCount = Object.values(badges).filter(Boolean).length;
+  const xp = getXP();
+  const level = LEVELS[computeLevel(xp)];
+  const streak = getStreak();
+
+  const grid = document.getElementById('finalDashGrid');
+  const cell = (n,l,lAr) => `<div class="dash-card"><div class="n">${n}</div><div class="l">${l}<span class="ar">${lAr}</span></div></div>`;
+  grid.innerHTML = [
+    cell(speakingChosenAvatar||'👤','Avatar','الشخصية'),
+    cell(speakingStudentName||'—','Student','الطالب'),
+    cell(latestFull?latestFull.overall+'%':'—','Overall Score','النتيجة الإجمالية'),
+    cell(latestFull?latestFull.pronunciationScore+'%':'—','Pronunciation','النطق'),
+    cell(latestFull?latestFull.accuracyScore+'%':'—','Accuracy','الدقة'),
+    cell(latestFull?latestFull.fluencyScore+'%':'—','Fluency','الطلاقة'),
+    cell(latestFull && typeof latestFull.intonationScore==='number' ? latestFull.intonationScore+'%' : 'غير متاح','Intonation','التنغيم'),
+    cell(latestFull?latestFull.wpm+' WPM':'—','Reading Speed','سرعة القراءة'),
+    cell(xp+' XP','XP Points','نقاط الخبرة'),
+    cell(level.ar,'Current Level','المستوى الحالي'),
+    cell('🔥 '+streak.count,'Practice Streak','أيام متتالية'),
+    cell(getSessions(),'Completed Sessions','جلسات مكتملة'),
+    cell(hist.length,'Total Attempts','إجمالي المحاولات'),
+    cell(unlockedCount+' / '+BADGE_DEFS.length,'Unlocked Badges','الشارات المفتوحة')
+  ].join('');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   R. CERTIFICATE SYSTEM (Print + Download)
+   Same approach as the reference file: a printable certificate
+   modal (window.print(), isolated via @media print) PLUS a
+   canvas-based PNG download — both showing Student Name, Avatar,
+   Overall Score, Speaking Achievement/Level, Date, and Teacher Name.
+═══════════════════════════════════════════════════════════════ */
+function formatSpeakingDate(d){
+  d = d || new Date();
+  const yyyy=d.getFullYear(), mm=String(d.getMonth()+1).padStart(2,'0'), dd=String(d.getDate()).padStart(2,'0');
+  return yyyy+'/'+mm+'/'+dd;
+}
+
+function getSpeakingCertificateData(){
+  const hist = getHistory();
+  const latestFull = [...hist].reverse().find(h=>h.mode==='full');
+  const xp = getXP();
+  const level = LEVELS[computeLevel(xp)];
+  const badges = getBadges();
+  const unlockedBadges = BADGE_DEFS.filter(b=>badges[b.key]);
+  const achievement = unlockedBadges.length ? unlockedBadges[unlockedBadges.length-1].name : level.name;
+  return {
+    name: (document.getElementById('speakCertNameInput')||{}).value || speakingStudentName || 'Student',
+    avatar: speakingChosenAvatar || '🎤',
+    overall: latestFull ? latestFull.overall : (hist.length ? Math.round(hist.reduce((a,h)=>a+h.overall,0)/hist.length) : 0),
+    level: level,
+    xp: xp,
+    achievement: achievement,
+    date: formatSpeakingDate()
+  };
+}
+
+function renderCertStatsDisplay(){
+  const d = getSpeakingCertificateData();
+  const el = document.getElementById('certStatsDisplay');
+  if(!el) return;
+  el.innerHTML =
+    'Overall Score: <strong>'+d.overall+'%</strong> &nbsp;|&nbsp; Level '+(LEVELS.indexOf(d.level)+1)+' — '+d.level.name+'<br>'+
+    'Achievement: <strong>'+d.achievement+'</strong> &nbsp;|&nbsp; XP: '+d.xp+'<br>'+
+    'Date: '+d.date+' &nbsp;|&nbsp; Teacher: Teacher Jaber';
+}
+
+// Opens the printable certificate (used by the "🖨 Print Certificate" button).
+window.openSpeakingCertificate = function(){
+  updateSpeakingProfileDisplays();
+  renderCertStatsDisplay();
+  document.getElementById('speakCertModal').classList.add('active');
+};
+// Opens the certificate AND immediately triggers the PNG download
+// (used by the "📥 Download Certificate" button).
+window.openSpeakingCertificateAndDownload = function(){
+  window.openSpeakingCertificate();
+  downloadSpeakingCertificatePng();
+};
+
+// Canvas-based certificate PNG generator — same technique as the
+// reference file's downloadCertificatePng().
+window.downloadSpeakingCertificatePng = function(){
+  try{
+    const c = document.getElementById('speakCertCanvas');
+    if(!c){ alert('تعذر إنشاء الشهادة، حاول إعادة تحميل الصفحة.'); return; }
+    const ctx = c.getContext('2d');
+    if(!ctx){ alert('تعذر إنشاء الشهادة في هذا المتصفح، جرّب متصفحاً آخر.'); return; }
+    const d = getSpeakingCertificateData();
+
+    const grad = ctx.createLinearGradient(0,0,1000,700);
+    grad.addColorStop(0,'#1e1b4b'); grad.addColorStop(1,'#4c1d95');
+    ctx.fillStyle = grad; ctx.fillRect(0,0,1000,700);
+    ctx.strokeStyle = '#F59E0B'; ctx.lineWidth = 8; ctx.strokeRect(20,20,960,660);
+    ctx.strokeStyle = 'rgba(255,255,255,.4)'; ctx.lineWidth = 2; ctx.strokeRect(36,36,928,628);
+    ctx.textAlign = 'center';
+    ctx.font = '90px sans-serif'; ctx.fillStyle = '#fff'; ctx.fillText(d.avatar,500,170);
+    ctx.font = '900 38px Georgia, serif'; ctx.fillStyle = '#F59E0B'; ctx.fillText('CERTIFICATE OF SPEAKING ACHIEVEMENT',500,235);
+    ctx.font = '22px sans-serif'; ctx.fillStyle = '#c4b5fd'; ctx.fillText('U4 Conversation — An International Menu: Speaking Practice',500,270);
+    ctx.font = '800 36px sans-serif'; ctx.fillStyle = '#fff'; ctx.fillText(d.name,500,335);
+    ctx.font = '800 26px sans-serif'; ctx.fillStyle = '#e2e8f0';
+    ctx.fillText('Score: '+d.overall+'%   |   Level '+(LEVELS.indexOf(d.level)+1)+' — '+d.level.name,500,390);
+    ctx.fillText('Achievement: '+d.achievement+'   |   XP: '+d.xp,500,430);
+    ctx.font = '22px sans-serif'; ctx.fillStyle = '#c4b5fd'; ctx.fillText('Awarded on '+d.date,500,500);
+    ctx.font = '700 26px sans-serif'; ctx.fillStyle = '#F59E0B'; ctx.fillText('— Teacher Jaber —',500,600);
+
+    const dataUrl = c.toDataURL('image/png');
+    if(!dataUrl || dataUrl==='data:,'){ alert('تعذر إنشاء صورة الشهادة، حاول مرة أخرى.'); return; }
+    const link = document.createElement('a');
+    link.download = 'U4-Speaking-Practice-Certificate.png';
+    link.href = dataUrl;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }catch(err){
+    console.error('Certificate generation failed:', err);
+    alert('حدث خطأ أثناء إنشاء الشهادة: '+err.message);
+  }
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   S. RESET SYSTEM — same confirmation-modal workflow as the
+   reference file. Clears every Speaking Practice localStorage key
+   (attempts, history, XP, streak, badges, sessions, student
+   profile) then reloads the page cleanly.
+═══════════════════════════════════════════════════════════════ */
+window.confirmResetSpeakingProgress = function(){
+  const modal = document.getElementById('speakResetConfirmModal');
+  if(modal){ modal.classList.add('show'); }
+  else { executeResetSpeakingProgress(); }
+};
+window.closeSpeakResetModal = function(){
+  const modal = document.getElementById('speakResetConfirmModal');
+  if(modal) modal.classList.remove('show');
+};
+window.executeResetSpeakingProgress = function(){
+  try{
+    localStorage.removeItem(HISTORY_KEY);
+    localStorage.removeItem(BADGES_KEY);
+    localStorage.removeItem(XP_KEY);
+    localStorage.removeItem(STREAK_KEY);
+    localStorage.removeItem(SESSIONS_KEY);
+    localStorage.removeItem(SPEAK_NAME_KEY);
+    localStorage.removeItem(SPEAK_AVATAR_KEY);
+  }catch(e){
+    console.error('Could not clear Speaking Practice localStorage:', e);
+  }
+  location.reload();
+};
+
+
+/* ═══════════════════════════════════════════════════════════════
+   T. READ-ALONG HIGHLIGHT — syncs the conversation text (and the
+   "Your Ending" answer options) to the audio player so the sentence
+   currently being spoken is highlighted, like a karaoke effect.
+
+   This unit was already calibrated with the manual sync tool, so
+   the sync button/UI has been removed — this now simply loads and
+   uses that saved real-timestamp data. If that data is ever missing
+   (e.g. a different browser/device with no saved calibration), it
+   falls back to a proportional word-count estimate rather than
+   showing no highlight at all.
+
+   NOTE: in another unit (U3) it turned out the lesson audio didn't
+   actually narrate the "Your Ending" options, so that unit's
+   highlight was scoped back to the conversation only. If the same
+   is true here and the highlight never reaches the ending options
+   during playback, let me know and I'll narrow this one the same
+   way (you'd then need to redo the sync afterward).
+
+   Per your request, the highlight never auto-scrolls the page —
+   students/teachers scroll freely on their own.
+
+   This is completely independent of the Speaking Practice engine
+   above — it only touches the existing conversation audio player
+   and never affects recording/scoring.
+═══════════════════════════════════════════════════════════════ */
+(function initReadAlongHighlight(){
+  var SYNC_KEY = 'readAlongSync_u4conv';
+
+  function run(){
+    var mainAudioEl = document.getElementById('mainAudio');
+    var sentenceEls = Array.from(document.querySelectorAll('.conv-body .sentence, .ending-body .readalong-line'));
+    if(!mainAudioEl || !sentenceEls.length) return;
+
+    var manualStarts = null;
+    try{
+      var raw = localStorage.getItem(SYNC_KEY);
+      if(raw){
+        var arr = JSON.parse(raw);
+        if(Array.isArray(arr) && arr.length === sentenceEls.length) manualStarts = arr;
+      }
+    }catch(e){}
+
+    var wordCounts = sentenceEls.map(function(el){
+      return (el.textContent.trim().split(/\s+/).filter(Boolean).length) || 1;
+    });
+    var totalWords = wordCounts.reduce(function(a,b){return a+b;}, 0) || 1;
+    var boundaries = null;
+    var currentHighlighted = null;
+
+    function buildProportionalBoundaries(duration){
+      var cumWords = 0;
+      return wordCounts.map(function(wc){
+        var start = (cumWords/totalWords) * duration;
+        cumWords += wc;
+        return { start: start, end: (cumWords/totalWords) * duration };
+      });
+    }
+    function buildBoundariesFromStarts(starts, duration){
+      return starts.map(function(s, i){
+        return { start: s, end: i < starts.length-1 ? starts[i+1] : duration };
+      });
+    }
+    function rebuildBoundaries(){
+      var duration = mainAudioEl.duration;
+      if(!duration || !isFinite(duration)) return;
+      boundaries = manualStarts
+        ? buildBoundariesFromStarts(manualStarts, duration)
+        : buildProportionalBoundaries(duration);
+    }
+    function clearHighlight(){
+      if(currentHighlighted){ currentHighlighted.classList.remove('reading-highlight'); currentHighlighted = null; }
+    }
+    function highlightIndex(idx){
+      var target = (idx>=0 && idx<sentenceEls.length) ? sentenceEls[idx] : null;
+      if(target !== currentHighlighted){
+        clearHighlight();
+        if(target){ target.classList.add('reading-highlight'); currentHighlighted = target; }
+      }
+    }
+    function updateHighlight(){
+      if(!boundaries) rebuildBoundaries();
+      if(!boundaries) return;
+      var t = mainAudioEl.currentTime;
+      var idx = -1;
+      for(var i=0; i<boundaries.length; i++){
+        if(t >= boundaries[i].start && t < boundaries[i].end){ idx=i; break; }
+      }
+      if(idx === -1 && t >= mainAudioEl.duration - 0.1) idx = boundaries.length - 1;
+      highlightIndex(idx);
+    }
+    mainAudioEl.addEventListener('loadedmetadata', rebuildBoundaries);
+    mainAudioEl.addEventListener('timeupdate', updateHighlight);
+    mainAudioEl.addEventListener('seeked', updateHighlight);
+    mainAudioEl.addEventListener('ended', clearHighlight);
+    mainAudioEl.addEventListener('pause', clearHighlight);
+    if(mainAudioEl.readyState >= 1 && mainAudioEl.duration && isFinite(mainAudioEl.duration)) rebuildBoundaries();
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(run, 0); });
+  } else {
+    setTimeout(run, 0);
+  }
+})();
+
+/* ═══════════════════════════════════════════════════════════════════
+   U4 CONVERSATION — MP3 LINE HIGHLIGHTER + FIX SYNC TOOL
+   Uses index-based sync on .conv-body .line elements.
+   reading-highlight class already defined in CSS.
+   Self-contained IIFE — no XP/game/TTS touched.
+═══════════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+
+  var LS_KEY = 'mp3sync_u4_conv';
+
+  /* ── Default sync: 16 conversation turns (approximate) ─────── */
+  var SYNC_DATA = [
+    { label:'Father 1',  time:0.0  },
+    { label:'Mother 1',  time:3.0  },
+    { label:'Father 2',  time:31.0 },
+    { label:'Father 3',  time:34.0 },
+    { label:'Daughter 1',time:35.4 },
+    { label:'Mother 2',  time:42.3 },
+    { label:'Father 4',  time:45.1 },
+    { label:'Daughter 2',time:46.9 },
+    { label:'Mother 3',  time:49.8 },
+    { label:'Father 5',  time:53.6 },
+    { label:'Mother 4',  time:55.0 },
+    { label:'Father 6',  time:58.3 },
+    { label:'Daughter 3',time:62.6 },
+    { label:'Father 8',  time:65.0 },
+    { label:'Father 7',  time:67.6 },
+    { label:'Daughter 4',time:69.6 },
+    { label:'Mother 5',  time:74.1 }
+  ];
+
+
+
+  /* ── State ──────────────────────────────────────────────────── */
+  var _lineEls  = [];
+  var _audio    = null;
+  var _rafId    = null;
+  var _lastIdx  = -1;
+  var _selIdx   = -1;
+  var _timerRaf = null;
+
+  function toEn(s){
+    return String(s).replace(/[\u0660-\u0669]/g,function(d){return d.charCodeAt(0)-0x0660;});
+  }
+
+  function getLineEls(){
+    if(_lineEls.length) return _lineEls;
+    _lineEls = Array.from(document.querySelectorAll('.conv-body .line'));
+    return _lineEls;
+  }
+
+  function getAudio(){
+    if(_audio) return _audio;
+    _audio = document.getElementById('mainAudio');
+    if(!_audio) return null;
+    _audio.addEventListener('play',  startTick);
+    _audio.addEventListener('pause', function(){ stopTick(); clearHL(); });
+    _audio.addEventListener('ended', function(){ stopTick(); clearHL(); });
+    _audio.addEventListener('seeked',function(){ if(!_audio.paused) hlAt(_audio.currentTime); });
+    return _audio;
+  }
+
+  var _currentLineEl = null;
+
+  function clearHL(){
+    /* Remove only from the previously highlighted line — avoids touching
+       anything else and prevents the multi-highlight accumulation bug */
+    if(_currentLineEl){
+      _currentLineEl.querySelectorAll('.sentence').forEach(function(s){
+        s.classList.remove('reading-highlight');
+      });
+      _currentLineEl = null;
+    }
+    _lastIdx = -1;
+  }
+
+  function idxAt(t){
+    var idx = -1;
+    for(var i=0; i<SYNC_DATA.length; i++){
+      if(SYNC_DATA[i].time <= t) idx=i; else break;
+    }
+    return idx;
+  }
+
+  function hlAt(t){
+    var idx = idxAt(t);
+    if(idx === _lastIdx) return;
+    clearHL();
+    if(idx < 0) return;
+    var lines = getLineEls();
+    if(idx < lines.length){
+      _currentLineEl = lines[idx];
+      _currentLineEl.querySelectorAll('.sentence').forEach(function(s){
+        s.classList.add('reading-highlight');
+      });
+      /* No auto-scroll — user scrolls freely */
+    }
+    _lastIdx = idx;
+  }
+
+  function tick(){
+    var a = getAudio();
+    if(!a || a.paused || a.ended){ stopTick(); return; }
+    hlAt(a.currentTime);
+    _rafId = requestAnimationFrame(tick);
+  }
+  function startTick(){ if(!_rafId) _rafId = requestAnimationFrame(tick); }
+  function stopTick(){ if(_rafId){ cancelAnimationFrame(_rafId); _rafId=null; } }
+
+  function init(){
+    getLineEls();  /* cache early */
+    getAudio();
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(init, 50); });
+  } else {
+    setTimeout(init, 50);
+  }
+
+})(); /* end U4 Conversation MP3 Highlighter IIFE */
+
+</script>
+</body>
+</html>
