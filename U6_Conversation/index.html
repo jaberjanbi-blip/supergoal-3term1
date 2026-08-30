@@ -2889,25 +2889,15 @@ window.executeResetSpeakingProgress = function(){
   const sentenceEls = Array.from(document.querySelectorAll('.conv-body .sentence, .ending-body .readalong-line'));
   if(!mainAudioEl || !sentenceEls.length) return;
 
-  const SYNC_KEY = 'readAlongSync_u6conv'; // must match the key used during calibration
-
-  // Word count per sentence -> proportional time window fallback (only used
-  // if no saved calibration is found for this browser/device).
+  /* Hard-coded calibration timestamps — captured locally and baked in
+     so the highlight works identically on GitHub Pages and every other
+     host with no localStorage dependency.
+     14 conversation sentences + 3 "Your Ending" readalong-lines. */
   const wordCounts = sentenceEls.map(el => (el.textContent.trim().split(/\s+/).filter(Boolean).length) || 1);
   const totalWords = wordCounts.reduce((a,b)=>a+b, 0) || 1;
-  let boundaries = null; // [{start,end}] in seconds, built once duration is known
+  let boundaries = null;
   let currentHighlighted = null;
-  const manualStarts = loadManualSync(); // real tapped start times, or null
-
-  function loadManualSync(){
-    try{
-      const raw = localStorage.getItem(SYNC_KEY);
-      if(!raw) return null;
-      const arr = JSON.parse(raw);
-      if(Array.isArray(arr) && arr.length === sentenceEls.length) return arr;
-    }catch(e){}
-    return null;
-  }
+  const manualStarts = [0,4.421576,9.391388,13.578761,17.99026,20.380046,24.165045,28.107299,32.185532,36.380969,39.751981,42.978551,45.048915,51.261448,54.878387,65.876166,71.042691];
 
   function buildProportionalBoundaries(duration){
     let cumWords = 0;
