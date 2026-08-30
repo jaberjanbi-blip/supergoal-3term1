@@ -2954,15 +2954,10 @@ window.executeResetSpeakingProgress = function(){
     var sentenceEls = Array.from(document.querySelectorAll('.conv-body .sentence'));
     if(!mainAudioEl || !sentenceEls.length) return;
 
-    /* Load saved manual sync or fall back to proportional */
-    var manualStarts = null;
-    try{
-      var raw = localStorage.getItem(SYNC_KEY);
-      if(raw){
-        var arr = JSON.parse(raw);
-        if(Array.isArray(arr) && arr.length === sentenceEls.length) manualStarts = arr;
-      }
-    }catch(e){}
+    /* Hard-coded calibration timestamps — no localStorage needed.
+       Captured locally on 2026-08-30 and baked in so the highlight
+       works identically on GitHub Pages and every other host. */
+    var manualStarts = [0,4.733439,6.31791,9.225448,16.064815,17.550932,22.448722,24.223129,25.916835,28.173018,29.748327,31.373774,32.853281,37.328933,39.357304,40.489529,42.913193,49.42144];
 
     var wordCounts = sentenceEls.map(function(el){
       return (el.textContent.trim().split(/\s+/).filter(Boolean).length) || 1;
