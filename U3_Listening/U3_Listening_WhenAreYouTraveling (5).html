@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U3 Listening – When Are You Traveling? | Teacher Jaber</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#F47C3C;--orange-light:#FFF0E6;--orange-mid:#FDDFC8;
+  --teal:#2A8F8F;--teal-light:#E6F5F5;--teal-dark:#1D6E6E;--teal-mid:#C8EAEA;
+  --navy:#1C3557;--cream:#FFFDF9;--sand:#F8F3EC;--ink:#2B2B2B;--muted:#6B7280;
+  --green:#22C55E;--green-bg:#DCFCE7;--red:#EF4444;--red-bg:#FEE2E2;
+  --yellow:#FBBF24;--yellow-bg:#FEF9C3;
+  --radius:14px;--radius-sm:8px;--shadow:0 4px 24px rgba(0,0,0,0.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--sand);color:var(--ink);line-height:1.75;min-height:100vh}
+
+.site-header{background:linear-gradient(135deg,var(--orange) 0%,#E8622A 100%);color:#fff;padding:2rem 1.5rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+.site-header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23fff' fill-opacity='.06'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;pointer-events:none}
+.header-badge{display:inline-block;background:rgba(255,255,255,0.18);border:1.5px solid rgba(255,255,255,0.35);border-radius:50px;padding:4px 18px;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem}
+.site-header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;letter-spacing:-.02em;line-height:1.2}
+.arabic-title{font-family:'Tajawal',sans-serif;font-size:clamp(1rem,2.5vw,1.4rem);font-weight:700;margin-top:.4rem;opacity:.92;direction:rtl}
+.header-meta{margin-top:1rem;font-size:.82rem;opacity:.8;font-weight:600}
+
+.tab-bar{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;padding:1.2rem 1.5rem;background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.18)}
+.tab-btn{background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.75);border-radius:50px;padding:6px 18px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif}
+.tab-btn:hover,.tab-btn.active{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-1px)}
+.tab-btn.locked{opacity:.42;cursor:not-allowed;pointer-events:none}
+@media(max-width:700px){.tab-bar{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:.9rem 1rem}.tab-btn{flex-shrink:0;white-space:nowrap}}
+
+.hud-bar{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;justify-content:center;padding:.6rem 1.5rem;background:rgba(10,20,35,0.97);border-bottom:1px solid rgba(255,255,255,0.08)}
+.hud-item{display:flex;align-items:center;gap:5px;font-size:.74rem;font-weight:800;color:rgba(255,255,255,0.9);white-space:nowrap}
+.xp-badge{background:linear-gradient(135deg,var(--orange),#ffb08a);color:#4a1c00;padding:3px 11px;border-radius:50px;font-size:.74rem;font-weight:900;transition:transform .15s}
+.xp-badge.bump{transform:scale(1.3)}
+.level-badge{background:var(--teal);color:#fff;padding:3px 11px;border-radius:50px;font-size:.74rem;font-weight:800}
+.hud-mini-btn{background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);color:#fff;border-radius:50px;font-size:.72rem;font-weight:800;padding:8px 13px;cursor:pointer;transition:.15s;white-space:nowrap;font-family:'Nunito',sans-serif}
+.hud-mini-btn:hover{background:rgba(255,255,255,0.22)}
+#mainProgressWrap{height:5px;background:rgba(255,255,255,0.08)}
+#mainProgressBar{height:100%;width:0%;background:var(--orange);transition:width .4s ease}
+
+.toolbar{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;padding:.7rem 1.5rem;background:rgba(28,53,87,0.96);border-bottom:1px solid rgba(255,255,255,0.07)}
+.tool-btn{background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.8);border-radius:50px;padding:5px 14px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .18s;display:flex;align-items:center;gap:5px}
+.tool-btn:hover{background:rgba(255,255,255,0.2);color:#fff}
+.tool-btn.active{background:var(--orange);border-color:var(--orange);color:#fff}
+
+.main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem}
+.panel{display:none;animation:fadeIn .35s ease}
+.panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.card{background:var(--cream);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.75rem;margin-bottom:1.5rem;border:1px solid rgba(0,0,0,0.05)}
+.section-label{display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem}
+.section-label .icon{width:34px;height:34px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.icon-orange{background:var(--orange-light)}
+.icon-teal{background:var(--teal-light)}
+.section-label h2{font-size:1rem;font-weight:800;color:var(--navy)}
+.section-label .arabic{font-family:'Tajawal',sans-serif;font-size:.85rem;color:var(--muted);direction:rtl}
+.callout{border-radius:var(--radius-sm);padding:.85rem 1.1rem;margin-bottom:1rem;font-size:.88rem;font-weight:600;display:flex;gap:.6rem;align-items:flex-start}
+.callout-info{background:var(--teal-light);border-left:4px solid var(--teal);color:var(--teal-dark)}
+
+/* AUDIO */
+.audio-player-card{background:linear-gradient(135deg,var(--navy) 0%,#2A4A78 100%);border-radius:var(--radius);padding:1.75rem;color:#fff;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.audio-player-card::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23fff' fill-opacity='.04'%3E%3Ccircle cx='20' cy='20' r='14'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;pointer-events:none}
+.audio-title-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.audio-icon-big{width:56px;height:56px;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.22);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+.audio-title-text h2{font-size:1.15rem;font-weight:900;margin-bottom:.2rem}
+.audio-title-text p{font-size:.82rem;opacity:.75;font-weight:600}
+.audio-waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:40px;margin-bottom:1rem}
+.wave-bar{width:4px;border-radius:3px;background:rgba(255,255,255,0.28)}
+.audio-waveform.playing .wave-bar{animation:wavePulse .9s ease-in-out infinite alternate}
+.wave-bar:nth-child(1){height:8px;animation-delay:0s}.wave-bar:nth-child(2){height:18px;animation-delay:.07s}
+.wave-bar:nth-child(3){height:30px;animation-delay:.14s}.wave-bar:nth-child(4){height:22px;animation-delay:.21s}
+.wave-bar:nth-child(5){height:34px;animation-delay:.28s}.wave-bar:nth-child(6){height:14px;animation-delay:.35s}
+.wave-bar:nth-child(7){height:28px;animation-delay:.42s}.wave-bar:nth-child(8){height:20px;animation-delay:.49s}
+.wave-bar:nth-child(9){height:36px;animation-delay:.56s}.wave-bar:nth-child(10){height:16px;animation-delay:.63s}
+.wave-bar:nth-child(11){height:26px;animation-delay:.70s}.wave-bar:nth-child(12){height:12px;animation-delay:.77s}
+.wave-bar:nth-child(13){height:32px;animation-delay:.14s}.wave-bar:nth-child(14){height:10px;animation-delay:.28s}
+.wave-bar:nth-child(15){height:24px;animation-delay:.42s}
+@keyframes wavePulse{from{opacity:.3;transform:scaleY(.6)}to{opacity:1;transform:scaleY(1.3)}}
+.audio-seek-wrap{position:relative;margin-bottom:.4rem}
+.audio-seek-track{height:6px;border-radius:50px;background:rgba(255,255,255,0.18);overflow:hidden;pointer-events:none}
+.audio-seek-fill{height:100%;border-radius:50px;width:0%;background:linear-gradient(90deg,var(--orange),#ffb08a);pointer-events:none}
+.audio-seek-input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0;padding:0;-webkit-appearance:none;appearance:none}
+.audio-time-row{display:flex;justify-content:space-between;font-size:.72rem;opacity:.65;font-weight:700;margin-bottom:1rem}
+.audio-controls{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;justify-content:center}
+.audio-btn{border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;font-family:'Nunito',sans-serif;font-weight:900}
+.audio-btn-play{width:58px;height:58px;font-size:1.5rem;background:var(--orange);color:#fff;box-shadow:0 4px 16px rgba(244,124,60,0.5)}
+.audio-btn-play:hover{background:#E8622A;transform:scale(1.07)}
+.audio-btn-sm{width:42px;height:42px;font-size:1rem;background:rgba(255,255,255,0.13);color:#fff;border:1.5px solid rgba(255,255,255,0.22)}
+.audio-btn-sm:hover{background:rgba(255,255,255,0.24);transform:scale(1.06)}
+.speed-control{display:flex;align-items:center;gap:.45rem;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);border-radius:50px;padding:5px 14px;font-size:.78rem;font-weight:800}
+.speed-control label{opacity:.75;white-space:nowrap}
+#speedSlider{-webkit-appearance:none;appearance:none;width:72px;height:4px;border-radius:4px;background:rgba(255,255,255,0.3);outline:none;cursor:pointer}
+#speedSlider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--orange);cursor:pointer}
+#speedVal{color:var(--orange);min-width:30px;font-weight:900}
+#audioStatus{font-size:.78rem;opacity:.72;font-weight:700;text-align:center;margin-top:.6rem;min-height:1.2em}
+
+/* TRUE/FALSE */
+.tf-row{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;padding:.85rem 1rem;background:var(--sand);border-radius:var(--radius-sm);margin-bottom:.65rem;border:1.5px solid transparent;transition:all .2s}
+.tf-row.correct{background:var(--green-bg);border-color:var(--green)}
+.tf-row.wrong{background:var(--red-bg);border-color:var(--red)}
+.tf-statement{flex:1;font-size:.9rem;font-weight:600;min-width:200px}
+.tf-btns{display:flex;gap:.4rem}
+.tf-btn{border-radius:50px;padding:10px 18px;min-height:40px;font-size:.8rem;font-weight:800;border:1.5px solid;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .15s}
+.tf-btn.true{border-color:var(--green);color:var(--green);background:var(--green-bg)}
+.tf-btn.false{border-color:var(--red);color:var(--red);background:var(--red-bg)}
+.tf-btn.true:hover{background:var(--green);color:#fff}
+.tf-btn.false:hover{background:var(--red);color:#fff}
+.tf-btn.selected{color:#fff!important}
+.tf-btn.selected.true{background:var(--green)!important}
+.tf-btn.selected.false{background:var(--red)!important}
+.tf-btn:disabled{cursor:default;opacity:.75}
+.tf-q-icon{font-size:1.1rem;flex-shrink:0}
+.feedback-msg{margin-top:.6rem;padding:.6rem .9rem;border-radius:var(--radius-sm);font-size:.85rem;font-weight:700;display:none;gap:.4rem;align-items:flex-start;line-height:1.55}
+.feedback-msg.show{display:flex}
+.correct-fb{background:var(--green-bg);color:#15803d}
+.wrong-fb{background:var(--red-bg);color:#b91c1c}
+
+.progress-wrap{background:#e5e7eb;border-radius:50px;height:8px;margin-bottom:.4rem;overflow:hidden}
+.progress-fill{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--orange),#E8622A);transition:width .4s ease}
+.progress-label{font-size:.75rem;color:var(--muted);font-weight:700;text-align:right}
+
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.4rem;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:800;cursor:pointer;border:none;transition:all .18s}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 3px 10px rgba(244,124,60,.35)}
+.btn-orange:hover{background:#E8622A;transform:translateY(-1px)}
+.btn-navy{background:var(--navy);color:#fff;box-shadow:0 3px 10px rgba(28,53,87,.25)}
+.btn-navy:hover{transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:1.5px solid #d1d5db;color:var(--muted)}
+.btn-ghost:hover{border-color:var(--orange);color:var(--orange)}
+.btn-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.1rem}
+
+.score-card{background:linear-gradient(135deg,var(--navy) 0%,#2A4A78 100%);color:#fff;border-radius:var(--radius);padding:2rem;text-align:center;margin-bottom:1.5rem}
+.score-big{font-size:3.5rem;font-weight:900;line-height:1;margin:.5rem 0}
+.score-label{font-size:.85rem;opacity:.75;font-weight:600}
+.score-stars{font-size:1.8rem;margin:.5rem 0}
+.score-msg{font-size:.95rem;font-weight:700;margin-top:.5rem}
+.score-breakdown{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.25rem}
+.score-item{background:rgba(255,255,255,0.12);border-radius:var(--radius-sm);padding:.6rem 1.2rem;font-size:.82rem;font-weight:700}
+
+.completion-banner{background:linear-gradient(135deg,var(--orange),#E8622A);color:#fff;border-radius:var(--radius);padding:2rem;text-align:center;margin-bottom:1.5rem;display:none;animation:fadeIn .4s ease}
+.completion-banner.show{display:block}
+.completion-banner h2{font-size:1.5rem;font-weight:900;margin-bottom:.5rem}
+.completion-crown{font-size:3rem;margin-bottom:.5rem;animation:lvlPop .6s ease}
+@keyframes lvlPop{0%{transform:scale(.2) rotate(-20deg);opacity:0}60%{transform:scale(1.25) rotate(8deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+
+/* SCRIPT - DIALOGUE STYLE */
+.dialogue-line{display:flex;gap:.75rem;margin-bottom:.85rem;align-items:flex-start}
+.dialogue-speaker{font-weight:900;color:var(--orange);min-width:52px;font-size:.9rem;padding-top:2px;flex-shrink:0}
+.dialogue-speaker.larry{color:var(--teal-dark)}
+.dialogue-text{font-size:.95rem;line-height:1.7;color:var(--ink)}
+.tr-sent{cursor:pointer;border-radius:6px;padding:2px 4px;margin:-2px -4px;transition:background .15s;display:inline}
+.tr-sent:hover,.tr-sent.tapped{background:rgba(42,143,143,0.14)}
+.tr-hint{font-size:.72rem;color:var(--teal-dark);font-weight:700;margin-bottom:.75rem;display:flex;align-items:center;gap:.35rem;opacity:.8}
+#sentTip{position:fixed;z-index:9998;background:var(--navy);color:#fff;border-radius:10px;padding:10px 16px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:700;direction:rtl;text-align:right;max-width:min(340px,90vw);box-shadow:0 8px 32px rgba(0,0,0,0.32);pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .18s ease,transform .18s ease;line-height:1.6}
+#sentTip.show{opacity:1;transform:translateY(0)}
+#sentTip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:var(--navy)}
+.rd-sent{display:inline;border-radius:5px;padding:1px 2px;transition:background .2s,box-shadow .2s}
+.rd-sent.speaking{background:#FFF176;box-shadow:0 0 0 3px #FDD835,0 2px 8px rgba(253,216,53,.45)}
+
+.tts-bar{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.1rem;padding:.8rem 1rem;background:var(--teal-light);border-radius:var(--radius-sm);border:1.5px solid var(--teal-mid)}
+.tts-btn{background:var(--teal-light);border:1.5px solid var(--teal);color:var(--teal-dark);border-radius:8px;padding:4px 12px;font-size:.85rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;display:flex;align-items:center;gap:4px;transition:all .2s}
+.tts-btn:hover{background:var(--teal);color:#fff}
+.tts-btn.stop-btn{background:var(--red-bg);border-color:var(--red);color:var(--red);border-radius:50px;padding:4px 14px}
+.tts-btn.stop-btn:hover{background:var(--red);color:#fff}
+
+.result-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1rem 0}
+.result-info-item{background:rgba(255,255,255,0.1);border-radius:var(--radius-sm);padding:.75rem 1rem;font-size:.82rem;font-weight:700}
+.result-info-item .lbl{font-size:.7rem;opacity:.7;display:block;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.2rem}
+.result-info-item .val{font-size:1rem;font-weight:900}
+
+#badgeToast{position:fixed;bottom:1.5rem;left:50%;max-width:90vw;transform:translateX(-50%) translateY(150px);opacity:0;background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;border-radius:var(--radius);padding:.9rem 1.6rem;font-size:.9rem;font-weight:800;display:flex;align-items:center;gap:.75rem;box-shadow:0 8px 30px rgba(124,58,237,.4);z-index:9999;pointer-events:none;transition:transform .4s cubic-bezier(.175,.885,.32,1.275),opacity .3s ease}
+#badgeToast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.badge-icon{font-size:1.8rem;line-height:1;flex-shrink:0}
+.xp-toast{position:fixed;left:50%;top:78px;transform:translateX(-50%) translateY(-20px);opacity:0;z-index:4000;background:var(--navy);color:#fff;border-radius:50px;padding:7px 18px;max-width:90vw;font-size:.82rem;font-weight:800;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap}
+.xp-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.ns-overlay{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;background:rgba(15,25,40,0.88);backdrop-filter:blur(5px);padding:16px}
+.ns-overlay.show{display:flex}
+.ns-card{background:linear-gradient(160deg,#3B2170 0%,#2A1854 100%);border-radius:var(--radius);padding:2rem 1.75rem;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);max-height:88vh;overflow-y:auto;color:#fff}
+.ns-card h2{font-size:1.4rem;font-weight:900;margin-bottom:.4rem}
+.ns-card p.sub{font-family:'Tajawal',sans-serif;direction:rtl;color:#C4B5FD;font-size:.88rem;margin-bottom:1rem}
+.ns-name-input{margin-top:14px;width:100%;max-width:280px;text-align:center;padding:12px 14px;font-size:1rem;font-weight:700;border:none;border-radius:10px;outline:none;font-family:'Nunito',sans-serif;color:#2B2B2B;background:#EDE9FE;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.ns-name-input::placeholder{color:#6B5B8C;opacity:.85}
+.ns-name-input:focus{box-shadow:0 0 0 3px rgba(124,58,237,.35),0 2px 10px rgba(0,0,0,.15)}
+.ns-start-btn{margin-top:16px;background:var(--orange);color:#fff;border:none;border-radius:50px;padding:12px 30px;font-size:.95rem;font-weight:900;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;box-shadow:0 3px 10px rgba(244,124,60,.35)}
+.ns-start-btn:hover{filter:brightness(1.06);transform:scale(1.02)}
+
+.cert-wrapper{display:none;margin-top:1.5rem}
+.cert-wrapper.show{display:block}
+.certificate{border:4px solid var(--orange);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;background:var(--cream);position:relative;overflow:hidden}
+.certificate::before{content:'';position:absolute;inset:8px;border:2px dashed var(--orange-mid);border-radius:10px;pointer-events:none}
+.cert-badge{font-size:3rem;margin-bottom:.5rem}
+.cert-title{font-size:1.4rem;font-weight:900;color:var(--navy);margin-bottom:.25rem}
+.cert-subtitle{font-size:.82rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1.5rem}
+.cert-name{font-size:2rem;font-weight:900;color:var(--orange);border-bottom:2px solid var(--orange-mid);display:inline-block;padding-bottom:.25rem;margin-bottom:1rem}
+.cert-body{font-size:.9rem;color:var(--ink);line-height:1.7;margin-bottom:1.25rem}
+.cert-meta{display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem;margin-top:1rem;padding-top:1rem;border-top:1.5px solid var(--orange-mid)}
+.cert-meta-item{font-size:.82rem;font-weight:700;color:var(--navy)}
+.cert-meta-item span{display:block;font-size:.7rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.2rem}
+.cert-score-hl{background:linear-gradient(135deg,var(--orange),#E8622A);color:#fff;border-radius:50px;padding:4px 18px;font-weight:900;font-size:1.05rem;display:inline-block;margin-bottom:1rem}
+.cert-teacher{font-size:.88rem;color:var(--teal-dark);font-weight:700;margin-top:1rem;font-style:italic}
+
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.shake{animation:shake .4s ease-in-out}
+
+body.dark{--cream:#1E1E2E;--sand:#16161F;--ink:#E8E8F0;--muted:#9CA3AF;background:var(--sand);color:var(--ink)}
+body.dark .card{background:#252535;border-color:rgba(255,255,255,0.07)}
+body.dark .tf-row{background:#1E1E2E;border-color:rgba(255,255,255,0.08)}
+body.dark .progress-wrap{background:#2A2A3F}
+body.dark .tab-bar{background:#181824}
+body.dark .tab-btn{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.1);color:rgba(255,255,255,0.9)}
+body.dark .tab-btn:hover,body.dark .tab-btn.active{background:var(--orange);border-color:var(--orange);color:#fff}
+body.dark .section-label h2{color:#93C5FD}
+body.dark .callout-info{background:rgba(42,143,143,0.15);color:#5EEAD4;border-left-color:#5EEAD4}
+body.dark .tts-bar{background:rgba(42,143,143,0.1);border-color:rgba(42,143,143,0.3)}
+body.dark .tts-btn{background:rgba(42,143,143,0.15);border-color:rgba(42,143,143,0.4);color:#5EEAD4}
+body.dark .tts-btn:hover{background:#2A8F8F;color:#fff}
+body.dark .tts-btn.stop-btn{background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.4);color:#f87171}
+body.dark .rd-sent.speaking,body.dark .rd-sent.speaking *{color:#1a1a1a!important}
+body.dark .certificate{background:#252535}
+body.dark .cert-title{color:#93C5FD}
+body.dark .cert-body{color:#E8E8F0}
+body.dark .score-card{background:linear-gradient(135deg,#101c30,#1c3557)}
+body.dark .hud-bar{background:rgba(5,10,20,0.98)}
+body.dark .audio-player-card{background:linear-gradient(135deg,#0d1b2e,#1a2f50)}
+body.dark .completion-banner{background:linear-gradient(135deg,#b85c22,#8a3d10)}
+body.dark #speedVal{color:#F47C3C}
+body.dark .tr-hint{color:#5EEAD4!important}
+body.dark .dialogue-text{color:var(--ink)}
+body.dark .review-row{
+    color: #111827 !important;
+}
+
+body.dark .review-row *{
+    color: #111827 !important;
+}
+
+.site-footer{text-align:center;padding:2rem 1rem;font-size:.78rem;color:var(--muted);font-weight:600}
+@media(max-width:600px){.card{padding:1.25rem}.score-big{font-size:2.5rem}.result-info-grid{grid-template-columns:1fr}}
+
+/* ── TRANSLATION TOUCH FEATURE ── */
+/* Translatable elements in Tab 1 */
+.trans{cursor:pointer;border-radius:6px;padding:1px 4px;margin:-1px -4px;transition:background .15s;display:inline;position:relative}
+.trans:hover,.trans.tapped{background:rgba(42,143,143,0.14)}
+/* Tooltip arrow already defined for #sentTip */
+
+/* Challenge mode: hide all translatable hints */
+body.challenge .trans{pointer-events:none;cursor:default}
+body.challenge .trans:hover,body.challenge .trans.tapped{background:transparent}
+body.challenge #sentTip{display:none!important}
+body.challenge .tr-hint{opacity:.35;pointer-events:none}
+body.challenge .tr-sent{pointer-events:none;cursor:default}
+body.challenge .tr-sent:hover,body.challenge .tr-sent.tapped{background:transparent}
+
+/* Challenge mode active state on button */
+#challengeBtn.active{background:linear-gradient(135deg,#7C3AED,#5B21B6);border-color:#7C3AED;color:#fff}
+
+/* Answer Key tappable rows */
+.review-row{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem 1rem;border-radius:var(--radius-sm);margin-bottom:.6rem;cursor:pointer;border:1.5px solid transparent;transition:all .2s;position:relative}
+.review-row.correct-row{background:var(--green-bg);border-color:var(--green)}
+.review-row.wrong-row{background:var(--red-bg);border-color:var(--red)}
+.review-row.unanswered-row{background:var(--sand);border-color:var(--border)}
+.review-ar{font-family:"Tajawal",sans-serif;direction:rtl;font-size:.9rem;font-weight:700;color:var(--teal-dark);max-height:0;overflow:hidden;opacity:0;transition:max-height .3s ease,opacity .3s ease,margin-top .3s ease;margin-top:0;line-height:1.6}
+.review-ar.open{max-height:80px;opacity:1;margin-top:5px}
+.review-tap-hint{font-size:.7rem;color:var(--muted);font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:4px}
+body.challenge .review-ar{display:none}
+body.challenge .review-tap-hint{display:none}
+body.challenge .review-row{cursor:default}
+body.challenge .fb-en{cursor:default}
+body.challenge .fb-en span{display:none}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-badge">Super Goal 3 · Unit 3</div>
+  <h1><span>🎧 U3 Listening – When Are You Traveling?</span></h1>
+  <p class="arabic-title">الوحدة الثالثة: متى ستسافر؟ – الاستماع</p>
+  <p class="header-meta">Prepared by Teacher Jaber &nbsp;·&nbsp; A Conversation Between Dan and Larry</p>
+</header>
+
+<nav class="tab-bar" id="tabBar">
+  <button class="tab-btn active" id="tab-btn-listening" onclick="showTab('listening')">🎧 Listening Activity</button>
+  <button class="tab-btn locked"  id="tab-btn-script"   onclick="showTab('script')">📄 Audio Script &amp; Review</button>
+</nav>
+
+<div class="hud-bar">
+  <div class="hud-item">⚡ XP: <span class="xp-badge" id="xp-display">0</span></div>
+  <div class="hud-item">
+    <span class="hud-mini-btn" id="hud-name-chip" style="cursor:default">👤 Listener</span>
+    <span class="level-badge" id="ns-level-badge">🎧 Beginner</span>
+  </div>
+  <div class="hud-item"><button class="hud-mini-btn" onclick="confirmReset()">🗑 Reset</button></div>
+</div>
+<div id="mainProgressWrap"><div id="mainProgressBar"></div></div>
+
+<div class="toolbar">
+  <button class="tool-btn" id="darkBtn" onclick="toggleDark()">🌙 Dark Mode</button>
+  <button class="tool-btn" id="challengeBtn" onclick="toggleChallenge()">🏆 Challenge Mode</button>
+</div>
+
+<main class="main">
+
+<!-- Hidden audio element — shared by Listening + Script tabs -->
+<audio id="realAudio" preload="auto" style="display:none;">
+  <source src="audio18.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- ████ TAB 1: LISTENING ████ -->
+<section id="panel-listening" class="panel active">
+
+  <div class="audio-player-card">
+    <div class="audio-title-row">
+      <div class="audio-icon-big">🎧</div>
+      <div class="audio-title-text">
+        <h2>When Are You Traveling?</h2>
+        <p>Listen to the conversation. Answer the questions below.</p>
+      </div>
+    </div>
+    <div class="audio-waveform" id="audioWaveform">
+      <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+      <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+      <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+      <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+      <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+    </div>
+    <div class="audio-seek-wrap">
+      <div class="audio-seek-track"><div class="audio-seek-fill" id="seekFill"></div></div>
+      <input type="range" class="audio-seek-input" id="seekInput" min="0" max="100" step="0.1" value="0"
+             oninput="onSeekInput(this.value)" onchange="onSeekChange(this.value)">
+    </div>
+    <div class="audio-time-row"><span id="curTime">0:00</span><span id="totTime">0:00</span></div>
+    <div class="audio-controls">
+      <button class="audio-btn audio-btn-sm" onclick="replayAudio()" title="Replay">↺</button>
+      <button class="audio-btn audio-btn-play" id="playPauseBtn" onclick="togglePlayPause()">▶</button>
+      <button class="audio-btn audio-btn-sm" onclick="stopAudio()" title="Stop">■</button>
+      <div class="speed-control">
+        <label for="speedSlider">Speed:</label>
+        <input type="range" id="speedSlider" min="0.5" max="1.5" step="0.1" value="1" oninput="changeSpeed(this.value)">
+        <span id="speedVal">1.0×</span>
+      </div>
+    </div>
+    <div id="audioStatus">Press ▶ to start listening</div>
+  </div>
+
+  <!-- TRUE / FALSE -->
+  <div class="card">
+    <div class="section-label">
+      <div class="icon icon-orange">✅</div>
+      <div><h2>True / False Questions</h2></div>
+    </div>
+    <div class="callout callout-info">
+      🎧 <span class="trans" data-ar="استمع إلى المحادثة بين دان ولاري. ضع علامة صح أو خطأ على كل جملة.">Listen to the conversation between Dan and Larry. Mark each statement <strong>True</strong> or <strong>False</strong>.</span>
+    </div>
+    <div style="margin-bottom:1rem">
+      <div class="progress-wrap"><div class="progress-fill" id="tfProgressFill" style="width:0%"></div></div>
+      <div class="progress-label" id="tfProgressLabel">0 / 5 answered</div>
+    </div>
+
+    <div class="tf-row" id="tfRow0"><span class="tf-q-icon">🔵</span><div class="tf-statement"><span class="trans" data-ar="رأى دان ولاري بعضهما قبل سنتين."><strong>1.</strong> Dan and Larry last saw one another two years ago.</span></div><div class="tf-btns"><button class="tf-btn true" onclick="answerTF(0,true,this)">True</button><button class="tf-btn false" onclick="answerTF(0,false,this)">False</button></div></div>
+    <div class="feedback-msg" id="fb0"></div>
+
+    <div class="tf-row" id="tfRow1"><span class="tf-q-icon">🔵</span><div class="tf-statement"><span class="trans" data-ar="يعمل دان في صناعة الملابس."><strong>2.</strong> Dan is working in the clothing industry.</span></div><div class="tf-btns"><button class="tf-btn true" onclick="answerTF(1,true,this)">True</button><button class="tf-btn false" onclick="answerTF(1,false,this)">False</button></div></div>
+    <div class="feedback-msg" id="fb1"></div>
+
+    <div class="tf-row" id="tfRow2"><span class="tf-q-icon">🔵</span><div class="tf-statement"><span class="trans" data-ar="كلاهما يسافر إلى ميلانو."><strong>3.</strong> They are both traveling to Milan.</span></div><div class="tf-btns"><button class="tf-btn true" onclick="answerTF(2,true,this)">True</button><button class="tf-btn false" onclick="answerTF(2,false,this)">False</button></div></div>
+    <div class="feedback-msg" id="fb2"></div>
+
+    <div class="tf-row" id="tfRow3"><span class="tf-q-icon">🔵</span><div class="tf-statement"><span class="trans" data-ar="لاري ذاهب إلى فلورنسا لدراسة الهندسة المعمارية."><strong>4.</strong> Larry is going to Florence to study architecture.</span></div><div class="tf-btns"><button class="tf-btn true" onclick="answerTF(3,true,this)">True</button><button class="tf-btn false" onclick="answerTF(3,false,this)">False</button></div></div>
+    <div class="feedback-msg" id="fb3"></div>
+
+    <div class="tf-row" id="tfRow4"><span class="tf-q-icon">🔵</span><div class="tf-statement"><span class="trans" data-ar="دان ذاهب إلى ميلانو للعثور على تصاميم ملابس جديدة."><strong>5.</strong> Dan is going to Milan to find new clothing designs.</span></div><div class="tf-btns"><button class="tf-btn true" onclick="answerTF(4,true,this)">True</button><button class="tf-btn false" onclick="answerTF(4,false,this)">False</button></div></div>
+    <div class="feedback-msg" id="fb4"></div>
+  </div>
+
+  <div class="completion-banner" id="completionBanner">
+    <div class="completion-crown">🎉</div>
+    <h2>Excellent Work!</h2>
+    <p>Audio Script Unlocked — click the <strong>📄 Audio Script &amp; Review</strong> tab above.</p>
+    <div style="margin-top:1rem"><button class="btn btn-navy" onclick="showTab('script')">📄 Go to Audio Script &amp; Review →</button></div>
+  </div>
+
+  <div class="score-card" id="listeningScoreCard" style="display:none">
+    <div class="score-label">Your Listening Score</div>
+    <div class="score-big" id="scoreDisplay">0/5</div>
+    <div class="score-stars" id="scoreStars">⭐⭐⭐</div>
+    <div class="score-msg" id="scoreMsg">—</div>
+    <div class="score-breakdown">
+      <div class="score-item">✅ Correct: <span id="scoreCorrect">0</span></div>
+      <div class="score-item">❌ Wrong: <span id="scoreWrong">0</span></div>
+      <div class="score-item">⚡ XP: <span id="scoreXP">0</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ TAB 2: SCRIPT ████ -->
+<section id="panel-script" class="panel">
+  <div class="card">
+    <div class="section-label">
+      <div class="icon icon-orange">🔊</div>
+      <div><h2>Audioscript</h2><span class="arabic">النص الصوتي</span></div>
+    </div>
+    <div class="tr-hint">💡 Hover or tap any line for Arabic translation &nbsp;|&nbsp; <span style="font-family:'Tajawal',sans-serif;direction:rtl;font-size:.85rem;">مرّر أو اضغط للترجمة</span></div>
+
+    <div class="tts-bar">
+      <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
+        <button class="tts-btn" id="scriptPlayBtn"   onclick="scriptAudio('play')">▶ Play Audio</button>
+        <button class="tts-btn" id="scriptPauseBtn"  onclick="scriptAudio('pause')"  style="display:none">⏸ Pause</button>
+        <button class="tts-btn stop-btn" id="scriptStopBtn"  onclick="scriptAudio('stop')"   style="display:none">■ Stop</button>
+        <button class="tts-btn" id="scriptReplayBtn" onclick="scriptAudio('replay')" style="display:none">↺ Replay</button>
+      </div>
+      <div style="display:flex;gap:.6rem;align-items:center;margin-top:.3rem">
+        <span id="scriptCurTime" style="font-size:.72rem;font-weight:700;color:var(--teal-dark);min-width:34px">0:00</span>
+        <div style="flex:1;position:relative;height:18px;display:flex;align-items:center">
+          <div style="width:100%;height:5px;border-radius:50px;background:rgba(42,143,143,0.2);overflow:hidden;pointer-events:none">
+            <div id="scriptSeekFill" style="height:100%;border-radius:50px;width:0%;background:var(--teal);pointer-events:none"></div>
+          </div>
+          <input type="range" id="scriptSeekInput" min="0" max="100" step="0.1" value="0"
+                 style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;-webkit-appearance:none;appearance:none"
+                 oninput="scriptSeekInputFn(this.value)" onchange="scriptSeekChange(this.value)">
+        </div>
+        <span id="scriptTotTime" style="font-size:.72rem;font-weight:700;color:var(--teal-dark);min-width:34px;text-align:right">0:00</span>
+      </div>
+      <div id="scriptAudioStatus" style="font-size:.75rem;color:var(--teal-dark);font-weight:700;opacity:.8;margin-top:.2rem">Press ▶ to follow the audio while reading</div>
+
+    </div>
+
+    <!-- Dialogue Script -->
+    <div id="scriptContent">
+      <div class="dialogue-line">
+        <span class="dialogue-speaker">Dan:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s0" data-ar="لاري موريس؟">Larry Morris?</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker larry">Larry:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s1" data-ar="دان كيسي! يا له من مفاجأة. لم أرك منذ زمن طويل.">Dan Casey! What a surprise. Long time no see.</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker">Dan:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s2" data-ar="نعم، ما يقارب خمس سنوات، أظن ذلك.">Yeah. Almost five years, I bet.</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker larry">Larry:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s3" data-ar="كيف حالك؟">How have you been?</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker">Dan:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s4" data-ar="أنا بخير. وأنت؟">I'm doing fine. How about you?</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker larry">Larry:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s5" data-ar="لا شكوى. أخبرني، ماذا تعمل الآن؟">Can't complain. So tell me, what are you doing?</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker">Dan:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s6" data-ar="في الواقع، أعمل في صناعة الملابس.">Actually, I'm working in the clothing industry.</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker larry">Larry:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s7" data-ar="رائع! آخر مرة التقينا كنت لا تزال في الجامعة.">That's terrific! Last time we met you were still in college.</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker">Dan:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s8" data-ar="نعم، الوقت يمر سريعاً، أليس كذلك؟">Yeah, time flies, doesn't it?</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker larry">Larry:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s9" data-ar="إلى أين تسافر؟">Where are you traveling to?</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker">Dan:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s10" data-ar="أنا ذاهب إلى ميلانو للبحث عن بعض التصاميم الجديدة.">I'm going to Milan to look for some new designs.</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker larry">Larry:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s11" data-ar="رائع! أنا أيضاً مسافر إلى إيطاليا. سأذهب إلى فلورنسا لدراسة الفن. ربما يمكننا الالتقاء خلال وجودك هناك. كم ستبقى؟">Great! I'm traveling to Italy too. I'm going to Florence to study art. Maybe we can get together while you're there. How long are you staying?</span></span>
+      </div>
+      <div class="dialogue-line">
+        <span class="dialogue-speaker">Dan:</span>
+        <span class="dialogue-text"><span class="tr-sent rd-sent" id="s12" data-ar="وقت قصير، أسبوع واحد فقط. سأزورك في رحلتي القادمة. أعطني بريدك الإلكتروني وسنبقى على تواصل.">A short time, only one week. I'll look you up on my next trip. Let me have your email, and we'll keep in touch.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Answer Review -->
+  <div class="card">
+    <div class="section-label">
+      <div class="icon icon-teal">📋</div>
+      <div><h2>Answer Key Review</h2><span class="arabic">مراجعة الإجابات</span></div>
+    </div>
+    <div id="reviewList"></div>
+  </div>
+
+  <div class="score-card" id="finalScoreCard">
+    <div class="score-label">🏆 Final Results</div>
+    <div class="score-big" id="finalScore">—</div>
+    <div class="score-stars" id="finalStars">⭐⭐⭐</div>
+    <div class="score-msg" id="finalMsg">Complete the listening activity to see your results.</div>
+    <div class="result-info-grid" id="finalInfoGrid" style="display:none">
+      <div class="result-info-item"><span class="lbl">Student</span><span class="val" id="finalName">—</span></div>
+      <div class="result-info-item"><span class="lbl">Date</span><span class="val" id="finalDate">—</span></div>
+      <div class="result-info-item"><span class="lbl">Accuracy</span><span class="val" id="finalAccuracy">—</span></div>
+      <div class="result-info-item"><span class="lbl">XP Earned</span><span class="val" id="finalXP">—</span></div>
+    </div>
+    <div style="margin-top:1.25rem" id="achievementBadgeRow"></div>
+  </div>
+
+  <div class="cert-wrapper" id="certWrapper">
+    <div class="card" style="padding:0;overflow:hidden">
+      <div style="background:var(--sand);padding:.75rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,0.06)">
+        <strong style="font-size:.85rem;color:var(--navy)">🏅 Completion Certificate</strong>
+        <button class="btn btn-ghost" onclick="printCertificate()" style="font-size:.78rem;padding:4px 12px">🖨 Print</button>
+      </div>
+      <div class="certificate" id="certificateEl">
+        <div class="cert-badge">🏆</div>
+        <div class="cert-title">Certificate of Completion</div>
+        <div class="cert-subtitle">Interactive Listening Lesson · Super Goal 3 · Unit 3</div>
+        <div style="font-size:.88rem;color:var(--muted);margin-bottom:.5rem;font-weight:600">This certifies that</div>
+        <div class="cert-name" id="certName">—</div>
+        <div class="cert-body">has successfully completed the <strong>U3 Listening – When Are You Traveling?</strong> lesson,<br>demonstrating listening comprehension skills through a True/False assessment<br>based on <em>A Conversation Between Dan and Larry</em>.</div>
+        <div class="cert-score-hl" id="certScore">Score: — / 5</div>
+        <div class="cert-meta">
+          <div class="cert-meta-item"><span>Accuracy</span><span id="certAccuracy">—</span></div>
+          <div class="cert-meta-item"><span>XP Earned</span><span id="certXP">—</span></div>
+          <div class="cert-meta-item"><span>Date</span><span id="certDate">—</span></div>
+        </div>
+        <div class="cert-teacher">Prepared &amp; Assessed by Teacher Jaber</div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">🎧 U3 Listening – When Are You Traveling? &nbsp;·&nbsp; Super Goal 3 &nbsp;·&nbsp; Prepared by Teacher Jaber</footer>
+
+<div id="sentTip"></div>
+<div class="xp-toast" id="xpToast"></div>
+<div id="badgeToast"><span class="badge-icon" id="badgeIcon">🏆</span><div><div id="badgeTitle" style="font-size:.88rem"></div><div id="badgeAr" style="font-family:'Tajawal',sans-serif;direction:rtl;font-size:.78rem;opacity:.8"></div></div></div>
+
+<div class="ns-overlay show" id="onboardOverlay">
+  <div class="ns-card">
+    <div style="font-size:3rem;margin-bottom:.5rem">🎧</div>
+    <h2>Welcome to the Listening Lesson!</h2>
+    <p class="sub">أهلاً بك في درس الاستماع — أدخل اسمك للبدء</p>
+    <div style="font-size:.88rem;color:#C4B5FD;margin-bottom:.5rem;font-weight:600">Enter your name to begin:</div>
+    <input type="text" class="ns-name-input" id="studentNameInput" placeholder="Your name / اسمك" maxlength="40" onkeydown="if(event.key==='Enter')startLesson()">
+    <br>
+    <button class="ns-start-btn" onclick="startLesson()">🎧 Start Listening Lesson</button>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   SENTENCE DATA & TIMESTAMPS
+   ═══════════════════════════════════════════ */
+const SENT_IDS = ["s0","s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","s12"];
+
+const SENT_TIMES = {
+  s0:  1.315,
+  s1:  3.227,
+  s2:  8.188,
+  s3:  11.086,
+  s4:  12.556,
+  s5:  15.048,
+  s6:  19.599,
+  s7:  22.685,
+  s8:  27.188,
+  s9:  29.921,
+  s10: 31.691,
+  s11: 34.965,
+  s12: 45.070
+};
+
+const SENT_CUE_LIST = SENT_IDS.map(id=>({id,start:SENT_TIMES[id]||0})).sort((a,b)=>a.start-b.start);
+
+/* ═══════════════════════════════════════════
+   T/F DATA
+   ═══════════════════════════════════════════ */
+const TF_DATA = [
+  {answer:false,
+   ec:"Correct! They have not seen each other for almost five years, not two.",
+   ew:"Incorrect. Dan says 'Almost five years, I bet' — not two years.",
+   ec_ar:"صحيح! لم يرَ بعضهما منذ قرابة خمس سنوات، وليس سنتين.",
+   ew_ar:"خطأ. يقول دان 'تقريباً خمس سنوات في ظني' — وليس سنتين."},
+  {answer:true,
+   ec:"Correct! Dan says he is working in the clothing industry.",
+   ew:"Incorrect. Dan clearly states he is working in the clothing industry.",
+   ec_ar:"صحيح! يقول دان إنه يعمل في صناعة الملابس.",
+   ew_ar:"خطأ. يصرّح دان بوضوح أنه يعمل في صناعة الملابس."},
+  {answer:false,
+   ec:"Correct! Dan is going to Milan, but Larry is going to Florence — not both to Milan.",
+   ew:"Incorrect. Larry is going to Florence, not Milan. Only Dan is going to Milan.",
+   ec_ar:"صحيح! دان ذاهب إلى ميلانو، لكن لاري ذاهب إلى فلورنسا — وليس كلاهما إلى ميلانو.",
+   ew_ar:"خطأ. لاري ذاهب إلى فلورنسا وليس ميلانو. دان وحده هو من يذهب إلى ميلانو."},
+  {answer:false,
+   ec:"Correct! Larry is going to Florence to study art, not architecture.",
+   ew:"Incorrect. Larry says he is going to Florence to study art, not architecture.",
+   ec_ar:"صحيح! لاري ذاهب إلى فلورنسا لدراسة الفن، وليس الهندسة المعمارية.",
+   ew_ar:"خطأ. يقول لاري إنه ذاهب إلى فلورنسا لدراسة الفن، وليس الهندسة المعمارية."},
+  {answer:true,
+   ec:"Correct! Dan says he is going to Milan to look for some new designs.",
+   ew:"Incorrect. Dan says he is going to Milan to look for new designs in the clothing industry.",
+   ec_ar:"صحيح! يقول دان إنه ذاهب إلى ميلانو للبحث عن تصاميم جديدة.",
+   ew_ar:"خطأ. يقول دان إنه ذاهب إلى ميلانو للبحث عن تصاميم جديدة في صناعة الملابس."}
+];
+
+const STATEMENTS = [
+  "Dan and Larry last saw one another two years ago.",
+  "Dan is working in the clothing industry.",
+  "They are both traveling to Milan.",
+  "Larry is going to Florence to study architecture.",
+  "Dan is going to Milan to find new clothing designs."
+];
+
+/* ═══════════════════════════════════════════
+   STATE
+   ═══════════════════════════════════════════ */
+let studentName="", xpTotal=0, answeredCount=0, correctCount=0;
+let userAnswers=new Array(5).fill(null), scriptUnlocked=false;
+const LS_KEY="listening_u3_v1";
+
+function saveState(){localStorage.setItem(LS_KEY,JSON.stringify({studentName,xpTotal,answeredCount,correctCount,userAnswers,scriptUnlocked}));}
+function loadState(){
+  try{
+    const s=JSON.parse(localStorage.getItem(LS_KEY)||"null");
+    if(!s)return false;
+    studentName=s.studentName||""; xpTotal=s.xpTotal||0;
+    answeredCount=s.answeredCount||0; correctCount=s.correctCount||0;
+    userAnswers=s.userAnswers||new Array(5).fill(null); scriptUnlocked=s.scriptUnlocked||false;
+    return true;
+  }catch(e){return false;}
+}
+function confirmReset() {
+  document.getElementById('reset-confirm-modal').classList.add('show');
+}
+
+function closeResetModal() {
+  document.getElementById('reset-confirm-modal').classList.remove('show');
+}
+
+function executeResetProgress() {
+  localStorage.removeItem(LS_KEY);
+  location.reload();
+}
+function startLesson(){
+  const v=document.getElementById("studentNameInput").value.trim();
+  if(!v){document.getElementById("studentNameInput").classList.add("shake");setTimeout(()=>document.getElementById("studentNameInput").classList.remove("shake"),500);return;}
+  studentName=v;document.getElementById("onboardOverlay").classList.remove("show");updateHUD();saveState();
+}
+
+function showTab(name){
+  if(name==="script"&&!scriptUnlocked)return;
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById("panel-"+name).classList.add("active");
+  document.getElementById("tab-btn-"+name).classList.add("active");
+  if(name==="script"){buildReviewList();updateFinalResults();}
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function unlockScript(){
+  scriptUnlocked=true;document.getElementById("tab-btn-script").classList.remove("locked");
+  saveState();showBadgeToast("🎉","Audio Script Unlocked!","تم فتح النص الصوتي");addXP(20,"Script Unlocked");
+}
+
+function toggleDark(){
+  document.body.classList.toggle("dark");
+  const on=document.body.classList.contains("dark");
+  document.getElementById("darkBtn").classList.toggle("active",on);
+  document.getElementById("darkBtn").textContent=on?"☀️ Light Mode":"🌙 Dark Mode";
+  localStorage.setItem("listening_dark",on?"1":"0");
+}
+
+function addXP(amt,reason){xpTotal+=amt;updateHUD();showXPToast("+"+amt+" XP — "+reason);saveState();}
+function updateHUD(){
+  document.getElementById("xp-display").textContent=xpTotal;
+  document.getElementById("hud-name-chip").textContent="👤 "+(studentName||"Listener");
+  let lv="🎧 Beginner";if(xpTotal>=100)lv="🔥 Intermediate";if(xpTotal>=200)lv="⭐ Advanced";if(xpTotal>=300)lv="🏆 Expert";
+  document.getElementById("ns-level-badge").textContent=lv;
+  document.getElementById("mainProgressBar").style.width=(answeredCount/5*100)+"%";
+  const b=document.getElementById("xp-display");b.classList.remove("bump");void b.offsetWidth;b.classList.add("bump");setTimeout(()=>b.classList.remove("bump"),300);
+}
+function showXPToast(msg){const t=document.getElementById("xpToast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2000);}
+function showBadgeToast(icon,title,ar){
+  document.getElementById("badgeIcon").textContent=icon;document.getElementById("badgeTitle").textContent=title;document.getElementById("badgeAr").textContent=ar||"";
+  const t=document.getElementById("badgeToast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),3500);
+}
+
+/* ═══════════════════════════════════════════
+   AUDIO
+   ═══════════════════════════════════════════ */
+const audio=document.getElementById("realAudio");
+function fmt(s){if(!isFinite(s)||s<0)return"0:00";return Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0");}
+
+audio.addEventListener("timeupdate",()=>{
+  const pct=audio.duration?(audio.currentTime/audio.duration)*100:0;
+  document.getElementById("seekFill").style.width=pct+"%";
+  document.getElementById("seekInput").value=pct;
+  document.getElementById("curTime").textContent=fmt(audio.currentTime);
+  if(scriptTabActive){
+    document.getElementById("scriptSeekFill").style.width=pct+"%";
+    document.getElementById("scriptSeekInput").value=pct;
+    document.getElementById("scriptCurTime").textContent=fmt(audio.currentTime);
+    highlightSentAt(audio.currentTime);
+  }
+});
+audio.addEventListener("loadedmetadata",()=>{
+  document.getElementById("totTime").textContent=fmt(audio.duration);
+  document.getElementById("scriptTotTime").textContent=fmt(audio.duration);
+});
+audio.addEventListener("play",()=>{
+  document.getElementById("playPauseBtn").textContent="⏸";
+  document.getElementById("audioWaveform").classList.add("playing");
+  document.getElementById("audioStatus").textContent="🎧 Now playing…";
+  if(scriptTabActive)document.getElementById("scriptPauseBtn").textContent="⏸ Pause";
+});
+audio.addEventListener("pause",()=>{
+  document.getElementById("playPauseBtn").textContent="▶";
+  document.getElementById("audioWaveform").classList.remove("playing");
+  document.getElementById("audioStatus").textContent=audio.ended?"✅ Finished!":"⏸ Paused";
+  if(scriptTabActive)document.getElementById("scriptPauseBtn").textContent="▶ Resume";
+});
+audio.addEventListener("ended",()=>{
+  document.getElementById("audioWaveform").classList.remove("playing");
+  document.getElementById("seekFill").style.width="100%";
+  document.getElementById("audioStatus").textContent="✅ Finished — now answer the questions!";
+  if(scriptTabActive){clearSentHL();scriptTabActive=false;resetScriptButtons();}
+});
+
+function togglePlayPause(){audio.paused?audio.play().catch(()=>{}):audio.pause();}
+function stopAudio(){audio.pause();audio.currentTime=0;document.getElementById("seekFill").style.width="0%";document.getElementById("seekInput").value="0";document.getElementById("curTime").textContent="0:00";document.getElementById("audioStatus").textContent="Stopped. Press ▶ to listen again.";}
+function replayAudio(){audio.currentTime=0;audio.play().catch(()=>{});}
+function changeSpeed(v){audio.playbackRate=parseFloat(v);document.getElementById("speedVal").textContent=parseFloat(v).toFixed(1)+"×";}
+function onSeekInput(v){if(audio.duration){document.getElementById("seekFill").style.width=v+"%";document.getElementById("curTime").textContent=fmt(audio.duration*v/100);}}
+function onSeekChange(v){if(audio.duration)audio.currentTime=audio.duration*v/100;}
+
+/* ═══════════════════════════════════════════
+   TRUE / FALSE
+   ═══════════════════════════════════════════ */
+function answerTF(idx,chosen,btn){
+  if(userAnswers[idx]!==null)return;
+  const q=TF_DATA[idx],row=document.getElementById("tfRow"+idx),fb=document.getElementById("fb"+idx);
+  userAnswers[idx]=chosen; answeredCount++;
+  row.querySelectorAll(".tf-btn").forEach(b=>b.disabled=true);
+  btn.classList.add("selected");
+  const ok=chosen===q.answer;
+  const enText=ok?q.ec:q.ew;
+  const arText=ok?q.ec_ar:q.ew_ar;
+  if(ok){
+    row.classList.add("correct");
+    correctCount++;addXP(10,"Correct Answer");row.querySelector(".tf-q-icon").textContent="✅";
+  }else{
+    row.classList.add("wrong");
+    row.querySelectorAll(".tf-btn").forEach(b=>{const isT=b.classList.contains("true");if((q.answer===true&&isT)||(q.answer===false&&!isT))b.classList.add("selected");});
+    addXP(2,"Attempted");row.querySelector(".tf-q-icon").textContent="❌";
+  }
+  /* Render feedback as tappable element */
+  fb.className="feedback-msg "+(ok?"correct-fb":"wrong-fb")+" show";
+  fb.style.flexDirection="column";
+  fb.style.alignItems="flex-start";
+  fb.innerHTML="<span class='fb-en' style='cursor:pointer' title='Tap for Arabic'>"
+    +enText
+    +" <span style='font-size:.7rem;opacity:.55;font-weight:600'>👆 tap</span></span>"
+    +"<span class='fb-ar' id='fb-ar-"+idx+"' style='font-family:Tajawal,sans-serif;direction:rtl;"
+    +"font-size:.88rem;font-weight:700;color:inherit;max-height:0;overflow:hidden;opacity:0;"
+    +"transition:max-height .3s ease,opacity .3s ease,margin-top .3s ease;display:block;margin-top:0'>"
+    +arText+"</span>";
+  fb.querySelector(".fb-en").addEventListener("click",function(){
+    if(document.body.classList.contains("challenge"))return;
+    const ar=document.getElementById("fb-ar-"+idx);
+    if(!ar)return;
+    if(ar.style.maxHeight==="80px"){ar.style.maxHeight="0";ar.style.opacity="0";ar.style.marginTop="0";}
+    else{ar.style.maxHeight="80px";ar.style.opacity="1";ar.style.marginTop="6px";}
+  });
+  document.getElementById("tfProgressFill").style.width=(answeredCount/5*100)+"%";
+  document.getElementById("tfProgressLabel").textContent=answeredCount+" / 5 answered";
+  updateHUD();saveState();
+  if(answeredCount===5)onAllAnswered();
+}
+
+function onAllAnswered(){
+  const sc=document.getElementById("listeningScoreCard");
+  sc.style.display="block";sc.scrollIntoView({behavior:"smooth",block:"start"});
+  document.getElementById("scoreDisplay").textContent=correctCount+" / 5";
+  document.getElementById("scoreCorrect").textContent=correctCount;
+  document.getElementById("scoreWrong").textContent=5-correctCount;
+  document.getElementById("scoreXP").textContent=xpTotal;
+  let stars,msg;
+  if(correctCount===5){stars="🌟🌟🌟";msg="Perfect Score! Outstanding listening skills!";showBadgeToast("🏆","Perfect Listener!","مستمع مثالي!");addXP(30,"Perfect Score");}
+  else if(correctCount>=4){stars="⭐⭐⭐";msg="Excellent!";}
+  else if(correctCount>=3){stars="⭐⭐";msg="Good job!";}
+  else if(correctCount>=2){stars="⭐";msg="Nice try! Review the script.";}
+  else{stars="🔴";msg="Keep practising!";}
+  document.getElementById("scoreStars").textContent=stars;
+  document.getElementById("scoreMsg").textContent=msg;
+  document.getElementById("completionBanner").classList.add("show");
+  unlockScript();saveState();
+}
+
+/* ═══════════════════════════════════════════
+   SENTENCE HIGHLIGHT
+   ═══════════════════════════════════════════ */
+let scriptTabActive=false, lastHighlightedSent=null;
+
+function highlightSentAt(t){
+  let active=null;
+  for(let i=0;i<SENT_CUE_LIST.length;i++){if(SENT_CUE_LIST[i].start<=t)active=SENT_CUE_LIST[i].id;else break;}
+  if(active===lastHighlightedSent)return;
+  clearSentHL();lastHighlightedSent=active;
+  if(active){const el=document.getElementById(active);if(el)el.classList.add("speaking");}
+}
+function clearSentHL(){SENT_IDS.forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove("speaking");});lastHighlightedSent=null;}
+
+function scriptAudio(action){
+  if(action==="play"){
+    scriptTabActive=true;
+    if(audio.paused){audio.currentTime=0;audio.play().catch(()=>{});}
+    document.getElementById("scriptPlayBtn").style.display="none";
+    document.getElementById("scriptPauseBtn").style.display="flex";
+    document.getElementById("scriptStopBtn").style.display="flex";
+    document.getElementById("scriptReplayBtn").style.display="flex";
+    document.getElementById("scriptAudioStatus").textContent="🎧 Playing — lines highlight as audio plays…";
+    if(audio.duration)document.getElementById("scriptTotTime").textContent=fmt(audio.duration);
+  }else if(action==="pause"){
+    audio.paused?audio.play().catch(()=>{}):audio.pause();
+  }else if(action==="stop"){
+    audio.pause();audio.currentTime=0;scriptTabActive=false;clearSentHL();resetScriptButtons();
+    document.getElementById("scriptSeekFill").style.width="0%";
+    document.getElementById("scriptSeekInput").value="0";
+    document.getElementById("scriptCurTime").textContent="0:00";
+    document.getElementById("scriptAudioStatus").textContent="Press ▶ to follow the audio while reading";
+  }else if(action==="replay"){
+    audio.currentTime=0;clearSentHL();if(audio.paused)audio.play().catch(()=>{});
+  }
+}
+function resetScriptButtons(){
+  document.getElementById("scriptPlayBtn").style.display="flex";
+  document.getElementById("scriptPauseBtn").style.display="none";
+  document.getElementById("scriptStopBtn").style.display="none";
+  document.getElementById("scriptReplayBtn").style.display="none";
+  document.getElementById("scriptPauseBtn").textContent="⏸ Pause";
+}
+function scriptSeekInputFn(v){if(audio.duration){document.getElementById("scriptSeekFill").style.width=v+"%";document.getElementById("scriptCurTime").textContent=fmt(audio.duration*v/100);}}
+function scriptSeekChange(v){if(audio.duration){audio.currentTime=audio.duration*v/100;highlightSentAt(audio.currentTime);}}
+
+/* ═══════════════════════════════════════════
+   TRANSLATION TOOLTIP — Tab 1 (.trans) + Tab 2 (.tr-sent)
+   ═══════════════════════════════════════════ */
+let challengeMode=false;
+function toggleChallenge(){
+  challengeMode=!challengeMode;
+  document.body.classList.toggle("challenge",challengeMode);
+  const btn=document.getElementById("challengeBtn");
+  btn.classList.toggle("active",challengeMode);
+  btn.textContent=challengeMode?"✅ Challenge ON":"🏆 Challenge Mode";
+  if(challengeMode){
+    sentTip.classList.remove("show");
+    if(activeTapped){activeTapped.classList.remove("tapped");activeTapped=null;}
+  }
+  localStorage.setItem("u3_challenge",challengeMode?"1":"0");
+}
+
+const sentTip=document.getElementById("sentTip");let activeTapped=null;
+function positionTip(el){
+  const r=el.getBoundingClientRect(),tipW=Math.min(340,window.innerWidth*.9);
+  let left=r.left+r.width/2;left=Math.max(tipW/2+8,Math.min(left,window.innerWidth-tipW/2-8));
+  if(r.top-14<90){sentTip.style.top=(r.bottom+12)+"px";sentTip.style.transform="translateX(-50%)";}
+  else{sentTip.style.top=(r.top-14)+"px";sentTip.style.transform="translateX(-50%) translateY(-100%)";}
+  sentTip.style.left=left+"px";
+}
+
+/* Attach tooltip to BOTH .tr-sent (Tab 2 dialogue) and .trans (Tab 1) */
+function attachTipListeners(el){
+  el.addEventListener("mouseenter",function(){
+    if(challengeMode)return;
+    sentTip.textContent=this.dataset.ar||"";sentTip.classList.add("show");positionTip(this);
+  });
+  el.addEventListener("mouseleave",()=>sentTip.classList.remove("show"));
+  el.addEventListener("touchstart",function(e){
+    if(challengeMode)return;
+    e.preventDefault();
+    if(activeTapped&&activeTapped!==this)activeTapped.classList.remove("tapped");
+    if(this.classList.contains("tapped")){this.classList.remove("tapped");sentTip.classList.remove("show");activeTapped=null;}
+    else{this.classList.add("tapped");activeTapped=this;sentTip.textContent=this.dataset.ar||"";sentTip.classList.add("show");positionTip(this);}
+  },{passive:false});
+}
+document.querySelectorAll(".tr-sent, .trans").forEach(attachTipListeners);
+document.addEventListener("touchstart",e=>{
+  if(activeTapped&&!e.target.classList.contains("tr-sent")&&!e.target.classList.contains("trans")){
+    activeTapped.classList.remove("tapped");sentTip.classList.remove("show");activeTapped=null;
+  }
+},{passive:true});
+
+/* ═══════════════════════════════════════════
+   REVIEW + RESULTS + CERTIFICATE
+   ═══════════════════════════════════════════ */
+function buildReviewList(){
+  const list=document.getElementById("reviewList");
+  list.innerHTML="";
+
+  if(!body_challenge()){
+    const hint=document.createElement("div");
+    hint.className="review-tap-hint";
+    hint.innerHTML="👆 Tap any row to see Arabic translation";
+    list.appendChild(hint);
+  }
+
+  const statementsAr=[
+    "رأى دان ولاري بعضهما قبل سنتين.",
+    "يعمل دان في صناعة الملابس.",
+    "كلاهما يسافر إلى ميلانو.",
+    "لاري ذاهب إلى فلورنسا لدراسة الهندسة المعمارية.",
+    "دان ذاهب إلى ميلانو للعثور على تصاميم ملابس جديدة."
+  ];
+
+  TF_DATA.forEach((q,i)=>{
+    const ua=userAnswers[i], ok=ua===q.answer;
+    const row=document.createElement("div");
+    const cls = ua===null ? "unanswered-row" : (ok ? "correct-row" : "wrong-row");
+    row.className="review-row "+cls;
+
+    const icon=ua===null?"⬜":(ok?"✅":"❌");
+    const yourAns=ua===null?"—":(ua?"True":"False");
+    const corrAns=q.answer?"True":"False";
+    const arId="rev-ar-"+i;
+
+    row.innerHTML="<span style='font-size:1.1rem;flex-shrink:0'>"+icon+"</span>"
+      +"<div style='flex:1;font-size:.9rem;font-weight:600'>"
+        +"<strong>"+(i+1)+". "+STATEMENTS[i]+"</strong><br>"
+        +"<span style='font-size:.8rem;color:var(--muted)'>Your answer: <strong>"+yourAns+"</strong> | Correct: <strong>"+corrAns+"</strong></span>"
+        +"<div class='review-ar' id='"+arId+"'>"+statementsAr[i]+"</div>"
+      +"</div>";
+
+    row.addEventListener("click", function(){
+      if(document.body.classList.contains("challenge"))return;
+      const ar=document.getElementById(arId);
+      if(ar)ar.classList.toggle("open");
+    });
+
+    list.appendChild(row);
+  });
+}
+
+function body_challenge(){return document.body.classList.contains("challenge");}
+function updateFinalResults(){
+  const date=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
+  const acc=answeredCount===5?Math.round(correctCount/5*100)+"%":"—";
+  document.getElementById("finalScore").textContent=answeredCount===5?correctCount+" / 5":"—";
+  document.getElementById("finalStars").textContent=correctCount>=4?"🌟🌟🌟":correctCount>=3?"⭐⭐":"⭐";
+  document.getElementById("finalMsg").textContent=answeredCount===5?"Listening activity complete!":"Complete the listening activity first.";
+  document.getElementById("finalName").textContent=studentName||"—";
+  document.getElementById("finalDate").textContent=date;
+  document.getElementById("finalAccuracy").textContent=acc;
+  document.getElementById("finalXP").textContent=xpTotal+" XP";
+  if(answeredCount===5){
+    document.getElementById("finalInfoGrid").style.display="grid";
+    document.getElementById("achievementBadgeRow").innerHTML=correctCount===5?"<div style='margin-top:.75rem;font-size:1.5rem'>🏆 Perfect Listener! 🏆</div>":"<div style='margin-top:.75rem;font-size:1.2rem'>🎧 Listening Activity Complete!</div>";
+    document.getElementById("certWrapper").classList.add("show");
+    document.getElementById("certName").textContent=studentName||"—";
+    document.getElementById("certScore").textContent="Score: "+correctCount+" / 5";
+    document.getElementById("certAccuracy").textContent=acc;
+    document.getElementById("certXP").textContent=xpTotal+" XP";
+    document.getElementById("certDate").textContent=date;
+  }
+}
+function printCertificate(){
+  const el=document.getElementById("certificateEl").outerHTML;
+  const win=window.open("","_blank","width=820,height=640");
+  win.document.write("<!DOCTYPE html><html><head><title>Certificate</title><link href='https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap' rel='stylesheet'><style>body{font-family:Nunito,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f5f5f0;margin:0}.certificate{border:4px solid #F47C3C;border-radius:14px;padding:2.5rem 2rem;text-align:center;background:#FFFDF9;max-width:640px;width:100%;position:relative}.certificate::before{content:'';position:absolute;inset:8px;border:2px dashed #FDDFC8;border-radius:10px}.cert-badge{font-size:3rem;margin-bottom:.5rem}.cert-title{font-size:1.4rem;font-weight:900;color:#1C3557}.cert-subtitle{font-size:.82rem;color:#6B7280;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1.5rem}.cert-name{font-size:2rem;font-weight:900;color:#F47C3C;border-bottom:2px solid #FDDFC8;display:inline-block;padding-bottom:.25rem;margin-bottom:1rem}.cert-body{font-size:.9rem;color:#2B2B2B;line-height:1.7;margin-bottom:1.25rem}.cert-score-hl{background:linear-gradient(135deg,#F47C3C,#E8622A);color:#fff;border-radius:50px;padding:4px 18px;font-weight:900;display:inline-block;margin-bottom:1rem}.cert-meta{display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem;margin-top:1rem;padding-top:1rem;border-top:1.5px solid #FDDFC8}.cert-meta-item{font-size:.82rem;font-weight:700;color:#1C3557}.cert-meta-item span{display:block;font-size:.7rem;color:#6B7280;text-transform:uppercase}.cert-teacher{font-size:.88rem;color:#1D6E6E;font-weight:700;margin-top:1rem;font-style:italic}</style></head><body>"+el+"</body></html>");
+  win.document.close();win.focus();setTimeout(()=>win.print(),700);
+}
+
+/* ═══════════════════════════════════════════
+   RESTORE STATE
+   ═══════════════════════════════════════════ */
+function restoreAnswers(){
+  userAnswers.forEach((ua,i)=>{
+    if(ua===null)return;
+    const q=TF_DATA[i],row=document.getElementById("tfRow"+i),fb=document.getElementById("fb"+i);
+    const ok=ua===q.answer;
+    row.querySelectorAll(".tf-btn").forEach(b=>b.disabled=true);
+    row.querySelectorAll(".tf-btn").forEach(b=>{const isT=b.classList.contains("true");if((ua===true&&isT)||(ua===false&&!isT))b.classList.add("selected");if(!ok&&((q.answer===true&&isT)||(q.answer===false&&!isT)))b.classList.add("selected");});
+    row.classList.add(ok?"correct":"wrong");row.querySelector(".tf-q-icon").textContent=ok?"✅":"❌";
+    const enT=ok?q.ec:q.ew; const arT=ok?q.ec_ar:q.ew_ar;
+    fb.className="feedback-msg "+(ok?"correct-fb":"wrong-fb")+" show";
+    fb.style.flexDirection="column"; fb.style.alignItems="flex-start";
+    fb.innerHTML="<span class='fb-en' style='cursor:pointer'>"
+      +enT+" <span style='font-size:.7rem;opacity:.55;font-weight:600'>👆 tap</span></span>"
+      +"<span class='fb-ar' id='fb-ar-"+i+"' style='font-family:Tajawal,sans-serif;direction:rtl;"
+      +"font-size:.88rem;font-weight:700;color:inherit;max-height:0;overflow:hidden;opacity:0;"
+      +"transition:max-height .3s ease,opacity .3s ease,margin-top .3s ease;display:block;margin-top:0'>"
+      +arT+"</span>";
+    fb.querySelector(".fb-en").addEventListener("click",function(){
+      if(document.body.classList.contains("challenge"))return;
+      const ar=document.getElementById("fb-ar-"+i);
+      if(!ar)return;
+      if(ar.style.maxHeight==="80px"){ar.style.maxHeight="0";ar.style.opacity="0";ar.style.marginTop="0";}
+      else{ar.style.maxHeight="80px";ar.style.opacity="1";ar.style.marginTop="6px";}
+    });
+  });
+  document.getElementById("tfProgressFill").style.width=(answeredCount/5*100)+"%";
+  document.getElementById("tfProgressLabel").textContent=answeredCount+" / 5 answered";
+  if(answeredCount===5){
+    document.getElementById("completionBanner").classList.add("show");
+    document.getElementById("listeningScoreCard").style.display="block";
+    document.getElementById("scoreDisplay").textContent=correctCount+" / 5";
+    document.getElementById("scoreCorrect").textContent=correctCount;
+    document.getElementById("scoreWrong").textContent=5-correctCount;
+    document.getElementById("scoreXP").textContent=xpTotal;
+    let stars;if(correctCount===5)stars="🌟🌟🌟";else if(correctCount>=4)stars="⭐⭐⭐";else if(correctCount>=3)stars="⭐⭐";else if(correctCount>=2)stars="⭐";else stars="🔴";
+    document.getElementById("scoreStars").textContent=stars;
+  }
+  if(scriptUnlocked)document.getElementById("tab-btn-script").classList.remove("locked");
+}
+
+/* ═══════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════ */
+(function init(){
+  if(localStorage.getItem("listening_dark")==="1"){document.body.classList.add("dark");document.getElementById("darkBtn").classList.add("active");document.getElementById("darkBtn").textContent="☀️ Light Mode";}
+  if(localStorage.getItem("u3_challenge")==="1"){challengeMode=true;document.body.classList.add("challenge");const b=document.getElementById("challengeBtn");if(b){b.classList.add("active");b.textContent="✅ Challenge ON";}}
+  if(loadState()&&studentName){document.getElementById("onboardOverlay").classList.remove("show");updateHUD();restoreAnswers();}
+})();
+
+
+</script>
+<!-- RESET CONFIRMATION MODAL -->
+<div class="ns-overlay" id="reset-confirm-modal">
+  <div class="ns-card" style="border-top:4px solid var(--red);">
+
+    <h2 style="color:var(--red);">🗑 Reset Progress</h2>
+
+    <p style="margin:12px 0;line-height:1.6;">
+      Are you sure you want to reset all progress?<br>
+      This will permanently erase XP, level, rank, achievements,
+      avatar, your name, all answers and scores.<br><br>
+
+      <span dir="rtl" style="font-family:'Tajawal',sans-serif;">
+        هل أنت متأكد من رغبتك في إعادة تعيين كل التقدم؟
+        لا يمكن التراجع عن هذا.
+      </span>
+    </p>
+
+    <div class="btn-row" style="justify-content:center;margin-top:16px;">
+
+      <button
+        onclick="executeResetProgress()"
+        class="btn"
+        style="background:var(--red);color:white;border:none;">
+        Yes, Reset
+      </button>
+
+      <button
+        onclick="closeResetModal()"
+        class="btn btn-ghost"
+        style="color:#fff;border-color:rgba(255,255,255,0.4);">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
