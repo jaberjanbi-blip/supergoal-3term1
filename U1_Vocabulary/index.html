@@ -321,12 +321,14 @@ body::before {
 .vocab-card.noun .vocab-card-front { border-top-color: var(--blue); }
 .vocab-card.adj .vocab-card-front { border-top-color: var(--purple); }
 .vocab-card.phrase .vocab-card-front { border-top-color: var(--green); }
+        .vocab-card.realtalk .vocab-card-front { border-top-color: var(--orange); }
 
 .vocab-card .type-badge { font-size: .65rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; }
 .vocab-card.verb .type-badge { background: rgba(255,107,107,0.1); color: var(--coral); }
 .vocab-card.noun .type-badge { background: rgba(52,152,219,0.1); color: var(--blue); }
 .vocab-card.adj .type-badge { background: rgba(155,89,182,0.1); color: var(--purple); }
 .vocab-card.phrase .type-badge { background: rgba(46,204,113,0.1); color: var(--green); }
+        .vocab-card.realtalk .type-badge { background: rgba(255,140,66,0.1); color: var(--orange); }
 .vocab-card .word { font-size: 1.1rem; font-weight: 900; color: var(--text-main); margin-bottom: 6px; }
 
 /* ── CATEGORY HEADER ── */
@@ -890,6 +892,67 @@ footer span { display: block; margin-top: 4px; font-weight: bold; color: var(--g
           <div class="vocab-card-back">
             <div class="arabic">ينفق مال/يقضي وقت</div>
             <div class="example">She spends a lot of time online.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REAL TALK -->
+    <div class="cat-header">
+      <span class="icon">📌</span>
+      <h3>الكلمات الحقيقية — Real Talk</h3>
+      <div class="line"></div>
+    </div>
+    <div class="vocab-grid">
+      <div class="vocab-card realtalk" onclick="flipVocabCard(this,'Exercise freak')">
+        <div class="vocab-card-inner">
+          <div class="vocab-card-front">
+            <div class="type-badge">Real Talk</div>
+            <div class="word">Exercise freak</div>
+            <button class="audio-btn" onclick="event.stopPropagation();speak('Exercise freak')">🔊</button>
+          </div>
+          <div class="vocab-card-back">
+            <div class="arabic">مجنون رياضة / شخص مهووس بالتمرين</div>
+            <div class="example">Someone who exercises excessively.</div>
+          </div>
+        </div>
+      </div>
+      <div class="vocab-card realtalk" onclick="flipVocabCard(this,'Turn (someone) off')">
+        <div class="vocab-card-inner">
+          <div class="vocab-card-front">
+            <div class="type-badge">Real Talk</div>
+            <div class="word">Turn (someone) off</div>
+            <button class="audio-btn" onclick="event.stopPropagation();speak('Turn someone off')">🔊</button>
+          </div>
+          <div class="vocab-card-back">
+            <div class="arabic">لا يُثير الاهتمام / يُنفّر الشخص من شيء</div>
+            <div class="example">To make someone uninterested.</div>
+          </div>
+        </div>
+      </div>
+      <div class="vocab-card realtalk" onclick="flipVocabCard(this,'Anyway')">
+        <div class="vocab-card-inner">
+          <div class="vocab-card-front">
+            <div class="type-badge">Real Talk</div>
+            <div class="word">Anyway</div>
+            <button class="audio-btn" onclick="event.stopPropagation();speak('Anyway')">🔊</button>
+          </div>
+          <div class="vocab-card-back">
+            <div class="arabic">على كل حال (لتغيير الموضوع أو الانتقال لنقطة جديدة)</div>
+            <div class="example">Used to change the topic of conversation.</div>
+          </div>
+        </div>
+      </div>
+      <div class="vocab-card realtalk" onclick="flipVocabCard(this,'You see')">
+        <div class="vocab-card-inner">
+          <div class="vocab-card-front">
+            <div class="type-badge">Real Talk</div>
+            <div class="word">You see</div>
+            <button class="audio-btn" onclick="event.stopPropagation();speak('You see')">🔊</button>
+          </div>
+          <div class="vocab-card-back">
+            <div class="arabic">كما ترى / انظر (لتقديم توضيح أو تفسير)</div>
+            <div class="example">Used to introduce an explanation.</div>
           </div>
         </div>
       </div>
