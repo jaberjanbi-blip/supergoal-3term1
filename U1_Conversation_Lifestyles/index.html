@@ -1070,8 +1070,8 @@ body.dark-mode .speak-profile-name{color:var(--gold);}
       <div class="comp-q-text">
         <span class="q-num">3</span>
         <div>
-          What is Majid doing when Omar asks?
-          <span class="q-ar">ماذا كان ماجد يفعل عندما سأله عمر؟</span>
+          Does Majid spend a lot of time on the Internet?
+          <span class="q-ar">هل يقضي ماجد وقتاً طويلاً على الإنترنت؟</span>
         </div>
       </div>
       <input class="answer-input" id="ans3" placeholder="Write your full answer here..." autocomplete="off">
@@ -1080,7 +1080,7 @@ body.dark-mode .speak-profile-name{color:var(--gold);}
         <button class="hint-btn"   onclick="toggleHint(3)">💡 Hint / تلميح</button>
         <button class="reveal-btn" onclick="revealComp(3)">👁 Show Answer</button>
       </div>
-      <div class="hint-box" id="hint3">تلميح: بعد أن سأل عمر "ماذا تفعل الآن؟"، ماذا أجاب ماجد؟</div>
+      <div class="hint-box" id="hint3">تلميح: ماذا قال ماجد عندما سأله عمر عن الوقت الذي يقضيه على الإنترنت؟</div>
       <div class="comp-feedback" id="fb3"></div>
     </div>
 
@@ -1089,8 +1089,8 @@ body.dark-mode .speak-profile-name{color:var(--gold);}
       <div class="comp-q-text">
         <span class="q-num">4</span>
         <div>
-          Does Majid spend a lot of time on the Internet? How do you know?
-          <span class="q-ar">هل يقضي ماجد وقتاً طويلاً على الإنترنت؟ كيف عرفت ذلك؟</span>
+          Why can Majid check his email frequently?
+          <span class="q-ar">لماذا يستطيع ماجد التحقق من بريده الإلكتروني بشكل متكرر؟</span>
         </div>
       </div>
       <input class="answer-input" id="ans4" placeholder="Write your full answer here..." autocomplete="off">
@@ -1099,7 +1099,7 @@ body.dark-mode .speak-profile-name{color:var(--gold);}
         <button class="hint-btn"   onclick="toggleHint(4)">💡 Hint / تلميح</button>
         <button class="reveal-btn" onclick="revealComp(4)">👁 Show Answer</button>
       </div>
-      <div class="hint-box" id="hint4">تلميح: ماذا يحمل ماجد في كل مكان؟ وما رأي أصدقائه في هاتفه؟</div>
+      <div class="hint-box" id="hint4">تلميح: ماذا يحمل ماجد معه أينما ذهب؟ وأين يستطيع الوصول إلى الإنترنت؟</div>
       <div class="comp-feedback" id="fb4"></div>
     </div>
 
@@ -1543,14 +1543,14 @@ const ANSWERS = {
     ar:    'نعم، الرياضة لا تُثير اهتمام ماجد. هو غير مهتم بها.'
   },
   3: {
-    keywords: ['email','checking','check','smartphone','phone','internet'],
-    model: 'He is checking his email.',
-    ar:    'كان يتحقق من بريده الإلكتروني.'
+    keywords: ['yes','a lot','lot of time','spends a lot'],
+    model: 'Yes, he spends a lot of time on the Internet.',
+    ar:    'نعم، يقضي وقتاً طويلاً على الإنترنت.'
   },
   4: {
-    keywords: ['yes','a lot','smartphone','everywhere','best friend','internet','online'],
-    model: 'Yes. He takes his smartphone everywhere and can access the Internet almost everywhere. His friends even call it his best friend.',
-    ar:    'نعم. يحمل هاتفه في كل مكان ويستطيع الدخول إلى الإنترنت في كل مكان تقريباً. حتى أصدقاؤه يسمون هاتفه صديقه المفضل.'
+    keywords: ['smartphone','everywhere','wherever','access the internet','takes his phone','takes his smartphone'],
+    model: 'Because he takes his smartphone with him wherever he goes, so he can access the Internet almost everywhere.',
+    ar:    'لأنه يحمل هاتفه الذكي معه أينما ذهب، فيستطيع الوصول إلى الإنترنت في كل مكان تقريباً.'
   }
 };
 
