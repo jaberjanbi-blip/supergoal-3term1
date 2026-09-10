@@ -3909,6 +3909,16 @@ const WORD_DICT = {
   'usually':"عادة",'work':"يعمل",
 };
 
+// Phrasal verbs / fixed expressions — checked as whole units BEFORE
+// single-word lookup, so touching either word shows the real idiomatic
+// meaning (e.g. "work out" = يتمرن) instead of two literal word meanings.
+const PHRASE_DICT = {
+  'carried out': "أجرى / نفّذ (carry out = يُجري بحثاً)",
+  'find out': "يكتشف / يتعرّف على",
+  'work out': "يتمرن / يمارس الرياضة",
+  'pay attention': "ينتبه / يُركّز",
+};
+
 // Floating tooltip element
 const floatTip = document.createElement('div');
 floatTip.id = 'floatTip';
@@ -3936,6 +3946,21 @@ function hideTip() {
 }
 
 // Tokenise reading body into clickable word spans
+function makeSpan(text, translation) {
+  const sp = document.createElement('span');
+  sp.className = 'w-span';
+  sp.textContent = text;
+  sp.addEventListener('mouseenter', () => showTip(translation, sp));
+  sp.addEventListener('mouseleave', hideTip);
+  sp.addEventListener('touchstart', e => {
+    e.preventDefault();
+    document.querySelectorAll('.w-span.touched').forEach(s => s.classList.remove('touched'));
+    sp.classList.add('touched');
+    showTip(translation, sp);
+  }, { passive: false });
+  return sp;
+}
+
 function wrapWords(container) {
   if (!container) return;
   const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
@@ -3950,32 +3975,43 @@ function wrapWords(container) {
     const raw   = tn.textContent;
     const parts = raw.split(/(\s+)/);
     const frag  = document.createDocumentFragment();
-    parts.forEach(part => {
+
+    // Cleaned lowercase word for each token (null for whitespace tokens)
+    const cleaned = parts.map(part =>
+      (!part || /^\s+$/.test(part)) ? null : part.replace(/[^a-zA-Z0-9'-]/g, '').toLowerCase()
+    );
+
+    let i = 0;
+    while (i < parts.length) {
+      const part = parts[i];
       if (!part || /^\s+$/.test(part)) {
         frag.appendChild(document.createTextNode(part));
-        return;
+        i++;
+        continue;
       }
-      const clean = part.replace(/[^a-zA-Z0-9'-]/g, '').toLowerCase();
-      const trans = WORD_DICT[clean];
+
+      // Look ahead for a known 2-word phrase: word, single space, word
+      let phraseTrans = null, phraseEnd = i;
+      if (i + 2 < parts.length && cleaned[i] && cleaned[i + 2] && /^\s+$/.test(parts[i + 1] || '')) {
+        const key = cleaned[i] + ' ' + cleaned[i + 2];
+        if (PHRASE_DICT[key]) { phraseTrans = PHRASE_DICT[key]; phraseEnd = i + 2; }
+      }
+
+      if (phraseTrans) {
+        const combinedText = parts.slice(i, phraseEnd + 1).join('');
+        frag.appendChild(makeSpan(combinedText, phraseTrans));
+        i = phraseEnd + 1;
+        continue;
+      }
+
+      const trans = WORD_DICT[cleaned[i]];
       if (trans) {
-        const sp = document.createElement('span');
-        sp.className = 'w-span';
-        sp.textContent = part;
-        // Hover (desktop)
-        sp.addEventListener('mouseenter', () => showTip(trans, sp));
-        sp.addEventListener('mouseleave', hideTip);
-        // Touch (mobile)
-        sp.addEventListener('touchstart', e => {
-          e.preventDefault();
-          document.querySelectorAll('.w-span.touched').forEach(s => s.classList.remove('touched'));
-          sp.classList.add('touched');
-          showTip(trans, sp);
-        }, { passive: false });
-        frag.appendChild(sp);
+        frag.appendChild(makeSpan(part, trans));
       } else {
         frag.appendChild(document.createTextNode(part));
       }
-    });
+      i++;
+    }
     parent.replaceChild(frag, tn);
   });
 }
