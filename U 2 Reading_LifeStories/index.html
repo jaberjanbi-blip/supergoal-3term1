@@ -3485,7 +3485,9 @@ const WORDS = {
   'walk':"يمشي / مشي", 'was':"كان / تم", 'we':"نحن", 'well':"بشكل جيد", 'were':"كانوا",
   'when':"عندما", 'where':"حيث / أين", 'while':"بينما", 'who':"من / الذي", 'with':"بـ / مع",
   'work':"عمل", 'worked':"عَمِلَ",
-  'year':"عام / سنة", 'young':"صغير السن"
+  'year':"عام / سنة", 'young':"صغير السن",
+  'al-qura':"أم القرى", 'clean-up':"تنظيف", 'mid-sized':"متوسط الحجم",
+  "princes'":"الأمراء (ملكية)", "qur'an":"القرآن"
 };
 
 const floatTip = document.createElement('div'); floatTip.id='floatTip'; document.body.appendChild(floatTip);
@@ -3513,7 +3515,9 @@ function wrapWords(container) {
         return;
       }
       
-      const clean = part.replace(/[-]/g, '').replace(/[^a-zA-Z0-9']/g, '').toLowerCase();
+      // Fixed: keep hyphens in the cleaned word so hyphenated dictionary
+      // entries (e.g. 'clean-up') can actually match.
+      const clean = part.replace(/[^a-zA-Z0-9'-]/g, '').toLowerCase();
       const trans = WORDS[clean];
       
       if (trans && clean.length > 0) {
