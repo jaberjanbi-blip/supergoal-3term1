@@ -3512,14 +3512,34 @@ const WORDS = {
   'jurassic':"حديقة الديناصورات",'park':"حديقة",
   'transformers':"المحولون (فيلم)",'pirates':"قراصنة",
   'caribbean':"الكاريبي",'701':"سبعمائة وواحد",
-  'amp':"",'li':"",'re':"",'lumi':"",'01':"",
+  'amp':"",'li':"",'re':"",'lumi':"",'01':"0.01",
   'high-tech':"عالي التقنية",'computer-controlled':"يتحكم به الحاسوب",'small-scale':"صغير الحجم",
+  'lumire':"لوميير (الأخوان، رواد السينما)",'mlis':"ميلييس (رائد سينمائي)",
+};
+
+const PHRASE_DICT = {
+  'changed into': "يتحوّل إلى",
 };
 
 const floatTip = document.createElement('div'); floatTip.id='floatTip'; document.body.appendChild(floatTip);
 let tipTimer=null;
 function showTip(text,el){clearTimeout(tipTimer);floatTip.textContent=text;floatTip.classList.add('show');const r=el.getBoundingClientRect(),tw=floatTip.offsetWidth||140,th=floatTip.offsetHeight||36,mg=8;let left=r.left+r.width/2-tw/2,top=r.top-th-12;left=Math.max(mg,Math.min(left,window.innerWidth-tw-mg));if(top<mg)top=r.bottom+10;floatTip.style.left=left+'px';floatTip.style.top=top+'px';}
 function hideTip(){tipTimer=setTimeout(()=>floatTip.classList.remove('show'),150);}
+
+function makeSpan(text, translation) {
+  const sp = document.createElement('span');
+  sp.className = 'w-span';
+  sp.textContent = text;
+  sp.addEventListener('mouseenter', () => showTip(translation, sp));
+  sp.addEventListener('mouseleave', hideTip);
+  sp.addEventListener('touchstart', e => {
+    e.preventDefault();
+    document.querySelectorAll('.w-span.touched').forEach(s => s.classList.remove('touched'));
+    sp.classList.add('touched');
+    showTip(translation, sp);
+  }, { passive: false });
+  return sp;
+}
 
 function wrapWords(container) {
   if (!container) return;
@@ -3531,36 +3551,50 @@ function wrapWords(container) {
   nodes.forEach(tn => {
     const parent = tn.parentNode;
     if (parent && parent.classList && parent.classList.contains('w-span')) return;
-    
+
     const parts = tn.textContent.split(/(\s+)/);
     const frag = document.createDocumentFragment();
-    
-    parts.forEach(part => {
+    // Fixed: keep hyphens in the cleaned word so hyphenated dictionary
+    // entries (e.g. 'high-tech') can actually match.
+    const cleaned = parts.map(part =>
+      (!part || /^\s+$/.test(part)) ? null : part.replace(/[^a-zA-Z0-9'-]/g, '').toLowerCase()
+    );
+
+    let i = 0;
+    while (i < parts.length) {
+      const part = parts[i];
       if (!part || /^\s+$/.test(part)) {
         frag.appendChild(document.createTextNode(part));
-        return;
+        i++;
+        continue;
       }
-      
-      const clean = part.replace(/[-]/g, '').replace(/[^a-zA-Z0-9']/g, '').toLowerCase();
+
+      // Check for a known 2-word phrase (phrasal verb / fixed expression)
+      let phraseTrans = null, phraseEnd = i;
+      if (i + 2 < parts.length && cleaned[i] && cleaned[i + 2] && /^\s+$/.test(parts[i + 1] || '')) {
+        const key = cleaned[i] + ' ' + cleaned[i + 2];
+        if (typeof PHRASE_DICT !== 'undefined' && PHRASE_DICT[key]) {
+          phraseTrans = PHRASE_DICT[key];
+          phraseEnd = i + 2;
+        }
+      }
+
+      if (phraseTrans) {
+        const combinedText = parts.slice(i, phraseEnd + 1).join('');
+        frag.appendChild(makeSpan(combinedText, phraseTrans));
+        i = phraseEnd + 1;
+        continue;
+      }
+
+      const clean = cleaned[i];
       const trans = WORDS[clean];
-      
       if (trans && clean.length > 0) {
-        const sp = document.createElement('span');
-        sp.className = 'w-span';
-        sp.textContent = part;
-        sp.addEventListener('mouseenter', () => showTip(trans, sp));
-        sp.addEventListener('mouseleave', hideTip);
-        sp.addEventListener('touchstart', e => {
-          e.preventDefault();
-          document.querySelectorAll('.w-span.touched').forEach(s => s.classList.remove('touched'));
-          sp.classList.add('touched');
-          showTip(trans, sp);
-        }, { passive: false });
-        frag.appendChild(sp);
+        frag.appendChild(makeSpan(part, trans));
       } else {
         frag.appendChild(document.createTextNode(part));
       }
-    });
+      i++;
+    }
     parent.replaceChild(frag, tn);
   });
 }
