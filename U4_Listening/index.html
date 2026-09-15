@@ -311,6 +311,11 @@ body.challenge .chip-hint-row{display:none}
 body.challenge .chip-ar{display:none!important}
 #challengeBtn.active{background:linear-gradient(135deg,#7C3AED,#5B21B6);border-color:#7C3AED;color:#fff}
 
+
+  /* AUTO-HIDE NAV ON SCROLL — added by Claude */
+  html, body { overflow-anchor: none; }
+  .tab-bar { max-height:600px; overflow:hidden; transition:max-height .28s ease, padding .28s ease, opacity .2s ease; }
+  .tab-bar.nav-hidden { max-height:0 !important; padding-top:0 !important; padding-bottom:0 !important; opacity:0; box-shadow:none; pointer-events:none; }
 </style>
 </head>
 <body>
@@ -1116,6 +1121,33 @@ function restoreAnswers(){
   if(loadState()&&studentName){document.getElementById('onboardOverlay').classList.remove('show');updateHUD();restoreAnswers();}
 })();
 
+
+// AUTO-HIDE NAV ON SCROLL — added by Claude
+(function(){
+  var NAV = document.querySelector('.tab-bar');
+  if(!NAV) return;
+  var lastY = window.scrollY, ticking = false, cooldownUntil = 0;
+  function setHidden(hide){
+    if(hide === NAV.classList.contains('nav-hidden')) return;
+    NAV.classList.toggle('nav-hidden', hide);
+    // Collapsing/expanding shifts page height, which can make the browser
+    // clamp or re-anchor scroll position and re-fire a scroll event right
+    // away. Ignore scroll events briefly so that bounce can't immediately
+    // re-trigger the opposite state (which would cause visible flicker).
+    cooldownUntil = performance.now() + 350;
+  }
+  function onScroll(){
+    var y = window.scrollY;
+    if(performance.now() < cooldownUntil){ lastY = y; ticking = false; return; }
+    if(y < 40){ setHidden(false); }
+    else if(y > lastY + 5){ setHidden(true); }
+    else if(y < lastY - 5){ setHidden(false); }
+    lastY = y; ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(onScroll); ticking = true; }
+  }, {passive:true});
+})();
 </script>
 </body>
 </html>
