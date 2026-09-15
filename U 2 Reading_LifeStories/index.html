@@ -50,7 +50,9 @@
   .header-meta { margin-top:1rem; font-size:0.82rem; opacity:0.8; font-weight:600; }
 
   /* NAV TABS */
-  .tab-bar { display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap; padding:1.2rem 1.5rem; background:var(--navy); position:sticky; top:0; z-index:100; box-shadow:0 2px 12px rgba(0,0,0,0.18); }
+  html, body { overflow-anchor: none; }
+  .tab-bar { display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap; padding:1.2rem 1.5rem; background:var(--navy); position:sticky; top:0; z-index:100; box-shadow:0 2px 12px rgba(0,0,0,0.18); max-height:600px; overflow:hidden; transition:max-height .28s ease, padding .28s ease, opacity .2s ease; }
+  .tab-bar.nav-hidden { max-height:0; padding-top:0; padding-bottom:0; opacity:0; box-shadow:none; pointer-events:none; }
   .tab-btn { background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.75); border-radius:50px; padding:6px 16px; font-size:0.82rem; font-weight:700; cursor:pointer; transition:all .2s; font-family:'Nunito',sans-serif; }
   .tab-btn:hover, .tab-btn.active { background:var(--teal); border-color:var(--teal); color:#fff; transform:translateY(-1px); }
 
@@ -83,10 +85,10 @@
 
   /* VOCAB TABLE */
   .vocab-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:0.65rem; }
-  .vocab-card { background:var(--sand); border-radius:var(--radius-sm); padding:0.7rem 1rem; border-left:4px solid var(--teal); display:flex; justify-content:space-between; align-items:center; transition:transform .15s,box-shadow .15s; }
+  .vocab-card { background:var(--sand); border-radius:var(--radius-sm); padding:0.7rem 1rem; border-left:4px solid var(--teal); display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:4px; min-width:0; transition:transform .15s,box-shadow .15s; }
   .vocab-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-sm); }
-  .vocab-en { font-weight:800; color:var(--teal-dark); font-size:0.9rem; }
-  .vocab-ar { font-family:'Tajawal',sans-serif; font-size:0.85rem; color:var(--navy); direction:rtl; font-weight:700; }
+  .vocab-en { font-weight:800; color:var(--teal-dark); font-size:0.9rem; min-width:0; overflow-wrap:break-word; }
+  .vocab-ar { font-family:'Tajawal',sans-serif; font-size:0.85rem; color:var(--navy); direction:rtl; font-weight:700; min-width:0; overflow-wrap:break-word; }
   .vocab-card.orange { border-left-color:var(--orange); }
   .vocab-card.orange .vocab-en { color:var(--orange); }
   .vocab-card.navy { border-left-color:var(--navy); }
@@ -187,6 +189,41 @@
   .blank-input.correct { border-color: var(--green); color: #15803d; }
   .blank-input.wrong   { border-color: var(--red);   color: #b91c1c; }
   .blank-input.drag-over { border-bottom-color: var(--teal) !important; background: rgba(42, 143, 143, 0.1); }
+
+  /* Quick Check (under-passage) styles */
+  .qc-vocab-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid #e2e8f0;
+    margin-bottom: 0.6rem;
+    transition: border-color .2s, background-color .2s;
+  }
+  .qc-vocab-row.correct { border-color: var(--green); background: var(--green-bg); }
+  .qc-vocab-row.wrong   { border-color: var(--red);   background: var(--red-bg); }
+  .qc-num { font-weight: 900; color: var(--teal-dark); flex-shrink:0; }
+  .qc-clue { flex: 1 1 220px; font-weight: 700; font-size: 0.88rem; }
+  .qc-input {
+    border: none; border-bottom: 2.5px solid var(--orange); background: transparent;
+    font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 800; color: var(--navy);
+    padding: 2px 4px; min-width: 110px; outline: none; text-align: center;
+  }
+  .qc-input:focus { border-color: var(--teal); }
+  .qc-input.correct { border-color: var(--green); color: #15803d; }
+  .qc-input.wrong   { border-color: var(--red);   color: #b91c1c; }
+  .qc-check-btn {
+    background: var(--orange); color:#fff; border:none; border-radius:50px;
+    font-size: 0.75rem; font-weight: 800; padding: 5px 12px; cursor: pointer;
+  }
+  .qc-fb { flex-basis: 100%; font-size: 0.82rem; font-weight: 600; display:none; }
+  .qc-fb.show { display:block; }
+  .qc-fb.ok  { color:#15803d; }
+  .qc-fb.no  { color:#b91c1c; }
+  body.dark .qc-vocab-row { border-color: rgba(255,255,255,0.15); }
+  body.dark .qc-input { color: #93C5FD; }
 
   .word-bank {
     display: flex;
@@ -360,6 +397,10 @@
     .card { padding:1.25rem; }
     .vocab-grid { grid-template-columns:1fr 1fr; }
     .score-big { font-size:2.5rem; }
+  }
+
+  @media(max-width:480px){
+    .vocab-grid { grid-template-columns:1fr; }
   }
 
   /* ═══ DARK MODE ═══ */
@@ -1121,8 +1162,8 @@ body.dark .callout-tip strong {
         <div style="font-size:1rem;font-weight:900;color:#fff;line-height:1.3;"><span class="rd-sent" id="titleSent1">People in the News</span></div>
         <div style="font-family:'Tajawal',sans-serif;direction:rtl;font-size:0.82rem;color:rgba(255,255,255,0.72);margin-top:2px;">أشخاص في الأخبار</div>
       </div>
-      <div style="margin-left:auto;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;">
-         <audio id="audioR1" controls preload="auto" style="width:320px;">
+      <div style="margin-left:auto;flex:1 1 260px;min-width:0;max-width:320px;display:flex;flex-direction:column;align-items:center;gap:4px;">
+         <audio id="audioR1" controls preload="auto" style="width:100%;max-width:320px;">
             <source src="audio14.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
@@ -1173,8 +1214,9 @@ body.dark .callout-tip strong {
       <strong class="rd-sent hl hl-teal" id="r1h0" style="display:block;margin-bottom:0.4rem;font-size:0.85rem;letter-spacing:0.05em;">🩸 THE GIFT OF LIFE</strong>
       <span class="rd-sent" id="r1s0">Trent Olsen <span class="hl hl-orange">donated</span> blood for the 100th time on June 23rd.</span>
       <span class="rd-sent" id="r1s1">He made his first <span class="hl hl-orange">donation</span> in his 20s.</span>
-      <span class="rd-sent" id="r1s2">Trent and his <span class="hl hl-teal">colleagues</span> decided to help when they saw a <span class="hl hl-teal">mobile</span> clinic.</span>
-      <span class="rd-sent" id="r1s3">He visits Fairview Clinic <span class="hl hl-navy">regularly</span>; one donation can save up to three lives.</span>
+      <span class="rd-sent" id="r1s2">Trent and his <span class="hl hl-teal">colleagues</span> decided to help when they saw a <span class="hl hl-teal">mobile</span> clinic, and he continued because he <span class="hl hl-navy">felt</span> it was the <span class="hl hl-navy">right thing</span> to do.</span>
+      <span class="rd-sent" id="r1s2b">Every <span class="hl hl-orange">eight weeks</span>, Trent makes an <span class="hl hl-orange">appointment</span> to give blood at Fairview Clinic.</span>
+      <span class="rd-sent" id="r1s3">One donation can save up to three lives.</span>
     </p>
     <hr class="divider">
 
@@ -1184,7 +1226,8 @@ body.dark .callout-tip strong {
       <span class="rd-sent" id="r1s4">Ahmed Jamal was <span class="hl hl-orange">awarded</span> "Athlete of the Year" for his <span class="hl hl-teal">outstanding</span> <span class="hl hl-navy">leadership</span> at Al Marwah High School.</span>
       <span class="rd-sent" id="r1s5">Ahmed was born with a <span class="hl hl-orange">crippling</span> disease that made it difficult to walk.</span>
       <span class="rd-sent" id="r1s6">This did not stop him from playing football.</span>
-      <span class="rd-sent" id="r1s7">He formed a team and now <span class="hl hl-teal">competes</span> in the Olympics Junior League.</span>
+      <span class="rd-sent" id="r1s6b">His <span class="hl hl-navy">family</span> <span class="hl hl-orange">encouraged</span> him, and he found <span class="hl hl-navy">other kids</span> like him; together they formed a team.</span>
+      <span class="rd-sent" id="r1s7">He now <span class="hl hl-teal">competes</span> in the Olympics Junior League.</span>
       <span class="rd-sent" id="r1s8">When he was 12, his older brother, Ali, taught him to play in the park.</span>
       <span class="rd-sent" id="r1s9">Now, he is an example for all.</span>
     </p>
@@ -1208,6 +1251,22 @@ body.dark .callout-tip strong {
     </p>
 
     </div><!-- end readingBody1 -->
+
+    <hr class="divider" style="margin:1.6rem 0;">
+
+    <div id="qcSection1" style="margin-top:0.4rem;">
+      <div class="section-label" style="margin-bottom:0.9rem;">
+        <div class="icon icon-orange">✅</div>
+        <div><h2>Quick Check</h2><span class="arabic">تحقق سريع</span></div>
+      </div>
+      <div class="tr-hint">👆 Touch any question to see its Arabic translation &nbsp;|&nbsp; <span style="font-family:'Tajawal',sans-serif;direction:rtl;font-weight:700;">المسّ السؤال لرؤية ترجمته</span></div>
+
+      <h3 style="font-size:0.95rem;font-weight:900;color:var(--navy);margin:1.1rem 0 0.5rem;">A. Vocabulary <span style="font-weight:700;color:var(--muted);font-size:0.82rem;">— Find words in the text that mean:</span></h3>
+      <div id="qcVocabContainer"></div>
+
+      <h3 style="font-size:0.95rem;font-weight:900;color:var(--navy);margin:1.4rem 0 0.5rem;">B. Comprehension <span style="font-weight:700;color:var(--muted);font-size:0.82rem;">— Answer the questions:</span></h3>
+      <div id="qcCompContainer"></div>
+    </div>
 
     <div class="btn-row">
       <button class="btn btn-orange" onclick="showTab('reading2')">👑 King Salman →</button>
@@ -1260,8 +1319,8 @@ body.dark .callout-tip strong {
         <div style="font-size:1rem;font-weight:900;color:#fff;line-height:1.3;"><span class="rd-sent" id="titleSent2">The King of Saudi Arabia</span></div>
         <div style="font-family:'Tajawal',sans-serif;direction:rtl;font-size:0.82rem;color:rgba(255,255,255,0.72);margin-top:2px;">ملك المملكة العربية السعودية</div>
       </div>
-      <div style="margin-left:auto;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;">
-        <audio id="audioR2" controls preload="auto" style="width:320px;">
+      <div style="margin-left:auto;flex:1 1 260px;min-width:0;max-width:320px;display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <audio id="audioR2" controls preload="auto" style="width:100%;max-width:320px;">
           <source src="audio15.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
@@ -1838,6 +1897,70 @@ const tfData = [
   {s:"King Salman was appointed Crown Prince in 2015.", ar:"عُيّن الملك سلمان ولياً للعهد عام 2015.", answer:false, why:"He was appointed Crown Prince in 2012, not 2015. عُيّن ولياً للعهد عام 2012 وليس 2015."},
   {s:"King Salman was Chairman of the Riyadh Charity for Sciences.", ar:"كان الملك سلمان رئيساً لجمعية الرياض الخيرية للعلوم.", answer:true},
 ];
+
+// ── QUICK CHECK (under the passage) — Section A: Vocabulary ───────────────
+const qcVocabData = [
+  {num:1, clue:"gave to charity", clue_ar:"أعطى شيئاً لجهة خيرية",
+   ans:["donated"],
+   exp:"في النص: donated = تبرّع. ترينت «donated» بالدم، أي تبرّع به.",
+   exp_wrong:"حاول مرة أخرى — ابحث في فقرة «The Gift of Life» عن الكلمة التي تعني (تبرّع)."},
+  {num:2, clue:"an arrangement to meet", clue_ar:"موعد للقاء",
+   ans:["appointment"],
+   exp:"في النص: appointment = موعد. يحدد ترينت «appointment» كل ثمانية أسابيع للتبرع بالدم.",
+   exp_wrong:"حاول مرة أخرى — ابحث عن كلمة تعني (موعد) في فقرة «The Gift of Life»."},
+  {num:3, clue:"excellent", clue_ar:"ممتاز / رائع",
+   ans:["outstanding"],
+   exp:"في النص: outstanding = متميز / ممتاز. حصل أحمد على الجائزة لقيادته «outstanding».",
+   exp_wrong:"حاول مرة أخرى — ابحث عن كلمة تعني (متميز) في فقرة «Athlete of the Year»."},
+  {num:4, clue:"supported someone to succeed", clue_ar:"دعم شخصاً لينجح",
+   ans:["encouraged"],
+   exp:"في النص: encouraged = شجّع. عائلة أحمد «encouraged» أي شجّعته.",
+   exp_wrong:"حاول مرة أخرى — ابحث عن كلمة تعني (شجّع) في فقرة «Athlete of the Year»."},
+  {num:5, clue:"got together/met", clue_ar:"اجتمعوا / التقوا",
+   ans:["gathered"],
+   exp:"في النص: gathered = تجمّعوا. تجمّع الموظفون «gathered» على الشاطئ.",
+   exp_wrong:"حاول مرة أخرى — ابحث عن كلمة تعني (تجمّعوا) في فقرة «Blue Flag for Sunset»."},
+  {num:6, clue:"a baby", clue_ar:"طفل رضيع",
+   ans:["infant","infants"],
+   exp:"في النص: infants = رُضّع. وُلد التوأم «infants» في مستشفى نيوتن.",
+   exp_wrong:"حاول مرة أخرى — ابحث عن كلمة تعني (رضيع) في فقرة «Newborn»."},
+];
+
+function buildQcVocab(){
+  const c = document.getElementById('qcVocabContainer');
+  if(!c) return;
+  c.innerHTML = qcVocabData.map((v,vi)=>`
+    <div class="qc-vocab-row" id="qcVocabRow${vi}">
+      <span class="qc-num">${v.num}.</span>
+      <span class="qc-clue tr-sent" data-ar="${v.clue_ar}">${v.clue}</span>
+      <input type="text" class="qc-input" id="qcVocabInput${vi}" placeholder="..." autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off">
+      <button type="button" class="qc-check-btn" onclick="checkQcVocab(${vi})">✓ Check</button>
+      <div class="qc-fb" id="qcVocabFb${vi}"></div>
+    </div>`).join('');
+  bindSentTips(c);
+}
+
+function checkQcVocab(vi){
+  const v = qcVocabData[vi];
+  const input = document.getElementById('qcVocabInput'+vi);
+  const row = document.getElementById('qcVocabRow'+vi);
+  const fb = document.getElementById('qcVocabFb'+vi);
+  if(!input || !v) return;
+  const userAns = input.value.trim().toLowerCase().replace(/[.!?]/g,'');
+  const isRight = v.ans.includes(userAns);
+  row.classList.remove('correct','wrong');
+  input.classList.remove('correct','wrong');
+  if(isRight){
+    row.classList.add('correct'); input.classList.add('correct');
+    fb.className = 'qc-fb show ok';
+    fb.innerHTML = '✅ ' + v.exp;
+    if (typeof recordAttempt === 'function') recordAttempt(true,'Quick Check');
+  } else {
+    row.classList.add('wrong'); input.classList.add('wrong');
+    fb.className = 'qc-fb show no';
+    fb.innerHTML = '❌ ' + v.exp_wrong;
+  }
+}
 
 const openData1 = [
   {q:"1. Why did Trent continue to give blood?",
@@ -3214,13 +3337,15 @@ const SENTS = {
     {id:'r1h0', text:"The Gift of Life."},
     {id:'r1s0', text:"Trent Olsen donated blood for the 100th time on June 23rd."},
     {id:'r1s1', text:"He made his first donation in his 20s."},
-    {id:'r1s2', text:"Trent and his colleagues decided to help when they saw a mobile clinic."},
-    {id:'r1s3', text:"He visits Fairview Clinic regularly; one donation can save up to three lives."},
+    {id:'r1s2', text:"Trent and his colleagues decided to help when they saw a mobile clinic, and he continued because he felt it was the right thing to do."},
+    {id:'r1s2b',text:"Every eight weeks, Trent makes an appointment to give blood at Fairview Clinic."},
+    {id:'r1s3', text:"One donation can save up to three lives."},
     {id:'r1h1', text:"Athlete of the Year."},
     {id:'r1s4', text:"Ahmed Jamal was awarded Athlete of the Year for his outstanding leadership at Al Marwah High School."},
     {id:'r1s5', text:"Ahmed was born with a crippling disease that made it difficult to walk."},
     {id:'r1s6', text:"This did not stop him from playing football."},
-    {id:'r1s7', text:"He formed a team and now competes in the Olympics Junior League."},
+    {id:'r1s6b',text:"His family encouraged him, and he found other kids like him; together they formed a team."},
+    {id:'r1s7', text:"He now competes in the Olympics Junior League."},
     {id:'r1s8', text:"When he was 12, his older brother, Ali, taught him to play in the park."},
     {id:'r1s9', text:"Now, he is an example for all."},
     {id:'r1h2', text:"Blue Flag for Sunset."},
@@ -3421,7 +3546,7 @@ const WORDS = {
   // Words from Text
   'a':"أ / أحد", 'about':"حول / عن", 'abroad':"في الخارج", 'academic':"أكاديمي",
   'all':"الجميع / الكل", 'also':"أيضاً", 'always':"دائماً", 'an':"أ / أحد", 'and':"و",
-  'appointed':"عُيِّن", 'are':"يكونون / هم", 'as':"كـ / بصفته", 'at':"في / عند",
+  'appointed':"عُيِّن", 'appointment':"موعد", 'are':"يكونون / هم", 'as':"كـ / بصفته", 'at':"في / عند",
   'athlete':"رياضي", 'attracted':"استقطب / جذب", 'awarded':"مُنِح / كُرِّم", 'awards':"جوائز",
   'babies':"أطفال رضع", 'beach':"شاطئ", 'because':"لأن", 'been':"كان", 'benefit':"فائدة",
   'blood':"دم", 'blue':"أزرق", 'born':"وُلد", 'both':"كلا / كلاهما", 'bottles':"زجاجات",
@@ -3429,30 +3554,31 @@ const WORDS = {
   'can':"يستطيع / يمكن", 'capacity':"صفة / دور", 'carried':"أجرى / حمل", 'ceremony':"حفل",
   'chairman':"رئيس مجلس الإدارة", 'charity':"جمعية خيرية", 'clean':"نظيف", 'cleanup':"تنظيف",
   'clinic':"عيادة", 'colleagues':"زملاء", 'combed':"فتّشوا / مسحوا", 'community':"مجتمع",
-  'compete':"يتنافس", 'competes':"يتنافس", 'concentration':"تركيز", 'continues':"تستمر / يواصل",
+  'compete':"يتنافس", 'competes':"يتنافس", 'concentration':"تركيز", 'continued':"استمر", 'continues':"تستمر / يواصل",
   'crippling':"مُقعِد / مسبب للعجز", 'crown':"تاج / ولي العهد", 'cultural':"ثقافي", 'custodian':"خادم / حارس",
   'december':"ديسمبر", 'decided':"قرر", 'dedication':"تفاني / إخلاص", 'degrees':"درجات علمية",
   'develop':"يطور / ينمو", 'did':"فعل", 'diet':"حمية غذائية", 'difficult':"صعب", 'disasters':"كوارث",
   'disease':"مرض", 'do':"يفعل", 'doctorate':"دكتوراه", 'does':"يفعل", 'donated':"تبرع",
   'donation':"تبرع", 'donations':"تبرعات",
-  'eat':"يأكل", 'educated':"تعلّم / دَرَس", 'effect':"تأثير", 'employees':"موظفون",
-  'energetic':"نشط", 'enough':"كافٍ", 'environmental':"بيئي", 'every':"كل", 'example':"مثال / قدوة", 'exercise':"تمرين",
-  'factor':"عامل", 'find':"يجد", 'findings':"نتائج", 'first':"أول", 'flag':"علم / راية",
-  'food':"طعام", 'football':"كرة القدم", 'for':"لـ / من أجل", 'formed':"شكّل / كوّن",
+  'eat':"يأكل", 'educated':"تعلّم / دَرَس", 'effect':"تأثير", 'eight':"ثمانية", 'employees':"موظفون",
+  'encouraged':"شجّع", 'energetic':"نشط", 'enough':"كافٍ", 'environmental':"بيئي", 'every':"كل", 'example':"مثال / قدوة", 'exercise':"تمرين",
+  'factor':"عامل", 'family':"عائلة", 'felt':"شعر", 'find':"يجد", 'findings':"نتائج", 'first':"أول", 'flag':"علم / راية",
+  'food':"طعام", 'football':"كرة القدم", 'for':"لـ / من أجل", 'form':"يشكّل / يكوّن", 'formed':"شكّل / كوّن", 'found':"وجد",
   'foundation':"مؤسسة", 'fresh':"طازج", 'fried':"مقلي", 'from':"من", 'future':"مستقبل",
-  'gathered':"تجمّعوا", 'get':"يحصل على", 'gift':"هبة / موهبة", 'global':"عالمي",
+  'gathered':"تجمّعوا", 'get':"يحصل على", 'gift':"هبة / موهبة", 'give':"يعطي / يتبرع بـ", 'global':"عالمي",
   'good':"جيد / حسن", 'greatly':"بشكل كبير", 'groups':"مجموعات", 'guide':"يقود / يوجه",
   'habits':"عادات", 'has':"يملك / لديه", 'have':"يملك", 'he':"هو", 'health':"صحة", 'healthy':"صحي",
   'help':"مساعدة / يساعد", 'helped':"ساعد", 'helping':"مساعدة", 'high':"عالية / ثانوية",
   'him':"إياه / له", 'his':"له / خاصته", 'holds':"يحمل / يملك", 'holy':"مقدس", 'honorary':"فخري",
   'honors':"أوسمة / مراتب شرف", 'hospital':"مستشفى", 'hotels':"فنادق", 'hours':"ساعات", 'however':"ومع ذلك", 'humanitarian':"إنساني",
   'improve':"يُحسِّن", 'in':"في", 'infants':"رُضَّع", 'international':"دولي", 'into':"إلى داخل / في",
+  'kids':"أطفال",
   'investment':"استثمار", 'is':"هو / يكون", 'it':"هو / هي",
   'june':"يونيو", 'junior':"ناشئ / مبتدئ",
   'keep':"يحافظ على", 'keeping':"حفظ / إبقاء", 'king':"ملك", 'kingdom':"المملكة", 'know':"يعرف", 'known':"معروف / مشهور",
   'leadership':"قيادة", 'league':"دوري / رابطة", 'least':"أقل", 'life':"حياة", 'lifestyle':"نمط حياة",
-  'literature':"أدب", 'litter':"نفايات / قمامة", 'lives':"أرواح / حيوات", 'local':"محلي",
-  'made':"قام بـ / صنع", 'mainly':"بشكل رئيسي", 'major':"رئيسي / كبير", 'manage':"يدير",
+  'like':"مثل", 'literature':"أدب", 'litter':"نفايات / قمامة", 'lives':"أرواح / حيوات", 'local':"محلي",
+  'made':"قام بـ / صنع", 'mainly':"بشكل رئيسي", 'major':"رئيسي / كبير", 'makes':"يجعل / يحدد", 'manage':"يدير",
   'many':"كثير / العديد", 'maternity':"أمومة / ولادة", 'mean':"يعني", 'memorization':"تحفيظ",
   'memory':"ذاكرة", 'metropolis':"مدينة كبرى", 'mid':"متوسط", 'midsized':"متوسط الحجم",
   'minutes':"دقائق", 'mobile':"متنقل", 'more':"أكثر", 'mosques':"مساجد", 'most':"معظم",
@@ -3460,7 +3586,7 @@ const WORDS = {
   'natural':"طبيعي", 'need':"حاجة / يحتاج", 'newborn':"مولود جديد", 'news':"أخبار",
   'night':"ليلة", 'not':"لا / ليس", 'now':"الآن",
   'of':"من / لـ", 'offer':"يقدم / يعرض", 'older':"أكبر سناً", 'olympics':"الأولمبياد",
-  'on':"على / في", 'one':"واحد", 'only':"فقط", 'operation':"عملية", 'or':"أو",
+  'on':"على / في", 'one':"واحد", 'only':"فقط", 'operation':"عملية", 'or':"أو", 'other':"آخر / أخرى",
   'others':"الآخرين", 'our':"لدينا", 'out':"خارج", 'outstanding':"متميز / بارز",
   'over':"أكثر من / فوق", 'owners':"ملاك / أصحاب",
   'parents':"والدان", 'park':"حديقة / منتزه", 'people':"أشخاص / ناس", 'play':"يلعب",
@@ -3469,20 +3595,20 @@ const WORDS = {
   'prosperity':"ازدهار", 'proud':"فخور",
   'read':"يقرأ", 'reading':"قراءة", 'received':"تلقّى / حصل على", 'regularly':"بانتظام",
   'relief':"إغاثة", 'religion':"دين", 'research':"بحث", 'responsibility':"مسؤولية",
-  'rice':"أرز", 'routine':"روتين", 'royal':"ملكي",
+  'rice':"أرز", 'right':"صحيح / حق", 'routine':"روتين", 'royal':"ملكي",
   'save':"ينقذ", 'saw':"رأوا", 'school':"مدرسة", 'sciences':"علوم", 'sector':"قطاع",
   'seem':"يبدو", 'she':"هي", 'should':"ينبغي", 'show':"يظهر", 'shown':"مُبيَّن / أظهر",
   'sized':"حجم", 'sleep':"نوم / ينام", 'so':"لذلك", 'still':"لا يزال", 'stop':"يوقف / يمنع",
   'stories':"قصص", 'strong':"قوي", 'student':"طالب", 'students':"طلاب", 'studied':"درس",
   'succeed':"ينجح", 'success':"نجاح", 'supported':"دعم",
   'taught':"علّم", 'team':"فريق", 'that':"الذي / أن", 'the':"الـ", 'their':"لهم / خاصتهم",
-  'them':"إياهم / لهم", 'they':"هم", 'this':"هذا", 'three':"ثلاثة", 'through':"من خلال / عبر",
-  'time':"وقت / مرة", 'to':"إلى / أن", 'today':"اليوم", 'took':"أخذوا / تولّوا",
+  'them':"إياهم / لهم", 'they':"هم", 'thing':"شيء", 'this':"هذا", 'three':"ثلاثة", 'through':"من خلال / عبر",
+  'time':"وقت / مرة", 'to':"إلى / أن", 'today':"اليوم", 'together':"معاً", 'took':"أخذوا / تولّوا",
   'tourism':"سياحة", 'toward':"نحو / باتجاه", 'town':"مدينة / بلدة", 'truth':"حقيقة",
   'try':"يحاول", 'twins':"توأم", 'two':"اثنان",
   'universities':"جامعات", 'university':"جامعة", 'up':"حتى / أعلى", 'urban':"حضري",
   'various':"متنوع / مختلف", 'vision':"رؤية", 'visited':"زار", 'visits':"يزور",
-  'walk':"يمشي / مشي", 'was':"كان / تم", 'we':"نحن", 'well':"بشكل جيد", 'were':"كانوا",
+  'walk':"يمشي / مشي", 'was':"كان / تم", 'we':"نحن", 'weeks':"أسابيع", 'well':"بشكل جيد", 'were':"كانوا",
   'when':"عندما", 'where':"حيث / أين", 'while':"بينما", 'who':"من / الذي", 'with':"بـ / مع",
   'work':"عمل", 'worked':"عَمِلَ",
   'year':"عام / سنة", 'young':"صغير السن",
@@ -3565,6 +3691,8 @@ buildFITB();
 buildTF();
 buildOpen(openData1,'openContainer1');
 buildOpen(openData2,'openContainer2');
+buildQcVocab();
+buildOpen(openData1,'qcCompContainer');
 buildMatch();
 buildListen();
 buildSpeed();
@@ -3645,6 +3773,46 @@ function toggleDark(){
   if(document.body.classList.contains('dark')){btn.textContent='☀️ Light Mode';btn.classList.add('active');}
   else{btn.textContent='🌙 Dark Mode';btn.classList.remove('active');}
 }
+
+// ── AUTO-HIDE TAB BAR ON SCROLL ───────────────────────────────
+// The tab bar is sticky at the top and wraps into several rows on mobile,
+// covering a lot of the screen. Hide it while scrolling down (reading),
+// and bring it back as soon as the user scrolls up to navigate.
+(function(){
+  const NAV = document.querySelector('.tab-bar');
+  if(!NAV) return;
+  let lastY = window.scrollY;
+  let ticking = false;
+  let cooldownUntil = 0;
+  function setHidden(hide){
+    if(hide === NAV.classList.contains('nav-hidden')) return;
+    NAV.classList.toggle('nav-hidden', hide);
+    // Collapsing/expanding shifts page height, which can make the browser
+    // clamp or re-anchor scroll position and re-fire a scroll event right
+    // away. Ignore scroll events briefly so that bounce can't immediately
+    // re-trigger the opposite state (which would cause visible flicker).
+    cooldownUntil = performance.now() + 350;
+  }
+  function onScroll(){
+    const y = window.scrollY;
+    if(performance.now() < cooldownUntil){ lastY = y; ticking = false; return; }
+    if(y < 40){
+      setHidden(false); // always show near the top
+    } else if(y > lastY + 5){
+      setHidden(true); // scrolling down → hide
+    } else if(y < lastY - 5){
+      setHidden(false); // scrolling up → show
+    }
+    lastY = y;
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if(!ticking){
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, {passive:true});
+})();
 
 // ── CHALLENGE MODE ───────────────────────────────
 function toggleChallenge(){
