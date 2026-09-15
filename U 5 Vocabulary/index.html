@@ -478,6 +478,11 @@ footer span { display: block; margin-top: 4px; font-weight: bold; color: var(--g
 
 /* ══════════════ CERTIFICATE ══════════════ */
 #cert-canvas{max-width:100%;border-radius:10px;box-shadow:var(--shadow);margin:14px 0;}
+
+  /* AUTO-HIDE NAV ON SCROLL — added by Claude */
+  html, body { overflow-anchor: none; }
+  .nav-tabs { max-height:600px; overflow:hidden; transition:max-height .28s ease, padding .28s ease, opacity .2s ease; }
+  .nav-tabs.nav-hidden { max-height:0 !important; padding-top:0 !important; padding-bottom:0 !important; opacity:0; box-shadow:none; pointer-events:none; }
 </style>
 </head>
 <body>
@@ -1999,6 +2004,33 @@ function initGamificationV2(){
 }
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initGamificationV2);}
 else{initGamificationV2();}
+
+// AUTO-HIDE NAV ON SCROLL — added by Claude
+(function(){
+  var NAV = document.querySelector('.nav-tabs');
+  if(!NAV) return;
+  var lastY = window.scrollY, ticking = false, cooldownUntil = 0;
+  function setHidden(hide){
+    if(hide === NAV.classList.contains('nav-hidden')) return;
+    NAV.classList.toggle('nav-hidden', hide);
+    // Collapsing/expanding shifts page height, which can make the browser
+    // clamp or re-anchor scroll position and re-fire a scroll event right
+    // away. Ignore scroll events briefly so that bounce can't immediately
+    // re-trigger the opposite state (which would cause visible flicker).
+    cooldownUntil = performance.now() + 350;
+  }
+  function onScroll(){
+    var y = window.scrollY;
+    if(performance.now() < cooldownUntil){ lastY = y; ticking = false; return; }
+    if(y < 40){ setHidden(false); }
+    else if(y > lastY + 5){ setHidden(true); }
+    else if(y < lastY - 5){ setHidden(false); }
+    lastY = y; ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(onScroll); ticking = true; }
+  }, {passive:true});
+})();
 </script>
 </body>
 </html>
