@@ -253,6 +253,11 @@ body.challenge .review-ar{display:none!important}
 .review-ar{font-family:"Tajawal",sans-serif;direction:rtl;font-size:.9rem;font-weight:700;color:var(--teal-dark);max-height:0;overflow:hidden;opacity:0;transition:max-height .3s ease,opacity .3s ease,margin-top .3s ease;margin-top:0;line-height:1.6}
 .review-ar.open{max-height:80px;opacity:1;margin-top:6px}
 
+
+  /* AUTO-HIDE NAV ON SCROLL — added by Claude */
+  html, body { overflow-anchor: none; }
+  .tab-bar { max-height:600px; overflow:hidden; transition:max-height .28s ease, padding .28s ease, opacity .2s ease; }
+  .tab-bar.nav-hidden { max-height:0 !important; padding-top:0 !important; padding-bottom:0 !important; opacity:0; box-shadow:none; pointer-events:none; }
 </style>
 </head>
 <body>
@@ -1028,6 +1033,33 @@ function restoreState(){
   if(localStorage.getItem("listening_dark")==="1"){document.body.classList.add("dark");document.getElementById("darkBtn").classList.add("active");document.getElementById("darkBtn").textContent="☀️ Light Mode";}
   if(localStorage.getItem("u2_challenge")==="1"){challengeMode=true;document.body.classList.add("challenge");const b=document.getElementById("challengeBtn");if(b){b.classList.add("active");b.textContent="✅ Challenge ON";}}
   if(loadState()&&studentName){document.getElementById("onboardOverlay").classList.remove("show");updateHUD();restoreState();}
+})();
+
+// AUTO-HIDE NAV ON SCROLL — added by Claude
+(function(){
+  var NAV = document.querySelector('.tab-bar');
+  if(!NAV) return;
+  var lastY = window.scrollY, ticking = false, cooldownUntil = 0;
+  function setHidden(hide){
+    if(hide === NAV.classList.contains('nav-hidden')) return;
+    NAV.classList.toggle('nav-hidden', hide);
+    // Collapsing/expanding shifts page height, which can make the browser
+    // clamp or re-anchor scroll position and re-fire a scroll event right
+    // away. Ignore scroll events briefly so that bounce can't immediately
+    // re-trigger the opposite state (which would cause visible flicker).
+    cooldownUntil = performance.now() + 350;
+  }
+  function onScroll(){
+    var y = window.scrollY;
+    if(performance.now() < cooldownUntil){ lastY = y; ticking = false; return; }
+    if(y < 40){ setHidden(false); }
+    else if(y > lastY + 5){ setHidden(true); }
+    else if(y < lastY - 5){ setHidden(false); }
+    lastY = y; ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(onScroll); ticking = true; }
+  }, {passive:true});
 })();
 </script>
 <!-- RESET CONFIRMATION MODAL -->
