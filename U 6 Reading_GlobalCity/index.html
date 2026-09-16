@@ -4621,7 +4621,7 @@ function _hlTick(passageIdx) {
       const el = document.getElementById(targetId);
       if (el) {
         el.classList.add('speaking');
-        el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        // Auto-scroll removed — reading now scrolls manually.
       }
     }
     _hlState[passageIdx].active = targetId;
