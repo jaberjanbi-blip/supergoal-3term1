@@ -1643,9 +1643,8 @@ if(document.readyState==='loading'){
   function onScroll(){
     var y = window.scrollY;
     if(performance.now() < cooldownUntil){ lastY = y; ticking = false; return; }
-    if(y < 40){ setHidden(false); }
-    else if(y > lastY + 5){ setHidden(true); }
-    else if(y < lastY - 5){ setHidden(false); }
+    if(y < 40){ setHidden(false); } // show again only once back at the very top
+    else if(y > lastY + 5){ setHidden(true); } // scrolling down → hide
     lastY = y; ticking = false;
   }
   window.addEventListener('scroll', function(){
