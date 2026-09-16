@@ -5066,7 +5066,7 @@ if(document.readyState==='loading'){
     if(el){
       el.classList.add('speaking');
       /* Smooth scroll into view only when inside reading panel */
-      try{ el.scrollIntoView({ behavior:'smooth', block:'nearest' }); }catch(e){}
+      // Auto-scroll removed — reading now scrolls manually.
     }
     _lastIdx = idx;
   }
