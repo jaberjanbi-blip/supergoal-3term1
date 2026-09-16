@@ -5075,7 +5075,7 @@ if(document.readyState==='loading'){
     var el = document.getElementById(SYNC_DATA[idx].id);
     if(el){
       el.classList.add('speaking');
-      try{ el.scrollIntoView({behavior:'smooth',block:'nearest'}); }catch(e){}
+      // Auto-scroll removed — reading now scrolls manually.
     }
     _lastIdx = idx;
   }
