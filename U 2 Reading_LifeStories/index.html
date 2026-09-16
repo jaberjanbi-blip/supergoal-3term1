@@ -4782,7 +4782,7 @@ if(document.readyState==='loading'){
     var el = document.getElementById(SYNC[key].data[idx].id);
     if(el){
       el.classList.add('speaking');
-      try{ el.scrollIntoView({behavior:'smooth',block:'nearest'}); }catch(e){}
+      // Auto-scroll removed — reading now scrolls manually.
     }
     state[key].lastIdx = idx;
   }
