@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maryam's Practice — مريم</title>
+<style>
+  :root{
+    --pink:#FF6FA5; --pink-dark:#E14D82;
+    --purple:#8B5CF6; --purple-dark:#6D28D9;
+    --teal:#14B8A6; --teal-dark:#0D9488;
+    --orange:#FB923C; --orange-dark:#EA580C;
+    --yellow:#FBBF24;
+    --blue:#3B82F6;
+    --green:#22C55E; --green-bg:#DCFCE7;
+    --red:#EF4444; --red-bg:#FEE2E2;
+    --navy:#1E293B; --sand:#FFF7ED;
+    --radius:20px; --radius-sm:12px;
+    --shadow:0 8px 24px rgba(0,0,0,0.10);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    background:linear-gradient(180deg,#FDF2F8,#EEF2FF 40%,#F0FDFA);
+    color:var(--navy); min-height:100vh; padding-bottom:3rem;
+  }
+  .ar{font-family:'Geeza Pro','Segoe UI',Tahoma,Arial,sans-serif; direction:rtl;}
+
+  /* HEADER */
+  .hero{
+    background:linear-gradient(135deg,var(--pink),var(--purple) 60%,var(--blue));
+    color:#fff; padding:1.8rem 1.2rem 2.2rem; text-align:center; border-radius:0 0 32px 32px;
+    box-shadow:var(--shadow); position:relative; overflow:hidden;
+  }
+  .hero::before{content:'';position:absolute;inset:0;
+    background-image:radial-gradient(circle,rgba(255,255,255,0.18) 2px,transparent 2px);
+    background-size:26px 26px; opacity:.5;}
+  .hero h1{margin:0 0 4px; font-size:1.6rem; font-weight:900; position:relative;}
+  .hero .sub{font-size:0.95rem; opacity:.95; position:relative;}
+  .hero .ar-sub{margin-top:4px; font-size:0.95rem; font-weight:700; position:relative;}
+  .star-bar{
+    margin-top:1rem; display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,0.22); backdrop-filter:blur(4px);
+    padding:8px 18px; border-radius:50px; font-weight:900; font-size:1.05rem; position:relative;
+  }
+
+  /* UNIT TABS */
+  .unit-tabs{
+    display:flex; gap:10px; justify-content:center; margin:1.4rem auto 0; max-width:520px; padding:0 1rem;
+  }
+  .unit-tab{
+    flex:1; padding:12px; border:none; border-radius:50px; font-family:inherit; font-weight:900;
+    font-size:0.95rem; cursor:pointer; background:#fff; color:var(--navy); box-shadow:var(--shadow);
+    transition:transform .15s;
+  }
+  .unit-tab.active{background:linear-gradient(135deg,var(--purple),var(--pink)); color:#fff;}
+  .unit-tab:active{transform:scale(0.96);}
+
+  .unit-panel{display:none; max-width:760px; margin:1.4rem auto; padding:0 1rem;}
+  .unit-panel.active{display:block;}
+  .unit-title{text-align:center; font-size:1.3rem; font-weight:900; color:var(--purple-dark); margin-bottom:1.2rem;}
+
+  /* EXERCISE CARD */
+  .ex-card{
+    background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:1.3rem 1.2rem; margin-bottom:1.4rem; border-top:6px solid var(--teal);
+  }
+  .ex-card.c-pink{border-top-color:var(--pink);}
+  .ex-card.c-purple{border-top-color:var(--purple);}
+  .ex-card.c-orange{border-top-color:var(--orange);}
+  .ex-card.c-blue{border-top-color:var(--blue);}
+  .ex-card.c-teal{border-top-color:var(--teal);}
+  .ex-head{display:flex; align-items:center; gap:10px; margin-bottom:0.3rem;}
+  .ex-num{
+    width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:var(--yellow); color:#7C4A03; font-weight:900; flex-shrink:0; font-size:1rem;
+  }
+  .ex-title{font-weight:900; font-size:1.05rem;}
+  .ex-instructions{color:#64748B; font-size:0.88rem; margin:2px 0 1rem; font-weight:700;}
+  .ex-instructions .ar{display:block; font-size:0.85rem; color:#94A3B8; margin-top:2px;}
+
+  /* MCQ / dropdown rows */
+  .q-row{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+    padding:10px 12px; border-radius:var(--radius-sm); background:var(--sand); margin-bottom:10px;
+  }
+  .q-row.correct{background:var(--green-bg);}
+  .q-row.wrong{background:var(--red-bg);}
+  .q-text{flex:1 1 200px; font-weight:800; font-size:0.94rem;}
+  .q-emoji{font-size:1.4rem; margin-right:4px;}
+  .tap-ar{cursor:pointer; border-bottom:2px dotted #94A3B8;}
+  .tap-ar:active{background:#FDE68A;}
+  .speak-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%; border:none; background:var(--blue);
+    color:#fff; font-size:0.85rem; cursor:pointer; vertical-align:middle; margin-left:6px; padding:0;
+    transition:transform .12s;
+  }
+  .speak-btn:active{transform:scale(0.85);}
+  .ar-reveal{
+    display:none; width:100%; font-family:'Geeza Pro','Segoe UI',Tahoma,Arial,sans-serif; direction:rtl;
+    font-size:0.85rem; font-weight:700; color:var(--purple-dark); margin-top:4px;
+  }
+  .ar-reveal.show{display:block;}
+  .mini-fb{
+    width:100%; font-family:'Geeza Pro','Segoe UI',Tahoma,Arial,sans-serif; direction:rtl;
+    font-weight:800; font-size:0.88rem; margin-top:4px; display:none;
+  }
+  .mini-fb.show{display:block;}
+  .mini-fb.ok{color:#15803D;}
+  .mini-fb.no{color:#B91C1C;}
+  select.ans-select{
+    font-family:inherit; font-weight:800; font-size:0.88rem; padding:7px 10px;
+    border-radius:50px; border:2px solid #E2E8F0; background:#fff; color:var(--navy); cursor:pointer;
+  }
+  .mcq-opts{display:flex; gap:8px; flex-wrap:wrap;}
+  .opt-btn{
+    font-family:inherit; font-weight:800; font-size:0.85rem; padding:8px 14px; border-radius:50px;
+    border:2px solid #E2E8F0; background:#fff; cursor:pointer; transition:all .15s;
+  }
+  .opt-btn.picked{background:var(--purple); border-color:var(--purple); color:#fff;}
+  .opt-btn.right-final{background:var(--green); border-color:var(--green); color:#fff;}
+  .opt-btn.wrong-final{background:var(--red); border-color:var(--red); color:#fff;}
+
+  /* Word-order (tap tiles to build sentence) */
+  .sentence-box{background:var(--sand); border-radius:var(--radius-sm); padding:12px; margin-bottom:12px;}
+  .answer-slot{
+    min-height:44px; display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    background:#fff; border:2px dashed #CBD5E1; border-radius:10px; padding:8px 10px; margin-bottom:10px;
+  }
+  .answer-slot.correct{border-color:var(--green); background:var(--green-bg);}
+  .answer-slot.wrong{border-color:var(--red); background:var(--red-bg);}
+  .word-tile{
+    font-family:inherit; font-weight:800; font-size:0.9rem; padding:7px 14px; border-radius:10px;
+    border:none; cursor:pointer; background:var(--purple); color:#fff; transition:transform .1s;
+  }
+  .word-tile:active{transform:scale(0.94);}
+  .word-tile.placed{background:#94A3B8;}
+  .tile-bank{display:flex; flex-wrap:wrap; gap:8px;}
+
+  /* fill-blank with picked word tiles inside text */
+  .fill-para{line-height:2.3; font-weight:700; font-size:1rem;}
+  .blank-slot{
+    display:inline-block; min-width:80px; text-align:center; border-bottom:3px solid var(--purple);
+    font-weight:900; color:var(--purple-dark); cursor:pointer; padding:2px 6px; margin:0 2px;
+  }
+  .blank-slot.filled{border-bottom-color:var(--teal); color:var(--teal-dark);}
+  .blank-slot.correct{border-bottom-color:var(--green); color:#15803D;}
+  .blank-slot.wrong{border-bottom-color:var(--red); color:#B91C1C;}
+
+  /* vocab / letter grid */
+  .pic-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:14px; margin-bottom:12px;}
+  .pic-card{text-align:center;}
+  .pic-emoji{font-size:2.6rem; margin-bottom:6px;}
+  .pic-word{margin-top:70px;}
+
+  .letter-word{display:flex; flex-direction:column; align-items:center; gap:6px;}
+  .letter-emoji{font-size:2.4rem;}
+  .letter-line{font-weight:900; font-size:1.05rem; letter-spacing:1px;}
+
+  /* buttons */
+  .btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;}
+  .btn{
+    font-family:inherit; font-weight:900; font-size:0.88rem; padding:9px 18px; border-radius:50px;
+    border:none; cursor:pointer; color:#fff; transition:transform .15s;
+  }
+  .btn:active{transform:scale(0.95);}
+  .btn-check{background:var(--teal);}
+  .btn-reset{background:#94A3B8;}
+  .fb{margin-top:8px; font-weight:800; font-size:0.9rem; display:none;}
+  .fb.show{display:block;}
+  .fb.ok{color:#15803D;}
+  .fb.no{color:#B91C1C;}
+
+  @media(max-width:420px){
+    .pic-grid{grid-template-columns:repeat(3,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🌟 مريم's Practice Time 🌟</h1>
+  <div class="sub">Unit 1: It's Nice to Meet You! &nbsp;•&nbsp; Unit 2: Sea Animals</div>
+  <div class="ar-sub ar">تمارين مريم — الوحدة الأولى والثانية</div>
+  <div class="star-bar">⭐ <span id="starCount">0</span> Stars</div>
+</div>
+
+<div class="unit-tabs">
+  <button class="unit-tab active" id="tabBtn1" onclick="showUnit(1)">📘 Unit 1</button>
+  <button class="unit-tab" id="tabBtn2" onclick="showUnit(2)">🐳 Unit 2</button>
+</div>
+
+<!-- ============ UNIT 1 ============ -->
+<div class="unit-panel active" id="unit1">
+  <div class="unit-title">📘 Unit 1 — It's Nice to Meet You!</div>
+
+  <!-- EX 1: Matching -->
+  <div class="ex-card c-pink">
+    <div class="ex-head"><div class="ex-num">1</div><div class="ex-title">Match the Questions</div></div>
+    <div class="ex-instructions">Choose the correct answer for each question.<span class="ar">اختاري الإجابة الصحيحة لكل سؤال</span></div>
+    <div id="u1ex1"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkMatch('u1ex1','u1ex1fb')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildMatch('u1ex1',U1_MATCH)">↺ Reset</button>
+    </div>
+    <div class="fb" id="u1ex1fb"></div>
+  </div>
+
+  <!-- EX 2: Rearrange -->
+  <div class="ex-card c-purple">
+    <div class="ex-head"><div class="ex-num">2</div><div class="ex-title">Put the Words in Order</div></div>
+    <div class="ex-instructions">Tap the words in the right order to build the sentence.<span class="ar">اضغطي على الكلمات بالترتيب الصحيح</span></div>
+    <div id="u1ex2"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkAllOrder('u1ex2')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildOrder('u1ex2',U1_ORDER)">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- EX 3: Fill in the blanks -->
+  <div class="ex-card c-teal">
+    <div class="ex-head"><div class="ex-num">3</div><div class="ex-title">Fill in the Missing Words</div></div>
+    <div class="ex-instructions">Tap a word from the box below to fill the next blank.<span class="ar">اضغطي على كلمة من المربع لملء الفراغ التالي</span></div>
+    <div id="u1ex3"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkFill('u1ex3')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildFill('u1ex3',U1_FILL)">↺ Reset</button>
+    </div>
+    <div class="fb" id="u1ex3fb"></div>
+  </div>
+
+  <!-- EX 4: Family reading -->
+  <div class="ex-card c-orange">
+    <div class="ex-head"><div class="ex-num">4</div><div class="ex-title">Read and Choose</div></div>
+    <div class="ex-instructions">Who is Sara talking about in each sentence?<span class="ar">عمّن تتحدث سارة في كل جملة؟</span></div>
+    <div id="u1ex4"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkMatch('u1ex4','u1ex4fb')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildMatch('u1ex4',U1_FAMILY)">↺ Reset</button>
+    </div>
+    <div class="fb" id="u1ex4fb"></div>
+  </div>
+
+  <!-- EX 5: Grammar MCQ -->
+  <div class="ex-card c-blue">
+    <div class="ex-head"><div class="ex-num">5</div><div class="ex-title">Grammar — Choose the Correct Word</div></div>
+    <div class="ex-instructions"><span class="ar">اختاري الكلمة الصحيحة</span></div>
+    <div id="u1ex5"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkMCQ('u1ex5')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildMCQ('u1ex5',U1_GRAMMAR)">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- EX 6: can/can't -->
+  <div class="ex-card c-pink">
+    <div class="ex-head"><div class="ex-num">6</div><div class="ex-title">Can or Can't?</div></div>
+    <div class="ex-instructions"><span class="ar">تقدر أو ما يقدر؟</span></div>
+    <div id="u1ex6"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkMCQ('u1ex6')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildMCQ('u1ex6',U1_CAN)">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- EX 7: Vocabulary -->
+  <div class="ex-card c-teal">
+    <div class="ex-head"><div class="ex-num">7</div><div class="ex-title">Vocabulary — Name the Picture</div></div>
+    <div class="ex-instructions">Tap a word to label the next picture.<span class="ar">اضغطي على الكلمة لتسمية الصورة</span></div>
+    <div id="u1ex7"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkFill('u1ex7')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildFill('u1ex7',U1_VOCAB)">↺ Reset</button>
+    </div>
+    <div class="fb" id="u1ex7fb"></div>
+  </div>
+
+  <!-- EX 8: Orthography -->
+  <div class="ex-card c-purple">
+    <div class="ex-head"><div class="ex-num">8</div><div class="ex-title">Spelling — Fill the Missing Letters</div></div>
+    <div class="ex-instructions"><span class="ar">أكملي الحروف الناقصة</span></div>
+    <div id="u1ex8"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkFill('u1ex8')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildFill('u1ex8',U1_SPELL)">↺ Reset</button>
+    </div>
+    <div class="fb" id="u1ex8fb"></div>
+  </div>
+</div>
+
+<!-- ============ UNIT 2 ============ -->
+<div class="unit-panel" id="unit2">
+  <div class="unit-title">🐳 Unit 2 — Sea Animals</div>
+
+  <!-- EX 1: Matching -->
+  <div class="ex-card c-blue">
+    <div class="ex-head"><div class="ex-num">1</div><div class="ex-title">Match the Questions</div></div>
+    <div class="ex-instructions"><span class="ar">اختاري الإجابة الصحيحة لكل سؤال</span></div>
+    <div id="u2ex1"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkMatch('u2ex1','u2ex1fb')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildMatch('u2ex1',U2_MATCH)">↺ Reset</button>
+    </div>
+    <div class="fb" id="u2ex1fb"></div>
+  </div>
+
+  <!-- EX 2: Rearrange -->
+  <div class="ex-card c-teal">
+    <div class="ex-head"><div class="ex-num">2</div><div class="ex-title">Put the Words in Order</div></div>
+    <div class="ex-instructions"><span class="ar">اضغطي على الكلمات بالترتيب الصحيح</span></div>
+    <div id="u2ex2"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkAllOrder('u2ex2')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildOrder('u2ex2',U2_ORDER)">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- EX 3: Reading match -->
+  <div class="ex-card c-orange">
+    <div class="ex-head"><div class="ex-num">3</div><div class="ex-title">Read and Match to the Animal</div></div>
+    <div class="ex-instructions"><span class="ar">اقرأي واختاري الحيوان المناسب</span></div>
+    <div id="u2ex3"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkMatch('u2ex3','u2ex3fb')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildMatch('u2ex3',U2_ANIMALS)">↺ Reset</button>
+    </div>
+    <div class="fb" id="u2ex3fb"></div>
+  </div>
+
+  <!-- EX 4: Grammar -->
+  <div class="ex-card c-purple">
+    <div class="ex-head"><div class="ex-num">4</div><div class="ex-title">Grammar — Choose the Correct Word</div></div>
+    <div class="ex-instructions"><span class="ar">اختاري الكلمة الصحيحة</span></div>
+    <div id="u2ex4"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkMCQ('u2ex4')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildMCQ('u2ex4',U2_GRAMMAR)">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- EX 5: Vocabulary -->
+  <div class="ex-card c-pink">
+    <div class="ex-head"><div class="ex-num">5</div><div class="ex-title">Vocabulary — Name the Sea Animal</div></div>
+    <div class="ex-instructions"><span class="ar">اضغطي على الكلمة لتسمية الحيوان</span></div>
+    <div id="u2ex5"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkFill('u2ex5')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildFill('u2ex5',U2_VOCAB)">↺ Reset</button>
+    </div>
+    <div class="fb" id="u2ex5fb"></div>
+  </div>
+
+  <!-- EX 6: Orthography -->
+  <div class="ex-card c-teal">
+    <div class="ex-head"><div class="ex-num">6</div><div class="ex-title">Spelling — Fill the Missing Letters</div></div>
+    <div class="ex-instructions"><span class="ar">أكملي الحروف الناقصة</span></div>
+    <div id="u2ex6"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkFill('u2ex6')">✓ Check</button>
+      <button class="btn btn-reset" onclick="buildFill('u2ex6',U2_SPELL)">↺ Reset</button>
+    </div>
+    <div class="fb" id="u2ex6fb"></div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('error', function(e){
+  console.warn('Maryam app caught an error (page keeps working):', e.message);
+  return true; // prevent noisy default browser handling; app keeps functioning
+});
+
+/* ================= DATA ================= */
+
+const U1_MATCH = {
+  type:'select',
+  items:[
+    {q:"1. What is your name?", ar:"ما اسمك؟", ans:"My name is Ali."},
+    {q:"2. How old are you?", ar:"كم عمرك؟", ans:"I am 9 years old."},
+    {q:"3. Where do you live?", ar:"أين تسكنين؟", ans:"I live in Al-Lith."},
+    {q:"4. Do you have brothers or sisters?", ar:"هل لديك إخوة أو أخوات؟", ans:"Yes, I have 2 sisters and 1 brother."},
+    {q:"5. How do you go to school?", ar:"كيف تذهبين إلى المدرسة؟", ans:"I go to school by bus."},
+  ],
+  pool:["My name is Ali.","I am 9 years old.","I live in Al-Lith.","Yes, I have 2 sisters and 1 brother.","I go to school by bus.","Yes, I can."]
+};
+
+const U1_ORDER = [
+  {words:["to","you","meet","Nice"], answer:["Nice","to","meet","you"], ar:"سعيدة بلقائك"},
+  {words:["bicycle","have","a","I"], answer:["I","have","a","bicycle"], ar:"لدي دراجة"},
+  {words:["shoes","are","my","They"], answer:["They","are","my","shoes"], ar:"هذا حذائي"},
+];
+
+const U1_FILL = {
+  bank:["name","nine","live","mother","father"],
+  html:'Hello, my <span class="blank-slot" data-i="0">____</span> is Sara. I am <span class="blank-slot" data-i="1">____</span> years old, and I <span class="blank-slot" data-i="2">____</span> in Al-Lith. This is my <span class="blank-slot" data-i="3">____</span>. Her name is Fatima. This is my <span class="blank-slot" data-i="4">____</span>. His name is Ali. I love my family.',
+  speakText:"Hello, my name is Sara. I am nine years old, and I live in Al-Lith. This is my mother. Her name is Fatima. This is my father. His name is Ali. I love my family.",
+  ar:"مرحبًا، اسمي سارة. عمري تسع سنوات، وأسكن في الليث. هذه أمي، اسمها فاطمة. وهذا أبي، اسمه علي. أحب عائلتي.",
+  answers:["name","nine","live","mother","father"],
+  isParagraph:true
+};
+
+const U1_FAMILY = {
+  type:'select',
+  options:["father","mother","brother","sister"],
+  items:[
+    {q:"1. This is my father.", ar:"هذا أبي.", ans:"father"},
+    {q:"2. This is my sister.", ar:"هذه أختي.", ans:"sister"},
+    {q:"3. This is my mother.", ar:"هذه أمي.", ans:"mother"},
+    {q:"4. This is my brother.", ar:"هذا أخي.", ans:"brother"},
+  ]
+};
+
+const U1_GRAMMAR = [
+  {q:"1. He ___ my father.", ar:"هو أبي.", opts:["am","is","are"], ans:"is"},
+  {q:"2. They ___ my friends.", ar:"هم أصدقائي.", opts:["am","is","are"], ans:"are"},
+  {q:"3. This is ___ coat.", ar:"هذا معطفي.", opts:["I","my","mine"], ans:"my"},
+  {q:"4. This hat is ___.", ar:"هذه القبعة لي.", opts:["I","my","mine"], ans:"mine"},
+  {q:"5. This shirt is ___.", ar:"هذا القميص لها.", opts:["she","her","hers"], ans:"hers"},
+  {q:"6. These are ___ sandals.", ar:"هذه صنادلها.", opts:["she","her","hers"], ans:"her"},
+  {q:"7. This is ___ dress.", ar:"هذا فستانك.", opts:["you","your","yours"], ans:"your"},
+  {q:"8. These shoes are ___.", ar:"هذا الحذاء لك.", opts:["you","your","yours"], ans:"yours"},
+  {q:"9. She ___ a computer.", ar:"لديها حاسوب.", opts:["has","have","are"], ans:"has"},
+  {q:"10. We ___ bicycles.", ar:"لدينا دراجات.", opts:["has","have","is"], ans:"have"},
+];
+
+const U1_CAN = [
+  {q:"🏊 He ___ swim.", ar:"هو لا يستطيع السباحة.", emoji:true, opts:["can","can't"], ans:"can't"},
+  {q:"🐦 The bird ___ fly.", ar:"الطائر يستطيع الطيران.", emoji:true, opts:["can","can't"], ans:"can"},
+  {q:"🤕 He ___ run.", ar:"هو لا يستطيع الجري.", emoji:true, opts:["can","can't"], ans:"can't"},
+  {q:"👶 The baby ___ walk.", ar:"الطفل لا يستطيع المشي.", emoji:true, opts:["can","can't"], ans:"can't"},
+];
+
+const U1_VOCAB = {
+  bank:["shirt","hat","bicycle","dress","sandals","coat","computer"],
+  isGrid:true,
+  pics:["👕","🧢","🚲","👗","🩴","🧥"],
+  ars:["قميص","قبعة","دراجة","فستان","صندل","معطف"],
+  answers:["shirt","hat","bicycle","dress","sandals","coat"]
+};
+
+const U1_SPELL = {
+  bank:["ea","ee","ie","ai","ay"],
+  isGrid:true,
+  pics:["👔","🐑","🚂","🧒","🍑"],
+  ars:["ربطة عنق","خروف","قطار","يلعب","خوخ"],
+  words:[ ["t","",""], ["sh","","p"], ["tr","","n"], ["pl","",""], ["p","","ch"] ],
+  answers:["ie","ee","ai","ay","ea"],
+  labels:["tie","sheep","train","play","peach"]
+};
+
+const U2_MATCH = {
+  type:'select',
+  items:[
+    {q:"1. 🦈 What is that?", ar:"ما هذا؟", ans:"It is a shark."},
+    {q:"2. ⭐ Which animal looks like a star?", ar:"أي حيوان يشبه النجمة؟", ans:"A starfish."},
+    {q:"3. 🐙 Which animal has 8 legs?", ar:"أي حيوان له 8 أرجل؟", ans:"An octopus."},
+    {q:"4. 🐬 What do you think about dolphins?", ar:"ما رأيك في الدلافين؟", ans:"I think they are fast."},
+  ],
+  pool:["It is a shark.","A starfish.","An octopus.","I think they are fast.","I like walrus."]
+};
+
+const U2_ORDER = [
+  {words:["big","Whales","are"], answer:["Whales","are","big"], ar:"الحيتان كبيرة"},
+  {words:["change","A squid","color","can"], answer:["A squid","can","change","color"], ar:"الحبار يستطيع تغيير لونه"},
+  {words:["has","teeth","A shark","big"], answer:["A shark","has","big","teeth"], ar:"سمك القرش له أسنان كبيرة"},
+];
+
+const U2_ANIMALS = {
+  type:'select',
+  options:["mouse","turtle","horse","crocodile","polar bear"],
+  items:[
+    {q:"1. It is as white as snow and as strong as a lion.", ar:"هو أبيض كالثلج وقوي كالأسد.", ans:"polar bear"},
+    {q:"2. It is as scary as a tiger and as quiet as a fish.", ar:"هو مخيف كالنمر وهادئ كالسمكة.", ans:"crocodile"},
+    {q:"3. It is beautiful and as fast as the wind.", ar:"هو جميل وسريع كالريح.", ans:"horse"},
+    {q:"4. It is very quiet and as slow as a snail.", ar:"هو هادئ جدًا وبطيء كالحلزون.", ans:"turtle"},
+    {q:"5. It is smaller than a cat and as gray as an elephant.", ar:"هو أصغر من القطة ورمادي كالفيل.", ans:"mouse"},
+  ]
+};
+
+const U2_GRAMMAR = [
+  {q:"1. Ali is ___ than Ahmed.", ar:"علي أطول من أحمد.", opts:["tall","taller","tallest"], ans:"taller"},
+  {q:"2. This elephant is the ___.", ar:"هذا الفيل هو الأكبر.", opts:["big","bigger","biggest"], ans:"biggest"},
+  {q:"3. Baby seals are as ___ as cats.", ar:"صغار الفقمة لطيفة مثل القطط.", opts:["cute","cuter","cutest"], ans:"cute"},
+];
+
+const U2_VOCAB = {
+  bank:["eel","seagull","starfish","jellyfish","squid","crab","walrus"],
+  isGrid:true,
+  pics:["🕊️","🦀","🦑","🐍","🦭","⭐"],
+  ars:["نورس","سلطعون","حبار","ثعبان البحر","فظّ","نجم البحر"],
+  answers:["seagull","crab","squid","eel","walrus","starfish"]
+};
+
+const U2_SPELL = {
+  bank:["ow","oa","ou"],
+  isGrid:true,
+  pics:["🏠","⛵","🐄","🤡","🐭","🐐","🪟"],
+  ars:["بيت","قارب","بقرة","مهرج","فأر","ماعز","نافذة"],
+  words:[ ["h","","se"], ["b","","t"], ["c","",""], ["cl","","n"], ["m","","se"], ["g","","t"], ["wind","",""] ],
+  answers:["ou","oa","ow","ow","ou","oa","ow"],
+  labels:["house","boat","cow","clown","mouse","goat","window"]
+};
+
+/* ================= ENCOURAGEMENT PHRASES ================= */
+const PRAISE = [
+  "🎉 رائع يا مريم!", "✨ ممتاز يا بطلة!", "👏 أحسنت يا مريم!",
+  "🌟 عاشت إيدك!", "💖 صح! أنتِ شاطرة!", "🥳 برافو عليكِ!"
+];
+const TRY_AGAIN = "🤔 حاولي مرة أخرى";
+function randomPraise(){ return PRAISE[Math.floor(Math.random()*PRAISE.length)]; }
+function safeRun(fn){ try{ fn(); }catch(e){ console.warn('Maryam app:', e); } }
+
+/* ================= TEXT-TO-SPEECH (child-like voice) ================= */
+let ttsVoices = [];
+function loadTtsVoices(){
+  try{ ttsVoices = window.speechSynthesis ? window.speechSynthesis.getVoices() : []; }catch(e){ ttsVoices = []; }
+}
+if (window.speechSynthesis){
+  loadTtsVoices();
+  window.speechSynthesis.onvoiceschanged = loadTtsVoices;
+}
+function pickChildVoice(){
+  if (!ttsVoices.length) return null;
+  const byScore = ttsVoices
+    .filter(v=>/^en/i.test(v.lang))
+    .map(v=>{
+      let score = 0;
+      if (/child|kid|junior/i.test(v.name)) score += 10;
+      if (/female|woman|girl|samantha|zira|susan|victoria|karen|moira|tessa|fiona|serena/i.test(v.name)) score += 4;
+      if (/google|natural|neural/i.test(v.name)) score += 1;
+      return {v, score};
+    })
+    .sort((a,b)=>b.score-a.score);
+  return byScore.length ? byScore[0].v : ttsVoices.find(v=>/^en/i.test(v.lang)) || ttsVoices[0];
+}
+function cleanForSpeech(text){
+  return String(text)
+    .replace(/^\d+[\.\)]\s*/,'')                 // drop leading "1. "
+    .replace(/_+/g,' ')                          // drop blank underscores (___)
+    .replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{2190}-\u{21FF}\u{2300}-\u{23FF}\u{FE0F}\u{200D}]/gu, '') // drop emoji/symbols/arrows
+    .replace(/\s+/g,' ').trim();
+}
+function speak(text){
+  safeRun(()=>{
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(cleanForSpeech(text));
+    const voice = pickChildVoice();
+    if (voice) utter.voice = voice;
+    utter.lang = (voice && voice.lang) || 'en-US';
+    utter.pitch = 1.6;   // higher pitch → sounds more like a child
+    utter.rate = 0.88;   // a touch slower, easier for a young learner to follow
+    window.speechSynthesis.speak(utter);
+  });
+}
+function speakFromBtn(btn){
+  safeRun(()=>{ speak(btn.dataset.say || ''); });
+}
+function speakBtnHtml(text){
+  const safe = String(text).replace(/"/g,'&quot;');
+  return `<button type="button" class="speak-btn" onclick="event.stopPropagation();speakFromBtn(this)" data-say="${safe}" title="Listen / استمعي">🔊</button>`;
+}
+
+/* ================= TAP-TO-TRANSLATE ================= */
+function arSentence(text, ar){
+  const sayText = cleanForSpeech(text);
+  const spk = speakBtnHtml(sayText);
+  if(!ar) return `${text}${spk}`;
+  return `<span class="tap-ar" onclick="toggleAr(this)" data-ar="${ar.replace(/"/g,'&quot;')}">${text}</span><span class="ar-reveal"></span>${spk}`;
+}
+function toggleAr(el){
+  safeRun(()=>{
+    const reveal = el.nextElementSibling;
+    if(!reveal || !reveal.classList.contains('ar-reveal')) return;
+    if(reveal.classList.contains('show')){
+      reveal.classList.remove('show'); reveal.textContent='';
+    } else {
+      reveal.textContent = el.dataset.ar;
+      reveal.classList.add('show');
+    }
+  });
+}
+
+
+/* ================= STATE / STARS ================= */
+let stars = 0;
+function addStar(){ stars++; document.getElementById('starCount').textContent = stars; }
+
+function showUnit(n){
+  safeRun(()=>{
+    document.getElementById('unit1').classList.toggle('active', n===1);
+    document.getElementById('unit2').classList.toggle('active', n===2);
+    document.getElementById('tabBtn1').classList.toggle('active', n===1);
+    document.getElementById('tabBtn2').classList.toggle('active', n===2);
+  });
+}
+
+/* ================= MATCH / SELECT ================= */
+function buildMatch(containerId, data){
+  const c = document.getElementById(containerId);
+  const opts = data.pool || data.options;
+  c.innerHTML = data.items.map((it,i)=>`
+    <div class="q-row" id="${containerId}_row${i}">
+      <div class="q-text">${arSentence(it.q, it.ar)}</div>
+      <select class="ans-select" id="${containerId}_sel${i}" onchange="onMatchAnswer('${containerId}',${i})">
+        <option value="">— choose —</option>
+        ${opts.map(o=>`<option value="${o}">${o}</option>`).join('')}
+      </select>
+      <div class="mini-fb" id="${containerId}_mini${i}"></div>
+    </div>`).join('');
+  c._data = data;
+  const fb = document.getElementById(containerId+'fb');
+  if (fb){ fb.className='fb'; fb.textContent=''; }
+}
+function onMatchAnswer(containerId, i){
+  safeRun(()=>{
+    const c = document.getElementById(containerId);
+    const it = c._data.items[i];
+    const sel = document.getElementById(containerId+'_sel'+i);
+    const row = document.getElementById(containerId+'_row'+i);
+    const mini = document.getElementById(containerId+'_mini'+i);
+    row.classList.remove('correct','wrong');
+    if (!sel.value){ mini.className='mini-fb'; mini.textContent=''; return; }
+    const isRight = sel.value === it.ans;
+    row.classList.add(isRight?'correct':'wrong');
+    mini.className = 'mini-fb show ' + (isRight?'ok':'no');
+    mini.textContent = isRight ? randomPraise() : TRY_AGAIN;
+  });
+}
+function checkMatch(containerId, fbId){
+  safeRun(()=>{
+  const c = document.getElementById(containerId);
+  const data = c._data;
+  let correct = 0;
+  data.items.forEach((it,i)=>{
+    const sel = document.getElementById(containerId+'_sel'+i);
+    const row = document.getElementById(containerId+'_row'+i);
+    row.classList.remove('correct','wrong');
+    if (sel.value === it.ans){ row.classList.add('correct'); correct++; }
+    else { row.classList.add('wrong'); }
+  });
+  const fb = document.getElementById(fbId);
+  if (correct === data.items.length){
+    fb.className='fb show ok'; fb.textContent = '🎉 Excellent, Maryam! All correct!';
+    addStar();
+  } else {
+    fb.className='fb show no'; fb.textContent = `You got ${correct} of ${data.items.length} right. Try the red ones again! 💪`;
+  }
+  });
+}
+
+/* ================= WORD ORDER ================= */
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+
+function buildOrder(containerId, sentences){
+  const c = document.getElementById(containerId);
+  c.innerHTML = sentences.map((s,si)=>`
+    <div class="sentence-box" id="${containerId}_s${si}">
+      <div class="answer-slot" id="${containerId}_slot${si}"></div>
+      <div class="tile-bank" id="${containerId}_bank${si}"></div>
+      <div style="margin-top:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <span class="tap-ar" style="font-size:0.8rem;" onclick="toggleAr(this)" data-ar="${(s.ar||'').replace(/"/g,'&quot;')}">🌐 ترجمة</span><span class="ar-reveal"></span>
+        ${speakBtnHtml(s.answer.join(' '))}
+      </div>
+      <div class="mini-fb" id="${containerId}_mini${si}"></div>
+    </div>`).join('');
+  sentences.forEach((s,si)=>{
+    renderOrderBank(containerId, si, shuffle(s.words), []);
+  });
+  c._data = sentences;
+}
+function renderOrderBank(containerId, si, bankWords, placed){
+  const bank = document.getElementById(containerId+'_bank'+si);
+  const slot = document.getElementById(containerId+'_slot'+si);
+  slot.innerHTML = placed.map((w,wi)=>`<button class="word-tile placed" onclick="unplaceWord('${containerId}',${si},${wi})">${w}</button>`).join('') || '<span style="color:#94A3B8;font-weight:700;">tap words below…</span>';
+  bank.innerHTML = bankWords.map((w,wi)=>`<button class="word-tile" onclick="placeWord('${containerId}',${si},${wi})">${w}</button>`).join('');
+  slot.dataset.placed = JSON.stringify(placed);
+  bank.dataset.bank = JSON.stringify(bankWords);
+  if (bankWords.length === 0 && placed.length > 0){
+    checkOneOrder(containerId, si);
+  }
+}
+function placeWord(containerId, si, wi){
+  safeRun(()=>{
+    const bank = document.getElementById(containerId+'_bank'+si);
+    const slot = document.getElementById(containerId+'_slot'+si);
+    slot.classList.remove('correct','wrong');
+    let bankWords = JSON.parse(bank.dataset.bank);
+    let placed = JSON.parse(slot.dataset.placed);
+    placed.push(bankWords[wi]);
+    bankWords.splice(wi,1);
+    renderOrderBank(containerId, si, bankWords, placed);
+  });
+}
+function unplaceWord(containerId, si, wi){
+  safeRun(()=>{
+    const bank = document.getElementById(containerId+'_bank'+si);
+    const slot = document.getElementById(containerId+'_slot'+si);
+    slot.classList.remove('correct','wrong');
+    const mini = document.getElementById(containerId+'_mini'+si);
+    if(mini){ mini.className='mini-fb'; mini.textContent=''; }
+    let bankWords = JSON.parse(bank.dataset.bank);
+    let placed = JSON.parse(slot.dataset.placed);
+    bankWords.push(placed[wi]);
+    placed.splice(wi,1);
+    renderOrderBank(containerId, si, bankWords, placed);
+  });
+}
+function checkOneOrder(containerId, si){
+  safeRun(()=>{
+    const c = document.getElementById(containerId);
+    const s = c._data[si];
+    const slot = document.getElementById(containerId+'_slot'+si);
+    const mini = document.getElementById(containerId+'_mini'+si);
+    const placed = JSON.parse(slot.dataset.placed || '[]');
+    const ok = JSON.stringify(placed) === JSON.stringify(s.answer);
+    slot.classList.remove('correct','wrong');
+    slot.classList.add(ok?'correct':'wrong');
+    if (mini){
+      mini.className = 'mini-fb show ' + (ok?'ok':'no');
+      mini.textContent = ok ? randomPraise() : TRY_AGAIN;
+    }
+  });
+}
+function checkAllOrder(containerId){
+  safeRun(()=>{
+  const c = document.getElementById(containerId);
+  const sentences = c._data;
+  let allCorrect = true;
+  sentences.forEach((s,si)=>{
+    const slot = document.getElementById(containerId+'_slot'+si);
+    const placed = JSON.parse(slot.dataset.placed || '[]');
+    const ok = JSON.stringify(placed) === JSON.stringify(s.answer);
+    slot.classList.remove('correct','wrong');
+    slot.classList.add(ok?'correct':'wrong');
+    if(!ok) allCorrect = false;
+  });
+  if (allCorrect) addStar();
+  });
+}
+
+/* ================= FILL (word bank into blanks / paragraph / grid) ================= */
+function buildFill(containerId, data){
+  const c = document.getElementById(containerId);
+  if (data.isGrid){
+    c.innerHTML = `
+      <div class="pic-grid">
+        ${data.pics.map((p,i)=>{
+          const arLabel = data.ars ? data.ars[i] : '';
+          const word = data.labels ? data.labels[i] : data.answers[i];
+          const arBlock = arLabel ? `<span class="tap-ar" style="font-size:0.72rem;" onclick="toggleAr(this)" data-ar="${arLabel.replace(/"/g,'&quot;')}">🌐</span><span class="ar-reveal"></span>` : '';
+          const row = `<div style="margin-top:4px;display:flex;align-items:center;justify-content:center;gap:6px;">${arBlock}${speakBtnHtml(word)}</div>`;
+          if (data.words){
+            const w = data.words[i];
+            return `<div class="pic-card"><div class="letter-emoji">${p}</div>
+              <div class="letter-line">${w[0]}<span class="blank-slot" data-i="${i}">__</span>${w[2]}</div>${row}</div>`;
+          }
+          return `<div class="pic-card"><div class="pic-emoji">${p}</div>
+            <div class="blank-slot" data-i="${i}" style="display:block;min-width:90px;">____</div>${row}</div>`;
+        }).join('')}
+      </div>
+      <div class="tile-bank" id="${containerId}_bank"></div>
+      <div class="mini-fb" id="${containerId}_mini"></div>`;
+  } else {
+    const arBlock = data.ar ? `<span class="tap-ar" style="font-size:0.8rem;" onclick="toggleAr(this)" data-ar="${data.ar.replace(/"/g,'&quot;')}">🌐 ترجمة الفقرة</span><span class="ar-reveal"></span>` : '';
+    const row = `<div style="margin-top:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">${arBlock}${speakBtnHtml(data.speakText || data.html.replace(/<[^>]+>/g,''))}</div>`;
+    c.innerHTML = `
+      <div class="fill-para" id="${containerId}_para">${data.html}</div>
+      ${row}
+      <div class="tile-bank" id="${containerId}_bank" style="margin-top:12px;"></div>
+      <div class="mini-fb" id="${containerId}_mini"></div>`;
+  }
+  c._data = data;
+  c._filled = new Array(data.answers.length).fill(null);
+  renderFillBank(containerId);
+  const fb = document.getElementById(containerId+'fb');
+  if (fb){ fb.className='fb'; fb.textContent=''; }
+}
+function renderFillBank(containerId){
+  const c = document.getElementById(containerId);
+  const data = c._data;
+  const filled = c._filled;
+  const usedCount = {};
+  filled.forEach(w=>{ if(w!=null){ usedCount[w]=(usedCount[w]||0)+1; } });
+  const remaining = [...data.bank];
+  Object.keys(usedCount).forEach(w=>{
+    for(let k=0;k<usedCount[w];k++){ const idx = remaining.indexOf(w); if(idx>-1) remaining.splice(idx,1); }
+  });
+  const bank = document.getElementById(containerId+'_bank');
+  bank.innerHTML = remaining.map(w=>`<button class="word-tile" onclick="fillNextBlank('${containerId}','${w}')">${w}</button>`).join('');
+  // update blank slots display
+  c.querySelectorAll('.blank-slot').forEach(slot=>{
+    const i = +slot.dataset.i;
+    slot.classList.remove('correct','wrong');
+    if (filled[i] != null){
+      slot.textContent = filled[i];
+      slot.classList.add('filled');
+      slot.onclick = ()=>clearBlank(containerId, i);
+    } else {
+      slot.textContent = '____';
+      slot.classList.remove('filled');
+      slot.onclick = null;
+    }
+  });
+}
+function fillNextBlank(containerId, word){
+  safeRun(()=>{
+    const c = document.getElementById(containerId);
+    const filled = c._filled;
+    const idx = filled.findIndex(w=>w==null);
+    if (idx===-1) return;
+    filled[idx] = word;
+    renderFillBank(containerId);
+    const mini = document.getElementById(containerId+'_mini');
+    if (mini){
+      const isRight = word === c._data.answers[idx];
+      mini.className = 'mini-fb show ' + (isRight?'ok':'no');
+      mini.textContent = isRight ? randomPraise() : TRY_AGAIN;
+    }
+  });
+}
+function clearBlank(containerId, i){
+  safeRun(()=>{
+    const c = document.getElementById(containerId);
+    c._filled[i] = null;
+    renderFillBank(containerId);
+    const mini = document.getElementById(containerId+'_mini');
+    if (mini){ mini.className='mini-fb'; mini.textContent=''; }
+  });
+}
+function checkFill(containerId){
+  safeRun(()=>{
+  const c = document.getElementById(containerId);
+  const data = c._data;
+  const filled = c._filled;
+  let correct = 0;
+  c.querySelectorAll('.blank-slot').forEach(slot=>{
+    const i = +slot.dataset.i;
+    slot.classList.remove('correct','wrong');
+    if (filled[i] === data.answers[i]){ slot.classList.add('correct'); correct++; }
+    else { slot.classList.add('wrong'); }
+  });
+  const fb = document.getElementById(containerId+'fb');
+  if (fb){
+    if (correct === data.answers.length){
+      fb.className='fb show ok'; fb.textContent = '🎉 Perfect, Maryam!'; addStar();
+    } else {
+      fb.className='fb show no'; fb.textContent = `${correct}/${data.answers.length} correct — check the red ones! 💪`;
+    }
+  } else if (correct === data.answers.length){ addStar(); }
+  });
+}
+
+/* ================= MCQ ================= */
+function buildMCQ(containerId, items){
+  const c = document.getElementById(containerId);
+  c.innerHTML = items.map((it,i)=>`
+    <div class="q-row" id="${containerId}_row${i}">
+      <div class="q-text">${arSentence(it.q, it.ar)}</div>
+      <div class="mcq-opts" id="${containerId}_opts${i}">
+        ${it.opts.map(o=>`<button class="opt-btn" onclick="pickMCQ('${containerId}',${i},'${o}')" id="${containerId}_opt${i}_${o.replace(/[^a-zA-Z]/g,'')}">${o}</button>`).join('')}
+      </div>
+      <div class="mini-fb" id="${containerId}_mini${i}"></div>
+    </div>`).join('');
+  c._data = items;
+  c._picked = new Array(items.length).fill(null);
+}
+function pickMCQ(containerId, i, val){
+  safeRun(()=>{
+    const c = document.getElementById(containerId);
+    c._picked[i] = val;
+    const it = c._data[i];
+    it.opts.forEach(o=>{
+      const btn = document.getElementById(`${containerId}_opt${i}_${o.replace(/[^a-zA-Z]/g,'')}`);
+      btn.classList.toggle('picked', o===val);
+    });
+    const row = document.getElementById(containerId+'_row'+i);
+    const mini = document.getElementById(containerId+'_mini'+i);
+    row.classList.remove('correct','wrong');
+    const isRight = val === it.ans;
+    mini.className = 'mini-fb show ' + (isRight?'ok':'no');
+    mini.textContent = isRight ? randomPraise() : TRY_AGAIN;
+  });
+}
+function checkMCQ(containerId){
+  safeRun(()=>{
+  const c = document.getElementById(containerId);
+  const items = c._data;
+  let correct = 0;
+  items.forEach((it,i)=>{
+    const row = document.getElementById(containerId+'_row'+i);
+    row.classList.remove('correct','wrong');
+    const picked = c._picked[i];
+    const isRight = picked === it.ans;
+    if (isRight) correct++;
+    row.classList.add(isRight?'correct':'wrong');
+    it.opts.forEach(o=>{
+      const btn = document.getElementById(`${containerId}_opt${i}_${o.replace(/[^a-zA-Z]/g,'')}`);
+      btn.classList.remove('right-final','wrong-final');
+      if (o===it.ans) btn.classList.add('right-final');
+      else if (o===picked) btn.classList.add('wrong-final');
+    });
+  });
+  if (correct === items.length) addStar();
+  });
+}
+
+/* ================= INIT ================= */
+safeRun(()=>buildMatch('u1ex1', U1_MATCH));
+safeRun(()=>buildOrder('u1ex2', U1_ORDER));
+safeRun(()=>buildFill('u1ex3', U1_FILL));
+safeRun(()=>buildMatch('u1ex4', U1_FAMILY));
+safeRun(()=>buildMCQ('u1ex5', U1_GRAMMAR));
+safeRun(()=>buildMCQ('u1ex6', U1_CAN));
+safeRun(()=>buildFill('u1ex7', U1_VOCAB));
+safeRun(()=>buildFill('u1ex8', U1_SPELL));
+
+safeRun(()=>buildMatch('u2ex1', U2_MATCH));
+safeRun(()=>buildOrder('u2ex2', U2_ORDER));
+safeRun(()=>buildMatch('u2ex3', U2_ANIMALS));
+safeRun(()=>buildMCQ('u2ex4', U2_GRAMMAR));
+safeRun(()=>buildFill('u2ex5', U2_VOCAB));
+safeRun(()=>buildFill('u2ex6', U2_SPELL));
+</script>
+</body>
+</html>
