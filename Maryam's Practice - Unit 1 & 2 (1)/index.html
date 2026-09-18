@@ -43,6 +43,19 @@
     background:rgba(255,255,255,0.22); backdrop-filter:blur(4px);
     padding:8px 18px; border-radius:50px; font-weight:900; font-size:1.05rem; position:relative;
   }
+  .voice-picker{
+    margin-top:0.8rem; display:flex; align-items:center; justify-content:center; gap:8px;
+    flex-wrap:wrap; position:relative;
+  }
+  .voice-picker select{
+    font-family:inherit; font-weight:800; font-size:0.82rem; padding:7px 10px; border-radius:50px;
+    border:none; background:rgba(255,255,255,0.9); color:var(--navy); max-width:220px;
+  }
+  .voice-picker button{
+    font-family:inherit; font-weight:800; font-size:0.8rem; padding:7px 14px; border-radius:50px;
+    border:none; background:rgba(255,255,255,0.25); color:#fff; cursor:pointer;
+  }
+  .voice-picker button:active{transform:scale(0.95);}
 
   /* UNIT TABS */
   .unit-tabs{
@@ -184,6 +197,12 @@
   <div class="sub">Unit 1: It's Nice to Meet You! &nbsp;•&nbsp; Unit 2: Sea Animals</div>
   <div class="ar-sub ar">تمارين مريم — الوحدة الأولى والثانية</div>
   <div class="star-bar">⭐ <span id="starCount">0</span> Stars</div>
+  <div class="voice-picker">
+    <select id="voiceSelect" onchange="onVoiceChange()">
+      <option value="">🔊 Loading voices…</option>
+    </select>
+    <button type="button" onclick="testSelectedVoice()">▶ Test / جرّبي</button>
+  </div>
 </div>
 
 <div class="unit-tabs">
@@ -375,19 +394,19 @@ window.addEventListener('error', function(e){
 const U1_MATCH = {
   type:'select',
   items:[
-    {q:"1. What is your name?", ar:"ما اسمك؟", ans:"My name is Ali."},
-    {q:"2. How old are you?", ar:"كم عمرك؟", ans:"I am 9 years old."},
-    {q:"3. Where do you live?", ar:"أين تسكنين؟", ans:"I live in Al-Lith."},
-    {q:"4. Do you have brothers or sisters?", ar:"هل لديك إخوة أو أخوات؟", ans:"Yes, I have 2 sisters and 1 brother."},
-    {q:"5. How do you go to school?", ar:"كيف تذهبين إلى المدرسة؟", ans:"I go to school by bus."},
+    {q:"1. What is your name?", ar:"ما اسمك؟", ans:"My name is Ali.", exp:"نجيب عن سؤال 'ما اسمك' بجملة My name is... يعني 'اسمي...'"},
+    {q:"2. How old are you?", ar:"كم عمرك؟", ans:"I am 9 years old.", exp:"نجيب عن سؤال العمر بجملة I am... years old يعني 'عمري... سنة'"},
+    {q:"3. Where do you live?", ar:"أين تسكنين؟", ans:"I live in Al-Lith.", exp:"نجيب عن سؤال السكن بجملة I live in... يعني 'أسكن في...'"},
+    {q:"4. Do you have brothers or sisters?", ar:"هل لديك إخوة أو أخوات؟", ans:"Yes, I have 2 sisters and 1 brother.", exp:"هذا سؤال بـ Do you have، فنجيب بـ Yes, I have... ثم نذكر العدد"},
+    {q:"5. How do you go to school?", ar:"كيف تذهبين إلى المدرسة؟", ans:"I go to school by bus.", exp:"نجيب عن وسيلة المواصلات بجملة I go by... يعني 'أذهب بواسطة...'"},
   ],
   pool:["My name is Ali.","I am 9 years old.","I live in Al-Lith.","Yes, I have 2 sisters and 1 brother.","I go to school by bus.","Yes, I can."]
 };
 
 const U1_ORDER = [
-  {words:["to","you","meet","Nice"], answer:["Nice","to","meet","you"], ar:"سعيدة بلقائك"},
-  {words:["bicycle","have","a","I"], answer:["I","have","a","bicycle"], ar:"لدي دراجة"},
-  {words:["shoes","are","my","They"], answer:["They","are","my","shoes"], ar:"هذا حذائي"},
+  {words:["to","you","meet","Nice"], answer:["Nice","to","meet","you"], ar:"سعيدة بلقائك", exp:"الترتيب الصحيح يبدأ بـ Nice ثم to meet you"},
+  {words:["bicycle","have","a","I"], answer:["I","have","a","bicycle"], ar:"لدي دراجة", exp:"الترتيب: الفاعل I ثم الفعل have ثم a ثم الاسم bicycle"},
+  {words:["shoes","are","my","They"], answer:["They","are","my","shoes"], ar:"هذا حذائي", exp:"الترتيب: الفاعل They ثم الفعل are ثم my ثم الاسم shoes"},
 ];
 
 const U1_FILL = {
@@ -396,6 +415,13 @@ const U1_FILL = {
   speakText:"Hello, my name is Sara. I am nine years old, and I live in Al-Lith. This is my mother. Her name is Fatima. This is my father. His name is Ali. I love my family.",
   ar:"مرحبًا، اسمي سارة. عمري تسع سنوات، وأسكن في الليث. هذه أمي، اسمها فاطمة. وهذا أبي، اسمه علي. أحب عائلتي.",
   answers:["name","nine","live","mother","father"],
+  exps:[
+    "نكتب name لأن الجملة تتكلم عن الاسم: my name is Sara",
+    "نكتب nine لأن سارة عمرها تسع سنوات",
+    "نكتب live لأنها تعني 'أسكن'",
+    "نكتب mother لأن الجملة بعدها تقول 'اسمها فاطمة'",
+    "نكتب father لأن الجملة بعدها تقول 'اسمه علي'"
+  ],
   isParagraph:true
 };
 
@@ -403,31 +429,31 @@ const U1_FAMILY = {
   type:'select',
   options:["father","mother","brother","sister"],
   items:[
-    {q:"1. This is my father.", ar:"هذا أبي.", ans:"father"},
-    {q:"2. This is my sister.", ar:"هذه أختي.", ans:"sister"},
-    {q:"3. This is my mother.", ar:"هذه أمي.", ans:"mother"},
-    {q:"4. This is my brother.", ar:"هذا أخي.", ans:"brother"},
+    {q:"1. This is my father.", ar:"هذا أبي.", ans:"father", exp:"father تعني 'أب'"},
+    {q:"2. This is my sister.", ar:"هذه أختي.", ans:"sister", exp:"sister تعني 'أخت'"},
+    {q:"3. This is my mother.", ar:"هذه أمي.", ans:"mother", exp:"mother تعني 'أم'"},
+    {q:"4. This is my brother.", ar:"هذا أخي.", ans:"brother", exp:"brother تعني 'أخ'"},
   ]
 };
 
 const U1_GRAMMAR = [
-  {q:"1. He ___ my father.", ar:"هو أبي.", opts:["am","is","are"], ans:"is"},
-  {q:"2. They ___ my friends.", ar:"هم أصدقائي.", opts:["am","is","are"], ans:"are"},
-  {q:"3. This is ___ coat.", ar:"هذا معطفي.", opts:["I","my","mine"], ans:"my"},
-  {q:"4. This hat is ___.", ar:"هذه القبعة لي.", opts:["I","my","mine"], ans:"mine"},
-  {q:"5. This shirt is ___.", ar:"هذا القميص لها.", opts:["she","her","hers"], ans:"hers"},
-  {q:"6. These are ___ sandals.", ar:"هذه صنادلها.", opts:["she","her","hers"], ans:"her"},
-  {q:"7. This is ___ dress.", ar:"هذا فستانك.", opts:["you","your","yours"], ans:"your"},
-  {q:"8. These shoes are ___.", ar:"هذا الحذاء لك.", opts:["you","your","yours"], ans:"yours"},
-  {q:"9. She ___ a computer.", ar:"لديها حاسوب.", opts:["has","have","are"], ans:"has"},
-  {q:"10. We ___ bicycles.", ar:"لدينا دراجات.", opts:["has","have","is"], ans:"have"},
+  {q:"1. He ___ my father.", ar:"هو أبي.", opts:["am","is","are"], ans:"is", exp:"نستخدم is مع He أو She أو It"},
+  {q:"2. They ___ my friends.", ar:"هم أصدقائي.", opts:["am","is","are"], ans:"are", exp:"نستخدم are مع They أو We أو You"},
+  {q:"3. This is ___ coat.", ar:"هذا معطفي.", opts:["I","my","mine"], ans:"my", exp:"نستخدم my قبل الاسم مباشرة: my coat"},
+  {q:"4. This hat is ___.", ar:"هذه القبعة لي.", opts:["I","my","mine"], ans:"mine", exp:"نستخدم mine بدون اسم بعدها، وتعني 'ملكي'"},
+  {q:"5. This shirt is ___.", ar:"هذا القميص لها.", opts:["she","her","hers"], ans:"hers", exp:"نستخدم hers بدون اسم بعدها، وتعني 'لها'"},
+  {q:"6. These are ___ sandals.", ar:"هذه صنادلها.", opts:["she","her","hers"], ans:"her", exp:"نستخدم her قبل الاسم مباشرة: her sandals"},
+  {q:"7. This is ___ dress.", ar:"هذا فستانك.", opts:["you","your","yours"], ans:"your", exp:"نستخدم your قبل الاسم مباشرة: your dress"},
+  {q:"8. These shoes are ___.", ar:"هذا الحذاء لك.", opts:["you","your","yours"], ans:"yours", exp:"نستخدم yours بدون اسم بعدها، وتعني 'لك'"},
+  {q:"9. She ___ a computer.", ar:"لديها حاسوب.", opts:["has","have","are"], ans:"has", exp:"نستخدم has مع He أو She أو It"},
+  {q:"10. We ___ bicycles.", ar:"لدينا دراجات.", opts:["has","have","is"], ans:"have", exp:"نستخدم have مع I أو We أو You أو They"},
 ];
 
 const U1_CAN = [
-  {q:"🏊 He ___ swim.", ar:"هو لا يستطيع السباحة.", emoji:true, opts:["can","can't"], ans:"can't"},
-  {q:"🐦 The bird ___ fly.", ar:"الطائر يستطيع الطيران.", emoji:true, opts:["can","can't"], ans:"can"},
-  {q:"🤕 He ___ run.", ar:"هو لا يستطيع الجري.", emoji:true, opts:["can","can't"], ans:"can't"},
-  {q:"👶 The baby ___ walk.", ar:"الطفل لا يستطيع المشي.", emoji:true, opts:["can","can't"], ans:"can't"},
+  {q:"🏊 He ___ swim.", ar:"هو لا يستطيع السباحة.", emoji:true, opts:["can","can't"], ans:"can't", exp:"الرجل يغرق في الماء، فهو لا يستطيع السباحة"},
+  {q:"🐦 The bird ___ fly.", ar:"الطائر يستطيع الطيران.", emoji:true, opts:["can","can't"], ans:"can", exp:"الطائر له أجنحة، فهو يستطيع الطيران"},
+  {q:"🤕 He ___ run.", ar:"هو لا يستطيع الجري.", emoji:true, opts:["can","can't"], ans:"can't", exp:"الولد مصاب، فهو لا يستطيع الجري"},
+  {q:"👶 The baby ___ walk.", ar:"الطفل لا يستطيع المشي.", emoji:true, opts:["can","can't"], ans:"can't", exp:"الطفل رضيع صغير، فهو لا يستطيع المشي بعد"},
 ];
 
 const U1_VOCAB = {
@@ -435,7 +461,8 @@ const U1_VOCAB = {
   isGrid:true,
   pics:["👕","🧢","🚲","👗","🩴","🧥"],
   ars:["قميص","قبعة","دراجة","فستان","صندل","معطف"],
-  answers:["shirt","hat","bicycle","dress","sandals","coat"]
+  answers:["shirt","hat","bicycle","dress","sandals","coat"],
+  exps:["shirt تعني قميص","hat تعني قبعة","bicycle تعني دراجة","dress تعني فستان","sandals تعني صندل","coat تعني معطف"]
 };
 
 const U1_SPELL = {
@@ -445,42 +472,49 @@ const U1_SPELL = {
   ars:["ربطة عنق","خروف","قطار","يلعب","خوخ"],
   words:[ ["t","",""], ["sh","","p"], ["tr","","n"], ["pl","",""], ["p","","ch"] ],
   answers:["ie","ee","ai","ay","ea"],
-  labels:["tie","sheep","train","play","peach"]
+  labels:["tie","sheep","train","play","peach"],
+  exps:[
+    "حرفا ie معًا يُنطقان /ai/ كما في tie",
+    "حرفا ee معًا يُنطقان صوتًا طويلًا كما في sheep",
+    "حرفا ai معًا يُنطقان /ei/ كما في train",
+    "حرفا ay معًا يُنطقان /ei/ في نهاية الكلمة كما في play",
+    "حرفا ea معًا يُنطقان صوتًا طويلًا كما في peach"
+  ]
 };
 
 const U2_MATCH = {
   type:'select',
   items:[
-    {q:"1. 🦈 What is that?", ar:"ما هذا؟", ans:"It is a shark."},
-    {q:"2. ⭐ Which animal looks like a star?", ar:"أي حيوان يشبه النجمة؟", ans:"A starfish."},
-    {q:"3. 🐙 Which animal has 8 legs?", ar:"أي حيوان له 8 أرجل؟", ans:"An octopus."},
-    {q:"4. 🐬 What do you think about dolphins?", ar:"ما رأيك في الدلافين؟", ans:"I think they are fast."},
+    {q:"1. 🦈 What is that?", ar:"ما هذا؟", ans:"It is a shark.", exp:"هذا سمك القرش، فنقول It is a shark"},
+    {q:"2. ⭐ Which animal looks like a star?", ar:"أي حيوان يشبه النجمة؟", ans:"A starfish.", exp:"نجم البحر starfish شكله مثل النجمة"},
+    {q:"3. 🐙 Which animal has 8 legs?", ar:"أي حيوان له 8 أرجل؟", ans:"An octopus.", exp:"الأخطبوط octopus له 8 أرجل"},
+    {q:"4. 🐬 What do you think about dolphins?", ar:"ما رأيك في الدلافين؟", ans:"I think they are fast.", exp:"الدلافين معروفة بأنها سريعة جدًا في السباحة"},
   ],
   pool:["It is a shark.","A starfish.","An octopus.","I think they are fast.","I like walrus."]
 };
 
 const U2_ORDER = [
-  {words:["big","Whales","are"], answer:["Whales","are","big"], ar:"الحيتان كبيرة"},
-  {words:["change","A squid","color","can"], answer:["A squid","can","change","color"], ar:"الحبار يستطيع تغيير لونه"},
-  {words:["has","teeth","A shark","big"], answer:["A shark","has","big","teeth"], ar:"سمك القرش له أسنان كبيرة"},
+  {words:["big","Whales","are"], answer:["Whales","are","big"], ar:"الحيتان كبيرة", exp:"الترتيب: الفاعل Whales ثم الفعل are ثم الصفة big"},
+  {words:["change","A squid","color","can"], answer:["A squid","can","change","color"], ar:"الحبار يستطيع تغيير لونه", exp:"الترتيب: الفاعل A squid ثم can ثم الفعل change ثم color"},
+  {words:["has","teeth","A shark","big"], answer:["A shark","has","big","teeth"], ar:"سمك القرش له أسنان كبيرة", exp:"الترتيب: الفاعل A shark ثم has ثم الصفة big ثم الاسم teeth"},
 ];
 
 const U2_ANIMALS = {
   type:'select',
   options:["mouse","turtle","horse","crocodile","polar bear"],
   items:[
-    {q:"1. It is as white as snow and as strong as a lion.", ar:"هو أبيض كالثلج وقوي كالأسد.", ans:"polar bear"},
-    {q:"2. It is as scary as a tiger and as quiet as a fish.", ar:"هو مخيف كالنمر وهادئ كالسمكة.", ans:"crocodile"},
-    {q:"3. It is beautiful and as fast as the wind.", ar:"هو جميل وسريع كالريح.", ans:"horse"},
-    {q:"4. It is very quiet and as slow as a snail.", ar:"هو هادئ جدًا وبطيء كالحلزون.", ans:"turtle"},
-    {q:"5. It is smaller than a cat and as gray as an elephant.", ar:"هو أصغر من القطة ورمادي كالفيل.", ans:"mouse"},
+    {q:"1. It is as white as snow and as strong as a lion.", ar:"هو أبيض كالثلج وقوي كالأسد.", ans:"polar bear", exp:"الدب القطبي polar bear أبيض وقوي جدًا"},
+    {q:"2. It is as scary as a tiger and as quiet as a fish.", ar:"هو مخيف كالنمر وهادئ كالسمكة.", ans:"crocodile", exp:"التمساح crocodile مخيف ويتحرك بهدوء في الماء"},
+    {q:"3. It is beautiful and as fast as the wind.", ar:"هو جميل وسريع كالريح.", ans:"horse", exp:"الحصان horse جميل ويجري بسرعة كبيرة"},
+    {q:"4. It is very quiet and as slow as a snail.", ar:"هو هادئ جدًا وبطيء كالحلزون.", ans:"turtle", exp:"السلحفاة turtle معروفة بأنها بطيئة جدًا"},
+    {q:"5. It is smaller than a cat and as gray as an elephant.", ar:"هو أصغر من القطة ورمادي كالفيل.", ans:"mouse", exp:"الفأر mouse صغير الحجم ولونه رمادي"},
   ]
 };
 
 const U2_GRAMMAR = [
-  {q:"1. Ali is ___ than Ahmed.", ar:"علي أطول من أحمد.", opts:["tall","taller","tallest"], ans:"taller"},
-  {q:"2. This elephant is the ___.", ar:"هذا الفيل هو الأكبر.", opts:["big","bigger","biggest"], ans:"biggest"},
-  {q:"3. Baby seals are as ___ as cats.", ar:"صغار الفقمة لطيفة مثل القطط.", opts:["cute","cuter","cutest"], ans:"cute"},
+  {q:"1. Ali is ___ than Ahmed.", ar:"علي أطول من أحمد.", opts:["tall","taller","tallest"], ans:"taller", exp:"نضيف er للمقارنة بين شخصين: tall + er = taller"},
+  {q:"2. This elephant is the ___.", ar:"هذا الفيل هو الأكبر.", opts:["big","bigger","biggest"], ans:"biggest", exp:"نضيف est للتفضيل المطلق (الأكبر بينهم كلهم): big + g + est = biggest"},
+  {q:"3. Baby seals are as ___ as cats.", ar:"صغار الفقمة لطيفة مثل القطط.", opts:["cute","cuter","cutest"], ans:"cute", exp:"في تشبيه as...as نستخدم الصفة الأصلية بدون إضافة: as cute as"},
 ];
 
 const U2_VOCAB = {
@@ -488,7 +522,8 @@ const U2_VOCAB = {
   isGrid:true,
   pics:["🕊️","🦀","🦑","🐍","🦭","⭐"],
   ars:["نورس","سلطعون","حبار","ثعبان البحر","فظّ","نجم البحر"],
-  answers:["seagull","crab","squid","eel","walrus","starfish"]
+  answers:["seagull","crab","squid","eel","walrus","starfish"],
+  exps:["seagull تعني نورس","crab تعني سلطعون","squid تعني حبار","eel تعني ثعبان البحر","walrus تعني فظّ","starfish تعني نجم البحر"]
 };
 
 const U2_SPELL = {
@@ -498,7 +533,16 @@ const U2_SPELL = {
   ars:["بيت","قارب","بقرة","مهرج","فأر","ماعز","نافذة"],
   words:[ ["h","","se"], ["b","","t"], ["c","",""], ["cl","","n"], ["m","","se"], ["g","","t"], ["wind","",""] ],
   answers:["ou","oa","ow","ow","ou","oa","ow"],
-  labels:["house","boat","cow","clown","mouse","goat","window"]
+  labels:["house","boat","cow","clown","mouse","goat","window"],
+  exps:[
+    "حرفا ou معًا كما في house",
+    "حرفا oa معًا كما في boat",
+    "حرفا ow معًا كما في cow",
+    "حرفا ow معًا كما في clown",
+    "حرفا ou معًا كما في mouse",
+    "حرفا oa معًا كما في goat",
+    "حرفا ow معًا كما في window"
+  ]
 };
 
 /* ================= ENCOURAGEMENT PHRASES ================= */
@@ -508,21 +552,80 @@ const PRAISE = [
 ];
 const TRY_AGAIN = "🤔 حاولي مرة أخرى";
 function randomPraise(){ return PRAISE[Math.floor(Math.random()*PRAISE.length)]; }
+function feedbackHtml(isRight, exp){
+  const verdict = isRight ? randomPraise() : TRY_AGAIN;
+  if (!exp) return verdict;
+  return `${verdict}<br><span style="font-weight:700;font-size:0.86em;opacity:0.9;">${exp}</span>`;
+}
 function safeRun(fn){ try{ fn(); }catch(e){ console.warn('Maryam app:', e); } }
 
 /* ================= TEXT-TO-SPEECH (child-like voice) ================= */
 let ttsVoices = [];
+let chosenVoiceName = null;
+function loadSavedVoiceChoice(){
+  try{ chosenVoiceName = localStorage.getItem('maryam_voice') || null; }catch(e){ chosenVoiceName = null; }
+}
+function saveVoiceChoice(name){
+  chosenVoiceName = name || null;
+  try{
+    if (chosenVoiceName) localStorage.setItem('maryam_voice', chosenVoiceName);
+    else localStorage.removeItem('maryam_voice');
+  }catch(e){ /* storage unavailable — still works for this session */ }
+}
 function loadTtsVoices(){
   try{ ttsVoices = window.speechSynthesis ? window.speechSynthesis.getVoices() : []; }catch(e){ ttsVoices = []; }
+  populateVoicePicker();
 }
 if (window.speechSynthesis){
+  loadSavedVoiceChoice();
   loadTtsVoices();
   window.speechSynthesis.onvoiceschanged = loadTtsVoices;
 }
+function englishVoices(){
+  return ttsVoices.filter(v=>/^en/i.test(v.lang));
+}
+function populateVoicePicker(){
+  safeRun(()=>{
+    const sel = document.getElementById('voiceSelect');
+    if (!sel) return;
+    const voices = englishVoices();
+    if (!voices.length){ sel.innerHTML = '<option value="">🔊 No voices found</option>'; return; }
+    const scored = voices.map(v=>{
+      let score = 0;
+      if (/female|woman|girl|samantha|zira|susan|victoria|karen|moira|tessa|fiona|serena|ava|allison|kate/i.test(v.name)) score += 4;
+      if (/google|natural|neural|enhanced|premium/i.test(v.name)) score += 3;
+      if (/child|kid|junior/i.test(v.name)) score += 2;
+      return {v, score};
+    }).sort((a,b)=>b.score-a.score);
+    sel.innerHTML = scored.map(({v})=>
+      `<option value="${v.name.replace(/"/g,'&quot;')}">${v.name}${v.lang?' ('+v.lang+')':''}</option>`
+    ).join('');
+    // Restore saved choice if it's still available, else keep the best-scored default
+    if (chosenVoiceName && voices.some(v=>v.name===chosenVoiceName)){
+      sel.value = chosenVoiceName;
+    } else if (scored.length){
+      chosenVoiceName = scored[0].v.name;
+      sel.value = chosenVoiceName;
+    }
+  });
+}
+function onVoiceChange(){
+  safeRun(()=>{
+    const sel = document.getElementById('voiceSelect');
+    saveVoiceChoice(sel.value);
+    testSelectedVoice();
+  });
+}
+function testSelectedVoice(){
+  safeRun(()=>{ speak("Hello Maryam! Nice to meet you."); });
+}
 function pickChildVoice(){
   if (!ttsVoices.length) return null;
-  const byScore = ttsVoices
-    .filter(v=>/^en/i.test(v.lang))
+  if (chosenVoiceName){
+    const picked = ttsVoices.find(v=>v.name===chosenVoiceName);
+    if (picked) return picked;
+  }
+  const byScore = englishVoices()
     .map(v=>{
       let score = 0;
       if (/child|kid|junior/i.test(v.name)) score += 10;
@@ -546,8 +649,12 @@ function speak(text){
     window.speechSynthesis.cancel();
     const utter = new SpeechSynthesisUtterance(cleanForSpeech(text));
     const voice = pickChildVoice();
-    if (voice) utter.voice = voice;
-    utter.lang = (voice && voice.lang) || 'en-US';
+    if (voice){
+      try{ utter.voice = voice; utter.lang = voice.lang || 'en-US'; }
+      catch(e){ utter.lang = 'en-US'; } // stale voice reference — fall back to the browser's default voice
+    } else {
+      utter.lang = 'en-US';
+    }
     utter.pitch = 1.6;   // higher pitch → sounds more like a child
     utter.rate = 0.88;   // a touch slower, easier for a young learner to follow
     window.speechSynthesis.speak(utter);
@@ -624,7 +731,7 @@ function onMatchAnswer(containerId, i){
     const isRight = sel.value === it.ans;
     row.classList.add(isRight?'correct':'wrong');
     mini.className = 'mini-fb show ' + (isRight?'ok':'no');
-    mini.textContent = isRight ? randomPraise() : TRY_AGAIN;
+    mini.innerHTML = feedbackHtml(isRight, it.exp);
   });
 }
 function checkMatch(containerId, fbId){
@@ -718,7 +825,7 @@ function checkOneOrder(containerId, si){
     slot.classList.add(ok?'correct':'wrong');
     if (mini){
       mini.className = 'mini-fb show ' + (ok?'ok':'no');
-      mini.textContent = ok ? randomPraise() : TRY_AGAIN;
+      mini.innerHTML = feedbackHtml(ok, s.exp);
     }
   });
 }
@@ -787,7 +894,7 @@ function renderFillBank(containerId){
     for(let k=0;k<usedCount[w];k++){ const idx = remaining.indexOf(w); if(idx>-1) remaining.splice(idx,1); }
   });
   const bank = document.getElementById(containerId+'_bank');
-  bank.innerHTML = remaining.map(w=>`<button class="word-tile" onclick="fillNextBlank('${containerId}','${w}')">${w}</button>`).join('');
+  bank.innerHTML = remaining.map(w=>`<button type="button" class="word-tile" onclick="fillNextBlankFromBtn(this,'${containerId}')" data-word="${String(w).replace(/"/g,'&quot;')}">${w}</button>`).join('');
   // update blank slots display
   c.querySelectorAll('.blank-slot').forEach(slot=>{
     const i = +slot.dataset.i;
@@ -803,6 +910,9 @@ function renderFillBank(containerId){
     }
   });
 }
+function fillNextBlankFromBtn(btn, containerId){
+  safeRun(()=>{ fillNextBlank(containerId, btn.dataset.word); });
+}
 function fillNextBlank(containerId, word){
   safeRun(()=>{
     const c = document.getElementById(containerId);
@@ -814,8 +924,9 @@ function fillNextBlank(containerId, word){
     const mini = document.getElementById(containerId+'_mini');
     if (mini){
       const isRight = word === c._data.answers[idx];
+      const exp = c._data.exps ? c._data.exps[idx] : null;
       mini.className = 'mini-fb show ' + (isRight?'ok':'no');
-      mini.textContent = isRight ? randomPraise() : TRY_AGAIN;
+      mini.innerHTML = feedbackHtml(isRight, exp);
     }
   });
 }
@@ -858,12 +969,15 @@ function buildMCQ(containerId, items){
     <div class="q-row" id="${containerId}_row${i}">
       <div class="q-text">${arSentence(it.q, it.ar)}</div>
       <div class="mcq-opts" id="${containerId}_opts${i}">
-        ${it.opts.map(o=>`<button class="opt-btn" onclick="pickMCQ('${containerId}',${i},'${o}')" id="${containerId}_opt${i}_${o.replace(/[^a-zA-Z]/g,'')}">${o}</button>`).join('')}
+        ${it.opts.map(o=>`<button type="button" class="opt-btn" onclick="pickMCQFromBtn(this,'${containerId}',${i})" data-val="${o.replace(/"/g,'&quot;')}" id="${containerId}_opt${i}_${o.replace(/[^a-zA-Z]/g,'')}">${o}</button>`).join('')}
       </div>
       <div class="mini-fb" id="${containerId}_mini${i}"></div>
     </div>`).join('');
   c._data = items;
   c._picked = new Array(items.length).fill(null);
+}
+function pickMCQFromBtn(btn, containerId, i){
+  safeRun(()=>{ pickMCQ(containerId, i, btn.dataset.val); });
 }
 function pickMCQ(containerId, i, val){
   safeRun(()=>{
@@ -879,7 +993,7 @@ function pickMCQ(containerId, i, val){
     row.classList.remove('correct','wrong');
     const isRight = val === it.ans;
     mini.className = 'mini-fb show ' + (isRight?'ok':'no');
-    mini.textContent = isRight ? randomPraise() : TRY_AGAIN;
+    mini.innerHTML = feedbackHtml(isRight, it.exp);
   });
 }
 function checkMCQ(containerId){
