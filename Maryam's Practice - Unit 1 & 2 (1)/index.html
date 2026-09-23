@@ -596,7 +596,6 @@ function populateVoicePicker(){
       let score = 0;
       if (/female|woman|girl|samantha|zira|susan|victoria|karen|moira|tessa|fiona|serena|ava|allison|kate/i.test(v.name)) score += 4;
       if (/google|natural|neural|enhanced|premium/i.test(v.name)) score += 3;
-      if (/child|kid|junior/i.test(v.name)) score += 2;
       return {v, score};
     }).sort((a,b)=>b.score-a.score);
     sel.innerHTML = scored.map(({v})=>
@@ -621,7 +620,7 @@ function onVoiceChange(){
 function testSelectedVoice(){
   safeRun(()=>{ speak("Hello Maryam! Nice to meet you."); });
 }
-function pickChildVoice(){
+function pickBestVoice(){
   if (!ttsVoices.length) return null;
   if (chosenVoiceName){
     const picked = ttsVoices.find(v=>v.name===chosenVoiceName);
@@ -630,7 +629,6 @@ function pickChildVoice(){
   const byScore = englishVoices()
     .map(v=>{
       let score = 0;
-      if (/child|kid|junior/i.test(v.name)) score += 10;
       if (/female|woman|girl|samantha|zira|susan|victoria|karen|moira|tessa|fiona|serena/i.test(v.name)) score += 4;
       if (/google|natural|neural/i.test(v.name)) score += 1;
       return {v, score};
@@ -650,15 +648,15 @@ function speak(text){
     if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const utter = new SpeechSynthesisUtterance(cleanForSpeech(text));
-    const voice = pickChildVoice();
+    const voice = pickBestVoice();
     if (voice){
       try{ utter.voice = voice; utter.lang = voice.lang || 'en-US'; }
       catch(e){ utter.lang = 'en-US'; } // stale voice reference — fall back to the browser's default voice
     } else {
       utter.lang = 'en-US';
     }
-    utter.pitch = 1.6;   // higher pitch → sounds more like a child
-    utter.rate = 0.88;   // a touch slower, easier for a young learner to follow
+    utter.pitch = 1.0;   // normal, natural pitch
+    utter.rate = 0.95;   // a touch slower for clarity, still a natural-sounding voice
     window.speechSynthesis.speak(utter);
   });
 }
