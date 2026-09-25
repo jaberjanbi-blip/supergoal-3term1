@@ -1302,8 +1302,34 @@
     </p>
     </div><!-- end readingBody2 -->
 
+    <!-- ██ WORKBOOK: QUICK CHECK (Global QoL) ██ -->
+    <hr class="divider">
+    <div id="qcWorkbook" style="margin-top:0.5rem;">
+      <p style="font-weight:900;color:var(--red,#c0392b);font-size:1.05rem;margin-bottom:0.8rem;">Quick Check ✅ <span style="font-family:'Tajawal',sans-serif;direction:rtl;font-size:0.85rem;font-weight:700;color:var(--muted);">فحص سريع</span></p>
+
+      <!-- Part A: Vocabulary -->
+      <p class="q-text"><span class="q-number">A</span><span class="tr-sent" data-ar="المفردات. اكتب صيغ المقارنة والتفضيل الموجودة في المقال.">Vocabulary. Write the comparative and superlative forms found in the article.</span></p>
+      <div id="qcVocabInputs" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:0.6rem;margin-bottom:0.9rem;"></div>
+      <div class="btn-row">
+        <button class="btn btn-orange" onclick="checkQCVocab()">Check Answers ✔</button>
+        <button class="btn btn-ghost" onclick="resetQCVocab()">↺ Reset</button>
+      </div>
+      <div id="qcVocabResult" style="display:none;margin-top:0.75rem;"></div>
+
+      <hr class="divider">
+
+      <!-- Part B: True/False -->
+      <p class="q-text"><span class="q-number">B</span><span class="tr-sent" data-ar="الفهم. أجب بصح أو خطأ.">Comprehension. Answer true or false.</span></p>
+      <div id="qcTfContainer"></div>
+      <div class="btn-row">
+        <button class="btn btn-teal" onclick="submitQCTF()">Check Answers ✔</button>
+        <button class="btn btn-ghost" onclick="resetQCTF()">↺ Reset</button>
+      </div>
+      <div id="qcTfResult" style="display:none;margin-top:0.75rem;"></div>
+    </div>
+
     <div class="btn-row">
-      <button class="btn btn-orange" onclick="showTab('comprehension')">🧩 Try Comprehension Challenge →</button>
+      <button class="btn btn-ghost" onclick="showTab('comprehension')">🧩 Try Comprehension Challenge →</button>
       <button class="btn btn-ghost" onclick="showTab('mcq')">✅ Skip to MCQ Quiz →</button>
       <button class="btn btn-ghost" onclick="showTab('reading1')">← Jeddah</button>
     </div>
@@ -1776,6 +1802,34 @@ const tfData = [
   {s:"Japan's bullet trains are more expensive than airplane fares.",ar:"قطارات الرصاصة في اليابان أغلى من تذاكر الطيران.",answer:true},
   {s:"Hong Kong has a higher crime rate than Tokyo.",ar:"معدل الجريمة في هونغ كونغ أعلى من طوكيو.",answer:false,why:"Hong Kong's crime rate is lower than Tokyo. معدل الجريمة في هونغ كونغ أقل من طوكيو."},
   {s:"Approximately 6 million vehicles operate in Mexico City.",ar:"تقريباً 6 ملايين مركبة تعمل في مكسيكو سيتي.",answer:true},
+];
+
+// ── U6 READING 2 (Global QoL) — "QUICK CHECK" WORKBOOK PAGE ───────────────────
+// Part A: comparative/superlative forms actually used in the article
+const qcVocabAccepted = ['shorter','lower','safest','oldest','worst','worse'];
+
+// Part B: the five true/false statements from the workbook page
+const qcTfData = [
+  {s:"In Japan, trains are less expensive than planes.",
+   ar:"في اليابان، القطارات أرخص من الطائرات.",
+   answer:false,
+   why:"Train fares are as expensive as airplane fares — not less. أسعار القطارات مماثلة لأسعار الطائرات وليست أرخص."},
+  {s:"The trains in Japan travel at a speed faster than sound.",
+   ar:"تسافر القطارات في اليابان بسرعة أسرع من سرعة الصوت.",
+   answer:false,
+   why:"Bullet trains travel at 186 mph, far slower than the speed of sound (~767 mph). تسافر القطارات بسرعة 186 ميلاً في الساعة، وهي أبطأ بكثير من سرعة الصوت."},
+  {s:"The crime rate in Hong Kong is as low as that of Singapore.",
+   ar:"معدل الجريمة في هونغ كونغ منخفض بقدر معدلها في سنغافورة.",
+   answer:true,
+   why:"The article says the crime rate is roughly the same as in Singapore. يذكر المقال أن معدل الجريمة مماثل تقريباً لمعدل سنغافورة."},
+  {s:"Cambridge has a lot of green areas, but noise is a problem.",
+   ar:"في كامبريدج مساحات خضراء كثيرة، لكن الضوضاء مشكلة.",
+   answer:true,
+   why:"The article mentions green areas, parks, and bridges, and notes it's 'not as quiet' as before. يذكر المقال مساحات خضراء وحدائق وجسوراً، ويشير إلى أنها 'ليست هادئة كما كانت'."},
+  {s:"The traffic in Mexico City is much worse than in Sao Paulo.",
+   ar:"حركة المرور في مكسيكو سيتي أسوأ بكثير من ساو باولو.",
+   answer:true,
+   why:"The article says Mexico City has the worst traffic, even worse than Sao Paulo. يذكر المقال أن مكسيكو سيتي لديها أسوأ حركة مرور، أسوأ حتى من ساو باولو."},
 ];
 
 const openData = [
@@ -2405,6 +2459,122 @@ function resetTF() {
   document.getElementById('tfResult').style.display='none';
   buildTF();
   if (typeof easyModeActive === 'function' && easyModeActive()) applyEasyModeToTF();
+}
+
+// ═══════════════════════════════════════════════════════════
+// U6 READING 2 (GLOBAL QoL) — QUICK CHECK PART A: VOCABULARY
+// ═══════════════════════════════════════════════════════════
+function buildQCVocab(){
+  const c = document.getElementById('qcVocabInputs');
+  if (!c) return;
+  c.innerHTML = Array.from({length:qcVocabAccepted.length}).map((_,i)=>`
+    <input type="text" class="open-textarea" id="qcVocabInput${i}"
+           style="min-height:auto;padding:0.6rem 0.8rem;"
+           placeholder="${i+1}." autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off">
+  `).join('');
+}
+function normalizeQCWord(w){
+  return String(w||'').toLowerCase().trim().replace(/[.,!?"'()]/g,'');
+}
+function isQCVocabWord(raw){
+  const w = normalizeQCWord(raw);
+  if (!w) return null;
+  return qcVocabAccepted.includes(w);
+}
+function checkQCVocab(){
+  let correct=0, filled=0;
+  for (let i=0;i<qcVocabAccepted.length;i++){
+    const inp = document.getElementById('qcVocabInput'+i);
+    if (!inp) continue;
+    const ok = isQCVocabWord(inp.value);
+    inp.disabled = true;
+    if (ok===null){ inp.style.borderColor='#e2e8f0'; continue; }
+    filled++;
+    if (ok){ correct++; inp.style.borderColor='#16a34a'; inp.style.background='#f0fdf4'; }
+    else{ inp.style.borderColor='#dc2626'; inp.style.background='#fef2f2'; }
+  }
+  const qid='qcVocabA';
+  const alreadyDone = isQuestionCompleted(qid);
+  if (!alreadyDone && correct>=qcVocabAccepted.length){ recordAttempt(true,'Vocabulary'); addXP(10); updateStreak(true); markQuestionCompleted(qid); }
+  else if (!alreadyDone && filled>0){ recordAttempt(false,'Vocabulary'); updateStreak(false); }
+  const res = document.getElementById('qcVocabResult');
+  res.style.display='block';
+  res.className = correct>=qcVocabAccepted.length ? 'callout callout-tip' : 'callout callout-info';
+  res.innerHTML = `📊 <strong>${correct} / ${qcVocabAccepted.length}</strong> comparative/superlative forms found.
+    <span class="feedback-arabic">تم العثور على ${correct} من ${qcVocabAccepted.length} صيغ مقارنة/تفضيل صحيحة.</span>`;
+  saveState();
+}
+function resetQCVocab(){
+  document.getElementById('qcVocabResult').style.display='none';
+  buildQCVocab();
+}
+
+// ═══════════════════════════════════════════════════════════
+// U6 READING 2 (GLOBAL QoL) — QUICK CHECK PART B: TRUE/FALSE
+// ═══════════════════════════════════════════════════════════
+let qcTfAnswers = {};
+function buildQCTF(){
+  const c = document.getElementById('qcTfContainer');
+  if (!c) return;
+  c.innerHTML = qcTfData.map((t,ti) => `
+    <div class="tf-row tr-sent" id="qcTfRow${ti}" data-ar="${t.ar}">
+      <div class="tf-statement">${ti+1}. ${t.s}</div>
+      <div class="tf-btns">
+        <button class="tf-btn true" id="qcTfT${ti}" onclick="selectQCTF(${ti},true)">✓ True</button>
+        <button class="tf-btn false" id="qcTfF${ti}" onclick="selectQCTF(${ti},false)">✗ False</button>
+      </div>
+    </div>`).join('');
+  bindSentTips(c);
+}
+function selectQCTF(ti, val){
+  qcTfAnswers[ti] = val;
+  const t = document.getElementById('qcTfT'+ti), f = document.getElementById('qcTfF'+ti);
+  t.classList.remove('selected'); f.classList.remove('selected');
+  if (val) t.classList.add('selected'); else f.classList.add('selected');
+}
+function submitQCTF(){
+  let score = 0;
+  qcTfData.forEach((t,ti) => {
+    const row = document.getElementById('qcTfRow'+ti);
+    const chosen = qcTfAnswers[ti];
+    const qid = 'qctf'+ti;
+    const alreadyDone = isQuestionCompleted(qid);
+    document.getElementById('qcTfT'+ti).disabled = true;
+    document.getElementById('qcTfF'+ti).disabled = true;
+    if (chosen === undefined) {
+      row.classList.add('wrong', 'shake');
+      setTimeout(() => row.classList.remove('shake'), 400);
+      const msg = document.createElement('div');
+      msg.style.cssText = 'flex-basis:100%;font-size:0.8rem;color:#b91c1c;font-weight:700;margin-top:4px;';
+      msg.innerHTML = `Not answered. Answer: ${t.answer ? 'TRUE ✓' : 'FALSE ✗'}${t.why?'<br><span class="feedback-arabic">'+t.why+'</span>':''}`;
+      row.appendChild(msg);
+      if (!alreadyDone) { recordAttempt(false,'Quick Check'); markQuestionCompleted(qid); }
+    } else if (chosen === t.answer) {
+      score++;
+      row.classList.add('correct');
+      if (!alreadyDone) { recordAttempt(true,'Quick Check'); addXP(10); updateStreak(true); markQuestionCompleted(qid); }
+      else showAlreadyCompleted(row);
+    } else {
+      row.classList.add('wrong', 'shake');
+      setTimeout(() => row.classList.remove('shake'), 400);
+      const why = t.why||'';
+      const msg = document.createElement('div');
+      msg.style.cssText = 'flex-basis:100%;font-size:0.8rem;color:#b91c1c;font-weight:700;margin-top:4px;';
+      msg.innerHTML = `Wrong! It is ${t.answer ? 'TRUE ✓' : 'FALSE ✗'}. ${why}`;
+      row.appendChild(msg);
+      if (!alreadyDone) { recordAttempt(false,'Quick Check'); updateStreak(false); markQuestionCompleted(qid); }
+    }
+  });
+  const res = document.getElementById('qcTfResult');
+  res.style.display = 'block';
+  res.innerHTML = `<div class="callout callout-info">📊 Quick Check Score: <strong>${score} / ${qcTfData.length}</strong></div>`;
+  checkSectionCompletion();
+  saveState();
+}
+function resetQCTF(){
+  qcTfAnswers = {};
+  document.getElementById('qcTfResult').style.display='none';
+  buildQCTF();
 }
 
 // ── BUILD OPEN Q ──────────────────────────────────────────────────────────────
@@ -3564,6 +3734,8 @@ buildCheck();
 buildFITB();
 buildTF();
 buildOpen(openData,'openContainer');
+buildQCVocab();
+buildQCTF();
 buildMatch();
 buildListen();
 buildSpeed();
