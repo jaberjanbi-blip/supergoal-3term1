@@ -766,6 +766,7 @@
   .match-ar-label { display:none; font-family:'Tajawal',sans-serif; direction:rtl; font-size:0.78rem; font-weight:700; color:var(--teal-dark); }
   #arMatchGrid.show-ar .match-ar-word { display:block; }
   #arMatchGrid.show-ar-def .match-ar-def { display:block; }
+  .match-col-tr-btn { justify-content:center; margin-bottom:0.2rem; }
   .match-item .ar-text { font-family:'Tajawal',sans-serif; direction:rtl; }
 
   /* Listen and Choose / Speed Round reuse .question-block, .options, .option-btn patterns */
@@ -1409,10 +1410,6 @@
       <!-- Part A: Matching -->
       <p class="q-text"><span class="q-number">A</span><span class="tr-sent" data-ar="طابق الكلمات مع معانيها.">Match the words with their meanings.</span></p>
       <div class="tr-hint">👆 Touch a word, then touch its meaning &nbsp;|&nbsp; <span style="font-family:'Tajawal',sans-serif;direction:rtl;font-weight:700;">المسّ الكلمة ثم المسّ معناها</span></div>
-      <div class="btn-row" style="margin-top:0;margin-bottom:0.6rem;">
-        <button class="btn btn-ghost" id="arMatchTrBtn" style="font-size:0.78rem;padding:5px 14px;" onclick="toggleArMatchTranslation()">🌐 Show Arabic (Words) &nbsp;<span style="font-family:'Tajawal',sans-serif;direction:rtl;">إظهار ترجمة الكلمات</span></button>
-        <button class="btn btn-ghost" id="arMatchDefTrBtn" style="font-size:0.78rem;padding:5px 14px;" onclick="toggleArMatchDefTranslation()">🌐 Show Arabic (Meanings) &nbsp;<span style="font-family:'Tajawal',sans-serif;direction:rtl;">إظهار ترجمة المعاني</span></button>
-      </div>
       <div class="match-grid" id="arMatchGrid"></div>
       <div style="margin-top:0.6rem;font-size:0.8rem;font-weight:700;color:var(--muted);" id="arMatchLabel">0 / 6 matched</div>
 
@@ -2787,6 +2784,8 @@ function buildArMatch(){
   if (!grid) return;
   if (!arMatchLeftOrder) arMatchLeftOrder = shuffleArr(arMatchData.map((_,i)=>i));
   if (!arMatchRightOrder) arMatchRightOrder = shuffleArr(arMatchData.map((_,i)=>i));
+  const leftBtn = `<button class="btn btn-ghost match-col-tr-btn" id="arMatchTrBtn" style="font-size:0.78rem;padding:5px 14px;" onclick="toggleArMatchTranslation()">🌐 Show Arabic &nbsp;<span style="font-family:'Tajawal',sans-serif;direction:rtl;">إظهار ترجمة الكلمات</span></button>`;
+  const rightBtn = `<button class="btn btn-ghost match-col-tr-btn" id="arMatchDefTrBtn" style="font-size:0.78rem;padding:5px 14px;" onclick="toggleArMatchDefTranslation()">🌐 Show Arabic &nbsp;<span style="font-family:'Tajawal',sans-serif;direction:rtl;">إظهار ترجمة المعاني</span></button>`;
   const leftCol = arMatchLeftOrder.map(i => `<div class="match-item" data-idx="${i}" id="arMatchW${i}" onclick="arSelectWord(${i})">
       <div class="match-word-row">
         <span>${arMatchData[i].word}</span>
@@ -2798,7 +2797,7 @@ function buildArMatch(){
       <span>${arMatchData[i].def}</span>
       <span class="match-ar-label match-ar-def">${arMatchData[i].def_ar}</span>
     </div>`).join('');
-  grid.innerHTML = `<div class="match-col">${leftCol}</div><div class="match-col">${rightCol}</div>`;
+  grid.innerHTML = `<div class="match-col">${leftBtn}${leftCol}</div><div class="match-col">${rightBtn}${rightCol}</div>`;
   arMatchData.forEach((_,i)=>{ if (isQuestionCompleted('arm_'+i)) arMarkMatched(i); });
   arUpdateMatchLabel();
 }
