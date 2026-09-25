@@ -3564,6 +3564,51 @@ function stopTTSTimer(n) {
   clearInterval(tts[n].timer);
 }
 
+// ── AUDIO-SYNCED HIGHLIGHT (mp3Player1, timed to the real narration) ──────────
+// Timestamps (seconds) sourced from the narration's own subtitle track — keep
+// this in sync if audio222.mp3 is ever re-recorded.
+const AUDIO_SYNC_1 = [
+  {id:'titleSent1', start:0.058,  end:2.458},
+  {id:'r1s0',       start:2.516,  end:8.840},
+  {id:'r1s1',       start:9.134,  end:12.883},
+  {id:'r1s2',       start:13.178, end:22.563},
+  {id:'r1s3',       start:22.621, end:28.121},
+  {id:'r1s4',       start:28.415, end:30.504},
+  {id:'r1s5',       start:30.798, end:33.886},
+  {id:'r1s6',       start:34.180, end:39.930},
+  {id:'r1s7',       start:40.224, end:46.563},
+  {id:'r1s8',       start:46.621, end:52.784},
+  {id:'r1s9',       start:53.078, end:60.592},
+  {id:'r1s10',      start:60.886, end:71.078},
+  {id:'r1s11',      start:71.372, end:77.080},
+  {id:'r1s12',      start:77.138, end:81.609},
+  {id:'r1s13',      start:81.903, end:87.948},
+  {id:'r1s14',      start:88.242, end:91.844},
+];
+function clearAudioSyncHL(syncArr){
+  syncArr.forEach(s => { const el = document.getElementById(s.id); if (el) el.classList.remove('speaking'); });
+}
+function setupAudioSync(audioId, syncArr){
+  const audio = document.getElementById(audioId);
+  if (!audio) return;
+  let lastId = null;
+  audio.addEventListener('timeupdate', () => {
+    const t = audio.currentTime;
+    const cur = syncArr.find(s => t >= s.start && t < s.end);
+    if (cur && cur.id !== lastId) {
+      clearAudioSyncHL(syncArr);
+      const el = document.getElementById(cur.id);
+      if (el) el.classList.add('speaking');
+      lastId = cur.id;
+    } else if (!cur && lastId) {
+      clearAudioSyncHL(syncArr);
+      lastId = null;
+    }
+  });
+  audio.addEventListener('ended',   () => { clearAudioSyncHL(syncArr); lastId = null; });
+  audio.addEventListener('seeking', () => { clearAudioSyncHL(syncArr); lastId = null; });
+}
+
 // ── TTS (sentence-by-sentence, dual passage) ──────────────────────────────────
 const SENTS = {
   1: [
@@ -3944,6 +3989,7 @@ document.addEventListener('touchstart',e=>{if(!e.target.closest('.tr-sent')){hid
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 buildVocab();
+setupAudioSync('mp3Player1', AUDIO_SYNC_1);
 buildMCQ();
 buildCheck();
 buildFITB();
