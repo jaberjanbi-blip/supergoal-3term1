@@ -1183,8 +1183,8 @@
     <p class="reading-para">
       <span class="rd-sent" id="r1s8">During the 1980s, Jeddah became one of the largest open-air art <span class="hl hl-navy">galleries</span>.</span>
       <span class="rd-sent" id="r1s9"><span class="hl hl-orange">Modern sculptures</span>, ranging from <span class="hl hl-teal">abstract works</span> to <span class="hl hl-navy">traditional</span> coffee pots, decorate the streets.</span>
-      <span class="rd-sent" id="r1s10">Bayt Naseef in the <span class="hl hl-orange">historic center</span> is a <span class="hl hl-teal">charming blend</span> of old houses and <span class="hl hl-navy">skyscrapers</span>.</span>
-      <span class="rd-sent" id="r1s11">The marketplace features <span class="hl hl-orange">boutiques</span> and <span class="hl hl-teal">souqs</span>.</span>
+      <span class="rd-sent" id="r1s10">Bayt Naseef in <span class="hl hl-orange">Al-Balad</span>'s historic center is a <span class="hl hl-teal">charming blend</span> of old houses and <span class="hl hl-navy">skyscrapers</span>, and today it <span class="hl hl-orange">houses</span> a <span class="hl hl-teal">historic museum</span>.</span>
+      <span class="rd-sent" id="r1s11">The marketplace features a <span class="hl hl-navy">combination</span> of traditional <span class="hl hl-orange">souqs</span> and <span class="hl hl-teal">boutiques</span>.</span>
     </p>
     <p class="reading-para">
       <span class="rd-sent" id="r1s12">The city is famous for <span class="hl hl-navy">recreation</span> and <span class="hl hl-orange">athletic clubs</span>.</span>
@@ -1943,7 +1943,7 @@ const detectiveData = [
     ar: 'جد الجملة التي تثبت أن جدة تمزج بين العمارة القديمة والحديثة.',
     options: [
       'The city is famous for recreation and athletic clubs.',
-      "Bayt Naseef in the historic center is a charming blend of old houses and skyscrapers.",
+      "Bayt Naseef in Al-Balad's historic center is a charming blend of old houses and skyscrapers, and today it houses a historic museum.",
       'The marketplace features boutiques and souqs.',
       'Jeddah is truly the "Bride of the Red Sea."'
     ],
@@ -1984,7 +1984,7 @@ const masterData = [
   { type:'tf', s:'Jeddah has been named a global city for 20 consecutive years.', ar:'سُمّيت جدة مدينة عالمية لمدة 20 عاماً متتالياً.', answer:true },
   { type:'tf', s:"King Fahd's Fountain is the tallest building in the world.", ar:'نافورة الملك فهد هي أطول مبنى في العالم.', answer:false },
   { type:'mcq', q:'What makes Bayt Naseef special?', ar:'ما الذي يميز بيت نصيف؟',
-    opts:['It is a charming blend of old houses and skyscrapers','It is a brand new building','It has no visitors','It is located outside Jeddah'], correct:0 },
+    opts:['It is a charming blend of old houses and skyscrapers, and it houses a historic museum','It is a brand new building','It has no visitors','It is located outside Jeddah'], correct:0 },
   { type:'mcq', q:'Why is Hong Kong considered one of the safest cities despite being a huge metropolis?', ar:'لماذا تُعتبر هونغ كونغ من أكثر المدن أماناً رغم كونها مدينة ضخمة؟',
     opts:['Its crime rate stays low at scale, comparable to Singapore and lower than Tokyo/Toronto','It has no police force','It is a small quiet town','Crime is not tracked there'], correct:0 },
   { type:'tf', s:"We can infer that Jeddah's mix of historic sites and skyscrapers shows it blending heritage with modern growth.", ar:'يمكن أن نستنتج أن مزيج جدة من المواقع التاريخية وناطحات السحاب يُظهر مزجها بين التراث والنمو الحديث.', answer:true },
@@ -3364,8 +3364,8 @@ const SENTS = {
     {id:'r1s7', text:"Plans exist to build the Kingdom Tower, which will be the world's tallest building."},
     {id:'r1s8', text:"During the 1980s, Jeddah became one of the largest open-air art galleries."},
     {id:'r1s9', text:"Modern sculptures, ranging from abstract works to traditional coffee pots, decorate the streets."},
-    {id:'r1s10',text:"Bayt Naseef in the historic center is a charming blend of old houses and skyscrapers."},
-    {id:'r1s11',text:"The marketplace features boutiques and souqs."},
+    {id:'r1s10',text:"Bayt Naseef in Al-Balad's historic center is a charming blend of old houses and skyscrapers, and today it houses a historic museum."},
+    {id:'r1s11',text:"The marketplace features a combination of traditional souqs and boutiques."},
     {id:'r1s12',text:"The city is famous for recreation and athletic clubs."},
     {id:'r1s13',text:"A light breeze cools the coast where visitors enjoy coral reefs and scuba divers."},
     {id:'r1s14',text:'Jeddah is truly the "Bride of the Red Sea."'},
@@ -3566,14 +3566,15 @@ const WORDS = {
   'during':"خلال / أثناء",'became':"أصبح",'largest':"الأكبر",
   'open':"مفتوح",'art':"فن",'ranging':"تتراوح",'old':"قديم",
   'coffee':"قهوة",'pots':"أباريق",'decorate':"تُزيّن",'streets':"الشوارع",
-  'houses':"بيوت",'marketplace':"السوق",'features':"يتميز بـ",
+  'houses':"بيوت / يضمّ (يحتوي)",'marketplace':"السوق",'features':"يتميز بـ",
   'coast':"الساحل",'light':"خفيف / ضوء",'cools':"يُبرّد",
   'visitors':"الزوار",'truly':"حقاً / فعلاً",'bride':"عروس",
   'famous':"مشهور / شهير",'offers':"يُقدّم / يُتيح",
   'named':"سُمّي",'point':"يشير",'out':"إلى خارج",
   'include':"تشمل",'scuba':"غوص",'divers':"غواصون",
   'abstract':"تجريدي",'coffee':"قهوة",'naseef':"نصيف",
-  'bayt':"بيت",'open-air':"في الهواء الطلق",
+  'bayt':"بيت",'open-air':"في الهواء الطلق",'museum':"متحف",
+  'combination':"مزيج / توليفة",'al-balad':"البلد (الحي التاريخي)",
   // Global QoL reading
   'japan':"اليابان",'hong':"هونغ",'kong':"كونغ",'cambridge':"كامبريدج",
   'mexico':"المكسيك",'singapore':"سنغافورة",'tokyo':"طوكيو",
