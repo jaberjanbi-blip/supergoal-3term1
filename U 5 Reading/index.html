@@ -1492,6 +1492,29 @@
     </p>
     </div><!-- end readingBody2 -->
 
+    <!-- ██ WORKBOOK: VOCABULARY & COMPREHENSION (Inventions) ██ -->
+    <hr class="divider">
+    <div id="invWorkbook" style="margin-top:0.5rem;">
+
+      <!-- Part A: Vocabulary -->
+      <p class="q-text"><span class="q-number">A</span><span class="tr-sent" data-ar="المفردات. جد ست كلمات في المقال تتعلق بالتكنولوجيا.">Vocabulary. Find six words in the article that relate to technology.</span></p>
+      <div class="callout callout-tip" style="margin-bottom:0.9rem;">
+        💡 <span>Example: <strong>high-tech</strong> &nbsp;·&nbsp; <span style="font-family:'Tajawal',sans-serif;direction:rtl;">مثال: high-tech (عالي التقنية)</span></span>
+      </div>
+      <div id="techVocabInputs" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.6rem;margin-bottom:0.9rem;"></div>
+      <div class="btn-row">
+        <button class="btn btn-orange" onclick="checkTechVocab()">Check Answers ✔</button>
+        <button class="btn btn-ghost" onclick="resetTechVocab()">↺ Reset</button>
+      </div>
+      <div id="techVocabResult" style="display:none;margin-top:0.75rem;"></div>
+
+      <hr class="divider">
+
+      <!-- Part B: Comprehension -->
+      <p class="q-text"><span class="q-number">B</span><span class="tr-sent" data-ar="الفهم. أجب عن أسئلة حول الاختراعات.">Comprehension. Answer about the inventions.</span></p>
+      <div id="readingInvQContainer"></div>
+    </div>
+
     <div class="btn-row">
       <button class="btn btn-orange" onclick="showTab('comprehension')">🧩 Try Comprehension Challenge →</button>
       <button class="btn btn-ghost" onclick="showTab('mcq')">✅ Skip to MCQ Quiz →</button>
@@ -1971,6 +1994,46 @@ const openData = [
    ar:"٧. لماذا أُطلق على هاتف السبعينيات لقب 'الطوبة'؟",
    model:"Early cell phones in the 1970s were called 'the brick' because they were large and heavy. Now, cell phones have become a necessary part of daily life.",
    model_ar:"كانت الهواتف الخلوية الأولى في السبعينيات تُسمى 'الطوبة' لأنها كانت كبيرة وثقيلة. أما الآن، فأصبحت جزءاً ضرورياً من الحياة اليومية."},
+];
+
+// ── U5 READING 2 (Inventions) — WORKBOOK-STYLE VOCAB & COMPREHENSION ──────────
+// Part A: technology words the student should find in the passage (any close match counts)
+const techVocabAccepted = [
+  'computer','computers','ibm','ibm 701','pc','pcs','laptop','laptops',
+  'printer','printers','printing press','movable type','high-tech','hightech',
+  'digital photography','photography','camera','cameras','film',
+  'tv','tvs','television','televisions',
+  'microwave','microwaves','microwave oven','microwave ovens',
+  'cell phone','cell phones','cellphone','cellphones','phone','phones',
+  'stove','stoves','gas stove','electric stove','cassette tape','cassette'
+];
+
+// Part B: the six comprehension questions from the workbook page
+const invQData = [
+  {q:"1. How long has IBM produced commercially successful computers?",
+   ar:"١. منذ متى تنتج شركة آي بي إم حواسيب ناجحة تجارياً؟",
+   model:"IBM has produced commercially successful computers since 1953, when the IBM 701 was sold — even though it was huge and slow and took an entire room.",
+   model_ar:"تنتج شركة آي بي إم حواسيب ناجحة تجارياً منذ عام 1953، عندما بيع حاسوب IBM 701 بنجاح رغم أنه كان ضخماً وبطيئاً ويشغل غرفة كاملة."},
+  {q:"2. Has printing been around for a long time?",
+   ar:"٢. هل الطباعة موجودة منذ زمن طويل؟",
+   model:"Yes, printing has been around for a very long time. Mass printing started in 1440 in Germany with Gutenberg's movable type and printing press.",
+   model_ar:"نعم، الطباعة موجودة منذ زمن طويل جداً. بدأت الطباعة الشاملة عام 1440 في ألمانيا باختراع غوتنبرغ للحروف المتحركة ومطبعته."},
+  {q:"3. How long have TV sets been common in homes?",
+   ar:"٣. منذ متى أصبحت أجهزة التلفاز شائعة في المنازل؟",
+   model:"TV sets have been a common household device, available commercially since the 1930s.",
+   model_ar:"أصبحت أجهزة التلفاز جهازاً منزلياً شائعاً ومتوفراً تجارياً منذ ثلاثينيات القرن العشرين."},
+  {q:"4. How long ago did the first microwave ovens appear in homes?",
+   ar:"٤. منذ متى ظهرت أول أفران ميكروويف في المنازل؟",
+   model:"The microwave oven was invented by accident in 1946, so it has been in homes for many decades.",
+   model_ar:"اخترع فرن الميكروويف بالصدفة عام 1946، لذا فهو موجود في المنازل منذ عقود عديدة."},
+  {q:"5. How long have cameras been on the market?",
+   ar:"٥. منذ متى توجد الكاميرات في الأسواق؟",
+   model:"Film was introduced to the public in 1888, and digital photography began later, in 1975.",
+   model_ar:"قُدمت أفلام التصوير للجمهور عام 1888، بينما بدأ التصوير الرقمي لاحقاً عام 1975."},
+  {q:"6. For how many years have people had cell phones?",
+   ar:"٦. منذ كم سنة أصبح لدى الناس هواتف محمولة؟",
+   model:"People have had cell phones since the 1970s, when the first ones — nicknamed 'the brick' — appeared. They are now a necessary part of life.",
+   model_ar:"أصبح لدى الناس هواتف محمولة منذ سبعينيات القرن العشرين، عندما ظهرت أول الهواتف المعروفة بـ'الطوبة'. وهي الآن جزء ضروري من الحياة."},
 ];
 
 // ── VOCABULARY CHALLENGE DATA (reuses vocabData1/vocabData2's own words/meanings) ───
@@ -2589,6 +2652,57 @@ function toggleModel(containerId, oi) {
   }
 }
 
+
+// ═══════════════════════════════════════════════════════════
+// U5 READING 2 (INVENTIONS) — WORKBOOK VOCAB PART A
+// ═══════════════════════════════════════════════════════════
+function buildTechVocab(){
+  const c = document.getElementById('techVocabInputs');
+  if(!c) return;
+  c.innerHTML = Array.from({length:6}).map((_,i)=>`
+    <input type="text" class="open-textarea" id="techVocabInput${i}"
+           style="min-height:auto;padding:0.6rem 0.8rem;"
+           placeholder="${i+1}." autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off">
+  `).join('');
+}
+function normalizeTechWord(w){
+  return String(w||'').toLowerCase().trim().replace(/[.,!?"'()]/g,'');
+}
+function isTechWord(raw){
+  const w = normalizeTechWord(raw);
+  if(!w) return null;
+  if(techVocabAccepted.includes(w)) return true;
+  const alt = w.endsWith('s') ? w.slice(0,-1) : w+'s';
+  if(techVocabAccepted.includes(alt)) return true;
+  return techVocabAccepted.some(acc => w.length>=4 && (acc===w || acc.split(' ').includes(w)));
+}
+function checkTechVocab(){
+  let correct=0, filled=0;
+  for(let i=0;i<6;i++){
+    const inp = document.getElementById('techVocabInput'+i);
+    if(!inp) continue;
+    const ok = isTechWord(inp.value);
+    inp.disabled = true;
+    if(ok===null){ inp.style.borderColor='#e2e8f0'; continue; }
+    filled++;
+    if(ok){ correct++; inp.style.borderColor='#16a34a'; inp.style.background='#f0fdf4'; }
+    else{ inp.style.borderColor='#dc2626'; inp.style.background='#fef2f2'; }
+  }
+  const qid='techVocabA';
+  const alreadyDone = isQuestionCompleted(qid);
+  if(!alreadyDone && correct>=6){ recordAttempt(true,'Vocabulary'); addXP(10); updateStreak(true); markQuestionCompleted(qid); }
+  else if(!alreadyDone && filled>0){ recordAttempt(false,'Vocabulary'); updateStreak(false); }
+  const res = document.getElementById('techVocabResult');
+  res.style.display='block';
+  res.className = correct>=6 ? 'callout callout-tip' : 'callout callout-info';
+  res.innerHTML = `📊 <strong>${correct} / 6</strong> technology words found.
+    <span class="feedback-arabic">تم العثور على ${correct} من 6 كلمات تقنية صحيحة.</span>`;
+  saveState();
+}
+function resetTechVocab(){
+  document.getElementById('techVocabResult').style.display='none';
+  buildTechVocab();
+}
 
 // ═══════════════════════════════════════════════════════════
 // VOCABULARY CHALLENGE — Round 1: Match Word to Meaning
@@ -3627,6 +3741,8 @@ buildMCQ();
 buildFITB();
 buildTF();
 buildOpen(openData,'openContainer');
+buildOpen(invQData,'readingInvQContainer');
+buildTechVocab();
 buildMatch();
 buildListen();
 buildSpeed();
