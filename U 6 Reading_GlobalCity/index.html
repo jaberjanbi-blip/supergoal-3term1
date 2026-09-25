@@ -1194,6 +1194,32 @@
     </p>
     </div><!-- end readingBody1 -->
 
+    <!-- ██ WORKBOOK: AFTER READING (Jeddah) ██ -->
+    <hr class="divider">
+    <div id="jedWorkbook" style="margin-top:0.5rem;">
+      <p style="font-weight:900;color:var(--teal-dark,var(--teal));font-size:1.05rem;margin-bottom:0.8rem;">After Reading <span style="font-family:'Tajawal',sans-serif;direction:rtl;font-size:0.85rem;font-weight:700;color:var(--muted);">بعد القراءة</span></p>
+
+      <!-- Part A: Vocabulary in context -->
+      <p class="q-text"><span class="q-number">A</span><span class="tr-sent" data-ar="اختر المعنى الذي يناسب سياق القراءة للكلمة المسطّر تحتها.">Choose the meaning of the underlined words that best fits the reading context.</span></p>
+      <div id="jedVocabContainer"></div>
+      <div class="btn-row">
+        <button class="btn btn-orange" onclick="submitJedVocab()">Check Answers ✔</button>
+        <button class="btn btn-ghost" onclick="resetJedVocab()">↺ Reset</button>
+      </div>
+      <div id="jedVocabResult" style="display:none;margin-top:0.75rem;"></div>
+
+      <hr class="divider">
+
+      <!-- Part B: Mark which things a visitor can do -->
+      <p class="q-text"><span class="q-number">B</span><span class="tr-sent" data-ar="حدد ما يمكن للزائر فعله في جدة وفقاً للمقال.">Mark which of the following things a visitor can do in Jeddah, according to the article.</span></p>
+      <div id="jedDoContainer"></div>
+      <div class="btn-row">
+        <button class="btn btn-teal" onclick="submitJedDo()">Check Answers ✔</button>
+        <button class="btn btn-ghost" onclick="resetJedDo()">↺ Reset</button>
+      </div>
+      <div id="jedDoResult" style="display:none;margin-top:0.75rem;"></div>
+    </div>
+
     <div class="btn-row">
       <button class="btn btn-orange" onclick="showTab('reading2')">🌍 Global QoL →</button>
       <button class="btn btn-ghost" onclick="showTab('vocab')">← Vocabulary</button>
@@ -1805,7 +1831,54 @@ const tfData = [
   {s:"Approximately 6 million vehicles operate in Mexico City.",ar:"تقريباً 6 ملايين مركبة تعمل في مكسيكو سيتي.",answer:true},
 ];
 
-// ── U6 READING 2 (Global QoL) — "QUICK CHECK" WORKBOOK PAGE ───────────────────
+// ── U6 READING 1 (Jeddah) — "AFTER READING" WORKBOOK PAGE ─────────────────────
+// Part A: choose the meaning of the underlined word that best fits the context
+const jedVocabMCQData = [
+  {q:"1. for 20 consecutive years (line 1)",
+   ar:"١. لمدة 20 عاماً متتالياً (السطر 1)",
+   opts:["recent","an unbroken series","next or future"], correct:1,
+   fb:"'Consecutive' means happening one after another without a break. 'متتالي' يعني يحدث الواحد تلو الآخر دون انقطاع."},
+  {q:"2. point out several aspects (line 6)",
+   ar:"٢. يشيرون إلى عدة جوانب (السطر 6)",
+   opts:["ideas","ways","features"], correct:2,
+   fb:"'Aspects' means features or characteristics of something. 'الجوانب' تعني الخصائص أو السمات."},
+  {q:"3. a leading destination (line 10)",
+   ar:"٣. وجهة رائدة (السطر 10)",
+   opts:["popular","winning","most important"], correct:2,
+   fb:"'Leading' means most important or foremost. 'رائد' تعني الأهم أو في المقدمة."},
+  {q:"4. it houses a historic museum (line 39)",
+   ar:"٤. يضمّ متحفاً تاريخياً (السطر 39)",
+   opts:["visits","holds","protects"], correct:1,
+   fb:"'Houses' (verb) means holds or contains. 'يضمّ' هنا فعل يعني يحتوي أو يحمل."},
+  {q:"5. a combination of traditional souqs (line 44)",
+   ar:"٥. مزيج من الأسواق التقليدية (السطر 44)",
+   opts:["mixture","series of numbers","things joined"], correct:0,
+   fb:"'Combination' means a mixture of different things. 'مزيج' تعني خليط من أشياء مختلفة."},
+];
+
+// Part B: mark which things a visitor can do in Jeddah, according to the article
+const jedDoData = [
+  {s:"You can meet people from different cultures.",
+   ar:"يمكنك مقابلة أشخاص من ثقافات مختلفة.", answer:true,
+   why:"The article mentions Jeddah's cultural diversity. يذكر المقال التنوع الثقافي في جدة."},
+  {s:"You can study at university.",
+   ar:"يمكنك الدراسة في الجامعة.", answer:true,
+   why:"Jeddah is a leading destination for international students, with high-quality education. جدة وجهة رائدة للطلاب الدوليين وتوفر تعليماً عالي الجودة."},
+  {s:"You can visit the world's tallest fountain.",
+   ar:"يمكنك زيارة أطول نافورة في العالم.", answer:true,
+   why:"King Fahd's Fountain is the highest fountain in the world. نافورة الملك فهد هي أعلى نافورة في العالم."},
+  {s:"You can see modern sculptures at Bayt Naseef.",
+   ar:"يمكنك رؤية منحوتات حديثة في بيت نصيف.", answer:false,
+   why:"Modern sculptures decorate the streets in general — Bayt Naseef itself is described as old houses, skyscrapers, and a historic museum. تُزيّن المنحوتات الحديثة الشوارع عموماً، أما بيت نصيف فيُوصف بأنه بيوت قديمة وناطحات سحاب ومتحف تاريخي."},
+  {s:"You can go shopping in Al-Balad.",
+   ar:"يمكنك التسوق في البلد (الحي التاريخي).", answer:true,
+   why:"Al-Balad's marketplace features a combination of traditional souqs and boutiques. يضمّ سوق البلد مزيجاً من الأسواق التقليدية والمحلات الراقية."},
+  {s:"You can visit the Kingdom Tower.",
+   ar:"يمكنك زيارة برج المملكة.", answer:false,
+   why:"The article says plans exist to build the Kingdom Tower — it isn't built yet. يذكر المقال أن هناك خططاً لبناء برج المملكة، ولم يُبنَ بعد."},
+];
+
+
 // Part A: comparative/superlative forms actually used in the article
 const qcVocabAccepted = ['shorter','lower','safest','oldest','worst','worse'];
 
@@ -2576,6 +2649,146 @@ function resetQCTF(){
   qcTfAnswers = {};
   document.getElementById('qcTfResult').style.display='none';
   buildQCTF();
+}
+
+// ═══════════════════════════════════════════════════════════
+// U6 READING 1 (JEDDAH) — AFTER READING PART A: VOCAB IN CONTEXT MCQ
+// ═══════════════════════════════════════════════════════════
+let jedVocabAnswers = {};
+function buildJedVocab(){
+  const c = document.getElementById('jedVocabContainer');
+  if (!c) return;
+  c.innerHTML = jedVocabMCQData.map((q,qi) => `
+    <div class="question-block" id="jedVocabBlock${qi}">
+      <p class="q-text"><span class="q-number">${qi+1}</span><span class="tr-sent" data-ar="${q.ar}">${q.q}</span></p>
+      <div class="options">
+        ${q.opts.map((o,oi) => `
+          <button class="option-btn" id="jedVocabOpt${qi}_${oi}" onclick="selectJedVocab(${qi},${oi})">
+            <span class="option-letter">${String.fromCharCode(97+oi)}</span>${o}
+          </button>`).join('')}
+      </div>
+      <div class="feedback-msg" id="jedVocabFb${qi}"></div>
+    </div>`).join('');
+  bindSentTips(c);
+}
+function selectJedVocab(qi, oi){
+  jedVocabAnswers[qi] = oi;
+  document.querySelectorAll(`[id^="jedVocabOpt${qi}_"]`).forEach(b => b.classList.remove('selected-pending'));
+  document.getElementById(`jedVocabOpt${qi}_${oi}`).classList.add('selected-pending');
+  if (typeof saveState === 'function') saveState();
+}
+function submitJedVocab(){
+  let score = 0;
+  jedVocabMCQData.forEach((q,qi) => {
+    const chosen = jedVocabAnswers[qi];
+    const block  = document.getElementById('jedVocabBlock'+qi);
+    const fb     = document.getElementById('jedVocabFb'+qi);
+    const qid = 'jedv'+qi;
+    const alreadyDone = isQuestionCompleted(qid);
+    document.querySelectorAll(`[id^="jedVocabOpt${qi}_"]`).forEach(b => { b.disabled = true; b.classList.remove('selected-pending'); });
+    if (chosen === undefined) {
+      document.getElementById(`jedVocabOpt${qi}_${q.correct}`).classList.add('reveal-correct');
+      block.classList.add('shake');
+      setTimeout(() => block.classList.remove('shake'), 400);
+      fb.className = 'feedback-msg show wrong-fb';
+      fb.innerHTML = `❌ Not answered. Correct: <strong>${q.opts[q.correct]}</strong><br><span class="feedback-arabic">${q.fb}</span>`;
+      if (!alreadyDone) { recordAttempt(false,'After Reading Vocabulary'); markQuestionCompleted(qid); }
+    } else if (chosen === q.correct) {
+      score++;
+      document.getElementById(`jedVocabOpt${qi}_${chosen}`).classList.add('selected-correct');
+      block.classList.add('correct');
+      fb.className = 'feedback-msg show correct-fb';
+      fb.innerHTML = `✅ Correct! <span class="feedback-arabic">${q.fb}</span>`;
+      if (!alreadyDone) { recordAttempt(true,'After Reading Vocabulary'); addXP(10); updateStreak(true); markQuestionCompleted(qid); }
+      else showAlreadyCompleted(block);
+    } else {
+      document.getElementById(`jedVocabOpt${qi}_${chosen}`).classList.add('selected-wrong');
+      document.getElementById(`jedVocabOpt${qi}_${q.correct}`).classList.add('reveal-correct');
+      block.classList.add('wrong', 'shake');
+      setTimeout(() => block.classList.remove('shake'), 400);
+      fb.className = 'feedback-msg show wrong-fb';
+      fb.innerHTML = `❌ Wrong. Correct: <strong>${q.opts[q.correct]}</strong><br><span class="feedback-arabic">${q.fb}</span>`;
+      if (!alreadyDone) { recordAttempt(false,'After Reading Vocabulary'); updateStreak(false); markQuestionCompleted(qid); }
+    }
+  });
+  const res = document.getElementById('jedVocabResult');
+  res.style.display = 'block';
+  res.innerHTML = `<div class="callout callout-info">📊 Score: <strong>${score} / ${jedVocabMCQData.length}</strong></div>`;
+  checkSectionCompletion();
+  saveState();
+}
+function resetJedVocab(){
+  jedVocabAnswers = {};
+  document.getElementById('jedVocabResult').style.display = 'none';
+  buildJedVocab();
+}
+
+// ═══════════════════════════════════════════════════════════
+// U6 READING 1 (JEDDAH) — AFTER READING PART B: WHAT CAN A VISITOR DO
+// ═══════════════════════════════════════════════════════════
+let jedDoAnswers = {};
+function buildJedDo(){
+  const c = document.getElementById('jedDoContainer');
+  if (!c) return;
+  c.innerHTML = jedDoData.map((t,ti) => `
+    <div class="tf-row tr-sent" id="jedDoRow${ti}" data-ar="${t.ar}">
+      <div class="tf-statement">${ti+1}. ${t.s}</div>
+      <div class="tf-btns">
+        <button class="tf-btn true" id="jedDoT${ti}" onclick="selectJedDo(${ti},true)">✓ Yes</button>
+        <button class="tf-btn false" id="jedDoF${ti}" onclick="selectJedDo(${ti},false)">✗ No</button>
+      </div>
+    </div>`).join('');
+  bindSentTips(c);
+}
+function selectJedDo(ti, val){
+  jedDoAnswers[ti] = val;
+  const t = document.getElementById('jedDoT'+ti), f = document.getElementById('jedDoF'+ti);
+  t.classList.remove('selected'); f.classList.remove('selected');
+  if (val) t.classList.add('selected'); else f.classList.add('selected');
+}
+function submitJedDo(){
+  let score = 0;
+  jedDoData.forEach((t,ti) => {
+    const row = document.getElementById('jedDoRow'+ti);
+    const chosen = jedDoAnswers[ti];
+    const qid = 'jeddo'+ti;
+    const alreadyDone = isQuestionCompleted(qid);
+    document.getElementById('jedDoT'+ti).disabled = true;
+    document.getElementById('jedDoF'+ti).disabled = true;
+    if (chosen === undefined) {
+      row.classList.add('wrong', 'shake');
+      setTimeout(() => row.classList.remove('shake'), 400);
+      const msg = document.createElement('div');
+      msg.style.cssText = 'flex-basis:100%;font-size:0.8rem;color:#b91c1c;font-weight:700;margin-top:4px;';
+      msg.innerHTML = `Not answered. Answer: ${t.answer ? 'YES ✓' : 'NO ✗'}${t.why?'<br><span class="feedback-arabic">'+t.why+'</span>':''}`;
+      row.appendChild(msg);
+      if (!alreadyDone) { recordAttempt(false,'After Reading — Jeddah'); markQuestionCompleted(qid); }
+    } else if (chosen === t.answer) {
+      score++;
+      row.classList.add('correct');
+      if (!alreadyDone) { recordAttempt(true,'After Reading — Jeddah'); addXP(10); updateStreak(true); markQuestionCompleted(qid); }
+      else showAlreadyCompleted(row);
+    } else {
+      row.classList.add('wrong', 'shake');
+      setTimeout(() => row.classList.remove('shake'), 400);
+      const why = t.why||'';
+      const msg = document.createElement('div');
+      msg.style.cssText = 'flex-basis:100%;font-size:0.8rem;color:#b91c1c;font-weight:700;margin-top:4px;';
+      msg.innerHTML = `Wrong! It is ${t.answer ? 'YES ✓' : 'NO ✗'}. ${why}`;
+      row.appendChild(msg);
+      if (!alreadyDone) { recordAttempt(false,'After Reading — Jeddah'); updateStreak(false); markQuestionCompleted(qid); }
+    }
+  });
+  const res = document.getElementById('jedDoResult');
+  res.style.display = 'block';
+  res.innerHTML = `<div class="callout callout-info">📊 Score: <strong>${score} / ${jedDoData.length}</strong></div>`;
+  checkSectionCompletion();
+  saveState();
+}
+function resetJedDo(){
+  jedDoAnswers = {};
+  document.getElementById('jedDoResult').style.display = 'none';
+  buildJedDo();
 }
 
 // ── BUILD OPEN Q ──────────────────────────────────────────────────────────────
@@ -3739,6 +3952,9 @@ buildOpen(openData,'openContainer');
 buildQCVocab();
 buildQCTF();
 bindSentTips(document.getElementById('qcWorkbook')); // binds the static "A"/"B" instruction headers, which aren't inside a build*() container
+buildJedVocab();
+buildJedDo();
+bindSentTips(document.getElementById('jedWorkbook')); // binds the static "A"/"B" instruction headers for the Jeddah After Reading section
 buildMatch();
 buildListen();
 buildSpeed();
