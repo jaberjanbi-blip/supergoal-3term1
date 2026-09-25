@@ -747,16 +747,25 @@
   .match-col { display:flex; flex-direction:column; gap:0.5rem; }
   .match-item {
     background:#fff; border:1.5px solid #e2e8f0; border-radius:var(--radius-sm);
-    padding:0.75rem 0.9rem; min-height:40px; display:flex; align-items:center; justify-content:center;
+    padding:0.75rem 0.9rem; min-height:40px; display:flex; flex-direction:column; align-items:center; justify-content:center;
     font-size:0.88rem; font-weight:700; cursor:pointer;
-    transition:all .15s; text-align:center;
+    transition:all .15s; text-align:center; gap:2px;
   }
   .match-item:hover:not(.matched):not(.disabled) { border-color:var(--orange); background:var(--orange-light); }
   .match-item.selected { border-color:var(--teal); background:var(--teal-light); box-shadow:0 0 0 2px rgba(42,143,143,0.3); }
   .match-item.matched { border-color:var(--green); background:var(--green-bg); color:#15803d; cursor:default; opacity:0.85; }
   .match-item.wrong-flash { animation:shake .4s ease-in-out; border-color:var(--red); background:var(--red-bg); }
-  .match-ar-label { display:none; font-family:'Tajawal',sans-serif; direction:rtl; font-size:0.78rem; font-weight:700; color:var(--teal-dark); margin-top:3px; }
-  #arMatchGrid.show-ar .match-ar-label { display:block; }
+  .match-word-row { display:flex; align-items:center; justify-content:center; gap:6px; }
+  .match-speak-btn {
+    background:var(--teal); color:#fff; border:none; border-radius:50%;
+    width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:0.68rem; flex-shrink:0; padding:0; transition:.15s;
+  }
+  .match-speak-btn:hover { background:var(--teal-dark); transform:scale(1.1); }
+  .match-speak-btn.speaking { animation:pulse-speak 0.55s ease-in-out infinite alternate; }
+  .match-ar-label { display:none; font-family:'Tajawal',sans-serif; direction:rtl; font-size:0.78rem; font-weight:700; color:var(--teal-dark); }
+  #arMatchGrid.show-ar .match-ar-word { display:block; }
+  #arMatchGrid.show-ar-def .match-ar-def { display:block; }
   .match-item .ar-text { font-family:'Tajawal',sans-serif; direction:rtl; }
 
   /* Listen and Choose / Speed Round reuse .question-block, .options, .option-btn patterns */
@@ -1401,7 +1410,8 @@
       <p class="q-text"><span class="q-number">A</span><span class="tr-sent" data-ar="طابق الكلمات مع معانيها.">Match the words with their meanings.</span></p>
       <div class="tr-hint">👆 Touch a word, then touch its meaning &nbsp;|&nbsp; <span style="font-family:'Tajawal',sans-serif;direction:rtl;font-weight:700;">المسّ الكلمة ثم المسّ معناها</span></div>
       <div class="btn-row" style="margin-top:0;margin-bottom:0.6rem;">
-        <button class="btn btn-ghost" id="arMatchTrBtn" style="font-size:0.78rem;padding:5px 14px;" onclick="toggleArMatchTranslation()">🌐 Show Arabic &nbsp;<span style="font-family:'Tajawal',sans-serif;direction:rtl;">إظهار الترجمة</span></button>
+        <button class="btn btn-ghost" id="arMatchTrBtn" style="font-size:0.78rem;padding:5px 14px;" onclick="toggleArMatchTranslation()">🌐 Show Arabic (Words) &nbsp;<span style="font-family:'Tajawal',sans-serif;direction:rtl;">إظهار ترجمة الكلمات</span></button>
+        <button class="btn btn-ghost" id="arMatchDefTrBtn" style="font-size:0.78rem;padding:5px 14px;" onclick="toggleArMatchDefTranslation()">🌐 Show Arabic (Meanings) &nbsp;<span style="font-family:'Tajawal',sans-serif;direction:rtl;">إظهار ترجمة المعاني</span></button>
       </div>
       <div class="match-grid" id="arMatchGrid"></div>
       <div style="margin-top:0.6rem;font-size:0.8rem;font-weight:700;color:var(--muted);" id="arMatchLabel">0 / 6 matched</div>
@@ -1992,12 +2002,12 @@ const tfData = [
 // ── U5 READING 1 (Special Effects) — "AFTER READING" WORKBOOK PAGE ────────────
 // Part A: word ↔ definition matching
 const arMatchData = [
-  {word:"technique",  def:"a way of doing things",                  ar:"تقنية / أسلوب"},
-  {word:"sequence",   def:"actions or events in a particular order", ar:"تسلسل"},
-  {word:"interrupt",  def:"stop in the middle",                      ar:"يقاطع / يوقف"},
-  {word:"miniature",  def:"a small model",                           ar:"نموذج مصغر"},
-  {word:"innovation", def:"a new way of doing things",               ar:"ابتكار"},
-  {word:"accomplish", def:"succeed in doing something",              ar:"ينجز / يحقق"},
+  {word:"technique",  def:"a way of doing things",                  ar:"تقنية / أسلوب",  def_ar:"طريقة للقيام بالأشياء"},
+  {word:"sequence",   def:"actions or events in a particular order", ar:"تسلسل",          def_ar:"أفعال أو أحداث بترتيب معين"},
+  {word:"interrupt",  def:"stop in the middle",                      ar:"يقاطع / يوقف",   def_ar:"التوقف في المنتصف"},
+  {word:"miniature",  def:"a small model",                           ar:"نموذج مصغر",     def_ar:"نموذج صغير"},
+  {word:"innovation", def:"a new way of doing things",               ar:"ابتكار",         def_ar:"طريقة جديدة للقيام بالأشياء"},
+  {word:"accomplish", def:"succeed in doing something",              ar:"ينجز / يحقق",    def_ar:"النجاح في فعل شيء ما"},
 ];
 
 // Part B: the six "Answer about the article" questions
@@ -2777,8 +2787,17 @@ function buildArMatch(){
   if (!grid) return;
   if (!arMatchLeftOrder) arMatchLeftOrder = shuffleArr(arMatchData.map((_,i)=>i));
   if (!arMatchRightOrder) arMatchRightOrder = shuffleArr(arMatchData.map((_,i)=>i));
-  const leftCol = arMatchLeftOrder.map(i => `<div class="match-item" data-idx="${i}" id="arMatchW${i}" onclick="arSelectWord(${i})">${arMatchData[i].word}<span class="match-ar-label">${arMatchData[i].ar}</span></div>`).join('');
-  const rightCol = arMatchRightOrder.map(i => `<div class="match-item" data-idx="${i}" id="arMatchD${i}" onclick="arSelectDef(${i})">${arMatchData[i].def}</div>`).join('');
+  const leftCol = arMatchLeftOrder.map(i => `<div class="match-item" data-idx="${i}" id="arMatchW${i}" onclick="arSelectWord(${i})">
+      <div class="match-word-row">
+        <span>${arMatchData[i].word}</span>
+        <button class="match-speak-btn" id="arSpk${i}" onclick="event.stopPropagation();speakChallengeWord('${arMatchData[i].word.replace(/'/g,"\\'")}','arSpk${i}')" title="Listen">🔊</button>
+      </div>
+      <span class="match-ar-label match-ar-word">${arMatchData[i].ar}</span>
+    </div>`).join('');
+  const rightCol = arMatchRightOrder.map(i => `<div class="match-item" data-idx="${i}" id="arMatchD${i}" onclick="arSelectDef(${i})">
+      <span>${arMatchData[i].def}</span>
+      <span class="match-ar-label match-ar-def">${arMatchData[i].def_ar}</span>
+    </div>`).join('');
   grid.innerHTML = `<div class="match-col">${leftCol}</div><div class="match-col">${rightCol}</div>`;
   arMatchData.forEach((_,i)=>{ if (isQuestionCompleted('arm_'+i)) arMarkMatched(i); });
   arUpdateMatchLabel();
@@ -2789,8 +2808,17 @@ function toggleArMatchTranslation(){
   if (!grid || !btn) return;
   const showing = grid.classList.toggle('show-ar');
   btn.innerHTML = showing
-    ? '🙈 Hide Arabic &nbsp;<span style="font-family:\'Tajawal\',sans-serif;direction:rtl;">إخفاء الترجمة</span>'
-    : '🌐 Show Arabic &nbsp;<span style="font-family:\'Tajawal\',sans-serif;direction:rtl;">إظهار الترجمة</span>';
+    ? '🙈 Hide Arabic (Words) &nbsp;<span style="font-family:\'Tajawal\',sans-serif;direction:rtl;">إخفاء ترجمة الكلمات</span>'
+    : '🌐 Show Arabic (Words) &nbsp;<span style="font-family:\'Tajawal\',sans-serif;direction:rtl;">إظهار ترجمة الكلمات</span>';
+}
+function toggleArMatchDefTranslation(){
+  const grid = document.getElementById('arMatchGrid');
+  const btn = document.getElementById('arMatchDefTrBtn');
+  if (!grid || !btn) return;
+  const showing = grid.classList.toggle('show-ar-def');
+  btn.innerHTML = showing
+    ? '🙈 Hide Arabic (Meanings) &nbsp;<span style="font-family:\'Tajawal\',sans-serif;direction:rtl;">إخفاء ترجمة المعاني</span>'
+    : '🌐 Show Arabic (Meanings) &nbsp;<span style="font-family:\'Tajawal\',sans-serif;direction:rtl;">إظهار ترجمة المعاني</span>';
 }
 function arMarkMatched(i){
   const w = document.getElementById('arMatchW'+i), d = document.getElementById('arMatchD'+i);
