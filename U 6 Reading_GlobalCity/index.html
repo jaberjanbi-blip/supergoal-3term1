@@ -31,6 +31,7 @@
     --shadow-sm:   0 2px 8px rgba(0,0,0,0.06);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  audio { max-width: 100%; }
   body { font-family: 'Nunito', sans-serif; background: var(--sand); color: var(--ink); line-height: 1.75; min-height: 100vh; }
 
   /* HEADER */
@@ -1122,8 +1123,8 @@
         <div style="font-size:1rem;font-weight:900;color:#fff;line-height:1.3;"><span class="rd-sent" id="titleSent1">Jeddah: Global City</span></div>
         <div style="font-family:'Tajawal',sans-serif;direction:rtl;font-size:0.82rem;color:rgba(255,255,255,0.72);margin-top:2px;">جدة: مدينة عالمية</div>
       </div>
-      <div style="margin-left:auto;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;">
-        <audio id="mp3Player1" controls style="width:320px;">
+      <div style="margin-left:auto;flex-shrink:1;min-width:0;width:100%;max-width:320px;display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <audio id="mp3Player1" controls style="width:100%;max-width:320px;">
           <source src="audio222.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
@@ -1227,8 +1228,8 @@
         <div style="font-size:1rem;font-weight:900;color:#fff;line-height:1.3;"><span class="rd-sent" id="titleSent2">Global Quality of Life</span></div>
         <div style="font-family:'Tajawal',sans-serif;direction:rtl;font-size:0.82rem;color:rgba(255,255,255,0.72);margin-top:2px;">تاريخ الاختراعات اليومية</div>
       </div>
-      <div style="margin-left:auto;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;">
-        <audio id="mp3Player2" controls style="width:320px;">
+      <div style="margin-left:auto;flex-shrink:1;min-width:0;width:100%;max-width:320px;display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <audio id="mp3Player2" controls style="width:100%;max-width:320px;">
           <source src="audio333.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
