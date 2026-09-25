@@ -1498,7 +1498,11 @@
 
   /* AUTO-HIDE NAV ON SCROLL — added by Claude */
   html, body { overflow-anchor: none; }
-  .tab-bar { max-height:600px; overflow:hidden; transition:max-height .28s ease, padding .28s ease, opacity .2s ease; }
+  /* overflow-y only (not the overflow shorthand): the shorthand would also set
+     overflow-x:hidden here, silently overriding the mobile rule above that makes
+     the tab bar horizontally scrollable — breaking the swipe-to-see-more-tabs
+     behavior on phones even though this rule has nothing to do with horizontal scroll. */
+  .tab-bar { max-height:600px; overflow-y:hidden; transition:max-height .28s ease, padding .28s ease, opacity .2s ease; }
   .tab-bar.nav-hidden { max-height:0 !important; padding-top:0 !important; padding-bottom:0 !important; opacity:0; box-shadow:none; pointer-events:none; }
 </style>
 </head>
@@ -1746,8 +1750,8 @@
           <div style="font-family:'Tajawal',sans-serif;direction:rtl;font-size:0.82rem;color:rgba(255,255,255,0.72);margin-top:2px;">أطعمة من الأمريكتين</div>
         </div>
         <!-- ── LISTEN BUTTON ── -->
-        <div style="margin-left:auto;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;">
-         <audio id="audio1" controls preload="auto" style="width:320px;">
+        <div style="margin-left:auto;flex:0 1 320px;min-width:0;max-width:100%;display:flex;flex-direction:column;align-items:center;gap:4px;">
+         <audio id="audio1" controls preload="auto" style="width:100%;">
             <source src="audio20.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
@@ -1828,6 +1832,24 @@
         </p>
       </div>
       </div>
+
+      <hr class="divider">
+
+      <!-- ██ AFTER READING ██ -->
+      <div class="section-label" style="margin-top:0.2rem;">
+        <div class="icon icon-orange">
+          <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+            <path d="M9 11l3 3L22 4" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div><h2>After Reading</h2><span class="arabic">بعد القراءة</span></div>
+      </div>
+
+      <div style="margin-bottom:0.6rem;" id="arTfHeaderText">
+        <p class="open-q-text"><span class="tr-sent" data-ar="أجب بصح أو خطأ.">A. Answer true or false.</span></p>
+      </div>
+      <div id="arTfContainer"></div>
 
       <div class="btn-row">
         <button class="btn btn-orange" onclick="showTab('comprehension')">🧩 Try Comprehension Challenge →</button>
@@ -2172,6 +2194,40 @@ const tfData = [
   { s:'Avocado must be picked before it ripens to reach full maturity.', ar:'يجب قطف الأفوكادو قبل نضجه للوصول إلى النضج الكامل.', answer: true },
   { s:'Emperor Moctezuma drank chocolate from a silver cup.', ar:'كان الإمبراطور موكتيزوما يشرب الشوكولاتة من كأس فضي.', answer: false, why:'He drank from a gold cup, not silver. كان يشرب من كأس ذهبي وليس فضي.' },
   { s:'Swiss creators made the first bar of chocolate in the 19th century.', ar:'صنع المبتكرون السويسريون أول لوح شوكولاتة في القرن التاسع عشر.', answer: true },
+];
+
+// ── AFTER READING — True/False (Part A) ──────────────────────────────────
+// Separate from tfData above: distinct statements (matching the textbook's own
+// After Reading page), own container/state, and — per the request — feedback
+// text kept in its own field with a matching Arabic field, so both the
+// statement AND the feedback are touch-translatable via tr-sent (tfData's
+// older "why" field mixes English/Arabic in one string, not translatable).
+const afterTfData = [
+  { s:"The Spanish introduced tomatoes to Europe.",
+    ar:"قدّم الإسبان الطماطم إلى أوروبا.",
+    answer:true,
+    fb:"Correct — Spanish explorers introduced tomatoes to Spain, and their popularity spread throughout Europe from there.",
+    fb_ar:"صحيح — قدّم المستكشفون الإسبان الطماطم إلى إسبانيا، وانتشرت شعبيتها من هناك في جميع أنحاء أوروبا." },
+  { s:"Tomatoes are not grown in the Middle East.",
+    ar:"الطماطم لا تُزرع في الشرق الأوسط.",
+    answer:false,
+    fb:"False — tomatoes ARE grown in the Middle East; a British diplomat introduced them there, and Egypt is now one of the world's top producers.",
+    fb_ar:"خطأ — الطماطم تُزرع فعلاً في الشرق الأوسط؛ أدخلها دبلوماسي بريطاني، ومصر الآن من أكبر منتجيها في العالم." },
+  { s:"Early sailors used avocados because they tasted like butter.",
+    ar:"استخدم البحارة الأوائل الأفوكادو لأن طعمه يشبه الزبدة.",
+    answer:false,
+    fb:"False — sailors called avocados \"seaman's butter\" because the fruit lasted a long time and was good for sea voyages, not because of its taste.",
+    fb_ar:"خطأ — أطلق البحارة على الأفوكادو اسم «زبدة البحار» لأنها كانت تدوم طويلاً وتصلح للرحلات البحرية، وليس بسبب طعمها." },
+  { s:"Moctezuma sent the king of Spain a gold cup to drink chocolate from.",
+    ar:"أرسل موكتيزوما كأساً ذهبياً لملك إسبانيا ليشرب منه الشوكولاتة.",
+    answer:false,
+    fb:"False — Moctezuma drank his chocolate himself from his own gold cup; he did not send a cup to the king of Spain.",
+    fb_ar:"خطأ — كان موكتيزوما يشرب الشوكولاتة بنفسه من كأسه الذهبي، ولم يُرسل كأساً لملك إسبانيا." },
+  { s:"The first chocolate bars date from the twentieth century.",
+    ar:"يعود أول لوح شوكولاتة إلى القرن العشرين.",
+    answer:false,
+    fb:"False — the first chocolate bar was created in the nineteenth century by Henri Nestlé in Switzerland.",
+    fb_ar:"خطأ — صُنع أول لوح شوكولاتة في القرن التاسع عشر على يد هنري نستله في سويسرا." },
 ];
 
 const openData = [
@@ -2789,6 +2845,48 @@ function submitTF() {
   if (score === tfData.length) unlockAchievement('perfect-tf');
   checkSectionCompletion();
   saveState();
+}
+
+// ── AFTER READING — True/False build + interaction ───────────────────────
+function buildAfterTF(){
+  const c = document.getElementById('arTfContainer');
+  if (!c) return;
+  c.innerHTML = afterTfData.map((t,ti) => `
+    <div class="tf-row" id="arTfRow${ti}">
+      <div class="tf-statement">
+        <span style="font-weight:800;color:var(--navy);">${ti+1}.</span>
+        <span class="tr-sent" data-ar="${t.ar}">${t.s}</span>
+      </div>
+      <div class="tf-btns">
+        <button class="tf-btn true" id="arTfT${ti}" onclick="selectAfterTF(${ti},true)">✓ True</button>
+        <button class="tf-btn false" id="arTfF${ti}" onclick="selectAfterTF(${ti},false)">✗ False</button>
+      </div>
+      <div class="model-answer" id="arTfFb${ti}" style="flex-basis:100%;">
+        <span class="tr-sent" data-ar="${t.fb_ar}">${t.fb}</span>
+      </div>
+    </div>`).join('');
+  bindSentTips(c);
+}
+function selectAfterTF(ti, val){
+  const t = afterTfData[ti];
+  const tBtn = document.getElementById('arTfT'+ti);
+  const fBtn = document.getElementById('arTfF'+ti);
+  const row  = document.getElementById('arTfRow'+ti);
+  const fb   = document.getElementById('arTfFb'+ti);
+  tBtn.classList.remove('selected'); fBtn.classList.remove('selected');
+  row.classList.remove('correct','wrong');
+  if (val) tBtn.classList.add('selected'); else fBtn.classList.add('selected');
+  const correct = (val === t.answer);
+  row.classList.add(correct ? 'correct' : 'wrong');
+  fb.classList.add('show');
+  const qid = 'artf'+ti;
+  if (!isQuestionCompleted(qid)) {
+    recordAttempt(correct, 'After Reading True/False');
+    addXP(correct ? 10 : 4);
+    markQuestionCompleted(qid);
+    checkSectionCompletion();
+    saveState();
+  }
 }
 
 function resetTF() {
@@ -3568,6 +3666,11 @@ buildFITB();
 buildTF();
 buildOpen();
 buildMatch();
+buildAfterTF();
+bindSentTips(document.getElementById('arTfHeaderText'));  // static Part A instruction line — bound individually
+// (NOT a blanket bindSentTips over the whole panel — arTfContainer is already
+//  bound individually by buildAfterTF(); rebinding the panel would double-bind
+//  those elements and make taps show-then-instantly-hide on mobile.)
 buildListen();
 buildSpeed();
 buildMainIdea();
@@ -3860,6 +3963,7 @@ function bindSentTips(container) {
     el.addEventListener('touchstart', e => {
       // Don't block input clicks inside fitb rows
       if (e.target.tagName === 'INPUT') return;
+      e.preventDefault();
       e.stopPropagation();
       if (activeTrSent && activeTrSent !== el) {
         activeTrSent.classList.remove('tapped');
@@ -3874,7 +3978,7 @@ function bindSentTips(container) {
         showSentTip(ar, el);
         activeTrSent = el;
       }
-    }, { passive: true });
+    }, { passive: false });
   });
 }
 
