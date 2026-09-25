@@ -3736,6 +3736,7 @@ buildTF();
 buildOpen(openData,'openContainer');
 buildQCVocab();
 buildQCTF();
+bindSentTips(document.getElementById('qcWorkbook')); // binds the static "A"/"B" instruction headers, which aren't inside a build*() container
 buildMatch();
 buildListen();
 buildSpeed();
