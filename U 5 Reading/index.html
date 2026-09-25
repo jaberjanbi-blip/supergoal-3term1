@@ -3854,8 +3854,6 @@ buildTF();
 buildOpen(openData,'openContainer');
 buildOpen(invQData,'readingInvQContainer');
 buildTechVocab();
-buildArMatch();
-buildOpen(arQData,'arQContainer');
 buildMatch();
 buildListen();
 buildSpeed();
@@ -4760,6 +4758,8 @@ function initGamification(){
   try{
     const restored=loadState();
     restoreMatchState(); // idempotent — ensures Match round progress label/bar is correct even on a fresh session
+    buildArMatch();      // After Reading (Special Effects) word-matching — needs isQuestionCompleted, defined below buildArMatch's original call site
+    buildOpen(arQData,'arQContainer'); // After Reading (Special Effects) comprehension questions
     updateModeBadge();
     updateNameDisplays();
     updateLevelBadge();
