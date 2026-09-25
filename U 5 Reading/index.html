@@ -1390,6 +1390,24 @@
     </p>
     </div><!-- end readingBody1 -->
 
+    <!-- ██ WORKBOOK: AFTER READING (Special Effects) ██ -->
+    <hr class="divider">
+    <div id="afterReading1" style="margin-top:0.5rem;">
+      <p style="font-weight:900;color:var(--teal-dark,var(--teal));font-size:1.05rem;margin-bottom:0.8rem;">After Reading <span style="font-family:'Tajawal',sans-serif;direction:rtl;font-size:0.85rem;font-weight:700;color:var(--muted);">بعد القراءة</span></p>
+
+      <!-- Part A: Matching -->
+      <p class="q-text"><span class="q-number">A</span><span class="tr-sent" data-ar="طابق الكلمات مع معانيها.">Match the words with their meanings.</span></p>
+      <div class="tr-hint">👆 Touch a word, then touch its meaning &nbsp;|&nbsp; <span style="font-family:'Tajawal',sans-serif;direction:rtl;font-weight:700;">المسّ الكلمة ثم المسّ معناها</span></div>
+      <div class="match-grid" id="arMatchGrid"></div>
+      <div style="margin-top:0.6rem;font-size:0.8rem;font-weight:700;color:var(--muted);" id="arMatchLabel">0 / 6 matched</div>
+
+      <hr class="divider">
+
+      <!-- Part B: Comprehension -->
+      <p class="q-text"><span class="q-number">B</span><span class="tr-sent" data-ar="أجب عن أسئلة حول المقال.">Answer about the article.</span></p>
+      <div id="arQContainer"></div>
+    </div>
+
     <div class="btn-row">
       <button class="btn btn-orange" onclick="showTab('reading2')">💡 Inventions →</button>
       <button class="btn btn-ghost" onclick="showTab('vocab')">← Vocabulary</button>
@@ -1964,6 +1982,45 @@ const tfData = [
   {s:"The IBM 701 computer was small enough to fit on a desk.", ar:"كان كمبيوتر IBM 701 صغيراً بما يكفي ليناسب المكتب.", answer:false, why:"It was huge and took an entire room. كان ضخماً ويشغل غرفة كاملة."},
   {s:"Gutenberg started mass printing with movable type in 1440 in Germany.", ar:"بدأ غوتنبرغ الطباعة الشاملة بالحروف المتحركة عام 1440 في ألمانيا.", answer:true},
   {s:"Early cell phones in the 1970s were small and lightweight.", ar:"كانت الهواتف المحمولة الأولى في السبعينيات صغيرة وخفيفة الوزن.", answer:false, why:"They were large and heavy and called 'the brick'. كانت كبيرة وثقيلة وسُميت بالطوبة."},
+];
+
+// ── U5 READING 1 (Special Effects) — "AFTER READING" WORKBOOK PAGE ────────────
+// Part A: word ↔ definition matching
+const arMatchData = [
+  {word:"technique",  def:"a way of doing things"},
+  {word:"sequence",   def:"actions or events in a particular order"},
+  {word:"interrupt",  def:"stop in the middle"},
+  {word:"miniature",  def:"a small model"},
+  {word:"innovation", def:"a new way of doing things"},
+  {word:"accomplish", def:"succeed in doing something"},
+];
+
+// Part B: the six "Answer about the article" questions
+const arQData = [
+  {q:"1. How long have audiences watched films?",
+   ar:"١. منذ متى والجماهير تشاهد الأفلام؟",
+   model:"Audiences have been watching films since December 28, 1895, when the Lumière brothers showed short films in Paris. That is over 125 years ago.",
+   model_ar:"الجماهير تشاهد الأفلام منذ 28 ديسمبر 1895، عندما عرض الأخوة لوميير أفلاماً قصيرة في باريس. هذا منذ أكثر من 125 عاماً."},
+  {q:"2. How was the 'stop trick' discovered?",
+   ar:"٢. كيف تم اكتشاف 'خدعة التوقف'؟",
+   model:"The stop trick was discovered by accident by Georges Méliès when his camera interrupted while filming. A bus mysteriously appeared to change into a carriage in the film.",
+   model_ar:"اكتُشفت خدعة التوقف بالصدفة من قِبَل جورج ميليس عندما توقفت كاميرته أثناء التصوير. وبدا أن حافلة تحولت بشكل غامض إلى عربة في الفيلم."},
+  {q:"3. What special effect was used for King Kong?",
+   ar:"٣. ما هو المؤثر الخاص الذي استُخدم في فيلم كينغ كونغ؟",
+   model:"For King Kong (1933), filmmakers used miniatures and animation of small-scale models to create the giant gorilla character.",
+   model_ar:"في فيلم كينغ كونغ (1933)، استخدم صانعو الأفلام النماذج المصغرة والرسوم المتحركة لشخصيات النماذج صغيرة الحجم لإنشاء شخصية الغوريلا العملاقة."},
+  {q:"4. How did the special effects crew of Star Wars create realistic motion?",
+   ar:"٤. كيف ابتكر طاقم المؤثرات الخاصة لفيلم حرب النجوم حركة واقعية؟",
+   model:"The Star Wars crew used revolutionary innovations like a computer-controlled camera to create realistic motion and fantastic imagery.",
+   model_ar:"استخدم طاقم حرب النجوم ابتكارات ثورية مثل الكاميرا التي يتحكم بها الكمبيوتر لإنشاء حركة واقعية وتصوير خيالي رائع."},
+  {q:"5. What films have become references in the art of visual effects?",
+   ar:"٥. ما هي الأفلام التي أصبحت مراجع في فن المؤثرات البصرية؟",
+   model:"Films like Jurassic Park, Transformers, and Pirates of the Caribbean have become references in visual effects, with imaginary characters like Spiderman looking realistic on television.",
+   model_ar:"أصبحت أفلام مثل حديقة الديناصورات والمحولون وقراصنة الكاريبي مراجع في المؤثرات البصرية، مع شخصيات خيالية مثل سبايدرمان تبدو واقعية على التلفاز."},
+  {q:"6. Have you seen any of the films mentioned in the article? What is your opinion of them?",
+   ar:"٦. هل شاهدت أياً من الأفلام المذكورة في المقال؟ ما رأيك فيها؟",
+   model:"Sample answer: Yes, I've seen Jurassic Park. I think the special effects still look amazing today, especially how realistic the dinosaurs move.",
+   model_ar:"إجابة نموذجية: نعم، شاهدت فيلم حديقة الديناصورات. أعتقد أن المؤثرات الخاصة ما زالت تبدو مذهلة حتى اليوم، خاصة كيف تتحرك الديناصورات بواقعية."},
 ];
 
 const openData = [
@@ -2703,6 +2760,59 @@ function checkTechVocab(){
 function resetTechVocab(){
   document.getElementById('techVocabResult').style.display='none';
   buildTechVocab();
+}
+
+// ═══════════════════════════════════════════════════════════
+// U5 READING 1 (SPECIAL EFFECTS) — AFTER READING PART A: MATCHING
+// ═══════════════════════════════════════════════════════════
+let arMatchSelectedWord = null;
+let arMatchLeftOrder = null, arMatchRightOrder = null;
+function buildArMatch(){
+  const grid = document.getElementById('arMatchGrid');
+  if (!grid) return;
+  if (!arMatchLeftOrder) arMatchLeftOrder = shuffleArr(arMatchData.map((_,i)=>i));
+  if (!arMatchRightOrder) arMatchRightOrder = shuffleArr(arMatchData.map((_,i)=>i));
+  const leftCol = arMatchLeftOrder.map(i => `<div class="match-item" data-idx="${i}" id="arMatchW${i}" onclick="arSelectWord(${i})">${arMatchData[i].word}</div>`).join('');
+  const rightCol = arMatchRightOrder.map(i => `<div class="match-item" data-idx="${i}" id="arMatchD${i}" onclick="arSelectDef(${i})">${arMatchData[i].def}</div>`).join('');
+  grid.innerHTML = `<div class="match-col">${leftCol}</div><div class="match-col">${rightCol}</div>`;
+  arMatchData.forEach((_,i)=>{ if (isQuestionCompleted('arm_'+i)) arMarkMatched(i); });
+  arUpdateMatchLabel();
+}
+function arMarkMatched(i){
+  const w = document.getElementById('arMatchW'+i), d = document.getElementById('arMatchD'+i);
+  if (w){ w.classList.add('matched'); w.onclick=null; }
+  if (d){ d.classList.add('matched'); d.onclick=null; }
+}
+function arUpdateMatchLabel(){
+  const label = document.getElementById('arMatchLabel');
+  if (!label) return;
+  const done = arMatchData.filter((_,i)=>isQuestionCompleted('arm_'+i)).length;
+  label.textContent = `${done} / ${arMatchData.length} matched`;
+}
+function arSelectWord(i){
+  if (isQuestionCompleted('arm_'+i)) return;
+  document.querySelectorAll('#arMatchGrid .match-item').forEach(el=>{ if(el.id.startsWith('arMatchW')) el.classList.remove('selected'); });
+  arMatchSelectedWord = i;
+  document.getElementById('arMatchW'+i).classList.add('selected');
+}
+function arSelectDef(i){
+  if (isQuestionCompleted('arm_'+i)) return;
+  if (arMatchSelectedWord === null) return;
+  const wIdx = arMatchSelectedWord;
+  const wEl = document.getElementById('arMatchW'+wIdx);
+  const dEl = document.getElementById('arMatchD'+i);
+  if (wIdx === i) {
+    arMarkMatched(i);
+    arMatchSelectedWord = null;
+    if (!isQuestionCompleted('arm_'+i)) { recordAttempt(true,'Vocabulary'); addXP(8); markQuestionCompleted('arm_'+i); }
+    arUpdateMatchLabel();
+    saveState();
+  } else {
+    recordAttempt(false,'Vocabulary');
+    wEl.classList.add('wrong-flash'); dEl.classList.add('wrong-flash');
+    setTimeout(()=>{ wEl.classList.remove('wrong-flash','selected'); dEl.classList.remove('wrong-flash'); }, 450);
+    arMatchSelectedWord = null;
+  }
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -3744,6 +3854,8 @@ buildTF();
 buildOpen(openData,'openContainer');
 buildOpen(invQData,'readingInvQContainer');
 buildTechVocab();
+buildArMatch();
+buildOpen(arQData,'arQContainer');
 buildMatch();
 buildListen();
 buildSpeed();
