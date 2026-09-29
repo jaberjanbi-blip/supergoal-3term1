@@ -2790,6 +2790,13 @@ function resetTF() {
 
 // ── AFTER READING (Reading tab) — reuses tfData items 5–9 so answers stay in sync ──
 const AR_IDX = [5,6,7,8,9];
+const AR_AR = [
+  'الكاتب يرى أن الطلاب "يبدون" أصحاء فقط لأنهم صغار السن، لكن عاداتهم في الأكل والنوم ليست صحية.',
+  'النص يذكر أن نظام معظم الطلاب الغذائي يختلف كثيرًا عن النظام المتوازن، فهم يأكلون الأرز والأطعمة المقلية أكثر من الخضروات والفواكه.',
+  'النوم الكافي مهم للذاكرة والتركيز، لذلك السهر للمذاكرة قبل الاختبار ليس فكرة جيدة.',
+  'الرسم البياني يُظهر أن معظم الطلاب يمارسون الرياضة 30 دقيقة على الأقل يوميًا.',
+  'النص يقول إن الخيارات الصحية تساعد الطلاب على النجاح، ولذلك يجب أن ينظّموا وقتهم جيدًا.'
+];
 const arAnswers = {};
 function buildAR() {
   const c = document.getElementById('arContainer');
@@ -2840,10 +2847,23 @@ function submitAR() {
       note(`Wrong! It is ${t.answer ? 'TRUE ✔' : 'FALSE ✘'}. ${t.why||''}`);
       if (!alreadyDone) { recordAttempt(false,'True / False'); updateStreak(false); markQuestionCompleted(qid); }
     }
+    // Arabic feedback for this statement
+    const status = chosen === undefined ? 'none' : (chosen === t.answer ? 'ok' : 'bad');
+    const ansAr = t.answer ? 'صح ✔' : 'خطأ ✘';
+    const head = status === 'ok'  ? '✔ أحسنت! إجابتك صحيحة.'
+               : status === 'bad' ? '✘ إجابتك غير صحيحة. الإجابة الصحيحة: ' + ansAr + '.'
+               :                    'لم تُجب عن هذا السؤال. الإجابة الصحيحة: ' + ansAr + '.';
+    const fb = document.createElement('div');
+    fb.className = 'ar-feedback';
+    fb.setAttribute('dir','rtl');
+    fb.style.cssText = "flex-basis:100%;font-family:'Tajawal',sans-serif;font-size:0.88rem;font-weight:700;line-height:1.7;margin-top:6px;padding:6px 10px;border-radius:8px;border-right:4px solid " + (status==='ok' ? 'var(--green)' : '#b91c1c') + ";color:" + (status==='ok' ? 'var(--green)' : '#b91c1c') + ";background:rgba(127,127,127,0.08);";
+    fb.textContent = head + ' ' + AR_AR[n];
+    row.appendChild(fb);
   });
   const res = document.getElementById('arResult');
   res.style.display = 'block';
-  res.innerHTML = `<div class="callout callout-info">📖 After Reading Score: <strong>${score} / ${AR_IDX.length}</strong> &nbsp;•&nbsp; <span style="font-family:'Tajawal',sans-serif;">نتيجتك: ${score} من ${AR_IDX.length}</span></div>`;
+  res.innerHTML = `<div class="callout callout-info">📖 After Reading Score: <strong>${score} / ${AR_IDX.length}</strong> &nbsp;•&nbsp; <span style="font-family:'Tajawal',sans-serif;">نتيجتك: ${score} من ${AR_IDX.length}</span></div>
+    <div dir="rtl" style="font-family:'Tajawal',sans-serif;font-weight:800;margin-top:0.5rem;">${score === AR_IDX.length ? '🌟 ممتاز! أجبت عن جميع الأسئلة بشكل صحيح.' : score >= 3 ? '👏 عمل جيد! راجع النص وحاول مرة أخرى للحصول على الدرجة الكاملة.' : '💪 لا بأس، اقرأ النص مرة أخرى بتمعّن ثم اضغط إعادة وحاول من جديد.'}</div>`;
   if (typeof saveState === 'function') saveState();
 }
 function resetAR() {
