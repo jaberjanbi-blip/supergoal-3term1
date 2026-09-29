@@ -1817,6 +1817,18 @@
       </p>
       </div>
 
+      <!-- AFTER READING: True / False (under the passage) -->
+      <div id="afterReading" style="margin-top:1.75rem;">
+        <h3 style="font-size:1.15rem;font-weight:900;color:var(--teal-dark);margin-bottom:0.25rem;">After Reading <span style="font-family:'Tajawal',sans-serif;direction:rtl;font-weight:700;">&nbsp;| بعد القراءة</span></h3>
+        <p style="font-size:0.9rem;font-weight:600;margin-bottom:0.75rem;">Answer <b><i>true</i></b> or <b><i>false</i></b>. <span style="font-family:'Tajawal',sans-serif;direction:rtl;color:var(--muted);">أجب بصح أو خطأ</span></p>
+        <div id="arContainer"></div>
+        <div class="btn-row">
+          <button class="btn btn-teal" onclick="submitAR()">Check Answers ✔</button>
+          <button class="btn btn-ghost" onclick="resetAR()">↺ Reset</button>
+        </div>
+        <div id="arResult" style="display:none;margin-top:1rem;"></div>
+      </div>
+
       <div class="btn-row">
         <button class="btn btn-orange" onclick="showTab('comprehension')">🧩 Try Comprehension Challenge →</button>
         <button class="btn btn-ghost" onclick="showTab('mcq')">✅ Skip to MCQ Quiz →</button>
@@ -2776,6 +2788,70 @@ function resetTF() {
   if (easyModeActive()) applyEasyModeToTF();
 }
 
+// ── AFTER READING (Reading tab) — reuses tfData items 5–9 so answers stay in sync ──
+const AR_IDX = [5,6,7,8,9];
+const arAnswers = {};
+function buildAR() {
+  const c = document.getElementById('arContainer');
+  if (!c) return;
+  c.innerHTML = AR_IDX.map((ti,n) => {
+    const t = tfData[ti];
+    return `
+    <div class="tf-row" id="arRow${n}">
+      <div class="tf-statement">
+        <b>${n+1}.</b> <span class="tr-sent" data-ar="${t.ar}">${t.s}</span>
+      </div>
+      <div class="tf-btns">
+        <button class="tf-btn true" id="arT${n}" onclick="selectAR(${n},true)">✔ True</button>
+        <button class="tf-btn false" id="arF${n}" onclick="selectAR(${n},false)">✘ False</button>
+      </div>
+    </div>`;
+  }).join('');
+  bindSentTips(c);
+}
+function selectAR(n, val) {
+  arAnswers[n] = val;
+  const t = document.getElementById('arT'+n), f = document.getElementById('arF'+n);
+  t.classList.toggle('selected', val === true);
+  f.classList.toggle('selected', val === false);
+}
+function submitAR() {
+  let score = 0;
+  AR_IDX.forEach((ti,n) => {
+    const t = tfData[ti];
+    const row = document.getElementById('arRow'+n);
+    const chosen = arAnswers[n];
+    const qid = 'tf'+ti;                       // same id as the True/False tab → XP is never awarded twice
+    const alreadyDone = isQuestionCompleted(qid);
+    document.getElementById('arT'+n).disabled = true;
+    document.getElementById('arF'+n).disabled = true;
+    const note = (txt) => { const m = document.createElement('div');
+      m.style.cssText = 'flex-basis:100%;font-size:0.8rem;color:#b91c1c;font-weight:700;margin-top:4px;';
+      m.textContent = txt; row.appendChild(m); };
+    if (chosen === undefined) {
+      row.classList.add('wrong','shake'); setTimeout(()=>row.classList.remove('shake'),400);
+      note(`Not answered. Answer: ${t.answer ? 'TRUE ✔' : 'FALSE ✘'}`);
+    } else if (chosen === t.answer) {
+      score++; row.classList.add('correct');
+      if (!alreadyDone) { recordAttempt(true,'True / False'); addXP(10); updateStreak(true); markQuestionCompleted(qid); }
+      else showAlreadyCompleted(row);
+    } else {
+      row.classList.add('wrong','shake'); setTimeout(()=>row.classList.remove('shake'),400);
+      note(`Wrong! It is ${t.answer ? 'TRUE ✔' : 'FALSE ✘'}. ${t.why||''}`);
+      if (!alreadyDone) { recordAttempt(false,'True / False'); updateStreak(false); markQuestionCompleted(qid); }
+    }
+  });
+  const res = document.getElementById('arResult');
+  res.style.display = 'block';
+  res.innerHTML = `<div class="callout callout-info">📖 After Reading Score: <strong>${score} / ${AR_IDX.length}</strong> &nbsp;•&nbsp; <span style="font-family:'Tajawal',sans-serif;">نتيجتك: ${score} من ${AR_IDX.length}</span></div>`;
+  if (typeof saveState === 'function') saveState();
+}
+function resetAR() {
+  for (const k in arAnswers) delete arAnswers[k];
+  document.getElementById('arResult').style.display = 'none';
+  buildAR();
+}
+
 // ─── OPEN QUESTIONS ──────────────────────────────────
 function buildOpen() {
   const c = document.getElementById('openContainer');
@@ -3543,7 +3619,7 @@ function refreshScore() {
 buildVocab();
 buildMCQ();
 buildFITB();
-buildTF();
+buildTF(); buildAR();
 buildOpen();
 buildMatch();
 buildListen();
