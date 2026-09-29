@@ -2832,19 +2832,14 @@ function submitAR() {
     const alreadyDone = isQuestionCompleted(qid);
     document.getElementById('arT'+n).disabled = true;
     document.getElementById('arF'+n).disabled = true;
-    const note = (txt) => { const m = document.createElement('div');
-      m.style.cssText = 'flex-basis:100%;font-size:0.8rem;color:#b91c1c;font-weight:700;margin-top:4px;';
-      m.textContent = txt; row.appendChild(m); };
     if (chosen === undefined) {
       row.classList.add('wrong','shake'); setTimeout(()=>row.classList.remove('shake'),400);
-      note(`Not answered. Answer: ${t.answer ? 'TRUE ✔' : 'FALSE ✘'}`);
     } else if (chosen === t.answer) {
       score++; row.classList.add('correct');
       if (!alreadyDone) { recordAttempt(true,'True / False'); addXP(10); updateStreak(true); markQuestionCompleted(qid); }
       else showAlreadyCompleted(row);
     } else {
       row.classList.add('wrong','shake'); setTimeout(()=>row.classList.remove('shake'),400);
-      note(`Wrong! It is ${t.answer ? 'TRUE ✔' : 'FALSE ✘'}. ${t.why||''}`);
       if (!alreadyDone) { recordAttempt(false,'True / False'); updateStreak(false); markQuestionCompleted(qid); }
     }
     // Arabic feedback for this statement
