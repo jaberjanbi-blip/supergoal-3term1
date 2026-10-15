@@ -1484,12 +1484,55 @@ function showHint(btn,text){
   const box=btn.closest('.iq').querySelector('.explain-box');if(!box)return;
   box.innerHTML='💡 '+text;box.className='explain-box visible';box.style.background='var(--softyellow)';box.style.borderColor='var(--gold)';addXP(5,btn);
 }
+// ===== Lenient answer checking (shared) =====
+// Ignores case, extra/missing spaces, punctuation and apostrophe style (' ’ ‘ `),
+// and treats short & full forms as equal (don't = do not, I've = I have, she's = she is/has ...).
+// Grammar itself stays strict: verb forms, subject agreement and word order must be right.
+function lenientNorm(s){
+  s=String(s||'').toLowerCase()
+    .replace(/[‘’ʼ`´′]/g,"'")
+    .replace(/[-–—_\/]/g,' ');
+  s=s.replace(/\bcan\s*'\s*t\b|\bcant\b|\bcan\s+not\b/g,' cannot ')
+     .replace(/\bwon\s*'\s*t\b|\bwont\b/g,' will not ')
+     .replace(/\bshan\s*'?\s*t\b/g,' shall not ')
+     .replace(/\b(do|does|did|is|are|was|were|have|has|had|could|should|would|must|need|might|may|ought)\s*(?:n\s*'\s*t|'\s*n\s*'?\s*t)/g,' $1 not ')
+     .replace(/\b(do|does|did|is|are|was|were|have|has|had|could|should|would|must|need)nt\b/g,' $1 not ')
+     .replace(/\s*'\s*m\b/g,' am').replace(/\bim\b/g,'i am')
+     .replace(/\s*'\s*re\b/g,' are')
+     .replace(/\s*'\s*ve\b/g,' have').replace(/\b(i|you|we|they)ve\b/g,'$1 have')
+     .replace(/\s*'\s*ll\b/g,' will')
+     .replace(/\s*'\s*d\b/g,' would');
+  return s.replace(/'/g,'').replace(/[^a-z0-9؀-ۿ ]+/g,' ').replace(/\s+/g,' ').trim();
+}
+function lenientForms(s){
+  // "she's" may mean "she is" or "she has": keep all readings
+  const raw=String(s||'').toLowerCase().replace(/[‘’ʼ`´′]/g,"'");
+  const re=/\b(he|she|it|that|there|what|who|where|here|how|this|everyone|everybody|nobody|someone|somebody)\s*'\s*s\b/g;
+  const out=new Set([lenientNorm(raw)]);
+  if(re.test(raw)){
+    out.add(lenientNorm(raw.replace(re,'$1 is')));
+    out.add(lenientNorm(raw.replace(re,'$1 has')));
+  }
+  const forms=[...out];
+  forms.forEach(f=>out.add(f.replace(/ /g,'')));   // spacing-free version
+  return out;
+}
+function lenientMatch(actual, expectedRaw){
+  const user=lenientForms(actual);
+  const NONE=/^\s*[-\u2013\u2014_x0\u00F8\u2205]\s*$/i;   // "-" = no word needed (zero article)
+  return String(expectedRaw||'').split('|').some(opt=>{
+    if(NONE.test(opt)) return NONE.test(String(actual||''));
+    for(const f of lenientForms(opt)) if(f && user.has(f)) return true;
+    return false;
+  });
+}
+
 function checkInput(btn,exId,explanation){
   const parent=btn.closest('.iq');const inputs=parent.querySelectorAll('.interactive-input');const box=parent.querySelector('.explain-box');let allCorrect=true;
   inputs.forEach(inp=>{
     const expOptions=inp.getAttribute('data-ans').split('|').map(a=>a.trim().toLowerCase().replace(/[.!?—"']/g,''));
     const usr=inp.value.trim().toLowerCase().replace(/[.!?—"']/g,'');
-    if(expOptions.includes(usr)){inp.classList.remove('is-wrong');inp.classList.add('is-correct');}
+    if(lenientMatch(inp.value,inp.getAttribute('data-ans'))){inp.classList.remove('is-wrong');inp.classList.add('is-correct');}
     else{inp.classList.remove('is-correct');inp.classList.add('is-wrong');inp.classList.add('shake');setTimeout(()=>inp.classList.remove('shake'),450);allCorrect=false;}
   });
   if(box&&explanation){box.innerHTML=(allCorrect?'✅ ':'❌ ')+explanation;box.className='explain-box visible '+(allCorrect?'correct-explain':'wrong-explain');}
