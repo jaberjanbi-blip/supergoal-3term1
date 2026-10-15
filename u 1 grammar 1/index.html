@@ -1394,6 +1394,35 @@ function answerMatches(actual, expectedRaw){
   return options.includes(normalizeAnswer(actual));
 }
 
+// ===== Mission 2 — lenient negative checker =====
+// Ignores case, extra/missing spaces and all punctuation (incl. ’ ' . , !),
+// treats don't / dont / do not and doesn't / doesnt / does not as the same,
+// and accepts the answer when the correct negative rule (do/does + not + base verb) is present.
+function negTokens(s){
+  return String(s||'').toLowerCase()
+    .replace(/[‘’ʼ`´]/g,"'")
+    // with an apostrophe (doesn't / does'nt / doesn'twatch) or without (doesnt)
+    .replace(/\bdoes\s*(?:'\s*n\s*'?\s*t|n\s*'\s*t)|\bdoes\s*n\s*t\b/g,' does not ')
+    .replace(/\bdo\s*(?:'\s*n\s*'?\s*t|n\s*'\s*t)|\bdo\s*n\s*t\b/g,' do not ')
+    .replace(/[^a-z0-9]+/g,' ')
+    .trim().split(' ').filter(Boolean);
+}
+function negativeMatches(actual, expectedRaw){
+  const user=negTokens(actual);
+  const userCompact=user.join('');
+  const parts=String(expectedRaw||'').split('|');
+  // 1) the whole sentence matches, ignoring all spacing and punctuation
+  if(parts.some(a=>negTokens(a).join('')===userCompact)) return true;
+  // 2) the key rule (e.g. "doesn't watch") appears as whole words in the answer
+  return parts.some(a=>{
+    const key=negTokens(a);
+    if(!key.length||key.length>3) return false;
+    for(let i=0;i<=user.length-key.length;i++){
+      if(key.every((w,j)=>user[i+j]===w)) return true;
+    }
+    return false;
+  });
+}
 function checkInput(btn){
   const parent=btn.closest('.iq');
   const input=parent.querySelector('.interactive-input');
@@ -1410,8 +1439,13 @@ function checkInput(btn){
     
   const userAns=normalizeAnswer(input.value);
 
+  // Mission 2 (Negative): lenient grading — spaces & punctuation ignored, focus on don't/doesn't + base verb
+  const isNegTab=!!input.closest('#tab-2');
+  const ok=isNegTab ? negativeMatches(input.value,input.getAttribute('data-ans')||'')
+                    : expectedAnswers.includes(userAns);
+
   // التحقق مما إذا كانت إجابة المستخدم تطابق أي إجابة من الإجابات المسموحة
-  if(expectedAnswers.includes(userAns)){
+  if(ok){
     input.classList.remove('is-wrong');input.classList.add('is-correct');
     playCorrectSound();triggerConfetti(streak>=4);
     addXP(10);updateStreak(true);completedTotal++;updateProgressBar();
