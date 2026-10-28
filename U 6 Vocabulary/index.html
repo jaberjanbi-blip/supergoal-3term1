@@ -50,6 +50,7 @@ body.dark-mode {
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; max-width: 100%; }
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: var(--bg-color);
@@ -93,7 +94,8 @@ body::before {
 }
 .header-actions {
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 24px;
   align-items: center;
 }
