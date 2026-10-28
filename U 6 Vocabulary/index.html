@@ -469,7 +469,7 @@ footer span { display: block; margin-top: 4px; font-weight: bold; color: var(--g
 
   /* AUTO-HIDE NAV ON SCROLL — added by Claude */
   html, body { overflow-anchor: none; }
-  .nav-tabs { max-height:600px; overflow:hidden; transition:max-height .28s ease, padding .28s ease, opacity .2s ease; }
+  .nav-tabs { max-height:600px; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; touch-action:pan-x pan-y; transition:max-height .28s ease, padding .28s ease, opacity .2s ease; }
   .nav-tabs.nav-hidden { max-height:0 !important; padding-top:0 !important; padding-bottom:0 !important; opacity:0; box-shadow:none; pointer-events:none; }
 </style>
 </head>
