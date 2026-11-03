@@ -1103,7 +1103,7 @@
   .circ-para { color:var(--muted); font-size:0.9em; }
   .circ-opt { padding:0.15rem 0 0.15rem 1.3rem; cursor:pointer; }
   .circ-opt b { color:var(--navy); margin-right:0.2rem; }
-  .circ-opt .circ-txt { border:2px solid transparent; border-radius:999px; padding:0 0.45rem; margin-left:-0.45rem; transition:border-color .15s; }
+  .circ-opt .circ-txt, .circ-opt .circ-txt.tr-sent { border:2px solid transparent; border-radius:999px; padding:0 0.45rem; margin:0 0 0 -0.45rem; transition:border-color .15s; }
   .circ-opt:hover .circ-txt { background:var(--orange-light); }
   .circ-q.done .circ-opt { cursor:default; }
   .circ-q.done .circ-opt:hover .circ-txt { background:none; }
@@ -2943,14 +2943,14 @@ function toggleModel(oi) {
 // AFTER READING — matching (Part A) + open questions (Part B)
 // ═══════════════════════════════════════════════════════════
 const afterMatchData = [
-  { word:"unique",    para:"1st paragraph",  ar:"فريد",          opts:["strange","special","to be chosen"], ans:1 },
-  { word:"to run out",para:"2nd paragraph",  ar:"ينفد",          opts:["to go out the door","to come to an end, be left without","to use up everything"], ans:1 },
-  { word:"dialects",  para:"3rd paragraph",  ar:"لهجات",         opts:["local varieties of language","spelling differences","different accents"], ans:0 },
-  { word:"recite",    para:"4th paragraph",  ar:"يُسمِّع",        opts:["tell a story","answer a question","repeat from memory"], ans:2 },
-  { word:"rich",      para:"last paragraph", ar:"غني",           opts:["wealthy","have a lot of sugar","have a lot of good things"], ans:2 },
-  { word:"heritage",  para:"last paragraph", ar:"تراث",          opts:["traditions","money from relatives","a preserved building"], ans:0 },
-  { word:"buzzing",   para:"last paragraph", ar:"نابض بالحياة",  opts:["chaotic","busy and lively","very hot"], ans:1 },
-  { word:"atmosphere",para:"last paragraph", ar:"أجواء",         opts:["the way a place or situation makes you feel","traffic","gases surrounding Earth"], ans:0 },
+  { word:"unique",    para:"1st paragraph",  ar:"فريد",          opts:["strange","special","to be chosen"], optsAr:["غريب","مميز / خاص","أن يُختار"], ans:1 },
+  { word:"to run out",para:"2nd paragraph",  ar:"ينفد",          opts:["to go out the door","to come to an end, be left without","to use up everything"], optsAr:["الخروج من الباب","أن ينتهي / أن يبقى بدون","استهلاك كل شيء"], ans:1 },
+  { word:"dialects",  para:"3rd paragraph",  ar:"لهجات",         opts:["local varieties of language","spelling differences","different accents"], optsAr:["أشكال محلية من اللغة","اختلافات في الإملاء","لكنات مختلفة"], ans:0 },
+  { word:"recite",    para:"4th paragraph",  ar:"يُسمِّع",        opts:["tell a story","answer a question","repeat from memory"], optsAr:["يحكي قصة","يجيب عن سؤال","يُسمِّع / يُردِّد من الذاكرة"], ans:2 },
+  { word:"rich",      para:"last paragraph", ar:"غني",           opts:["wealthy","have a lot of sugar","have a lot of good things"], optsAr:["ثري","يحتوي على كثير من السكر","لديه الكثير من الأشياء الجيدة"], ans:2 },
+  { word:"heritage",  para:"last paragraph", ar:"تراث",          opts:["traditions","money from relatives","a preserved building"], optsAr:["تقاليد","مال من الأقارب","مبنى محفوظ"], ans:0 },
+  { word:"buzzing",   para:"last paragraph", ar:"نابض بالحياة",  opts:["chaotic","busy and lively","very hot"], optsAr:["فوضوي","مزدحم ومفعم بالحياة","حار جدًا"], ans:1 },
+  { word:"atmosphere",para:"last paragraph", ar:"أجواء",         opts:["the way a place or situation makes you feel","traffic","gases surrounding Earth"], optsAr:["الشعور الذي يمنحك إياه مكان أو موقف","حركة المرور","الغازات المحيطة بالأرض"], ans:0 },
 ];
 
 function buildAfterMatch(){
@@ -2960,7 +2960,7 @@ function buildAfterMatch(){
   grid.innerHTML = afterMatchData.map((q,i)=>`
     <div class="circ-q" id="arQ${i}">
       <div class="circ-head"><b>${i+1}.</b> <span class="tr-sent" data-ar="${q.ar}">${q.word}</span> <span class="circ-para">(${q.para})</span></div>
-      ${q.opts.map((o,oi)=>`<div class="circ-opt" id="arOpt${i}_${oi}" onclick="pickAfterMatch(${i},${oi})"><b>${'abc'[oi]}.</b> <span class="circ-txt">${o}</span></div>`).join('')}
+      ${q.opts.map((o,oi)=>`<div class="circ-opt" id="arOpt${i}_${oi}" onclick="pickAfterMatch(${i},${oi})"><b>${'abc'[oi]}.</b> <span class="circ-txt tr-sent" data-ar="${q.optsAr[oi]}">${o}</span></div>`).join('')}
     </div>`).join('');
   bindSentTips(grid);
 }
@@ -4039,7 +4039,7 @@ function bindSentTips(container) {
       // Don't block input clicks inside fitb rows
       if (e.target.tagName === 'INPUT') return;
       // Match-exercise tiles must still receive their click, so only show the tip there
-      if (!el.classList.contains('match-item')) {
+      if (!el.closest('.match-item, .circ-opt')) {
         e.preventDefault();
         e.stopPropagation();
       }
