@@ -1095,6 +1095,7 @@
   .match-item.selected { border-color:var(--teal); background:var(--teal-light); box-shadow:0 0 0 2px rgba(46,158,107,0.3); }
   .match-item.matched { border-color:var(--green); background:var(--green-bg); color:#15803d; cursor:default; opacity:0.85; }
   .match-item.wrong-flash { animation:shake .4s ease-in-out; border-color:var(--red); background:var(--red-bg); }
+  .match-letter { font-weight:800; color:var(--green); margin-left:0.25rem; }
   .match-item .ar-text { font-family:'Tajawal',sans-serif; direction:rtl; }
 
   /* Listen and Choose / Speed Round reuse .question-block, .options, .option-btn patterns */
@@ -2929,7 +2930,7 @@ const afterMatchData = [
   { word:"unique",   ar:"فريد",           def:"special" },
   { word:"run out",  ar:"ينفد",     def:"to come to an end, be left without" },
   { word:"dialects", ar:"لهجات",           def:"local varieties of language" },
-  { word:"recite",   ar:"يتلو / يقرأ",     def:"repeat from memory" },
+  { word:"recite",   ar:"يُسمِّع",     def:"repeat from memory" },
   { word:"rich",     ar:"غني",             def:"have a lot of good things" },
   { word:"heritage", ar:"تراث",            def:"traditions" },
   { word:"buzzing",  ar:"نابض بالحياة",     def:"busy and lively" },
@@ -2944,7 +2945,7 @@ function buildAfterMatch(){
   if (!afterMatchLeftOrder) afterMatchLeftOrder = shuffleArr(afterMatchData.map((_,i)=>i));
   if (!afterMatchRightOrder) afterMatchRightOrder = shuffleArr(afterMatchData.map((_,i)=>i));
   const letters = ['a','b','c','d','e','f','g','h'];
-  const leftCol = afterMatchLeftOrder.map(i => `<div class="match-item tr-sent" data-ar="${afterMatchData[i].ar}" data-idx="${i}" id="arWord${i}" onclick="selectAfterMatchWord(${i})">${afterMatchData[i].word}</div>`).join('');
+  const leftCol = afterMatchLeftOrder.map((i,pos) => `<div class="match-item tr-sent" data-ar="${afterMatchData[i].ar}" data-idx="${i}" id="arWord${i}" onclick="selectAfterMatchWord(${i})">${pos+1}. ${afterMatchData[i].word} <span class="match-letter" id="arLetter${i}"></span></div>`).join('');
   const rightCol = afterMatchRightOrder.map((i,pos) => `<div class="match-item" data-idx="${i}" id="arDef${i}" onclick="selectAfterMatchDef(${i})">${letters[pos]}. ${afterMatchData[i].def}</div>`).join('');
   grid.innerHTML = `<div class="match-col">${leftCol}</div><div class="match-col">${rightCol}</div>`;
   bindSentTips(grid);
@@ -2961,6 +2962,8 @@ function markAfterMatchedVisual(i){
   const dEl = document.getElementById('arDef'+i);
   if (wEl){ wEl.classList.add('matched'); wEl.onclick=null; }
   if (dEl){ dEl.classList.add('matched'); dEl.onclick=null; }
+  const lEl = document.getElementById('arLetter'+i);
+  if (lEl && afterMatchRightOrder) lEl.textContent = '→ ' + 'abcdefgh'[afterMatchRightOrder.indexOf(i)];
 }
 function updateAfterMatchLabel(){
   const label = document.getElementById('arMatchLabel');
@@ -4037,8 +4040,11 @@ function bindSentTips(container) {
     el.addEventListener('touchstart', e => {
       // Don't block input clicks inside fitb rows
       if (e.target.tagName === 'INPUT') return;
-      e.preventDefault();
-      e.stopPropagation();
+      // Match-exercise tiles must still receive their click, so only show the tip there
+      if (!el.classList.contains('match-item')) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       if (activeTrSent && activeTrSent !== el) {
         activeTrSent.classList.remove('tapped');
       }
