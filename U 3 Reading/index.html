@@ -1095,6 +1095,22 @@
   .match-item.selected { border-color:var(--teal); background:var(--teal-light); box-shadow:0 0 0 2px rgba(46,158,107,0.3); }
   .match-item.matched { border-color:var(--green); background:var(--green-bg); color:#15803d; cursor:default; opacity:0.85; }
   .match-item.wrong-flash { animation:shake .4s ease-in-out; border-color:var(--red); background:var(--red-bg); }
+  .circ-grid { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:repeat(4,auto); grid-auto-flow:column; column-gap:2.5rem; row-gap:1rem; margin-top:0.75rem; }
+  @media (max-width:600px){ .circ-grid { grid-template-columns:1fr; grid-template-rows:none; grid-auto-flow:row; } }
+  .circ-q { font-size:0.98rem; line-height:1.45; }
+  .circ-head { margin-bottom:0.15rem; }
+  .circ-head b { color:var(--navy); }
+  .circ-para { color:var(--muted); font-size:0.9em; }
+  .circ-opt { padding:0.15rem 0 0.15rem 1.3rem; cursor:pointer; }
+  .circ-opt b { color:var(--navy); margin-right:0.2rem; }
+  .circ-opt .circ-txt { border:2px solid transparent; border-radius:999px; padding:0 0.45rem; margin-left:-0.45rem; transition:border-color .15s; }
+  .circ-opt:hover .circ-txt { background:var(--orange-light); }
+  .circ-q.done .circ-opt { cursor:default; }
+  .circ-q.done .circ-opt:hover .circ-txt { background:none; }
+  .circ-opt.circled .circ-txt { border-color:var(--green); color:#15803d; font-weight:700; }
+  .circ-opt.wrong-flash .circ-txt { border-color:var(--red); background:var(--red-bg); animation:shake .4s ease-in-out; display:inline-block; }
+  body.dark .circ-head b, body.dark .circ-opt b { color:var(--ink); }
+  body.dark .circ-opt.circled .circ-txt { color:#4ade80; }
   .match-letter { font-weight:800; color:var(--green); margin-left:0.25rem; }
   .match-item .ar-text { font-family:'Tajawal',sans-serif; direction:rtl; }
 
@@ -1864,9 +1880,9 @@
 
       <!-- A. Circle the correct meaning -->
       <div class="open-q">
-        <p class="open-q-text" id="arHeaderText"><span class="tr-sent" data-ar="طابِق كل كلمة بمعناها كما وردت في النص.">A. Match each word with its meaning as used in the brochure.</span></p>
+        <p class="open-q-text" id="arHeaderText"><span class="tr-sent" data-ar="ضع دائرة حول المعنى الصحيح للكلمات كما وردت في النشرة.">A. Circle the correct meaning of the words as used in the brochure.</span></p>
         <div class="match-grid" id="arMatchGrid"></div>
-        <div style="text-align:center;margin-top:0.6rem;font-size:0.85rem;font-weight:800;color:var(--muted);" id="arMatchLabel">0 / 8 matched</div>
+        <div style="text-align:center;margin-top:0.6rem;font-size:0.85rem;font-weight:800;color:var(--muted);" id="arMatchLabel">0 / 8 correct</div>
       </div>
 
       <!-- B. Answer the questions -->
@@ -2927,77 +2943,59 @@ function toggleModel(oi) {
 // AFTER READING — matching (Part A) + open questions (Part B)
 // ═══════════════════════════════════════════════════════════
 const afterMatchData = [
-  { word:"unique",   ar:"فريد",           def:"special" },
-  { word:"run out",  ar:"ينفد",     def:"to come to an end, be left without" },
-  { word:"dialects", ar:"لهجات",           def:"local varieties of language" },
-  { word:"recite",   ar:"يُسمِّع",     def:"repeat from memory" },
-  { word:"rich",     ar:"غني",             def:"have a lot of good things" },
-  { word:"heritage", ar:"تراث",            def:"traditions" },
-  { word:"buzzing",  ar:"نابض بالحياة",     def:"busy and lively" },
-  { word:"atmosphere", ar:"أجواء",         def:"the way a place or situation makes you feel" },
+  { word:"unique",    para:"1st paragraph",  ar:"فريد",          opts:["strange","special","to be chosen"], ans:1 },
+  { word:"to run out",para:"2nd paragraph",  ar:"ينفد",          opts:["to go out the door","to come to an end, be left without","to use up everything"], ans:1 },
+  { word:"dialects",  para:"3rd paragraph",  ar:"لهجات",         opts:["local varieties of language","spelling differences","different accents"], ans:0 },
+  { word:"recite",    para:"4th paragraph",  ar:"يُسمِّع",        opts:["tell a story","answer a question","repeat from memory"], ans:2 },
+  { word:"rich",      para:"last paragraph", ar:"غني",           opts:["wealthy","have a lot of sugar","have a lot of good things"], ans:2 },
+  { word:"heritage",  para:"last paragraph", ar:"تراث",          opts:["traditions","money from relatives","a preserved building"], ans:0 },
+  { word:"buzzing",   para:"last paragraph", ar:"نابض بالحياة",  opts:["chaotic","busy and lively","very hot"], ans:1 },
+  { word:"atmosphere",para:"last paragraph", ar:"أجواء",         opts:["the way a place or situation makes you feel","traffic","gases surrounding Earth"], ans:0 },
 ];
-
-let afterMatchLeftOrder = null, afterMatchRightOrder = null, afterMatchSelectedWord = null;
 
 function buildAfterMatch(){
   const grid = document.getElementById('arMatchGrid');
   if (!grid) return;
-  if (!afterMatchLeftOrder) afterMatchLeftOrder = shuffleArr(afterMatchData.map((_,i)=>i));
-  if (!afterMatchRightOrder) afterMatchRightOrder = shuffleArr(afterMatchData.map((_,i)=>i));
-  const letters = ['a','b','c','d','e','f','g','h'];
-  const leftCol = afterMatchLeftOrder.map((i,pos) => `<div class="match-item tr-sent" data-ar="${afterMatchData[i].ar}" data-idx="${i}" id="arWord${i}" onclick="selectAfterMatchWord(${i})">${pos+1}. ${afterMatchData[i].word} <span class="match-letter" id="arLetter${i}"></span></div>`).join('');
-  const rightCol = afterMatchRightOrder.map((i,pos) => `<div class="match-item" data-idx="${i}" id="arDef${i}" onclick="selectAfterMatchDef(${i})">${letters[pos]}. ${afterMatchData[i].def}</div>`).join('');
-  grid.innerHTML = `<div class="match-col">${leftCol}</div><div class="match-col">${rightCol}</div>`;
+  grid.className = 'circ-grid';
+  grid.innerHTML = afterMatchData.map((q,i)=>`
+    <div class="circ-q" id="arQ${i}">
+      <div class="circ-head"><b>${i+1}.</b> <span class="tr-sent" data-ar="${q.ar}">${q.word}</span> <span class="circ-para">(${q.para})</span></div>
+      ${q.opts.map((o,oi)=>`<div class="circ-opt" id="arOpt${i}_${oi}" onclick="pickAfterMatch(${i},${oi})"><b>${'abc'[oi]}.</b> <span class="circ-txt">${o}</span></div>`).join('')}
+    </div>`).join('');
   bindSentTips(grid);
 }
 // isQuestionCompleted() is defined in the second <script> block (loaded later), so restoring
-// saved progress must happen from initGamification(), not from buildAfterMatch() itself —
-// calling it here would throw and silently abort every init call queued after this one.
+// saved progress must happen from initGamification(), not from buildAfterMatch() itself.
 function restoreAfterMatchState(){
   afterMatchData.forEach((_,i)=>{ if (typeof isQuestionCompleted==='function' && isQuestionCompleted('arm_'+i)) markAfterMatchedVisual(i); });
   updateAfterMatchLabel();
 }
 function markAfterMatchedVisual(i){
-  const wEl = document.getElementById('arWord'+i);
-  const dEl = document.getElementById('arDef'+i);
-  if (wEl){ wEl.classList.add('matched'); wEl.onclick=null; }
-  if (dEl){ dEl.classList.add('matched'); dEl.onclick=null; }
-  const lEl = document.getElementById('arLetter'+i);
-  if (lEl && afterMatchRightOrder) lEl.textContent = '→ ' + 'abcdefgh'[afterMatchRightOrder.indexOf(i)];
+  const q = document.getElementById('arQ'+i);
+  if (q) q.classList.add('done');
+  const o = document.getElementById('arOpt'+i+'_'+afterMatchData[i].ans);
+  if (o) o.classList.add('circled');
 }
 function updateAfterMatchLabel(){
   const label = document.getElementById('arMatchLabel');
   if (!label) return;
   const done = afterMatchData.filter((_,i)=>isQuestionCompleted('arm_'+i)).length;
-  label.textContent = `${done} / ${afterMatchData.length} matched`;
+  label.textContent = `${done} / ${afterMatchData.length} correct`;
 }
-function selectAfterMatchWord(i){
+function pickAfterMatch(i, oi){
   if (isQuestionCompleted('arm_'+i)) return;
-  document.querySelectorAll('#arMatchGrid .match-item').forEach(el=>{ if(el.id.startsWith('arWord')) el.classList.remove('selected'); });
-  afterMatchSelectedWord = i;
-  document.getElementById('arWord'+i).classList.add('selected');
-}
-function selectAfterMatchDef(i){
-  if (isQuestionCompleted('arm_'+i)) return;
-  if (afterMatchSelectedWord === null) return;
-  const wIdx = afterMatchSelectedWord;
-  const wEl = document.getElementById('arWord'+wIdx);
-  const dEl = document.getElementById('arDef'+i);
-  if (wIdx === i) {
+  const el = document.getElementById('arOpt'+i+'_'+oi);
+  if (oi === afterMatchData[i].ans) {
     markAfterMatchedVisual(i);
-    afterMatchSelectedWord = null;
-    if (!isQuestionCompleted('arm_'+i)) {
-      recordAttempt(true,'After Reading Match');
-      addXP(6);
-      markQuestionCompleted('arm_'+i);
-    }
+    recordAttempt(true,'After Reading Match');
+    addXP(6);
+    markQuestionCompleted('arm_'+i);
     updateAfterMatchLabel();
     saveState();
   } else {
     recordAttempt(false,'After Reading Match');
-    wEl.classList.add('wrong-flash'); dEl.classList.add('wrong-flash');
-    setTimeout(()=>{ wEl.classList.remove('wrong-flash','selected'); dEl.classList.remove('wrong-flash'); }, 450);
-    afterMatchSelectedWord = null;
+    el.classList.add('wrong-flash');
+    setTimeout(()=>el.classList.remove('wrong-flash'), 450);
   }
 }
 
