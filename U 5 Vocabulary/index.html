@@ -1236,8 +1236,21 @@ function openModal(word,arabic,type,example,key){
 function closeModal(){document.getElementById('modal').classList.remove('open');}
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 
+// ── RESTORE SAVED MATCHES (stay until Reset) ──
+function restoreMatchPairs(){
+  // run after the page has finished loading so the pair-link colors/badges are drawn too
+  setTimeout(()=>{
+    [['ma',maPairs],['mb',mbPairs]].forEach(([pre,list])=>{
+      list.forEach(id=>{
+        if(id.indexOf(pre)!==0)return;
+        document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{el.classList.remove('selected','matched-bad');el.classList.add('matched-ok');});
+      });
+    });
+  },0);
+}
+
 // ── MATCHING A ──
-let maL=null,maR=null,maC=0;
+let maL=null,maR=null,maC=0,maPairs=[];
 function doMatchA(el,side){
   if(el.classList.contains('matched-ok'))return;
   if(side==='left'){if(maL)maL.classList.remove('selected');maL=el;el.classList.add('selected');}
@@ -1246,11 +1259,11 @@ function doMatchA(el,side){
     if(maL.dataset.id===maR.dataset.id){
       maL.classList.remove('selected');maR.classList.remove('selected');
       maL.classList.add('matched-ok');maR.classList.add('matched-ok');
-      maC++;document.getElementById('ma-score').textContent=maC+' / 6';
+      maC++;maPairs.push(maL.dataset.id);document.getElementById('ma-score').textContent=maC+' / 6';
       triggerSuccessEffects(event);
       completedTotal++;
       updateProgressBar();
-      if(maC>=6) markSection(1);
+      if(maC>=6) markSection(1); else saveState();
     }else{
       maL.classList.add('matched-bad');maR.classList.add('matched-bad');
       triggerWrongEffects();
@@ -1259,10 +1272,10 @@ function doMatchA(el,side){
     maL=null;maR=null;
   }
 }
-function resetMatchA(){document.querySelectorAll('[data-id^="ma"]').forEach(e=>e.classList.remove('selected','matched-ok','matched-bad'));maL=null;maR=null;maC=0;document.getElementById('ma-score').textContent='0 / 6';}
+function resetMatchA(){document.querySelectorAll('[data-id^="ma"]').forEach(e=>e.classList.remove('selected','matched-ok','matched-bad'));maL=null;maR=null;maC=0;maPairs=[];document.getElementById('ma-score').textContent='0 / 6';saveState();}
 
 // ── MATCHING B ──
-let mbL=null,mbR=null,mbC=0;
+let mbL=null,mbR=null,mbC=0,mbPairs=[];
 function doMatchB(el,side){
   if(el.classList.contains('matched-ok'))return;
   if(side==='left'){if(mbL)mbL.classList.remove('selected');mbL=el;el.classList.add('selected');}
@@ -1271,11 +1284,11 @@ function doMatchB(el,side){
     if(mbL.dataset.id===mbR.dataset.id){
       mbL.classList.remove('selected');mbR.classList.remove('selected');
       mbL.classList.add('matched-ok');mbR.classList.add('matched-ok');
-      mbC++;document.getElementById('mb-score').textContent=mbC+' / 5';
+      mbC++;mbPairs.push(mbL.dataset.id);document.getElementById('mb-score').textContent=mbC+' / 5';
       triggerSuccessEffects(event);
       completedTotal++;
       updateProgressBar();
-      if(mbC>=5) markSection(2);
+      if(mbC>=5) markSection(2); else saveState();
     }else{
       mbL.classList.add('matched-bad');mbR.classList.add('matched-bad');
       triggerWrongEffects();
@@ -1284,7 +1297,7 @@ function doMatchB(el,side){
     mbL=null;mbR=null;
   }
 }
-function resetMatchB(){document.querySelectorAll('[data-id^="mb"]').forEach(e=>e.classList.remove('selected','matched-ok','matched-bad'));mbL=null;mbR=null;mbC=0;document.getElementById('mb-score').textContent='0 / 5';}
+function resetMatchB(){document.querySelectorAll('[data-id^="mb"]').forEach(e=>e.classList.remove('selected','matched-ok','matched-bad'));mbL=null;mbR=null;mbC=0;mbPairs=[];document.getElementById('mb-score').textContent='0 / 5';saveState();}
 
 // ── MCQ QUIZ ──
 let qA={},qS=0,qT=0;
@@ -1605,7 +1618,7 @@ function saveState(){
       currentXP,coins,streakCount,correctTotal,wrongTotal,completedTotal,bestStreak,
       easyMode,chosenAvatar,studentName,sectionsDone,flippedCards,achievementsUnlocked,
       perfectScoreHit,speedRoundDone,currentTabId,accumulatedMs,
-      maC,mbC,
+      maC,mbC,maPairs,mbPairs,
       qS,qT,qA,fS,fT,fA,typingBossPassed,
       tfAnswered,tfCorrect,tfTotal,oqEvals,
       vcMatchedCount,vcListenAnswered,vcListenScore,vcSpeedScore,vcSpeedTotal,scBest,
@@ -1626,9 +1639,12 @@ function loadState(){
     sectionsDone=safeObj(d.sectionsDone); flippedCards=safeObj(d.flippedCards); achievementsUnlocked=safeObj(d.achievementsUnlocked);
     perfectScoreHit=!!d.perfectScoreHit; speedRoundDone=!!d.speedRoundDone; currentTabId=safeNum(d.currentTabId,0);
     accumulatedMs=safeNum(d.accumulatedMs,0);
-    maC=safeNum(d.maC,0); mbC=safeNum(d.mbC,0);
+    maPairs=Array.isArray(d.maPairs)?d.maPairs.filter(x=>typeof x==='string'):[];
+    mbPairs=Array.isArray(d.mbPairs)?d.mbPairs.filter(x=>typeof x==='string'):[];
+    maC=maPairs.length; mbC=mbPairs.length;
     document.getElementById('ma-score').textContent=maC+' / 6';
     document.getElementById('mb-score').textContent=mbC+' / 5';
+    restoreMatchPairs();
     qS=safeNum(d.qS,0); qT=safeNum(d.qT,0); qA=safeObj(d.qA);
     document.getElementById('mcq-score').textContent=qS+' / 8';
     document.getElementById('mcq-prog').style.width=(qT/8*100)+'%';
