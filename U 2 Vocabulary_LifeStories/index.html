@@ -1150,6 +1150,28 @@ function triggerSuccess(xp){
 function triggerWrong(){streakCount=0;wrongTotal++;updateHUD();playErr();checkAchievements();saveState();}
 
 // ── MATCH SYSTEM ──
+
+// ── SAVED MATCH PAIRS (kept after reload until Reset) ──
+function mpKey(){return SAVE_KEY+'_pairs';}
+function mpGet(){try{var o=JSON.parse(localStorage.getItem(mpKey())||'{}');return (o&&typeof o==='object')?o:{};}catch(e){return {};}}
+function mpSet(o){try{localStorage.setItem(mpKey(),JSON.stringify(o));}catch(e){}}
+function mpAdd(g,id){var o=mpGet();var a=Array.isArray(o[g])?o[g]:[];a=a.filter(function(x){return x!==id;});a.push(id);o[g]=a;mpSet(o);}
+function mpClear(g){var o=mpGet();delete o[g];mpSet(o);}
+// cfg: { group: { cls:'matched-ok', apply:function(count){...} } }
+function mpRestore(cfg){
+  setTimeout(function(){
+    var o=mpGet();
+    Object.keys(cfg).forEach(function(g){
+      var c=cfg[g],ids=Array.isArray(o[g])?o[g]:[],n=0;
+      ids.forEach(function(id){
+        var els=document.querySelectorAll('.m-item[data-id="'+id+'"],.match-item[data-id="'+id+'"]');
+        if(els.length===2){els.forEach(function(e){e.classList.remove('selected');e.classList.add(c.cls);});n++;}
+      });
+      c.apply(n);
+    });
+  },0);
+}
+
 var mState={A:{left:null,right:null,count:0,total:6},B:{left:null,right:null,count:0,total:4},C:{left:null,right:null,count:0,total:5}};
 var mScoreId={A:'ma-score',B:'mb-score',C:'mc-score'};
 function doMatch(el,grp,side){
@@ -1161,7 +1183,7 @@ function doMatch(el,grp,side){
     if(s.left.dataset.id===s.right.dataset.id){
       s.left.classList.remove('selected');s.right.classList.remove('selected');
       s.left.classList.add('matched-ok');s.right.classList.add('matched-ok');
-      s.count++;document.getElementById(mScoreId[grp]).textContent=s.count+' / '+s.total;
+      mpAdd(grp,s.left.dataset.id);s.count++;document.getElementById(mScoreId[grp]).textContent=s.count+' / '+s.total;
       triggerSuccess(10);
     }else{
       var l=s.left,r=s.right;
@@ -1173,9 +1195,9 @@ function doMatch(el,grp,side){
     s.left=null;s.right=null;
   }
 }
-function resetMatchA(){document.querySelectorAll('[data-id^="ma"]').forEach(function(e){e.classList.remove('selected','matched-ok','matched-bad');});mState.A={left:null,right:null,count:0,total:6};document.getElementById('ma-score').textContent='0 / 6';}
-function resetMatchB(){document.querySelectorAll('[data-id^="mb"]').forEach(function(e){e.classList.remove('selected','matched-ok','matched-bad');});mState.B={left:null,right:null,count:0,total:4};document.getElementById('mb-score').textContent='0 / 4';}
-function resetMatchC(){document.querySelectorAll('[data-id^="mc"]').forEach(function(e){e.classList.remove('selected','matched-ok','matched-bad');});mState.C={left:null,right:null,count:0,total:5};document.getElementById('mc-score').textContent='0 / 5';}
+function resetMatchA(){document.querySelectorAll('[data-id^="ma"]').forEach(function(e){e.classList.remove('selected','matched-ok','matched-bad');});mState.A={left:null,right:null,count:0,total:6};mpClear('A');document.getElementById('ma-score').textContent='0 / 6';}
+function resetMatchB(){document.querySelectorAll('[data-id^="mb"]').forEach(function(e){e.classList.remove('selected','matched-ok','matched-bad');});mState.B={left:null,right:null,count:0,total:4};mpClear('B');document.getElementById('mb-score').textContent='0 / 4';}
+function resetMatchC(){document.querySelectorAll('[data-id^="mc"]').forEach(function(e){e.classList.remove('selected','matched-ok','matched-bad');});mState.C={left:null,right:null,count:0,total:5};mpClear('C');document.getElementById('mc-score').textContent='0 / 5';}
 
 // ── TABLES ──
 var ansA={ta1:'b',ta2:'d',ta3:'a',ta4:'e',ta5:'c',ta6:'f'};
@@ -1435,7 +1457,7 @@ window.closeResetModal=function(){
 };
 window.executeResetProgress=function(){
   try{
-    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(SAVE_KEY);localStorage.removeItem(SAVE_KEY+'_pairs');
     localStorage.removeItem(NAME_KEY);
     localStorage.removeItem('theme');
   }catch(e){console.error('Could not clear localStorage:',e);}
@@ -1875,6 +1897,7 @@ function initGamificationV2(){
   try{
     renderTF(); renderOQ(); renderVCMatch(); renderVCListen(); renderBossListen();
     var restored=loadState();
+    mpRestore({A:{cls:'matched-ok',apply:function(n){mState.A.count=n;document.getElementById('ma-score').textContent=n+' / 6';}},B:{cls:'matched-ok',apply:function(n){mState.B.count=n;document.getElementById('mb-score').textContent=n+' / 4';}},C:{cls:'matched-ok',apply:function(n){mState.C.count=n;document.getElementById('mc-score').textContent=n+' / 5';}}});
     var savedName=localStorage.getItem(NAME_KEY);
     if(savedName&&!studentName)studentName=savedName;
     if(studentName){var visible=document.getElementById('student-name-vocab'); if(visible)visible.value=studentName;}

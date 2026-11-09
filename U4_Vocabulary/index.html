@@ -1335,6 +1335,28 @@ function resetFill(){
 }
 
 // ── MATCHING ──
+
+// ── SAVED MATCH PAIRS (kept after reload until Reset) ──
+function mpKey(){return SAVE_KEY+'_pairs';}
+function mpGet(){try{var o=JSON.parse(localStorage.getItem(mpKey())||'{}');return (o&&typeof o==='object')?o:{};}catch(e){return {};}}
+function mpSet(o){try{localStorage.setItem(mpKey(),JSON.stringify(o));}catch(e){}}
+function mpAdd(g,id){var o=mpGet();var a=Array.isArray(o[g])?o[g]:[];a=a.filter(function(x){return x!==id;});a.push(id);o[g]=a;mpSet(o);}
+function mpClear(g){var o=mpGet();delete o[g];mpSet(o);}
+// cfg: { group: { cls:'matched-ok', apply:function(count){...} } }
+function mpRestore(cfg){
+  setTimeout(function(){
+    var o=mpGet();
+    Object.keys(cfg).forEach(function(g){
+      var c=cfg[g],ids=Array.isArray(o[g])?o[g]:[],n=0;
+      ids.forEach(function(id){
+        var els=document.querySelectorAll('.m-item[data-id="'+id+'"],.match-item[data-id="'+id+'"]');
+        if(els.length===2){els.forEach(function(e){e.classList.remove('selected');e.classList.add(c.cls);});n++;}
+      });
+      c.apply(n);
+    });
+  },0);
+}
+
 let mLeft=null,mRight=null,mCount=0;
 function doMatch(el,side){
   if(el.classList.contains('matched-ok'))return;
@@ -1345,7 +1367,7 @@ function doMatch(el,side){
     if(mLeft.dataset.id===mRight.dataset.id){
       mLeft.classList.remove('selected');mRight.classList.remove('selected');
       mLeft.classList.add('matched-ok');mRight.classList.add('matched-ok');
-      mCount++;document.getElementById('match-score').textContent=mCount+' / 4';
+      mpAdd('R',mLeft.dataset.id);mCount++;document.getElementById('match-score').textContent=mCount+' / 4';
       triggerSuccessEffects(event);
       completedTotal++;
       updateProgressBar();
@@ -1358,7 +1380,7 @@ function doMatch(el,side){
     mLeft=null;mRight=null;
   }
 }
-function resetMatch(){document.querySelectorAll('[data-id^="r"]').forEach(e=>e.classList.remove('selected','matched-ok','matched-bad'));mLeft=null;mRight=null;mCount=0;document.getElementById('match-score').textContent='0 / 4';}
+function resetMatch(){document.querySelectorAll('[data-id^="r"]').forEach(e=>e.classList.remove('selected','matched-ok','matched-bad'));mLeft=null;mRight=null;mCount=0;mpClear('R');document.getElementById('match-score').textContent='0 / 4';}
 
 // ── MCQ ──
 let qAns={},qScore=0,qTotal=0;
@@ -1679,7 +1701,7 @@ window.closeResetModal=function(){
 };
 window.executeResetProgress=function(){
   try{
-    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(SAVE_KEY);localStorage.removeItem(SAVE_KEY+'_pairs');
     localStorage.removeItem(NAME_KEY);
     localStorage.removeItem(THEME_KEY);
   }catch(e){console.error('Could not clear localStorage:',e);}
@@ -2081,6 +2103,7 @@ function initGamificationV2(){
   try{
     renderTF(); renderOQ(); renderVCMatch(); renderVCListen(); renderBossListen();
     const restored=loadState();
+    mpRestore({R:{cls:'matched-ok',apply:function(n){mCount=n;document.getElementById('match-score').textContent=n+' / 4';}}});
     const savedName=localStorage.getItem(NAME_KEY);
     if(savedName&&!studentName)studentName=savedName;
     if(studentName){const visible=document.getElementById('student-name'); if(visible)visible.value=studentName;}

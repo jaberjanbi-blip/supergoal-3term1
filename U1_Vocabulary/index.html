@@ -2005,7 +2005,7 @@ window.closeResetModal = function() {
 };
 window.executeResetProgress = function() {
   try {
-    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(SAVE_KEY);localStorage.removeItem(SAVE_KEY+'_pairs');
     localStorage.removeItem(DIFF_KEY);
     localStorage.removeItem(NAME_KEY);
   } catch(e) {
@@ -2190,6 +2190,28 @@ function resetFill2() {
   if(btn) { btn.innerHTML = '▶ Reveal answers'; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; }
 }
 
+
+// ── SAVED MATCH PAIRS (kept after reload until Reset) ──
+function mpKey(){return SAVE_KEY+'_pairs';}
+function mpGet(){try{var o=JSON.parse(localStorage.getItem(mpKey())||'{}');return (o&&typeof o==='object')?o:{};}catch(e){return {};}}
+function mpSet(o){try{localStorage.setItem(mpKey(),JSON.stringify(o));}catch(e){}}
+function mpAdd(g,id){var o=mpGet();var a=Array.isArray(o[g])?o[g]:[];a=a.filter(function(x){return x!==id;});a.push(id);o[g]=a;mpSet(o);}
+function mpClear(g){var o=mpGet();delete o[g];mpSet(o);}
+// cfg: { group: { cls:'matched-ok', apply:function(count){...} } }
+function mpRestore(cfg){
+  setTimeout(function(){
+    var o=mpGet();
+    Object.keys(cfg).forEach(function(g){
+      var c=cfg[g],ids=Array.isArray(o[g])?o[g]:[],n=0;
+      ids.forEach(function(id){
+        var els=document.querySelectorAll('.m-item[data-id="'+id+'"],.match-item[data-id="'+id+'"]');
+        if(els.length===2){els.forEach(function(e){e.classList.remove('selected');e.classList.add(c.cls);});n++;}
+      });
+      c.apply(n);
+    });
+  },0);
+}
+
 // ── Matching 1 ──
 let selLeft = null, selRight = null, matchedCount = 0;
 function selectMatch(el, side) {
@@ -2200,7 +2222,7 @@ function selectMatch(el, side) {
     if(selLeft.dataset.id === selRight.dataset.id) {
       selLeft.classList.remove('selected'); selRight.classList.remove('selected');
       selLeft.classList.add('matched-correct'); selRight.classList.add('matched-correct');
-      matchedCount++; document.getElementById('match-score').textContent = matchedCount + ' / 6';
+      mpAdd('m1',selLeft.dataset.id); matchedCount++; document.getElementById('match-score').textContent = matchedCount + ' / 6';
       triggerSuccessEffects(); completedTotal++; updateProgressBar();
       if(matchedCount===6){ perfectScoreHit=true; markSection(2); }
     } else {
@@ -2214,7 +2236,7 @@ function selectMatch(el, side) {
 }
 function resetMatch() {
   document.querySelectorAll('#match1-left .match-item, #match1-right .match-item').forEach(el => el.classList.remove('selected','matched-correct','matched-wrong'));
-  selLeft = null; selRight = null; matchedCount = 0; document.getElementById('match-score').textContent = '0 / 6';
+  selLeft = null; selRight = null; matchedCount = 0; mpClear('m1'); document.getElementById('match-score').textContent = '0 / 6';
 }
 
 // ── Matching 2 ──
@@ -2227,7 +2249,7 @@ function selectMatch2(el, side) {
     if(sel2Left.dataset.id === sel2Right.dataset.id) {
       sel2Left.classList.remove('selected'); sel2Right.classList.remove('selected');
       sel2Left.classList.add('matched-correct'); sel2Right.classList.add('matched-correct');
-      matched2Count++; document.getElementById('match2-score').textContent = matched2Count + ' / 5';
+      mpAdd('m2',sel2Left.dataset.id); matched2Count++; document.getElementById('match2-score').textContent = matched2Count + ' / 5';
       triggerSuccessEffects(); completedTotal++; updateProgressBar();
       if(matched2Count===5){ perfectScoreHit=true; markSection(2); }
     } else {
@@ -2241,7 +2263,7 @@ function selectMatch2(el, side) {
 }
 function resetMatch2() {
   document.querySelectorAll('[data-id^="n"]').forEach(el => el.classList.remove('selected','matched-correct','matched-wrong'));
-  sel2Left = null; sel2Right = null; matched2Count = 0;
+  sel2Left = null; sel2Right = null; matched2Count = 0; mpClear('m2');
   document.getElementById('match2-score').textContent = '0 / 5';
 }
 
@@ -2811,6 +2833,8 @@ function initGamification(){
     renderBossListen();
 
     const restored = loadState();
+
+    mpRestore({m1:{cls:'matched-correct',apply:function(n){matchedCount=n;document.getElementById('match-score').textContent=n+' / 6';}},m2:{cls:'matched-correct',apply:function(n){matched2Count=n;document.getElementById('match2-score').textContent=n+' / 5';}}});
     const savedName = localStorage.getItem(NAME_KEY);
     if(savedName && !studentName) studentName = savedName;
     if(studentName) document.getElementById('student-name').value = studentName;
