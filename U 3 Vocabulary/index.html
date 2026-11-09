@@ -2142,5 +2142,41 @@ else{initGamificationV2();}
   }, {passive:true});
 })();
 </script>
+<!-- PAIR LINK INDICATOR — shows which item each matched card is linked to -->
+<style id="pair-link-style">
+.m-item.matched-ok,.match-item.matched-correct{opacity:1;position:relative;background:var(--pair-c,var(--green));border-color:var(--pair-c,var(--green));box-shadow:inset 0 0 0 3px rgba(255,255,255,.35);}
+.pair-badge{display:flex;align-items:center;justify-content:center;gap:4px;width:fit-content;margin:6px auto 0;padding:2px 10px;border-radius:999px;background:#fff;color:var(--pair-c,var(--green));font-size:.78rem;font-weight:900;direction:ltr;line-height:1.5;animation:pairPop .35s ease;}
+@keyframes pairPop{0%{transform:scale(0);}70%{transform:scale(1.15);}100%{transform:scale(1);}}
+</style>
+<script id="pair-link-script">
+(function(){
+  if(window.__pairLinkInit)return;window.__pairLinkInit=true;
+  var COLORS=['#16a34a','#2563eb','#9333ea','#db2777','#ea580c','#0891b2','#ca8a04','#4f46e5'];
+  var ITEM='.m-item,.match-item';
+  function isMatched(el){return el.classList.contains('matched-ok')||el.classList.contains('matched-correct');}
+  function label(el){var n=el.firstChild;var t=(n&&n.nodeType===3?n.textContent:'').trim();var m=t.match(/^([0-9]+|[a-z])[.)]/i);return m?m[1]:null;}
+  function clear(el){el.style.removeProperty('--pair-c');el.querySelectorAll('.pair-badge').forEach(function(x){x.remove();});}
+  function check(el){
+    if(!el.matches||!el.matches(ITEM))return;
+    var has=el.querySelector('.pair-badge');
+    if(!isMatched(el)){if(has)clear(el);return;}
+    if(has)return;
+    var grid=el.closest('.match-grid')||el.parentNode.parentNode;
+    var id=el.dataset.id;if(!grid||!id)return;
+    var partner=null;
+    grid.querySelectorAll(ITEM).forEach(function(o){if(o!==el&&o.dataset.id===id&&isMatched(o))partner=o;});
+    if(!partner||partner.querySelector('.pair-badge'))return;
+    var n=Math.floor(grid.querySelectorAll('.pair-badge').length/2);
+    var c=COLORS[n%COLORS.length];
+    var L=el,R=partner;
+    if(L.compareDocumentPosition(R)&Node.DOCUMENT_POSITION_PRECEDING){L=partner;R=el;}
+    var a=label(L),b=label(R);
+    var txt=(a&&b)?(a+' ↔ '+b):('🔗 '+(n+1));
+    [L,R].forEach(function(x){x.style.setProperty('--pair-c',c);var s=document.createElement('span');s.className='pair-badge';s.textContent=txt;x.appendChild(s);});
+  }
+  new MutationObserver(function(muts){muts.forEach(function(m){check(m.target);});})
+    .observe(document.body,{subtree:true,attributes:true,attributeFilter:['class']});
+})();
+</script>
 </body>
 </html>
