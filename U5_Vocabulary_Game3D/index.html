@@ -157,6 +157,11 @@ button{font-family:inherit}
   .touch #bSwitch{right:236px;bottom:92px}.touch #bJump{bottom:150px}.touch #bRoll{bottom:140px}
   .touch #teamRow{bottom:62px}
 }
+/* [إصلاح] احترام المنطقة الآمنة في الآيفون (النوتش والحواف الدائرية وشريط المنزل) حتى لا يُقطع شيء */
+#hud,#touch{left:env(safe-area-inset-left,0px);right:env(safe-area-inset-right,0px);bottom:env(safe-area-inset-bottom,0px)}
+#scope,#dmg,#fx{position:fixed;inset:0}
+.screen{padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+#custom{padding:0}
 /* result */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px 22px;width:min(560px,94vw)}
 .stars{font-size:44px;letter-spacing:6px;color:#fde047}
@@ -897,7 +902,7 @@ if(IS_TOUCH){
   const endJoy=()=>{joyId=null;inp.mx=inp.mz=0;inp.sprint=false;knob.style.transform='';joy.style.left='';joy.style.bottom=''};
   tc.addEventListener('touchstart',e=>{e.preventDefault();audioInit();for(const t of e.changedTouches){const el=t.target&&t.target.closest?t.target.closest('.tb'):null;
     if(el){acts[el.id]&&acts[el.id]();T[t.identifier]={k:'look',lx:t.clientX,ly:t.clientY,btn:el.id}}
-    else if(joyId===null&&t.clientX<innerWidth*.42&&t.clientY>innerHeight*.3){joyId=t.identifier;jx=t.clientX;jy=t.clientY;joy.style.left=(jx-62)+'px';joy.style.bottom=(innerHeight-jy-62)+'px';T[t.identifier]={k:'joy'}}
+    else if(joyId===null&&t.clientX<innerWidth*.42&&t.clientY>innerHeight*.3){joyId=t.identifier;jx=t.clientX;jy=t.clientY;{const r=tc.getBoundingClientRect();joy.style.left=(jx-62-r.left)+'px';joy.style.bottom=(r.bottom-jy-62)+'px'}T[t.identifier]={k:'joy'}}
     else T[t.identifier]={k:'look',lx:t.clientX,ly:t.clientY}}},{passive:false});
   tc.addEventListener('touchmove',e=>{e.preventDefault();for(const t of e.changedTouches){const s=T[t.identifier];if(!s)continue;
     if(s.k==='joy'){let x=t.clientX-jx,y=t.clientY-jy;const l=Math.hypot(x,y),m=56;if(l>m){x*=m/l;y*=m/l}knob.style.transform=`translate(${x}px,${y}px)`;inp.mx=x/m;inp.mz=-y/m;inp.sprint=l>m*1.25&&inp.mz>.7}
@@ -944,7 +949,7 @@ function updateMusic(){if(!AC||!soundOn||!musicOn)return;const danger=zombieCoun
 const musicBtn=()=>{$('pMusic').textContent=musicOn?'🎵 الموسيقى: تعمل':'🎵 الموسيقى: متوقفة'};$('pMusic').onclick=()=>{musicOn=!musicOn;saveJ('mq3d_music',musicOn);musicBtn()};musicBtn();
 
 /* ═══════════ الحلقة الرئيسية ═══════════ */
-function resize(){const w=innerWidth,h=innerHeight;fx.width=w;fx.height=h;renderer.setSize(w,h,false);camera.aspect=vmCam.aspect=w/h;camera.updateProjectionMatrix();vmCam.updateProjectionMatrix()}
+function resize(){const w=innerWidth,h=innerHeight;fx.width=w;fx.height=h;fx.style.width=w+'px';fx.style.height=h+'px';renderer.setSize(w,h,false);camera.aspect=vmCam.aspect=w/h;camera.updateProjectionMatrix();vmCam.updateProjectionMatrix()}
 addEventListener('resize',resize);resize();
 let last=performance.now(),time=0,frame=0;
 function tick(now){requestAnimationFrame(tick);let dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;frame++;
