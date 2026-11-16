@@ -1,6 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+<script id="tts-clip-fix">
+/* TTS clip fix: stops the first letters of a word being cut off (e.g. "Appetizer" heard as "tizer").
+   Wakes the audio output and waits a moment before the browser starts speaking. */
+(function(){
+  var ss = window.speechSynthesis;
+  if(!ss || ss.__clipFix) return;
+  ss.__clipFix = true;
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  if(isIOS) return; /* iOS must speak inside the tap itself, and does not clip */
+  var origSpeak = ss.speak.bind(ss), origCancel = ss.cancel.bind(ss);
+  var queue = [], timer = null, lastActive = 0, ctx = null;
+  function wake(){
+    try{
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return;
+      if(!ctx) ctx = new AC();
+      if(ctx.state === 'suspended') ctx.resume();
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.frequency.value = 40; g.gain.value = 0.002;
+      o.connect(g); g.connect(ctx.destination);
+      o.start(); o.stop(ctx.currentTime + 1.2);
+    }catch(e){}
+  }
+  function flush(){
+    timer = null;
+    var q = queue; queue = [];
+    for(var i = 0; i < q.length; i++){
+      try{ origSpeak(q[i]); }catch(e){}
+    }
+    lastActive = Date.now();
+  }
+  ss.cancel = function(){
+    if(timer){ clearTimeout(timer); timer = null; }
+    queue = [];
+    return origCancel();
+  };
+  ss.speak = function(u){
+    try{
+      if(!timer && (ss.speaking || ss.pending)){ lastActive = Date.now(); return origSpeak(u); }
+      queue.push(u);
+      if(timer) return;
+      var idle = Date.now() - lastActive > 4000;
+      wake();
+      timer = setTimeout(flush, idle ? 450 : 200);
+    }catch(e){ return origSpeak(u); }
+  };
+})();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>U2 Grammar Life Stories | Teacher Jaber</title>

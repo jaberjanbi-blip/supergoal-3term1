@@ -1,4 +1,54 @@
-<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>U5 Grammar – The Passive | Teacher Jaber</title><!-- Confetti Library --><style>:root {--border:var(--gray);--subtext:var(--slate);--text:var(--ink);--card:var(--card-bg);  --navy: #1E3A5F; --teal: #0F766E; --coral: #DC2E5D; --gold: #F59E0B;  --green: #16A34A; --blue: #2563EB; --purple: #7C3AED; --orange: #EA580C;  --ink: #1F2937; --slate: #475569; --light: #F8FAFC; --gray: #E5E7EB;  --yellow: #FEF3C7; --softblue: #EFF6FF; --softgreen: #F0FDF4;  --softpink: #FFF0F3; --softpurple: #F5F3FF; --softteal: #F0FDFA;  --card-bg: #ffffff;  /* Header Match Colors (U2 Style) */  --hdr-top: #2D1A3E;  --hdr-bot: #1B0E27;  --nav-bg: #231233;}
+<!DOCTYPE html><html lang="en" dir="ltr"><head>
+<script id="tts-clip-fix">
+/* TTS clip fix: stops the first letters of a word being cut off (e.g. "Appetizer" heard as "tizer").
+   Wakes the audio output and waits a moment before the browser starts speaking. */
+(function(){
+  var ss = window.speechSynthesis;
+  if(!ss || ss.__clipFix) return;
+  ss.__clipFix = true;
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  if(isIOS) return; /* iOS must speak inside the tap itself, and does not clip */
+  var origSpeak = ss.speak.bind(ss), origCancel = ss.cancel.bind(ss);
+  var queue = [], timer = null, lastActive = 0, ctx = null;
+  function wake(){
+    try{
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return;
+      if(!ctx) ctx = new AC();
+      if(ctx.state === 'suspended') ctx.resume();
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.frequency.value = 40; g.gain.value = 0.002;
+      o.connect(g); g.connect(ctx.destination);
+      o.start(); o.stop(ctx.currentTime + 1.2);
+    }catch(e){}
+  }
+  function flush(){
+    timer = null;
+    var q = queue; queue = [];
+    for(var i = 0; i < q.length; i++){
+      try{ origSpeak(q[i]); }catch(e){}
+    }
+    lastActive = Date.now();
+  }
+  ss.cancel = function(){
+    if(timer){ clearTimeout(timer); timer = null; }
+    queue = [];
+    return origCancel();
+  };
+  ss.speak = function(u){
+    try{
+      if(!timer && (ss.speaking || ss.pending)){ lastActive = Date.now(); return origSpeak(u); }
+      queue.push(u);
+      if(timer) return;
+      var idle = Date.now() - lastActive > 4000;
+      wake();
+      timer = setTimeout(flush, idle ? 450 : 200);
+    }catch(e){ return origSpeak(u); }
+  };
+})();
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>U5 Grammar – The Passive | Teacher Jaber</title><!-- Confetti Library --><style>:root {--border:var(--gray);--subtext:var(--slate);--text:var(--ink);--card:var(--card-bg);  --navy: #1E3A5F; --teal: #0F766E; --coral: #DC2E5D; --gold: #F59E0B;  --green: #16A34A; --blue: #2563EB; --purple: #7C3AED; --orange: #EA580C;  --ink: #1F2937; --slate: #475569; --light: #F8FAFC; --gray: #E5E7EB;  --yellow: #FEF3C7; --softblue: #EFF6FF; --softgreen: #F0FDF4;  --softpink: #FFF0F3; --softpurple: #F5F3FF; --softteal: #F0FDFA;  --card-bg: #ffffff;  /* Header Match Colors (U2 Style) */  --hdr-top: #2D1A3E;  --hdr-bot: #1B0E27;  --nav-bg: #231233;}
 /* Dark Mode Variables */body.dark-mode {--border:var(--gray);--subtext:var(--slate);--text:var(--ink);--card:var(--card-bg);  --navy: #60A5FA; --teal: #2DD4BF; --coral: #FB7185; --gold: #FBBF24;  --green: #4ADE80; --blue: #3B82F6; --purple: #A78BFA; --orange: #FB923C;  --ink: #F1F5F9; --slate: #94A3B8; --light: #0F172A; --gray: #334155;  --yellow: #451A03; --softblue: #1E3A8A; --softgreen: #064E3B;  --softpink: #881337; --softpurple: #4C1D95; --softteal: #134E4A;  --card-bg: #1E293B;}
 * { box-sizing: border-box; margin: 0; padding: 0; }body {   font-family: 'Segoe UI', Calibri, Arial, sans-serif;   background: var(--light);   color: var(--ink);   min-height: 100vh;  transition: background 0.3s ease, color 0.3s ease;}
 /* ════ MATCHING EXACT HEADER STYLES ════ */.site-header { position: sticky; top: 0; z-index: 200; box-shadow: 0 4px 15px rgba(0,0,0,0.4); display: flex; flex-direction: column; }.header-top { background: var(--hdr-top); padding: 14px 26px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }.header-left h1 { font-size: 1.35rem; font-weight: 900; color: white; display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }.header-left .sub { font-size: .85rem; color: #C4B5FD; font-weight: 500; }
