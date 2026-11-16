@@ -308,7 +308,8 @@ const MATCH_B=[['Long time no see',"I haven't seen you for a long time.",'لم �
 const MISSIONS=[
  {name:'قائمة المفردات',en:'Vocabulary List',color:'#22d3ee',desc:'١٠ أسئلة منوّعة + الزعيم',maxEn:2},
  {name:'المطابقة (أ)',en:'Matching A',color:'#f59e0b',desc:'١٠ أسئلة عن التعريفات + الزعيم',maxEn:3},
- {name:'تعبيرات الحديث',en:'Matching B — Real Talk',color:'#a78bfa',desc:'١٠ أسئلة عن التعبيرات + الزعيم',maxEn:3}];
+ {name:'تعبيرات الحديث',en:'Matching B — Real Talk',color:'#a78bfa',desc:'١٠ أسئلة عن التعبيرات + الزعيم',maxEn:3},
+ {name:'مهمة المراجعة',en:'Review',color:'#34d399',desc:'',review:true}];   // [جديد] تُبنى من الأسئلة التي أخطأ فيها الطالب
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 const confusable=(a,b)=>CONFUSE.some(g=>g.includes(a)&&g.includes(b));
 /* [جديد] بيانات أنواع الأسئلة الإضافية */
@@ -331,25 +332,34 @@ const qPic=v=>({html:`أي كلمة تناسب الصورة: <span class="term" 
 // ترتيب الكلمات
 function qOrder(v){const w=v[0].split(' '),bad=[];for(let i=0;i<60&&bad.length<3;i++){const t=shuffle(w.slice()).join(' ');if(t!==v[0]&&!bad.includes(t))bad.push(t)}
   return{html:`أي ترتيب صحيح لجملة: ${term(v[1],false)}`,opts:mkOpts(v[0],bad,true),exp:[v[0],v[1]]}}
+/* [جديد] كل سؤال يحمل «مصدره» (src) حتى نعيد طرحه ونتابع الإتقان: v=مفردة، a=مطابقة أ، b=مطابقة ب، s=جملة، p=صورة، o=ترتيب */
+const tag=(q,src)=>{q.src=src;return q};
+const qMean=(v,fwd)=>{const others=shuffle(VOCAB.filter(o=>o!==v&&!confusable(o[0],v[0])&&o[1]!==v[1])).slice(0,3);
+  return{pre:fwd?'ما معنى':'أي كلمة تعني',term:fwd?v[0]:v[1],termLtr:fwd,say:fwd?v[0]:null,opts:mkOpts(fwd?v[1]:v[0],others.map(o=>fwd?o[1]:o[0]),!fwd),exp:[v[0],v[1]]}};
+const qMatch=(m,v,fwd)=>{const D2=m===1?MATCH_A:MATCH_B;return{pre:fwd?(m===1?'اختر التعريف الصحيح لكلمة':'ما معنى التعبير'):(m===1?'أي كلمة تعريفها':'أي تعبير معناه'),term:fwd?v[0]:v[1],termLtr:true,say:fwd&&v[0]!=='...er'?v[0]:null,
+  opts:mkOpts(fwd?v[1]:v[0],shuffle(D2.filter(o=>o!==v)).slice(0,3).map(o=>fwd?o[1]:o[0]),true),exp:[v[0],v[1]],ar:v[2]}};
+function qFromSrc(src){const k=src[0],i=+src.slice(1),r=Math.random()<.5;return tag(k==='v'?qMean(VOCAB[i],r):k==='a'?qMatch(1,MATCH_A[i],r):k==='b'?qMatch(2,MATCH_B[i],r):k==='s'?qSent(SENT[i]):k==='p'?qPic(PICS[i]):qOrder(ORDER[i]),src)}
+// سجلّ التقدم المحفوظ: seen = عدد مرات ظهور كل سؤال، mast = ما أُتقن من أول محاولة، missed = ما يحتاج مراجعة
+let seen=loadJ('mq3d_seen',{}),mast=loadJ('mq3d_mast',{}),missed=loadJ('mq3d_missed',{});
+const saveProg=()=>{saveJ('mq3d_seen',seen);saveJ('mq3d_mast',mast);saveJ('mq3d_missed',missed)};
+const leastSeen=(n,k)=>shuffle([...Array(n).keys()]).sort((a,b)=>(seen[k+a]||0)-(seen[k+b]||0));
 function buildQuestions(m){
   let out=[];
+  if(m===3)return shuffle(Object.keys(missed)).slice(0,10).map(qFromSrc);
   if(m===0){
-    const pick=shuffle(VOCAB.slice());
-    pick.slice(0,4).forEach((v,i)=>{const fwd=i%2===0,others=shuffle(VOCAB.filter(o=>o!==v&&!confusable(o[0],v[0])&&o[1]!==v[1])).slice(0,3);
-      out.push({pre:fwd?'ما معنى':'أي كلمة تعني',term:fwd?v[0]:v[1],termLtr:fwd,say:fwd?v[0]:null,opts:mkOpts(fwd?v[1]:v[0],others.map(o=>fwd?o[1]:o[0]),!fwd),exp:[v[0],v[1]]})});
-    pick.slice(4,6).forEach(v=>out.push(qTF(v[0],v[1],VOCAB.filter(o=>!confusable(o[0],v[0])).map(o=>o[1]),true)));
-    shuffle(PICS.slice()).slice(0,2).forEach(v=>out.push(qPic(v)));
-    shuffle(SENT.slice()).slice(0,2).forEach(v=>out.push(qSent(v)));
+    const ord=leastSeen(VOCAB.length,'v');   // الكلمات الأقل ظهورًا أولًا حتى تُغطّى الـ٤٤ كلمة كلها
+    ord.slice(0,6).forEach((i,k)=>out.push(tag(qMean(VOCAB[i],k%2===0),'v'+i)));
+    ord.slice(6,8).forEach(i=>out.push(tag(qTF(VOCAB[i][0],VOCAB[i][1],VOCAB.filter(o=>!confusable(o[0],VOCAB[i][0])).map(o=>o[1]),true),'v'+i)));
+    {const i=leastSeen(PICS.length,'p')[0];out.push(tag(qPic(PICS[i]),'p'+i))}
+    {const i=leastSeen(SENT.length,'s')[0];out.push(tag(qSent(SENT[i]),'s'+i))}
   }else{
-    const D2=m===1?MATCH_A:MATCH_B,mk=(v,fwd)=>({pre:fwd?(m===1?'اختر التعريف الصحيح لكلمة':'ما معنى التعبير'):(m===1?'أي كلمة تعريفها':'أي تعبير معناه'),term:fwd?v[0]:v[1],termLtr:true,say:fwd&&v[0]!=='...er'?v[0]:null,
-      opts:mkOpts(fwd?v[1]:v[0],shuffle(D2.filter(o=>o!==v)).slice(0,3).map(o=>fwd?o[1]:o[0]),true),exp:[v[0],v[1]],ar:v[2]});
-    const a=shuffle(D2.slice());a.forEach(v=>out.push(mk(v,true)));
-    if(m===1){a.slice(0,2).forEach(v=>out.push(mk(v,false)));a.slice(2,4).forEach(v=>out.push(qTF(v[0],v[1],D2.map(o=>o[1]),false,v[2])))}
-    else{a.slice(0,3).forEach(v=>out.push(mk(v,false)));shuffle(ORDER.slice()).slice(0,2).forEach(v=>out.push(qOrder(v)))}
+    const D2=m===1?MATCH_A:MATCH_B,k=m===1?'a':'b',a=shuffle([...D2.keys()]);
+    a.forEach(i=>out.push(tag(qMatch(m,D2[i],true),k+i)));
+    if(m===1){a.slice(0,2).forEach(i=>out.push(tag(qMatch(m,D2[i],false),k+i)));a.slice(2,4).forEach(i=>out.push(tag(qTF(D2[i][0],D2[i][1],D2.map(o=>o[1]),false,D2[i][2]),k+i)))}
+    else{a.slice(0,3).forEach(i=>out.push(tag(qMatch(m,D2[i],false),k+i)));leastSeen(ORDER.length,'o').slice(0,2).forEach(i=>out.push(tag(qOrder(ORDER[i]),'o'+i)))}
   }
   out=shuffle(out).slice(0,10);
-  // [جديد] سؤال الزعيم في آخر كل مهمة: إكمال جملة
-  out.push({...qSent(shuffle(SENT.slice())[0]),boss:true});
+  {const i=leastSeen(SENT.length,'s')[0];out.push({...tag(qSent(SENT[i]),'s'+i),boss:true})}   // سؤال الزعيم
   return out;
 }
 
@@ -366,7 +376,7 @@ const SFX={
  pump:()=>{noise(.07,1400,.25);noise(.07,1900,.25,'lowpass',.16)}, ok:()=>{tone(660,.12,'triangle',.25);tone(880,.12,'triangle',.25,null,.1);tone(1320,.25,'triangle',.25,null,.2)},
  bad:()=>{tone(180,.3,'sawtooth',.22,110)}, hit:()=>tone(1400,.04,'square',.08), kill:()=>{tone(320,.16,'sine',.28,820);noise(.12,2400,.18)}, moan:(fast,v)=>{tone(fast?150:96,.75,'sawtooth',.11*v,fast?105:68);tone(fast?154:99,.75,'sine',.09*v,fast?108:70)}, rise:()=>{noise(.5,300,.3);tone(70,.5,'sine',.2,120)},
  laser:()=>tone(1100,.16,'sawtooth',.09,240), hurt:()=>{tone(140,.18,'square',.2,70)}, unlock:()=>{[523,659,784,1047].forEach((f,i)=>tone(f,.18,'triangle',.25,null,i*.09))},
- jump:()=>tone(240,.1,'sine',.08,380), combo:n=>{tone(440+n*90,.1,'square',.14);tone(660+n*90,.16,'square',.14,null,.09)}, reward:t=>{const f=t==='rare'?[784,988,1175,1568]:t==='big'?[659,880,1047]:[880,1175];f.forEach((x,i)=>tone(x,.16,'triangle',.2,null,.25+i*.08))}, roll:()=>noise(.3,700,.22), sw:()=>{noise(.06,1800,.15)}, win:()=>{[523,659,784,1047,1319].forEach((f,i)=>tone(f,.3,'triangle',.25,null,i*.12))}};
+ jump:()=>tone(240,.1,'sine',.08,380), brk:()=>{noise(.32,520,.55);tone(95,.25,'square',.18,42)}, combo:n=>{tone(440+n*90,.1,'square',.14);tone(660+n*90,.16,'square',.14,null,.09)}, reward:t=>{const f=t==='rare'?[784,988,1175,1568]:t==='big'?[659,880,1047]:[880,1175];f.forEach((x,i)=>tone(x,.16,'triangle',.2,null,.25+i*.08))}, roll:()=>noise(.3,700,.22), sw:()=>{noise(.06,1800,.15)}, win:()=>{[523,659,784,1047,1319].forEach((f,i)=>tone(f,.3,'triangle',.25,null,i*.12))}};
 function speak(t,lang='en-US'){try{if(!soundOn||!window.speechSynthesis||!t)return;const vs=speechSynthesis.getVoices(),isAr=/^ar/.test(lang);if(isAr&&vs.length&&!vs.some(v=>/^ar/i.test(v.lang)))return;
   const u=new SpeechSynthesisUtterance(t);u.lang=lang;u.rate=isAr?.95:.85;const v=vs.filter(v=>(isAr?/^ar/i:/^en/i).test(v.lang));const p=(!isAr&&v.find(v=>/Google US|Samantha|Aria|Jenny|Natural/i.test(v.name)))||v[0];if(p)u.voice=p;speechSynthesis.speak(u)}catch(e){}}
 // [جديد] تعليق صوتي: ينطق الإجابة الصحيحة بالإنجليزية ثم معناها بالعربية
@@ -411,8 +421,11 @@ const WM={ground:mat({map:TX.ground,roughness:.95}),crate:mat({map:TX.crate,roug
 const ARENA=52;   // [جديد] نصف طول الساحة: ٥٢ يعني ١٠٤×١٠٤ م (نحو ٢٫٣ ضعف المساحة السابقة)
 {const g=new THREE.Mesh(new THREE.PlaneGeometry(ARENA*2+40,ARENA*2+40),WM.ground);g.rotation.x=-Math.PI/2;g.receiveShadow=true;scene.add(g)}
 const colliders=[],worldMeshes=[];
-function addBox(x,y,z,w,h,d,m,vis=true){const me=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m||WM.conc);me.position.set(x,y+h/2,z);me.castShadow=me.receiveShadow=true;me.visible=vis;scene.add(me);
-  colliders.push({minX:x-w/2,maxX:x+w/2,minY:y,maxY:y+h,minZ:z-d/2,maxZ:z+d/2});worldMeshes.push(me);return me}
+/* [جديد] كل ما في الساحة قابل للتدمير بالرصاص (عدا السور والأبراج لأنها حدود الساحة). PROP_HP = صحة كل نوع */
+const PROP_HP={crate:60,barrier:160,cont:420,bags:130},PROP_COL={crate:0x9a7440,barrier:0xa8a49a,cont:0x8f9499,bags:0xb59a6c},props=[];
+function addBox(x,y,z,w,h,d,m,vis=true,kind=null){const me=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m||WM.conc);me.position.set(x,y+h/2,z);me.castShadow=me.receiveShadow=true;me.visible=vis;scene.add(me);
+  const col={minX:x-w/2,maxX:x+w/2,minY:y,maxY:y+h,minZ:z-d/2,maxZ:z+d/2};colliders.push(col);worldMeshes.push(me);
+  if(kind){const pr={mesh:me,col,kind,hp:PROP_HP[kind],alive:true,mat0:me.material,x,y:y+h/2,z,w,h,d};me.userData.prop=pr;props.push(pr)}return me}
 // walls
 addBox(0,0,-ARENA,ARENA*2,4.5,1,WM.wall);addBox(0,0,ARENA,ARENA*2,4.5,1,WM.wall);addBox(-ARENA,0,0,1,4.5,ARENA*2,WM.wall);addBox(ARENA,0,0,1,4.5,ARENA*2,WM.wall);
 // towers
@@ -421,15 +434,16 @@ addBox(0,0,-ARENA,ARENA*2,4.5,1,WM.wall);addBox(0,0,ARENA,ARENA*2,4.5,1,WM.wall)
 // crates (climbable)
 [[6,-6,1],[7.1,-6,1],[6.5,-6,1,1],[-7,-5,1],[-7,-3.9,1],[5,8,1],[-6,10,1],[-5,10,1],[-5.5,10,1,1],[10,1,1.2],[-11,-9,1],[2,-11,1],[3.1,-11,1],[-2,13,1],[14,6,1],[-15,3,1],[-15,4.1,1],[9,-14,1],[0,5.5,1.1],
  /* [جديد] منطقة الصناديق والحواجز (شمال شرق) */ [30,-30,1],[31.1,-30,1],[30.5,-30,1,1],[36,-34,1],[36,-35.1,1],[42,-30,1],[43.1,-30,1],[42.5,-30,1,1],[33,-42,1.2],[39,-41,1],[40.1,-41,1],[45,-36,1],[28,-37,1],[37,-28,1.2],
- /* متفرقات في الحلقة الخارجية */ [20,-38,1],[-20,38,1],[-38,-14,1],[38,14,1],[-37,33,1],[-41,42,1],[-30,-30,1],[-44,-44,1]].forEach(([x,z,s,y])=>addBox(x,y||0,z,s,s,s,WM.crate));
+ /* متفرقات في الحلقة الخارجية */ [20,-38,1],[-20,38,1],[-38,-14,1],[38,14,1],[-37,33,1],[-41,42,1],[-30,-30,1],[-44,-44,1]].forEach(([x,z,s,y])=>addBox(x,y||0,z,s,s,s,WM.crate,true,'crate'));
 // containers
-[[24,-12,'#b4472f',0],[-24,14,'#2f6fb4',0],[4,26,'#3f8a4c',1],[-10,-26,'#c9a227',1],[24,18,'#7b5ea7',0],/* [جديد] ساحة الحاويات (جنوب شرق) */[35,31,'#b4472f',0],[43,39,'#2f6fb4',1],[30,43,'#c9a227',1],[45,27,'#3f8a4c',0],[38,-46,'#7b5ea7',1]].forEach(([x,z,c,r])=>addBox(x,0,z,r?7:2.6,2.7,r?2.6:7,mat({map:TX.cont(c),roughness:.6,metalness:.4})));
+[[24,-12,'#b4472f',0],[-24,14,'#2f6fb4',0],[4,26,'#3f8a4c',1],[-10,-26,'#c9a227',1],[24,18,'#7b5ea7',0],/* [جديد] ساحة الحاويات (جنوب شرق) */[35,31,'#b4472f',0],[43,39,'#2f6fb4',1],[30,43,'#c9a227',1],[45,27,'#3f8a4c',0],[38,-46,'#7b5ea7',1]].forEach(([x,z,c,r])=>addBox(x,0,z,r?7:2.6,2.7,r?2.6:7,mat({map:TX.cont(c),roughness:.6,metalness:.4}),true,'cont'));
 // concrete barriers
-[[0,-8,4,.5],[-10,2,.5,4],[9,5,.5,4],[-3,-18.5,.5,3],[16,-4,3,.5],[-17,-12,3,.5],[4,17,4,.5],[-12,19,.5,3],/* [جديد] */[34,-39,4,.5],[40,-35,.5,4],[30,-45,4,.5],[46,-42,.5,3],[0,-40,6,.5],[0,40,6,.5],[-40,0,.5,6],[40,0,.5,6],[38,36,.5,4],[-28,-40,.5,4],[-46,-30,4,.5]].forEach(([x,z,w,d])=>addBox(x,0,z,w,1.15,d,WM.conc));
+[[0,-8,4,.5],[-10,2,.5,4],[9,5,.5,4],[-3,-18.5,.5,3],[16,-4,3,.5],[-17,-12,3,.5],[4,17,4,.5],[-12,19,.5,3],/* [جديد] */[34,-39,4,.5],[40,-35,.5,4],[30,-45,4,.5],[46,-42,.5,3],[0,-40,6,.5],[0,40,6,.5],[-40,0,.5,6],[40,0,.5,6],[38,36,.5,4],[-28,-40,.5,4],[-46,-30,4,.5]].forEach(([x,z,w,d])=>addBox(x,0,z,w,1.15,d,WM.conc,true,'barrier'));
 // sandbags
 const bagWalls=[[3,-3.5,3.2,0],[-4,3,3.2,1],[12,-9,3.2,0],[-9,-13,3.2,1],[8,12,3.2,0],[-13,9,3.2,1],[18,10,3.2,1],[-20,-4,3.2,0],/* [جديد] ركن أكياس الرمل (جنوب غرب) */[-32,31,3.2,0],[-36,36,3.2,1],[-40,30,3.2,0],[-30,40,3.2,1],[-44,37,3.2,0],[-38,45,3.2,0],[-33,26,3.2,1],[-46,31,3.2,1],[-27,34,3.2,1],[-42,25,3.2,0]];
+let bagInst=null,bagBackup=null;
 {const bg=new THREE.SphereGeometry(1,10,8);const inst=new THREE.InstancedMesh(bg,WM.bag,bagWalls.length*3*5);inst.castShadow=inst.receiveShadow=true;let n=0;const d=new THREE.Object3D();
- bagWalls.forEach(([x,z,L,rot])=>{addBox(x,0,z,rot?.75:L,.84,rot?L:.75,null,false);for(let r=0;r<3;r++)for(let i=0;i<5;i++){if(r===2&&i===4)continue;const o=-L/2+.35+i*.63+(r%2?.3:0);if(o>L/2-.2)continue;d.position.set(rot?x:x+o,.15+r*.27,rot?z+o:z);d.rotation.set(0,rot?Math.PI/2:0,0);d.scale.set(.36,.16,.2);d.updateMatrix();inst.setMatrixAt(n++,d.matrix)}});inst.count=n;scene.add(inst)}
+ bagWalls.forEach(([x,z,L,rot])=>{const pm=addBox(x,0,z,rot?.75:L,.84,rot?L:.75,null,false,'bags'),n0=n;for(let r=0;r<3;r++)for(let i=0;i<5;i++){if(r===2&&i===4)continue;const o=-L/2+.35+i*.63+(r%2?.3:0);if(o>L/2-.2)continue;d.position.set(rot?x:x+o,.15+r*.27,rot?z+o:z);d.rotation.set(0,rot?Math.PI/2:0,0);d.scale.set(.36,.16,.2);d.updateMatrix();inst.setMatrixAt(n++,d.matrix)}pm.userData.prop.inst=[n0,n]});inst.count=n;scene.add(inst);bagInst=inst;bagBackup=inst.instanceMatrix.array.slice()}
 // centre pad decoration
 {const r=new THREE.Mesh(new THREE.RingGeometry(2.6,2.9,40),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.35}));r.rotation.x=-Math.PI/2;r.position.set(0,.02,0);scene.add(r)}
 // [جديد] لافتات أرضية بأسماء المناطق + دائرة الساحة المفتوحة
@@ -476,23 +490,24 @@ function roll(){if(state!=='play'||P.rollCd>0||!P.ground)return;let fx=IS_TOUCH?
 
 /* ═══════════ [جديد] شخصية اللاعب + التخصيص ═══════════ */
 const LOOK_OPTS={
-  thobe:{label:'لون الثوب',opts:[['أبيض','#f4f4f0'],['سكري','#e8dcc0'],['رمادي','#8d9199'],['كحلي','#27364f'],['بني','#6b4a32'],['أسود','#1c1c1f']]},
+  char:{label:'الشخصية',opts:[['بالثوب','thobe'],['رياضي','sport'],['رائد فضاء','astro'],['روبوت','robot'],['مستكشف','explorer'],['نينجا','ninja']]},
+  thobe:{label:'لون الملابس',opts:[['أبيض','#f4f4f0'],['سكري','#e8dcc0'],['رمادي','#8d9199'],['كحلي','#27364f'],['بني','#6b4a32'],['أسود','#1c1c1f']]},
   head:{label:'غطاء الرأس',opts:[['شماغ','shemagh'],['غترة','ghutra'],['طاقية','cap'],['بدون','none']]},
   skin:{label:'لون البشرة',opts:[['فاتح','#f1c9a5'],['حنطي','#d9a877'],['أسمر','#a8703f'],['داكن','#6e4526']]},
   hair:{label:'الشعر',opts:[['أسود','#15120f'],['بني','#4a2f1b'],['كستنائي','#7a4a25'],['رمادي','#8a8a8a']]},
   acc:{label:'الإكسسوارات',opts:[['بدون','none'],['نظارة شمسية','sun'],['نظارة','glasses'],['حقيبة ظهر','bag'],['ساعة','watch']]}};
-let look=Object.assign({thobe:0,head:0,skin:1,hair:0,acc:0},loadJ('mq3d_look',{}));
+let look=Object.assign({char:0,thobe:0,head:0,skin:1,hair:0,acc:0},loadJ('mq3d_look',{}));
 for(const k in LOOK_OPTS)if(!(look[k]>=0&&look[k]<LOOK_OPTS[k].opts.length))look[k]=0;
 const shemaghTex=tex(cvs(64,64,g=>{g.fillStyle='#f5f2ea';g.fillRect(0,0,64,64);g.fillStyle='#c0262d';for(let y=0;y<8;y++)for(let x=0;x<8;x++)if((x+y)%2===0)g.fillRect(x*8+1,y*8+1,6,6)}),5,3);
 const hero=(()=>{const g=new THREE.Group(),body=new THREE.Group();g.add(body);
-  const m={thobe:mat({roughness:.85}),skin:mat({roughness:.7}),hair:mat({roughness:.95}),cloth:mat({roughness:.9,side:THREE.DoubleSide}),taq:mat({color:0xf6f6f2,roughness:.9}),black:mat({color:0x111111,roughness:.6}),dark:mat({color:0x23262b,roughness:.5,metalness:.5}),bag:mat({color:0xd97706,roughness:.8}),lens:mat({color:0x0b0f18,roughness:.1,metalness:.9}),gold:mat({color:0xd4af37,metalness:1,roughness:.3}),shoe:mat({color:0x4a3524,roughness:.8})};
+  const m={thobe:mat({roughness:.85}),skin:mat({roughness:.7}),hair:mat({roughness:.95}),cloth:mat({roughness:.9,side:THREE.DoubleSide}),taq:mat({color:0xf6f6f2,roughness:.9}),black:mat({color:0x111111,roughness:.6}),dark:mat({color:0x23262b,roughness:.5,metalness:.5}),bag:mat({color:0xd97706,roughness:.8}),lens:mat({color:0x0b0f18,roughness:.1,metalness:.9}),gold:mat({color:0xd4af37,metalness:1,roughness:.3}),shoe:mat({color:0x4a3524,roughness:.8}),pants:mat({roughness:.85}),visor:mat({color:0x9fd8ff,metalness:.9,roughness:.05,transparent:true,opacity:.35}),white:mat({color:0xf1f5f9,roughness:.5}),metal:mat({color:0x9aa3ad,metalness:1,roughness:.3}),glow:new THREE.MeshBasicMaterial({color:0x22d3ee,toneMapped:false}),hat:mat({color:0x8a6a3c,roughness:.9}),ninja:mat({color:0x1b1d22,roughness:.8})};
   const add=(geo,mt,x,y,z,par=body)=>{const me=new THREE.Mesh(geo,mt);me.position.set(x,y,z);me.castShadow=true;par.add(me);return me};
-  add(new THREE.CylinderGeometry(.19,.3,1.22,18),m.thobe,0,.69,0);
+  const robe=add(new THREE.CylinderGeometry(.19,.3,1.22,18),m.thobe,0,.69,0);
   add(new THREE.SphereGeometry(1,16,10),m.thobe,0,1.29,0).scale.set(.27,.13,.18);
   add(new THREE.CylinderGeometry(.055,.06,.1,10),m.skin,0,1.41,0);
   const head=new THREE.Group();head.position.set(0,1.56,0);body.add(head);
-  add(new THREE.SphereGeometry(.15,18,14),m.skin,0,0,0,head);
-  [-1,1].forEach(s=>add(new THREE.SphereGeometry(.018,8,6),m.black,s*.052,.015,-.138,head));
+  const skull=add(new THREE.SphereGeometry(.15,18,14),m.skin,0,0,0,head);
+  const eyes=[-1,1].map(s=>add(new THREE.SphereGeometry(.018,8,6),m.black,s*.052,.015,-.138,head));
   const hair=add(new THREE.SphereGeometry(.158,18,12,0,6.3,0,1.75),m.hair,0,.005,0,head);hair.rotation.x=.4;
   const hw=new THREE.Group();head.add(hw);
   add(new THREE.SphereGeometry(.166,18,10,0,6.3,0,1.45),m.cloth,0,.01,0,hw).rotation.x=.25;
@@ -508,22 +523,34 @@ const hero=(()=>{const g=new THREE.Group(),body=new THREE.Group();g.add(body);
   add(new THREE.BoxGeometry(.05,.4,.1),m.dark,0,-.7,-.03,armR);add(new THREE.BoxGeometry(.04,.12,.05),m.dark,0,-.56,.07,armR);
   const watch=add(new THREE.CylinderGeometry(.064,.064,.035,12),m.gold,0,-.47,0,armL);
   const feet=[-1,1].map(s=>add(new THREE.BoxGeometry(.09,.06,.2),m.shoe,s*.09,.03,-.03));
-  scene.add(g);return{g,body,head,m,hair,hw,taq,sun,gl,bag,watch,armL,armR,feet}})();
-function applyLook(){const o=LOOK_OPTS,h=hero,hd=o.head.opts[look.head][1],ac=o.acc.opts[look.acc][1];
-  h.m.thobe.color.set(o.thobe.opts[look.thobe][1]);h.m.skin.color.set(o.skin.opts[look.skin][1]);h.m.hair.color.set(o.hair.opts[look.hair][1]);
-  h.hw.visible=hd==='shemagh'||hd==='ghutra';h.taq.visible=hd==='cap';h.hair.visible=hd==='none'||hd==='cap';
+  // [جديد] أجسام وشخصيات إضافية: بدلة بساقين متحركتين + خوذة فضاء + رأس روبوت + قبعة مستكشف + قناع نينجا
+  const suit=new THREE.Group();body.add(suit);add(new THREE.BoxGeometry(.46,.56,.27),m.thobe,0,1.03,0,suit);add(new THREE.BoxGeometry(.44,.14,.25),m.pants,0,.74,0,suit);
+  const legs=[-1,1].map(s=>{const pv=new THREE.Group();pv.position.set(s*.115,.7,0);suit.add(pv);add(new THREE.BoxGeometry(.17,.62,.2),m.pants,0,-.31,0,pv);add(new THREE.BoxGeometry(.18,.09,.28),m.shoe,0,-.655,-.04,pv);return pv});
+  const helmet=new THREE.Group();head.add(helmet);add(new THREE.SphereGeometry(.22,20,14),m.visor,0,.02,0,helmet).castShadow=false;add(new THREE.CylinderGeometry(.17,.19,.07,16),m.white,0,-.17,0,helmet);
+  const tank=add(new THREE.BoxGeometry(.3,.4,.16),m.white,0,1.05,.22);
+  const robo=new THREE.Group();head.add(robo);add(new THREE.BoxGeometry(.3,.26,.28),m.metal,0,0,0,robo);[-1,1].forEach(s=>add(new THREE.SphereGeometry(.035,10,8),m.glow,s*.07,.02,-.145,robo));add(new THREE.CylinderGeometry(.008,.008,.14,6),m.metal,0,.2,0,robo);add(new THREE.SphereGeometry(.025,8,6),m.glow,0,.28,0,robo);add(new THREE.BoxGeometry(.14,.02,.01),m.glow,0,-.07,-.142,robo);
+  const hat=new THREE.Group();head.add(hat);add(new THREE.CylinderGeometry(.27,.27,.02,20),m.hat,0,.1,0,hat);add(new THREE.CylinderGeometry(.14,.16,.12,16),m.hat,0,.16,0,hat);
+  const mask=add(new THREE.SphereGeometry(.157,18,14),m.ninja,0,0,0,head),band=add(new THREE.BoxGeometry(.2,.05,.03),m.skin,0,.018,-.142,head);
+  scene.add(g);return{g,body,head,m,hair,hw,taq,sun,gl,bag,watch,armL,armR,feet,robe,skull,eyes,suit,legs,helmet,tank,robo,hat,mask,band}})();
+function applyLook(){const o=LOOK_OPTS,h=hero,hd=o.head.opts[look.head][1],ac=o.acc.opts[look.acc][1],ch=o.char.opts[look.char][1],human=ch!=='robot',isRobe=ch==='thobe',useHW=isRobe||ch==='sport';
+  h.m.thobe.color.set(o.thobe.opts[look.thobe][1]);h.m.pants.color.copy(h.m.thobe.color).multiplyScalar(ch==='robot'?.75:.5);h.m.thobe.metalness=h.m.pants.metalness=ch==='robot'?.9:0;h.m.thobe.roughness=h.m.pants.roughness=ch==='robot'?.35:.85;
+  h.m.skin.color.set(human?o.skin.opts[look.skin][1]:'#9aa3ad');h.m.hair.color.set(o.hair.opts[look.hair][1]);
+  h.robe.visible=isRobe;h.suit.visible=!isRobe;h.feet.forEach(f=>f.visible=isRobe);
+  h.skull.visible=human;h.eyes.forEach(e=>e.visible=human);
+  h.hw.visible=useHW&&(hd==='shemagh'||hd==='ghutra');h.taq.visible=useHW&&hd==='cap';h.hair.visible=human&&ch!=='ninja'&&(!useHW||hd==='none'||hd==='cap');
   h.m.cloth.map=hd==='shemagh'?shemaghTex:null;h.m.cloth.color.set(0xfbfbf7);h.m.cloth.needsUpdate=true;
-  h.sun.visible=ac==='sun';h.gl.visible=ac==='glasses';h.bag.visible=ac==='bag';h.watch.visible=ac==='watch'}
+  h.helmet.visible=h.tank.visible=ch==='astro';h.robo.visible=ch==='robot';h.hat.visible=ch==='explorer';h.mask.visible=h.band.visible=ch==='ninja';
+  const face=human&&ch!=='astro'&&ch!=='ninja';h.sun.visible=face&&ac==='sun';h.gl.visible=face&&ac==='glasses';h.bag.visible=ac==='bag'&&ch!=='astro';h.watch.visible=ac==='watch'}
 applyLook();
 function animHero(dt,speed,time){const mv=Math.min(1,speed/4.7),w=time*(4+speed*1.3),h=hero;h.body.position.y=Math.abs(Math.sin(w))*.035*mv;h.body.rotation.z=Math.sin(w)*.03*mv;
-  h.feet[0].position.z=-.03+Math.sin(w)*.14*mv;h.feet[1].position.z=-.03-Math.sin(w)*.14*mv;h.armL.rotation.x=Math.sin(w)*.55*mv;h.head.rotation.x=-P.pitch*.4}
+  h.feet[0].position.z=-.03+Math.sin(w)*.14*mv;h.feet[1].position.z=-.03-Math.sin(w)*.14*mv;h.armL.rotation.x=Math.sin(w)*.55*mv;if(h.suit.visible){h.legs[0].rotation.x=Math.sin(w)*.7*mv;h.legs[1].rotation.x=-Math.sin(w)*.7*mv}h.head.rotation.x=-P.pitch*.4}
 let tp=!!loadJ('mq3d_tp',false),tpT=0,camShake=0;   // tp = منظور الشخص الثالث
 function toggleView(){tp=!tp;saveJ('mq3d_tp',tp);if(state==='play')toast(tp?'منظور الشخص الثالث':'منظور الشخص الأول','info',900);if(IS_TOUCH)$('bView').classList.toggle('act',tp)}
 // شاشة التخصيص
 let customFrom='menu',lookBackup=null,charRot=0;
 function buildCustomUI(){$('cRows').innerHTML=Object.keys(LOOK_OPTS).map(k=>{const o=LOOK_OPTS[k],col=o.opts[0][1][0]==='#';
   return `<div class="crow"><div class="clab">${o.label}</div><div class="copts">${o.opts.map((v,i)=>`<button class="chip${col?' sw':''}${look[k]===i?' on':''}" data-k="${k}" data-i="${i}" ${col?`style="--sw:${v[1]}" title="${v[0]}" aria-label="${v[0]}"`:''}>${col?'':v[0]}</button>`).join('')}</div></div>`}).join('')+
-  ($('cRows').dataset.note=LOOK_OPTS.head.opts[look.head][1]==='shemagh'||LOOK_OPTS.head.opts[look.head][1]==='ghutra'?'<div class="cnote">لون الشعر يظهر مع «طاقية» أو «بدون»</div>':'');
+  ($('cRows').dataset.note=LOOK_OPTS.head.opts[look.head][1]==='shemagh'||LOOK_OPTS.head.opts[look.head][1]==='ghutra'?'<div class="cnote">غطاء الرأس للشخصيتين «بالثوب» و«رياضي» • لون الشعر يظهر مع «طاقية» أو «بدون»</div>':'');
   $('cRows').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{look[b.dataset.k]=+b.dataset.i;applyLook();buildCustomUI()})}
 function openCustom(){customFrom=state;lookBackup={...look};charRot=0;buildCustomUI();setState('custom')}
 function closeCustom(apply){if(apply)saveJ('mq3d_look',look);else{look=lookBackup;applyLook()}camera.clearViewOffset();camera.updateProjectionMatrix();setState(customFrom)}
@@ -664,8 +691,20 @@ function updateVM(dt){
 const tracers=[];for(let i=0;i<14;i++){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(6),3));const l=new THREE.Line(g,new THREE.LineBasicMaterial({color:0xffe6a0,transparent:true,toneMapped:false}));l.visible=false;l.frustumCulled=false;scene.add(l);tracers.push({l,t:0})}
 function tracer(a,b,color=0xffe6a0,life=.07){const tr=tracers.find(t=>t.t<=0)||tracers[0];const p=tr.l.geometry.attributes.position;p.setXYZ(0,a.x,a.y,a.z);p.setXYZ(1,b.x,b.y,b.z);p.needsUpdate=true;tr.l.material.color.set(color);tr.l.visible=true;tr.t=life}
 const parts=[],pGeo=new THREE.BoxGeometry(.09,.09,.09),pMats={};
-for(let i=0;i<90;i++){const m=new THREE.Mesh(pGeo,null);m.visible=false;scene.add(m);parts.push({m,t:0,v:new V3()})}
-function burst(p,color,n=10,sp=4){const key=String(color);pMats[key]=pMats[key]||new THREE.MeshBasicMaterial({color,toneMapped:false});for(let i=0;i<n;i++){const q=parts.find(x=>x.t<=0);if(!q)return;q.m.material=pMats[key];q.m.position.copy(p);q.m.visible=true;q.t=.4+Math.random()*.4;q.v.set((Math.random()-.5)*sp,Math.random()*sp,(Math.random()-.5)*sp);q.m.scale.setScalar(.6+Math.random())}}
+for(let i=0;i<170;i++){const m=new THREE.Mesh(pGeo,null);m.visible=false;scene.add(m);parts.push({m,t:0,v:new V3()})}
+function burst(p,color,n=10,sp=4,size=1){const key=String(color);pMats[key]=pMats[key]||new THREE.MeshBasicMaterial({color,toneMapped:false});for(let i=0;i<n;i++){const q=parts.find(x=>x.t<=0);if(!q)return;q.m.material=pMats[key];q.m.position.copy(p);q.m.visible=true;q.t=.4+Math.random()*.4;q.v.set((Math.random()-.5)*sp,Math.random()*sp,(Math.random()-.5)*sp);q.m.scale.setScalar((.6+Math.random())*size)}}
+function damageProp(pr,dmg,pt){if(!pr.alive)return;pr.hp-=dmg;burst(pt,PROP_COL[pr.kind],3,3);
+  if(pr.kind!=='bags'){if(pr.mesh.material===pr.mat0)pr.mesh.material=pr.mat0.clone();pr.mesh.material.color.setScalar(.4+.6*Math.max(0,pr.hp/PROP_HP[pr.kind]))}
+  if(pr.hp<=0)destroyProp(pr)}
+const _zeroM=new THREE.Matrix4().makeScale(0,0,0);
+function destroyProp(pr){if(!pr.alive)return;pr.alive=false;scene.remove(pr.mesh);let i=colliders.indexOf(pr.col);if(i>=0)colliders.splice(i,1);i=worldMeshes.indexOf(pr.mesh);if(i>=0)worldMeshes.splice(i,1);hitDirty=true;
+  const n=pr.kind==='cont'?46:pr.kind==='crate'?18:26,sz=pr.kind==='cont'?2.6:pr.kind==='crate'?1.7:2,c=new V3();for(let k=0;k<n;k++){c.set(pr.x+(Math.random()-.5)*pr.w,pr.y+(Math.random()-.5)*pr.h,pr.z+(Math.random()-.5)*pr.d);burst(c,PROP_COL[pr.kind],1,6,sz)}
+  if(pr.inst&&bagInst){for(let k=pr.inst[0];k<pr.inst[1];k++)bagInst.setMatrixAt(k,_zeroM);bagInst.instanceMatrix.needsUpdate=true}
+  SFX.brk();if(Math.hypot(pr.x-P.x,pr.z-P.z)<8)camShake=Math.max(camShake,.18);
+  // ما كان فوقه يسقط معه
+  props.forEach(o=>{if(o.alive&&Math.abs(o.col.minY-pr.col.maxY)<.06&&o.col.minX<pr.col.maxX&&o.col.maxX>pr.col.minX&&o.col.minZ<pr.col.maxZ&&o.col.maxZ>pr.col.minZ)destroyProp(o)})}
+function restoreProps(){props.forEach(pr=>{if(!pr.alive){pr.alive=true;scene.add(pr.mesh);colliders.push(pr.col);worldMeshes.push(pr.mesh)}pr.hp=PROP_HP[pr.kind];if(pr.mesh.material!==pr.mat0){pr.mesh.material.dispose();pr.mesh.material=pr.mat0}});
+  if(bagInst){bagInst.instanceMatrix.array.set(bagBackup);bagInst.instanceMatrix.needsUpdate=true}hitDirty=true}
 function updateFx(dt){tracers.forEach(t=>{if(t.t>0){t.t-=dt;if(t.t<=0)t.l.visible=false}});parts.forEach(q=>{if(q.t>0){q.t-=dt;q.v.y-=9*dt;q.m.position.addScaledVector(q.v,dt);q.m.rotation.x+=dt*6;if(q.t<=0||q.m.position.y<0)q.m.visible=false,q.t=0}})}
 const laserDot=new THREE.Mesh(new THREE.SphereGeometry(.035,8,6),new THREE.MeshBasicMaterial({color:0xff2020,toneMapped:false}));laserDot.visible=false;scene.add(laserDot);
 
@@ -699,7 +738,10 @@ function spawnTargets(q,isCrate){clearTargets();const col=MISSIONS[mission].colo
     }else{const pole=new THREE.Mesh(new THREE.CylinderGeometry(.08,.12,2.5,10),WM.pole);pole.position.y=1.25;pole.castShadow=true;root.add(pole);const base=new THREE.Mesh(new THREE.CylinderGeometry(.5,.6,.16,16),WM.pole);base.position.y=.08;root.add(base);
       t.panel=makePanel(o,col,4.2,2.1);t.panel.grp.position.y=3.5;{const beam=new THREE.Mesh(new THREE.CylinderGeometry(.35,.35,14,12,1,true),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.14,side:THREE.DoubleSide,depthWrite:false,toneMapped:false}));beam.position.y=11.5;root.add(beam);t.beam=beam}root.add(t.panel.grp);t.panel.frame.castShadow=true;t.panel.frame.userData.t=t;dynMeshes.push(t.panel.frame);t.aimY=3.5}
     targets.push(t)});hitDirty=true}
-function updateTargets(dt,time){targets.forEach(t=>{const a=Math.atan2(P.x-t.x,P.z-t.z);if(t.crate)t.panel.grp.rotation.y=a;else t.root.rotation.y=a;
+// [جديد] تحطيم لوحة (عند الإجابة الخاطئة أو كتلميح)
+function shatter(t){t.done=true;t.breakT=0;if(!t.root.visible)return;const p=new V3(t.x,t.aimY,t.z);burst(p,0x64748b,22,7,1.7);burst(p,MISSIONS[mission].color,10,6);SFX.brk();t.root.visible=false;dynMeshes=dynMeshes.filter(m=>m.userData.t!==t);hitDirty=true;
+  if(t.crate)for(let i=colliders.length-1;i>=0;i--){const c=colliders[i];if(c.dyn&&Math.abs((c.minX+c.maxX)/2-t.x)<.1&&Math.abs((c.minZ+c.maxZ)/2-t.z)<.1)colliders.splice(i,1)}}
+function updateTargets(dt,time){targets.forEach(t=>{if(t.breakT>0){t.breakT-=dt;if(t.breakT<=0)shatter(t)}const a=Math.atan2(P.x-t.x,P.z-t.z);if(t.crate)t.panel.grp.rotation.y=a;else t.root.rotation.y=a;
   t.panel.grp.position.y=t.aimY+Math.sin(time*2+t.x)*.05;t.glow+=((t===aimT?1.6:.5)-t.glow)*Math.min(1,10*dt);if(!t.done){if(t.hintT>0){t.hintT-=dt;t.panel.fm.emissive.set(0xfde047);t.panel.fm.emissiveIntensity=2+Math.sin(time*14)*1.5;if(t.hintT<=0)t.panel.fm.emissive.set(MISSIONS[mission].color)}else t.panel.fm.emissiveIntensity=t.glow}
   if(t.open&&t.lid.rotation.x>-1.9)t.lid.rotation.x-=dt*4;if(t.beam)t.beam.material.opacity=.12+.06*Math.sin(time*4)})}
 
@@ -762,7 +804,7 @@ function fire(){const w=W();if(state!=='play'||reloadT>0||switchT>0||w.cd>0||P.r
   // اختيار الإجابة يكون بالشعاع المركزي فقط
   const c=castFrom(base);if(c&&c.object.userData.t&&!c.object.userData.t.done){tracer(muzzleW,c.point);selectTarget(c.object.userData.t,c.point);refreshHud();return}
   for(let i=0;i<w.pellets;i++){const d=base.clone();d.x+=(Math.random()-.5)*2*sp;d.y+=(Math.random()-.5)*2*sp;d.z+=(Math.random()-.5)*2*sp;d.normalize();const h=castFrom(d);const end=h?h.point:camPos.clone().addScaledVector(d,120);
-    if(i<3)tracer(muzzleW,end,w.tcol||0xffe6a0,w.freeze?.16:.07);if(h){const u=h.object.userData;if(u.e){damageEnemy(u.e,w.dmg,!!u.head,h.point);if(w.freeze&&!u.e.dead){u.e.freeze=w.freeze;burst(h.point,0x67e8f9,8,3)}}else if(!u.t)burst(h.point,0xcfc8b8,2,2)}}
+    if(i<3)tracer(muzzleW,end,w.tcol||0xffe6a0,w.freeze?.16:.07);if(h){const u=h.object.userData;if(u.e){damageEnemy(u.e,w.dmg,!!u.head,h.point);if(w.freeze&&!u.e.dead){u.e.freeze=w.freeze;burst(h.point,0x67e8f9,8,3)}}else if(u.prop)damageProp(u.prop,w.dmg,h.point);else if(!u.t)burst(h.point,0xcfc8b8,2,2)}}
   refreshHud();if(w.ammo<=0)setTimeout(()=>{if(state==='play'&&W()===w)startReload()},350)}
 let hitT=0;function hitMarker(head){const e=$('hitm');e.className=head?'head':'';e.style.opacity=1;hitT=.18}
 
@@ -793,32 +835,35 @@ const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const pair=q=>`<bdi dir="ltr">${esc(q.exp[0])}</bdi> ← <bdi dir="auto">${esc(q.exp[1])}</bdi>`;
 let qTime=30;
 function showQuestion(){const q=Q[qi],crate=q.crate;document.documentElement.style.setProperty('--mc',MISSIONS[mission].color);
-  $('qmeta').innerHTML=q.boss?`👑 سؤال الزعيم — أجب لتهزمه!`:`المهمة ${ar(mission+1)}: ${MISSIONS[mission].name} • السؤال ${ar(qi+1)} من ${ar(Q.length-1)}`+(crate?' • 📦 صندوق إمداد':'');
+  $('qmeta').innerHTML=q.boss?`👑 سؤال الزعيم — أجب لتهزمه!`:`${MISSIONS[mission].review?'':'المهمة '+ar(mission+1)+': '}${MISSIONS[mission].name} • السؤال ${ar(qi+1)} من ${ar(Q.filter(x=>!x.boss).length)}`+(q.retry?' • 🔁 إعادة للمراجعة':'')+(crate?' • 📦 صندوق إمداد':'');if(q.src){seen[q.src]=(seen[q.src]||0)+1;saveProg()}
   $('qtext').innerHTML=q.html||`${q.pre}: <bdi class="term" dir="${q.termLtr?'ltr':'rtl'}">${esc(q.term)}</bdi>؟`;
   $('qhint').textContent=crate?'اقترب من الصندوق الصحيح واضغط E (أو أطلق عليه) لتحصل على مكافأة نادرة':'أطلق على لوحة الإجابة الصحيحة';
   if(IS_TOUCH&&crate)$('qhint').textContent='اقترب من الصندوق الصحيح واضغط «✋ اختيار» أو أطلق عليه';
   qTime=D().qTime;spawnTargets(q,crate);if(q.boss){spawnEnemy('boss');toast('👑 ظهر الزعيم! أجب عن سؤاله لتهزمه','info',2400)}if(q.say)setTimeout(()=>speak(q.say),qi===0?300:1900)}
 function nextQuestion(){qi++;if(qi>=Q.length){endMission(true);return}Q[qi].tries=0;Q[qi].crate=qi%3===2&&!Q[qi].boss;if(teamMode&&qi>0){turn=1-turn;toast(`🔁 الدور الآن: ${TEAMS[turn].n}`,'info',1800)}updateTeamBar();showQuestion()}
 function selectTarget(t,pt){if(t.done||advanceT>0||state!=='play')return;const q=Q[qi];t.done=true;const p=pt||new V3(t.x,t.aimY,t.z);
-  if(t.opt.ok){streak++;if(q.tries===0)firstTry++;const pts=Math.round((q.tries===0?100:q.tries===1?50:20)*comboMult());addScore(pts);SFX.ok();
+  if(t.opt.ok){streak++;if(q.tries===0)firstTry++;if(q.src){if(q.tries===0&&!q.retry){mast[q.src]=1;delete missed[q.src]}saveProg()}   // الإعادة داخل نفس المهمة لا تُخرج السؤال من قائمة المراجعةconst pts=Math.round((q.tries===0?100:q.tries===1?50:20)*comboMult());addScore(pts);SFX.ok();
     drawLabel(t.panel.canvas,t.opt.t,t.opt.ltr,'#34d399','ok');t.panel.tex.needsUpdate=true;t.panel.fm.emissive.set(0x34d399);t.panel.fm.emissiveIntensity=2;burst(p,MISSIONS[mission].color,18,6);burst(p,0x34d399,10,5);
     toast(`✔ صحيح! ${pair(q)} <small>+${ar(pts)}</small>`,'ok',1500);if(streak>=2)showCombo();if(t.crate)t.open=true;confetti(q.boss?160:60);sayAnswer(q);
     if(q.boss){enemies.forEach(e=>{if(!e.dead){e.dead=true;e.deadT=.35;const c=e.g.position.clone();c.y=1.2*e.sc;burst(c,0xfde047,16,7);burst(c,0xa3e635,12,6)}});hitDirty=true;SFX.kill();addScore(300);showReward('rare','👑','هزمت الزعيم!','٣٠٠ نقطة إضافية')}
     giveReward(t.crate);advanceT=t.crate?1.7:1.2;$('sStreak').textContent=ar(streak);refreshHud();
-  }else{q.tries++;if(q.tries>=2){const ok=targets.find(x=>x.opt.ok);if(ok)ok.hintT=2.5}streak=0;$('sStreak').textContent=ar(0);SFX.bad();if(!wrongList.includes(q))wrongList.push(q);drawLabel(t.panel.canvas,t.opt.t,t.opt.ltr,'#f87171','bad');t.panel.tex.needsUpdate=true;t.panel.fm.emissive.set(0xf87171);t.panel.fm.emissiveIntensity=.8;burst(p,0xf87171,8,4);
+  }else{q.tries++;if(q.tries>=2&&diff==='easy'){const ok=targets.find(x=>x.opt.ok);if(ok)ok.hintT=2.5}
+    // [جديد] السؤال الخاطئ يُحفظ للمراجعة ويعود بعد سؤالين أو ثلاثة في نفس المهمة
+    if(q.src){missed[q.src]=1;delete mast[q.src];saveProg();if(!q.requeued&&!q.retry&&!q.boss){q.requeued=true;const c=qFromSrc(q.src);c.retry=true;let at=Q.findIndex(x=>x.boss);if(at<0)at=Q.length;Q.splice(Math.min(qi+3,at),0,c)}}
+    t.breakT=.75;streak=0;$('sStreak').textContent=ar(0);SFX.bad();if(!wrongList.includes(q))wrongList.push(q);drawLabel(t.panel.canvas,t.opt.t,t.opt.ltr,'#f87171','bad');t.panel.tex.needsUpdate=true;t.panel.fm.emissive.set(0xf87171);t.panel.fm.emissiveIntensity=.8;burst(p,0xf87171,8,4);
     const z=spawnEnemy();toast('✖ إجابة خاطئة — حاول مرة أخرى'+(z?'<br><small>ظهر زومبي!</small>':''),'bad',1500)}}
 function tryPick(){if(state!=='play')return;const t=pickable();if(t)selectTarget(t)}
 function pickable(){let bestT=null,bd=4.6;for(const t of targets){if(t.done)continue;const dx=t.x-P.x,dz=t.z-P.z,d=Math.hypot(dx,dz);if(d<bd&&(dx*camDir.x+dz*camDir.z)/d>.35){bd=d;bestT=t}}return bestT}
 function hurt(d){if(P.rollT>0||state!=='play'||invT>0)return;camShake=.3;if(P.armor>0){const a=Math.min(P.armor,d*.7);P.armor-=a;d-=a}P.hp-=d;SFX.hurt();$('dmg').style.opacity=.9;setTimeout(()=>$('dmg').style.opacity=0,180);if(P.hp<=0)respawn();refreshHud()}
 let invT=0,falls=0;
 function respawn(){falls++;enemies.forEach(e=>scene.remove(e.g));enemies=[];hitDirty=true;Object.assign(P,{x:0,y:0,z:0,vx:0,vz:0,vy:0,hp:100,rollT:0});invT=4;score=Math.max(0,score-50);if(teamMode){teamScore[turn]=Math.max(0,teamScore[turn]-50);updateTeamBar()}$('sScore').textContent=ar(score);streak=0;$('sStreak').textContent=ar(0);toast('انتهت صحتك! عدت إلى نقطة البداية — أكمل من نفس السؤال<br><small>−'+ar(50)+'</small>','bad',3200)}
-function startMission(m){mission=m;Q=buildQuestions(m);qi=-1;score=0;streak=0;firstTry=0;elapsed=0;kills=0;falls=0;invT=0;wrongList=[];turn=0;teamScore=[0,0];clearGifts();conf=[];giftT=REWARD_CFG.giftEvery;try{speechSynthesis.cancel()}catch(e){}advanceT=0;slowT=0;
+function startMission(m){mission=m;restoreProps();Q=buildQuestions(m);qi=-1;score=0;streak=0;firstTry=0;elapsed=0;kills=0;falls=0;invT=0;wrongList=[];turn=0;teamScore=[0,0];clearGifts();conf=[];giftT=REWARD_CFG.giftEvery;try{speechSynthesis.cancel()}catch(e){}advanceT=0;slowT=0;
   enemies.forEach(e=>scene.remove(e.g));enemies=[];hitDirty=true;Object.assign(P,{x:0,y:0,z:0,vx:0,vz:0,vy:0,yaw:0,pitch:0,hp:100,armor:0,crouch:false,rollT:0});
   syncUnlocks();WEAPONS.forEach((w,i)=>{w.ammo=w.magSize;w.cd=0;if(w.magObj){w.magObj.position.y=w.magY;w.magObj.rotation.x=0;w.magObj.visible=true}});reloadT=switchT=actionT=0;setWeapon(0,true);buildSlots();
   $('sScore').textContent=ar(0);$('sStreak').textContent=ar(0);setState('play');nextQuestion();refreshHud();lockPointer()}
 function endMission(win){clearTargets();if(document.pointerLockElement)document.exitPointerLock();const acc=Math.round(firstTry/Q.length*100),stars=!win?0:acc>=90?3:acc>=65?2:1;
   if(win){SFX.win();const b=best[mission];if(!b||score>b.score){best[mission]={score,stars};try{localStorage.setItem('mq3d_u5_best',JSON.stringify(best))}catch(e){}}}
-  $('rTitle').textContent=win?`🏆 أُنجزت المهمة ${ar(mission+1)}: ${MISSIONS[mission].name}`:'انتهت صحتك — حاول من جديد!';
+  $('rTitle').textContent=win?(MISSIONS[mission].review?'🏆 أنهيت مهمة المراجعة':`🏆 أُنجزت المهمة ${ar(mission+1)}: ${MISSIONS[mission].name}`):'انتهت صحتك — حاول من جديد!';
   $('rStars').textContent=win?'★'.repeat(stars)+'☆'.repeat(3-stars):'';$('rScore').textContent=ar(score);$('rAcc').textContent=ar(acc)+'٪';$('rTime').textContent=fmtTime(elapsed);$('rKills').textContent=ar(kills);$('rFalls').textContent=ar(falls);
   $('review').innerHTML=wrongList.length?'<b>كلمات للمراجعة:</b><br>'+wrongList.map(q=>'<div dir="rtl">• '+pair(q)+(q.ar?`<div dir="rtl" style="font-size:12px;color:#fde68a;padding-right:14px">${esc(q.ar)}</div>`:'')+'</div>').join(''):(win?'<span style="color:#a7f3d0">ممتاز! لا توجد أخطاء.</span>':'');
   // [جديد] لوحة أفضل النتائج (محفوظة على هذا الجهاز) + نتيجة الفريقين
@@ -838,8 +883,8 @@ function setState(s){state=s;['menu','map','pause','result','custom'].forEach(id
 function buildDiff(){$('diffRow').innerHTML='<span class="clab">المستوى:</span>'+Object.keys(DIFFICULTY).map(k=>`<button class="chip${k===diff?' on':''}" data-d="${k}">${DIFFICULTY[k].name}</button>`).join('');$('diffRow').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{diff=b.dataset.d;saveJ('mq3d_diff',diff);buildDiff()})}
 function buildMode(){$('modeRow').innerHTML=`<span class="clab">اللعب:</span><button class="chip${teamMode?'':' on'}" data-t="0">فردي</button><button class="chip${teamMode?' on':''}" data-t="1">فريقان</button><input id="pname" maxlength="14" placeholder="اسم اللاعب" value="${esc(pname)}" autocomplete="off" spellcheck="false" style="${teamMode?'display:none':''}">`+(teamMode?'<span class="cnote">فريقان يتبادلان الدور بعد كل سؤال</span>':'');
   $('modeRow').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{teamMode=b.dataset.t==='1';saveJ('mq3d_team',teamMode);buildMode()});$('pname').oninput=e=>{pname=e.target.value.trim();saveJ('mq3d_name',pname)};
-  const done=MISSIONS.filter((m,i)=>best[i]).length;$('progRow').innerHTML=`<span>أنجزت ${ar(done)} من ${ar(MISSIONS.length)} مهام</span><div class="meter" style="width:160px;margin:0"><i style="width:${done/MISSIONS.length*100}%;background:#34d399"></i></div>`}
-function buildMap(){buildDiff();buildMode();syncUnlocks();$('bankRow').innerHTML=`مجموع نقاطك: <b>${ar(bank)}</b> • الأسلحة المفتوحة: <b>${ar(WEAPONS.filter(w=>w.unlocked).length)}</b> من ${ar(WEAPONS.length)} <button class="chip" id="resetProg" style="min-height:30px;font-size:12px">تصفير التقدم</button>`;$('resetProg').onclick=()=>{if($('resetProg').dataset.ok){unl=[];bank=0;best={};saveJ('mq3d_weap',unl);saveJ('mq3d_bank',0);saveJ('mq3d_u5_best',best);buildMap()}else{$('resetProg').dataset.ok=1;$('resetProg').textContent='اضغط مرة أخرى للتأكيد'}};$('nodes').innerHTML=MISSIONS.map((m,i)=>{const b=best[i];return `<div class="node" style="--nc:${m.color}" data-m="${i}"><div class="pin">${ar(i+1)}</div><h3>${m.name}</h3><p><bdi dir="ltr">${m.en}</bdi></p><p>${m.desc}</p><div class="best">${b?'✔ منجزة • '+'★'.repeat(b.stars)+'☆'.repeat(3-b.stars)+' • أفضل نتيجة: '+ar(b.score):'لم تُلعب بعد'}</div></div>`}).join('');
+  const done=[0,1,2].filter(i=>best[i]).length,mv=Object.keys(mast).filter(k=>k[0]==='v').length;$('progRow').innerHTML=`<span>أنجزت ${ar(done)} من ${ar(3)} مهام</span><div class="meter" style="width:110px;margin:0"><i style="width:${done/3*100}%;background:#34d399"></i></div><span>• أتقنت ${ar(mv)} من ${ar(VOCAB.length)} كلمة</span><div class="meter" style="width:110px;margin:0"><i style="width:${mv/VOCAB.length*100}%;background:#22d3ee"></i></div>`}
+function buildMap(){buildDiff();buildMode();syncUnlocks();$('bankRow').innerHTML=`مجموع نقاطك: <b>${ar(bank)}</b> • الأسلحة المفتوحة: <b>${ar(WEAPONS.filter(w=>w.unlocked).length)}</b> من ${ar(WEAPONS.length)} <button class="chip" id="resetProg" style="min-height:30px;font-size:12px">تصفير التقدم</button>`;$('resetProg').onclick=()=>{if($('resetProg').dataset.ok){unl=[];bank=0;best={};seen={};mast={};missed={};saveProg();saveJ('mq3d_weap',unl);saveJ('mq3d_bank',0);saveJ('mq3d_u5_best',best);buildMap()}else{$('resetProg').dataset.ok=1;$('resetProg').textContent='اضغط مرة أخرى للتأكيد'}};const nMiss=Object.keys(missed).length;$('nodes').innerHTML=MISSIONS.map((m,i)=>{if(m.review&&!nMiss)return '';const b=best[i];return `<div class="node" style="--nc:${m.color}" data-m="${i}"><div class="pin">${m.review?'🔁':ar(i+1)}</div><h3>${m.name}</h3><p><bdi dir="ltr">${m.en}</bdi></p><p>${m.review?ar(nMiss)+' أسئلة أخطأتَ فيها — أجب عنها صحيحًا لتخرج من القائمة':m.desc}</p><div class="best">${b?'✔ منجزة • '+'★'.repeat(b.stars)+'☆'.repeat(3-b.stars)+' • أفضل نتيجة: '+ar(b.score):'لم تُلعب بعد'}</div></div>`}).join('');
   document.querySelectorAll('.node').forEach(n=>n.onclick=()=>{audioInit();startMission(+n.dataset.m)})}
 const cctx=$('compass').getContext('2d'),mctx=$('minimap').getContext('2d');
 function drawCompass(){const g=cctx,w=880,h=68;g.clearRect(0,0,w,h);g.fillStyle='rgba(8,14,28,.6)';g.beginPath();g.roundRect(0,6,w,h-12,18);g.fill();
@@ -867,7 +912,7 @@ function updateHudFrame(dt){
   if(hitT>0){hitT-=dt;if(hitT<=0)$('hitm').style.opacity=0}
   const pk=pickable();$('prompt').style.display=pk&&!IS_TOUCH?'block':'none';if(pk&&!IS_TOUCH)$('prompt').textContent='اضغط E لاختيار هذه الإجابة';if(IS_TOUCH)$('bPick').style.display=pk?'flex':'none';
   $('sTime').textContent=fmtTime(elapsed);
-  {const a=$('dirA'),ok=targets.find(t=>t.opt.ok&&!t.done);if(ok&&advanceT<=0&&qTime<D().qTime*.5){let rel=Math.atan2(ok.x-P.x,-(ok.z-P.z))+P.yaw;rel=((rel+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;const R=Math.min(innerHeight*.2,110);a.style.display='block';a.style.transform=`translate(${Math.sin(rel)*R}px,${-Math.cos(rel)*R}px) rotate(${rel}rad)`}else a.style.display='none'}{const r=Math.max(0,qTime/D().qTime),b=$('qbarI');b.style.width=(r*100)+'%';b.style.background=r<.25?'#f87171':r<.5?'#facc15':'var(--mc)'}$('lockhint').style.display=(!IS_TOUCH&&!noLock&&state==='play'&&!document.pointerLockElement)?'block':'none'}
+  {const a=$('dirA'),ok=targets.find(t=>t.opt.ok&&!t.done);if(ok&&advanceT<=0&&diff==='easy'&&qTime<D().qTime*.5){let rel=Math.atan2(ok.x-P.x,-(ok.z-P.z))+P.yaw;rel=((rel+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;const R=Math.min(innerHeight*.2,110);a.style.display='block';a.style.transform=`translate(${Math.sin(rel)*R}px,${-Math.cos(rel)*R}px) rotate(${rel}rad)`}else a.style.display='none'}{const r=Math.max(0,qTime/D().qTime),b=$('qbarI');b.style.width=(r*100)+'%';b.style.background=r<.25?'#f87171':r<.5?'#facc15':'var(--mc)'}$('lockhint').style.display=(!IS_TOUCH&&!noLock&&state==='play'&&!document.pointerLockElement)?'block':'none'}
 {const m=$('mil');let s='';for(let i=1;i<=5;i++){s+=`<circle cx="${i*9}" cy="0" r="1"/><circle cx="${-i*9}" cy="0" r="1"/><circle cx="0" cy="${i*9}" r="1"/><circle cx="0" cy="${-i*9}" r="1"/>`;s+=`<line x1="-${6-i}" y1="${i*9+4.5}" x2="${6-i}" y2="${i*9+4.5}"/>`}m.innerHTML=s}
 
 /* ═══════════ الإدخال ═══════════ */
@@ -965,6 +1010,7 @@ function tick(now){requestAnimationFrame(tick);let dt=Math.min(.05,(now-last)/10
     if(camShake>0){camShake-=dt;camera.position.x+=(Math.random()-.5)*camShake*.14;camera.position.y+=(Math.random()-.5)*camShake*.14}
     camera.updateMatrixWorld();
     hero.g.visible=tpT>.3;if(hero.g.visible){hero.g.position.set(P.x,P.y+(P.rollT>0?.45:0),P.z);hero.g.rotation.set(P.rollT>0?-(1-P.rollT/.5)*6.283:0,P.yaw,0,'YXZ');hero.g.scale.y=P.h/1.65;animHero(dt,P.ground?P.speed:0,time)}
+    if(advanceT<=0&&diff!=='easy'&&Q[qi]&&!Q[qi].hinted&&qTime<D().qTime*.5){Q[qi].hinted=true;const w=targets.filter(t=>!t.done&&!t.opt.ok);if(w.length>=2){shatter(w[Math.random()*w.length|0]);toast('💡 تلميح: حُذفت إجابة خاطئة','info',1600)}}
     if(advanceT<=0){qTime-=dt;if(qTime<=0){qTime=D().qTime;const z=spawnEnemy();SFX.bad();toast('⏰ انتهى وقت السؤال'+(z?' — ظهر زومبي!':''),'bad',1500)}}
     {const sx=Math.round(P.x/4)*4,sz=Math.round(P.z/4)*4;sun.position.set(sx+40,38,sz-30);sun.target.position.set(sx,0,sz);sun.target.updateMatrixWorld()}
     updateAim();updateVM(dt);if(tpT>.3)vmRoot.visible=false;updateGifts(dt,time);updateMusic();updateEnemies(dt,time);updateTargets(dt,time);updateFx(dt);
@@ -980,7 +1026,7 @@ function tick(now){requestAnimationFrame(tick);let dt=Math.min(.05,(now-last)/10
 if(document.fonts&&document.fonts.load){Promise.race([document.fonts.load('900 40px Cairo'),new Promise(r=>setTimeout(r,2500))]).then(()=>{TX.metalBox.needsUpdate=true}).catch(()=>{})}
 buildSlots();refreshHud();requestAnimationFrame(tick);
 if(IS_TOUCH)$('bView').classList.toggle('act',tp);
-window.__dbg={spawnGift,get gifts(){return gifts},get teamScore(){return teamScore},get turn(){return turn},SLOTS,colliders,giveReward,unlockWeapon,get bank(){return bank},get streak(){return streak},toggleView,openCustom,closeCustom,get tp(){return tp},get look(){return look},get diff(){return diff},hero,get qTime(){return qTime},set qTime(v){qTime=v},get state(){return state},P,get targets(){return targets},get enemies(){return enemies},selectTarget,WEAPONS,setWeapon,inp,get qi(){return qi},get Q(){return Q},startMission,hurt,fire,spawnEnemy};
+window.__dbg={props,damageProp,applyLook,get missed(){return missed},get mast(){return mast},spawnGift,get gifts(){return gifts},get teamScore(){return teamScore},get turn(){return turn},SLOTS,colliders,giveReward,unlockWeapon,get bank(){return bank},get streak(){return streak},toggleView,openCustom,closeCustom,get tp(){return tp},get look(){return look},get diff(){return diff},hero,get qTime(){return qTime},set qTime(v){qTime=v},get state(){return state},P,get targets(){return targets},get enemies(){return enemies},selectTarget,WEAPONS,setWeapon,inp,get qi(){return qi},get Q(){return Q},startMission,hurt,fire,spawnEnemy};
 </script>
 </body>
 </html>
