@@ -172,6 +172,8 @@ button{font-family:inherit}
 /* [جديد] وميض الانتقال بين العوالم */
 #flash{position:fixed;inset:0;opacity:0;pointer-events:none}#flash.on{animation:flash .9s ease-out}
 @keyframes flash{0%{opacity:.95}100%{opacity:0}}
+/* [جديد] تمييز العنصر المختار بيد التحكم */
+.padf{outline:3px solid #fde047!important;outline-offset:3px;box-shadow:0 0 18px rgba(253,224,71,.6)!important}
 /* result */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px 22px;width:min(560px,94vw)}
 .stars{font-size:44px;letter-spacing:6px;color:#fde047}
@@ -221,6 +223,7 @@ button{font-family:inherit}
   <div class="help" id="helpBox">
     <b>الهدف:</b> اقرأ السؤال أعلى الشاشة، ثم أطلق على لوحة الإجابة الصحيحة (أو اقترب منها واضغط <kbd>E</kbd>). كل ثالث سؤال يأتي على هيئة صناديق إمداد: الصندوق الصحيح يفتح سلاحًا جديدًا ويمنحك درعًا. ادخل البوابات المضيئة لتنتقل إلى عوالم أخرى (الصحراء، الثلج، الفضاء) وتنتقل معك لوحات السؤال. إذا أخطأت أو انتهى وقت السؤال يظهر زومبي يلاحقك؛ أبعده بالإطلاق عليه. إذا انتهت صحتك تعود إلى نقطة البداية وتكمل من نفس السؤال.<br>
     <b>الحاسوب:</b> <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> حركة • الفأرة تصويب • زر يسار إطلاق • زر يمين تصويب دقيق • <kbd>Shift</kbd> ركض • <kbd>Space</kbd> قفز • <kbd>C</kbd> انحناء • <kbd>V</kbd> تبديل المنظور (أول/ثالث) • <kbd>Q</kbd> تدحرج • <kbd>R</kbd> تلقيم • <kbd>1</kbd>–<kbd>6</kbd> تبديل السلاح • <kbd>E</kbd> اختيار • <kbd>P</kbd> إيقاف • الأسهم لتدوير الكاميرا عند الحاجة<br>
+    <b>يد التحكم 🎮:</b> العصا اليسرى حركة (اضغطها للركض) • العصا اليمنى تصويب (اضغطها للتدحرج) • <kbd>RT</kbd>/<kbd>R2</kbd> إطلاق • <kbd>LT</kbd>/<kbd>L2</kbd> تصويب دقيق • <kbd>A</kbd>/<kbd>✕</kbd> قفز • <kbd>B</kbd>/<kbd>○</kbd> انحناء • <kbd>X</kbd>/<kbd>□</kbd> تلقيم • <kbd>Y</kbd>/<kbd>△</kbd> اختيار الإجابة • <kbd>LB</kbd> <kbd>RB</kbd> تبديل السلاح • <kbd>View</kbd>/<kbd>Share</kbd> المنظور • <kbd>Menu</kbd>/<kbd>Options</kbd> إيقاف. في القوائم: الأسهم للتنقل و<kbd>A</kbd> للاختيار و<kbd>B</kbd> للرجوع.<br>
     <b>الجوال:</b> عصا التحكم يسارًا للحركة، واسحب يمين الشاشة لتدوير الكاميرا، والأزرار للإطلاق والتصويب والقفز والتدحرج والانحناء والتلقيم وتبديل السلاح.
   </div>
   <div class="credit creditTxt"></div>
@@ -545,10 +548,11 @@ const keys={},inp={fire:false,ads:false,mx:0,mz:0,lookX:0,lookY:0,sprint:false};
 function movePlayer(dt){
   let fx=0,fz=0;
   if(IS_TOUCH){fx=inp.mx;fz=inp.mz}else{fx=(keys.KeyD?1:0)-(keys.KeyA?1:0);fz=(keys.KeyW?1:0)-(keys.KeyS?1:0)}
+  fx+=gp.mx;fz+=gp.mz;   // [جديد] عصا يد التحكم اليسرى
   let len=Math.hypot(fx,fz);if(len>1){fx/=len;fz/=len;len=1}
   const sin=Math.sin(P.yaw),cos=Math.cos(P.yaw);
   let wx=fx*cos-fz*sin, wz=-fx*sin-fz*cos;
-  const sprint=(keys.ShiftLeft||keys.ShiftRight||inp.sprint)&&fz>0&&!P.crouch&&!inp.ads;
+  const sprint=(keys.ShiftLeft||keys.ShiftRight||inp.sprint||gp.sprint)&&fz>0&&!P.crouch&&!inp.ads;
   let sp=P.crouch?2.3:sprint?7.6:inp.ads?3:4.7;
   if(P.rollT>0){P.rollT-=dt;wx=P.rdx;wz=P.rdz;sp=11;len=1}
   if(P.rollCd>0)P.rollCd-=dt;
@@ -564,7 +568,7 @@ function movePlayer(dt){
   const th=(P.crouch||P.rollT>0)?(P.rollT>0?.85:1.05):1.65;P.h+=(th-P.h)*Math.min(1,12*dt);
 }
 function jump(){if(P.ground&&state==='play'){P.vy=6.4;P.ground=false;P.crouch=false;SFX.jump()}}
-function roll(){if(state!=='play'||P.rollCd>0||!P.ground)return;let fx=IS_TOUCH?inp.mx:(keys.KeyD?1:0)-(keys.KeyA?1:0),fz=IS_TOUCH?inp.mz:(keys.KeyW?1:0)-(keys.KeyS?1:0);if(!fx&&!fz)fz=1;const l=Math.hypot(fx,fz);fx/=l;fz/=l;const s=Math.sin(P.yaw),c=Math.cos(P.yaw);P.rdx=fx*c-fz*s;P.rdz=-fx*s-fz*c;P.rollT=.5;P.rollCd=1.3;SFX.roll()}
+function roll(){if(state!=='play'||P.rollCd>0||!P.ground)return;let fx=(IS_TOUCH?inp.mx:(keys.KeyD?1:0)-(keys.KeyA?1:0))+gp.mx,fz=(IS_TOUCH?inp.mz:(keys.KeyW?1:0)-(keys.KeyS?1:0))+gp.mz;if(!fx&&!fz)fz=1;const l=Math.hypot(fx,fz);fx/=l;fz/=l;const s=Math.sin(P.yaw),c=Math.cos(P.yaw);P.rdx=fx*c-fz*s;P.rdz=-fx*s-fz*c;P.rollT=.5;P.rollCd=1.3;SFX.roll()}
 
 /* ═══════════ [جديد] شخصية اللاعب + التخصيص ═══════════ */
 const LOOK_OPTS={
@@ -878,7 +882,7 @@ function fire(){const w=W();if(state!=='play'||reloadT>0||switchT>0||w.cd>0||P.r
   flash.position.copy(w.muzzle);flash.position.z-=.04;flash.rotation.z=Math.random()*6;flashLight.position.copy(vmRoot.position).add(w.muzzle);
   const sp=curSpread(),muzzleW=camPos.clone().addScaledVector(camDir,.6);muzzleW.y-=.12*(1-adsT);const right=_v.set(Math.cos(P.yaw),0,-Math.sin(P.yaw));muzzleW.addScaledVector(right,.14*(1-adsT));if(tpT>.3){muzzleW.set(P.x,P.y+1.15,P.z).addScaledVector(camDir,.7)}
   // مساعدة التصويب على الجوال
-  let base=camDir.clone();if(IS_TOUCH){let best=null,ba=.07;for(const e of enemies){if(e.dead)continue;const d=_v2.copy(e.g.position);d.y+=1.1;d.sub(camPos).normalize();const a=Math.acos(Math.min(1,d.dot(camDir)));if(a<ba){ba=a;best=d.clone()}}if(best)base.lerp(best,.7).normalize()}
+  let base=camDir.clone();if(IS_TOUCH||gp.active){let best=null,ba=.07;for(const e of enemies){if(e.dead)continue;const d=_v2.copy(e.g.position);d.y+=1.1;d.sub(camPos).normalize();const a=Math.acos(Math.min(1,d.dot(camDir)));if(a<ba){ba=a;best=d.clone()}}if(best)base.lerp(best,.7).normalize()}
   // اختيار الإجابة يكون بالشعاع المركزي فقط
   const c=castFrom(base);if(c&&c.object.userData.t&&!c.object.userData.t.done){tracer(muzzleW,c.point);selectTarget(c.object.userData.t,c.point);refreshHud();return}
   for(let i=0;i<w.pellets;i++){const d=base.clone();d.x+=(Math.random()-.5)*2*sp;d.y+=(Math.random()-.5)*2*sp;d.z+=(Math.random()-.5)*2*sp;d.normalize();const h=castFrom(d);const end=h?h.point:camPos.clone().addScaledVector(d,120);
@@ -957,7 +961,7 @@ const fmtTime=s=>ar(Math.floor(s/60))+':'+ar(String(Math.floor(s%60)).padStart(2
 function buildSlots(){$('slots').innerHTML=WEAPONS.map((w,i)=>`<div class="slot${i===cur?' cur':''}${w.unlocked?'':' lock'}"><b>${ar(i+1)}</b>${w.unlocked?w.short:'🔒 '+ar(WEAPON_COST[i])+' نقطة'}</div>`).join('')}
 function refreshHud(){const w=W();$('ammoN').innerHTML=`${ar(w.ammo)} <small>/ ∞</small>`;$('wname').textContent=w.name;$('hpb').style.width=P.hp+'%';$('hpN').textContent=ar(Math.round(P.hp));$('arb').style.width=P.armor+'%';$('arN').textContent=ar(Math.round(P.armor));
   [...$('slots').children].forEach((s,i)=>s.classList.toggle('cur',i===cur));if(IS_TOUCH)$('bSwitch').innerHTML='سلاح<br>'+ar(cur+1)}
-function setState(s){state=s;['menu','map','pause','result','custom'].forEach(id=>$(id).classList.toggle('on',id===s));$('hud').classList.toggle('on',s==='play'||s==='pause');$('touch').classList.toggle('on',s==='play');if(s==='map')buildMap();if(s!=='play'){inp.fire=false;inp.ads=false}}
+function setState(s){state=s;document.querySelectorAll('.padf').forEach(e=>e.classList.remove('padf'));if(gp.active&&s!=='play')setTimeout(()=>padFocus(0),30);['menu','map','pause','result','custom'].forEach(id=>$(id).classList.toggle('on',id===s));$('hud').classList.toggle('on',s==='play'||s==='pause');$('touch').classList.toggle('on',s==='play');if(s==='map')buildMap();if(s!=='play'){inp.fire=false;inp.ads=false}}
 function buildDiff(){$('diffRow').innerHTML='<span class="clab">المستوى:</span>'+Object.keys(DIFFICULTY).map(k=>`<button class="chip${k===diff?' on':''}" data-d="${k}">${DIFFICULTY[k].name}</button>`).join('');$('diffRow').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{diff=b.dataset.d;saveJ('mq3d_diff',diff);buildDiff()})}
 function buildMode(){$('modeRow').innerHTML=`<span class="clab">اللعب:</span><button class="chip${teamMode?'':' on'}" data-t="0">فردي</button><button class="chip${teamMode?' on':''}" data-t="1">فريقان</button><input id="pname" maxlength="14" placeholder="اسم اللاعب" value="${esc(pname)}" autocomplete="off" spellcheck="false" style="${teamMode?'display:none':''}">`+(teamMode?'<span class="cnote">فريقان يتبادلان الدور بعد كل سؤال</span>':'');
   $('modeRow').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{teamMode=b.dataset.t==='1';saveJ('mq3d_team',teamMode);buildMode()});$('pname').oninput=e=>{pname=e.target.value.trim();saveJ('mq3d_name',pname)};
@@ -990,15 +994,15 @@ function updateHudFrame(dt){
   if(hitT>0){hitT-=dt;if(hitT<=0)$('hitm').style.opacity=0}
   const pk=pickable();$('prompt').style.display=pk&&!IS_TOUCH?'block':'none';if(pk&&!IS_TOUCH)$('prompt').textContent='اضغط E لاختيار هذه الإجابة';if(IS_TOUCH)$('bPick').style.display=pk?'flex':'none';
   $('sTime').textContent=fmtTime(elapsed);
-  {const a=$('dirA'),ok=targets.find(t=>t.opt.ok&&!t.done);if(ok&&advanceT<=0&&diff==='easy'&&qTime<D().qTime*.5){let rel=Math.atan2(ok.x-P.x,-(ok.z-P.z))+P.yaw;rel=((rel+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;const R=Math.min(innerHeight*.2,110);a.style.display='block';a.style.transform=`translate(${Math.sin(rel)*R}px,${-Math.cos(rel)*R}px) rotate(${rel}rad)`}else a.style.display='none'}{const r=Math.max(0,qTime/D().qTime),b=$('qbarI');b.style.width=(r*100)+'%';b.style.background=r<.25?'#f87171':r<.5?'#facc15':'var(--mc)'}$('lockhint').style.display=(!IS_TOUCH&&!noLock&&state==='play'&&!document.pointerLockElement)?'block':'none'}
+  {const a=$('dirA'),ok=targets.find(t=>t.opt.ok&&!t.done);if(ok&&advanceT<=0&&diff==='easy'&&qTime<D().qTime*.5){let rel=Math.atan2(ok.x-P.x,-(ok.z-P.z))+P.yaw;rel=((rel+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;const R=Math.min(innerHeight*.2,110);a.style.display='block';a.style.transform=`translate(${Math.sin(rel)*R}px,${-Math.cos(rel)*R}px) rotate(${rel}rad)`}else a.style.display='none'}{const r=Math.max(0,qTime/D().qTime),b=$('qbarI');b.style.width=(r*100)+'%';b.style.background=r<.25?'#f87171':r<.5?'#facc15':'var(--mc)'}$('lockhint').style.display=(!IS_TOUCH&&!noLock&&!gp.active&&state==='play'&&!document.pointerLockElement)?'block':'none'}
 {const m=$('mil');let s='';for(let i=1;i<=5;i++){s+=`<circle cx="${i*9}" cy="0" r="1"/><circle cx="${-i*9}" cy="0" r="1"/><circle cx="0" cy="${i*9}" r="1"/><circle cx="0" cy="${-i*9}" r="1"/>`;s+=`<line x1="-${6-i}" y1="${i*9+4.5}" x2="${6-i}" y2="${i*9+4.5}"/>`}m.innerHTML=s}
 
 /* ═══════════ الإدخال ═══════════ */
 let noLock=false,mouseFx=.5,lockTm=0;
 function lockFail(){if(noLock||document.pointerLockElement)return;noLock=true;if(state==='play')toast('حرّك الفأرة لتدوير الكاميرا — وعند حافة الشاشة يستمر الدوران، أو استخدم الأسهم ← →','info',5000)}
-function lockPointer(){if(IS_TOUCH||noLock)return;try{const p=canvas.requestPointerLock();if(p&&p.catch)p.catch(lockFail)}catch(e){lockFail()}clearTimeout(lockTm);lockTm=setTimeout(lockFail,700)}
+function lockPointer(){if(IS_TOUCH||noLock||gp.active)return;try{const p=canvas.requestPointerLock();if(p&&p.catch)p.catch(lockFail)}catch(e){lockFail()}clearTimeout(lockTm);lockTm=setTimeout(lockFail,700)}
 document.addEventListener('pointerlockerror',lockFail);
-document.addEventListener('pointerlockchange',()=>{if(!document.pointerLockElement&&state==='play'&&!IS_TOUCH)pause()});
+document.addEventListener('pointerlockchange',()=>{if(!document.pointerLockElement&&state==='play'&&!IS_TOUCH&&!gp.active)pause()});
 canvas.addEventListener('click',()=>{if(state==='play'&&!IS_TOUCH&&!document.pointerLockElement)lockPointer()});
 function pause(){if(state==='play'){setState('pause');if(document.pointerLockElement)document.exitPointerLock()}}
 function resume(){if(state==='pause'){setState('play');lockPointer()}}
@@ -1014,7 +1018,7 @@ addEventListener('mouseup',e=>{if(e.button===0)inp.fire=false;if(e.button===2)in
 addEventListener('contextmenu',e=>e.preventDefault());
 addEventListener('mousemove',e=>{if(state!=='play'||IS_TOUCH)return;mouseFx=e.clientX/innerWidth;if(document.pointerLockElement!==canvas&&!noLock)return;turnCam(e.movementX,e.movementY,noLock?.0034:.0022)});
 addEventListener('wheel',e=>{if(state!=='play')return;const u=WEAPONS.map((w,i)=>w.unlocked?i:-1).filter(i=>i>=0);setWeapon(u[(u.indexOf(cur)+(e.deltaY>0?1:u.length-1))%u.length])},{passive:true});
-function turnCam(dx,dy,s){const f=camera.fov/72*(IS_TOUCH&&aimEnemy?.6:1);P.yaw-=dx*s*f;P.pitch=Math.max(-1.45,Math.min(1.45,P.pitch-dy*s*f));inp.lookX+=dx;inp.lookY+=dy}
+function turnCam(dx,dy,s){const f=camera.fov/72*((IS_TOUCH||gp.active)&&aimEnemy?.6:1);P.yaw-=dx*s*f;P.pitch=Math.max(-1.45,Math.min(1.45,P.pitch-dy*s*f));inp.lookX+=dx;inp.lookY+=dy}
 // touch
 if(IS_TOUCH){
   // كل لمسة تُتابَع برقمها: لمسة يسار-أسفل = عصا الحركة، وأي لمسة أخرى (حتى فوق الأزرار) تدوّر الكاميرا
@@ -1071,11 +1075,53 @@ function updateMusic(){if(!AC||!soundOn||!musicOn)return;const danger=zombieCoun
   while(mNext<AC.currentTime+.16){const st=mStep%16;if(st%2===0)mNote(M_BASS[st/2],mNext,sd*1.8,'triangle',.085);mNote(M_ARP[st]*(danger>3?2:1),mNext,sd*.9,'square',.016);mNext+=sd;mStep++}}
 const musicBtn=()=>{$('pMusic').textContent=musicOn?'🎵 الموسيقى: تعمل':'🎵 الموسيقى: متوقفة'};$('pMusic').onclick=()=>{musicOn=!musicOn;saveJ('mq3d_music',musicOn);musicBtn()};musicBtn();
 
+/* ═══════════ [جديد] دعم يد التحكم (Xbox / PlayStation / أي يد قياسية عبر البلوتوث أو USB) ═══════════
+   الأزرار بالترتيب القياسي: 0=A/✕ 1=B/○ 2=X/□ 3=Y/△ 4=LB 5=RB 6=LT 7=RT 8=View/Share 9=Menu/Options 10=L3 11=R3 12–15=الأسهم
+   PAD_CFG: deadzone = المنطقة الميتة للعصا • lookSpeed = سرعة التصويب بالعصا اليمنى (راديان/ثانية) */
+const PAD_CFG={deadzone:.18,lookSpeed:3.1,lookSpeedY:2.2};
+const gp={active:false,mx:0,mz:0,sprint:false,prev:[],idx:-1,focus:0,navT:0};
+const dz=v=>Math.abs(v)<PAD_CFG.deadzone?0:Math.sign(v)*(Math.abs(v)-PAD_CFG.deadzone)/(1-PAD_CFG.deadzone);
+addEventListener('gamepadconnected',e=>{gp.idx=e.gamepad.index;toast('🎮 تم توصيل يد التحكم','info',2200);document.documentElement.classList.add('pad')});
+addEventListener('gamepaddisconnected',e=>{if(e.gamepad.index===gp.idx){gp.idx=-1;gp.active=false;gp.mx=gp.mz=0;inp.fire=inp.ads=false;document.documentElement.classList.remove('pad');if(state==='play')pause();toast('🎮 انفصلت يد التحكم','bad',2200)}});
+// العناصر القابلة للاختيار في الشاشة الحالية (للتنقل في القوائم)
+function padItems(){const scr=$(state);if(!scr)return[];return[...scr.querySelectorAll('button,.node,input')].filter(el=>el.offsetParent!==null&&getComputedStyle(el).visibility!=='hidden')}
+function padFocus(i){const it=padItems();document.querySelectorAll('.padf').forEach(e=>e.classList.remove('padf'));if(!it.length)return;gp.focus=(i+it.length)%it.length;const el=it[gp.focus];el.classList.add('padf');try{el.scrollIntoView({block:'nearest',inline:'nearest'})}catch(e){}}
+// اختيار العنصر الأقرب في اتجاه السهم (يعمل مع الشبكات والصفوف)
+function padMove(dx,dy){const it=padItems();if(!it.length)return;const cur=document.querySelector('.padf');if(!cur||!it.includes(cur)){padFocus(0);return}
+  const a=cur.getBoundingClientRect(),ax=a.left+a.width/2,ay=a.top+a.height/2;let best=-1,bd=1e9;
+  it.forEach((el,i)=>{if(el===cur)return;const b=el.getBoundingClientRect(),vx=b.left+b.width/2-ax,vy=b.top+b.height/2-ay;const along=vx*dx+vy*dy;if(along<=4)return;const side=Math.abs(vx*dy-vy*dx);const sc=along+side*2.2;if(sc<bd){bd=sc;best=i}});
+  if(best>=0)padFocus(best)}
+function padBack(){if(state==='pause')resume();else if(state==='map')setState('menu');else if(state==='custom')closeCustom(false);else if(state==='result')setState('map')}
+function pollPad(dt){const pads=navigator.getGamepads?navigator.getGamepads():[];let pd=pads&&pads[gp.idx];if(!pd&&pads)for(const q of pads)if(q&&q.connected){pd=q;gp.idx=q.index;break}
+  if(!pd){gp.mx=gp.mz=0;return}
+  const B=pd.buttons.map(b=>b&&(b.pressed||b.value>.5)),A=pd.axes,pr=gp.prev,hit=i=>B[i]&&!pr[i];
+  const lx=dz(A[0]||0),ly=dz(A[1]||0),rx=dz(A[2]||0),ry=dz(A[3]||0);
+  if(!gp.active&&(B.some(Boolean)||Math.abs(lx)+Math.abs(ly)+Math.abs(rx)+Math.abs(ry)>0)){gp.active=true;audioInit();if(document.pointerLockElement)document.exitPointerLock()}
+  if(state==='play'){
+    gp.mx=lx;gp.mz=-ly;if(hit(10))gp.sprint=!gp.sprint;if(Math.hypot(lx,ly)<.2)gp.sprint=false;
+    if(rx||ry){const f=camera.fov/72*(aimEnemy?.6:1);P.yaw-=rx*Math.abs(rx)*PAD_CFG.lookSpeed*dt*f;P.pitch=Math.max(-1.45,Math.min(1.45,P.pitch-ry*Math.abs(ry)*PAD_CFG.lookSpeedY*dt*f));inp.lookX+=rx*12;inp.lookY+=ry*12}
+    const rt=B[7]||(pd.buttons[7]&&pd.buttons[7].value>.3),lt=B[6]||(pd.buttons[6]&&pd.buttons[6].value>.3);
+    if(rt&&!gp.rt){inp.fire=true;inp.fireEdge=true}else if(!rt&&gp.rt)inp.fire=false;gp.rt=rt;
+    if(lt!==gp.lt)inp.ads=lt;gp.lt=lt;
+    if(hit(0))jump();if(hit(1))P.crouch=!P.crouch;if(hit(2))startReload();if(hit(3))tryPick();if(hit(11)||hit(13))roll();if(hit(12))tryPick();
+    if(hit(4)||hit(5)){const u=WEAPONS.map((w,i)=>w.unlocked?i:-1).filter(i=>i>=0);setWeapon(u[(u.indexOf(cur)+(hit(5)?1:u.length-1))%u.length])}
+    if(hit(14)||hit(15)){const u=WEAPONS.map((w,i)=>w.unlocked?i:-1).filter(i=>i>=0);setWeapon(u[(u.indexOf(cur)+(hit(15)?1:u.length-1))%u.length])}
+    if(hit(8))toggleView();if(hit(9))pause();
+  }else{
+    gp.mx=gp.mz=0;gp.rt=gp.lt=false;
+    if(state==='custom'&&rx)charRot+=rx*2.5*dt;   // العصا اليمنى تدوّر الشخصية
+    gp.navT-=dt;const nx=(B[15]?1:0)-(B[14]?1:0)||(Math.abs(lx)>.5?Math.sign(lx):0),ny=(B[13]?1:0)-(B[12]?1:0)||(Math.abs(ly)>.5?Math.sign(ly):0);
+    if(nx||ny){if(gp.navT<=0){if(!document.querySelector('.padf'))padFocus(0);else padMove(nx,ny);gp.navT=gp.navMoved?.16:.32;gp.navMoved=true}}else{gp.navT=0;gp.navMoved=false}
+    if(hit(0)){const el=document.querySelector('.padf');if(el&&padItems().includes(el)){if(el.tagName==='INPUT')el.focus();else el.click();setTimeout(()=>{if(!document.querySelector('.padf')||!padItems().includes(document.querySelector('.padf')))padFocus(0)},60)}else padFocus(0)}
+    if(hit(1))padBack();if(hit(9)&&state==='pause')resume();
+  }
+  gp.prev=B}
+
 /* ═══════════ الحلقة الرئيسية ═══════════ */
 function resize(){const w=innerWidth,h=innerHeight;fx.width=w;fx.height=h;fx.style.width=w+'px';fx.style.height=h+'px';renderer.setSize(w,h,false);camera.aspect=vmCam.aspect=w/h;camera.updateProjectionMatrix();vmCam.updateProjectionMatrix()}
 addEventListener('resize',resize);resize();
 let last=performance.now(),time=0,frame=0;
-function tick(now){requestAnimationFrame(tick);let dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;frame++;
+function tick(now){requestAnimationFrame(tick);let dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;frame++;pollPad(dt);
   if(state==='play'){elapsed+=dt;if(invT>0)invT-=dt;{const ax=(keys.ArrowLeft?1:0)-(keys.ArrowRight?1:0)+(noLock&&!document.pointerLockElement?(mouseFx<.06?1:mouseFx>.94?-1:0):0),ay=(keys.ArrowUp?1:0)-(keys.ArrowDown?1:0);if(ax||ay){const f=camera.fov/72;P.yaw+=ax*1.9*dt*f;P.pitch=Math.max(-1.45,Math.min(1.45,P.pitch+ay*1.3*dt*f))}}movePlayer(dt);
     const w=W();if(inp.fire&&(w.auto||inp.fireEdge))fire();inp.fireEdge=false;
     camKick+=(0-camKick)*Math.min(1,9*dt);
@@ -1104,7 +1150,7 @@ function tick(now){requestAnimationFrame(tick);let dt=Math.min(.05,(now-last)/10
 if(document.fonts&&document.fonts.load){Promise.race([document.fonts.load('900 40px Cairo'),new Promise(r=>setTimeout(r,2500))]).then(()=>{TX.metalBox.needsUpdate=true}).catch(()=>{})}
 buildSlots();refreshHud();requestAnimationFrame(tick);
 if(IS_TOUCH)$('bView').classList.toggle('act',tp);
-window.__dbg={get gates(){return gates},get curWorld(){return curWorld},travel,buildWorld,props,damageProp,applyLook,get missed(){return missed},get mast(){return mast},spawnGift,get gifts(){return gifts},get teamScore(){return teamScore},get turn(){return turn},SLOTS,colliders,giveReward,unlockWeapon,get bank(){return bank},get streak(){return streak},toggleView,openCustom,closeCustom,get tp(){return tp},get look(){return look},get diff(){return diff},hero,get qTime(){return qTime},set qTime(v){qTime=v},get state(){return state},P,get targets(){return targets},get enemies(){return enemies},selectTarget,WEAPONS,setWeapon,inp,get qi(){return qi},get Q(){return Q},startMission,hurt,fire,spawnEnemy};
+window.__dbg={gp,pollPad,get gates(){return gates},get curWorld(){return curWorld},travel,buildWorld,props,damageProp,applyLook,get missed(){return missed},get mast(){return mast},spawnGift,get gifts(){return gifts},get teamScore(){return teamScore},get turn(){return turn},SLOTS,colliders,giveReward,unlockWeapon,get bank(){return bank},get streak(){return streak},toggleView,openCustom,closeCustom,get tp(){return tp},get look(){return look},get diff(){return diff},hero,get qTime(){return qTime},set qTime(v){qTime=v},get state(){return state},P,get targets(){return targets},get enemies(){return enemies},selectTarget,WEAPONS,setWeapon,inp,get qi(){return qi},get Q(){return Q},startMission,hurt,fire,spawnEnemy};
 </script>
 </body>
 </html>
