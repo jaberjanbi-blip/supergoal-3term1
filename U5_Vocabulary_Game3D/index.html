@@ -177,6 +177,10 @@ button{font-family:inherit}
 /* [جديد] عدّاد الإطارات + تنبيه تسريع الرسوم */
 #fps{position:absolute;top:150px;left:10px;display:none;background:rgba(0,0,0,.65);border-radius:8px;padding:2px 10px;font-size:12px;font-weight:700;color:#a7f3d0}
 .gpuWarn{display:none;max-width:640px;margin:8px auto 0;background:rgba(127,29,29,.75);border:1px solid #fca5a5;border-radius:12px;padding:8px 14px;font-size:13px;font-weight:700;line-height:1.8;text-align:right}
+/* [جديد] تلميح زر المنظور على الحاسوب */
+#keyHint{position:absolute;top:150px;right:10px;background:rgba(0,0,0,.55);border:1px solid var(--line);border-radius:8px;padding:2px 10px;font-size:12px;font-weight:700;color:#e2e8f0}
+#keyHint kbd{direction:ltr;display:inline-block;background:#1e293b;border:1px solid #475569;border-bottom-width:3px;border-radius:5px;padding:0 6px;font:700 12px/18px monospace;margin-left:4px}
+.touch #keyHint,.pad #keyHint{display:none}
 /* result */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px 22px;width:min(560px,94vw)}
 .stars{font-size:44px;letter-spacing:6px;color:#fde047}
@@ -200,7 +204,7 @@ button{font-family:inherit}
   <div id="stats"><div><small>النقاط</small> <span id="sScore">٠</span></div><div><small>سلسلة</small> <span id="sStreak">٠</span> 🔥</div><div><small>الوقت</small> <span id="sTime">٠:٠٠</span></div><div id="teamRow"></div></div>
   <div id="xh"><i class="t"></i><i class="b"></i><i class="l"></i><i class="r"></i><i class="d"></i></div>
   <div id="dirA"></div><div id="xring"></div><div id="xlabel"></div><div id="hitm"></div>
-  <div id="fps"></div><div id="dmg"></div><div id="flash"></div><div id="toast"></div><div id="combo"></div><div id="reward"></div><div id="prompt"></div><div id="lockhint">انقر على الشاشة للتحكم بالفأرة</div>
+  <div id="fps"></div><div id="keyHint"><kbd>V</kbd> تبديل المنظور</div><div id="dmg"></div><div id="flash"></div><div id="toast"></div><div id="combo"></div><div id="reward"></div><div id="prompt"></div><div id="lockhint">انقر على الشاشة للتحكم بالفأرة</div>
   <div id="bar">
     <div class="box" id="vit"><div class="lab"><span>الصحة</span><span id="hpN">١٠٠</span></div><div class="meter"><i id="hpb"></i></div><div class="lab"><span>الدرع</span><span id="arN">٠</span></div><div class="meter" style="margin-bottom:0"><i id="arb" style="width:0"></i></div></div>
     <div id="slots"></div>
@@ -260,7 +264,7 @@ button{font-family:inherit}
 <div class="screen" id="pause">
   <h2 class="maptitle">⏸ إيقاف مؤقت</h2>
   <button class="btn pri" id="pResume">متابعة</button>
-  <div><button class="btn" id="pRestart">إعادة المهمة</button><button class="btn" id="pMap">الخريطة</button><button class="btn goCustom">👤 الشخصية</button><button class="btn" id="pSound">🔊 الصوت: يعمل</button><button class="btn" id="pMusic"></button><button class="btn qualBtn"></button><button class="btn fsBtn">⛶ ملء الشاشة</button></div>
+  <div><button class="btn" id="pRestart">إعادة المهمة</button><button class="btn" id="pMap">الخريطة</button><button class="btn goCustom">👤 الشخصية</button><button class="btn" id="pSound">🔊 الصوت: يعمل</button><button class="btn" id="pMusic"></button><button class="btn" id="pView"></button><button class="btn qualBtn"></button><button class="btn fsBtn">⛶ ملء الشاشة</button></div>
   <div class="credit creditTxt"></div>
 </div>
 
@@ -655,7 +659,8 @@ applyLook();
 function animHero(dt,speed,time){const mv=Math.min(1,speed/4.7),w=time*(4+speed*1.3),h=hero;h.body.position.y=Math.abs(Math.sin(w))*.035*mv;h.body.rotation.z=Math.sin(w)*.03*mv;
   h.feet[0].position.z=-.03+Math.sin(w)*.14*mv;h.feet[1].position.z=-.03-Math.sin(w)*.14*mv;h.armL.rotation.x=Math.sin(w)*.55*mv;if(h.suit.visible){h.legs[0].rotation.x=Math.sin(w)*.7*mv;h.legs[1].rotation.x=-Math.sin(w)*.7*mv}h.head.rotation.x=-P.pitch*.4}
 let tp=!!loadJ('mq3d_tp',false),tpT=0,camShake=0;   // tp = منظور الشخص الثالث
-function toggleView(){tp=!tp;saveJ('mq3d_tp',tp);if(state==='play')toast(tp?'منظور الشخص الثالث':'منظور الشخص الأول','info',900);if(IS_TOUCH)$('bView').classList.toggle('act',tp)}
+function viewLabel(){const b=$('pView');if(b)b.textContent='🎥 المنظور: '+(tp?'الشخص الثالث':'الشخص الأول')}
+function toggleView(){tp=!tp;viewLabel();saveJ('mq3d_tp',tp);if(state==='play')toast(tp?'منظور الشخص الثالث':'منظور الشخص الأول','info',900);if(IS_TOUCH)$('bView').classList.toggle('act',tp)}
 // شاشة التخصيص
 let customFrom='menu',lookBackup=null,charRot=0;
 function buildCustomUI(){$('cRows').innerHTML=Object.keys(LOOK_OPTS).map(k=>{const o=LOOK_OPTS[k],col=o.opts[0][1][0]==='#';
@@ -967,7 +972,8 @@ function pickable(){let bestT=null,bd=4.6;for(const t of targets){if(t.done)cont
 function hurt(d){if(P.rollT>0||state!=='play'||invT>0)return;camShake=.3;if(P.armor>0){const a=Math.min(P.armor,d*.7);P.armor-=a;d-=a}P.hp-=d;SFX.hurt();$('dmg').style.opacity=.9;setTimeout(()=>$('dmg').style.opacity=0,180);if(P.hp<=0)respawn();refreshHud()}
 let invT=0,falls=0;
 function respawn(){falls++;enemies.forEach(e=>scene.remove(e.g));enemies=[];hitDirty=true;Object.assign(P,{x:0,y:0,z:0,vx:0,vz:0,vy:0,hp:100,rollT:0});invT=4;score=Math.max(0,score-50);if(teamMode){teamScore[turn]=Math.max(0,teamScore[turn]-50);updateTeamBar()}$('sScore').textContent=ar(score);streak=0;$('sStreak').textContent=ar(0);toast('انتهت صحتك! عدت إلى نقطة البداية — أكمل من نفس السؤال<br><small>−'+ar(50)+'</small>','bad',3200)}
-function startMission(m){mission=m;qWarm=4;qFrames=0;qAcc=0;buildWorld(m%WORLDS.length);gateCd=0;Q=buildQuestions(m);qi=-1;score=0;streak=0;firstTry=0;elapsed=0;kills=0;falls=0;invT=0;wrongList=[];turn=0;teamScore=[0,0];clearGifts();conf=[];giftT=REWARD_CFG.giftEvery;try{speechSynthesis.cancel()}catch(e){}advanceT=0;slowT=0;
+let viewTold=false;
+function startMission(m){mission=m;if(!IS_TOUCH&&!viewTold){viewTold=true;setTimeout(()=>{if(state==='play')toast('🎥 اضغط <kbd style="direction:ltr">V</kbd> لتبديل المنظور بين الشخص الأول والثالث','info',3200)},1600)}qWarm=4;qFrames=0;qAcc=0;buildWorld(m%WORLDS.length);gateCd=0;Q=buildQuestions(m);qi=-1;score=0;streak=0;firstTry=0;elapsed=0;kills=0;falls=0;invT=0;wrongList=[];turn=0;teamScore=[0,0];clearGifts();conf=[];giftT=REWARD_CFG.giftEvery;try{speechSynthesis.cancel()}catch(e){}advanceT=0;slowT=0;
   enemies.forEach(e=>scene.remove(e.g));enemies=[];hitDirty=true;Object.assign(P,{x:0,y:0,z:0,vx:0,vz:0,vy:0,yaw:0,pitch:0,hp:100,armor:0,crouch:false,rollT:0});
   syncUnlocks();WEAPONS.forEach((w,i)=>{w.ammo=w.magSize;w.cd=0;if(w.magObj){w.magObj.position.y=w.magY;w.magObj.rotation.x=0;w.magObj.visible=true}});reloadT=switchT=actionT=0;setWeapon(0,true);buildSlots();
   $('sScore').textContent=ar(0);$('sStreak').textContent=ar(0);setState('play');nextQuestion();refreshHud();lockPointer()}
@@ -1179,7 +1185,7 @@ function tick(now){requestAnimationFrame(tick);let dt=Math.min(.05,(now-last)/10
 if(document.fonts&&document.fonts.load){Promise.race([document.fonts.load('900 40px Cairo'),new Promise(r=>setTimeout(r,2500))]).then(()=>{TX.metalBox.needsUpdate=true}).catch(()=>{})}
 buildSlots();refreshHud();requestAnimationFrame(tick);
 if(IS_TOUCH)$('bView').classList.toggle('act',tp);
-document.querySelectorAll('.qualBtn').forEach(b=>b.onclick=cycleQuality);applyQuality(qLevel,false);
+document.querySelectorAll('.qualBtn').forEach(b=>b.onclick=cycleQuality);$('pView').onclick=()=>{toggleView()};viewLabel();applyQuality(qLevel,false);
 if(SOFTWARE_GL){const w=$('gpuWarn');w.style.display='block';w.innerHTML='⚠️ المتصفح يرسم اللعبة بدون كرت الشاشة (تسريع الرسوم مغلق)، ولذلك تكون بطيئة. في <bdi>Chrome</bdi> أو <bdi>Edge</bdi>: الإعدادات ← النظام ← فعّل «استخدام تسريع الرسوم عند توفره» ثم أعد تشغيل المتصفح.'}
 window.__dbg={renderer,scene,get qLevel(){return qLevel},get fpsNow(){return fpsNow},GPU_NAME,applyQuality,gp,pollPad,get gates(){return gates},get curWorld(){return curWorld},travel,buildWorld,props,damageProp,applyLook,get missed(){return missed},get mast(){return mast},spawnGift,get gifts(){return gifts},get teamScore(){return teamScore},get turn(){return turn},SLOTS,colliders,giveReward,unlockWeapon,get bank(){return bank},get streak(){return streak},toggleView,openCustom,closeCustom,get tp(){return tp},get look(){return look},get diff(){return diff},hero,get qTime(){return qTime},set qTime(v){qTime=v},get state(){return state},P,get targets(){return targets},get enemies(){return enemies},selectTarget,WEAPONS,setWeapon,inp,get qi(){return qi},get Q(){return Q},startMission,hurt,fire,spawnEnemy};
 </script>
