@@ -174,6 +174,9 @@ button{font-family:inherit}
 @keyframes flash{0%{opacity:.95}100%{opacity:0}}
 /* [جديد] تمييز العنصر المختار بيد التحكم */
 .padf{outline:3px solid #fde047!important;outline-offset:3px;box-shadow:0 0 18px rgba(253,224,71,.6)!important}
+/* [جديد] عدّاد الإطارات + تنبيه تسريع الرسوم */
+#fps{position:absolute;top:150px;left:10px;display:none;background:rgba(0,0,0,.65);border-radius:8px;padding:2px 10px;font-size:12px;font-weight:700;color:#a7f3d0}
+.gpuWarn{display:none;max-width:640px;margin:8px auto 0;background:rgba(127,29,29,.75);border:1px solid #fca5a5;border-radius:12px;padding:8px 14px;font-size:13px;font-weight:700;line-height:1.8;text-align:right}
 /* result */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px 22px;width:min(560px,94vw)}
 .stars{font-size:44px;letter-spacing:6px;color:#fde047}
@@ -197,7 +200,7 @@ button{font-family:inherit}
   <div id="stats"><div><small>النقاط</small> <span id="sScore">٠</span></div><div><small>سلسلة</small> <span id="sStreak">٠</span> 🔥</div><div><small>الوقت</small> <span id="sTime">٠:٠٠</span></div><div id="teamRow"></div></div>
   <div id="xh"><i class="t"></i><i class="b"></i><i class="l"></i><i class="r"></i><i class="d"></i></div>
   <div id="dirA"></div><div id="xring"></div><div id="xlabel"></div><div id="hitm"></div>
-  <div id="dmg"></div><div id="flash"></div><div id="toast"></div><div id="combo"></div><div id="reward"></div><div id="prompt"></div><div id="lockhint">انقر على الشاشة للتحكم بالفأرة</div>
+  <div id="fps"></div><div id="dmg"></div><div id="flash"></div><div id="toast"></div><div id="combo"></div><div id="reward"></div><div id="prompt"></div><div id="lockhint">انقر على الشاشة للتحكم بالفأرة</div>
   <div id="bar">
     <div class="box" id="vit"><div class="lab"><span>الصحة</span><span id="hpN">١٠٠</span></div><div class="meter"><i id="hpb"></i></div><div class="lab"><span>الدرع</span><span id="arN">٠</span></div><div class="meter" style="margin-bottom:0"><i id="arb" style="width:0"></i></div></div>
     <div id="slots"></div>
@@ -219,10 +222,11 @@ button{font-family:inherit}
   <div class="sub">مفردات الوحدة الخامسة — <bdi>Since When?</bdi> • <bdi>Super Goal 3</bdi></div>
   <button class="btn pri" id="mStart">ابدأ اللعب</button>
   <div><button class="btn goCustom">👤 تخصيص الشخصية</button><button class="btn" id="mHelp">طريقة اللعب</button><button class="btn" id="mSound">🔊 الصوت: يعمل</button><button class="btn fsBtn">⛶ ملء الشاشة</button></div>
+  <div class="gpuWarn" id="gpuWarn"></div>
   <div class="rot">📱 أدر الجوال أفقيًا لتجربة أفضل</div>
   <div class="help" id="helpBox">
     <b>الهدف:</b> اقرأ السؤال أعلى الشاشة، ثم أطلق على لوحة الإجابة الصحيحة (أو اقترب منها واضغط <kbd>E</kbd>). كل ثالث سؤال يأتي على هيئة صناديق إمداد: الصندوق الصحيح يفتح سلاحًا جديدًا ويمنحك درعًا. ادخل البوابات المضيئة لتنتقل إلى عوالم أخرى (الصحراء، الثلج، الفضاء) وتنتقل معك لوحات السؤال. إذا أخطأت أو انتهى وقت السؤال يظهر زومبي يلاحقك؛ أبعده بالإطلاق عليه. إذا انتهت صحتك تعود إلى نقطة البداية وتكمل من نفس السؤال.<br>
-    <b>الحاسوب:</b> <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> حركة • الفأرة تصويب • زر يسار إطلاق • زر يمين تصويب دقيق • <kbd>Shift</kbd> ركض • <kbd>Space</kbd> قفز • <kbd>C</kbd> انحناء • <kbd>V</kbd> تبديل المنظور (أول/ثالث) • <kbd>Q</kbd> تدحرج • <kbd>R</kbd> تلقيم • <kbd>1</kbd>–<kbd>6</kbd> تبديل السلاح • <kbd>E</kbd> اختيار • <kbd>P</kbd> إيقاف • الأسهم لتدوير الكاميرا عند الحاجة<br>
+    <b>الحاسوب:</b> <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> حركة • الفأرة تصويب • زر يسار إطلاق • زر يمين تصويب دقيق • <kbd>Shift</kbd> ركض • <kbd>Space</kbd> قفز • <kbd>C</kbd> انحناء • <kbd>V</kbd> تبديل المنظور (أول/ثالث) • <kbd>Q</kbd> تدحرج • <kbd>R</kbd> تلقيم • <kbd>1</kbd>–<kbd>6</kbd> تبديل السلاح • <kbd>E</kbd> اختيار • <kbd>P</kbd> إيقاف • <kbd>F</kbd> عرض سرعة اللعبة • الأسهم لتدوير الكاميرا عند الحاجة<br>
     <b>يد التحكم 🎮:</b> العصا اليسرى حركة (اضغطها للركض) • العصا اليمنى تصويب (اضغطها للتدحرج) • <kbd>RT</kbd>/<kbd>R2</kbd> إطلاق • <kbd>LT</kbd>/<kbd>L2</kbd> تصويب دقيق • <kbd>A</kbd>/<kbd>✕</kbd> قفز • <kbd>B</kbd>/<kbd>○</kbd> انحناء • <kbd>X</kbd>/<kbd>□</kbd> تلقيم • <kbd>Y</kbd>/<kbd>△</kbd> اختيار الإجابة • <kbd>LB</kbd> <kbd>RB</kbd> تبديل السلاح • <kbd>View</kbd>/<kbd>Share</kbd> المنظور • <kbd>Menu</kbd>/<kbd>Options</kbd> إيقاف. في القوائم: الأسهم للتنقل و<kbd>A</kbd> للاختيار و<kbd>B</kbd> للرجوع.<br>
     <b>الجوال:</b> عصا التحكم يسارًا للحركة، واسحب يمين الشاشة لتدوير الكاميرا، والأزرار للإطلاق والتصويب والقفز والتدحرج والانحناء والتلقيم وتبديل السلاح.
   </div>
@@ -256,7 +260,7 @@ button{font-family:inherit}
 <div class="screen" id="pause">
   <h2 class="maptitle">⏸ إيقاف مؤقت</h2>
   <button class="btn pri" id="pResume">متابعة</button>
-  <div><button class="btn" id="pRestart">إعادة المهمة</button><button class="btn" id="pMap">الخريطة</button><button class="btn goCustom">👤 الشخصية</button><button class="btn" id="pSound">🔊 الصوت: يعمل</button><button class="btn" id="pMusic"></button><button class="btn fsBtn">⛶ ملء الشاشة</button></div>
+  <div><button class="btn" id="pRestart">إعادة المهمة</button><button class="btn" id="pMap">الخريطة</button><button class="btn goCustom">👤 الشخصية</button><button class="btn" id="pSound">🔊 الصوت: يعمل</button><button class="btn" id="pMusic"></button><button class="btn qualBtn"></button><button class="btn fsBtn">⛶ ملء الشاشة</button></div>
   <div class="credit creditTxt"></div>
 </div>
 
@@ -418,6 +422,30 @@ const sun=new THREE.DirectionalLight(0xffd2a0,2.3);sun.position.set(40,38,-30);s
 Object.assign(sun.shadow.camera,{left:-42,right:42,top:42,bottom:-42,near:1,far:140});sun.shadow.bias=-.0006;scene.add(sun);
 vmScene.add(new THREE.HemisphereLight(0xdde8ff,0x7a6654,1.1));const vmSun=new THREE.DirectionalLight(0xffe0bb,2.2);vmSun.position.set(1.5,2,1);vmScene.add(vmSun);
 const flashLight=new THREE.PointLight(0xffc070,0,3);vmScene.add(flashLight);
+/* ═══════════ [جديد] جودة الرسوم: تلقائية تتكيّف مع سرعة الجهاز، أو يختارها اللاعب ═══════════
+   QUALITY: pr = أقصى دقة للشاشة • shadow = دقة الظلال (٠ = بلا ظلال) • ext = نصف مساحة الظلال حول اللاعب بالأمتار
+   في الوضع «تلقائي» تبدأ اللعبة بالجودة المتوسطة، وإذا نزل عدد الإطارات عن FPS_MIN تُخفَّض الجودة درجة. */
+const QUALITY={high:{name:'عالية',pr:2,shadow:2048,soft:true,ext:42},medium:{name:'متوسطة',pr:1.25,shadow:1024,soft:false,ext:26},low:{name:'منخفضة',pr:IS_TOUCH?1.5:1,shadow:0,ext:26}};
+const Q_ORDER=['high','medium','low'],FPS_MIN=42;
+let qMode=loadJ('mq3d_quality','auto');if(qMode!=='auto'&&!QUALITY[qMode])qMode='auto';
+let qLevel=qMode!=='auto'?qMode:(IS_TOUCH?'low':'medium'),qFrames=0,qAcc=0,qWarm=4,fpsNow=0,showFps=false;
+// كشف الرسم بدون كرت الشاشة (تسريع الرسوم مغلق في المتصفح) — السبب الأشهر لبطء اللعبة على حاسوب قوي
+const GPU_NAME=(()=>{try{const gl=renderer.getContext(),e=gl.getExtension('WEBGL_debug_renderer_info');return String(e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER))}catch(e){return ''}})();
+const SOFTWARE_GL=/swiftshader|llvmpipe|softpipe|software|basic render/i.test(GPU_NAME);
+if(SOFTWARE_GL&&qMode==='auto')qLevel='low';
+function applyQuality(level,announce){qLevel=level;const q=QUALITY[level];
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,q.pr));
+  const wantSh=q.shadow>0;if(renderer.shadowMap.enabled!==wantSh){renderer.shadowMap.enabled=wantSh;scene.traverse(o=>{if(o.material)[].concat(o.material).forEach(m=>m.needsUpdate=true)})}
+  if(wantSh){renderer.shadowMap.type=q.soft?THREE.PCFSoftShadowMap:THREE.PCFShadowMap;{const c=sun.shadow.camera;if(c.right!==q.ext){c.left=c.bottom=-q.ext;c.right=c.top=q.ext;c.updateProjectionMatrix()}}if(sun.shadow.mapSize.x!==q.shadow){sun.shadow.mapSize.set(q.shadow,q.shadow);if(sun.shadow.map){sun.shadow.map.dispose();sun.shadow.map=null}}}
+  if(typeof resize==='function')resize();refreshQualBtn();
+  if(announce)toast(`⚙️ جودة الرسوم: ${q.name}`+(qMode==='auto'?' (تلقائي — لتصبح اللعبة أسلس)':''),'info',2200)}
+function refreshQualBtn(){document.querySelectorAll('.qualBtn').forEach(b=>b.textContent='⚙️ الرسوم: '+(qMode==='auto'?'تلقائي ('+QUALITY[qLevel].name+')':QUALITY[qMode].name))}
+function cycleQuality(){const order=['auto',...Q_ORDER];qMode=order[(order.indexOf(qMode)+1)%order.length];saveJ('mq3d_quality',qMode);applyQuality(qMode==='auto'?(SOFTWARE_GL?'low':(IS_TOUCH?'low':'medium')):qMode,false)}
+// يُستدعى كل إطار أثناء اللعب: يقيس السرعة ويخفّض الجودة تلقائيًا عند الحاجة
+function measureFps(dt){qFrames++;qAcc+=dt;if(qAcc<2)return;fpsNow=Math.round(qFrames/qAcc);qFrames=0;qAcc=0;
+  if(showFps)$('fps').textContent=`${ar(fpsNow)} إطار/ث • ${QUALITY[qLevel].name}${SOFTWARE_GL?' • بدون كرت الشاشة':''}`;
+  if(qWarm>0||document.hidden||qMode!=='auto')return;if(fpsNow<FPS_MIN){const i=Q_ORDER.indexOf(qLevel);if(i<Q_ORDER.length-1){applyQuality(Q_ORDER[i+1],true);qWarm=3}}}
+
 
 /* textures */
 const speck=(g,w,h,n,cols)=>{for(let i=0;i<n;i++){g.fillStyle=cols[i%cols.length];g.globalAlpha=Math.random()*.25;g.fillRect(Math.random()*w,Math.random()*h,1+Math.random()*3,1+Math.random()*3)}g.globalAlpha=1};
@@ -528,7 +556,7 @@ function buildWorld(i){curWorld=i;const th=WORLDS[i];
   addBox(0,0,-ARENA,ARENA*2,4.5,1,th.wallM);addBox(0,0,ARENA,ARENA*2,4.5,1,th.wallM);addBox(-ARENA,0,0,1,4.5,ARENA*2,th.wallM);addBox(ARENA,0,0,1,4.5,ARENA*2,th.wallM);
   [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a,b])=>{addBox(a*(ARENA-2.5),0,b*(ARENA-2.5),3,7,3,(th.towerM||WM.tower));const r=new THREE.Mesh(new THREE.BoxGeometry(4.2,.3,4.2),WM.pole);r.position.set(a*(ARENA-2.5),8.6,b*(ARENA-2.5));worldG.add(r);
     const l=new THREE.Mesh(new THREE.SphereGeometry(.25),new THREE.MeshBasicMaterial({color:0xffe9b0}));l.position.set(a*(ARENA-2.5),7.4,b*(ARENA-2.5));worldG.add(l)});
-  th.build(rng(th.seed||1));buildGates(i);computeSlots()}
+  th.build(rng(th.seed||1));buildGates(i);computeSlots();qWarm=Math.max(qWarm,2)}
 // الانتقال عبر بوابة: يُبنى العالم الجديد، وتنتقل معك لوحات السؤال الحالي والزومبي الذين يلاحقونك
 function travel(g){const types=enemies.filter(e=>!e.dead).map(e=>e.type);enemies.forEach(e=>scene.remove(e.g));enemies=[];clearGifts();clearTargets();
   buildWorld(g.to);const a=gates[g.arrive];Object.assign(P,{x:a.x+a.nx*4.5,z:a.z+a.nz*4.5,y:0,vx:0,vz:0,vy:0,yaw:Math.atan2(-a.nx,-a.nz),pitch:0});gateCd=2.5;invT=Math.max(invT,1.5);
@@ -939,7 +967,7 @@ function pickable(){let bestT=null,bd=4.6;for(const t of targets){if(t.done)cont
 function hurt(d){if(P.rollT>0||state!=='play'||invT>0)return;camShake=.3;if(P.armor>0){const a=Math.min(P.armor,d*.7);P.armor-=a;d-=a}P.hp-=d;SFX.hurt();$('dmg').style.opacity=.9;setTimeout(()=>$('dmg').style.opacity=0,180);if(P.hp<=0)respawn();refreshHud()}
 let invT=0,falls=0;
 function respawn(){falls++;enemies.forEach(e=>scene.remove(e.g));enemies=[];hitDirty=true;Object.assign(P,{x:0,y:0,z:0,vx:0,vz:0,vy:0,hp:100,rollT:0});invT=4;score=Math.max(0,score-50);if(teamMode){teamScore[turn]=Math.max(0,teamScore[turn]-50);updateTeamBar()}$('sScore').textContent=ar(score);streak=0;$('sStreak').textContent=ar(0);toast('انتهت صحتك! عدت إلى نقطة البداية — أكمل من نفس السؤال<br><small>−'+ar(50)+'</small>','bad',3200)}
-function startMission(m){mission=m;buildWorld(m%WORLDS.length);gateCd=0;Q=buildQuestions(m);qi=-1;score=0;streak=0;firstTry=0;elapsed=0;kills=0;falls=0;invT=0;wrongList=[];turn=0;teamScore=[0,0];clearGifts();conf=[];giftT=REWARD_CFG.giftEvery;try{speechSynthesis.cancel()}catch(e){}advanceT=0;slowT=0;
+function startMission(m){mission=m;qWarm=4;qFrames=0;qAcc=0;buildWorld(m%WORLDS.length);gateCd=0;Q=buildQuestions(m);qi=-1;score=0;streak=0;firstTry=0;elapsed=0;kills=0;falls=0;invT=0;wrongList=[];turn=0;teamScore=[0,0];clearGifts();conf=[];giftT=REWARD_CFG.giftEvery;try{speechSynthesis.cancel()}catch(e){}advanceT=0;slowT=0;
   enemies.forEach(e=>scene.remove(e.g));enemies=[];hitDirty=true;Object.assign(P,{x:0,y:0,z:0,vx:0,vz:0,vy:0,yaw:0,pitch:0,hp:100,armor:0,crouch:false,rollT:0});
   syncUnlocks();WEAPONS.forEach((w,i)=>{w.ammo=w.magSize;w.cd=0;if(w.magObj){w.magObj.position.y=w.magY;w.magObj.rotation.x=0;w.magObj.visible=true}});reloadT=switchT=actionT=0;setWeapon(0,true);buildSlots();
   $('sScore').textContent=ar(0);$('sStreak').textContent=ar(0);setState('play');nextQuestion();refreshHud();lockPointer()}
@@ -1008,7 +1036,7 @@ function pause(){if(state==='play'){setState('pause');if(document.pointerLockEle
 function resume(){if(state==='pause'){setState('play');lockPointer()}}
 addEventListener('keydown',e=>{if(e.target&&e.target.tagName==='INPUT')return;if(/^Arrow/.test(e.code))e.preventDefault();if(e.repeat){if(e.code==='Space')e.preventDefault();return}keys[e.code]=true;
   if(state==='pause'&&e.code==='KeyP'){resume();return}if(state!=='play')return;
-  switch(e.code){case'Space':e.preventDefault();jump();break;case'KeyR':startReload();break;case'KeyQ':roll();break;case'KeyE':tryPick();break;case'KeyP':pause();break;case'KeyC':P.crouch=true;break;case'KeyV':toggleView();break;
+  switch(e.code){case'Space':e.preventDefault();jump();break;case'KeyR':startReload();break;case'KeyQ':roll();break;case'KeyE':tryPick();break;case'KeyP':pause();break;case'KeyC':P.crouch=true;break;case'KeyF':showFps=!showFps;$('fps').style.display=showFps?'block':'none';$('fps').textContent='…';break;case'KeyV':toggleView();break;
    default:{const m=/^(?:Digit|Numpad)([1-6])$/.exec(e.code);if(m)setWeapon(+m[1]-1)}}});
 addEventListener('keyup',e=>{keys[e.code]=false;if(e.code==='KeyC')P.crouch=false});
 addEventListener('blur',()=>{for(const k in keys)keys[k]=false;inp.fire=false;inp.ads=false});
@@ -1092,8 +1120,9 @@ function padMove(dx,dy){const it=padItems();if(!it.length)return;const cur=docum
   it.forEach((el,i)=>{if(el===cur)return;const b=el.getBoundingClientRect(),vx=b.left+b.width/2-ax,vy=b.top+b.height/2-ay;const along=vx*dx+vy*dy;if(along<=4)return;const side=Math.abs(vx*dy-vy*dx);const sc=along+side*2.2;if(sc<bd){bd=sc;best=i}});
   if(best>=0)padFocus(best)}
 function padBack(){if(state==='pause')resume();else if(state==='map')setState('menu');else if(state==='custom')closeCustom(false);else if(state==='result')setState('map')}
-function pollPad(dt){const pads=navigator.getGamepads?navigator.getGamepads():[];let pd=pads&&pads[gp.idx];if(!pd&&pads)for(const q of pads)if(q&&q.connected){pd=q;gp.idx=q.index;break}
-  if(!pd){gp.mx=gp.mz=0;return}
+function pollPad(dt){if(gp.idx<0)return;   /* لا نسأل المتصفح عن يد التحكم إلا بعد توصيلها (السؤال المتكرر يبطّئ بعض أجهزة ويندوز) */
+  const pads=navigator.getGamepads?navigator.getGamepads():[];let pd=pads&&pads[gp.idx];if(!pd&&pads)for(const q of pads)if(q&&q.connected){pd=q;gp.idx=q.index;break}
+  if(!pd){gp.mx=gp.mz=0;gp.idx=-1;return}
   const B=pd.buttons.map(b=>b&&(b.pressed||b.value>.5)),A=pd.axes,pr=gp.prev,hit=i=>B[i]&&!pr[i];
   const lx=dz(A[0]||0),ly=dz(A[1]||0),rx=dz(A[2]||0),ry=dz(A[3]||0);
   if(!gp.active&&(B.some(Boolean)||Math.abs(lx)+Math.abs(ly)+Math.abs(rx)+Math.abs(ry)>0)){gp.active=true;audioInit();if(document.pointerLockElement)document.exitPointerLock()}
@@ -1122,7 +1151,7 @@ function resize(){const w=innerWidth,h=innerHeight;fx.width=w;fx.height=h;fx.sty
 addEventListener('resize',resize);resize();
 let last=performance.now(),time=0,frame=0;
 function tick(now){requestAnimationFrame(tick);let dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;frame++;pollPad(dt);
-  if(state==='play'){elapsed+=dt;if(invT>0)invT-=dt;{const ax=(keys.ArrowLeft?1:0)-(keys.ArrowRight?1:0)+(noLock&&!document.pointerLockElement?(mouseFx<.06?1:mouseFx>.94?-1:0):0),ay=(keys.ArrowUp?1:0)-(keys.ArrowDown?1:0);if(ax||ay){const f=camera.fov/72;P.yaw+=ax*1.9*dt*f;P.pitch=Math.max(-1.45,Math.min(1.45,P.pitch+ay*1.3*dt*f))}}movePlayer(dt);
+  if(state==='play'){elapsed+=dt;measureFps(dt);if(qWarm>0)qWarm-=dt;if(invT>0)invT-=dt;{const ax=(keys.ArrowLeft?1:0)-(keys.ArrowRight?1:0)+(noLock&&!document.pointerLockElement?(mouseFx<.06?1:mouseFx>.94?-1:0):0),ay=(keys.ArrowUp?1:0)-(keys.ArrowDown?1:0);if(ax||ay){const f=camera.fov/72;P.yaw+=ax*1.9*dt*f;P.pitch=Math.max(-1.45,Math.min(1.45,P.pitch+ay*1.3*dt*f))}}movePlayer(dt);
     const w=W();if(inp.fire&&(w.auto||inp.fireEdge))fire();inp.fireEdge=false;
     camKick+=(0-camKick)*Math.min(1,9*dt);
     const bob=P.ground?Math.sin(bobT*2)*.018*Math.min(1,P.speed/4.7)*(1-adsT):0;
@@ -1150,7 +1179,9 @@ function tick(now){requestAnimationFrame(tick);let dt=Math.min(.05,(now-last)/10
 if(document.fonts&&document.fonts.load){Promise.race([document.fonts.load('900 40px Cairo'),new Promise(r=>setTimeout(r,2500))]).then(()=>{TX.metalBox.needsUpdate=true}).catch(()=>{})}
 buildSlots();refreshHud();requestAnimationFrame(tick);
 if(IS_TOUCH)$('bView').classList.toggle('act',tp);
-window.__dbg={gp,pollPad,get gates(){return gates},get curWorld(){return curWorld},travel,buildWorld,props,damageProp,applyLook,get missed(){return missed},get mast(){return mast},spawnGift,get gifts(){return gifts},get teamScore(){return teamScore},get turn(){return turn},SLOTS,colliders,giveReward,unlockWeapon,get bank(){return bank},get streak(){return streak},toggleView,openCustom,closeCustom,get tp(){return tp},get look(){return look},get diff(){return diff},hero,get qTime(){return qTime},set qTime(v){qTime=v},get state(){return state},P,get targets(){return targets},get enemies(){return enemies},selectTarget,WEAPONS,setWeapon,inp,get qi(){return qi},get Q(){return Q},startMission,hurt,fire,spawnEnemy};
+document.querySelectorAll('.qualBtn').forEach(b=>b.onclick=cycleQuality);applyQuality(qLevel,false);
+if(SOFTWARE_GL){const w=$('gpuWarn');w.style.display='block';w.innerHTML='⚠️ المتصفح يرسم اللعبة بدون كرت الشاشة (تسريع الرسوم مغلق)، ولذلك تكون بطيئة. في <bdi>Chrome</bdi> أو <bdi>Edge</bdi>: الإعدادات ← النظام ← فعّل «استخدام تسريع الرسوم عند توفره» ثم أعد تشغيل المتصفح.'}
+window.__dbg={renderer,scene,get qLevel(){return qLevel},get fpsNow(){return fpsNow},GPU_NAME,applyQuality,gp,pollPad,get gates(){return gates},get curWorld(){return curWorld},travel,buildWorld,props,damageProp,applyLook,get missed(){return missed},get mast(){return mast},spawnGift,get gifts(){return gifts},get teamScore(){return teamScore},get turn(){return turn},SLOTS,colliders,giveReward,unlockWeapon,get bank(){return bank},get streak(){return streak},toggleView,openCustom,closeCustom,get tp(){return tp},get look(){return look},get diff(){return diff},hero,get qTime(){return qTime},set qTime(v){qTime=v},get state(){return state},P,get targets(){return targets},get enemies(){return enemies},selectTarget,WEAPONS,setWeapon,inp,get qi(){return qi},get Q(){return Q},startMission,hurt,fire,spawnEnemy};
 </script>
 </body>
 </html>
