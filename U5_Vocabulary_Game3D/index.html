@@ -102,7 +102,7 @@ button{font-family:inherit}
 .tb.act{background:rgba(34,211,238,.5)}
 #bFire{right:26px;bottom:56px;width:88px;height:88px;font-size:15px;background:rgba(239,68,68,.45);border-color:#fecaca}
 #bAds{right:128px;bottom:36px}#bJump{right:22px;bottom:158px}#bRoll{right:92px;bottom:150px}#bCrouch{right:164px;bottom:106px}
-#bReload{right:198px;bottom:32px}#bSwitch{right:22px;bottom:228px}
+#bReload{right:198px;bottom:32px}#bGren{right:164px;bottom:176px;background:rgba(127,29,29,.55)}#bSwitch{right:22px;bottom:228px}
 #bPick{right:96px;bottom:222px;width:auto;border-radius:30px;padding:0 16px;display:none;background:rgba(250,204,21,.6);font-size:15px}
 #bPause{right:auto;left:10px;top:122px;width:44px;height:44px;font-size:16px}
 .touch #bar{transform:translateX(-50%) scale(.82);transform-origin:bottom center;bottom:20px}
@@ -181,6 +181,9 @@ button{font-family:inherit}
 #keyHint{position:absolute;top:150px;right:10px;background:rgba(0,0,0,.55);border:1px solid var(--line);border-radius:8px;padding:2px 10px;font-size:12px;font-weight:700;color:#e2e8f0}
 #keyHint kbd{direction:ltr;display:inline-block;background:#1e293b;border:1px solid #475569;border-bottom-width:3px;border-radius:5px;padding:0 6px;font:700 12px/18px monospace;margin-left:4px}
 .touch #keyHint,.pad #keyHint{display:none}
+/* [جديد] عدّاد القنابل */
+#grenRow{font-size:12px;font-weight:900;color:#fecaca;margin-top:2px}#grenRow kbd{direction:ltr;display:inline-block;background:#1e293b;border:1px solid #475569;border-radius:4px;padding:0 4px;font:700 10px/14px monospace}
+.touch #grenRow .pcOnly{display:none}
 /* result */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px 22px;width:min(560px,94vw)}
 .stars{font-size:44px;letter-spacing:6px;color:#fde047}
@@ -208,7 +211,7 @@ button{font-family:inherit}
   <div id="bar">
     <div class="box" id="vit"><div class="lab"><span>الصحة</span><span id="hpN">١٠٠</span></div><div class="meter"><i id="hpb"></i></div><div class="lab"><span>الدرع</span><span id="arN">٠</span></div><div class="meter" style="margin-bottom:0"><i id="arb" style="width:0"></i></div></div>
     <div id="slots"></div>
-    <div class="box" id="ammo"><div id="ammoN">٣٠ <small>/ ∞</small></div><div id="wname"></div></div>
+    <div class="box" id="ammo"><div id="ammoN">٣٠ <small>/ ∞</small></div><div id="wname"></div><div id="grenRow">💣 <span id="grenN">٣</span> <kbd class="pcOnly">G</kbd></div></div>
   </div>
   <div id="credit" class="creditTxt"></div>
 </div>
@@ -217,7 +220,7 @@ button{font-family:inherit}
   <div id="lzone"></div><div id="rzone"></div>
   <div id="joy"><div id="knob"></div></div>
   <button class="tb" id="bFire">إطلاق</button><button class="tb" id="bAds">تصويب</button><button class="tb" id="bJump">قفز</button>
-  <button class="tb" id="bRoll">تدحرج</button><button class="tb" id="bCrouch">انحناء</button><button class="tb" id="bReload">تلقيم</button>
+  <button class="tb" id="bRoll">تدحرج</button><button class="tb" id="bCrouch">انحناء</button><button class="tb" id="bReload">تلقيم</button><button class="tb" id="bGren">قنبلة<br>٣</button>
   <button class="tb" id="bSwitch">سلاح</button><button class="tb" id="bPick">✋ اختيار</button><button class="tb" id="bPause">⏸</button><button class="tb" id="bView">منظور</button>
 </div>
 
@@ -230,8 +233,8 @@ button{font-family:inherit}
   <div class="rot">📱 أدر الجوال أفقيًا لتجربة أفضل</div>
   <div class="help" id="helpBox">
     <b>الهدف:</b> اقرأ السؤال أعلى الشاشة، ثم أطلق على لوحة الإجابة الصحيحة (أو اقترب منها واضغط <kbd>E</kbd>). كل ثالث سؤال يأتي على هيئة صناديق إمداد: الصندوق الصحيح يفتح سلاحًا جديدًا ويمنحك درعًا. ادخل البوابات المضيئة لتنتقل إلى عوالم أخرى (الصحراء، الثلج، الفضاء) وتنتقل معك لوحات السؤال. إذا أخطأت أو انتهى وقت السؤال يظهر زومبي يلاحقك؛ أبعده بالإطلاق عليه. إذا انتهت صحتك تعود إلى نقطة البداية وتكمل من نفس السؤال.<br>
-    <b>الحاسوب:</b> <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> حركة • الفأرة تصويب • زر يسار إطلاق • زر يمين تصويب دقيق • <kbd>Shift</kbd> ركض • <kbd>Space</kbd> قفز • <kbd>C</kbd> انحناء • <kbd>V</kbd> تبديل المنظور (أول/ثالث) • <kbd>Q</kbd> تدحرج • <kbd>R</kbd> تلقيم • <kbd>1</kbd>–<kbd>6</kbd> تبديل السلاح • <kbd>E</kbd> اختيار • <kbd>P</kbd> إيقاف • <kbd>F</kbd> عرض سرعة اللعبة • الأسهم لتدوير الكاميرا عند الحاجة<br>
-    <b>يد التحكم 🎮:</b> العصا اليسرى حركة (اضغطها للركض) • العصا اليمنى تصويب (اضغطها للتدحرج) • <kbd>RT</kbd>/<kbd>R2</kbd> إطلاق • <kbd>LT</kbd>/<kbd>L2</kbd> تصويب دقيق • <kbd>A</kbd>/<kbd>✕</kbd> قفز • <kbd>B</kbd>/<kbd>○</kbd> انحناء • <kbd>X</kbd>/<kbd>□</kbd> تلقيم • <kbd>Y</kbd>/<kbd>△</kbd> اختيار الإجابة • <kbd>LB</kbd> <kbd>RB</kbd> تبديل السلاح • <kbd>View</kbd>/<kbd>Share</kbd> المنظور • <kbd>Menu</kbd>/<kbd>Options</kbd> إيقاف. في القوائم: الأسهم للتنقل و<kbd>A</kbd> للاختيار و<kbd>B</kbd> للرجوع.<br>
+    <b>الحاسوب:</b> <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> حركة • الفأرة تصويب • زر يسار إطلاق • زر يمين تصويب دقيق • <kbd>Shift</kbd> ركض • <kbd>Space</kbd> قفز • <kbd>C</kbd> انحناء • <kbd>V</kbd> تبديل المنظور (أول/ثالث) • <kbd>Q</kbd> تدحرج • <kbd>R</kbd> تلقيم • <kbd>1</kbd>–<kbd>7</kbd> تبديل السلاح (٧ = RPG) • <kbd>G</kbd> رمي قنبلة • <kbd>E</kbd> اختيار • <kbd>P</kbd> إيقاف • <kbd>F</kbd> عرض سرعة اللعبة • الأسهم لتدوير الكاميرا عند الحاجة<br>
+    <b>يد التحكم 🎮:</b> العصا اليسرى حركة (اضغطها للركض) • العصا اليمنى تصويب (اضغطها للتدحرج) • <kbd>RT</kbd>/<kbd>R2</kbd> إطلاق • <kbd>LT</kbd>/<kbd>L2</kbd> تصويب دقيق • <kbd>A</kbd>/<kbd>✕</kbd> قفز • <kbd>B</kbd>/<kbd>○</kbd> انحناء • <kbd>X</kbd>/<kbd>□</kbd> تلقيم • <kbd>Y</kbd>/<kbd>△</kbd> اختيار الإجابة • <kbd>LB</kbd> <kbd>RB</kbd> تبديل السلاح • السهم للأسفل رمي قنبلة • <kbd>View</kbd>/<kbd>Share</kbd> المنظور • <kbd>Menu</kbd>/<kbd>Options</kbd> إيقاف. في القوائم: الأسهم للتنقل و<kbd>A</kbd> للاختيار و<kbd>B</kbd> للرجوع.<br>
     <b>الجوال:</b> عصا التحكم يسارًا للحركة، واسحب يمين الشاشة لتدوير الكاميرا، والأزرار للإطلاق والتصويب والقفز والتدحرج والانحناء والتلقيم وتبديل السلاح.
   </div>
   <div class="credit creditTxt"></div>
@@ -315,7 +318,7 @@ const D=()=>DIFFICULTY[diff];
 /* ═══════════ [جديد] إعدادات الأسلحة والمكافآت ═══════════
    WEAPON_COST: مجموع النقاط المطلوب لفتح كل سلاح (٠ = مفتوح من البداية) بترتيب الخانات ١–٦
    REWARD_CFG: فرص المكافآت؛ تزيد مع كل إجابة صحيحة متتالية، و rareAt = طول السلسلة الذي يضمن مكافأة نادرة */
-const WEAPON_COST=[0,600,1800,1200,0,2600];
+const WEAPON_COST=[0,600,1800,1200,0,2600,3200];
 const REWARD_CFG={giftEvery:22,giftLife:45,bigBase:.15,bigPerStreak:.09,bigMax:.7,rareBase:.03,rarePerStreak:.03,rareMax:.3,rareAt:5,comboStep:.25,comboMax:3,slowSecs:8,freezeSecs:5};
 
 /* ═══════════ بيانات الوحدة الخامسة (التبويبات ١–٣) ═══════════ */
@@ -392,7 +395,8 @@ let noiseBuf=null;
 function noise(d,freq,g=.4,type='lowpass',delay=0){if(!AC||!soundOn)return;if(!noiseBuf){noiseBuf=AC.createBuffer(1,AC.sampleRate,AC.sampleRate);const a=noiseBuf.getChannelData(0);for(let i=0;i<a.length;i++)a[i]=Math.random()*2-1}
   const t=AC.currentTime+delay,s=AC.createBufferSource(),f=AC.createBiquadFilter(),v=AC.createGain();s.buffer=noiseBuf;f.type=type;f.frequency.setValueAtTime(freq,t);f.frequency.exponentialRampToValueAtTime(Math.max(80,freq*.2),t+d);v.gain.setValueAtTime(g,t);v.gain.exponentialRampToValueAtTime(.001,t+d);s.connect(f);f.connect(v);v.connect(master);s.start(t,Math.random()*.5,d+.05)}
 const SFX={
- shot:[()=>{noise(.16,2600,.5);tone(170,.1,'square',.16,60)},()=>{noise(.38,1500,.75);tone(95,.25,'sawtooth',.25,40)},()=>{noise(.5,3400,.8);tone(120,.35,'square',.25,35)},()=>{noise(.07,900,.22);tone(320,.05,'triangle',.07,150)},()=>{noise(.09,3200,.4);tone(260,.06,'square',.14,90)},()=>{tone(1800,.28,'sine',.16,420);tone(900,.3,'triangle',.1,2400);noise(.2,6000,.12,'highpass')}],
+ shot:[()=>{noise(.16,2600,.5);tone(170,.1,'square',.16,60)},()=>{noise(.38,1500,.75);tone(95,.25,'sawtooth',.25,40)},()=>{noise(.5,3400,.8);tone(120,.35,'square',.25,35)},()=>{noise(.07,900,.22);tone(320,.05,'triangle',.07,150)},()=>{noise(.09,3200,.4);tone(260,.06,'square',.14,90)},()=>{tone(1800,.28,'sine',.16,420);tone(900,.3,'triangle',.1,2400);noise(.2,6000,.12,'highpass')},()=>{noise(.6,1600,.7);tone(220,.45,'sawtooth',.16,70)}],
+ boom:(v=1)=>{noise(1.2,900,1*v);noise(.45,3200,.45*v);tone(75,.8,'sine',.55*v,28)}, throwG:()=>noise(.14,2600,.22), tick:()=>tone(1500,.03,'square',.05),
  dry:()=>tone(900,.03,'square',.08), magOut:()=>{tone(300,.04,'square',.1);noise(.05,1200,.15)}, magIn:()=>{tone(520,.04,'square',.12);noise(.06,2200,.2)},
  pump:()=>{noise(.07,1400,.25);noise(.07,1900,.25,'lowpass',.16)}, ok:()=>{tone(660,.12,'triangle',.25);tone(880,.12,'triangle',.25,null,.1);tone(1320,.25,'triangle',.25,null,.2)},
  bad:()=>{tone(180,.3,'sawtooth',.22,110)}, hit:()=>tone(1400,.04,'square',.08), kill:()=>{tone(320,.16,'sine',.28,820);noise(.12,2400,.18)}, moan:(fast,v)=>{tone(fast?150:96,.75,'sawtooth',.11*v,fast?105:68);tone(fast?154:99,.75,'sine',.09*v,fast?108:70)}, rise:()=>{noise(.5,300,.3);tone(70,.5,'sine',.2,120)},
@@ -562,7 +566,7 @@ function buildWorld(i){curWorld=i;const th=WORLDS[i];
     const l=new THREE.Mesh(new THREE.SphereGeometry(.25),new THREE.MeshBasicMaterial({color:0xffe9b0}));l.position.set(a*(ARENA-2.5),7.4,b*(ARENA-2.5));worldG.add(l)});
   th.build(rng(th.seed||1));buildGates(i);computeSlots();qWarm=Math.max(qWarm,2)}
 // الانتقال عبر بوابة: يُبنى العالم الجديد، وتنتقل معك لوحات السؤال الحالي والزومبي الذين يلاحقونك
-function travel(g){const types=enemies.filter(e=>!e.dead).map(e=>e.type);enemies.forEach(e=>scene.remove(e.g));enemies=[];clearGifts();clearTargets();
+function travel(g){clearExplosives();const types=enemies.filter(e=>!e.dead).map(e=>e.type);enemies.forEach(e=>scene.remove(e.g));enemies=[];clearGifts();clearTargets();
   buildWorld(g.to);const a=gates[g.arrive];Object.assign(P,{x:a.x+a.nx*4.5,z:a.z+a.nz*4.5,y:0,vx:0,vz:0,vy:0,yaw:Math.atan2(-a.nx,-a.nz),pitch:0});gateCd=2.5;invT=Math.max(invT,1.5);
   if(advanceT<=0&&Q[qi])spawnTargets(Q[qi],Q[qi].crate);types.forEach(t=>spawnEnemy(t));
   const f=$('flash');f.style.background='#'+WORLDS[g.to].gate.toString(16).padStart(6,'0');f.className='';void f.offsetWidth;f.className='on';SFX.gate();toast('🌀 انتقلت إلى: '+WORLDS[g.to].name,'info',2200)}
@@ -752,17 +756,26 @@ function buildFreeze(){const g=new THREE.Group(),ice=new THREE.MeshBasicMaterial
   const mag=new THREE.Group();mag.position.set(0,-.036,-.04);g.add(mag);part(rbox(.032,.06,.05,.006),teal,0,-.03,0,mag);part(rbox(.034,.012,.03,.003),ice,0,-.03,0,mag);
   engrave(g,.0255,.0,.0,.15);
   return{group:g,mag,sight:new V3(0,.088,0),muzzle:new V3(0,.004,-.33)}}
+// [جديد] قاذف صواريخ RPG — الرأس الحربي هو «المخزن»: يختفي بعد الإطلاق ويعود مع التلقيم
+function buildRPG(){const g=new THREE.Group(),ol=mat({color:0x4d5a3a,roughness:.7,metalness:.2}),wh=mat({color:0x3f4a2f,roughness:.6,metalness:.3});
+  part(cylZ(.046,.95),ol,0,0,-.1,g);part(cylZ(.062,.16,.047),GM.dark,0,0,.42,g);part(cylZ(.05,.05),GM.dark,0,0,-.58,g);[-.32,.12].forEach(z=>part(cylZ(.05,.025),GM.dark,0,0,z,g));
+  part(rbox(.034,.1,.045,.01),GM.dark,0,-.09,.1,g,.2);part(rbox(.03,.085,.04,.01),GM.dark,0,-.08,-.18,g,.1);part(rbox(.008,.005,.06,.002),GM.gun,0,-.055,.05,g);
+  part(rbox(.022,.05,.07,.005),GM.dark,-.045,.06,-.02,g);part(new THREE.TorusGeometry(.016,.004,6,16),GM.steel,-.045,.09,.012,g);part(new THREE.TorusGeometry(.012,.003,6,14),GM.steel,-.045,.09,-.05,g);
+  const mag=new THREE.Group();mag.position.set(0,0,-.66);g.add(mag);part(cylZ(.03,.08),wh,0,0,.02,mag);part(cylZ(.052,.14,.028),wh,0,0,-.08,mag);part(new THREE.ConeGeometry(.052,.16,16).rotateX(-Math.PI/2),wh,0,0,-.23,mag);part(cylZ(.054,.012),GM.red,0,0,-.15,mag);
+  engrave(g,.0465,.0,-.15,.22);
+  return{group:g,mag,sight:new V3(-.045,.09,-.02),muzzle:new V3(0,0,-.6)}}
 const WEAPONS=[
  {name:'بندقية هجومية',short:'هجومية',build:buildAR,mag:30,dmg:26,cycle:.1,auto:true,spread:.012,pellets:1,reload:2,recoil:.012,kick:.035,adsFov:48,hip:new V3(.115,-.115,-.42),adsZ:-.3,sfx:0},
  {name:'بندقية خرطوش',short:'خرطوش',build:buildShotgun,mag:6,dmg:13,cycle:.95,auto:false,spread:.055,pellets:9,reload:2.4,recoil:.05,kick:.12,adsFov:58,hip:new V3(.115,-.105,-.38),adsZ:-.3,sfx:1,action:.7},
  {name:'قنّاصة',short:'قنّاصة',build:buildSniper,mag:5,dmg:130,cycle:1.35,auto:false,spread:.03,pellets:1,reload:2.6,recoil:.06,kick:.14,adsFov:19,hip:new V3(.115,-.11,-.36),adsZ:-.3,sfx:2,action:1.1,scope:true},
  {name:'رشاش خفيف',short:'رشاش',build:buildSMG,mag:35,dmg:17,cycle:.066,auto:true,spread:.018,pellets:1,reload:1.7,recoil:.007,kick:.022,adsFov:52,hip:new V3(.11,-.115,-.4),adsZ:-.28,sfx:3,quiet:true},
  {name:'مسدس',short:'مسدس',build:buildPistol,mag:15,dmg:22,cycle:.24,auto:true,spread:.014,pellets:1,reload:1.2,recoil:.012,kick:.05,adsFov:56,hip:new V3(.1,-.1,-.34),adsZ:-.32,sfx:4},
- {name:'مجمِّد الزومبي',short:'مجمِّد',build:buildFreeze,mag:8,dmg:8,cycle:.5,auto:true,spread:.012,pellets:1,reload:1.8,recoil:.01,kick:.03,adsFov:54,hip:new V3(.12,-.13,-.5),adsZ:-.34,sfx:5,quiet:true,freeze:2.6,tcol:0x67e8f9}];
+ {name:'مجمِّد الزومبي',short:'مجمِّد',build:buildFreeze,mag:8,dmg:8,cycle:.5,auto:true,spread:.012,pellets:1,reload:1.8,recoil:.01,kick:.03,adsFov:54,hip:new V3(.12,-.13,-.5),adsZ:-.34,sfx:5,quiet:true,freeze:2.6,tcol:0x67e8f9},
+ {name:'قاذف صواريخ RPG',short:'RPG',build:buildRPG,mag:1,dmg:0,cycle:.9,auto:false,spread:.004,pellets:1,reload:2.3,recoil:.04,kick:.16,adsFov:46,hip:new V3(.17,-.15,-.42),adsZ:-.32,sfx:6,rocket:true}];
 const vmRoot=new THREE.Group();vmScene.add(vmRoot);
 WEAPONS.forEach(w=>{Object.assign(w,w.build());w.group.visible=false;vmRoot.add(w.group);w.ammo=w.mag;w.cd=0;w.unlocked=false;w.magHome=w.mag_?0:0;if(w.mag&&w.mag.isGroup)w.magY=w.mag.position.y;if(w.pump)w.pumpZ=w.pump.position.z});
 // fix naming clash: numeric mag size vs mag group
-WEAPONS.forEach((w,i)=>{w.magObj=(w.mag&&w.mag.isGroup)?w.mag:null;w.magSize=[30,6,5,35,15,8][i];w.ammo=w.magSize});
+WEAPONS.forEach((w,i)=>{w.magObj=(w.mag&&w.mag.isGroup)?w.mag:null;w.magSize=[30,6,5,35,15,8,1][i];w.ammo=w.magSize});
 const flashMat=new THREE.MeshBasicMaterial({map:tex(cvs(64,64,(g)=>{const r=g.createRadialGradient(32,32,2,32,32,30);r.addColorStop(0,'#fff');r.addColorStop(.3,'#ffd27a');r.addColorStop(1,'rgba(255,120,0,0)');g.fillStyle=r;g.fillRect(0,0,64,64)})),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false});
 const flash=new THREE.Mesh(new THREE.PlaneGeometry(.16,.16),flashMat);flash.visible=false;vmRoot.add(flash);
 let cur=0,adsT=0,recoilZ=0,recoilR=0,bobT=0,swayX=0,swayY=0,reloadT=0,switchT=0,switchTo=-1,actionT=0,flashT=0,camKick=0,magSfx=0;
@@ -918,6 +931,7 @@ function fire(){const w=W();if(state!=='play'||reloadT>0||switchT>0||w.cd>0||P.r
   let base=camDir.clone();if(IS_TOUCH||gp.active){let best=null,ba=.07;for(const e of enemies){if(e.dead)continue;const d=_v2.copy(e.g.position);d.y+=1.1;d.sub(camPos).normalize();const a=Math.acos(Math.min(1,d.dot(camDir)));if(a<ba){ba=a;best=d.clone()}}if(best)base.lerp(best,.7).normalize()}
   // اختيار الإجابة يكون بالشعاع المركزي فقط
   const c=castFrom(base);if(c&&c.object.userData.t&&!c.object.userData.t.done){tracer(muzzleW,c.point);selectTarget(c.object.userData.t,c.point);refreshHud();return}
+  if(w.rocket){if(w.magObj)w.magObj.visible=false;launchRocket(muzzleW,base);camShake=Math.max(camShake,.12);refreshHud();setTimeout(()=>{if(state==='play'&&W()===w&&w.ammo<=0)startReload()},450);return}
   for(let i=0;i<w.pellets;i++){const d=base.clone();d.x+=(Math.random()-.5)*2*sp;d.y+=(Math.random()-.5)*2*sp;d.z+=(Math.random()-.5)*2*sp;d.normalize();const h=castFrom(d);const end=h?h.point:camPos.clone().addScaledVector(d,120);
     if(i<3)tracer(muzzleW,end,w.tcol||0xffe6a0,w.freeze?.16:.07);if(h){const u=h.object.userData;if(u.e){damageEnemy(u.e,w.dmg,!!u.head,h.point);if(w.freeze&&!u.e.dead){u.e.freeze=w.freeze;burst(h.point,0x67e8f9,8,3)}}else if(u.prop)damageProp(u.prop,w.dmg,h.point);else if(!u.t)burst(h.point,0xcfc8b8,2,2)}}
   refreshHud();if(w.ammo<=0)setTimeout(()=>{if(state==='play'&&W()===w)startReload()},350)}
@@ -938,7 +952,7 @@ function showCombo(){const e=$('combo');e.textContent='سلسلة ×'+ar(streak)
 const heal=n=>{P.hp=Math.min(100,P.hp+n)},addArmor=n=>{P.armor=Math.min(100,P.armor+n)};
 // [جديد] جدول المكافآت: i = الرمز، t = النص، f = التأثير
 const REWARDS={
-  common:[{i:'⭐',t:'٥٠ نقطة إضافية',f:()=>addScore(50)},{i:'❤️',t:'صحة +١٥',f:()=>heal(15)},{i:'🛡️',t:'درع +١٥',f:()=>addArmor(15)},{i:'🔋',t:'ذخيرة: تلقيم فوري',f:()=>WEAPONS.forEach(w=>w.ammo=w.magSize)}],
+  common:[{i:'⭐',t:'٥٠ نقطة إضافية',f:()=>addScore(50)},{i:'💣',t:'قنبلتان إضافيتان',f:()=>addGrenades(2)},{i:'❤️',t:'صحة +١٥',f:()=>heal(15)},{i:'🛡️',t:'درع +١٥',f:()=>addArmor(15)},{i:'🔋',t:'ذخيرة: تلقيم فوري',f:()=>WEAPONS.forEach(w=>w.ammo=w.magSize)}],
   big:[{i:'🌟',t:'١٥٠ نقطة إضافية',f:()=>addScore(150)},{i:'❤️',t:'صحة +٤٠',f:()=>heal(40)},{i:'🛡️',t:'درع +٤٠',f:()=>addArmor(40)},{i:'🐌',t:'تباطؤ الزومبي',f:()=>{slowT=REWARD_CFG.slowSecs}}],
   rare:[{i:'💎',t:'٣٠٠ نقطة إضافية',f:()=>addScore(300)},{i:'💖',t:'صحة ودرع كاملان',f:()=>{heal(100);addArmor(100)}},{i:'❄️',t:'تجميد كل الزومبي',f:()=>enemies.forEach(e=>e.freeze=REWARD_CFG.freezeSecs)}]};
 function giveReward(guaranteedRare){const c=REWARD_CFG,r=Math.random();let tier='common';
@@ -973,7 +987,7 @@ function hurt(d){if(P.rollT>0||state!=='play'||invT>0)return;camShake=.3;if(P.ar
 let invT=0,falls=0;
 function respawn(){falls++;enemies.forEach(e=>scene.remove(e.g));enemies=[];hitDirty=true;Object.assign(P,{x:0,y:0,z:0,vx:0,vz:0,vy:0,hp:100,rollT:0});invT=4;score=Math.max(0,score-50);if(teamMode){teamScore[turn]=Math.max(0,teamScore[turn]-50);updateTeamBar()}$('sScore').textContent=ar(score);streak=0;$('sStreak').textContent=ar(0);toast('انتهت صحتك! عدت إلى نقطة البداية — أكمل من نفس السؤال<br><small>−'+ar(50)+'</small>','bad',3200)}
 let viewTold=false;
-function startMission(m){mission=m;if(!IS_TOUCH&&!viewTold){viewTold=true;setTimeout(()=>{if(state==='play')toast('🎥 اضغط <kbd style="direction:ltr">V</kbd> لتبديل المنظور بين الشخص الأول والثالث','info',3200)},1600)}qWarm=4;qFrames=0;qAcc=0;buildWorld(m%WORLDS.length);gateCd=0;Q=buildQuestions(m);qi=-1;score=0;streak=0;firstTry=0;elapsed=0;kills=0;falls=0;invT=0;wrongList=[];turn=0;teamScore=[0,0];clearGifts();conf=[];giftT=REWARD_CFG.giftEvery;try{speechSynthesis.cancel()}catch(e){}advanceT=0;slowT=0;
+function startMission(m){mission=m;clearExplosives();grenN=EXPLOSIVE_CFG.grenades;refreshGren();if(!IS_TOUCH&&!viewTold){viewTold=true;setTimeout(()=>{if(state==='play')toast('🎥 اضغط <kbd style="direction:ltr">V</kbd> لتبديل المنظور بين الشخص الأول والثالث','info',3200)},1600)}qWarm=4;qFrames=0;qAcc=0;buildWorld(m%WORLDS.length);gateCd=0;Q=buildQuestions(m);qi=-1;score=0;streak=0;firstTry=0;elapsed=0;kills=0;falls=0;invT=0;wrongList=[];turn=0;teamScore=[0,0];clearGifts();conf=[];giftT=REWARD_CFG.giftEvery;try{speechSynthesis.cancel()}catch(e){}advanceT=0;slowT=0;
   enemies.forEach(e=>scene.remove(e.g));enemies=[];hitDirty=true;Object.assign(P,{x:0,y:0,z:0,vx:0,vz:0,vy:0,yaw:0,pitch:0,hp:100,armor:0,crouch:false,rollT:0});
   syncUnlocks();WEAPONS.forEach((w,i)=>{w.ammo=w.magSize;w.cd=0;if(w.magObj){w.magObj.position.y=w.magY;w.magObj.rotation.x=0;w.magObj.visible=true}});reloadT=switchT=actionT=0;setWeapon(0,true);buildSlots();
   $('sScore').textContent=ar(0);$('sStreak').textContent=ar(0);setState('play');nextQuestion();refreshHud();lockPointer()}
@@ -1042,8 +1056,8 @@ function pause(){if(state==='play'){setState('pause');if(document.pointerLockEle
 function resume(){if(state==='pause'){setState('play');lockPointer()}}
 addEventListener('keydown',e=>{if(e.target&&e.target.tagName==='INPUT')return;if(/^Arrow/.test(e.code))e.preventDefault();if(e.repeat){if(e.code==='Space')e.preventDefault();return}keys[e.code]=true;
   if(state==='pause'&&e.code==='KeyP'){resume();return}if(state!=='play')return;
-  switch(e.code){case'Space':e.preventDefault();jump();break;case'KeyR':startReload();break;case'KeyQ':roll();break;case'KeyE':tryPick();break;case'KeyP':pause();break;case'KeyC':P.crouch=true;break;case'KeyF':showFps=!showFps;$('fps').style.display=showFps?'block':'none';$('fps').textContent='…';break;case'KeyV':toggleView();break;
-   default:{const m=/^(?:Digit|Numpad)([1-6])$/.exec(e.code);if(m)setWeapon(+m[1]-1)}}});
+  switch(e.code){case'Space':e.preventDefault();jump();break;case'KeyR':startReload();break;case'KeyQ':roll();break;case'KeyE':tryPick();break;case'KeyP':pause();break;case'KeyC':P.crouch=true;break;case'KeyG':throwGrenade();break;case'KeyF':showFps=!showFps;$('fps').style.display=showFps?'block':'none';$('fps').textContent='…';break;case'KeyV':toggleView();break;
+   default:{const m=/^(?:Digit|Numpad)([1-7])$/.exec(e.code);if(m)setWeapon(+m[1]-1)}}});
 addEventListener('keyup',e=>{keys[e.code]=false;if(e.code==='KeyC')P.crouch=false});
 addEventListener('blur',()=>{for(const k in keys)keys[k]=false;inp.fire=false;inp.ads=false});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)pause()});
@@ -1059,7 +1073,7 @@ if(IS_TOUCH){
   const T={},tc=$('touch'),joy=$('joy'),knob=$('knob');let joyId=null,jx=0,jy=0;
   const cyc=()=>{const u=WEAPONS.map((w,i)=>w.unlocked?i:-1).filter(i=>i>=0);setWeapon(u[(u.indexOf(cur)+1)%u.length])};
   const acts={bFire:()=>{inp.fire=true;inp.fireEdge=true;$('bFire').classList.add('act')},bAds:()=>{inp.ads=!inp.ads;$('bAds').classList.toggle('act',inp.ads)},bJump:jump,bRoll:roll,
-    bCrouch:()=>{P.crouch=!P.crouch;$('bCrouch').classList.toggle('act',P.crouch)},bReload:startReload,bSwitch:cyc,bPick:tryPick,bPause:pause,bView:toggleView};
+    bCrouch:()=>{P.crouch=!P.crouch;$('bCrouch').classList.toggle('act',P.crouch)},bReload:startReload,bGren:throwGrenade,bSwitch:cyc,bPick:tryPick,bPause:pause,bView:toggleView};
   const endJoy=()=>{joyId=null;inp.mx=inp.mz=0;inp.sprint=false;knob.style.transform='';joy.style.left='';joy.style.bottom=''};
   tc.addEventListener('touchstart',e=>{e.preventDefault();audioInit();for(const t of e.changedTouches){const el=t.target&&t.target.closest?t.target.closest('.tb'):null;
     if(el){acts[el.id]&&acts[el.id]();T[t.identifier]={k:'look',lx:t.clientX,ly:t.clientY,btn:el.id}}
@@ -1087,7 +1101,7 @@ const TEAMS=[{n:'الفريق الأحمر',c:'#f87171'},{n:'الفريق الأ
 function updateTeamBar(){$('teamRow').innerHTML=teamMode?TEAMS.map((t,i)=>`<div class="tm${i===turn?' on':''}" style="--tc:${t.c}">${i===turn?'▶ ':''}${t.n}: <b>${ar(teamScore[i])}</b></div>`).join(''):''}
 // هدايا تظهر في الساحة كل فترة — يلتقطها اللاعب بالمشي فوقها
 let gifts=[],giftT=22;
-const GIFT_TYPES=[{i:'❤️',c:'#b91c1c',t:'صحة +٢٥',f:()=>heal(25)},{i:'🛡️',c:'#1d4ed8',t:'درع +٢٥',f:()=>addArmor(25)},{i:'🐌',c:'#4d7c0f',t:'تباطؤ الزومبي',f:()=>{slowT=REWARD_CFG.slowSecs}},{i:'🔋',c:'#a16207',t:'ذخيرة كاملة',f:()=>WEAPONS.forEach(w=>w.ammo=w.magSize)}];
+const GIFT_TYPES=[{i:'💣',c:'#374151',t:'قنبلتان',f:()=>addGrenades(2)},{i:'❤️',c:'#b91c1c',t:'صحة +٢٥',f:()=>heal(25)},{i:'🛡️',c:'#1d4ed8',t:'درع +٢٥',f:()=>addArmor(25)},{i:'🐌',c:'#4d7c0f',t:'تباطؤ الزومبي',f:()=>{slowT=REWARD_CFG.slowSecs}},{i:'🔋',c:'#a16207',t:'ذخيرة كاملة',f:()=>WEAPONS.forEach(w=>w.ammo=w.magSize)}];
 GIFT_TYPES.forEach(t=>{t.mat=new THREE.MeshBasicMaterial({map:tex(cvs(128,128,(g)=>{g.fillStyle=t.c;g.fillRect(0,0,128,128);g.strokeStyle='#fde047';g.lineWidth=10;g.strokeRect(5,5,118,118);g.font='72px serif';g.textAlign='center';g.textBaseline='middle';g.fillText(t.i,64,70)})),toneMapped:false})});
 const giftGeo=new THREE.BoxGeometry(.7,.7,.7),giftRing=new THREE.RingGeometry(.7,.85,24),giftRingM=new THREE.MeshBasicMaterial({color:0xfde047,transparent:true,opacity:.6,side:THREE.DoubleSide});
 function clearGifts(){gifts.forEach(q=>scene.remove(q.g));gifts=[]}
@@ -1138,7 +1152,7 @@ function pollPad(dt){if(gp.idx<0)return;   /* لا نسأل المتصفح عن 
     const rt=B[7]||(pd.buttons[7]&&pd.buttons[7].value>.3),lt=B[6]||(pd.buttons[6]&&pd.buttons[6].value>.3);
     if(rt&&!gp.rt){inp.fire=true;inp.fireEdge=true}else if(!rt&&gp.rt)inp.fire=false;gp.rt=rt;
     if(lt!==gp.lt)inp.ads=lt;gp.lt=lt;
-    if(hit(0))jump();if(hit(1))P.crouch=!P.crouch;if(hit(2))startReload();if(hit(3))tryPick();if(hit(11)||hit(13))roll();if(hit(12))tryPick();
+    if(hit(0))jump();if(hit(1))P.crouch=!P.crouch;if(hit(2))startReload();if(hit(3))tryPick();if(hit(11))roll();if(hit(13))throwGrenade();if(hit(12))tryPick();
     if(hit(4)||hit(5)){const u=WEAPONS.map((w,i)=>w.unlocked?i:-1).filter(i=>i>=0);setWeapon(u[(u.indexOf(cur)+(hit(5)?1:u.length-1))%u.length])}
     if(hit(14)||hit(15)){const u=WEAPONS.map((w,i)=>w.unlocked?i:-1).filter(i=>i>=0);setWeapon(u[(u.indexOf(cur)+(hit(15)?1:u.length-1))%u.length])}
     if(hit(8))toggleView();if(hit(9))pause();
@@ -1151,6 +1165,50 @@ function pollPad(dt){if(gp.idx<0)return;   /* لا نسأل المتصفح عن 
     if(hit(1))padBack();if(hit(9)&&state==='pause')resume();
   }
   gp.prev=B}
+
+/* ═══════════ [جديد] المتفجرات: صواريخ RPG وقنابل يدوية (انفجار كرتوني بلا دم) ═══════════
+   EXPLOSIVE_CFG: radius = نصف قطر الانفجار بالأمتار • dmg = أقصى ضرر (يقلّ كلما بعد الهدف) • grenades = القنابل في بداية كل مهمة
+   الانفجار يصيب الوحوش ويدمّر عناصر الساحة، لكنه لا يختار إجابة ولا يضرّ اللاعب. */
+const EXPLOSIVE_CFG={rocket:{radius:6.5,dmg:260,speed:42},grenade:{radius:5.5,dmg:200,fuse:1.7,throwSpeed:15},grenades:3,maxGrenades:6};
+let rockets=[],grenadesLive=[],grenN=EXPLOSIVE_CFG.grenades,grenCd=0;
+const sphGeo=new THREE.SphereGeometry(1,16,12),ringGeo=new THREE.RingGeometry(.82,1,40);
+const booms=[],smokes=[];
+function getBoom(){let b=booms.find(b=>b.t<=0);if(!b&&booms.length<6){const g=new THREE.Group(),mk=(c,bl)=>new THREE.MeshBasicMaterial({color:c,transparent:true,depthWrite:false,toneMapped:false,blending:bl?THREE.AdditiveBlending:THREE.NormalBlending,side:THREE.DoubleSide});
+  const f=new THREE.Mesh(sphGeo,mk(0xff8a1f,true)),c=new THREE.Mesh(sphGeo,mk(0xfff3b0,true)),r=new THREE.Mesh(ringGeo,mk(0xffd29a,false));r.rotation.x=-Math.PI/2;g.add(f,c,r);g.visible=false;scene.add(g);b={g,f,c,r,t:0,R:1};booms.push(b)}return b||booms[0]}
+function puff(pos,size,life,col,rise=1.6){let s=smokes.find(s=>s.t<=0);if(!s){if(smokes.length>=60)return;s={m:new THREE.Mesh(sphGeo,new THREE.MeshBasicMaterial({color:0x777777,transparent:true,depthWrite:false})),t:0};scene.add(s.m);smokes.push(s)}
+  s.m.material.color.setHex(col);s.m.position.copy(pos);s.m.visible=true;s.t=s.life=life;s.size=size;s.rise=rise;s.m.scale.setScalar(size*.4)}
+function explode(pos,cfg){const R=cfg.radius,b=getBoom();b.g.position.copy(pos);b.r.position.y=-pos.y+.06;b.g.visible=true;b.t=.6;b.R=R;
+  for(let i=0;i<14;i++)puff(_v.set(pos.x+(Math.random()-.5)*R*.6,pos.y+Math.random()*R*.3,pos.z+(Math.random()-.5)*R*.6),.9+Math.random()*1.1,1.4+Math.random(),i%3?0x6b7280:0x9ca3af);
+  burst(pos,0xff8a1f,16,9,1.4);burst(pos,0xfde047,12,8);burst(pos,0x52525b,10,7,1.6);
+  const dist=Math.hypot(pos.x-P.x,pos.z-P.z);SFX.boom(Math.max(.35,1-dist/60));camShake=Math.max(camShake,Math.max(0,.7-dist/30));
+  for(const e of enemies.slice()){if(e.dead||e.rise>0)continue;const d=Math.hypot(e.g.position.x-pos.x,e.g.position.y+1-pos.y,e.g.position.z-pos.z);if(d<R+.6){const ep=e.g.position.clone();ep.y+=1.1;damageEnemy(e,cfg.dmg*(1-Math.min(1,d/R)*.6),false,ep)}}
+  for(const pr of props.slice()){if(!pr.alive)continue;const d=Math.max(0,Math.hypot(pr.x-pos.x,pr.y-pos.y,pr.z-pos.z)-Math.max(pr.w,pr.d,pr.h)/2);if(d<R)damageProp(pr,cfg.dmg*1.8*(1-d/R*.6),new V3(pr.x,pr.y,pr.z))}
+  hitDirty=true}
+function launchRocket(from,dir){const g=new THREE.Group(),bm=mat({color:0x3f4a2f,roughness:.6,metalness:.3});const b=new THREE.Mesh(new THREE.CylinderGeometry(.06,.06,.5,10).rotateX(Math.PI/2),bm),n=new THREE.Mesh(new THREE.ConeGeometry(.07,.22,10).rotateX(Math.PI/2),bm),fl=new THREE.Mesh(sphGeo,new THREE.MeshBasicMaterial({color:0xffb347,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false,toneMapped:false}));
+  n.position.z=.36;fl.position.z=-.32;fl.scale.set(.09,.09,.22);g.add(b,n,fl);g.position.copy(from);scene.add(g);rockets.push({g,fl,pos:from.clone(),vel:dir.clone().normalize().multiplyScalar(EXPLOSIVE_CFG.rocket.speed),life:3,trail:0})}
+function throwGrenade(){if(state!=='play'||grenCd>0||P.rollT>0||switchT>0)return;if(grenN<=0){toast('💣 نفدت القنابل — تجدها في الهدايا والمكافآت','bad',1500);return}
+  grenN--;grenCd=.7;refreshGren();camera.getWorldDirection(_v);const dir=_v.clone(),start=new V3(P.x,P.y+P.h-.15,P.z).addScaledVector(new V3(dir.x,0,dir.z).normalize(),.55);
+  const vel=dir.multiplyScalar(EXPLOSIVE_CFG.grenade.throwSpeed);vel.y+=3.6;vel.x+=P.vx*.5;vel.z+=P.vz*.5;
+  const g=new THREE.Group();g.add(new THREE.Mesh(new THREE.SphereGeometry(.12,12,10),mat({color:0x3f5f2f,roughness:.6,metalness:.2})));const cap=new THREE.Mesh(new THREE.CylinderGeometry(.04,.04,.07,8),mat({color:0x9ca3af,metalness:.9,roughness:.3}));cap.position.y=.13;g.add(cap);
+  const led=new THREE.Mesh(new THREE.SphereGeometry(.03,8,6),new THREE.MeshBasicMaterial({color:0xff2d2d,toneMapped:false}));led.position.set(0,.06,.11);g.add(led);g.position.copy(start);g.traverse(o=>{if(o.isMesh)o.castShadow=true});scene.add(g);
+  grenadesLive.push({g,led,pos:start,vel,fuse:EXPLOSIVE_CFG.grenade.fuse,tick:0});SFX.throwG();recoilR+=.08}
+function refreshGren(){const e=$('grenN');if(e)e.textContent=ar(grenN);const b=$('bGren');if(b)b.innerHTML='قنبلة<br>'+ar(grenN)}
+const addGrenades=n=>{grenN=Math.min(EXPLOSIVE_CFG.maxGrenades,grenN+n);refreshGren()};
+function clearExplosives(){rockets.forEach(r=>scene.remove(r.g));grenadesLive.forEach(q=>scene.remove(q.g));rockets=[];grenadesLive=[];booms.forEach(b=>{b.t=0;b.g.visible=false});smokes.forEach(s=>{s.t=0;s.m.visible=false})}
+function updateExplosives(dt,time){if(grenCd>0)grenCd-=dt;
+  for(const b of booms){if(b.t<=0)continue;b.t-=dt;const k=1-Math.max(0,b.t)/.6,e=1-Math.pow(1-k,3);b.f.scale.setScalar(b.R*(.18+.42*e));b.f.material.opacity=Math.max(0,.95-k*1.3);b.c.scale.setScalar(b.R*.28*(1-k));b.c.material.opacity=Math.max(0,1-k*1.8);b.r.scale.setScalar(b.R*(.3+1.1*e));b.r.material.opacity=.75*(1-k);if(b.t<=0)b.g.visible=false}
+  for(const s of smokes){if(s.t<=0)continue;s.t-=dt;const k=1-s.t/s.life;s.m.position.y+=s.rise*dt;s.m.scale.setScalar(s.size*(.4+.9*k));s.m.material.opacity=.55*(1-k);if(s.t<=0)s.m.visible=false}
+  for(let i=rockets.length-1;i>=0;i--){const r=rockets[i],prev=r.pos.clone();r.pos.addScaledVector(r.vel,dt);r.life-=dt;r.g.position.copy(r.pos);r.g.lookAt(_v2.copy(r.pos).add(r.vel));r.fl.scale.z=.18+Math.random()*.12;
+    r.trail-=dt;if(r.trail<=0){r.trail=.025;puff(prev,.22,.7,0xd1d5db,.4)}
+    const seg=r.pos.clone().sub(prev),len=seg.length();_ray.set(prev,seg.normalize());_ray.far=len;const h=_ray.intersectObjects(hitObjects(),false)[0];
+    let at=null;if(h)at=h.point.clone().addScaledVector(r.vel.clone().normalize(),-.15);else if(r.pos.y<=.05)at=r.pos.clone().setY(.1);else if(r.life<=0||Math.abs(r.pos.x)>ARENA+5||Math.abs(r.pos.z)>ARENA+5)at=r.pos.clone();
+    if(at){explode(at,EXPLOSIVE_CFG.rocket);scene.remove(r.g);rockets.splice(i,1)}}
+  for(let i=grenadesLive.length-1;i>=0;i--){const q=grenadesLive[i],p=q.pos,v=q.vel,r=.13;v.y-=curGrav*dt;p.addScaledVector(v,dt);
+    if(p.y<r){p.y=r;if(v.y<0)v.y=-v.y*.38;v.x*=.72;v.z*=.72;if(Math.abs(v.y)<.6)v.y=0}
+    for(const c of colliders){if(p.x>c.minX-r&&p.x<c.maxX+r&&p.y>c.minY-r&&p.y<c.maxY+r&&p.z>c.minZ-r&&p.z<c.maxZ+r){const a=[p.x-(c.minX-r),(c.maxX+r)-p.x,p.y-(c.minY-r),(c.maxY+r)-p.y,p.z-(c.minZ-r),(c.maxZ+r)-p.z],m=Math.min(...a),k=a.indexOf(m);
+      if(k===0){p.x=c.minX-r;v.x=-Math.abs(v.x)*.4}else if(k===1){p.x=c.maxX+r;v.x=Math.abs(v.x)*.4}else if(k===2){p.y=c.minY-r;v.y=-Math.abs(v.y)*.4}else if(k===3){p.y=c.maxY+r;v.y=Math.abs(v.y)*.35;v.x*=.75;v.z*=.75}else if(k===4){p.z=c.minZ-r;v.z=-Math.abs(v.z)*.4}else{p.z=c.maxZ+r;v.z=Math.abs(v.z)*.4}}}
+    q.g.position.copy(p);q.g.rotation.x+=Math.hypot(v.x,v.z)*dt*3;q.fuse-=dt;q.tick-=dt;const fast=q.fuse<.6;q.led.visible=Math.sin(time*(fast?40:14))>0;if(q.tick<=0){q.tick=fast?.12:.35;SFX.tick()}
+    if(q.fuse<=0){explode(p.clone().setY(Math.max(p.y,.3)),EXPLOSIVE_CFG.grenade);scene.remove(q.g);grenadesLive.splice(i,1)}}}
 
 /* ═══════════ الحلقة الرئيسية ═══════════ */
 function resize(){const w=innerWidth,h=innerHeight;fx.width=w;fx.height=h;fx.style.width=w+'px';fx.style.height=h+'px';renderer.setSize(w,h,false);camera.aspect=vmCam.aspect=w/h;camera.updateProjectionMatrix();vmCam.updateProjectionMatrix()}
@@ -1172,7 +1230,7 @@ function tick(now){requestAnimationFrame(tick);let dt=Math.min(.05,(now-last)/10
     if(advanceT<=0&&diff!=='easy'&&Q[qi]&&!Q[qi].hinted&&qTime<D().qTime*.5){Q[qi].hinted=true;const w=targets.filter(t=>!t.done&&!t.opt.ok);if(w.length>=2){shatter(w[Math.random()*w.length|0]);toast('💡 تلميح: حُذفت إجابة خاطئة','info',1600)}}
     if(advanceT<=0){qTime-=dt;if(qTime<=0){qTime=D().qTime;const z=spawnEnemy();SFX.bad();toast('⏰ انتهى وقت السؤال'+(z?' — ظهر زومبي!':''),'bad',1500)}}
     {const sx=Math.round(P.x/4)*4,sz=Math.round(P.z/4)*4;sun.position.set(sx+40,38,sz-30);sun.target.position.set(sx,0,sz);sun.target.updateMatrixWorld()}
-    updateAim();updateVM(dt);if(tpT>.3)vmRoot.visible=false;updateGifts(dt,time);updateMusic();updateWorld(dt,time);updateEnemies(dt,time);updateTargets(dt,time);updateFx(dt);
+    updateAim();updateVM(dt);if(tpT>.3)vmRoot.visible=false;updateGifts(dt,time);updateMusic();updateWorld(dt,time);updateExplosives(dt,time);updateEnemies(dt,time);updateTargets(dt,time);updateFx(dt);
     if(advanceT>0){advanceT-=dt;if(advanceT<=0)nextQuestion()}
     updateHudFrame(dt);if(frame%2===0){drawCompass();drawMinimap()}
     inp.lookX=inp.lookY=0;
@@ -1187,7 +1245,7 @@ buildSlots();refreshHud();requestAnimationFrame(tick);
 if(IS_TOUCH)$('bView').classList.toggle('act',tp);
 document.querySelectorAll('.qualBtn').forEach(b=>b.onclick=cycleQuality);$('pView').onclick=()=>{toggleView()};viewLabel();applyQuality(qLevel,false);
 if(SOFTWARE_GL){const w=$('gpuWarn');w.style.display='block';w.innerHTML='⚠️ المتصفح يرسم اللعبة بدون كرت الشاشة (تسريع الرسوم مغلق)، ولذلك تكون بطيئة. في <bdi>Chrome</bdi> أو <bdi>Edge</bdi>: الإعدادات ← النظام ← فعّل «استخدام تسريع الرسوم عند توفره» ثم أعد تشغيل المتصفح.'}
-window.__dbg={renderer,scene,get qLevel(){return qLevel},get fpsNow(){return fpsNow},GPU_NAME,applyQuality,gp,pollPad,get gates(){return gates},get curWorld(){return curWorld},travel,buildWorld,props,damageProp,applyLook,get missed(){return missed},get mast(){return mast},spawnGift,get gifts(){return gifts},get teamScore(){return teamScore},get turn(){return turn},SLOTS,colliders,giveReward,unlockWeapon,get bank(){return bank},get streak(){return streak},toggleView,openCustom,closeCustom,get tp(){return tp},get look(){return look},get diff(){return diff},hero,get qTime(){return qTime},set qTime(v){qTime=v},get state(){return state},P,get targets(){return targets},get enemies(){return enemies},selectTarget,WEAPONS,setWeapon,inp,get qi(){return qi},get Q(){return Q},startMission,hurt,fire,spawnEnemy};
+window.__dbg={explode,throwGrenade,launchRocket,get rockets(){return rockets},get grenadesLive(){return grenadesLive},get grenN(){return grenN},renderer,scene,get qLevel(){return qLevel},get fpsNow(){return fpsNow},GPU_NAME,applyQuality,gp,pollPad,get gates(){return gates},get curWorld(){return curWorld},travel,buildWorld,props,damageProp,applyLook,get missed(){return missed},get mast(){return mast},spawnGift,get gifts(){return gifts},get teamScore(){return teamScore},get turn(){return turn},SLOTS,colliders,giveReward,unlockWeapon,get bank(){return bank},get streak(){return streak},toggleView,openCustom,closeCustom,get tp(){return tp},get look(){return look},get diff(){return diff},hero,get qTime(){return qTime},set qTime(v){qTime=v},get state(){return state},P,get targets(){return targets},get enemies(){return enemies},selectTarget,WEAPONS,setWeapon,inp,get qi(){return qi},get Q(){return Q},startMission,hurt,fire,spawnEnemy};
 </script>
 </body>
 </html>
