@@ -639,7 +639,8 @@ body.dark-mode .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
         <div style="font-size:.84rem;line-height:1.9;direction:rtl;text-align:right">
           لطلب معلومة بأدب نبدأ بعبارة <bdo dir="ltr"><strong>Do you know...?</strong></bdo> أو <bdo dir="ltr"><strong>Could you tell me.....?</strong></bdo><br>
           يتحول السؤال لجملة ونحذف <strong>(does/do)</strong> عند وجودها في السؤال الأصلي<br>
-          الفعل الأصلي: ويجب أن نضيف <strong>s</strong> للفعل عند حذف <strong>does</strong> من الجملة
+          الفعل الأصلي: ويجب أن نضيف <strong>s</strong> للفعل عند حذف <strong>does</strong> من الجملة<br>
+          وعند حذف <strong>did</strong> يتحول الفعل إلى <strong>الماضي</strong>
         </div>
       </div>
 
@@ -649,9 +650,10 @@ body.dark-mode .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
           <div style="font-weight:800;color:var(--blue);margin-bottom:8px;font-size:.88rem;direction:rtl;text-align:right">📌 القواعد</div>
           <div style="font-size:.82rem;line-height:1.9;direction:rtl;text-align:right">
             ① السؤال يتحول إلى جملة خبرية<br>
-            ② نحذف do / does<br>
+            ② نحذف do / does / did<br>
             ③ إذا حذفنا does ← نضيف <strong>s</strong> للفعل<br>
-            ④ Is / are تنتقل إلى آخر الجملة
+            ④ إذا حذفنا did ← الفعل يتحول إلى <strong>الماضي</strong><br>
+            ⑤ Is / are تنتقل إلى آخر الجملة
           </div>
         </div>
         <div style="background:var(--softpink);border-radius:10px;padding:12px;border:2px solid var(--coral)">
@@ -694,10 +696,40 @@ body.dark-mode .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
         </div>
       </div>
 
+      <div class="dvi-pair">
+        <div class="dvi-direct">
+          <span class="dvi-label" style="background:var(--blue);color:white">DIRECT سؤال مباشر</span>
+          Where <strong class="hi-b">do</strong> they live? <button type="button" class="audio-btn" onclick="speak('Where do they live?')">🔊</button>
+          <div class="dvi-ar">أين يعيشون؟</div>
+        </div>
+        <div class="dvi-indirect">
+          <span class="dvi-label" style="background:var(--orange);color:white">INDIRECT سؤال غير مباشر</span>
+          Do you know where they <strong class="hi-o">live</strong>? <button type="button" class="audio-btn" onclick="speak('Do you know where they live?')">🔊</button>
+          <div class="dvi-ar">هل تعرف أين يعيشون؟ (حذفنا do بدون إضافة s)</div>
+        </div>
+      </div>
+
+      <div class="dvi-pair">
+        <div class="dvi-direct">
+          <span class="dvi-label" style="background:var(--blue);color:white">DIRECT سؤال مباشر</span>
+          What <strong class="hi-b">did</strong> they buy? <button type="button" class="audio-btn" onclick="speak('What did they buy?')">🔊</button>
+          <div class="dvi-ar">ماذا اشتروا؟</div>
+        </div>
+        <div class="dvi-indirect">
+          <span class="dvi-label" style="background:var(--orange);color:white">INDIRECT سؤال غير مباشر</span>
+          Could you tell me what they <strong class="hi-o">bought</strong>? <button type="button" class="audio-btn" onclick="speak('Could you tell me what they bought?')">🔊</button>
+          <div class="dvi-ar">هل بإمكانك إخباري ماذا اشتروا؟ (حذفنا did والفعل صار ماضي)</div>
+        </div>
+      </div>
+
       <div class="note note-purple" style="direction:rtl;text-align:right">
         ⚠️ <strong>تذكّر:</strong> عند تحويل سؤال بـ <strong>does</strong> ← نحذف does ونضيف <strong>s</strong> للفعل الرئيسي<br>
         <span style="direction:ltr;display:block;text-align:left;margin-top:4px">
           When does she <strong>go</strong>? → Could you tell me when she <strong>goes</strong>?
+        </span>
+        <div style="margin-top:8px">وعند تحويل سؤال بـ <strong>did</strong> ← نحذف did ونحوّل الفعل إلى <strong>الماضي</strong></div>
+        <span style="direction:ltr;display:block;text-align:left;margin-top:4px">
+          Where did he <strong>go</strong>? → Do you know where he <strong>went</strong>?
         </span>
       </div>
     </div>
