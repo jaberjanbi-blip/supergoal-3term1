@@ -789,6 +789,18 @@ body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
       </div>
     </div>
     <div class="grammar-body">
+      <div class="lesson-video" style="margin:0 0 18px;border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.15);background:#1B264F">
+        <div style="padding:10px 16px;color:#fff;font-weight:800;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+          <span>🎬 Watch the Lesson</span><span dir="rtl">شاهد شرح الدرس بالفيديو</span>
+        </div>
+        <video controls playsinline preload="metadata" poster="pronouns_poster.jpg" style="display:block;width:100%;height:auto;background:#000">
+          <source src="pronouns.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="lesson-kahoot" style="margin:-6px 0 18px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center">
+        <a href="https://kahoot.it/solo/?quizId=f4acd56c-b04e-438d-b4c0-4854eb202938" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#46178F;color:#fff;text-decoration:none;font-weight:900;padding:12px 22px;border-radius:14px;box-shadow:0 4px 0 #2b0d5a">🎮 Play Kahoot <span dir="rtl">— العب كاهوت بعد الفيديو</span></a>
+        <a href="https://create.kahoot.it/details/f4acd56c-b04e-438d-b4c0-4854eb202938" target="_blank" rel="noopener" style="color:#46178F;font-weight:700;font-size:.85rem">صفحة الكويز</a>
+      </div>
 
       <div class="pronoun-cards">
         <div class="pronoun-card" style="background:var(--softgreen);border:2px solid var(--green)">
@@ -836,7 +848,23 @@ body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
           </div>
         </div>
 
-        <div class="pronoun-card" style="background:var(--softpurple);border:2px solid var(--purple)">
+        <div class="pronoun-card" style="background:var(--softteal);border:2px solid var(--teal)">
+          <h4 style="color:var(--teal)">🤝 Offers &amp; Requests — العرض والطلب</h4>
+          <div class="prow">
+            <div>Would you like <span class="hi-g">something</span> to drink? <button type="button" class="audio-btn" onclick="speak('Would you like something to drink?')">🔊</button></div>
+            <div class="ar">هل تودّ أن تشرب شيئاً؟</div>
+          </div>
+          <div class="prow">
+            <div>Can I have <span class="hi-g">something</span> to eat? <button type="button" class="audio-btn" onclick="speak('Can I have something to eat?')">🔊</button></div>
+            <div class="ar">هل يمكنني أن آخذ شيئاً لآكله؟</div>
+          </div>
+          <div style="background:var(--card);border-radius:6px;padding:7px;margin-top:8px;font-size:.82rem;direction:rtl;text-align:right">
+            حالة خاصة: في <strong>العرض</strong> و<strong>الطلب</strong> نستخدم <strong style="color:var(--green)">something</strong> حتى في السؤال<br>
+            <span style="color:var(--sub);font-size:.75rem">لأننا نتوقع أن يكون الجواب «نعم»</span>
+          </div>
+        </div>
+
+        <div class="pronoun-card" style="background:var(--softpurple);border:2px solid var(--purple);grid-column:1/-1">
           <h4 style="color:var(--purple)">📌 القاعدة المختصرة</h4>
           <div style="font-size:.85rem;line-height:1.6">
             <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:5px 0;direction:rtl">
@@ -850,6 +878,9 @@ body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
             </div>
             <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:5px 0;direction:rtl">
               <span>سؤال</span><span>←</span><strong style="color:var(--blue)">anything</strong><span>❓</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:5px 0;direction:rtl">
+              <span>عرض أو طلب</span><span>←</span><strong style="color:var(--green)">something</strong><span>🤝</span>
             </div>
           </div>
         </div>
