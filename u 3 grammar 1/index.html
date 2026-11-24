@@ -544,6 +544,9 @@ body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
   .report-grid{grid-template-columns:1fr;}
   .hud-mini-btn{padding:4px 8px;font-size:.62rem;}
 }
+
+.two-cols>*{min-width:0;}
+@media(max-width:560px){.fwbw-row{flex-wrap:wrap;row-gap:8px;}}
 </style>
 </head>
 <body>
@@ -911,15 +914,14 @@ body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
               </div>
             </div>
             <div style="font-size:.82rem;line-height:1.8">
-              <div>I'm <span class="hi-c">going to</span> travel to Europe. <button type="button" class="audio-btn" onclick="speak('I am going to travel to Europe.')">🔊</button></div>
+              <div>I'm <span class="hi-c">going to</span> travel to Europe. <button type="button" class="audio-btn" onclick="speak('I am going to travel to Europe.')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">سأسافر إلى أوروبا</span></div>
               <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;">لديّ خطة للسفر — مؤكدة</div>
-              <div>I'm <span class="hi-c">not going to</span> travel this year. <button type="button" class="audio-btn" onclick="speak('I am not going to travel this year.')">🔊</button></div>
+              <div>I'm <span class="hi-c">not going to</span> travel this year. <button type="button" class="audio-btn" onclick="speak('I am not going to travel this year.')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن أسافر هذه السنة</span></div>
             </div>
             <div style="margin-top:10px;background:#fff;border:2px dashed var(--coral);border-radius:8px;padding:9px 11px">
               <div style="font-weight:800;color:var(--coral);font-size:.84rem;display:flex;justify-content:space-between;align-items:center;gap:8px;direction:ltr"><span>🌧️ Prediction</span><span dir="rtl">توقّع بدليل نشوفه</span></div>
               <div style="font-size:.76rem;color:var(--subtext);direction:rtl;text-align:right;margin:4px 0 6px">نستخدم <bdi>going to</bdi> كمان لما نتوقع شي ودليله قدامنا الحين.</div>
-              <div style="font-size:.82rem">Look at those clouds! It's <span class="hi-c">going to</span> rain. <button type="button" class="audio-btn" onclick="speak('Look at those clouds! It is going to rain.')">🔊</button></div>
-              <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;">انظر إلى تلك الغيوم! ستمطر.</div>
+              <div style="font-size:.82rem">Look at those clouds! It's <span class="hi-c">going to</span> rain. <button type="button" class="audio-btn" onclick="speak('Look at those clouds! It is going to rain.')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">انظر إلى تلك الغيوم، ستمطر</span></div>
             </div>
           </div>
         </div>
@@ -948,9 +950,9 @@ body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
               </div>
             </div>
             <div style="font-size:.82rem;line-height:1.8">
-              <div>Maybe I<span class="hi-p">'ll</span> stay with friends. <button type="button" class="audio-btn" onclick="speak('Maybe I will stay with friends.')">🔊</button></div>
+              <div>Maybe I<span class="hi-p">'ll</span> stay with friends. <button type="button" class="audio-btn" onclick="speak('Maybe I will stay with friends.')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">ربما سأبقى عند أصدقائي</span></div>
               <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;">ربما — لست متأكداً</div>
-              <div>I probably <span class="hi-p">won't</span> stay in a hotel. <button type="button" class="audio-btn" onclick="speak('I probably won\'t stay in a hotel.')">🔊</button></div>
+              <div>I probably <span class="hi-p">won't</span> stay in a hotel. <button type="button" class="audio-btn" onclick="speak('I probably won\'t stay in a hotel.')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">على الأرجح لن أقيم في فندق</span></div>
             </div>
           </div>
         </div>
@@ -960,11 +962,11 @@ body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <div style="background:rgba(220,46,93,.25);border-radius:8px;padding:10px;border:1px solid var(--coral)">
             <div style="color:#fca5a5;font-weight:800;margin-bottom:5px;font-size:.85rem;direction:rtl;text-align:right;">Going to ✅ خطة مؤكدة</div>
-            <div style="color:white;font-size:.82rem;line-height:1.6">I'm going to visit my grandma. <button type="button" class="audio-btn" onclick="speak('I am going to visit my grandma.')">🔊</button><br><span style="opacity:.7;font-size:.74rem;direction:rtl;text-align:right;display:block;">لديّ خطة محددة مسبقاً</span></div>
+            <div style="color:white;font-size:.82rem;line-height:1.6">I'm going to visit my grandma. <button type="button" class="audio-btn" onclick="speak('I am going to visit my grandma.')">🔊</button> <span dir="rtl" style="color:rgba(255,255,255,.75);font-size:.76rem;margin-inline-start:6px;display:inline-block">سأزور جدتي</span><br><span style="opacity:.7;font-size:.74rem;direction:rtl;text-align:right;display:block;">لديّ خطة محددة مسبقاً</span></div>
           </div>
           <div style="background:rgba(124,58,237,.25);border-radius:8px;padding:10px;border:1px solid var(--purple)">
             <div style="color:#c4b5fd;font-weight:800;margin-bottom:5px;font-size:.85rem;direction:rtl;text-align:right;">Will 💭 غير مؤكدة</div>
-            <div style="color:white;font-size:.82rem;line-height:1.6">Maybe I'll visit my grandma. <button type="button" class="audio-btn" onclick="speak('Maybe I will visit my grandma.')">🔊</button><br><span style="opacity:.7;font-size:.74rem;direction:rtl;text-align:right;display:block;">ربما — لست متأكداً بعد</span></div>
+            <div style="color:white;font-size:.82rem;line-height:1.6">Maybe I'll visit my grandma. <button type="button" class="audio-btn" onclick="speak('Maybe I will visit my grandma.')">🔊</button> <span dir="rtl" style="color:rgba(255,255,255,.75);font-size:.76rem;margin-inline-start:6px;display:inline-block">ربما سأزور جدتي</span><br><span style="opacity:.7;font-size:.74rem;direction:rtl;text-align:right;display:block;">ربما — لست متأكداً بعد</span></div>
           </div>
         </div>
       </div>
@@ -975,21 +977,21 @@ body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
         <div style="font-weight:800;color:var(--blue);font-size:.9rem;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;direction:ltr"><span>🔁 Present Progressive vs Going to</span><span dir="rtl">الفرق بين المضارع المستمر و <bdi>going to</bdi></span></div>
         <div style="font-size:.78rem;color:var(--subtext);direction:rtl;text-align:right;margin:6px 0 10px">في <b>Grammar 1</b> أخذنا إن المضارع المستمر يُستخدم للمستقبل لما يكون الشي مرتّب. <bdi>going to</bdi> كمان للمستقبل المقرر، وكثير تجي بنفس المعنى:</div>
         <div style="background:#fff;border-radius:8px;padding:9px 11px;font-size:.82rem;line-height:1.8;margin-bottom:10px">
-          <div>I'm <span class="hi-b">visiting</span> my grandma tomorrow. <button type="button" class="audio-btn" onclick="speak('I am visiting my grandma tomorrow.')">🔊</button></div>
-          <div>I'm <span class="hi-c">going to visit</span> my grandma tomorrow. <button type="button" class="audio-btn" onclick="speak('I am going to visit my grandma tomorrow.')">🔊</button></div>
-          <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;">✅ الجملتين صحيحتين — بزور جدتي بكرة</div>
+          <div>I'm <span class="hi-b">visiting</span> my grandma tomorrow. <button type="button" class="audio-btn" onclick="speak('I am visiting my grandma tomorrow.')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">سأزور جدتي غداً</span></div>
+          <div>I'm <span class="hi-c">going to visit</span> my grandma tomorrow. <button type="button" class="audio-btn" onclick="speak('I am going to visit my grandma tomorrow.')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">سأزور جدتي غداً</span></div>
+          <div style="color:var(--subtext);font-size:.74rem;direction:rtl;text-align:right;">✅ الجملتين صحيحتين وبنفس المعنى</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <div style="background:#fff;border-radius:8px;padding:9px;border:1px solid var(--blue);font-size:.8rem;line-height:1.6">
             <div style="font-weight:800;color:var(--blue);direction:rtl;text-align:right">المضارع المستمر = ترتيب جاهز</div>
             <div style="font-size:.72rem;color:var(--subtext);direction:rtl;text-align:right">وقت محدد، حجز، اتفاق مع أحد</div>
-            <div>My friends <span class="hi-b">are arriving</span> tomorrow.</div>
+            <div>My friends <span class="hi-b">are arriving</span> tomorrow. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">سيصل أصدقائي غداً</span></div>
           </div>
           <div style="background:#fff;border-radius:8px;padding:9px;border:1px solid var(--coral);font-size:.8rem;line-height:1.6">
             <div style="font-weight:800;color:var(--coral);direction:rtl;text-align:right"><bdi>going to</bdi> = نية أو قرار + توقّع بدليل</div>
             <div style="font-size:.72rem;color:var(--subtext);direction:rtl;text-align:right">حتى لو لسا ما رتّبت شي</div>
-            <div>I'm <span class="hi-c">going to study</span> medicine one day.</div>
-            <div>It's <span class="hi-c">going to</span> rain.</div>
+            <div>I'm <span class="hi-c">going to study</span> medicine one day. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">سأدرس الطب يوماً ما</span></div>
+            <div>It's <span class="hi-c">going to</span> rain. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">ستمطر</span></div>
           </div>
         </div>
       </div>
@@ -997,11 +999,11 @@ body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
         <div style="background:var(--softpink);border-radius:8px;padding:10px;border:1px solid var(--coral);font-size:.83rem;line-height:1.7">
           <div style="font-weight:800;color:var(--coral);margin-bottom:5px">Going to → Negative</div>
-          I'm <strong>not going to</strong> travel.<br>She <strong>isn't going to</strong> come.<br>They <strong>aren't going to</strong> stay.
+          I'm <strong>not going to</strong> travel. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن أسافر</span><br>She <strong>isn't going to</strong> come. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن تأتي</span><br>They <strong>aren't going to</strong> stay. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن يبقوا</span>
         </div>
         <div style="background:var(--softpurple);border-radius:8px;padding:10px;border:1px solid var(--purple);font-size:.83rem;line-height:1.7">
           <div style="font-weight:800;color:var(--purple);margin-bottom:5px">Will → Negative = Won't</div>
-          I <strong>won't</strong> stay in a hotel.<br>She probably <strong>won't</strong> come.<br>They <strong>won't</strong> travel by bus.
+          I <strong>won't</strong> stay in a hotel. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن أقيم في فندق</span><br>She probably <strong>won't</strong> come. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">على الأرجح لن تأتي</span><br>They <strong>won't</strong> travel by bus. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن يسافروا بالحافلة</span>
         </div>
       </div>
     </div>
