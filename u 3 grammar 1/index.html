@@ -973,7 +973,37 @@ body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
       <div class="note">
         💡 نستخدم <strong>going to</strong> للخطط المؤكدة والقرارات السابقة، بينما نستخدم <strong>will</strong> مع <strong>maybe / probably</strong> للخطط غير المؤكدة.
       </div>
-      <div style="background:var(--softblue);border:2px solid var(--blue);border-radius:10px;padding:13px 14px;margin-bottom:14px">
+      <div style="font-weight:800;color:var(--text);margin-bottom:10px;font-size:.9rem;direction:rtl;text-align:right;">✗ صيغة النفي</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:var(--softpink);border-radius:8px;padding:10px;border:1px solid var(--coral);font-size:.83rem;line-height:1.7">
+          <div style="font-weight:800;color:var(--coral);margin-bottom:5px">Going to → Negative</div>
+          I'm <strong>not going to</strong> travel. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن أسافر</span><br>She <strong>isn't going to</strong> come. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن تأتي</span><br>They <strong>aren't going to</strong> stay. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن يبقوا</span>
+        </div>
+        <div style="background:var(--softpurple);border-radius:8px;padding:10px;border:1px solid var(--purple);font-size:.83rem;line-height:1.7">
+          <div style="font-weight:800;color:var(--purple);margin-bottom:5px">Will → Negative = Won't</div>
+          I <strong>won't</strong> stay in a hotel. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن أقيم في فندق</span><br>She probably <strong>won't</strong> come. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">على الأرجح لن تأتي</span><br>They <strong>won't</strong> travel by bus. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن يسافروا بالحافلة</span>
+        </div>
+      </div>
+      <div style="font-weight:800;color:var(--text);margin:16px 0 10px;font-size:.9rem;direction:rtl;text-align:right;">❓ صيغة السؤال</div>
+      <div class="two-cols">
+        <div style="background:var(--softpink);border-radius:8px;padding:10px;border:1px solid var(--coral);font-size:.83rem;line-height:1.8">
+          <div style="font-weight:800;color:var(--coral);margin-bottom:3px">Going to → Question</div>
+          <div style="font-size:.74rem;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:4px">نقدّم <bdi>am / is / are</bdi> قبل الفاعل</div>
+          <div><strong>Is</strong> she <strong>going to</strong> travel next month? <button type="button" class="audio-btn" onclick="speak('Is she going to travel next month?')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">هل ستسافر الشهر القادم؟</span></div>
+          <div><strong>Are</strong> they <strong>going to</strong> stay with friends? <button type="button" class="audio-btn" onclick="speak('Are they going to stay with friends?')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">هل سيبقون عند أصدقائهم؟</span></div>
+          <div>What <strong>are</strong> you <strong>going to</strong> do? <button type="button" class="audio-btn" onclick="speak('What are you going to do?')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">ماذا ستفعل؟</span></div>
+          <div style="font-size:.78rem;margin-top:4px">✅ Yes, she is. &nbsp;/&nbsp; ❌ No, she isn't.</div>
+        </div>
+        <div style="background:var(--softpurple);border-radius:8px;padding:10px;border:1px solid var(--purple);font-size:.83rem;line-height:1.8">
+          <div style="font-weight:800;color:var(--purple);margin-bottom:3px">Will → Question</div>
+          <div style="font-size:.74rem;color:var(--subtext);direction:rtl;text-align:right;margin-bottom:4px">نقدّم <bdi>will</bdi> قبل الفاعل</div>
+          <div><strong>Will</strong> they stay in a hotel? <button type="button" class="audio-btn" onclick="speak('Will they stay in a hotel?')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">هل سيقيمون في فندق؟</span></div>
+          <div><strong>Will</strong> you visit your grandma? <button type="button" class="audio-btn" onclick="speak('Will you visit your grandma?')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">هل ستزور جدتك؟</span></div>
+          <div>Where <strong>will</strong> you stay? <button type="button" class="audio-btn" onclick="speak('Where will you stay?')">🔊</button> <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">أين ستقيم؟</span></div>
+          <div style="font-size:.78rem;margin-top:4px">✅ Yes, they will. &nbsp;/&nbsp; ❌ No, they won't.</div>
+        </div>
+      </div>
+      <div style="background:var(--softblue);border:2px solid var(--blue);border-radius:10px;padding:13px 14px;margin:16px 0 0">
         <div style="font-weight:800;color:var(--blue);font-size:.9rem;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;direction:ltr"><span>🔁 Present Progressive vs Going to</span><span dir="rtl">الفرق بين المضارع المستمر و <bdi>going to</bdi></span></div>
         <div style="font-size:.78rem;color:var(--subtext);direction:rtl;text-align:right;margin:6px 0 10px">في <b>Grammar 1</b> أخذنا إن المضارع المستمر يُستخدم للمستقبل لما يكون الشي مرتّب. <bdi>going to</bdi> كمان للمستقبل المقرر، وكثير تجي بنفس المعنى:</div>
         <div style="background:#fff;border-radius:8px;padding:9px 11px;font-size:.82rem;line-height:1.8;margin-bottom:10px">
@@ -993,17 +1023,6 @@ body.dark .were-cell{background:#0c1a3d!important;color:#93c5fd!important;}
             <div>I'm <span class="hi-c">going to study</span> medicine one day. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">سأدرس الطب يوماً ما</span></div>
             <div>It's <span class="hi-c">going to</span> rain. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">ستمطر</span></div>
           </div>
-        </div>
-      </div>
-      <div style="font-weight:800;color:var(--text);margin-bottom:10px;font-size:.9rem;direction:rtl;text-align:right;">✗ صيغة النفي</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div style="background:var(--softpink);border-radius:8px;padding:10px;border:1px solid var(--coral);font-size:.83rem;line-height:1.7">
-          <div style="font-weight:800;color:var(--coral);margin-bottom:5px">Going to → Negative</div>
-          I'm <strong>not going to</strong> travel. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن أسافر</span><br>She <strong>isn't going to</strong> come. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن تأتي</span><br>They <strong>aren't going to</strong> stay. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن يبقوا</span>
-        </div>
-        <div style="background:var(--softpurple);border-radius:8px;padding:10px;border:1px solid var(--purple);font-size:.83rem;line-height:1.7">
-          <div style="font-weight:800;color:var(--purple);margin-bottom:5px">Will → Negative = Won't</div>
-          I <strong>won't</strong> stay in a hotel. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن أقيم في فندق</span><br>She probably <strong>won't</strong> come. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">على الأرجح لن تأتي</span><br>They <strong>won't</strong> travel by bus. <span dir="rtl" style="color:var(--subtext);font-size:.76rem;margin-inline-start:6px;display:inline-block">لن يسافروا بالحافلة</span>
         </div>
       </div>
     </div>
